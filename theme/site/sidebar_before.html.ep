@@ -12,29 +12,25 @@
         <li><a href="/basics/variables">Variables</li>
         <li><a href="/basics/references">References</li>
         <li><a href="/basics/functions">Functions</li>
-        <li><a href="/basics/oo">Object oriented programming</li>
+      </ul>
+    </li>
+    <li class='oo sub-menu'>
+      <a href='<%= $sidebar_path %>#oo'>Object oriented programming<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</li>
+        <li><a href="/oo/classes">Classes and Objects</li>
+        <li><a href="/oo/attributes">Attributes</li>
+        <li><a href="/oo/modifiers">Method modifiers</li>
+        <li><a href="/oo/roles">Roles</li>
+        <li><a href="/oo/inheritance">Inheritance</li>
       </ul>
     </li>
     <li class='debugging sub-menu'>
-      <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#basics'>Debugging<div class='fa fa-caret-down right'></div></a>
       <ul>
         <li><a href="/basics/debugging">Print data structures with Data::Printer</li>
         <li><a href="/basics/exceptions">Exceptions in Perl</li>
         <li><a href="/basics/stack-trace">How to force a stack trace</li>
-      </ul>
-    </li>
-    <li class='oldbasics sub-menu'>
-      <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
-      <ul>
-        <li><a href="/basics/repl">The Perl REPL</a></li>
-        <li><a href="/basics/perldoc">Getting help on the command line with perldoc</li>
-        <li><a href="/basics/oo">Object oriented programming with Moo</li>
-        <li><a href="/basics/stack-trace">How to force a stack trace</li>
-        <li><a href="/basics/debugging">Print data structures with Data::Printer</li>
-        <li><a href="/basics/exceptions">Exceptions in Perl</li>
-        <li><a href="/basics/pmtools">What version of that module is installed and where is it?</li>
-        <li><a href="/basics/data-types">Introduction to Perl Data Types</li>
-        <li><a href="/basics/references">Introduction to References</li>
       </ul>
     </li>
     <li class='dependencies sub-menu'>

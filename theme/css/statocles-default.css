@@ -15,7 +15,7 @@ body {
     line-height: 20px;
     height: 100%;
     background: #f1f5f6;
-    color: #666;
+    color: #777;
 }
 h1, h2, h3, h4, h5 {
     font-weight: bold;
@@ -420,12 +420,13 @@ footer .tagline {
 main {
     background: #fff;
     padding: 2rem;
-    padding-top: 4rem;
+    padding-top: 0rem;
     padding-bottom: 4rem;
     font-family: sans-serif;
     font-weight: normal;
 }
 .title-page {
+    padding-top: 6rem;
     box-sizing: border-box;
     text-align: center;
     font-family: sans-serif;

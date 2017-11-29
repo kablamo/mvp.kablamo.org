@@ -10,20 +10,6 @@ nor shell were good, and that's where I aimed Perl." <br>
 Perl's design goals include flexibility, expressiveness, and power.  Perl is good
 at enabling developers to quickly whip up solutions that work.  
 
-#### Hello world
-
-The code:
-
-    #!/usr/bin/env perl
-    use strict;
-    use warnings;
-
-    print "hello world\n";
-
-How to run it:
-
-    $ perl hello.pl
-    hello world
 
 #### Perl libraries
 <a href="https://metacpan.org">MetaCPAN.org</a> is home to
