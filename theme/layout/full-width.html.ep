@@ -2,14 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/theme/css/normalize.css" />
-        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link rel="stylesheet" href="/theme/css/skeleton.css" />
         <link rel="stylesheet" href="/theme/css/statocles-default.css" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <script src="http://code.jquery.com/jquery-3.2.1.min.js"
-                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                crossorigin="anonymous"></script>
         <title><%== $self->title ? $self->title . ' - ' : '' %><%== $site->title %></title>
         % if ( my $author = $self->author ) {
         <meta name="author" content="<%== $author->name %>">
@@ -34,41 +30,37 @@
         % for my $link ( $self->links( 'script' ) ) {
         <script src="<%= $link->href %>"></script>
         % }
-        % my $sidebar_path = $self->path->parent->parent ne '/' ? '.' . substr($self->path->parent->parent, 1) : '.nomatch';
-        <script>
-            $( document ).ready(function() {
-                $('.sub-menu ul').hide();
-                $('.sub-menu<%= $sidebar_path %> ul').show();
-                $('.sub-menu<%= $sidebar_path %> div').toggleClass("fa-caret-up fa-caret-down");
-                $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
-                });
-            });
-        </script>
     </head>
     <body>
         <header>
-        </header>
-        <div class="container">
-
-                <div class="left column full-height">
-                    <div class="sidebar">
-                    %= include 'site/sidebar_before.html.ep';
-                    %= content 'tags';
-                    %= content 'feeds';
-                    </div>
+            <nav class="navbar">
+                <div class="container">
+                    <a class="brand" href="/"><%= $site->title %></a>
+                    % if ( my @nav_links = $site->nav( 'main' ) ) {
+                    <ul>
+                        % for my $nav ( @nav_links ) {
+                        <li>
+                            <a href="<%= $nav->href %>"><%= $nav->text %></a>
+                        </li>
+                        % }
+                    </ul>
+                    % }
+                    %= include 'site/navbar_extra.html.ep'
                 </div>
-
-                <div class="right column">
+            </nav>
+            %= include 'site/header_after.html.ep'
+        </header>
+        <div class="main container">
+            <div class="row">
+                <div class="twelve columns">
                     <main>
-                    <%= content %>
+                        <%= content %>
                     </main>
                 </div>
-
+            </div>
         </div>
         <footer>
-        %= include 'site/footer.html.ep'
+            %= include 'site/footer.html.ep'
         </footer>
 
         % if ( $site->data->{google_analytics_id} ) {

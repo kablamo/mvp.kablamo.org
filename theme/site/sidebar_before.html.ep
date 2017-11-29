@@ -1,0 +1,63 @@
+% my $sidebar_path = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
+
+<a class="home" href='/'>Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class='animated bounceInDown'>
+  <ul>
+    <li><a href='/intro'>Introduction to Perl</a></li>
+    <li class='basics sub-menu'>
+      <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</li>
+        <li><a href="/basics/references">References</li>
+        <li><a href="/basics/functions">Functions</li>
+        <li><a href="/basics/oo">Object oriented programming</li>
+      </ul>
+    </li>
+    <li class='debugging sub-menu'>
+      <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href="/basics/debugging">Print data structures with Data::Printer</li>
+        <li><a href="/basics/exceptions">Exceptions in Perl</li>
+        <li><a href="/basics/stack-trace">How to force a stack trace</li>
+      </ul>
+    </li>
+    <li class='oldbasics sub-menu'>
+      <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href="/basics/repl">The Perl REPL</a></li>
+        <li><a href="/basics/perldoc">Getting help on the command line with perldoc</li>
+        <li><a href="/basics/oo">Object oriented programming with Moo</li>
+        <li><a href="/basics/stack-trace">How to force a stack trace</li>
+        <li><a href="/basics/debugging">Print data structures with Data::Printer</li>
+        <li><a href="/basics/exceptions">Exceptions in Perl</li>
+        <li><a href="/basics/pmtools">What version of that module is installed and where is it?</li>
+        <li><a href="/basics/data-types">Introduction to Perl Data Types</li>
+        <li><a href="/basics/references">Introduction to References</li>
+      </ul>
+    </li>
+    <li class='dependencies sub-menu'>
+      <a href='<%= $sidebar_path %>#dependencies'>Managing dependencies<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href="/basics/pmtools">What version of that module is installed and where is it?</li>
+        <li><a href=''>Where are my dependencies loaded from? $PERL5LIB</a></li>
+        <li><a href=''>Installing dependencies with cpanm and locallib</a></li>
+        <li><a href=''>How to choose Perl dependencies from MetaCPAN</a></li>
+        <li><a href=''>Managing dependencies with Carton and cpanfile</a></li>
+      </ul>
+    </li>
+    <li class='testing sub-menu'>
+      <a href='<%= $sidebar_path %>#testing'>Testing<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href=''>The Perl test ecosystem</a></li>
+      </ul>
+    </li>
+    <li class='misc sub-menu'>
+      <a href='<%= $sidebar_path %>#misc'>Misc<div class='fa fa-caret-down right'></div></a>
+      <ul>
+        <li><a href=''>Regexps: Look around assertions</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

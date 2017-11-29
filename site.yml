@@ -136,7 +136,7 @@ page_app:
     class: 'Statocles::App::Basic'
     args:
         store: 'page'
-        url_root: '/page'
+        url_root: '/'
 
 # static_app: These are the settings for the static application.
 static_app:
