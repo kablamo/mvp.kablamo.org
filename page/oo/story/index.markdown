@@ -6,13 +6,13 @@ the concepts are the same and all the same functionality (and more) is there.
 
 #### Native Perl OO
 Native Perl OO is solid but strange.  Essentially OO in the Perl core is
-unfinished -- it has great fundamentals but lacks any sort of sugary syntax for
-developers.  For various reasons native Perl OO has been stuck in this limbo
-for years (and still is) although there have been and continue to be many
-attempts to finish and polish it.
+unfinished: it has good fundamentals but lacks much of the sugary syntax
+developers in other languages are accustomed to.  For various reasons native
+Perl OO has been stuck in this limbo for years although there have been and
+continue to be many attempts to finish and polish it.  *However:*
 
 #### Modern Perl
-However the Perl language is so flexible you can essentially define your
+The Perl language is so flexible you can essentially define your
 own keywords in a library.  Several groups of developers used this
 flexibility to create a (somewhat) more normal OO sugar syntax on top of Perl's
 native OO fundamentals which make it much easier to use the power thats there.  

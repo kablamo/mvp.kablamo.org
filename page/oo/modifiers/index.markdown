@@ -2,7 +2,7 @@
 
 #### before()
 
-Run a coderef before calling the method being modified.  Things to note:
+Run a coderef *before* calling the method being modified.  Things to note:
 
 1. The coderef receives the same params as the original method.
 2. The return value of the coderef is ignored.
@@ -23,7 +23,7 @@ Example:
 
 #### after()
 
-Run a coderef after calling the method being modified.  Things to note:
+Run a coderef *after* calling the method being modified.  Things to note:
 
 1. The coderef receives same params as the original method.
 2. The return value of the coderef is ignored.
@@ -60,3 +60,6 @@ Example:
         uc $orig->($self, $food);
     };
 
+#### More details
+
+See [https://metacpan.org/pod/Class::Method::Modifiers](https://metacpan.org/pod/Class::Method::Modifiers)
