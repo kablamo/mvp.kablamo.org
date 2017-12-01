@@ -114,8 +114,8 @@ theme:
 deploy:
     class: 'Statocles::Deploy::Git'
     args:
-        branch: 'deploy'
-        remote: 'deploy'
+        branch: 'gh-pages'
+        remote: 'gh-pages'
 
 #----------------------------------------------------------------------------
 # Applications
