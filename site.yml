@@ -32,7 +32,7 @@ site:
     args:
 
         # title: This is the title of the site, shown in the <title> tag
-        title: 'My Statocles Site'
+        title: 'Minimum Viable Perl'
 
         # base_url: This is the base URL the site will be deployed to. It
         # should be a full URL, and may contain a path, like:

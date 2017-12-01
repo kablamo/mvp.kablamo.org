@@ -311,7 +311,7 @@ img.u-pull-left, img.u-pull-right {
 .sidebar ul li a:hover {
   background: #2980b9;
   background: #5cb3ec;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
 }
 .sidebar ul li a .fa {
   width: 16px;

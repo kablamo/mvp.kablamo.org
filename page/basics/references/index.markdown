@@ -6,16 +6,16 @@ can master this you will be able to read and write Perl code.  <i>Be sure to
 read the section "Key Things to Remember" at the bottom! </i>
 
 #### What is a reference?
-A reference is a pointer.  It's a scalar value containing the address of
+A reference is like a pointer.  It's a scalar value containing the address of
 another value.  Perl will not automatically dereference a variable for you.
-Reference variables are scalars so they always start with a <code>$</code>.  
+References are scalars so they always start with a <code>$</code>.  
 
-#### List References
+#### List references
 
 Also called list refs for short.
 
-    my @list = (1, 2, 3, 4); # list
-    my $listref1 = \@list;   # list reference
+    my @list = (1, 2, 3, 4);             # list
+    my $listref1 = \@list;               # list reference
     my $listref2 = ['a', 'b', 'c', 'd']; # list reference
 
     # Access element 0 of the list 
@@ -33,13 +33,13 @@ Also called list refs for short.
     my @list2 = @$listref;                 # same but less typing
     my @list3 = @{ $lists_in_lists->[3] }; # ('roo', 'woo', 'loo')
 
-#### Hash References
+#### Hash references
 
 Also called hash refs for short.
 
-    my %hash = (a => 1, b => 2, c => 3); 
-    my $hashref1 = \%hash;
-    my $hashref2 = {x => 11, y => 12, z => 13};
+    my %hash = (a => 1, b => 2, c => 3);        # hash
+    my $hashref1 = \%hash;                      # hash reference
+    my $hashref2 = {x => 11, y => 12, z => 13}; # hash reference
 
     # Access hash value 
     print $hash{a};       # prints 1
@@ -60,12 +60,12 @@ Also called hash refs for short.
     my %hash2 = %$hashes_in_hashes;          # same but less typing
     my %hash3 = %{ $hashes_in_hashes->{c} }; # (x => 1, y => 2)
 
-#### Code References 
+#### Code references 
 
 AKA code refs, anonymous subroutines, anonymous functions, closures, or callbacks.
 
     my $coderef = sub { print "stegasaurus" };
-    # Dereference + run the subroutine
+    # Dereference and run the subroutine
     $coderef->(); # prints "stegasaurus"
 
 #### Key things to remember

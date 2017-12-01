@@ -1,12 +1,16 @@
 # Functions
 
-Basic example:
+Functions are also known as "subroutines" -- hence the keyword
+<code>sub</code>.  A simple example:
 
     sub rawr {
         print "RAWR!";
     }
     
     rawr();
+
+
+#### Passing parameters
 
 How to pass parameters to a function
 
@@ -29,5 +33,22 @@ How to pass named parameters to a function
         how      => "loudly"
     );
 
-Functions are also sometimes called "subroutines" -- hence the keyword <code>sub</code>.
+#### Returning values
+
+How to return a single value
+
+    sub get_cookie_flavor {
+        return "chocolate chip";
+    }
+
+    my $flavor = get_cookie_flavor();
+
+How to return multiple values
+
+    sub get_available_flavors {
+        return ("chocolate chip", "oatmeal raisin", "peanut butter");
+    }
+
+    my @flavors = get_cookie_flavors();
+
 

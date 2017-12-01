@@ -41,6 +41,7 @@
                 $('.sub-menu<%= $sidebar_path %> ul').show();
                 $('.sub-menu<%= $sidebar_path %> div').toggleClass("fa-caret-up fa-caret-down");
                 $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
                     $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
                 });

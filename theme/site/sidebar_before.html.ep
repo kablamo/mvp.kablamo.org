@@ -4,7 +4,6 @@
 
 <div class='animated bounceInDown'>
   <ul>
-    <li><a href='/intro'>Introduction to Perl</a></li>
     <li class='basics sub-menu'>
       <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
       <ul>
@@ -12,13 +11,18 @@
         <li><a href="/basics/variables">Variables</li>
         <li><a href="/basics/references">References</li>
         <li><a href="/basics/functions">Functions</li>
+        <li><a href='/basics/flow'>Conditionals</a></li>
+        <li><a href='/basics/loops'>Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</li>
+        <li><a href='/basics/regexps'>Regexps</a></li>
+        <li><a href='/basics/files'>Files</a></li>
       </ul>
     </li>
     <li class='oo sub-menu'>
       <a href='<%= $sidebar_path %>#oo'>Object oriented programming<div class='fa fa-caret-down right'></div></a>
       <ul>
         <li><a href="/oo/story">The (weird) story of Perl OO</li>
-        <li><a href="/oo/classes">Classes and Objects</li>
+        <li><a href="/oo/classes">Classes</li>
         <li><a href="/oo/attributes">Attributes</li>
         <li><a href="/oo/modifiers">Method modifiers</li>
         <li><a href="/oo/roles">Roles</li>
@@ -28,32 +32,32 @@
     <li class='debugging sub-menu'>
       <a href='<%= $sidebar_path %>#basics'>Debugging<div class='fa fa-caret-down right'></div></a>
       <ul>
-        <li><a href="/basics/debugging">Print data structures with Data::Printer</li>
-        <li><a href="/basics/exceptions">Exceptions in Perl</li>
-        <li><a href="/basics/stack-trace">How to force a stack trace</li>
+        <li><a href="/debugging/data-printer">Examining data structures</li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</li>
       </ul>
     </li>
     <li class='dependencies sub-menu'>
-      <a href='<%= $sidebar_path %>#dependencies'>Managing dependencies<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#dependencies'>Perl libraries<div class='fa fa-caret-down right'></div></a>
       <ul>
-        <li><a href="/basics/pmtools">What version of that module is installed and where is it?</li>
-        <li><a href=''>Where are my dependencies loaded from? $PERL5LIB</a></li>
-        <li><a href=''>Installing dependencies with cpanm and locallib</a></li>
-        <li><a href=''>How to choose Perl dependencies from MetaCPAN</a></li>
-        <li><a href=''>Managing dependencies with Carton and cpanfile</a></li>
+        <li><a href='/dependencies/perl5lib'>Loading libraries from custom locations</a></li>
+        <li><a href='/dependencies/cpanm'>Installing libraries with cpanm</a></li>
+        <li><a href='/dependencies/metacpan'>Choosing libraries from MetaCPAN</a></li>
+        <li><a href='/dependencies/carton'>Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</li>
       </ul>
     </li>
     <li class='testing sub-menu'>
       <a href='<%= $sidebar_path %>#testing'>Testing<div class='fa fa-caret-down right'></div></a>
       <ul>
-        <li><a href=''>The Perl test ecosystem</a></li>
+        <li><a href='/testing/intro'>Introduction to testing</a></li>
+        <li><a href='/testing/warnings'>Testing warnings and exceptions</a></li>
+        <li><a href='/testing/data'>Testing data structures</a></li>
+        <li><a href='/testing/mock'>Testing with mock objects</a></li>
+        <li><a href='/testing/libs'>Build your own test libraries</a></li>
       </ul>
     </li>
-    <li class='misc sub-menu'>
-      <a href='<%= $sidebar_path %>#misc'>Misc<div class='fa fa-caret-down right'></div></a>
-      <ul>
-        <li><a href=''>Regexps: Look around assertions</a></li>
-      </ul>
-    </li>
+    <li><a href='/perl'>Perl design goals</a></li>
+    <li><a href='/see-also'>Book recommendations</a></li>
+    <li><a href='/about'>About this book</a></li>
   </ul>
 </div>
