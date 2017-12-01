@@ -114,7 +114,8 @@ theme:
 deploy:
     class: 'Statocles::Deploy::Git'
     args:
-        branch: 'master'
+        branch: 'deploy'
+        remote: 'deploy'
 
 #----------------------------------------------------------------------------
 # Applications
