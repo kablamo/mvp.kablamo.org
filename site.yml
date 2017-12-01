@@ -41,7 +41,7 @@ site:
         #
         # If the base_url contains a path, all internal links will be
         # rewritten appropriately.
-        base_url: 'http://kablamo.org/mvp'
+        base_url: 'http://mvp.kablamo.org'
 
         # apps: These are the applications in this site. The name of the app,
         # "blog", "page", or "static", is used to refer to it in commands.
@@ -54,6 +54,9 @@ site:
             # page: This app turns any Markdown page into HTML
             page:
                 $ref: 'page_app'
+
+            perldoc:
+                $ref: 'perldoc_app'
 
             # static: This app does no processing at all. Good for images
             static:
@@ -144,3 +147,14 @@ static_app:
     args:
         store: 'static'
         url_root: '/static'
+
+perldoc_app:
+    class: 'Statocles::App::Perldoc'
+    args:
+        store: 'blog'
+        url_root: '/perldoc'
+        template_dir: 'perldoc'
+        index_module: 'perl'
+        modules: 
+            - 'perl'
+        
