@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlrequick (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlrequick/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlrequick/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlrequick/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlrequick/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlrequick/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlrequick/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlrequick - Perl regular expressions quick start
+
+=head1 DESCRIPTION
+
+This page covers the very basics of understanding, creating and
+using regular expressions (&#39;regexes&#39;) in Perl.
+
+
+=head1 The Guide
+
+This page assumes you already know things, like what a &quot;pattern&quot; is, and
+the basic syntax of using them.  If you don&#39;t, see L&lt;perlretut&gt;.
+
+=head2 Simple word matching
+
+The simplest regex is simply a word, or more generally, a string of
+characters.  A regex consisting of a word matches any string that
+contains that word:
+
+    &quot;Hello World&quot; =~ /World/;  # matches
+
+In this statement, C&lt;World&gt; is a regex and the C&lt;//&gt; enclosing
+C&lt;/World/&gt; tells Perl to search a string for a match.  The operator
+C&lt;=~&gt; associates the string with the regex match and produces a true
+value if the regex matched, or false if the regex did not match.  In
+our case, C&lt;World&gt; matches the second word in C&lt;&quot;Hello World&quot;&gt;, so the
+expression is true.  This idea has several variations.
+
+Expressions like this are useful in conditionals:
+
+    print &quot;It matches\n&quot; if &quot;Hello World&quot; =~ /World/;
+
+The sense of the match can be reversed by using C&lt;!~&gt; operator:
+
+    print &quot;It doesn&#39;t match\n&quot; if &quot;Hello World&quot; !~ /World/;
+
+The literal string in the regex can be replaced by a variable:
+
+    $greeting = &quot;World&quot;;
+    print &quot;It matches\n&quot; if &quot;Hello World&quot; =~ /$greeting/;
+
+If you&#39;re matching against C&lt;$_&gt;, the C&lt;$_ =~&gt; part can be omitted:
+
+    $_ = &quot;Hello World&quot;;
+    print &quot;It matches\n&quot; if /World/;
+
+Finally, the C&lt;//&gt; default delimiters for a match can be changed to
+arbitrary delimiters by putting an C&lt;&#39;m&#39;&gt; out front:
+
+    &quot;Hello World&quot; =~ m!World!;   # matches, delimited by &#39;!&#39;
+    &quot;Hello World&quot; =~ m{World};   # matches, note the matching &#39;{}&#39;
+    &quot;/usr/bin/perl&quot; =~ m&quot;/perl&quot;; # matches after &#39;/usr/bin&#39;,
+                                 # &#39;/&#39; becomes an ordinary char
+
+Regexes must match a part of the string I&lt;exactly&gt; in order for the
+statement to be true:
+
+    &quot;Hello World&quot; =~ /world/;  # doesn&#39;t match, case sensitive
+    &quot;Hello World&quot; =~ /o W/;    # matches, &#39; &#39; is an ordinary char
+    &quot;Hello World&quot; =~ /World /; # doesn&#39;t match, no &#39; &#39; at end
+
+Perl will always match at the earliest possible point in the string:
+
+    &quot;Hello World&quot; =~ /o/;       # matches &#39;o&#39; in &#39;Hello&#39;
+    &quot;That hat is red&quot; =~ /hat/; # matches &#39;hat&#39; in &#39;That&#39;
+
+Not all characters can be used &#39;as is&#39; in a match.  Some characters,
+called B&lt;metacharacters&gt;, are reserved for use in regex notation.
+The metacharacters are
+
+    {}[]()^$.|*+?\
+
+A metacharacter can be matched by putting a backslash before it:
+
+    &quot;2+2=4&quot; =~ /2+2/;    # doesn&#39;t match, + is a metacharacter
+    &quot;2+2=4&quot; =~ /2\+2/;   # matches, \+ is treated like an ordinary +
+    &#39;C:\WIN32&#39; =~ /C:\\WIN/;                       # matches
+    &quot;/usr/bin/perl&quot; =~ /\/usr\/bin\/perl/;  # matches
+
+In the last regex, the forward slash C&lt;&#39;/&#39;&gt; is also backslashed,
+because it is used to delimit the regex.
+
+Non-printable ASCII characters are represented by B&lt;escape sequences&gt;.
+Common examples are C&lt;\t&gt; for a tab, C&lt;\n&gt; for a newline, and C&lt;\r&gt;
+for a carriage return.  Arbitrary bytes are represented by octal
+escape sequences, e.g., C&lt;\033&gt;, or hexadecimal escape sequences,
+e.g., C&lt;\x1B&gt;:
+
+    &quot;1000\t2000&quot; =~ m(0\t2)  # matches
+    &quot;cat&quot; =~ /\143\x61\x74/  # matches in ASCII, but 
+                             # a weird way to spell cat
+
+Regexes are treated mostly as double-quoted strings, so variable
+substitution works:
+
+    $foo = &#39;house&#39;;
+    &#39;cathouse&#39; =~ /cat$foo/;   # matches
+    &#39;housecat&#39; =~ /${foo}cat/; # matches
+
+With all of the regexes above, if the regex matched anywhere in the
+string, it was considered a match.  To specify I&lt;where&gt; it should
+match, we would use the B&lt;anchor&gt; metacharacters C&lt;^&gt; and C&lt;$&gt;.  The
+anchor C&lt;^&gt; means match at the beginning of the string and the anchor
+C&lt;$&gt; means match at the end of the string, or before a newline at the
+end of the string.  Some examples:
+
+    &quot;housekeeper&quot; =~ /keeper/;         # matches
+    &quot;housekeeper&quot; =~ /^keeper/;        # doesn&#39;t match
+    &quot;housekeeper&quot; =~ /keeper$/;        # matches
+    &quot;housekeeper\n&quot; =~ /keeper$/;      # matches
+    &quot;housekeeper&quot; =~ /^housekeeper$/;  # matches
+
+=head2 Using character classes
+
+A B&lt;character class&gt; allows a set of possible characters, rather than
+just a single character, to match at a particular point in a regex.
+Character classes are denoted by brackets C&lt;[...]&gt;, with the set of
+characters to be possibly matched inside.  Here are some examples:
+
+    /cat/;            # matches &#39;cat&#39;
+    /[bcr]at/;        # matches &#39;bat&#39;, &#39;cat&#39;, or &#39;rat&#39;
+    &quot;abc&quot; =~ /[cab]/; # matches &#39;a&#39;
+
+In the last statement, even though C&lt;&#39;c&#39;&gt; is the first character in
+the class, the earliest point at which the regex can match is C&lt;&#39;a&#39;&gt;.
+
+    /[yY][eE][sS]/; # match &#39;yes&#39; in a case-insensitive way
+                    # &#39;yes&#39;, &#39;Yes&#39;, &#39;YES&#39;, etc.
+    /yes/i;         # also match &#39;yes&#39; in a case-insensitive way
+
+The last example shows a match with an C&lt;&#39;i&#39;&gt; B&lt;modifier&gt;, which makes
+the match case-insensitive.
+
+Character classes also have ordinary and special characters, but the
+sets of ordinary and special characters inside a character class are
+different than those outside a character class.  The special
+characters for a character class are C&lt;-]\^$&gt; and are matched using an
+escape:
+
+   /[\]c]def/; # matches &#39;]def&#39; or &#39;cdef&#39;
+   $x = &#39;bcr&#39;;
+   /[$x]at/;   # matches &#39;bat, &#39;cat&#39;, or &#39;rat&#39;
+   /[\$x]at/;  # matches &#39;$at&#39; or &#39;xat&#39;
+   /[\\$x]at/; # matches &#39;\at&#39;, &#39;bat, &#39;cat&#39;, or &#39;rat&#39;
+
+The special character C&lt;&#39;-&#39;&gt; acts as a range operator within character
+classes, so that the unwieldy C&lt;[0123456789]&gt; and C&lt;[abc...xyz]&gt;
+become the svelte C&lt;[0-9]&gt; and C&lt;[a-z]&gt;:
+
+    /item[0-9]/;  # matches &#39;item0&#39; or ... or &#39;item9&#39;
+    /[0-9a-fA-F]/;  # matches a hexadecimal digit
+
+If C&lt;&#39;-&#39;&gt; is the first or last character in a character class, it is
+treated as an ordinary character.
+
+The special character C&lt;^&gt; in the first position of a character class
+denotes a B&lt;negated character class&gt;, which matches any character but
+those in the brackets.  Both C&lt;[...]&gt; and C&lt;[^...]&gt; must match a
+character, or the match fails.  Then
+
+    /[^a]at/;  # doesn&#39;t match &#39;aat&#39; or &#39;at&#39;, but matches
+               # all other &#39;bat&#39;, &#39;cat, &#39;0at&#39;, &#39;%at&#39;, etc.
+    /[^0-9]/;  # matches a non-numeric character
+    /[a^]at/;  # matches &#39;aat&#39; or &#39;^at&#39;; here &#39;^&#39; is ordinary
+
+Perl has several abbreviations for common character classes. (These
+definitions are those that Perl uses in ASCII-safe mode with the C&lt;/a&gt; modifier.
+Otherwise they could match many more non-ASCII Unicode characters as
+well.  See L&lt;perlrecharclass/Backslash sequences&gt; for details.)
+
+=over 4
+
+=item *
+
+\d is a digit and represents
+
+    [0-9]
+
+=item *
+
+\s is a whitespace character and represents
+
+    [\ \t\r\n\f]
+
+=item *
+
+\w is a word character (alphanumeric or _) and represents
+
+    [0-9a-zA-Z_]
+
+=item *
+
+\D is a negated \d; it represents any character but a digit
+
+    [^0-9]
+
+=item *
+
+\S is a negated \s; it represents any non-whitespace character
+
+    [^\s]
+
+=item *
+
+\W is a negated \w; it represents any non-word character
+
+    [^\w]
+
+=item *
+
+The period &#39;.&#39; matches any character but &quot;\n&quot;
+
+=back
+
+The C&lt;\d\s\w\D\S\W&gt; abbreviations can be used both inside and outside
+of character classes.  Here are some in use:
+
+    /\d\d:\d\d:\d\d/; # matches a hh:mm:ss time format
+    /[\d\s]/;         # matches any digit or whitespace character
+    /\w\W\w/;         # matches a word char, followed by a
+                      # non-word char, followed by a word char
+    /..rt/;           # matches any two chars, followed by &#39;rt&#39;
+    /end\./;          # matches &#39;end.&#39;
+    /end[.]/;         # same thing, matches &#39;end.&#39;
+
+The S&lt;B&lt;word anchor&gt; &gt; C&lt;\b&gt; matches a boundary between a word
+character and a non-word character C&lt;\w\W&gt; or C&lt;\W\w&gt;:
+
+    $x = &quot;Housecat catenates house and cat&quot;;
+    $x =~ /\bcat/;  # matches cat in &#39;catenates&#39;
+    $x =~ /cat\b/;  # matches cat in &#39;housecat&#39;
+    $x =~ /\bcat\b/;  # matches &#39;cat&#39; at end of string
+
+In the last example, the end of the string is considered a word
+boundary.
+
+For natural language processing (so that, for example, apostrophes are
+included in words), use instead C&lt;\b{wb}&gt;
+
+    &quot;don&#39;t&quot; =~ / .+? \b{wb} /x;  # matches the whole string
+
+=head2 Matching this or that
+
+We can match different character strings with the B&lt;alternation&gt;
+metacharacter C&lt;&#39;|&#39;&gt;.  To match C&lt;dog&gt; or C&lt;cat&gt;, we form the regex
+C&lt;dog|cat&gt;.  As before, Perl will try to match the regex at the
+earliest possible point in the string.  At each character position,
+Perl will first try to match the first alternative, C&lt;dog&gt;.  If
+C&lt;dog&gt; doesn&#39;t match, Perl will then try the next alternative, C&lt;cat&gt;.
+If C&lt;cat&gt; doesn&#39;t match either, then the match fails and Perl moves to
+the next position in the string.  Some examples:
+
+    &quot;cats and dogs&quot; =~ /cat|dog|bird/;  # matches &quot;cat&quot;
+    &quot;cats and dogs&quot; =~ /dog|cat|bird/;  # matches &quot;cat&quot;
+
+Even though C&lt;dog&gt; is the first alternative in the second regex,
+C&lt;cat&gt; is able to match earlier in the string.
+
+    &quot;cats&quot;          =~ /c|ca|cat|cats/; # matches &quot;c&quot;
+    &quot;cats&quot;          =~ /cats|cat|ca|c/; # matches &quot;cats&quot;
+
+At a given character position, the first alternative that allows the
+regex match to succeed will be the one that matches. Here, all the
+alternatives match at the first string position, so the first matches.
+
+=head2 Grouping things and hierarchical matching
+
+The B&lt;grouping&gt; metacharacters C&lt;()&gt; allow a part of a regex to be
+treated as a single unit.  Parts of a regex are grouped by enclosing
+them in parentheses.  The regex C&lt;house(cat|keeper)&gt; means match
+C&lt;house&gt; followed by either C&lt;cat&gt; or C&lt;keeper&gt;.  Some more examples
+are
+
+    /(a|b)b/;    # matches &#39;ab&#39; or &#39;bb&#39;
+    /(^a|b)c/;   # matches &#39;ac&#39; at start of string or &#39;bc&#39; anywhere
+
+    /house(cat|)/;  # matches either &#39;housecat&#39; or &#39;house&#39;
+    /house(cat(s|)|)/;  # matches either &#39;housecats&#39; or &#39;housecat&#39; or
+                        # &#39;house&#39;.  Note groups can be nested.
+
+    &quot;20&quot; =~ /(19|20|)\d\d/;  # matches the null alternative &#39;()\d\d&#39;,
+                             # because &#39;20\d\d&#39; can&#39;t match
+
+=head2 Extracting matches
+
+The grouping metacharacters C&lt;()&gt; also allow the extraction of the
+parts of a string that matched.  For each grouping, the part that
+matched inside goes into the special variables C&lt;$1&gt;, C&lt;$2&gt;, etc.
+They can be used just as ordinary variables:
+
+    # extract hours, minutes, seconds
+    $time =~ /(\d\d):(\d\d):(\d\d)/;  # match hh:mm:ss format
+    $hours = $1;
+    $minutes = $2;
+    $seconds = $3;
+
+In list context, a match C&lt;/regex/&gt; with groupings will return the
+list of matched values C&lt;($1,$2,...)&gt;.  So we could rewrite it as
+
+    ($hours, $minutes, $second) = ($time =~ /(\d\d):(\d\d):(\d\d)/);
+
+If the groupings in a regex are nested, C&lt;$1&gt; gets the group with the
+leftmost opening parenthesis, C&lt;$2&gt; the next opening parenthesis,
+etc.  For example, here is a complex regex and the matching variables
+indicated below it:
+
+    /(ab(cd|ef)((gi)|j))/;
+     1  2      34
+
+Associated with the matching variables C&lt;$1&gt;, C&lt;$2&gt;, ... are
+the B&lt;backreferences&gt; C&lt;\g1&gt;, C&lt;\g2&gt;, ...  Backreferences are
+matching variables that can be used I&lt;inside&gt; a regex:
+
+    /(\w\w\w)\s\g1/; # find sequences like &#39;the the&#39; in string
+
+C&lt;$1&gt;, C&lt;$2&gt;, ... should only be used outside of a regex, and C&lt;\g1&gt;,
+C&lt;\g2&gt;, ... only inside a regex.
+
+=head2 Matching repetitions
+
+The B&lt;quantifier&gt; metacharacters C&lt;?&gt;, C&lt;*&gt;, C&lt;+&gt;, and C&lt;{}&gt; allow us
+to determine the number of repeats of a portion of a regex we
+consider to be a match.  Quantifiers are put immediately after the
+character, character class, or grouping that we want to specify.  They
+have the following meanings:
+
+=over 4
+
+=item *
+
+C&lt;a?&gt; = match &#39;a&#39; 1 or 0 times
+
+=item *
+
+C&lt;a*&gt; = match &#39;a&#39; 0 or more times, i.e., any number of times
+
+=item *
+
+C&lt;a+&gt; = match &#39;a&#39; 1 or more times, i.e., at least once
+
+=item *
+
+C&lt;a{n,m}&gt; = match at least C&lt;n&gt; times, but not more than C&lt;m&gt;
+times.
+
+=item *
+
+C&lt;a{n,}&gt; = match at least C&lt;n&gt; or more times
+
+=item *
+
+C&lt;a{n}&gt; = match exactly C&lt;n&gt; times
+
+=back
+
+Here are some examples:
+
+    /[a-z]+\s+\d*/;  # match a lowercase word, at least some space, and
+                     # any number of digits
+    /(\w+)\s+\g1/;    # match doubled words of arbitrary length
+    $year =~ /^\d{2,4}$/;  # make sure year is at least 2 but not more
+                           # than 4 digits
+    $year =~ /^\d{4}$|^\d{2}$/; # better match; throw out 3 digit dates
+
+These quantifiers will try to match as much of the string as possible,
+while still allowing the regex to match.  So we have
+
+    $x = &#39;the cat in the hat&#39;;
+    $x =~ /^(.*)(at)(.*)$/; # matches,
+                            # $1 = &#39;the cat in the h&#39;
+                            # $2 = &#39;at&#39;
+                            # $3 = &#39;&#39;   (0 matches)
+
+The first quantifier C&lt;.*&gt; grabs as much of the string as possible
+while still having the regex match. The second quantifier C&lt;.*&gt; has
+no string left to it, so it matches 0 times.
+
+=head2 More matching
+
+There are a few more things you might want to know about matching
+operators.
+The global modifier C&lt;/g&gt; allows the matching operator to match
+within a string as many times as possible.  In scalar context,
+successive matches against a string will have C&lt;/g&gt; jump from match
+to match, keeping track of position in the string as it goes along.
+You can get or set the position with the C&lt;pos()&gt; function.
+For example,
+
+    $x = &quot;cat dog house&quot;; # 3 words
+    while ($x =~ /(\w+)/g) {
+        print &quot;Word is $1, ends at position &quot;, pos $x, &quot;\n&quot;;
+    }
+
+prints
+
+    Word is cat, ends at position 3
+    Word is dog, ends at position 7
+    Word is house, ends at position 13
+
+A failed match or changing the target string resets the position.  If
+you don&#39;t want the position reset after failure to match, add the
+C&lt;/c&gt;, as in C&lt;/regex/gc&gt;.
+
+In list context, C&lt;/g&gt; returns a list of matched groupings, or if
+there are no groupings, a list of matches to the whole regex.  So
+
+    @words = ($x =~ /(\w+)/g);  # matches,
+                                # $word[0] = &#39;cat&#39;
+                                # $word[1] = &#39;dog&#39;
+                                # $word[2] = &#39;house&#39;
+
+=head2 Search and replace
+
+Search and replace is performed using C&lt;s/regex/replacement/modifiers&gt;.
+The C&lt;replacement&gt; is a Perl double-quoted string that replaces in the
+string whatever is matched with the C&lt;regex&gt;.  The operator C&lt;=~&gt; is
+also used here to associate a string with C&lt;s///&gt;.  If matching
+against C&lt;$_&gt;, the S&lt;C&lt;$_ =~&gt;&gt; can be dropped.  If there is a match,
+C&lt;s///&gt; returns the number of substitutions made; otherwise it returns
+false.  Here are a few examples:
+
+    $x = &quot;Time to feed the cat!&quot;;
+    $x =~ s/cat/hacker/;   # $x contains &quot;Time to feed the hacker!&quot;
+    $y = &quot;&#39;quoted words&#39;&quot;;
+    $y =~ s/^&#39;(.*)&#39;$/$1/;  # strip single quotes,
+                           # $y contains &quot;quoted words&quot;
+
+With the C&lt;s///&gt; operator, the matched variables C&lt;$1&gt;, C&lt;$2&gt;, etc.
+are immediately available for use in the replacement expression. With
+the global modifier, C&lt;s///g&gt; will search and replace all occurrences
+of the regex in the string:
+
+    $x = &quot;I batted 4 for 4&quot;;
+    $x =~ s/4/four/;   # $x contains &quot;I batted four for 4&quot;
+    $x = &quot;I batted 4 for 4&quot;;
+    $x =~ s/4/four/g;  # $x contains &quot;I batted four for four&quot;
+
+The non-destructive modifier C&lt;s///r&gt; causes the result of the substitution
+to be returned instead of modifying C&lt;$_&gt; (or whatever variable the
+substitute was bound to with C&lt;=~&gt;):
+
+    $x = &quot;I like dogs.&quot;;
+    $y = $x =~ s/dogs/cats/r;
+    print &quot;$x $y\n&quot;; # prints &quot;I like dogs. I like cats.&quot;
+
+    $x = &quot;Cats are great.&quot;;
+    print $x =~ s/Cats/Dogs/r =~ s/Dogs/Frogs/r =~
+        s/Frogs/Hedgehogs/r, &quot;\n&quot;;
+    # prints &quot;Hedgehogs are great.&quot;
+
+    @foo = map { s/[a-z]/X/r } qw(a b c 1 2 3);
+    # @foo is now qw(X X X 1 2 3)
+
+The evaluation modifier C&lt;s///e&gt; wraps an C&lt;eval{...}&gt; around the
+replacement string and the evaluated result is substituted for the
+matched substring.  Some examples:
+
+    # reverse all the words in a string
+    $x = &quot;the cat in the hat&quot;;
+    $x =~ s/(\w+)/reverse $1/ge;   # $x contains &quot;eht tac ni eht tah&quot;
+
+    # convert percentage to decimal
+    $x = &quot;A 39% hit rate&quot;;
+    $x =~ s!(\d+)%!$1/100!e;       # $x contains &quot;A 0.39 hit rate&quot;
+
+The last example shows that C&lt;s///&gt; can use other delimiters, such as
+C&lt;s!!!&gt; and C&lt;s{}{}&gt;, and even C&lt;s{}//&gt;.  If single quotes are used
+C&lt;s&#39;&#39;&#39;&gt;, then the regex and replacement are treated as single-quoted
+strings.
+
+=head2 The split operator
+
+C&lt;split /regex/, string&gt; splits C&lt;string&gt; into a list of substrings
+and returns that list.  The regex determines the character sequence
+that C&lt;string&gt; is split with respect to.  For example, to split a
+string into words, use
+
+    $x = &quot;Calvin and Hobbes&quot;;
+    @word = split /\s+/, $x;  # $word[0] = &#39;Calvin&#39;
+                              # $word[1] = &#39;and&#39;
+                              # $word[2] = &#39;Hobbes&#39;
+
+To extract a comma-delimited list of numbers, use
+
+    $x = &quot;1.618,2.718,   3.142&quot;;
+    @const = split /,\s*/, $x;  # $const[0] = &#39;1.618&#39;
+                                # $const[1] = &#39;2.718&#39;
+                                # $const[2] = &#39;3.142&#39;
+
+If the empty regex C&lt;//&gt; is used, the string is split into individual
+characters.  If the regex has groupings, then the list produced contains
+the matched substrings from the groupings as well:
+
+    $x = &quot;/usr/bin&quot;;
+    @parts = split m!(/)!, $x;  # $parts[0] = &#39;&#39;
+                                # $parts[1] = &#39;/&#39;
+                                # $parts[2] = &#39;usr&#39;
+                                # $parts[3] = &#39;/&#39;
+                                # $parts[4] = &#39;bin&#39;
+
+Since the first character of $x matched the regex, C&lt;split&gt; prepended
+an empty initial element to the list.
+
+=head2 C&lt;use re &#39;strict&#39;&gt;
+
+New in v5.22, this applies stricter rules than otherwise when compiling
+regular expression patterns.  It can find things that, while legal, may
+not be what you intended.
+
+See L&lt;&#39;strict&#39; in re|re/&#39;strict&#39; mode&gt;.
+
+=head1 BUGS
+
+None.
+
+=head1 SEE ALSO
+
+This is just a quick start guide.  For a more in-depth tutorial on
+regexes, see L&lt;perlretut&gt; and for the reference page, see L&lt;perlre&gt;.
+
+=head1 AUTHOR AND COPYRIGHT
+
+Copyright (c) 2000 Mark Kvale
+All rights reserved.
+
+This document may be distributed under the same terms as Perl itself.
+
+=head2 Acknowledgments
+
+The author would like to thank Mark-Jason Dominus, Tom Christiansen,
+Ilya Zakharevich, Brad Hughes, and Mike Giroux for all their helpful
+comments.
+
+=cut
+
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

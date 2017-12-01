@@ -1,0 +1,5 @@
+Sitemap: http://mvp.kablamo.org/sitemap.xml
+User-Agent: *
+Disallow:
+
+

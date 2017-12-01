@@ -1,0 +1,2830 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlintern - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlintern/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlintern/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlintern/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlintern/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlintern/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlintern/">perlintern</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlintern/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlintern - autogenerated documentation of purely <b>internal</b> Perl functions</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION  </h1>
+
+<p>This file is the autogenerated documentation of functions in the Perl interpreter that are documented using Perl&#39;s internal documentation format but are not marked as part of the Perl API. In other words, <b>they are not for use in extensions</b>!</p>
+
+<h1 id="Compile-time-scope-hooks">Compile-time scope hooks</h1>
+
+<dl>
+
+<dt>BhkENTRY </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>Return an entry from the BHK structure. <code>which</code> is a preprocessor token indicating which entry to return. If the appropriate flag is not set this will return <code>NULL</code>. The type of the return value depends on which entry you ask for.</p>
+
+<pre><code>        void *  BhkENTRY(BHK *hk, which)</code></pre>
+
+</dd>
+<dt>BhkFLAGS </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>Return the BHK&#39;s flags.</p>
+
+<pre><code>        U32     BhkFLAGS(BHK *hk)</code></pre>
+
+</dd>
+<dt>CALL_BLOCK_HOOKS </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>Call all the registered block hooks for type <code>which</code>. <code>which</code> is a preprocessing token; the type of <code>arg</code> depends on <code>which</code>.</p>
+
+<pre><code>        void    CALL_BLOCK_HOOKS(which, arg)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Custom-Operators">Custom Operators</h1>
+
+<dl>
+
+<dt>core_prototype </dt>
+<dd>
+
+<p>This function assigns the prototype of the named core function to <code>sv</code>, or to a new mortal SV if <code>sv</code> is <code>NULL</code>. It returns the modified <code>sv</code>, or <code>NULL</code> if the core function has no prototype. <code>code</code> is a code as returned by <code>keyword()</code>. It must not be equal to 0.</p>
+
+<pre><code>        SV *    core_prototype(SV *sv, const char *name,
+                               const int code,
+                               int * const opnum)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="CV-Manipulation-Functions">CV Manipulation Functions</h1>
+
+<dl>
+
+<dt>docatch </dt>
+<dd>
+
+<p>Check for the cases 0 or 3 of cur_env.je_ret, only used inside an eval context.</p>
+
+<p>0 is used as continue inside eval,</p>
+
+<p>3 is used for a die caught by an inner eval - continue inner loop</p>
+
+<p>See <i>cop.h</i>: je_mustcatch, when set at any runlevel to TRUE, means eval ops must establish a local jmpenv to handle exception traps.</p>
+
+<pre><code>        OP*     docatch(Perl_ppaddr_t firstpp)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="CV-reference-counts-and-CvOUTSIDE">CV reference counts and CvOUTSIDE</h1>
+
+<dl>
+
+<dt>CvWEAKOUTSIDE </dt>
+<dd>
+
+<p>Each CV has a pointer, <code>CvOUTSIDE()</code>, to its lexically enclosing CV (if any). Because pointers to anonymous sub prototypes are stored in <code>&amp;</code> pad slots, it is a possible to get a circular reference, with the parent pointing to the child and vice-versa. To avoid the ensuing memory leak, we do not increment the reference count of the CV pointed to by <code>CvOUTSIDE</code> in the <i>one specific instance</i> that the parent has a <code>&amp;</code> pad slot pointing back to us. In this case, we set the <code>CvWEAKOUTSIDE</code> flag in the child. This allows us to determine under what circumstances we should decrement the refcount of the parent when freeing the child.</p>
+
+<p>There is a further complication with non-closure anonymous subs (i.e. those that do not refer to any lexicals outside that sub). In this case, the anonymous prototype is shared rather than being cloned. This has the consequence that the parent may be freed while there are still active children, <i>e.g.</i>,</p>
+
+<pre><code>    BEGIN { $a = sub { eval &#39;$x&#39; } }</code></pre>
+
+<p>In this case, the BEGIN is freed immediately after execution since there are no active references to it: the anon sub prototype has <code>CvWEAKOUTSIDE</code> set since it&#39;s not a closure, and $a points to the same CV, so it doesn&#39;t contribute to BEGIN&#39;s refcount either. When $a is executed, the <code>eval &#39;$x&#39;</code> causes the chain of <code>CvOUTSIDE</code>s to be followed, and the freed BEGIN is accessed.</p>
+
+<p>To avoid this, whenever a CV and its associated pad is freed, any <code>&amp;</code> entries in the pad are explicitly removed from the pad, and if the refcount of the pointed-to anon sub is still positive, then that child&#39;s <code>CvOUTSIDE</code> is set to point to its grandparent. This will only occur in the single specific case of a non-closure anon prototype having one or more active references (such as <code>$a</code> above).</p>
+
+<p>One other thing to consider is that a CV may be merely undefined rather than freed, eg <code>undef &amp;foo</code>. In this case, its refcount may not have reached zero, but we still delete its pad and its <code>CvROOT</code> etc. Since various children may still have their <code>CvOUTSIDE</code> pointing at this undefined CV, we keep its own <code>CvOUTSIDE</code> for the time being, so that the chain of lexical scopes is unbroken. For example, the following should print 123:</p>
+
+<pre><code>    my $x = 123;
+    sub tmp { sub { eval &#39;$x&#39; } }
+    my $a = tmp();
+    undef &amp;tmp;
+    print  $a-&gt;();
+
+        bool    CvWEAKOUTSIDE(CV *cv)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Embedding-Functions">Embedding Functions</h1>
+
+<dl>
+
+<dt>cv_dump </dt>
+<dd>
+
+<p>dump the contents of a CV</p>
+
+<pre><code>        void    cv_dump(CV *cv, const char *title)</code></pre>
+
+</dd>
+<dt>cv_forget_slab </dt>
+<dd>
+
+<p>When a CV has a reference count on its slab (<code>CvSLABBED</code>), it is responsible for making sure it is freed. (Hence, no two CVs should ever have a reference count on the same slab.) The CV only needs to reference the slab during compilation. Once it is compiled and <code>CvROOT</code> attached, it has finished its job, so it can forget the slab.</p>
+
+<pre><code>        void    cv_forget_slab(CV *cv)</code></pre>
+
+</dd>
+<dt>do_dump_pad </dt>
+<dd>
+
+<p>Dump the contents of a padlist</p>
+
+<pre><code>        void    do_dump_pad(I32 level, PerlIO *file,
+                            PADLIST *padlist, int full)</code></pre>
+
+</dd>
+<dt>pad_alloc_name </dt>
+<dd>
+
+<p>Allocates a place in the currently-compiling pad (via <a href="/perldoc/perlapi/#pad_alloc">&quot;pad_alloc&quot; in perlapi</a>) and then stores a name for that entry. <code>name</code> is adopted and becomes the name entry; it must already contain the name string. <code>typestash</code> and <code>ourstash</code> and the <code>padadd_STATE</code> flag get added to <code>name</code>. None of the other processing of <a href="/perldoc/perlapi/#pad_add_name_pvn">&quot;pad_add_name_pvn&quot; in perlapi</a> is done. Returns the offset of the allocated pad slot.</p>
+
+<pre><code>        PADOFFSET pad_alloc_name(PADNAME *name, U32 flags,
+                                 HV *typestash, HV *ourstash)</code></pre>
+
+</dd>
+<dt>pad_block_start </dt>
+<dd>
+
+<p>Update the pad compilation state variables on entry to a new block.</p>
+
+<pre><code>        void    pad_block_start(int full)</code></pre>
+
+</dd>
+<dt>pad_check_dup </dt>
+<dd>
+
+<p>Check for duplicate declarations: report any of:</p>
+
+<pre><code>     * a &#39;my&#39; in the current scope with the same name;
+     * an &#39;our&#39; (anywhere in the pad) with the same name and the
+       same stash as &#39;ourstash&#39;</code></pre>
+
+<p><code>is_our</code> indicates that the name to check is an <code>&quot;our&quot;</code> declaration.</p>
+
+<pre><code>        void    pad_check_dup(PADNAME *name, U32 flags,
+                              const HV *ourstash)</code></pre>
+
+</dd>
+<dt>pad_findlex </dt>
+<dd>
+
+<p>Find a named lexical anywhere in a chain of nested pads. Add fake entries in the inner pads if it&#39;s found in an outer one.</p>
+
+<p>Returns the offset in the bottom pad of the lex or the fake lex. <code>cv</code> is the CV in which to start the search, and seq is the current <code>cop_seq</code> to match against. If <code>warn</code> is true, print appropriate warnings. The <code>out_</code>* vars return values, and so are pointers to where the returned values should be stored. <code>out_capture</code>, if non-null, requests that the innermost instance of the lexical is captured; <code>out_name</code> is set to the innermost matched pad name or fake pad name; <code>out_flags</code> returns the flags normally associated with the <code>PARENT_FAKELEX_FLAGS</code> field of a fake pad name.</p>
+
+<p>Note that <code>pad_findlex()</code> is recursive; it recurses up the chain of CVs, then comes back down, adding fake entries as it goes. It has to be this way because fake names in anon protoypes have to store in <code>xpadn_low</code> the index into the parent pad.</p>
+
+<pre><code>        PADOFFSET pad_findlex(const char *namepv,
+                              STRLEN namelen, U32 flags,
+                              const CV* cv, U32 seq, int warn,
+                              SV** out_capture,
+                              PADNAME** out_name,
+                              int *out_flags)</code></pre>
+
+</dd>
+<dt>pad_fixup_inner_anons </dt>
+<dd>
+
+<p>For any anon CVs in the pad, change <code>CvOUTSIDE</code> of that CV from <code>old_cv</code> to <code>new_cv</code> if necessary. Needed when a newly-compiled CV has to be moved to a pre-existing CV struct.</p>
+
+<pre><code>        void    pad_fixup_inner_anons(PADLIST *padlist,
+                                      CV *old_cv, CV *new_cv)</code></pre>
+
+</dd>
+<dt>pad_free </dt>
+<dd>
+
+<p>Free the SV at offset po in the current pad.</p>
+
+<pre><code>        void    pad_free(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>pad_leavemy </dt>
+<dd>
+
+<p>Cleanup at end of scope during compilation: set the max seq number for lexicals in this scope and warn of any lexicals that never got introduced.</p>
+
+<pre><code>        void    pad_leavemy()</code></pre>
+
+</dd>
+<dt>padlist_dup </dt>
+<dd>
+
+<p>Duplicates a pad.</p>
+
+<pre><code>        PADLIST * padlist_dup(PADLIST *srcpad,
+                              CLONE_PARAMS *param)</code></pre>
+
+</dd>
+<dt>padname_dup </dt>
+<dd>
+
+<p>Duplicates a pad name.</p>
+
+<pre><code>        PADNAME * padname_dup(PADNAME *src, CLONE_PARAMS *param)</code></pre>
+
+</dd>
+<dt>padnamelist_dup </dt>
+<dd>
+
+<p>Duplicates a pad name list.</p>
+
+<pre><code>        PADNAMELIST * padnamelist_dup(PADNAMELIST *srcpad,
+                                      CLONE_PARAMS *param)</code></pre>
+
+</dd>
+<dt>pad_push </dt>
+<dd>
+
+<p>Push a new pad frame onto the padlist, unless there&#39;s already a pad at this depth, in which case don&#39;t bother creating a new one. Then give the new pad an <code>@_</code> in slot zero.</p>
+
+<pre><code>        void    pad_push(PADLIST *padlist, int depth)</code></pre>
+
+</dd>
+<dt>pad_reset </dt>
+<dd>
+
+<p>Mark all the current temporaries for reuse</p>
+
+<pre><code>        void    pad_reset()</code></pre>
+
+</dd>
+<dt>pad_swipe </dt>
+<dd>
+
+<p>Abandon the tmp in the current pad at offset <code>po</code> and replace with a new one.</p>
+
+<pre><code>        void    pad_swipe(PADOFFSET po, bool refadjust)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="GV-Functions">GV Functions</h1>
+
+<dl>
+
+<dt>gv_try_downgrade </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>If the typeglob <code>gv</code> can be expressed more succinctly, by having something other than a real GV in its place in the stash, replace it with the optimised form. Basic requirements for this are that <code>gv</code> is a real typeglob, is sufficiently ordinary, and is only referenced from its package. This function is meant to be used when a GV has been looked up in part to see what was there, causing upgrading, but based on what was found it turns out that the real GV isn&#39;t required after all.</p>
+
+<p>If <code>gv</code> is a completely empty typeglob, it is deleted from the stash.</p>
+
+<p>If <code>gv</code> is a typeglob containing only a sufficiently-ordinary constant sub, the typeglob is replaced with a scalar-reference placeholder that more compactly represents the same thing.</p>
+
+<pre><code>        void    gv_try_downgrade(GV* gv)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Hash-Manipulation-Functions">Hash Manipulation Functions</h1>
+
+<dl>
+
+<dt>hv_ename_add </dt>
+<dd>
+
+<p>Adds a name to a stash&#39;s internal list of effective names. See <code><a href="#hv_ename_delete">&quot;hv_ename_delete&quot;</a></code>.</p>
+
+<p>This is called when a stash is assigned to a new location in the symbol table.</p>
+
+<pre><code>        void    hv_ename_add(HV *hv, const char *name, U32 len,
+                             U32 flags)</code></pre>
+
+</dd>
+<dt>hv_ename_delete </dt>
+<dd>
+
+<p>Removes a name from a stash&#39;s internal list of effective names. If this is the name returned by <code>HvENAME</code>, then another name in the list will take its place (<code>HvENAME</code> will use it).</p>
+
+<p>This is called when a stash is deleted from the symbol table.</p>
+
+<pre><code>        void    hv_ename_delete(HV *hv, const char *name,
+                                U32 len, U32 flags)</code></pre>
+
+</dd>
+<dt>refcounted_he_chain_2hv </dt>
+<dd>
+
+<p>Generates and returns a <code>HV *</code> representing the content of a <code>refcounted_he</code> chain. <code>flags</code> is currently unused and must be zero.</p>
+
+<pre><code>        HV *    refcounted_he_chain_2hv(
+                    const struct refcounted_he *c, U32 flags
+                )</code></pre>
+
+</dd>
+<dt>refcounted_he_fetch_pv </dt>
+<dd>
+
+<p>Like <a href="#refcounted_he_fetch_pvn">&quot;refcounted_he_fetch_pvn&quot;</a>, but takes a nul-terminated string instead of a string/length pair.</p>
+
+<pre><code>        SV *    refcounted_he_fetch_pv(
+                    const struct refcounted_he *chain,
+                    const char *key, U32 hash, U32 flags
+                )</code></pre>
+
+</dd>
+<dt>refcounted_he_fetch_pvn </dt>
+<dd>
+
+<p>Search along a <code>refcounted_he</code> chain for an entry with the key specified by <code>keypv</code> and <code>keylen</code>. If <code>flags</code> has the <code>REFCOUNTED_HE_KEY_UTF8</code> bit set, the key octets are interpreted as UTF-8, otherwise they are interpreted as Latin-1. <code>hash</code> is a precomputed hash of the key string, or zero if it has not been precomputed. Returns a mortal scalar representing the value associated with the key, or <code>&amp;PL_sv_placeholder</code> if there is no value associated with the key.</p>
+
+<pre><code>        SV *    refcounted_he_fetch_pvn(
+                    const struct refcounted_he *chain,
+                    const char *keypv, STRLEN keylen, U32 hash,
+                    U32 flags
+                )</code></pre>
+
+</dd>
+<dt>refcounted_he_fetch_pvs </dt>
+<dd>
+
+<p>Like <a href="#refcounted_he_fetch_pvn">&quot;refcounted_he_fetch_pvn&quot;</a>, but takes a <code>NUL</code>-terminated literal string instead of a string/length pair, and no precomputed hash.</p>
+
+<pre><code>        SV *    refcounted_he_fetch_pvs(
+                    const struct refcounted_he *chain,
+                    const char *key, U32 flags
+                )</code></pre>
+
+</dd>
+<dt>refcounted_he_fetch_sv </dt>
+<dd>
+
+<p>Like <a href="#refcounted_he_fetch_pvn">&quot;refcounted_he_fetch_pvn&quot;</a>, but takes a Perl scalar instead of a string/length pair.</p>
+
+<pre><code>        SV *    refcounted_he_fetch_sv(
+                    const struct refcounted_he *chain, SV *key,
+                    U32 hash, U32 flags
+                )</code></pre>
+
+</dd>
+<dt>refcounted_he_free </dt>
+<dd>
+
+<p>Decrements the reference count of a <code>refcounted_he</code> by one. If the reference count reaches zero the structure&#39;s memory is freed, which (recursively) causes a reduction of its parent <code>refcounted_he</code>&#39;s reference count. It is safe to pass a null pointer to this function: no action occurs in this case.</p>
+
+<pre><code>        void    refcounted_he_free(struct refcounted_he *he)</code></pre>
+
+</dd>
+<dt>refcounted_he_inc </dt>
+<dd>
+
+<p>Increment the reference count of a <code>refcounted_he</code>. The pointer to the <code>refcounted_he</code> is also returned. It is safe to pass a null pointer to this function: no action occurs and a null pointer is returned.</p>
+
+<pre><code>        struct refcounted_he * refcounted_he_inc(
+                                   struct refcounted_he *he
+                               )</code></pre>
+
+</dd>
+<dt>refcounted_he_new_pv </dt>
+<dd>
+
+<p>Like <a href="#refcounted_he_new_pvn">&quot;refcounted_he_new_pvn&quot;</a>, but takes a nul-terminated string instead of a string/length pair.</p>
+
+<pre><code>        struct refcounted_he * refcounted_he_new_pv(
+                                   struct refcounted_he *parent,
+                                   const char *key, U32 hash,
+                                   SV *value, U32 flags
+                               )</code></pre>
+
+</dd>
+<dt>refcounted_he_new_pvn </dt>
+<dd>
+
+<p>Creates a new <code>refcounted_he</code>. This consists of a single key/value pair and a reference to an existing <code>refcounted_he</code> chain (which may be empty), and thus forms a longer chain. When using the longer chain, the new key/value pair takes precedence over any entry for the same key further along the chain.</p>
+
+<p>The new key is specified by <code>keypv</code> and <code>keylen</code>. If <code>flags</code> has the <code>REFCOUNTED_HE_KEY_UTF8</code> bit set, the key octets are interpreted as UTF-8, otherwise they are interpreted as Latin-1. <code>hash</code> is a precomputed hash of the key string, or zero if it has not been precomputed.</p>
+
+<p><code>value</code> is the scalar value to store for this key. <code>value</code> is copied by this function, which thus does not take ownership of any reference to it, and later changes to the scalar will not be reflected in the value visible in the <code>refcounted_he</code>. Complex types of scalar will not be stored with referential integrity, but will be coerced to strings. <code>value</code> may be either null or <code>&amp;PL_sv_placeholder</code> to indicate that no value is to be associated with the key; this, as with any non-null value, takes precedence over the existence of a value for the key further along the chain.</p>
+
+<p><code>parent</code> points to the rest of the <code>refcounted_he</code> chain to be attached to the new <code>refcounted_he</code>. This function takes ownership of one reference to <code>parent</code>, and returns one reference to the new <code>refcounted_he</code>.</p>
+
+<pre><code>        struct refcounted_he * refcounted_he_new_pvn(
+                                   struct refcounted_he *parent,
+                                   const char *keypv,
+                                   STRLEN keylen, U32 hash,
+                                   SV *value, U32 flags
+                               )</code></pre>
+
+</dd>
+<dt>refcounted_he_new_pvs </dt>
+<dd>
+
+<p>Like <a href="#refcounted_he_new_pvn">&quot;refcounted_he_new_pvn&quot;</a>, but takes a <code>NUL</code>-terminated literal string instead of a string/length pair, and no precomputed hash.</p>
+
+<pre><code>        struct refcounted_he * refcounted_he_new_pvs(
+                                   struct refcounted_he *parent,
+                                   const char *key, SV *value,
+                                   U32 flags
+                               )</code></pre>
+
+</dd>
+<dt>refcounted_he_new_sv </dt>
+<dd>
+
+<p>Like <a href="#refcounted_he_new_pvn">&quot;refcounted_he_new_pvn&quot;</a>, but takes a Perl scalar instead of a string/length pair.</p>
+
+<pre><code>        struct refcounted_he * refcounted_he_new_sv(
+                                   struct refcounted_he *parent,
+                                   SV *key, U32 hash, SV *value,
+                                   U32 flags
+                               )</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="IO-Functions">IO Functions</h1>
+
+<dl>
+
+<dt>start_glob </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>Function called by <code>do_readline</code> to spawn a glob (or do the glob inside perl on VMS). This code used to be inline, but now perl uses <code>File::Glob</code> this glob starter is only used by miniperl during the build process, or when PERL_EXTERNAL_GLOB is defined. Moving it away shrinks <i>pp_hot.c</i>; shrinking <i>pp_hot.c</i> helps speed perl up.</p>
+
+<pre><code>        PerlIO* start_glob(SV *tmpglob, IO *io)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Lexer-interface">Lexer interface</h1>
+
+<dl>
+
+<dt>validate_proto </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>This function performs syntax checking on a prototype, <code>proto</code>. If <code>warn</code> is true, any illegal characters or mismatched brackets will trigger illegalproto warnings, declaring that they were detected in the prototype for <code>name</code>.</p>
+
+<p>The return value is <code>true</code> if this is a valid prototype, and <code>false</code> if it is not, regardless of whether <code>warn</code> was <code>true</code> or <code>false</code>.</p>
+
+<p>Note that <code>NULL</code> is a valid <code>proto</code> and will always return <code>true</code>.</p>
+
+<p>NOTE: the perl_ form of this function is deprecated.</p>
+
+<pre><code>        bool    validate_proto(SV *name, SV *proto, bool warn)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Magical-Functions">Magical Functions</h1>
+
+<dl>
+
+<dt>magic_clearhint </dt>
+<dd>
+
+<p>Triggered by a delete from <code>%^H</code>, records the key to <code>PL_compiling.cop_hints_hash</code>.</p>
+
+<pre><code>        int     magic_clearhint(SV* sv, MAGIC* mg)</code></pre>
+
+</dd>
+<dt>magic_clearhints </dt>
+<dd>
+
+<p>Triggered by clearing <code>%^H</code>, resets <code>PL_compiling.cop_hints_hash</code>.</p>
+
+<pre><code>        int     magic_clearhints(SV* sv, MAGIC* mg)</code></pre>
+
+</dd>
+<dt>magic_methcall </dt>
+<dd>
+
+<p>Invoke a magic method (like FETCH).</p>
+
+<p><code>sv</code> and <code>mg</code> are the tied thingy and the tie magic.</p>
+
+<p><code>meth</code> is the name of the method to call.</p>
+
+<p><code>argc</code> is the number of args (in addition to $self) to pass to the method.</p>
+
+<p>The <code>flags</code> can be:</p>
+
+<pre><code>    G_DISCARD     invoke method with G_DISCARD flag and don&#39;t
+                  return a value
+    G_UNDEF_FILL  fill the stack with argc pointers to
+                  PL_sv_undef</code></pre>
+
+<p>The arguments themselves are any values following the <code>flags</code> argument.</p>
+
+<p>Returns the SV (if any) returned by the method, or <code>NULL</code> on failure.</p>
+
+<pre><code>        SV*     magic_methcall(SV *sv, const MAGIC *mg,
+                               SV *meth, U32 flags, U32 argc,
+                               ...)</code></pre>
+
+</dd>
+<dt>magic_sethint </dt>
+<dd>
+
+<p>Triggered by a store to <code>%^H</code>, records the key/value pair to <code>PL_compiling.cop_hints_hash</code>. It is assumed that hints aren&#39;t storing anything that would need a deep copy. Maybe we should warn if we find a reference.</p>
+
+<pre><code>        int     magic_sethint(SV* sv, MAGIC* mg)</code></pre>
+
+</dd>
+<dt>mg_localize </dt>
+<dd>
+
+<p>Copy some of the magic from an existing SV to new localized version of that SV. Container magic (<i>e.g.</i>, <code>%ENV</code>, <code>$1</code>, <code>tie</code>) gets copied, value magic doesn&#39;t (<i>e.g.</i>, <code>taint</code>, <code>pos</code>).</p>
+
+<p>If <code>setmagic</code> is false then no set magic will be called on the new (empty) SV. This typically means that assignment will soon follow (e.g. <span style="white-space: nowrap;"><code>&#39;local $x = $y&#39;</code></span>), and that will handle the magic.</p>
+
+<pre><code>        void    mg_localize(SV* sv, SV* nsv, bool setmagic)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Miscellaneous-Functions">Miscellaneous Functions</h1>
+
+<dl>
+
+<dt>free_c_backtrace </dt>
+<dd>
+
+<p>Deallocates a backtrace received from get_c_bracktrace.</p>
+
+<pre><code>        void    free_c_backtrace(Perl_c_backtrace* bt)</code></pre>
+
+</dd>
+<dt>get_c_backtrace </dt>
+<dd>
+
+<p>Collects the backtrace (aka &quot;stacktrace&quot;) into a single linear malloced buffer, which the caller <b>must</b> <code>Perl_free_c_backtrace()</code>.</p>
+
+<p>Scans the frames back by <span style="white-space: nowrap;"><code>depth + skip</code></span>, then drops the <code>skip</code> innermost, returning at most <code>depth</code> frames.</p>
+
+<pre><code>        Perl_c_backtrace* get_c_backtrace(int max_depth,
+                                          int skip)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="MRO-Functions">MRO Functions</h1>
+
+<dl>
+
+<dt>mro_get_linear_isa_dfs </dt>
+<dd>
+
+<p>Returns the Depth-First Search linearization of <code>@ISA</code> the given stash. The return value is a read-only AV*. <code>level</code> should be 0 (it is used internally in this function&#39;s recursion).</p>
+
+<p>You are responsible for <code>SvREFCNT_inc()</code> on the return value if you plan to store it anywhere semi-permanently (otherwise it might be deleted out from under you the next time the cache is invalidated).</p>
+
+<pre><code>        AV*     mro_get_linear_isa_dfs(HV* stash, U32 level)</code></pre>
+
+</dd>
+<dt>mro_isa_changed_in </dt>
+<dd>
+
+<p>Takes the necessary steps (cache invalidations, mostly) when the <code>@ISA</code> of the given package has changed. Invoked by the <code>setisa</code> magic, should not need to invoke directly.</p>
+
+<pre><code>        void    mro_isa_changed_in(HV* stash)</code></pre>
+
+</dd>
+<dt>mro_package_moved </dt>
+<dd>
+
+<p>Call this function to signal to a stash that it has been assigned to another spot in the stash hierarchy. <code>stash</code> is the stash that has been assigned. <code>oldstash</code> is the stash it replaces, if any. <code>gv</code> is the glob that is actually being assigned to.</p>
+
+<p>This can also be called with a null first argument to indicate that <code>oldstash</code> has been deleted.</p>
+
+<p>This function invalidates isa caches on the old stash, on all subpackages nested inside it, and on the subclasses of all those, including non-existent packages that have corresponding entries in <code>stash</code>.</p>
+
+<p>It also sets the effective names (<code>HvENAME</code>) on all the stashes as appropriate.</p>
+
+<p>If the <code>gv</code> is present and is not in the symbol table, then this function simply returns. This checked will be skipped if <code>flags &amp; 1</code>.</p>
+
+<pre><code>        void    mro_package_moved(HV * const stash,
+                                  HV * const oldstash,
+                                  const GV * const gv,
+                                  U32 flags)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Optree-Manipulation-Functions">Optree Manipulation Functions</h1>
+
+<dl>
+
+<dt>finalize_optree </dt>
+<dd>
+
+<p>This function finalizes the optree. Should be called directly after the complete optree is built. It does some additional checking which can&#39;t be done in the normal <code>ck_</code>xxx functions and makes the tree thread-safe.</p>
+
+<pre><code>        void    finalize_optree(OP* o)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Pad-Data-Structures">Pad Data Structures</h1>
+
+<dl>
+
+<dt>CX_CURPAD_SAVE </dt>
+<dd>
+
+<p>Save the current pad in the given context block structure.</p>
+
+<pre><code>        void    CX_CURPAD_SAVE(struct context)</code></pre>
+
+</dd>
+<dt>CX_CURPAD_SV </dt>
+<dd>
+
+<p>Access the SV at offset <code>po</code> in the saved current pad in the given context block structure (can be used as an lvalue).</p>
+
+<pre><code>        SV *    CX_CURPAD_SV(struct context, PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_BASE_SV </dt>
+<dd>
+
+<p>Get the value from slot <code>po</code> in the base (DEPTH=1) pad of a padlist</p>
+
+<pre><code>        SV *    PAD_BASE_SV(PADLIST padlist, PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_CLONE_VARS </dt>
+<dd>
+
+<p>Clone the state variables associated with running and compiling pads.</p>
+
+<pre><code>        void    PAD_CLONE_VARS(PerlInterpreter *proto_perl,
+                               CLONE_PARAMS* param)</code></pre>
+
+</dd>
+<dt>PAD_COMPNAME_FLAGS </dt>
+<dd>
+
+<p>Return the flags for the current compiling pad name at offset <code>po</code>. Assumes a valid slot entry.</p>
+
+<pre><code>        U32     PAD_COMPNAME_FLAGS(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_COMPNAME_GEN </dt>
+<dd>
+
+<p>The generation number of the name at offset <code>po</code> in the current compiling pad (lvalue).</p>
+
+<pre><code>        STRLEN  PAD_COMPNAME_GEN(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_COMPNAME_GEN_set </dt>
+<dd>
+
+<p>Sets the generation number of the name at offset <code>po</code> in the current ling pad (lvalue) to <code>gen</code>. STRLEN PAD_COMPNAME_GEN_set(PADOFFSET po, int gen)</p>
+
+</dd>
+<dt>PAD_COMPNAME_OURSTASH </dt>
+<dd>
+
+<p>Return the stash associated with an <code>our</code> variable. Assumes the slot entry is a valid <code>our</code> lexical.</p>
+
+<pre><code>        HV *    PAD_COMPNAME_OURSTASH(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_COMPNAME_PV </dt>
+<dd>
+
+<p>Return the name of the current compiling pad name at offset <code>po</code>. Assumes a valid slot entry.</p>
+
+<pre><code>        char *  PAD_COMPNAME_PV(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_COMPNAME_TYPE </dt>
+<dd>
+
+<p>Return the type (stash) of the current compiling pad name at offset <code>po</code>. Must be a valid name. Returns null if not typed.</p>
+
+<pre><code>        HV *    PAD_COMPNAME_TYPE(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PadnameIsOUR </dt>
+<dd>
+
+<p>Whether this is an &quot;our&quot; variable.</p>
+
+<pre><code>        bool    PadnameIsOUR(PADNAME pn)</code></pre>
+
+</dd>
+<dt>PadnameIsSTATE </dt>
+<dd>
+
+<p>Whether this is a &quot;state&quot; variable.</p>
+
+<pre><code>        bool    PadnameIsSTATE(PADNAME pn)</code></pre>
+
+</dd>
+<dt>PadnameOURSTASH </dt>
+<dd>
+
+<p>The stash in which this &quot;our&quot; variable was declared.</p>
+
+<pre><code>        HV *    PadnameOURSTASH()</code></pre>
+
+</dd>
+<dt>PadnameOUTER </dt>
+<dd>
+
+<p>Whether this entry belongs to an outer pad. Entries for which this is true are often referred to as &#39;fake&#39;.</p>
+
+<pre><code>        bool    PadnameOUTER(PADNAME pn)</code></pre>
+
+</dd>
+<dt>PadnameTYPE </dt>
+<dd>
+
+<p>The stash associated with a typed lexical. This returns the <code>%Foo::</code> hash for <code>my Foo $bar</code>.</p>
+
+<pre><code>        HV *    PadnameTYPE(PADNAME pn)</code></pre>
+
+</dd>
+<dt>PAD_RESTORE_LOCAL </dt>
+<dd>
+
+<p>Restore the old pad saved into the local variable <code>opad</code> by <code>PAD_SAVE_LOCAL()</code></p>
+
+<pre><code>        void    PAD_RESTORE_LOCAL(PAD *opad)</code></pre>
+
+</dd>
+<dt>PAD_SAVE_LOCAL </dt>
+<dd>
+
+<p>Save the current pad to the local variable <code>opad</code>, then make the current pad equal to <code>npad</code></p>
+
+<pre><code>        void    PAD_SAVE_LOCAL(PAD *opad, PAD *npad)</code></pre>
+
+</dd>
+<dt>PAD_SAVE_SETNULLPAD </dt>
+<dd>
+
+<p>Save the current pad then set it to null.</p>
+
+<pre><code>        void    PAD_SAVE_SETNULLPAD()</code></pre>
+
+</dd>
+<dt>PAD_SETSV </dt>
+<dd>
+
+<p>Set the slot at offset <code>po</code> in the current pad to <code>sv</code></p>
+
+<pre><code>        SV *    PAD_SETSV(PADOFFSET po, SV* sv)</code></pre>
+
+</dd>
+<dt>PAD_SET_CUR </dt>
+<dd>
+
+<p>Set the current pad to be pad <code>n</code> in the padlist, saving the previous current pad. NB currently this macro expands to a string too long for some compilers, so it&#39;s best to replace it with</p>
+
+<pre><code>    SAVECOMPPAD();
+    PAD_SET_CUR_NOSAVE(padlist,n);
+
+
+        void    PAD_SET_CUR(PADLIST padlist, I32 n)</code></pre>
+
+</dd>
+<dt>PAD_SET_CUR_NOSAVE </dt>
+<dd>
+
+<p>like PAD_SET_CUR, but without the save</p>
+
+<pre><code>        void    PAD_SET_CUR_NOSAVE(PADLIST padlist, I32 n)</code></pre>
+
+</dd>
+<dt>PAD_SV </dt>
+<dd>
+
+<p>Get the value at offset <code>po</code> in the current pad</p>
+
+<pre><code>        SV *    PAD_SV(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>PAD_SVl </dt>
+<dd>
+
+<p>Lightweight and lvalue version of <code>PAD_SV</code>. Get or set the value at offset <code>po</code> in the current pad. Unlike <code>PAD_SV</code>, does not print diagnostics with -DX. For internal use only.</p>
+
+<pre><code>        SV *    PAD_SVl(PADOFFSET po)</code></pre>
+
+</dd>
+<dt>SAVECLEARSV </dt>
+<dd>
+
+<p>Clear the pointed to pad value on scope exit. (i.e. the runtime action of <code>my</code>)</p>
+
+<pre><code>        void    SAVECLEARSV(SV **svp)</code></pre>
+
+</dd>
+<dt>SAVECOMPPAD </dt>
+<dd>
+
+<p>save <code>PL_comppad</code> and <code>PL_curpad</code></p>
+
+<pre><code>        void    SAVECOMPPAD()</code></pre>
+
+</dd>
+<dt>SAVEPADSV </dt>
+<dd>
+
+<p>Save a pad slot (used to restore after an iteration)</p>
+
+<p>XXX DAPM it would make more sense to make the arg a PADOFFSET void SAVEPADSV(PADOFFSET po)</p>
+
+</dd>
+</dl>
+
+<h1 id="Per-Interpreter-Variables">Per-Interpreter Variables</h1>
+
+<dl>
+
+<dt>PL_DBsingle </dt>
+<dd>
+
+<p>When Perl is run in debugging mode, with the <b>-d</b> switch, this SV is a boolean which indicates whether subs are being single-stepped. Single-stepping is automatically turned on after every step. This is the C variable which corresponds to Perl&#39;s $DB::single variable. See <code><a href="#PL_DBsub">&quot;PL_DBsub&quot;</a></code>.</p>
+
+<pre><code>        SV *    PL_DBsingle</code></pre>
+
+</dd>
+<dt>PL_DBsub </dt>
+<dd>
+
+<p>When Perl is run in debugging mode, with the <b>-d</b> switch, this GV contains the SV which holds the name of the sub being debugged. This is the C variable which corresponds to Perl&#39;s $DB::sub variable. See <code><a href="#PL_DBsingle">&quot;PL_DBsingle&quot;</a></code>.</p>
+
+<pre><code>        GV *    PL_DBsub</code></pre>
+
+</dd>
+<dt>PL_DBtrace </dt>
+<dd>
+
+<p>Trace variable used when Perl is run in debugging mode, with the <b>-d</b> switch. This is the C variable which corresponds to Perl&#39;s $DB::trace variable. See <code><a href="#PL_DBsingle">&quot;PL_DBsingle&quot;</a></code>.</p>
+
+<pre><code>        SV *    PL_DBtrace</code></pre>
+
+</dd>
+<dt>PL_dowarn </dt>
+<dd>
+
+<p>The C variable that roughly corresponds to Perl&#39;s <code>$^W</code> warning variable. However, <code>$^W</code> is treated as a boolean, whereas <code>PL_dowarn</code> is a collection of flag bits.</p>
+
+<pre><code>        U8      PL_dowarn</code></pre>
+
+</dd>
+<dt>PL_last_in_gv </dt>
+<dd>
+
+<p>The GV which was last used for a filehandle input operation. (<code>&lt;FH&gt;</code>)</p>
+
+<pre><code>        GV*     PL_last_in_gv</code></pre>
+
+</dd>
+<dt>PL_ofsgv </dt>
+<dd>
+
+<p>The glob containing the output field separator - <code>*,</code> in Perl space.</p>
+
+<pre><code>        GV*     PL_ofsgv</code></pre>
+
+</dd>
+<dt>PL_rs </dt>
+<dd>
+
+<p>The input record separator - <code>$/</code> in Perl space.</p>
+
+<pre><code>        SV*     PL_rs</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Stack-Manipulation-Macros">Stack Manipulation Macros</h1>
+
+<dl>
+
+<dt>djSP </dt>
+<dd>
+
+<p>Declare Just <code>SP</code>. This is actually identical to <code>dSP</code>, and declares a local copy of perl&#39;s stack pointer, available via the <code>SP</code> macro. See <code><a href="/perldoc/perlapi/#SP">&quot;SP&quot; in perlapi</a></code>. (Available for backward source code compatibility with the old (Perl 5.005) thread model.)</p>
+
+<pre><code>                djSP;</code></pre>
+
+</dd>
+<dt>LVRET </dt>
+<dd>
+
+<p>True if this op will be the return value of an lvalue subroutine</p>
+
+</dd>
+</dl>
+
+<h1 id="SV-Body-Allocation">SV-Body Allocation</h1>
+
+<dl>
+
+<dt>sv_2num </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>Return an SV with the numeric value of the source SV, doing any necessary reference or overload conversion. The caller is expected to have handled get-magic already.</p>
+
+<pre><code>        SV*     sv_2num(SV *const sv)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="SV-Manipulation-Functions">SV Manipulation Functions</h1>
+
+<p>An SV (or AV, HV, etc.) is allocated in two parts: the head (struct sv, av, hv...) contains type and reference count information, and for many types, a pointer to the body (struct xrv, xpv, xpviv...), which contains fields specific to each type. Some types store all they need in the head, so don&#39;t have a body.</p>
+
+<p>In all but the most memory-paranoid configurations (ex: PURIFY), heads and bodies are allocated out of arenas, which by default are approximately 4K chunks of memory parcelled up into N heads or bodies. Sv-bodies are allocated by their sv-type, guaranteeing size consistency needed to allocate safely from arrays.</p>
+
+<p>For SV-heads, the first slot in each arena is reserved, and holds a link to the next arena, some flags, and a note of the number of slots. Snaked through each arena chain is a linked list of free items; when this becomes empty, an extra arena is allocated and divided up into N items which are threaded into the free list.</p>
+
+<p>SV-bodies are similar, but they use arena-sets by default, which separate the link and info from the arena itself, and reclaim the 1st slot in the arena. SV-bodies are further described later.</p>
+
+<p>The following global variables are associated with arenas:</p>
+
+<pre><code> PL_sv_arenaroot     pointer to list of SV arenas
+ PL_sv_root          pointer to list of free SV structures
+
+ PL_body_arenas      head of linked-list of body arenas
+ PL_body_roots[]     array of pointers to list of free bodies of svtype
+                     arrays are indexed by the svtype needed</code></pre>
+
+<p>A few special SV heads are not allocated from an arena, but are instead directly created in the interpreter structure, eg PL_sv_undef. The size of arenas can be changed from the default by setting PERL_ARENA_SIZE appropriately at compile time.</p>
+
+<p>The SV arena serves the secondary purpose of allowing still-live SVs to be located and destroyed during final cleanup.</p>
+
+<p>At the lowest level, the macros new_SV() and del_SV() grab and free an SV head. (If debugging with -DD, del_SV() calls the function S_del_sv() to return the SV to the free list with error checking.) new_SV() calls more_sv() / sv_add_arena() to add an extra arena if the free list is empty. SVs in the free list have their SvTYPE field set to all ones.</p>
+
+<p>At the time of very final cleanup, sv_free_arenas() is called from perl_destruct() to physically free all the arenas allocated since the start of the interpreter.</p>
+
+<p>The function visit() scans the SV arenas list, and calls a specified function for each SV it finds which is still live - ie which has an SvTYPE other than all 1&#39;s, and a non-zero SvREFCNT. visit() is used by the following functions (specified as [function that calls visit()] / [function called by visit() for each SV]):</p>
+
+<pre><code>    sv_report_used() / do_report_used()
+                        dump all remaining SVs (debugging aid)
+
+    sv_clean_objs() / do_clean_objs(),do_clean_named_objs(),
+                      do_clean_named_io_objs(),do_curse()
+                        Attempt to free all objects pointed to by RVs,
+                        try to do the same for all objects indir-
+                        ectly referenced by typeglobs too, and
+                        then do a final sweep, cursing any
+                        objects that remain.  Called once from
+                        perl_destruct(), prior to calling sv_clean_all()
+                        below.
+
+    sv_clean_all() / do_clean_all()
+                        SvREFCNT_dec(sv) each remaining SV, possibly
+                        triggering an sv_free(). It also sets the
+                        SVf_BREAK flag on the SV to indicate that the
+                        refcnt has been artificially lowered, and thus
+                        stopping sv_free() from giving spurious warnings
+                        about SVs which unexpectedly have a refcnt
+                        of zero.  called repeatedly from perl_destruct()
+                        until there are no SVs left.</code></pre>
+
+<dl>
+
+<dt>sv_add_arena </dt>
+<dd>
+
+<p>Given a chunk of memory, link it to the head of the list of arenas, and split it into a list of free SVs.</p>
+
+<pre><code>        void    sv_add_arena(char *const ptr, const U32 size,
+                             const U32 flags)</code></pre>
+
+</dd>
+<dt>sv_clean_all </dt>
+<dd>
+
+<p>Decrement the refcnt of each remaining SV, possibly triggering a cleanup. This function may have to be called multiple times to free SVs which are in complex self-referential hierarchies.</p>
+
+<pre><code>        I32     sv_clean_all()</code></pre>
+
+</dd>
+<dt>sv_clean_objs </dt>
+<dd>
+
+<p>Attempt to destroy all objects not yet freed.</p>
+
+<pre><code>        void    sv_clean_objs()</code></pre>
+
+</dd>
+<dt>sv_free_arenas </dt>
+<dd>
+
+<p>Deallocate the memory used by all arenas. Note that all the individual SV heads and bodies within the arenas must already have been freed.</p>
+
+<pre><code>        void    sv_free_arenas()</code></pre>
+
+</dd>
+<dt>SvTHINKFIRST </dt>
+<dd>
+
+<p>A quick flag check to see whether an <code>sv</code> should be passed to <code>sv_force_normal</code> to be &quot;downgraded&quot; before <code>SvIVX</code> or <code>SvPVX</code> can be modified directly.</p>
+
+<p>For example, if your scalar is a reference and you want to modify the <code>SvIVX</code> slot, you can&#39;t just do <code>SvROK_off</code>, as that will leak the referent.</p>
+
+<p>This is used internally by various sv-modifying functions, such as <code>sv_setsv</code>, <code>sv_setiv</code> and <code>sv_pvn_force</code>.</p>
+
+<p>One case that this does not handle is a gv without SvFAKE set. After</p>
+
+<pre><code>    if (SvTHINKFIRST(gv)) sv_force_normal(gv);</code></pre>
+
+<p>it will still be a gv.</p>
+
+<p><code>SvTHINKFIRST</code> sometimes produces false positives. In those cases <code>sv_force_normal</code> does nothing.</p>
+
+<pre><code>        U32     SvTHINKFIRST(SV *sv)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Unicode-Support">Unicode Support</h1>
+
+<dl>
+
+<dt>find_uninit_var </dt>
+<dd>
+
+<p>NOTE: this function is experimental and may change or be removed without notice.</p>
+
+<p>Find the name of the undefined variable (if any) that caused the operator to issue a &quot;Use of uninitialized value&quot; warning. If match is true, only return a name if its value matches <code>uninit_sv</code>. So roughly speaking, if a unary operator (such as <code>OP_COS</code>) generates a warning, then following the direct child of the op may yield an <code>OP_PADSV</code> or <code>OP_GV</code> that gives the name of the undefined variable. On the other hand, with <code>OP_ADD</code> there are two branches to follow, so we only print the variable name if we get an exact match. <code>desc_p</code> points to a string pointer holding the description of the op. This may be updated if needed.</p>
+
+<p>The name is returned as a mortal SV.</p>
+
+<p>Assumes that <code>PL_op</code> is the OP that originally triggered the error, and that <code>PL_comppad</code>/<code>PL_curpad</code> points to the currently executing pad.</p>
+
+<pre><code>        SV*     find_uninit_var(const OP *const obase,
+                                const SV *const uninit_sv,
+                                bool match, const char **desc_p)</code></pre>
+
+</dd>
+<dt>report_uninit </dt>
+<dd>
+
+<p>Print appropriate &quot;Use of uninitialized variable&quot; warning.</p>
+
+<pre><code>        void    report_uninit(const SV *uninit_sv)</code></pre>
+
+</dd>
+</dl>
+
+<h1 id="Undocumented-functions">Undocumented functions</h1>
+
+<p>The following functions are currently undocumented. If you use one of them, you may wish to consider creating and submitting documentation for it.</p>
+
+<dl>
+
+<dt>PerlIO_restore_errno </dt>
+<dd>
+
+</dd>
+<dt>PerlIO_save_errno </dt>
+<dd>
+
+</dd>
+<dt>Slab_Alloc </dt>
+<dd>
+
+</dd>
+<dt>Slab_Free </dt>
+<dd>
+
+</dd>
+<dt>Slab_to_ro </dt>
+<dd>
+
+</dd>
+<dt>Slab_to_rw </dt>
+<dd>
+
+</dd>
+<dt>_add_range_to_invlist </dt>
+<dd>
+
+</dd>
+<dt>_byte_dump_string </dt>
+<dd>
+
+</dd>
+<dt>_core_swash_init </dt>
+<dd>
+
+</dd>
+<dt>_get_regclass_nonbitmap_data </dt>
+<dd>
+
+</dd>
+<dt>_get_swash_invlist </dt>
+<dd>
+
+</dd>
+<dt>_invlistEQ </dt>
+<dd>
+
+</dd>
+<dt>_invlist_array_init </dt>
+<dd>
+
+</dd>
+<dt>_invlist_contains_cp </dt>
+<dd>
+
+</dd>
+<dt>_invlist_dump </dt>
+<dd>
+
+</dd>
+<dt>_invlist_intersection </dt>
+<dd>
+
+</dd>
+<dt>_invlist_intersection_maybe_complement_2nd </dt>
+<dd>
+
+</dd>
+<dt>_invlist_invert </dt>
+<dd>
+
+</dd>
+<dt>_invlist_len </dt>
+<dd>
+
+</dd>
+<dt>_invlist_populate_swatch </dt>
+<dd>
+
+</dd>
+<dt>_invlist_search </dt>
+<dd>
+
+</dd>
+<dt>_invlist_subtract </dt>
+<dd>
+
+</dd>
+<dt>_invlist_union </dt>
+<dd>
+
+</dd>
+<dt>_invlist_union_maybe_complement_2nd </dt>
+<dd>
+
+</dd>
+<dt>_is_grapheme </dt>
+<dd>
+
+</dd>
+<dt>_load_PL_utf8_foldclosures </dt>
+<dd>
+
+</dd>
+<dt>_mem_collxfrm </dt>
+<dd>
+
+</dd>
+<dt>_new_invlist </dt>
+<dd>
+
+</dd>
+<dt>_new_invlist_C_array </dt>
+<dd>
+
+</dd>
+<dt>_setup_canned_invlist </dt>
+<dd>
+
+</dd>
+<dt>_swash_inversion_hash </dt>
+<dd>
+
+</dd>
+<dt>_swash_to_invlist </dt>
+<dd>
+
+</dd>
+<dt>_to_fold_latin1 </dt>
+<dd>
+
+</dd>
+<dt>_to_upper_title_latin1 </dt>
+<dd>
+
+</dd>
+<dt>_warn_problematic_locale </dt>
+<dd>
+
+</dd>
+<dt>abort_execution </dt>
+<dd>
+
+</dd>
+<dt>add_cp_to_invlist </dt>
+<dd>
+
+</dd>
+<dt>alloc_LOGOP </dt>
+<dd>
+
+</dd>
+<dt>alloc_maybe_populate_EXACT </dt>
+<dd>
+
+</dd>
+<dt>allocmy </dt>
+<dd>
+
+</dd>
+<dt>amagic_is_enabled </dt>
+<dd>
+
+</dd>
+<dt>append_utf8_from_native_byte </dt>
+<dd>
+
+</dd>
+<dt>apply </dt>
+<dd>
+
+</dd>
+<dt>av_extend_guts </dt>
+<dd>
+
+</dd>
+<dt>av_reify </dt>
+<dd>
+
+</dd>
+<dt>bind_match </dt>
+<dd>
+
+</dd>
+<dt>boot_core_PerlIO </dt>
+<dd>
+
+</dd>
+<dt>boot_core_UNIVERSAL </dt>
+<dd>
+
+</dd>
+<dt>boot_core_mro </dt>
+<dd>
+
+</dd>
+<dt>cando </dt>
+<dd>
+
+</dd>
+<dt>check_utf8_print </dt>
+<dd>
+
+</dd>
+<dt>ck_anoncode </dt>
+<dd>
+
+</dd>
+<dt>ck_backtick </dt>
+<dd>
+
+</dd>
+<dt>ck_bitop </dt>
+<dd>
+
+</dd>
+<dt>ck_cmp </dt>
+<dd>
+
+</dd>
+<dt>ck_concat </dt>
+<dd>
+
+</dd>
+<dt>ck_defined </dt>
+<dd>
+
+</dd>
+<dt>ck_delete </dt>
+<dd>
+
+</dd>
+<dt>ck_each </dt>
+<dd>
+
+</dd>
+<dt>ck_entersub_args_core </dt>
+<dd>
+
+</dd>
+<dt>ck_eof </dt>
+<dd>
+
+</dd>
+<dt>ck_eval </dt>
+<dd>
+
+</dd>
+<dt>ck_exec </dt>
+<dd>
+
+</dd>
+<dt>ck_exists </dt>
+<dd>
+
+</dd>
+<dt>ck_ftst </dt>
+<dd>
+
+</dd>
+<dt>ck_fun </dt>
+<dd>
+
+</dd>
+<dt>ck_glob </dt>
+<dd>
+
+</dd>
+<dt>ck_grep </dt>
+<dd>
+
+</dd>
+<dt>ck_index </dt>
+<dd>
+
+</dd>
+<dt>ck_join </dt>
+<dd>
+
+</dd>
+<dt>ck_length </dt>
+<dd>
+
+</dd>
+<dt>ck_lfun </dt>
+<dd>
+
+</dd>
+<dt>ck_listiob </dt>
+<dd>
+
+</dd>
+<dt>ck_match </dt>
+<dd>
+
+</dd>
+<dt>ck_method </dt>
+<dd>
+
+</dd>
+<dt>ck_null </dt>
+<dd>
+
+</dd>
+<dt>ck_open </dt>
+<dd>
+
+</dd>
+<dt>ck_prototype </dt>
+<dd>
+
+</dd>
+<dt>ck_readline </dt>
+<dd>
+
+</dd>
+<dt>ck_refassign </dt>
+<dd>
+
+</dd>
+<dt>ck_repeat </dt>
+<dd>
+
+</dd>
+<dt>ck_require </dt>
+<dd>
+
+</dd>
+<dt>ck_return </dt>
+<dd>
+
+</dd>
+<dt>ck_rfun </dt>
+<dd>
+
+</dd>
+<dt>ck_rvconst </dt>
+<dd>
+
+</dd>
+<dt>ck_sassign </dt>
+<dd>
+
+</dd>
+<dt>ck_select </dt>
+<dd>
+
+</dd>
+<dt>ck_shift </dt>
+<dd>
+
+</dd>
+<dt>ck_smartmatch </dt>
+<dd>
+
+</dd>
+<dt>ck_sort </dt>
+<dd>
+
+</dd>
+<dt>ck_spair </dt>
+<dd>
+
+</dd>
+<dt>ck_split </dt>
+<dd>
+
+</dd>
+<dt>ck_stringify </dt>
+<dd>
+
+</dd>
+<dt>ck_subr </dt>
+<dd>
+
+</dd>
+<dt>ck_substr </dt>
+<dd>
+
+</dd>
+<dt>ck_svconst </dt>
+<dd>
+
+</dd>
+<dt>ck_tell </dt>
+<dd>
+
+</dd>
+<dt>ck_trunc </dt>
+<dd>
+
+</dd>
+<dt>closest_cop </dt>
+<dd>
+
+</dd>
+<dt>compute_EXACTish </dt>
+<dd>
+
+</dd>
+<dt>coresub_op </dt>
+<dd>
+
+</dd>
+<dt>create_eval_scope </dt>
+<dd>
+
+</dd>
+<dt>croak_caller </dt>
+<dd>
+
+</dd>
+<dt>croak_no_mem </dt>
+<dd>
+
+</dd>
+<dt>croak_popstack </dt>
+<dd>
+
+</dd>
+<dt>current_re_engine </dt>
+<dd>
+
+</dd>
+<dt>custom_op_get_field </dt>
+<dd>
+
+</dd>
+<dt>cv_ckproto_len_flags </dt>
+<dd>
+
+</dd>
+<dt>cv_clone_into </dt>
+<dd>
+
+</dd>
+<dt>cv_const_sv_or_av </dt>
+<dd>
+
+</dd>
+<dt>cv_undef_flags </dt>
+<dd>
+
+</dd>
+<dt>cvgv_from_hek </dt>
+<dd>
+
+</dd>
+<dt>cvgv_set </dt>
+<dd>
+
+</dd>
+<dt>cvstash_set </dt>
+<dd>
+
+</dd>
+<dt>deb_stack_all </dt>
+<dd>
+
+</dd>
+<dt>defelem_target </dt>
+<dd>
+
+</dd>
+<dt>delete_eval_scope </dt>
+<dd>
+
+</dd>
+<dt>delimcpy_no_escape </dt>
+<dd>
+
+</dd>
+<dt>die_unwind </dt>
+<dd>
+
+</dd>
+<dt>do_aexec </dt>
+<dd>
+
+</dd>
+<dt>do_aexec5 </dt>
+<dd>
+
+</dd>
+<dt>do_eof </dt>
+<dd>
+
+</dd>
+<dt>do_exec </dt>
+<dd>
+
+</dd>
+<dt>do_exec3 </dt>
+<dd>
+
+</dd>
+<dt>do_execfree </dt>
+<dd>
+
+</dd>
+<dt>do_ipcctl </dt>
+<dd>
+
+</dd>
+<dt>do_ipcget </dt>
+<dd>
+
+</dd>
+<dt>do_msgrcv </dt>
+<dd>
+
+</dd>
+<dt>do_msgsnd </dt>
+<dd>
+
+</dd>
+<dt>do_ncmp </dt>
+<dd>
+
+</dd>
+<dt>do_open6 </dt>
+<dd>
+
+</dd>
+<dt>do_open_raw </dt>
+<dd>
+
+</dd>
+<dt>do_print </dt>
+<dd>
+
+</dd>
+<dt>do_readline </dt>
+<dd>
+
+</dd>
+<dt>do_seek </dt>
+<dd>
+
+</dd>
+<dt>do_semop </dt>
+<dd>
+
+</dd>
+<dt>do_shmio </dt>
+<dd>
+
+</dd>
+<dt>do_sysseek </dt>
+<dd>
+
+</dd>
+<dt>do_tell </dt>
+<dd>
+
+</dd>
+<dt>do_trans </dt>
+<dd>
+
+</dd>
+<dt>do_vecget </dt>
+<dd>
+
+</dd>
+<dt>do_vecset </dt>
+<dd>
+
+</dd>
+<dt>do_vop </dt>
+<dd>
+
+</dd>
+<dt>does_utf8_overflow </dt>
+<dd>
+
+</dd>
+<dt>dofile </dt>
+<dd>
+
+</dd>
+<dt>drand48_init_r </dt>
+<dd>
+
+</dd>
+<dt>drand48_r </dt>
+<dd>
+
+</dd>
+<dt>dtrace_probe_call </dt>
+<dd>
+
+</dd>
+<dt>dtrace_probe_load </dt>
+<dd>
+
+</dd>
+<dt>dtrace_probe_op </dt>
+<dd>
+
+</dd>
+<dt>dtrace_probe_phase </dt>
+<dd>
+
+</dd>
+<dt>dump_all_perl </dt>
+<dd>
+
+</dd>
+<dt>dump_packsubs_perl </dt>
+<dd>
+
+</dd>
+<dt>dump_sub_perl </dt>
+<dd>
+
+</dd>
+<dt>dump_sv_child </dt>
+<dd>
+
+</dd>
+<dt>emulate_cop_io </dt>
+<dd>
+
+</dd>
+<dt>feature_is_enabled </dt>
+<dd>
+
+</dd>
+<dt>find_lexical_cv </dt>
+<dd>
+
+</dd>
+<dt>find_runcv_where </dt>
+<dd>
+
+</dd>
+<dt>find_script </dt>
+<dd>
+
+</dd>
+<dt>form_short_octal_warning </dt>
+<dd>
+
+</dd>
+<dt>free_tied_hv_pool </dt>
+<dd>
+
+</dd>
+<dt>get_db_sub </dt>
+<dd>
+
+</dd>
+<dt>get_debug_opts </dt>
+<dd>
+
+</dd>
+<dt>get_hash_seed </dt>
+<dd>
+
+</dd>
+<dt>get_invlist_iter_addr </dt>
+<dd>
+
+</dd>
+<dt>get_invlist_offset_addr </dt>
+<dd>
+
+</dd>
+<dt>get_invlist_previous_index_addr </dt>
+<dd>
+
+</dd>
+<dt>get_no_modify </dt>
+<dd>
+
+</dd>
+<dt>get_opargs </dt>
+<dd>
+
+</dd>
+<dt>get_re_arg </dt>
+<dd>
+
+</dd>
+<dt>getenv_len </dt>
+<dd>
+
+</dd>
+<dt>grok_atoUV </dt>
+<dd>
+
+</dd>
+<dt>grok_bslash_c </dt>
+<dd>
+
+</dd>
+<dt>grok_bslash_o </dt>
+<dd>
+
+</dd>
+<dt>grok_bslash_x </dt>
+<dd>
+
+</dd>
+<dt>gv_fetchmeth_internal </dt>
+<dd>
+
+</dd>
+<dt>gv_override </dt>
+<dd>
+
+</dd>
+<dt>gv_setref </dt>
+<dd>
+
+</dd>
+<dt>gv_stashpvn_internal </dt>
+<dd>
+
+</dd>
+<dt>gv_stashsvpvn_cached </dt>
+<dd>
+
+</dd>
+<dt>handle_named_backref </dt>
+<dd>
+
+</dd>
+<dt>hfree_next_entry </dt>
+<dd>
+
+</dd>
+<dt>hv_backreferences_p </dt>
+<dd>
+
+</dd>
+<dt>hv_kill_backrefs </dt>
+<dd>
+
+</dd>
+<dt>hv_placeholders_p </dt>
+<dd>
+
+</dd>
+<dt>hv_undef_flags </dt>
+<dd>
+
+</dd>
+<dt>init_argv_symbols </dt>
+<dd>
+
+</dd>
+<dt>init_constants </dt>
+<dd>
+
+</dd>
+<dt>init_dbargs </dt>
+<dd>
+
+</dd>
+<dt>init_debugger </dt>
+<dd>
+
+</dd>
+<dt>invert </dt>
+<dd>
+
+</dd>
+<dt>invlist_array </dt>
+<dd>
+
+</dd>
+<dt>invlist_clear </dt>
+<dd>
+
+</dd>
+<dt>invlist_clone </dt>
+<dd>
+
+</dd>
+<dt>invlist_highest </dt>
+<dd>
+
+</dd>
+<dt>invlist_is_iterating </dt>
+<dd>
+
+</dd>
+<dt>invlist_iterfinish </dt>
+<dd>
+
+</dd>
+<dt>invlist_iterinit </dt>
+<dd>
+
+</dd>
+<dt>invlist_max </dt>
+<dd>
+
+</dd>
+<dt>invlist_previous_index </dt>
+<dd>
+
+</dd>
+<dt>invlist_set_len </dt>
+<dd>
+
+</dd>
+<dt>invlist_set_previous_index </dt>
+<dd>
+
+</dd>
+<dt>invlist_trim </dt>
+<dd>
+
+</dd>
+<dt>io_close </dt>
+<dd>
+
+</dd>
+<dt>isFF_OVERLONG </dt>
+<dd>
+
+</dd>
+<dt>isFOO_lc </dt>
+<dd>
+
+</dd>
+<dt>is_utf8_common </dt>
+<dd>
+
+</dd>
+<dt>is_utf8_common_with_len </dt>
+<dd>
+
+</dd>
+<dt>is_utf8_cp_above_31_bits </dt>
+<dd>
+
+</dd>
+<dt>is_utf8_overlong_given_start_byte_ok </dt>
+<dd>
+
+</dd>
+<dt>isinfnansv </dt>
+<dd>
+
+</dd>
+<dt>jmaybe </dt>
+<dd>
+
+</dd>
+<dt>keyword </dt>
+<dd>
+
+</dd>
+<dt>keyword_plugin_standard </dt>
+<dd>
+
+</dd>
+<dt>list </dt>
+<dd>
+
+</dd>
+<dt>localize </dt>
+<dd>
+
+</dd>
+<dt>magic_clear_all_env </dt>
+<dd>
+
+</dd>
+<dt>magic_cleararylen_p </dt>
+<dd>
+
+</dd>
+<dt>magic_clearenv </dt>
+<dd>
+
+</dd>
+<dt>magic_clearisa </dt>
+<dd>
+
+</dd>
+<dt>magic_clearpack </dt>
+<dd>
+
+</dd>
+<dt>magic_clearsig </dt>
+<dd>
+
+</dd>
+<dt>magic_copycallchecker </dt>
+<dd>
+
+</dd>
+<dt>magic_existspack </dt>
+<dd>
+
+</dd>
+<dt>magic_freearylen_p </dt>
+<dd>
+
+</dd>
+<dt>magic_freeovrld </dt>
+<dd>
+
+</dd>
+<dt>magic_get </dt>
+<dd>
+
+</dd>
+<dt>magic_getarylen </dt>
+<dd>
+
+</dd>
+<dt>magic_getdebugvar </dt>
+<dd>
+
+</dd>
+<dt>magic_getdefelem </dt>
+<dd>
+
+</dd>
+<dt>magic_getnkeys </dt>
+<dd>
+
+</dd>
+<dt>magic_getpack </dt>
+<dd>
+
+</dd>
+<dt>magic_getpos </dt>
+<dd>
+
+</dd>
+<dt>magic_getsig </dt>
+<dd>
+
+</dd>
+<dt>magic_getsubstr </dt>
+<dd>
+
+</dd>
+<dt>magic_gettaint </dt>
+<dd>
+
+</dd>
+<dt>magic_getuvar </dt>
+<dd>
+
+</dd>
+<dt>magic_getvec </dt>
+<dd>
+
+</dd>
+<dt>magic_killbackrefs </dt>
+<dd>
+
+</dd>
+<dt>magic_nextpack </dt>
+<dd>
+
+</dd>
+<dt>magic_regdata_cnt </dt>
+<dd>
+
+</dd>
+<dt>magic_regdatum_get </dt>
+<dd>
+
+</dd>
+<dt>magic_regdatum_set </dt>
+<dd>
+
+</dd>
+<dt>magic_scalarpack </dt>
+<dd>
+
+</dd>
+<dt>magic_set </dt>
+<dd>
+
+</dd>
+<dt>magic_set_all_env </dt>
+<dd>
+
+</dd>
+<dt>magic_setarylen </dt>
+<dd>
+
+</dd>
+<dt>magic_setcollxfrm </dt>
+<dd>
+
+</dd>
+<dt>magic_setdbline </dt>
+<dd>
+
+</dd>
+<dt>magic_setdebugvar </dt>
+<dd>
+
+</dd>
+<dt>magic_setdefelem </dt>
+<dd>
+
+</dd>
+<dt>magic_setenv </dt>
+<dd>
+
+</dd>
+<dt>magic_setisa </dt>
+<dd>
+
+</dd>
+<dt>magic_setlvref </dt>
+<dd>
+
+</dd>
+<dt>magic_setmglob </dt>
+<dd>
+
+</dd>
+<dt>magic_setnkeys </dt>
+<dd>
+
+</dd>
+<dt>magic_setpack </dt>
+<dd>
+
+</dd>
+<dt>magic_setpos </dt>
+<dd>
+
+</dd>
+<dt>magic_setregexp </dt>
+<dd>
+
+</dd>
+<dt>magic_setsig </dt>
+<dd>
+
+</dd>
+<dt>magic_setsubstr </dt>
+<dd>
+
+</dd>
+<dt>magic_settaint </dt>
+<dd>
+
+</dd>
+<dt>magic_setutf8 </dt>
+<dd>
+
+</dd>
+<dt>magic_setuvar </dt>
+<dd>
+
+</dd>
+<dt>magic_setvec </dt>
+<dd>
+
+</dd>
+<dt>magic_sizepack </dt>
+<dd>
+
+</dd>
+<dt>magic_wipepack </dt>
+<dd>
+
+</dd>
+<dt>malloc_good_size </dt>
+<dd>
+
+</dd>
+<dt>malloced_size </dt>
+<dd>
+
+</dd>
+<dt>mem_collxfrm </dt>
+<dd>
+
+</dd>
+<dt>mem_log_alloc </dt>
+<dd>
+
+</dd>
+<dt>mem_log_free </dt>
+<dd>
+
+</dd>
+<dt>mem_log_realloc </dt>
+<dd>
+
+</dd>
+<dt>mg_find_mglob </dt>
+<dd>
+
+</dd>
+<dt>mode_from_discipline </dt>
+<dd>
+
+</dd>
+<dt>more_bodies </dt>
+<dd>
+
+</dd>
+<dt>mro_meta_dup </dt>
+<dd>
+
+</dd>
+<dt>mro_meta_init </dt>
+<dd>
+
+</dd>
+<dt>multideref_stringify </dt>
+<dd>
+
+</dd>
+<dt>my_attrs </dt>
+<dd>
+
+</dd>
+<dt>my_clearenv </dt>
+<dd>
+
+</dd>
+<dt>my_lstat_flags </dt>
+<dd>
+
+</dd>
+<dt>my_stat_flags </dt>
+<dd>
+
+</dd>
+<dt>my_unexec </dt>
+<dd>
+
+</dd>
+<dt>newATTRSUB_x </dt>
+<dd>
+
+</dd>
+<dt>newGP </dt>
+<dd>
+
+</dd>
+<dt>newMETHOP_internal </dt>
+<dd>
+
+</dd>
+<dt>newSTUB </dt>
+<dd>
+
+</dd>
+<dt>newSVavdefelem </dt>
+<dd>
+
+</dd>
+<dt>newXS_deffile </dt>
+<dd>
+
+</dd>
+<dt>newXS_len_flags </dt>
+<dd>
+
+</dd>
+<dt>new_warnings_bitfield </dt>
+<dd>
+
+</dd>
+<dt>nextargv </dt>
+<dd>
+
+</dd>
+<dt>noperl_die </dt>
+<dd>
+
+</dd>
+<dt>notify_parser_that_changed_to_utf8 </dt>
+<dd>
+
+</dd>
+<dt>oopsAV </dt>
+<dd>
+
+</dd>
+<dt>oopsHV </dt>
+<dd>
+
+</dd>
+<dt>op_clear </dt>
+<dd>
+
+</dd>
+<dt>op_integerize </dt>
+<dd>
+
+</dd>
+<dt>op_lvalue_flags </dt>
+<dd>
+
+</dd>
+<dt>op_refcnt_dec </dt>
+<dd>
+
+</dd>
+<dt>op_refcnt_inc </dt>
+<dd>
+
+</dd>
+<dt>op_relocate_sv </dt>
+<dd>
+
+</dd>
+<dt>op_std_init </dt>
+<dd>
+
+</dd>
+<dt>op_unscope </dt>
+<dd>
+
+</dd>
+<dt>opmethod_stash </dt>
+<dd>
+
+</dd>
+<dt>opslab_force_free </dt>
+<dd>
+
+</dd>
+<dt>opslab_free </dt>
+<dd>
+
+</dd>
+<dt>opslab_free_nopad </dt>
+<dd>
+
+</dd>
+<dt>package </dt>
+<dd>
+
+</dd>
+<dt>package_version </dt>
+<dd>
+
+</dd>
+<dt>pad_add_weakref </dt>
+<dd>
+
+</dd>
+<dt>padlist_store </dt>
+<dd>
+
+</dd>
+<dt>padname_free </dt>
+<dd>
+
+</dd>
+<dt>padnamelist_free </dt>
+<dd>
+
+</dd>
+<dt>parse_unicode_opts </dt>
+<dd>
+
+</dd>
+<dt>parser_free </dt>
+<dd>
+
+</dd>
+<dt>parser_free_nexttoke_ops </dt>
+<dd>
+
+</dd>
+<dt>path_is_searchable </dt>
+<dd>
+
+</dd>
+<dt>peep </dt>
+<dd>
+
+</dd>
+<dt>pmruntime </dt>
+<dd>
+
+</dd>
+<dt>populate_isa </dt>
+<dd>
+
+</dd>
+<dt>ptr_hash </dt>
+<dd>
+
+</dd>
+<dt>qerror </dt>
+<dd>
+
+</dd>
+<dt>re_exec_indentf </dt>
+<dd>
+
+</dd>
+<dt>re_indentf </dt>
+<dd>
+
+</dd>
+<dt>re_op_compile </dt>
+<dd>
+
+</dd>
+<dt>re_printf </dt>
+<dd>
+
+</dd>
+<dt>reg_named_buff </dt>
+<dd>
+
+</dd>
+<dt>reg_named_buff_iter </dt>
+<dd>
+
+</dd>
+<dt>reg_numbered_buff_fetch </dt>
+<dd>
+
+</dd>
+<dt>reg_numbered_buff_length </dt>
+<dd>
+
+</dd>
+<dt>reg_numbered_buff_store </dt>
+<dd>
+
+</dd>
+<dt>reg_qr_package </dt>
+<dd>
+
+</dd>
+<dt>reg_skipcomment </dt>
+<dd>
+
+</dd>
+<dt>reg_temp_copy </dt>
+<dd>
+
+</dd>
+<dt>regcurly </dt>
+<dd>
+
+</dd>
+<dt>regprop </dt>
+<dd>
+
+</dd>
+<dt>report_evil_fh </dt>
+<dd>
+
+</dd>
+<dt>report_redefined_cv </dt>
+<dd>
+
+</dd>
+<dt>report_wrongway_fh </dt>
+<dd>
+
+</dd>
+<dt>rpeep </dt>
+<dd>
+
+</dd>
+<dt>rsignal_restore </dt>
+<dd>
+
+</dd>
+<dt>rsignal_save </dt>
+<dd>
+
+</dd>
+<dt>rxres_save </dt>
+<dd>
+
+</dd>
+<dt>same_dirent </dt>
+<dd>
+
+</dd>
+<dt>save_strlen </dt>
+<dd>
+
+</dd>
+<dt>sawparens </dt>
+<dd>
+
+</dd>
+<dt>scalar </dt>
+<dd>
+
+</dd>
+<dt>scalarvoid </dt>
+<dd>
+
+</dd>
+<dt>set_caret_X </dt>
+<dd>
+
+</dd>
+<dt>set_padlist </dt>
+<dd>
+
+</dd>
+<dt>should_warn_nl </dt>
+<dd>
+
+</dd>
+<dt>sighandler </dt>
+<dd>
+
+</dd>
+<dt>softref2xv </dt>
+<dd>
+
+</dd>
+<dt>ssc_add_range </dt>
+<dd>
+
+</dd>
+<dt>ssc_clear_locale </dt>
+<dd>
+
+</dd>
+<dt>ssc_cp_and </dt>
+<dd>
+
+</dd>
+<dt>ssc_intersection </dt>
+<dd>
+
+</dd>
+<dt>ssc_union </dt>
+<dd>
+
+</dd>
+<dt>sub_crush_depth </dt>
+<dd>
+
+</dd>
+<dt>sv_add_backref </dt>
+<dd>
+
+</dd>
+<dt>sv_buf_to_ro </dt>
+<dd>
+
+</dd>
+<dt>sv_del_backref </dt>
+<dd>
+
+</dd>
+<dt>sv_free2 </dt>
+<dd>
+
+</dd>
+<dt>sv_kill_backrefs </dt>
+<dd>
+
+</dd>
+<dt>sv_len_utf8_nomg </dt>
+<dd>
+
+</dd>
+<dt>sv_magicext_mglob </dt>
+<dd>
+
+</dd>
+<dt>sv_mortalcopy_flags </dt>
+<dd>
+
+</dd>
+<dt>sv_only_taint_gmagic </dt>
+<dd>
+
+</dd>
+<dt>sv_or_pv_pos_u2b </dt>
+<dd>
+
+</dd>
+<dt>sv_resetpvn </dt>
+<dd>
+
+</dd>
+<dt>sv_sethek </dt>
+<dd>
+
+</dd>
+<dt>sv_setsv_cow </dt>
+<dd>
+
+</dd>
+<dt>sv_unglob </dt>
+<dd>
+
+</dd>
+<dt>swash_fetch </dt>
+<dd>
+
+</dd>
+<dt>swash_init </dt>
+<dd>
+
+</dd>
+<dt>tied_method </dt>
+<dd>
+
+</dd>
+<dt>tmps_grow_p </dt>
+<dd>
+
+</dd>
+<dt>translate_substr_offsets </dt>
+<dd>
+
+</dd>
+<dt>try_amagic_bin </dt>
+<dd>
+
+</dd>
+<dt>try_amagic_un </dt>
+<dd>
+
+</dd>
+<dt>unshare_hek </dt>
+<dd>
+
+</dd>
+<dt>utilize </dt>
+<dd>
+
+</dd>
+<dt>varname </dt>
+<dd>
+
+</dd>
+<dt>vivify_defelem </dt>
+<dd>
+
+</dd>
+<dt>vivify_ref </dt>
+<dd>
+
+</dd>
+<dt>wait4pid </dt>
+<dd>
+
+</dd>
+<dt>was_lvalue_sub </dt>
+<dd>
+
+</dd>
+<dt>watch </dt>
+<dd>
+
+</dd>
+<dt>win32_croak_not_implemented </dt>
+<dd>
+
+</dd>
+<dt>write_to_stderr </dt>
+<dd>
+
+</dd>
+<dt>xs_boot_epilog </dt>
+<dd>
+
+</dd>
+<dt>xs_handshake </dt>
+<dd>
+
+</dd>
+<dt>yyerror </dt>
+<dd>
+
+</dd>
+<dt>yyerror_pv </dt>
+<dd>
+
+</dd>
+<dt>yyerror_pvn </dt>
+<dd>
+
+</dd>
+<dt>yylex </dt>
+<dd>
+
+</dd>
+<dt>yyparse </dt>
+<dd>
+
+</dd>
+<dt>yyquit </dt>
+<dd>
+
+</dd>
+<dt>yyunlex </dt>
+<dd>
+
+</dd>
+</dl>
+
+<h1 id="AUTHORS">AUTHORS</h1>
+
+<p>The autodocumentation system was originally added to the Perl core by Benjamin Stuhl. Documentation is by whoever was kind enough to document their functions.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p><a href="/perldoc/perlguts/">perlguts</a>, <a href="/perldoc/perlapi/">perlapi</a></p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

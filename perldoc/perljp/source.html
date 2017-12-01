@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perljp (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perljp/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perljp/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perljp/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perljp/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perljp/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perljp/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+=head1 NAME
+
+perljp - æ¥æ¬èª Perl ã¬ã¤ã
+
+=head1 èª¬æ
+
+Perl ã®ä¸çã¸ãããã!
+
+Perl 5.8.0 ãããUnicodeãµãã¼ããå¤§å¹ã«å¼·åããããã®çµæã©ãã³æå­ä»¥å¤ã®æå­ã³ã¼ãã®ãµãã¼ãã CJK (ä¸­å½èªãæ¥æ¬èªããã³ã°ã«)ãå«ãã¦å ããã¾ãããUnicodeã¯ä¸çä¸­ã®æå­ãä¸ã¤ã®æå­ã³ã¼ãã§æ±ããã¨ãç®æããæ¨æºè¦æ ¼ã§ãããæ±ããè¥¿ãã¯ãã¾ããã®éã®æå­ï¼ã®ãªã·ã£æå­ãã­ãªã¼ã«æå­ãã¢ã©ãã¢æå­ãããã©ã¤æå­ããã£ã¼ã´ã¡ãã¬ã¼ãªæå­ããªã©ãªã©ï¼ããããã¾ã§ã¯OSãã³ãã¼ãç¬èªã«å®ãã¦ããæå­(PCããã³Macintosh)ããã§ã«å«ã¾ãã¦ãã¾ãã
+
+Perl èªèº«ã¯ Unicode ã§åä½ãã¾ããPerl ã¹ã¯ãªããåã®æå­åãªãã©ã«ãæ­£è¦è¡¨ç¾ã¯ Unicode ãåæã¨ãã¦ãã¾ããããã¦å¥åºåã®ããã«ã¯ãããã¾ã§ä½¿ããã¦ãããã¾ãã¾ãªæå­ã³ã¼ãã«å¯¾å¿ããã¢ã¸ã¥ã¼ã«ãã Encode ããæ¨æºè£åããã¦ãããUnicode ã¨ãããã®æå­ã³ã¼ãã®ç¸äºå¤æãç°¡åã«è¡ããããã«ãªã£ã¦ãã¾ãã
+
+ç¾æç¹ã§ Encode ããµãã¼ãããæå­ã³ã¼ãã¯ä»¥ä¸ã®ã¨ããã§ãã
+
+  7bit-jis      AdobeStandardEncoding AdobeSymbol       AdobeZdingbat
+  ascii             big5              big5-hkscs        cp1006
+  cp1026            cp1047            cp1250            cp1251
+  cp1252            cp1253            cp1254            cp1255
+  cp1256            cp1257            cp1258            cp37
+  cp424             cp437             cp500             cp737
+  cp775             cp850             cp852             cp855
+  cp856             cp857             cp860             cp861
+  cp862             cp863             cp864             cp865
+  cp866             cp869             cp874             cp875
+  cp932             cp936             cp949             cp950
+  dingbats          euc-cn            euc-jp            euc-kr
+  gb12345-raw       gb2312-raw        gsm0338           hp-roman8
+  hz                iso-2022-jp       iso-2022-jp-1     iso-8859-1
+  iso-8859-10       iso-8859-11       iso-8859-13       iso-8859-14
+  iso-8859-15       iso-8859-16       iso-8859-2        iso-8859-3
+  iso-8859-4        iso-8859-5        iso-8859-6        iso-8859-7
+  iso-8859-8        iso-8859-9        iso-ir-165        jis0201-raw
+  jis0208-raw       jis0212-raw       johab             koi8-f
+  koi8-r            koi8-u            ksc5601-raw       MacArabic
+  MacCentralEurRoman  MacChineseSimp    MacChineseTrad    MacCroatian
+  MacCyrillic       MacDingbats       MacFarsi          MacGreek
+  MacHebrew         MacIcelandic      MacJapanese       MacKorean
+  MacRoman          MacRomanian       MacRumanian       MacSami
+  MacSymbol         MacThai           MacTurkish        MacUkrainian
+  nextstep          posix-bc          shiftjis          symbol
+  UCS-2BE           UCS-2LE           UTF-16            UTF-16BE
+  UTF-16LE          UTF-32            UTF-32BE          UTF-32LE
+  utf8              viscii                              
+
+(å¨114ç¨®é¡)
+
+ä¾ãã°ãæå­ã³ã¼ãFOOã®ãã¡ã¤ã«ãUTF-8ã«å¤æããã«ã¯ãä»¥ä¸ã®ããã«ãã¾ãã
+
+    perl -Mencoding=FOO,STDOUT,utf8 -pe1 &lt; file.FOO &gt; file.utf8
+
+ã¾ããPerlã«ã¯ãå¨é¨ãPerlã§æ¸ãããæå­ã³ã¼ãå¤æã¦ã¼ãã£ãªãã£ãpiconvãä»å±ãã¦ããã®ã§ãä»¥ä¸ã®ããã«ãããã¨ãã§ãã¾ãã
+
+   piconv -f FOO -t utf8 &lt; file.FOO &gt; file.utf8
+   piconv -f utf8 -t FOO &lt; file.utf8 &gt; file.FOO
+
+=head2 About (jcode.pl|Jcode.pm|JPerl)
+
+5.8ä»¥åã®ãã¹ã¯ãªãããEUC-JPã§ããã°ãªãã©ã«ã ãã¯æ±ããã¨ãã§ãã¾ãããã¾ããå¥åºåãæ±ãã¢ã¸ã¥ã¼ã«ã¨ãã¦ã¯Jcode.pmã( L&lt;http://openlab.ring.gr.jp/Jcode/&gt; )ãperl4ç¨ã®ã¦ã¼ãã£ãªãã£ã¨ãã¦ã¯jcode.plãããããå­å¨ããæ¥æ¬èªã®æ±ããCGIã§ããå©ç¨ããã¦ãããã¨ãå¾¡å­ãã®æ¹ãå°ãªããªããã¨æããã¾ãããã ããæ¥æ¬èªã«ããæ­£è¦è¡¨ç¾ããã¾ãæ±ããã¨ã¯ä¸å¯è½ã§ããã
+
+5.005ä»¥åã®Perlã«ã¯ãæ¥æ¬èªã«ç¹åããã­ã¼ã«ã©ã¤ãºçãJperlãå­å¨ãã¾ãã( L&lt;http://homepage2.nifty.com/kipp/perl/jperl/index.html&gt; )ãã¾ããMac OS 9.x/Classicç¨ã®PerlãMacPerlã®æ¥æ¬èªçãMacJPerlã¨ãã¦å­å¨ãã¦ã¾ããã( L&lt;http://habilis.net/macjperl/&gt; ).ãããã§ã¯æå­ã³ã¼ãã¨ãã¦EUC-JPã«å ãShift_JISããã®ã¾ã¾æ±ããã¨ãã§ããã¾ãæ¥æ¬èªã«ããæ­£è¦è¡¨ç¾ãæ±ããã¨ãå¯è½ã§ããã
+
+Perl5.8ã§ã¯ããããã®æ©è½ããã¹ã¦Perlæ¬ä½ã ãã§å®ç¾ã§ããä¸ã«ãæ¥æ¬èªã®ã¿ãªããä¸è¨114ã®æå­ã³ã¼ãããã¹ã¦ããããåæã«æ±ããã¨ãã§ãã¾ããããã«ãCPANãªã©ããæ°ããæå­ã³ã¼ãç¨ã®ã¢ã¸ã¥ã¼ã«ãå¥æãããã¨ãç°¡åã«ã§ããããã«ãªã£ã¦ãã¾ãã
+
+=over 4
+
+=item *
+
+å¥åºå
+
+ä»¥ä¸ã®ä¾ã¯ãã¥ããShift_JISã®å¥åãEUC-JPã«å¤æãã¦åºåãã¾ãã
+
+  # jcode.pl
+  require &quot;jcode.pl&quot;;
+  while(&lt;&gt;){
+    jcode::convert(*_, &#39;euc&#39;, &#39;sjis&#39;);
+    print;
+  }
+  # Jcode.pm
+  use Jcode;
+  while(&lt;&gt;){
+  	print Jcode-&gt;new($_, &#39;sjis&#39;)-&gt;euc;
+  }
+  # Perl 5.8
+  use Encode;
+  while(&lt;&gt;){
+    from_to($_, &#39;shiftjis&#39;, &#39;euc-jp&#39;);
+    print;
+  }
+  # Perl 5.8 - encoding ãå©ç¨ãã¦
+  use encoding &#39;euc-jp&#39;, STDIN =&gt; &#39;shiftjis&#39;;
+  while(&lt;&gt;){
+  	print;
+  }
+
+=item *
+
+Jperl äºæã¹ã¯ãªãã
+
+ãããã&quot;shebang&quot;ãå¤æ´ããã ãã§ãJperlç¨ã®scriptã®ã»ã¨ãã©ã¯å¤æ´ãªãã«å©ç¨å¯è½ã ã¨æããã¾ãã
+
+   #!/path/to/jperl
+   â
+   #!/path/to/perl -Mencoding=euc-jp
+
+è©³ããã¯ perldoc encoding ãåç§ãã¦ãã ããã
+
+=back
+
+=head2 ããã«è©³ãã
+
+Perlã«ã¯è¨å¤§ãªè³æãä»å±ãã¦ãããPerlã®æ°æ©è½ãUnicodeãµãã¼ããããã¦Encodeã¢ã¸ã¥ã¼ã«ã®ä½¿ç¨æ³ãªã©ãç´°ããç¶²ç¾ããã¦ãã¾ãï¼æ®å¿µãªãããã»ã¨ãã©è±èªã§ã¯ããã¾ããï¼ãä»¥ä¸ã®ã³ãã³ãã§ãããã®ä¸é¨ãé²è¦§ãããã¨ãå¯è½ã§ãã
+
+  perldoc perlunicode # Perlã®Unicodeãµãã¼ãå¨è¬
+  perldoc Encode      # Encodeã¢ã¸ã¥ã¼ã«ã«é¢ãã¦
+  perldoc Encode::JP  # ãã¡æ¥æ¬èªæå­ã³ã¼ãã«é¢ãã¦
+
+=head2 Perlå¨è¬ã«é¢ãã URL
+
+=over 4
+
+=item L&lt;http://www.perl.com/&gt;
+
+Perl ãã¼ã ãã¼ã¸ (O&#39;Reilly and Associates)
+
+=item L&lt;http://www.cpan.org/&gt;
+
+CPAN (Comprehensive Perl Archive Network)
+
+=item L&lt;http://lists.perl.org/&gt;
+
+Perl ã¡ã¼ãªã³ã°ãªã¹ãé
+
+=back
+
+=head2 Perlã®ä¿®å¾ã«å½¹ç«ã¤ URL
+
+=over 4
+
+=item L&lt;http://www.oreilly.com.tw/&gt;
+
+O&#39;Reilly ç¤¾ã®Perlé¢é£æ¸ç±(ç¹ä½å­ä¸­å½èª)
+
+=item L&lt;http://www.oreilly.com.cn/&gt;
+
+O&#39;Reilly ç¤¾ã®Perlé¢é£æ¸ç±(ç°¡ä½å­ä¸­å½èª)
+
+=item L&lt;http://www.oreilly.co.jp/catalog/&gt;
+
+ãªã©ã¤ãªã¼ç¤¾ã®Perlé¢é£æ¸ç±(æ¥æ¬èª)
+
+=back
+
+=head2 Perl ã¦ã¼ã¶ã¼ã°ã«ã¼ã
+
+=over 4
+
+=item L&lt;http://www.pm.org/groups/asia.html&gt;
+
+=back
+
+=head2 Unicodeé¢é£ã®URL
+
+=over 4
+
+=item L&lt;http://www.unicode.org/&gt;
+
+Unicode ã³ã³ã½ã¼ã·ã¢ã  (Unicodeè¦æ ¼ã®é¸å®å£ä½)
+
+=item L&lt;http://www.cl.cam.ac.uk/%7Emgk25/unicode.html&gt;
+
+UTF-8 and Unicode FAQ for Unix/Linux
+
+=item L&lt;http://wiki.kldp.org/Translations/html/UTF8-Unicode-KLDP/UTF8-Unicode-KLDP.html&gt;
+
+UTF-8 and Unicode FAQ for Unix/Linux (ãã³ã°ã«è¨³)
+
+=back
+
+=head1 AUTHORS
+
+Jarkko Hietaniemi E&lt;lt&gt;jhi@iki.fiE&lt;gt&gt;
+Dan Kogai (å°é£¼ãå¼¾) E&lt;lt&gt;dankogai@dan.co.jpE&lt;gt&gt;
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

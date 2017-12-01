@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.testing ul').show();
+                $('.sub-menu.testing div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/testing/data/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/testing/data/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/testing/data/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/testing/data/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/testing/data/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <h1>Testing data structures</h1>
+
+<h4>Hashes</h4>
+
+<pre><code>use Test2::V0 qw/hash match DNE all_vals all_keys end/;
+
+my $expected_hash = hash {
+    field foo =&gt; 1;
+    field bar =&gt; 2;
+
+    # Ensure the &#39;baz&#39; key Does Not Exist in the hash.
+    field baz =&gt; DNE();
+
+    # Ensure the key exists, but is set to undef
+    field bat =&gt; undef;
+
+    # Any check can be used
+    field boo =&gt; hash { ... },
+
+    # Set checks that apply to all keys or values. Can be done multiple
+    # times, and each call can define multiple checks, all will be run.
+    all_vals match qr/a/, match qr/b/;    # All keys must have an &#39;a&#39; and a &#39;b&#39;
+    all_keys match qr/x/;                 # All keys must have an &#39;x&#39;
+
+    ...
+
+    end(); # optional, enforces that no other keys are present.
+};
+
+is(
+    $some_hash,
+    $expected_hash,
+    &quot;Got the expected hash&quot;
+);
+</code></pre>
+
+<h4>Arrays</h4>
+
+<pre><code>use Test2::V0 qw/filter_items all_items match DNE end/;
+
+my $expected_array = array {
+    # Uses the next index, in this case index 0;
+    item &#39;a&#39;;
+
+    # Gets index 1 automatically
+    item &#39;b&#39;;
+
+    # Specify the index
+    item 2 =&gt; &#39;c&#39;;
+
+    # We skipped index 3, which means we don&#39;t care what it is.
+    item 4 =&gt; &#39;e&#39;;
+
+    # Gets index 5.
+    item &#39;f&#39;;
+
+    # Remove any REMAINING items that contain 0-9.
+    filter_items { grep {!m/[0-9]/} @_ };
+
+    # Set checks that apply to all items. Can be done multiple times, and
+    # each call can define multiple checks, all will be run.
+    all_items match qr/a/, match qr/b/;
+    all_items match qr/x/;
+
+    # Of the remaining items (after the filter is applied) the next one
+    # (which is now index 6) should be &#39;g&#39;.
+    item 6 =&gt; &#39;g&#39;;
+
+    item 7 =&gt; DNE; # Ensure index 7 does not exist.
+
+    end(); # Ensure no other indexes exist.
+};
+
+is(
+    $some_array,
+    $expected_array,
+    &quot;Got the expected array&quot;
+);
+</code></pre>
+
+<h4>Ordered subsets</h4>
+
+<pre><code>my $expected = subset {
+    item &#39;a&#39;;
+    item &#39;b&#39;;
+    item &#39;c&#39;;
+
+    # Doesn&#39;t matter if the array has &#39;d&#39;, the check will skip past any
+    # unknown items until it finds the next one in our subset.
+
+    item &#39;e&#39;;
+    item &#39;f&#39;;
+};
+</code></pre>
+
+<h4>Bags</h4>
+
+<p>A bag is like an array, but we don&#39;t care about the order of the items. In the
+example, the test will pass if it matches either <code>[&#39;a&#39;,&#39;b&#39;]</code> and <code>[&#39;b&#39;,&#39;a&#39;]</code>.</p>
+
+<pre><code>my $expected_bag = bag {
+    item &#39;a&#39;;
+    item &#39;b&#39;;
+
+    end(); # Ensure no other elements exist.
+};
+</code></pre>
+
+<h4>For more info</h4>
+
+<p>See the documentation for <a href="https://metacpan.org/pod/Test2::Tools::Compare">Test2::Tools::Compare</a>.</p>
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

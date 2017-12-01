@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perltw (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perltw/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perltw/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perltw/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perltw/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perltw/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perltw/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+å¦æä½ ç¨ä¸è¬çæå­ç·¨è¼¯å¨é±è¦½éä»½æä»¶, è«å¿½ç¥æä¸­å¥ç¹çè¨»è¨å­ç¬¦.
+éä»½æä»¶æ¯ä»¥ POD (ç°¡ææä»¶æ ¼å¼) å¯«æ; éç¨®æ ¼å¼æ¯çºäºè½è®äººç´æ¥è®å,
+èç¹å¥è¨­è¨ç. éæ¼æ­¤æ ¼å¼çé²ä¸æ­¥è³è¨, è«åè perlpod ç·ä¸æä»¶.
+
+=head1 NAME
+
+perltw - æ­£é«ä¸­æ Perl æå
+
+=head1 DESCRIPTION
+
+æ­¡è¿ä¾å° Perl çå¤©å°!
+
+å¾ 5.8.0 çéå§, Perl å·åäºå®åç Unicode (è¬åç¢¼) æ¯æ´,
+ä¹é£å¸¶æ¯æ´äºè¨±å¤æä¸èªç³»ä»¥å¤çç·¨ç¢¼æ¹å¼; CJK (ä¸­æ¥é) ä¾¿æ¯å¶ä¸­çä¸é¨ä»½.
+Unicode æ¯åéæ§çæ¨æº, è©¦åæ¶µèä¸çä¸ææçå­ç¬¦: è¥¿æ¹ä¸ç, æ±æ¹ä¸ç,
+ä»¥åå©èéçä¸å (å¸èæ, æå©äºæ, é¿æä¼¯æ, å¸ä¼¯ä¾æ, å°åº¦æ,
+å°å°å®æ, ç­ç­). å®ä¹å®¹ç´äºå¤ç¨®ä½æ¥­ç³»çµ±èå¹³èº (å¦ PC åéº¥éå¡).
+
+Perl æ¬èº«ä»¥ Unicode é²è¡æä½. éè¡¨ç¤º Perl å§é¨çå­ä¸²è³æå¯ç¨ Unicode
+è¡¨ç¤º; Perl çå½å¼èç®ç¬¦ (ä¾å¦æ­£è¦è¡¨ç¤ºå¼æ¯å°) ä¹è½å° Unicode é²è¡æä½.
+å¨è¼¸å¥åè¼¸åºæ, çºäºèçä»¥ Unicode ä¹åçç·¨ç¢¼æ¹å¼å²å­çè³æ, Perl
+æä¾äº Encode éåæ¨¡çµ, å¯ä»¥è®ä½ è¼æå°è®ååå¯«å¥èæçç·¨ç¢¼è³æ.
+
+Encode å»¶ä¼¸æ¨¡çµæ¯æ´ä¸åæ­£é«ä¸­æçç·¨ç¢¼æ¹å¼ (&#39;big5&#39; è¡¨ç¤º &#39;big5-eten&#39;):
+
+    big5-eten	Big5 ç·¨ç¢¼ (å«åå¤©å»¶ä¼¸å­å½¢)
+    big5-hkscs	Big5 + é¦æ¸¯å¤å­é, 2001 å¹´ç
+    cp950	å­ç¢¼é  950 (Big5 + å¾®è»æ·»å çå­ç¬¦)
+
+èä¾ä¾èªª, å° Big5 ç·¨ç¢¼çæªæ¡è½æ Unicode, ç¥ééµå¥ä¸åæä»¤:
+
+    perl -MEncode -pe &#39;$_= encode( utf8 =&gt; decode( big5 =&gt; $_ ) )&#39; \
+      &lt; file.big5 &gt; file.utf8
+
+Perl ä¹å§éäº &quot;piconv&quot;, ä¸æ¯å®å¨ä»¥ Perl å¯«æçå­ç¬¦è½æå·¥å·ç¨å¼, ç¨æ³å¦ä¸:
+
+    piconv -f big5 -t utf8 &lt; file.big5 &gt; file.utf8
+    piconv -f utf8 -t big5 &lt; file.utf8 &gt; file.big5
+
+å¦å¤ï¼è¥ç¨å¼ç¢¼æ¬èº«ä»¥ utf8 ç·¨ç¢¼å²å­ï¼éåä½¿ç¨ utf8 æ¨¡çµï¼å¯è®ç¨å¼ç¢¼ä¸­å­ä¸²ä»¥åå¶é
+ç®çä»¥å­ç¬¦çºå®ä½ï¼èä¸ä»¥ä½åçºå®ä½ï¼å¦ä¸æç¤ºï¼
+
+    #!/usr/bin/env perl
+    use utf8;
+    print length(&quot;é§±é§&quot;);	     #  2 (ä¸æ¯ 6)
+    print index(&quot;è«è«æèª¨&quot;, &quot;æèª¨&quot;); #  2 (å¾ 0 èµ·ç®ç¬¬ 2 åå­ç¬¦)
+
+
+=head2 é¡å¤çä¸­æç·¨ç¢¼
+
+å¦æéè¦æ´å¤çä¸­æç·¨ç¢¼, å¯ä»¥å¾ CPAN (L&lt;http://www.cpan.org/&gt;) ä¸è¼
+Encode::HanExtra æ¨¡çµ. å®ç®åæä¾ä¸åç·¨ç¢¼æ¹å¼:
+
+    cccii	1980 å¹´æå»ºæçä¸­æè³è¨äº¤æç¢¼
+    euc-tw	Unix å»¶ä¼¸å­ç¬¦é, åå« CNS11643 å¹³é¢ 1-7
+    big5plus	ä¸­ææ¸ä½åæè¡æ¨å»£åºéæç Big5+
+    big5ext	ä¸­ææ¸ä½åæè¡æ¨å»£åºéæç Big5e
+
+å¦å¤, Encode::HanConvert æ¨¡çµåæä¾äºç°¡ç¹è½æç¨çå©ç¨®ç·¨ç¢¼:
+
+    big5-simp	Big5 æ­£é«ä¸­æè Unicode ç°¡é«ä¸­æäºè½
+    gbk-trad	GBK ç°¡é«ä¸­æè Unicode æ­£é«ä¸­æäºè½
+
+è¥æ³å¨ GBK è Big5 ä¹éäºè½, è«åèè©²æ¨¡çµå§éç b2g.pl è g2b.pl å©æ¯ç¨å¼,
+æå¨ç¨å¼å§ä½¿ç¨ä¸åå¯«æ³:
+
+    use Encode::HanConvert;
+    $euc_cn = big5_to_gb($big5); # å¾ Big5 è½çº GBK
+    $big5 = gb_to_big5($euc_cn); # å¾ GBK è½çº Big5
+
+=head2 é²ä¸æ­¥çè³è¨
+
+è«åè Perl å§éçå¤§éèªªææä»¶ (ä¸å¹¸å¨æ¯ç¨è±æå¯«ç), ä¾å­¸ç¿æ´å¤éæ¼
+Perl çç¥è­, ä»¥å Unicode çä½¿ç¨æ¹å¼. ä¸é, å¤é¨çè³æºç¸ç¶è±å¯:
+
+=head2 æä¾ Perl è³æºçç¶²å
+
+=over 4
+
+=item L&lt;http://www.perl.com/&gt;
+
+Perl çé¦é  (ç±æ­èç¦®å¬å¸ç¶­è­·)
+
+=item L&lt;http://www.cpan.org/&gt;
+
+Perl ç¶åå¸èç¶² (Comprehensive Perl Archive Network)
+
+=item L&lt;http://lists.perl.org/&gt;
+
+Perl éµéè«å£ä¸è¦½
+
+=back
+
+=head2 å­¸ç¿ Perl çç¶²å
+
+=over 4
+
+=item L&lt;http://www.oreilly.com.tw/product_perl.php?id=index_perl&gt;
+
+æ­£é«ä¸­æççæ­èç¦® Perl æ¸è
+
+=back
+
+=head2 Perl ä½¿ç¨èéæ
+
+=over 4
+
+=item L&lt;http://www.pm.org/groups/taiwan.html&gt;
+
+èºç£ Perl æ¨å»£çµä¸è¦½
+
+=item L&lt;irc://irc.freenode.org/#perl.tw&gt;
+
+Perl.tw ç·ä¸èå¤©å®¤
+
+=back
+
+=head2 Unicode ç¸éç¶²å
+
+=over 4
+
+=item L&lt;http://www.unicode.org/&gt;
+
+Unicode å­¸è¡å­¸æ (Unicode æ¨æºçå¶å®è)
+
+=item L&lt;http://www.cl.cam.ac.uk/%7Emgk25/unicode.html&gt;
+
+Unix/Linux ä¸ç UTF-8 å Unicode ç­å®¢å
+
+=back
+
+=head2 ä¸­æåè³è¨
+
+=over 4
+
+=item ä¸­æåè»é«è¯ç
+
+L&lt;http://www.cpatch.org/&gt;
+
+=item Linux è»é«ä¸­æåè¨å
+
+L&lt;http://www.linux.org.tw/CLDP/&gt;
+
+=back
+
+=head1 SEE ALSO
+
+L&lt;Encode&gt;, L&lt;Encode::TW&gt;, L&lt;perluniintro&gt;, L&lt;perlunicode&gt;
+
+=head1 AUTHORS
+
+Jarkko Hietaniemi E&lt;lt&gt;jhi@iki.fiE&lt;gt&gt;
+
+Audrey Tang (åé³³) E&lt;lt&gt;audreyt@audreyt.orgE&lt;gt&gt;
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

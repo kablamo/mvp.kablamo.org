@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlunicook (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlunicook/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlunicook/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlunicook/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlunicook/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlunicook/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlunicook/">
+    Back to documentation
+</a>
+<pre>
+=encoding utf8
+
+=head1 NAME
+
+perlunicook - cookbookish examples of handling Unicode in Perl
+
+=head1 DESCRIPTION
+
+This manpage contains short recipes demonstrating how to handle common Unicode
+operations in Perl, plus one complete program at the end. Any undeclared
+variables in individual recipes are assumed to have a previous appropriate
+value in them.
+
+=head1 EXAMPLES
+
+=head2 â 0: Standard preamble
+
+Unless otherwise notes, all examples below require this standard preamble
+to work correctly, with the C&lt;#!&gt; adjusted to work on your system:
+
+ #!/usr/bin/env perl
+
+ use utf8;      # so literals and identifiers can be in UTF-8
+ use v5.12;     # or later to get &quot;unicode_strings&quot; feature
+ use strict;    # quote strings, declare variables
+ use warnings;  # on by default
+ use warnings  qw(FATAL utf8);    # fatalize encoding glitches
+ use open      qw(:std :encoding(UTF-8)); # undeclared streams in UTF-8
+ use charnames qw(:full :short);  # unneeded in v5.16
+
+This I&lt;does&gt; make even Unix programmers C&lt;binmode&gt; your binary streams,
+or open them with C&lt;:raw&gt;, but that&#39;s the only way to get at them
+portably anyway.
+
+B&lt;WARNING&gt;: C&lt;use autodie&gt; (pre 2.26) and C&lt;use open&gt; do not get along with each
+other.
+
+=head2 â 1: Generic Unicode-savvy filter
+
+Always decompose on the way in, then recompose on the way out.
+
+ use Unicode::Normalize;
+
+ while (&lt;&gt;) {
+     $_ = NFD($_);   # decompose + reorder canonically
+     ...
+ } continue {
+     print NFC($_);  # recompose (where possible) + reorder canonically
+ }
+
+=head2 â 2: Fine-tuning Unicode warnings
+
+As of v5.14, Perl distinguishes three subclasses of UTFâ8 warnings.
+
+ use v5.14;                  # subwarnings unavailable any earlier
+ no warnings &quot;nonchar&quot;;      # the 66 forbidden non-characters
+ no warnings &quot;surrogate&quot;;    # UTF-16/CESU-8 nonsense
+ no warnings &quot;non_unicode&quot;;  # for codepoints over 0x10_FFFF
+
+=head2 â 3: Declare source in utf8 for identifiers and literals
+
+Without the all-critical C&lt;use utf8&gt; declaration, putting UTFâ8 in your
+literals and identifiers wonât work right.  If you used the standard
+preamble just given above, this already happened.  If you did, you can
+do things like this:
+
+ use utf8;
+
+ my $measure   = &quot;ÃngstrÃ¶m&quot;;
+ my @Î¼soft     = qw( cp852 cp1251 cp1252 );
+ my @á½ÏÎ­ÏÎ¼ÎµÎ³Î±Ï = qw( á½ÏÎ­Ï  Î¼ÎµÎ³Î±Ï );
+ my @é¯        = qw( koi8-f koi8-u koi8-r );
+ my $motto     = &quot;ðª ð ðª&quot;; # FAMILY, GROWING HEART, DROMEDARY CAMEL
+
+If you forget C&lt;use utf8&gt;, high bytes will be misunderstood as
+separate characters, and nothing will work right.
+
+=head2 â 4: Characters and their numbers
+
+The C&lt;ord&gt; and C&lt;chr&gt; functions work transparently on all codepoints,
+not just on ASCII alone â nor in fact, not even just on Unicode alone.
+
+ # ASCII characters
+ ord(&quot;A&quot;)
+ chr(65)
+
+ # characters from the Basic Multilingual Plane
+ ord(&quot;Î£&quot;)
+ chr(0x3A3)
+
+ # beyond the BMP
+ ord(&quot;ð&quot;)               # MATHEMATICAL ITALIC SMALL N
+ chr(0x1D45B)
+
+ # beyond Unicode! (up to MAXINT)
+ ord(&quot;\x{20_0000}&quot;)
+ chr(0x20_0000)
+
+=head2 â 5: Unicode literals by character number
+
+In an interpolated literal, whether a double-quoted string or a
+regex, you may specify a character by its number using the
+C&lt;\x{I&lt;HHHHHH&gt;}&gt; escape.
+
+ String: &quot;\x{3a3}&quot;
+ Regex:  /\x{3a3}/
+
+ String: &quot;\x{1d45b}&quot;
+ Regex:  /\x{1d45b}/
+
+ # even non-BMP ranges in regex work fine
+ /[\x{1D434}-\x{1D467}]/
+
+=head2 â 6: Get character name by number
+
+ use charnames ();
+ my $name = charnames::viacode(0x03A3);
+
+=head2 â 7: Get character number by name
+
+ use charnames ();
+ my $number = charnames::vianame(&quot;GREEK CAPITAL LETTER SIGMA&quot;);
+
+=head2 â 8: Unicode named characters
+
+Use the C&lt;&lt; \N{I&lt;charname&gt;} &gt;&gt; notation to get the character
+by that name for use in interpolated literals (double-quoted
+strings and regexes).  In v5.16, there is an implicit
+
+ use charnames qw(:full :short);
+
+But prior to v5.16, you must be explicit about which set of charnames you
+want.  The C&lt;:full&gt; names are the official Unicode character name, alias, or
+sequence, which all share a namespace.
+
+ use charnames qw(:full :short latin greek);
+
+ &quot;\N{MATHEMATICAL ITALIC SMALL N}&quot;      # :full
+ &quot;\N{GREEK CAPITAL LETTER SIGMA}&quot;       # :full
+
+Anything else is a Perl-specific convenience abbreviation.  Specify one or
+more scripts by names if you want short names that are script-specific.
+
+ &quot;\N{Greek:Sigma}&quot;                      # :short
+ &quot;\N{ae}&quot;                               #  latin
+ &quot;\N{epsilon}&quot;                          #  greek
+
+The v5.16 release also supports a C&lt;:loose&gt; import for loose matching of
+character names, which works just like loose matching of property names:
+that is, it disregards case, whitespace, and underscores:
+
+ &quot;\N{euro sign}&quot;                        # :loose (from v5.16)
+
+=head2 â 9: Unicode named sequences
+
+These look just like character names but return multiple codepoints.
+Notice the C&lt;%vx&gt; vector-print functionality in C&lt;printf&gt;.
+
+ use charnames qw(:full);
+ my $seq = &quot;\N{LATIN CAPITAL LETTER A WITH MACRON AND GRAVE}&quot;;
+ printf &quot;U+%v04X\n&quot;, $seq;
+ U+0100.0300
+
+=head2 â 10: Custom named characters
+
+Use C&lt;:alias&gt; to give your own lexically scoped nicknames to existing
+characters, or even to give unnamed private-use characters useful names.
+
+ use charnames &quot;:full&quot;, &quot;:alias&quot; =&gt; {
+     ecute =&gt; &quot;LATIN SMALL LETTER E WITH ACUTE&quot;,
+     &quot;APPLE LOGO&quot; =&gt; 0xF8FF, # private use character
+ };
+
+ &quot;\N{ecute}&quot;
+ &quot;\N{APPLE LOGO}&quot;
+
+=head2 â 11: Names of CJK codepoints
+
+Sinograms like âæ±äº¬â come back with character names of
+C&lt;CJK UNIFIED IDEOGRAPH-6771&gt; and C&lt;CJK UNIFIED IDEOGRAPH-4EAC&gt;,
+because their ânamesâ vary.  The CPAN C&lt;Unicode::Unihan&gt; module
+has a large database for decoding these (and a whole lot more), provided you
+know how to understand its output.
+
+ # cpan -i Unicode::Unihan
+ use Unicode::Unihan;
+ my $str = &quot;æ±äº¬&quot;;
+ my $unhan = Unicode::Unihan-&gt;new;
+ for my $lang (qw(Mandarin Cantonese Korean JapaneseOn JapaneseKun)) {
+     printf &quot;CJK $str in %-12s is &quot;, $lang;
+     say $unhan-&gt;$lang($str);
+ }
+
+prints:
+
+ CJK æ±äº¬ in Mandarin     is DONG1JING1
+ CJK æ±äº¬ in Cantonese    is dung1ging1
+ CJK æ±äº¬ in Korean       is TONGKYENG
+ CJK æ±äº¬ in JapaneseOn   is TOUKYOU KEI KIN
+ CJK æ±äº¬ in JapaneseKun  is HIGASHI AZUMAMIYAKO
+
+If you have a specific romanization scheme in mind,
+use the specific module:
+
+ # cpan -i Lingua::JA::Romanize::Japanese
+ use Lingua::JA::Romanize::Japanese;
+ my $k2r = Lingua::JA::Romanize::Japanese-&gt;new;
+ my $str = &quot;æ±äº¬&quot;;
+ say &quot;Japanese for $str is &quot;, $k2r-&gt;chars($str);
+
+prints
+
+ Japanese for æ±äº¬ is toukyou
+
+=head2 â 12: Explicit encode/decode
+
+On rare occasion, such as a database read, you may be
+given encoded text you need to decode.
+
+  use Encode qw(encode decode);
+
+  my $chars = decode(&quot;shiftjis&quot;, $bytes, 1);
+ # OR
+  my $bytes = encode(&quot;MIME-Header-ISO_2022_JP&quot;, $chars, 1);
+
+For streams all in the same encoding, don&#39;t use encode/decode; instead
+set the file encoding when you open the file or immediately after with
+C&lt;binmode&gt; as described later below.
+
+=head2 â 13: Decode program arguments as utf8
+
+     $ perl -CA ...
+ or
+     $ export PERL_UNICODE=A
+ or
+    use Encode qw(decode);
+    @ARGV = map { decode(&#39;UTF-8&#39;, $_, 1) } @ARGV;
+
+=head2 â 14: Decode program arguments as locale encoding
+
+    # cpan -i Encode::Locale
+    use Encode qw(locale);
+    use Encode::Locale;
+
+    # use &quot;locale&quot; as an arg to encode/decode
+    @ARGV = map { decode(locale =&gt; $_, 1) } @ARGV;
+
+=head2 â 15: Declare STD{IN,OUT,ERR} to be utf8
+
+Use a command-line option, an environment variable, or else
+call C&lt;binmode&gt; explicitly:
+
+     $ perl -CS ...
+ or
+     $ export PERL_UNICODE=S
+ or
+     use open qw(:std :encoding(UTF-8));
+ or
+     binmode(STDIN,  &quot;:encoding(UTF-8)&quot;);
+     binmode(STDOUT, &quot;:utf8&quot;);
+     binmode(STDERR, &quot;:utf8&quot;);
+
+=head2 â 16: Declare STD{IN,OUT,ERR} to be in locale encoding
+
+    # cpan -i Encode::Locale
+    use Encode;
+    use Encode::Locale;
+
+    # or as a stream for binmode or open
+    binmode STDIN,  &quot;:encoding(console_in)&quot;  if -t STDIN;
+    binmode STDOUT, &quot;:encoding(console_out)&quot; if -t STDOUT;
+    binmode STDERR, &quot;:encoding(console_out)&quot; if -t STDERR;
+
+=head2 â 17: Make file I/O default to utf8
+
+Files opened without an encoding argument will be in UTF-8:
+
+     $ perl -CD ...
+ or
+     $ export PERL_UNICODE=D
+ or
+     use open qw(:encoding(UTF-8));
+
+=head2 â 18: Make all I/O and args default to utf8
+
+     $ perl -CSDA ...
+ or
+     $ export PERL_UNICODE=SDA
+ or
+     use open qw(:std :encoding(UTF-8));
+     use Encode qw(decode);
+     @ARGV = map { decode(&#39;UTF-8&#39;, $_, 1) } @ARGV;
+
+=head2 â 19: Open file with specific encoding
+
+Specify stream encoding.  This is the normal way
+to deal with encoded text, not by calling low-level
+functions.
+
+ # input file
+     open(my $in_file, &quot;&lt; :encoding(UTF-16)&quot;, &quot;wintext&quot;);
+ OR
+     open(my $in_file, &quot;&lt;&quot;, &quot;wintext&quot;);
+     binmode($in_file, &quot;:encoding(UTF-16)&quot;);
+ THEN
+     my $line = &lt;$in_file&gt;;
+
+ # output file
+     open($out_file, &quot;&gt; :encoding(cp1252)&quot;, &quot;wintext&quot;);
+ OR
+     open(my $out_file, &quot;&gt;&quot;, &quot;wintext&quot;);
+     binmode($out_file, &quot;:encoding(cp1252)&quot;);
+ THEN
+     print $out_file &quot;some text\n&quot;;
+
+More layers than just the encoding can be specified here. For example,
+the incantation C&lt;&quot;:raw :encoding(UTF-16LE) :crlf&quot;&gt; includes implicit
+CRLF handling.
+
+=head2 â 20: Unicode casing
+
+Unicode casing is very different from ASCII casing.
+
+ uc(&quot;henry â·&quot;)  # &quot;HENRY â§&quot;
+ uc(&quot;tschÃ¼Ã&quot;)   # &quot;TSCHÃSS&quot;  notice Ã =&gt; SS
+
+ # both are true:
+ &quot;tschÃ¼Ã&quot;  =~ /TSCHÃSS/i   # notice Ã =&gt; SS
+ &quot;Î£Î¯ÏÏÏÎ¿Ï&quot; =~ /Î£ÎÎ£Î¥Î¦ÎÎ£/i   # notice Î£,Ï,Ï sameness
+
+=head2 â 21: Unicode case-insensitive comparisons
+
+Also available in the CPAN L&lt;Unicode::CaseFold&gt; module,
+the new C&lt;fc&gt; âfoldcaseâ function from v5.16 grants
+access to the same Unicode casefolding as the C&lt;/i&gt;
+pattern modifier has always used:
+
+ use feature &quot;fc&quot;; # fc() function is from v5.16
+
+ # sort case-insensitively
+ my @sorted = sort { fc($a) cmp fc($b) } @list;
+
+ # both are true:
+ fc(&quot;tschÃ¼Ã&quot;)  eq fc(&quot;TSCHÃSS&quot;)
+ fc(&quot;Î£Î¯ÏÏÏÎ¿Ï&quot;) eq fc(&quot;Î£ÎÎ£Î¥Î¦ÎÎ£&quot;)
+
+=head2 â 22: Match Unicode linebreak sequence in regex
+
+A Unicode linebreak matches the two-character CRLF
+grapheme or any of seven vertical whitespace characters.
+Good for dealing with textfiles coming from different
+operating systems.
+
+ \R
+
+ s/\R/\n/g;  # normalize all linebreaks to \n
+
+=head2 â 23: Get character category
+
+Find the general category of a numeric codepoint.
+
+ use Unicode::UCD qw(charinfo);
+ my $cat = charinfo(0x3A3)-&gt;{category};  # &quot;Lu&quot;
+
+=head2 â 24: Disabling Unicode-awareness in builtin charclasses
+
+Disable C&lt;\w&gt;, C&lt;\b&gt;, C&lt;\s&gt;, C&lt;\d&gt;, and the POSIX
+classes from working correctly on Unicode either in this
+scope, or in just one regex.
+
+ use v5.14;
+ use re &quot;/a&quot;;
+
+ # OR
+
+ my($num) = $str =~ /(\d+)/a;
+
+Or use specific un-Unicode properties, like C&lt;\p{ahex}&gt;
+and C&lt;\p{POSIX_Digit&gt;}.  Properties still work normally
+no matter what charset modifiers (C&lt;/d /u /l /a /aa&gt;)
+should be effect.
+
+=head2 â 25: Match Unicode properties in regex with \p, \P
+
+These all match a single codepoint with the given
+property.  Use C&lt;\P&gt; in place of C&lt;\p&gt; to match
+one codepoint lacking that property.
+
+ \pL, \pN, \pS, \pP, \pM, \pZ, \pC
+ \p{Sk}, \p{Ps}, \p{Lt}
+ \p{alpha}, \p{upper}, \p{lower}
+ \p{Latin}, \p{Greek}
+ \p{script_extensions=Latin}, \p{scx=Greek}
+ \p{East_Asian_Width=Wide}, \p{EA=W}
+ \p{Line_Break=Hyphen}, \p{LB=HY}
+ \p{Numeric_Value=4}, \p{NV=4}
+
+=head2 â 26: Custom character properties
+
+Define at compile-time your own custom character
+properties for use in regexes.
+
+ # using private-use characters
+ sub In_Tengwar { &quot;E000\tE07F\n&quot; }
+
+ if (/\p{In_Tengwar}/) { ... }
+
+ # blending existing properties
+ sub Is_GraecoRoman_Title {&lt;&lt;&#39;END_OF_SET&#39;}
+ +utf8::IsLatin
+ +utf8::IsGreek
+ &amp;utf8::IsTitle
+ END_OF_SET
+
+ if (/\p{Is_GraecoRoman_Title}/ { ... }
+
+=head2 â 27: Unicode normalization
+
+Typically render into NFD on input and NFC on output. Using NFKC or NFKD
+functions improves recall on searches, assuming you&#39;ve already done to the
+same text to be searched. Note that this is about much more than just pre-
+combined compatibility glyphs; it also reorders marks according to their
+canonical combining classes and weeds out singletons.
+
+ use Unicode::Normalize;
+ my $nfd  = NFD($orig);
+ my $nfc  = NFC($orig);
+ my $nfkd = NFKD($orig);
+ my $nfkc = NFKC($orig);
+
+=head2 â 28: Convert non-ASCII Unicode numerics
+
+Unless youâve used C&lt;/a&gt; or C&lt;/aa&gt;, C&lt;\d&gt; matches more than
+ASCII digits only, but Perlâs implicit string-to-number
+conversion does not current recognize these.  Hereâs how to
+convert such strings manually.
+
+ use v5.14;  # needed for num() function
+ use Unicode::UCD qw(num);
+ my $str = &quot;got â« and à¥ªà¥«à¥¬à¥­ and â and here&quot;;
+ my @nums = ();
+ while ($str =~ /(\d+|\N)/g) {  # not just ASCII!
+    push @nums, num($1);
+ }
+ say &quot;@nums&quot;;   #     12      4567      0.875
+
+ use charnames qw(:full);
+ my $nv = num(&quot;\N{RUMI DIGIT ONE}\N{RUMI DIGIT TWO}&quot;);
+
+=head2 â 29: Match Unicode grapheme cluster in regex
+
+Programmer-visible âcharactersâ are codepoints matched by C&lt;/./s&gt;,
+but user-visible âcharactersâ are graphemes matched by C&lt;/\X/&gt;.
+
+ # Find vowel *plus* any combining diacritics,underlining,etc.
+ my $nfd = NFD($orig);
+ $nfd =~ / (?=[aeiou]) \X /xi
+
+=head2 â 30: Extract by grapheme instead of by codepoint (regex)
+
+ # match and grab five first graphemes
+ my($first_five) = $str =~ /^ ( \X{5} ) /x;
+
+=head2 â 31: Extract by grapheme instead of by codepoint (substr)
+
+ # cpan -i Unicode::GCString
+ use Unicode::GCString;
+ my $gcs = Unicode::GCString-&gt;new($str);
+ my $first_five = $gcs-&gt;substr(0, 5);
+
+=head2 â 32: Reverse string by grapheme
+
+Reversing by codepoint messes up diacritics, mistakenly converting
+C&lt;crÃ¨me brÃ»lÃ©e&gt; into C&lt;Ã©elÌurb emÌerc&gt; instead of into C&lt;eÃ©lÃ»rb emÃ¨rc&gt;;
+so reverse by grapheme instead.  Both these approaches work
+right no matter what normalization the string is in:
+
+ $str = join(&quot;&quot;, reverse $str =~ /\X/g);
+
+ # OR: cpan -i Unicode::GCString
+ use Unicode::GCString;
+ $str = reverse Unicode::GCString-&gt;new($str);
+
+=head2 â 33: String length in graphemes
+
+The string C&lt;brÃ»lÃ©e&gt; has six graphemes but up to eight codepoints.
+This counts by grapheme, not by codepoint:
+
+ my $str = &quot;brÃ»lÃ©e&quot;;
+ my $count = 0;
+ while ($str =~ /\X/g) { $count++ }
+
+  # OR: cpan -i Unicode::GCString
+ use Unicode::GCString;
+ my $gcs = Unicode::GCString-&gt;new($str);
+ my $count = $gcs-&gt;length;
+
+=head2 â 34: Unicode column-width for printing
+
+Perlâs C&lt;printf&gt;, C&lt;sprintf&gt;, and C&lt;format&gt; think all
+codepoints take up 1 print column, but many take 0 or 2.
+Here to show that normalization makes no difference,
+we print out both forms:
+
+ use Unicode::GCString;
+ use Unicode::Normalize;
+
+ my @words = qw/crÃ¨me brÃ»lÃ©e/;
+ @words = map { NFC($_), NFD($_) } @words;
+
+ for my $str (@words) {
+     my $gcs = Unicode::GCString-&gt;new($str);
+     my $cols = $gcs-&gt;columns;
+     my $pad = &quot; &quot; x (10 - $cols);
+     say str, $pad, &quot; |&quot;;
+ }
+
+generates this to show that it pads correctly no matter
+the normalization:
+
+ crÃ¨me      |
+ creÌme      |
+ brÃ»lÃ©e     |
+ bruÌleÌe     |
+
+=head2 â 35: Unicode collation
+
+Text sorted by numeric codepoint follows no reasonable alphabetic order;
+use the UCA for sorting text.
+
+ use Unicode::Collate;
+ my $col = Unicode::Collate-&gt;new();
+ my @list = $col-&gt;sort(@old_list);
+
+See the I&lt;ucsort&gt; program from the L&lt;Unicode::Tussle&gt; CPAN module
+for a convenient command-line interface to this module.
+
+=head2 â 36: Case- I&lt;and&gt; accent-insensitive Unicode sort
+
+Specify a collation strength of level 1 to ignore case and
+diacritics, only looking at the basic character.
+
+ use Unicode::Collate;
+ my $col = Unicode::Collate-&gt;new(level =&gt; 1);
+ my @list = $col-&gt;sort(@old_list);
+
+=head2 â 37: Unicode locale collation
+
+Some locales have special sorting rules.
+
+ # either use v5.12, OR: cpan -i Unicode::Collate::Locale
+ use Unicode::Collate::Locale;
+ my $col = Unicode::Collate::Locale-&gt;new(locale =&gt; &quot;de__phonebook&quot;);
+ my @list = $col-&gt;sort(@old_list);
+
+The I&lt;ucsort&gt; program mentioned above accepts a C&lt;--locale&gt; parameter.
+
+=head2 â 38: Making C&lt;cmp&gt; work on text instead of codepoints
+
+Instead of this:
+
+ @srecs = sort {
+     $b-&gt;{AGE}   &lt;=&gt;  $a-&gt;{AGE}
+                 ||
+     $a-&gt;{NAME}  cmp  $b-&gt;{NAME}
+ } @recs;
+
+Use this:
+
+ my $coll = Unicode::Collate-&gt;new();
+ for my $rec (@recs) {
+     $rec-&gt;{NAME_key} = $coll-&gt;getSortKey( $rec-&gt;{NAME} );
+ }
+ @srecs = sort {
+     $b-&gt;{AGE}       &lt;=&gt;  $a-&gt;{AGE}
+                     ||
+     $a-&gt;{NAME_key}  cmp  $b-&gt;{NAME_key}
+ } @recs;
+
+=head2 â 39: Case- I&lt;and&gt; accent-insensitive comparisons
+
+Use a collator object to compare Unicode text by character
+instead of by codepoint.
+
+ use Unicode::Collate;
+ my $es = Unicode::Collate-&gt;new(
+     level =&gt; 1,
+     normalization =&gt; undef
+ );
+
+  # now both are true:
+ $es-&gt;eq(&quot;GarcÃ­a&quot;,  &quot;GARCIA&quot; );
+ $es-&gt;eq(&quot;MÃ¡rquez&quot;, &quot;MARQUEZ&quot;);
+
+=head2 â 40: Case- I&lt;and&gt; accent-insensitive locale comparisons
+
+Same, but in a specific locale.
+
+ my $de = Unicode::Collate::Locale-&gt;new(
+            locale =&gt; &quot;de__phonebook&quot;,
+          );
+
+ # now this is true:
+ $de-&gt;eq(&quot;tschÃ¼Ã&quot;, &quot;TSCHUESS&quot;);  # notice Ã¼ =&gt; UE, Ã =&gt; SS
+
+=head2 â 41: Unicode linebreaking
+
+Break up text into lines according to Unicode rules.
+
+ # cpan -i Unicode::LineBreak
+ use Unicode::LineBreak;
+ use charnames qw(:full);
+
+ my $para = &quot;This is a super\N{HYPHEN}long string. &quot; x 20;
+ my $fmt = Unicode::LineBreak-&gt;new;
+ print $fmt-&gt;break($para), &quot;\n&quot;;
+
+=head2 â 42: Unicode text in DBM hashes, the tedious way
+
+Using a regular Perl string as a key or value for a DBM
+hash will trigger a wide character exception if any codepoints
+wonât fit into a byte.  Hereâs how to manually manage the translation:
+
+    use DB_File;
+    use Encode qw(encode decode);
+    tie %dbhash, &quot;DB_File&quot;, &quot;pathname&quot;;
+
+ # STORE
+
+    # assume $uni_key and $uni_value are abstract Unicode strings
+    my $enc_key   = encode(&quot;UTF-8&quot;, $uni_key, 1);
+    my $enc_value = encode(&quot;UTF-8&quot;, $uni_value, 1);
+    $dbhash{$enc_key} = $enc_value;
+
+ # FETCH
+
+    # assume $uni_key holds a normal Perl string (abstract Unicode)
+    my $enc_key   = encode(&quot;UTF-8&quot;, $uni_key, 1);
+    my $enc_value = $dbhash{$enc_key};
+    my $uni_value = decode(&quot;UTF-8&quot;, $enc_value, 1);
+
+=head2 â 43: Unicode text in DBM hashes, the easy way
+
+Hereâs how to implicitly manage the translation; all encoding
+and decoding is done automatically, just as with streams that
+have a particular encoding attached to them:
+
+    use DB_File;
+    use DBM_Filter;
+
+    my $dbobj = tie %dbhash, &quot;DB_File&quot;, &quot;pathname&quot;;
+    $dbobj-&gt;Filter_Value(&quot;utf8&quot;);  # this is the magic bit
+
+ # STORE
+
+    # assume $uni_key and $uni_value are abstract Unicode strings
+    $dbhash{$uni_key} = $uni_value;
+
+  # FETCH
+
+    # $uni_key holds a normal Perl string (abstract Unicode)
+    my $uni_value = $dbhash{$uni_key};
+
+=head2 â 44: PROGRAM: Demo of Unicode collation and printing
+
+Hereâs a full program showing how to make use of locale-sensitive
+sorting, Unicode casing, and managing print widths when some of the
+characters take up zero or two columns, not just one column each time.
+When run, the following program produces this nicely aligned output:
+
+    CrÃ¨me BrÃ»lÃ©e....... â¬2.00
+    Ãclair............. â¬1.60
+    FideuÃ ............. â¬4.20
+    Hamburger.......... â¬6.00
+    JamÃ³n Serrano...... â¬4.45
+    LinguiÃ§a........... â¬7.00
+    PÃ¢tÃ©............... â¬4.15
+    Pears.............. â¬2.00
+    PÃªches............. â¬2.25
+    SmÃ¸rbrÃ¸d........... â¬5.75
+    SpÃ¤tzle............ â¬5.50
+    XoriÃ§o............. â¬3.00
+    ÎÏÏÎ¿Ï.............. â¬6.50
+    ë§ê±¸ë¦¬............. â¬4.00
+    ããã¡............. â¬2.65
+    ãå¥½ã¿ç¼ã......... â¬8.00
+    ã·ã¥ã¼ã¯ãªã¼ã ..... â¬1.85
+    å¯¿å¸............... â¬9.99
+    åå­............... â¬7.50
+
+Here&#39;s that program; tested on v5.14.
+
+ #!/usr/bin/env perl
+ # umenu - demo sorting and printing of Unicode food
+ #
+ # (obligatory and increasingly long preamble)
+ #
+ use utf8;
+ use v5.14;                       # for locale sorting
+ use strict;
+ use warnings;
+ use warnings  qw(FATAL utf8);    # fatalize encoding faults
+ use open      qw(:std :encoding(UTF-8)); # undeclared streams in UTF-8
+ use charnames qw(:full :short);  # unneeded in v5.16
+
+ # std modules
+ use Unicode::Normalize;          # std perl distro as of v5.8
+ use List::Util qw(max);          # std perl distro as of v5.10
+ use Unicode::Collate::Locale;    # std perl distro as of v5.14
+
+ # cpan modules
+ use Unicode::GCString;           # from CPAN
+
+ # forward defs
+ sub pad($$$);
+ sub colwidth(_);
+ sub entitle(_);
+
+ my %price = (
+     &quot;Î³ÏÏÎ¿Ï&quot;             =&gt; 6.50, # gyros
+     &quot;pears&quot;             =&gt; 2.00, # like um, pears
+     &quot;linguiÃ§a&quot;          =&gt; 7.00, # spicy sausage, Portuguese
+     &quot;xoriÃ§o&quot;            =&gt; 3.00, # chorizo sausage, Catalan
+     &quot;hamburger&quot;         =&gt; 6.00, # burgermeister meisterburger
+     &quot;Ã©clair&quot;            =&gt; 1.60, # dessert, French
+     &quot;smÃ¸rbrÃ¸d&quot;          =&gt; 5.75, # sandwiches, Norwegian
+     &quot;spÃ¤tzle&quot;           =&gt; 5.50, # Bayerisch noodles, little sparrows
+     &quot;åå­&quot;              =&gt; 7.50, # bao1 zi5, steamed pork buns, Mandarin
+     &quot;jamÃ³n serrano&quot;     =&gt; 4.45, # country ham, Spanish
+     &quot;pÃªches&quot;            =&gt; 2.25, # peaches, French
+     &quot;ã·ã¥ã¼ã¯ãªã¼ã &quot;    =&gt; 1.85, # cream-filled pastry like eclair
+     &quot;ë§ê±¸ë¦¬&quot;            =&gt; 4.00, # makgeolli, Korean rice wine
+     &quot;å¯¿å¸&quot;              =&gt; 9.99, # sushi, Japanese
+     &quot;ããã¡&quot;            =&gt; 2.65, # omochi, rice cakes, Japanese
+     &quot;crÃ¨me brÃ»lÃ©e&quot;      =&gt; 2.00, # crema catalana
+     &quot;fideuÃ &quot;            =&gt; 4.20, # more noodles, Valencian
+                                  # (Catalan=fideuada)
+     &quot;pÃ¢tÃ©&quot;              =&gt; 4.15, # gooseliver paste, French
+     &quot;ãå¥½ã¿ç¼ã&quot;        =&gt; 8.00, # okonomiyaki, Japanese
+ );
+
+ my $width = 5 + max map { colwidth } keys %price;
+
+ # So the Asian stuff comes out in an order that someone
+ # who reads those scripts won&#39;t freak out over; the
+ # CJK stuff will be in JIS X 0208 order that way.
+ my $coll  = Unicode::Collate::Locale-&gt;new(locale =&gt; &quot;ja&quot;);
+
+ for my $item ($coll-&gt;sort(keys %price)) {
+     print pad(entitle($item), $width, &quot;.&quot;);
+     printf &quot; â¬%.2f\n&quot;, $price{$item};
+ }
+
+ sub pad($$$) {
+     my($str, $width, $padchar) = @_;
+     return $str . ($padchar x ($width - colwidth($str)));
+ }
+
+ sub colwidth(_) {
+     my($str) = @_;
+     return Unicode::GCString-&gt;new($str)-&gt;columns;
+ }
+
+ sub entitle(_) {
+     my($str) = @_;
+     $str =~ s{ (?=\pL)(\S)     (\S*) }
+              { ucfirst($1) . lc($2)  }xge;
+     return $str;
+ }
+
+=head1 SEE ALSO
+
+See these manpages, some of which are CPAN modules:
+L&lt;perlunicode&gt;, L&lt;perluniprops&gt;,
+L&lt;perlre&gt;, L&lt;perlrecharclass&gt;,
+L&lt;perluniintro&gt;, L&lt;perlunitut&gt;, L&lt;perlunifaq&gt;,
+L&lt;PerlIO&gt;, L&lt;DB_File&gt;, L&lt;DBM_Filter&gt;, L&lt;DBM_Filter::utf8&gt;,
+L&lt;Encode&gt;, L&lt;Encode::Locale&gt;,
+L&lt;Unicode::UCD&gt;,
+L&lt;Unicode::Normalize&gt;,
+L&lt;Unicode::GCString&gt;, L&lt;Unicode::LineBreak&gt;,
+L&lt;Unicode::Collate&gt;, L&lt;Unicode::Collate::Locale&gt;,
+L&lt;Unicode::Unihan&gt;,
+L&lt;Unicode::CaseFold&gt;,
+L&lt;Unicode::Tussle&gt;,
+L&lt;Lingua::JA::Romanize::Japanese&gt;,
+L&lt;Lingua::ZH::Romanize::Pinyin&gt;,
+L&lt;Lingua::KO::Romanize::Hangul&gt;.
+
+The L&lt;Unicode::Tussle&gt; CPAN module includes many programs
+to help with working with Unicode, including
+these programs to fully or partly replace standard utilities:
+I&lt;tcgrep&gt; instead of I&lt;egrep&gt;,
+I&lt;uniquote&gt; instead of I&lt;cat -v&gt; or I&lt;hexdump&gt;,
+I&lt;uniwc&gt; instead of I&lt;wc&gt;,
+I&lt;unilook&gt; instead of I&lt;look&gt;,
+I&lt;unifmt&gt; instead of I&lt;fmt&gt;,
+and
+I&lt;ucsort&gt; instead of I&lt;sort&gt;.
+For exploring Unicode character names and character properties,
+see its I&lt;uniprops&gt;, I&lt;unichars&gt;, and I&lt;uninames&gt; programs.
+It also supplies these programs, all of which are general filters that do Unicode-y things:
+I&lt;unititle&gt; and I&lt;unicaps&gt;;
+I&lt;uniwide&gt; and I&lt;uninarrow&gt;;
+I&lt;unisupers&gt; and I&lt;unisubs&gt;;
+I&lt;nfd&gt;, I&lt;nfc&gt;, I&lt;nfkd&gt;, and I&lt;nfkc&gt;;
+and I&lt;uc&gt;, I&lt;lc&gt;, and I&lt;tc&gt;.
+
+Finally, see the published Unicode Standard (page numbers are from version
+6.0.0), including these specific annexes and technical reports:
+
+=over
+
+=item Â§3.13 Default Case Algorithms, page 113;
+Â§4.2  Case, pages 120â122;
+Case Mappings, page 166â172, especially Caseless Matching starting on page 170.
+
+=item UAX #44: Unicode Character Database
+
+=item UTS #18: Unicode Regular Expressions
+
+=item UAX #15: Unicode Normalization Forms
+
+=item UTS #10: Unicode Collation Algorithm
+
+=item UAX #29: Unicode Text Segmentation
+
+=item UAX #14: Unicode Line Breaking Algorithm
+
+=item UAX #11: East Asian Width
+
+=back
+
+=head1 AUTHOR
+
+Tom Christiansen E&lt;lt&gt;tchrist@perl.comE&lt;gt&gt; wrote this, with occasional
+kibbitzing from Larry Wall and Jeffrey Friedl in the background.
+
+=head1 COPYRIGHT AND LICENCE
+
+Copyright Â© 2012 Tom Christiansen.
+
+This program is free software; you may redistribute it and/or modify it
+under the same terms as Perl itself.
+
+Most of these examples taken from the current edition of the âCamel Bookâ;
+that is, from the 4áµÊ° Edition of I&lt;Programming Perl&gt;, Copyright Â© 2012 Tom
+Christiansen &lt;et al.&gt;, 2012-02-13 by OâReilly Media.  The code itself is
+freely redistributable, and you are encouraged to transplant, fold,
+spindle, and mutilate any of the examples in this manpage however you please
+for inclusion into your own programs without any encumbrance whatsoever.
+Acknowledgement via code comment is polite but not required.
+
+=head1 REVISION HISTORY
+
+v1.0.0 â first public release, 2012-02-27
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

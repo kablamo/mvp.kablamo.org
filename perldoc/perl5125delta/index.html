@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5125delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5125delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5125delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5125delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5125delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5125delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl5125delta/">perl5125delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl5125delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl5125delta - what is new for perl v5.12.5</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.12.4 release and the 5.12.5 release.</p>
+
+<p>If you are upgrading from an earlier release such as 5.12.3, first read <a href="/perldoc/perl5124delta/">perl5124delta</a>, which describes differences between 5.12.3 and 5.12.4.</p>
+
+<h1 id="Security">Security</h1>
+
+<h2 id="Encode-decode_xs-n-byte-heap-overflow-CVE-2011-2939"><code>Encode</code> decode_xs n-byte heap-overflow (CVE-2011-2939)</h2>
+
+<p>A bug in <code>Encode</code> could, on certain inputs, cause the heap to overflow. This problem has been corrected. Bug reported by Robert Zacek.</p>
+
+<h2 id="File::Glob::bsd_glob-memory-error-with-GLOB_ALTDIRFUNC-CVE-2011-2728"><code>File::Glob::bsd_glob()</code> memory error with GLOB_ALTDIRFUNC (CVE-2011-2728).</h2>
+
+<p>Calling <code>File::Glob::bsd_glob</code> with the unsupported flag GLOB_ALTDIRFUNC would cause an access violation / segfault. A Perl program that accepts a flags value from an external source could expose itself to denial of service or arbitrary code execution attacks. There are no known exploits in the wild. The problem has been corrected by explicitly disabling all unsupported flags and setting unused function pointers to null. Bug reported by Clément Lecigne.</p>
+
+<h2 id="Heap-buffer-overrun-in-x-string-repeat-operator-CVE-2012-5195">Heap buffer overrun in &#39;x&#39; string repeat operator (CVE-2012-5195)</h2>
+
+<p>Poorly written perl code that allows an attacker to specify the count to perl&#39;s &#39;x&#39; string repeat operator can already cause a memory exhaustion denial-of-service attack. A flaw in versions of perl before 5.15.5 can escalate that into a heap buffer overrun; coupled with versions of glibc before 2.16, it possibly allows the execution of arbitrary code.</p>
+
+<p>This problem has been fixed.</p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes intentionally incompatible with 5.12.4. If any exist, they are bugs and reports are welcome.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<h2 id="Updated-Modules">Updated Modules</h2>
+
+<h3 id="B::Concise"><a href="https://metacpan.org/pod/B::Concise" rel="external">B::Concise</a></h3>
+
+<p><a href="https://metacpan.org/pod/B::Concise" rel="external">B::Concise</a> no longer produces mangled output with the <b>-tree</b> option [perl #80632].</p>
+
+<h3 id="charnames"><a href="https://metacpan.org/pod/charnames" rel="external">charnames</a></h3>
+
+<p>A regression introduced in Perl 5.8.8 has been fixed, that caused <code>charnames::viacode(0)</code> to return <code>undef</code> instead of the string &quot;NULL&quot; [perl #72624].</p>
+
+<h3 id="Encode-has-been-upgraded-from-version-2.39-to-version-2.39_01"><a href="https://metacpan.org/pod/Encode" rel="external">Encode</a> has been upgraded from version 2.39 to version 2.39_01.</h3>
+
+<p>See <a href="#Security">&quot;Security&quot;</a>.</p>
+
+<h3 id="File::Glob-has-been-upgraded-from-version-1.07-to-version-1.07_01"><a href="https://metacpan.org/pod/File::Glob" rel="external">File::Glob</a> has been upgraded from version 1.07 to version 1.07_01.</h3>
+
+<p>See <a href="#Security">&quot;Security&quot;</a>.</p>
+
+<h3 id="Unicode::UCD"><a href="https://metacpan.org/pod/Unicode::UCD" rel="external">Unicode::UCD</a></h3>
+
+<p>The documentation for the <code>upper</code> function now actually says &quot;upper&quot;, not &quot;lower&quot;.</p>
+
+<h3 id="Module::CoreList"><a href="https://metacpan.org/pod/Module::CoreList" rel="external">Module::CoreList</a></h3>
+
+<p><a href="https://metacpan.org/pod/Module::CoreList" rel="external">Module::CoreList</a> has been updated to version 2.50_02 to add data for this release.</p>
+
+<h1 id="Changes-to-Existing-Documentation">Changes to Existing Documentation</h1>
+
+<h2 id="perlebcdic"><a href="/perldoc/perlebcdic/">perlebcdic</a></h2>
+
+<p>The <a href="/perldoc/perlebcdic/">perlebcdic</a> document contains a helpful table to use in <code>tr///</code> to convert between EBCDIC and Latin1/ASCII. Unfortunately, the table was the inverse of the one it describes. This has been corrected.</p>
+
+<h2 id="perlunicode"><a href="/perldoc/perlunicode/">perlunicode</a></h2>
+
+<p>The section on <a href="/perldoc/perlunicode/#User-Defined-Case-Mappings">User-Defined Case Mappings</a> had some bad markup and unclear sentences, making parts of it unreadable. This has been rectified.</p>
+
+<h2 id="perluniprops"><a href="/perldoc/perluniprops/">perluniprops</a></h2>
+
+<p>This document has been corrected to take non-ASCII platforms into account.</p>
+
+<h1 id="Installation-and-Configuration-Improvements">Installation and Configuration Improvements</h1>
+
+<h2 id="Platform-Specific-Changes">Platform Specific Changes</h2>
+
+<dl>
+
+<dt>Mac OS X</dt>
+<dd>
+
+<p>There have been configuration and test fixes to make Perl build cleanly on Lion and Mountain Lion.</p>
+
+</dd>
+<dt>NetBSD</dt>
+<dd>
+
+<p>The NetBSD hints file was corrected to be compatible with NetBSD 6.*</p>
+
+</dd>
+</dl>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<ul>
+
+<li><p><code>chop</code> now correctly handles characters above &quot;\x{7fffffff}&quot; [perl #73246].</p>
+
+</li>
+<li><p><code>($&lt;,$&gt;) = (...)</code> stopped working properly in 5.12.0. It is supposed to make a single <code>setreuid()</code> call, rather than calling <code>setruid()</code> and <code>seteuid()</code> separately. Consequently it did not work properly. This has been fixed [perl #75212].</p>
+
+</li>
+<li><p>Fixed a regression of kill() when a match variable is used for the process ID to kill [perl #75812].</p>
+
+</li>
+<li><p><code>UNIVERSAL::VERSION</code> no longer leaks memory. It started leaking in Perl 5.10.0.</p>
+
+</li>
+<li><p>The C-level <code>my_strftime</code> functions no longer leaks memory. This fixes a memory leak in <code>POSIX::strftime</code> [perl #73520].</p>
+
+</li>
+<li><p><code>caller</code> no longer leaks memory when called from the DB package if <code>@DB::args</code> was assigned to after the first call to <code>caller</code>. <a href="https://metacpan.org/pod/Carp" rel="external">Carp</a> was triggering this bug [perl #97010].</p>
+
+</li>
+<li><p>Passing to <code>index</code> an offset beyond the end of the string when the string is encoded internally in UTF8 no longer causes panics [perl #75898].</p>
+
+</li>
+<li><p>Syntax errors in <code>(?{...})</code> blocks in regular expressions no longer cause panic messages [perl #2353].</p>
+
+</li>
+<li><p>Perl 5.10.0 introduced some faulty logic that made &quot;U*&quot; in the middle of a pack template equivalent to &quot;U0&quot; if the input string was empty. This has been fixed [perl #90160].</p>
+
+</li>
+</ul>
+
+<h1 id="Errata">Errata</h1>
+
+<h2 id="split-and-_">split() and <code>@_</code></h2>
+
+<p>split() no longer modifies <code>@_</code> when called in scalar or void context. In void context it now produces a &quot;Useless use of split&quot; warning. This is actually a change introduced in perl 5.12.0, but it was missed from that release&#39;s <a href="/perldoc/perl5120delta/">perl5120delta</a>.</p>
+
+<h1 id="Acknowledgements">Acknowledgements</h1>
+
+<p>Perl 5.12.5 represents approximately 17 months of development since Perl 5.12.4 and contains approximately 1,900 lines of changes across 64 files from 18 authors.</p>
+
+<p>Perl continues to flourish into its third decade thanks to a vibrant community of users and developers. The following people are known to have contributed the improvements that became Perl 5.12.5:</p>
+
+<p>Andy Dougherty, Chris &#39;BinGOs&#39; Williams, Craig A. Berry, David Mitchell, Dominic Hargreaves, Father Chrysostomos, Florian Ragwitz, George Greer, Goro Fuji, Jesse Vincent, Karl Williamson, Leon Brocard, Nicholas Clark, Rafael Garcia-Suarez, Reini Urban, Ricardo Signes, Steve Hay, Tony Cook.</p>
+
+<p>The list above is almost certainly incomplete as it is automatically generated from version control history. In particular, it does not include the names of the (very much appreciated) contributors who reported issues to the Perl bug tracker.</p>
+
+<p>Many of the changes included in this version originated in the CPAN modules included in Perl&#39;s core. We&#39;re grateful to the entire CPAN community for helping Perl to flourish.</p>
+
+<p>For a more complete list of all of Perl&#39;s historical contributors, please see the <i>AUTHORS</i> file in the Perl source distribution.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the perl bug database at http://rt.perl.org/perlbug/ . There may also be information at http://www.perl.org/ , the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <b>perlbug</b> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team.</p>
+
+<p>If the bug you are reporting has security implications, which make it inappropriate to send to a publicly archived mailing list, then please send it to perl5-security-report@perl.org. This points to a closed subscription unarchived mailing list, which includes all the core committers, who be able to help assess the impact of issues, figure out a resolution, and help co-ordinate the release of patches to mitigate or fix the problem across all platforms on which Perl is supported. Please only use this address for security issues in the Perl core, not for modules independently distributed on CPAN.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for an explanation of how to view exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

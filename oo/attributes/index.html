@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.oo ul').show();
+                $('.sub-menu.oo div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/oo/attributes/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/oo/attributes/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/oo/attributes/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/oo/attributes/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/oo/attributes/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <h1>Attributes</h1>
+
+<h4>Read Only vs Read/Write attributes</h4>
+
+<p>A simple class with attributes:</p>
+
+<pre><code>package Alien;
+use Moo;
+
+has eyes      =&gt; (is =&gt; &#39;rw&#39;); # read/write
+has nostrils  =&gt; (is =&gt; &#39;ro&#39;); # read only
+
+1;
+</code></pre>
+
+<p>Using the class:</p>
+
+<pre><code>my $alien = Alien-&gt;new( nostrils =&gt; 20 );
+$alien-&gt;eyes(10);     # succeeds
+$alien-&gt;nostrils(10); # dies
+</code></pre>
+
+<h4>Default vs builders</h4>
+
+<pre><code>package Alien;
+use Moo;
+
+has eyes     =&gt; (is =&gt; &#39;ro&#39;, default =&gt; sub { 5 });
+has nostrils =&gt; (is =&gt; &#39;ro&#39;, builder =&gt; &#39;_build_nostrils&#39;);
+
+# Perlism: methods that start with _ are private
+sub _build_nostrils { 5 }
+</code></pre>
+
+<p>Best practices:</p>
+
+<ul>
+<li>Use <code>default</code> for very simple defaults</li>
+<li>Use <code>builder</code> for everything else</li>
+<li>Builders can be overridden and method modified</li>
+<li>Roles can require builders</li>
+<li>Builders should be private</li>
+</ul>
+
+<h4>Lazy attributes</h4>
+
+<p>Normal attributes are initialized during object construction.  Lazy attributes
+are not initialized until the attribute is used.</p>
+
+<pre><code>has tentacles =&gt; (is =&gt; &#39;ro&#39;, lazy =&gt; 1, builder =&gt; &#39;_build_tentacles&#39;)
+</code></pre>
+
+<p>Best practices:</p>
+
+<ul>
+<li>Lazy attributes are the best - use them as often as you can</li>
+<li>Lazy attributes are good because defaults are generated during object construction which slows down object construction</li>
+<li>The user might not need that attribute so why waste time setting a default</li>
+</ul>
+
+<h4>Attribute initialization order is unpredictable</h4>
+
+<p>Because the order in which attributes are initialized is random, using
+<code>default</code> can cause bugs.  In this example if <code>tentacle_count</code> is initialized
+after <code>tentacles</code> the builder will throw an exception because
+<code>$self-&gt;tentacle_count</code> is undefined:</p>
+
+<pre><code>package Alien;
+use Moo;
+use Tentacle;
+
+has tentacle_count =&gt; (is =&gt; &#39;ro&#39;, default =&gt; sub { 5 }); # &lt;---- BUG
+has tentacles      =&gt; (is =&gt; &#39;ro&#39;, builder =&gt; &#39;_build_tentacles&#39;);
+
+sub _build_tentacles { 
+    my $self = shift;
+    my @tentacles;
+
+    push @tentacles, Tentacle-&gt;new() for (1..$self-&gt;tentacle_count);
+
+    return \@tentacles;
+}
+</code></pre>
+
+<p>The solution is to use lazy attributes.  Here is the same code with the bug
+fixed:</p>
+
+<pre><code>package Alien;
+use Moo;
+use Tentacle;
+
+has tentacles      =&gt; (is =&gt; &#39;lazy&#39;); # &lt;---- BUG FIXED
+has tentacle_count =&gt; (is =&gt; &#39;ro&#39;, default =&gt; sub { 5 });
+
+sub _build_tentacles { 
+    my $self = shift;
+    my @tentacles;
+
+    push @tentacles, Tentacle-&gt;new() for (1..$self-&gt;tentacle_count);
+
+    return \@tentacles;
+}
+</code></pre>
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.basics ul').show();
+                $('.sub-menu.basics div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/basics/regexps/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/basics/regexps/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/basics/regexps/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/basics/regexps/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/basics/regexps/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <h1>Regular expressions</h1>
+
+<h4>m// (the match operator)</h4>
+
+<pre><code>print &quot;hello&quot; if $string =~ m/cowboys/;
+print &quot;hello&quot; if $string =~  /cowboys/;  # same but shorter
+print &quot;hello&quot; if $string =~  /cowboys/i; # same but case insensitive
+</code></pre>
+
+<p>Useful tricks to avoid escaping tons of stuff inside regexps:</p>
+
+<pre><code>print &quot;hello&quot; if $string =~ m|https://|; 
+print &quot;hello&quot; if $string =~ m{https://}; 
+print &quot;hello&quot; if $string =~ m&#39;https://&#39;; 
+# etc
+
+# also:
+print &quot;hello&quot; if $string =~ qq{https://}; 
+</code></pre>
+
+<h4>s/// (the substitution operator)</h4>
+
+<pre><code>my $string = &quot;cowboys and aliens&quot;;
+$string =~ s/cowboys/martians/;
+print $string; 
+# prints &quot;martians and aliens&quot;
+</code></pre>
+
+<p>Global substitution</p>
+
+<pre><code>my $string = &quot;pony pony goose&quot;;
+$string =~ s/pony/goose/g;
+print $string; 
+# prints &quot;duck duck goose&quot;
+</code></pre>
+
+<p>The same tricks for case insensitive matches and avoiding escaping stuff in
+regexps apply to <code>s///</code> as well.</p>
+
+<h4>qr// (re-using regexps)</h4>
+
+<pre><code>my $xls_regexp = qr/\.xls$/i;
+
+for my $filename ( filesnames() ) {
+    print &quot;hello&quot; if $filename =~ $xls_regexp;
+}
+</code></pre>
+
+<h4>Commenting regexps with the /x modifier</h4>
+
+<p>Its useful to comment long complicated regular expressions for clarity.
+For example, this:</p>
+
+<pre><code>$code =~ s|/\*.*?\*/||gs;
+</code></pre>
+
+<p>is equivalent to this:</p>
+
+<pre><code>  # Delete C comments
+  $code =~ s|
+      /\*     # Match the opening delimiter
+      .*?     # Match a minimal number of characters
+      \*/     # Match the closing delimiter
+  ||gsx;
+</code></pre>
+
+<h4>For more info</h4>
+
+<p>Check out the offical perl docs for more details on Perl regular expressions: </p>
+
+<ul>
+<li><a href="http://perldoc.perl.org/perlre.html">The official regexp documentation</a> </li>
+<li><a href="http://perldoc.perl.org/perlop.html#Regexp-Quote-Like-Operators">Regexp Quote Like Operators</a></li>
+</ul>
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

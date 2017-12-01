@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlsource (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlsource/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlsource/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlsource/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlsource/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlsource/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlsource/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+=for comment
+Consistent formatting of this file is achieved with:
+  perl ./Porting/podtidy pod/perlsource.pod
+
+=head1 NAME
+
+perlsource - A guide to the Perl source tree
+
+=head1 DESCRIPTION
+
+This document describes the layout of the Perl source tree. If you&#39;re
+hacking on the Perl core, this will help you find what you&#39;re looking
+for.
+
+=head1 FINDING YOUR WAY AROUND
+
+The Perl source tree is big. Here&#39;s some of the thing you&#39;ll find in
+it:
+
+=head2 C code
+
+The C source code and header files mostly live in the root of the
+source tree. There are a few platform-specific directories which
+contain C code. In addition, some of the modules shipped with Perl
+include C or XS code.
+
+See L&lt;perlinterp&gt; for more details on the files that make up the Perl
+interpreter, as well as details on how it works.
+
+=head2 Core modules
+
+Modules shipped as part of the Perl core live in four subdirectories.
+Two of these directories contain modules that live in the core, and two
+contain modules that can also be released separately on CPAN. Modules
+which can be released on cpan are known as &quot;dual-life&quot; modules.
+
+=over 4
+
+=item * F&lt;lib/&gt;
+
+This directory contains pure-Perl modules which are only released as
+part of the core. This directory contains I&lt;all&gt; of the modules and
+their tests, unlike other core modules.
+
+=item * F&lt;ext/&gt;
+
+Like F&lt;lib/&gt;, this directory contains modules which are only released
+as part of the core.  Unlike F&lt;lib/&gt;, however, a module under F&lt;ext/&gt;
+generally has a CPAN-style directory- and file-layout and its own
+F&lt;Makefile.PL&gt;.  There is no expectation that a module under F&lt;ext/&gt;
+will work with earlier versions of Perl 5.  Hence, such a module may
+take full advantage of syntactical and other improvements in Perl 5
+blead.
+
+=item * F&lt;dist/&gt;
+
+This directory is for dual-life modules where the blead source is
+canonical. Note that some modules in this directory may not yet have
+been released separately on CPAN.  Modules under F&lt;dist/&gt; should make
+an effort to work with earlier versions of Perl 5.
+
+=item * F&lt;cpan/&gt;
+
+This directory contains dual-life modules where the CPAN module is
+canonical. Do not patch these modules directly! Changes to these
+modules should be submitted to the maintainer of the CPAN module. Once
+those changes are applied and released, the new version of the module
+will be incorporated into the core.
+
+=back
+
+For some dual-life modules, it has not yet been determined if the CPAN
+version or the blead source is canonical. Until that is done, those
+modules should be in F&lt;cpan/&gt;.
+
+=head2 Tests
+
+The Perl core has an extensive test suite. If you add new tests (or new
+modules with tests), you may need to update the F&lt;t/TEST&gt; file so that
+the tests are run.
+
+=over 4
+
+=item * Module tests
+
+Tests for core modules in the F&lt;lib/&gt; directory are right next to the
+module itself. For example, we have F&lt;lib/strict.pm&gt; and
+F&lt;lib/strict.t&gt;.
+
+Tests for modules in F&lt;ext/&gt; and the dual-life modules are in F&lt;t/&gt;
+subdirectories for each module, like a standard CPAN distribution.
+
+=item * F&lt;t/base/&gt;
+
+Tests for the absolute basic functionality of Perl. This includes
+C&lt;if&gt;, basic file reads and writes, simple regexes, etc. These are run
+first in the test suite and if any of them fail, something is I&lt;really&gt;
+broken.
+
+=item * F&lt;t/cmd/&gt;
+
+Tests for basic control structures, C&lt;if&gt;/C&lt;else&gt;, C&lt;while&gt;, subroutines,
+etc.
+
+=item * F&lt;t/comp/&gt;
+
+Tests for basic issues of how Perl parses and compiles itself.
+
+=item * F&lt;t/io/&gt;
+
+Tests for built-in IO functions, including command line arguments.
+
+=item * F&lt;t/mro/&gt;
+
+Tests for perl&#39;s method resolution order implementations (see L&lt;mro&gt;).
+
+=item * F&lt;t/op/&gt;
+
+Tests for perl&#39;s built in functions that don&#39;t fit into any of the
+other directories.
+
+=item * F&lt;t/opbasic/&gt;
+
+Tests for perl&#39;s built in functions which, like those in F&lt;t/op/&gt;, do
+not fit into any of the other directories, but which, in addition,
+cannot use F&lt;t/test.pl&gt;,as that program depends on functionality which
+the test file itself is testing.
+
+=item * F&lt;t/re/&gt;
+
+Tests for regex related functions or behaviour. (These used to live in
+t/op).
+
+=item * F&lt;t/run/&gt;
+
+Tests for features of how perl actually runs, including exit codes and
+handling of PERL* environment variables.
+
+=item * F&lt;t/uni/&gt;
+
+Tests for the core support of Unicode.
+
+=item * F&lt;t/win32/&gt;
+
+Windows-specific tests.
+
+=item * F&lt;t/porting/&gt;
+
+Tests the state of the source tree for various common errors. For
+example, it tests that everyone who is listed in the git log has a
+corresponding entry in the F&lt;AUTHORS&gt; file.
+
+=item * F&lt;t/lib/&gt;
+
+The old home for the module tests, you shouldn&#39;t put anything new in
+here. There are still some bits and pieces hanging around in here that
+need to be moved. Perhaps you could move them?  Thanks!
+
+=back
+
+=head2 Documentation
+
+All of the core documentation intended for end users lives in F&lt;pod/&gt;.
+Individual modules in F&lt;lib/&gt;, F&lt;ext/&gt;, F&lt;dist/&gt;, and F&lt;cpan/&gt; usually
+have their own documentation, either in the F&lt;Module.pm&gt; file or an
+accompanying F&lt;Module.pod&gt; file.
+
+Finally, documentation intended for core Perl developers lives in the
+F&lt;Porting/&gt; directory.
+
+=head2 Hacking tools and documentation
+
+The F&lt;Porting&gt; directory contains a grab bag of code and documentation
+intended to help porters work on Perl. Some of the highlights include:
+
+=over 4
+
+=item * F&lt;check*&gt;
+
+These are scripts which will check the source things like ANSI C
+violations, POD encoding issues, etc.
+
+=item * F&lt;Maintainers&gt;, F&lt;Maintainers.pl&gt;, and F&lt;Maintainers.pm&gt;
+
+These files contain information on who maintains which modules. Run
+C&lt;perl Porting/Maintainers -M Module::Name&gt; to find out more
+information about a dual-life module.
+
+=item * F&lt;podtidy&gt;
+
+Tidies a pod file. It&#39;s a good idea to run this on a pod file you&#39;ve
+patched.
+
+=back
+
+=head2 Build system
+
+The Perl build system starts with the F&lt;Configure&gt; script in the root
+directory.
+
+Platform-specific pieces of the build system also live in
+platform-specific directories like F&lt;win32/&gt;, F&lt;vms/&gt;, etc.
+
+The F&lt;Configure&gt; script is ultimately responsible for generating a
+F&lt;Makefile&gt;.
+
+The build system that Perl uses is called metaconfig. This system is
+maintained separately from the Perl core.
+
+The metaconfig system has its own git repository. Please see its README
+file in L&lt;http://perl5.git.perl.org/metaconfig.git/&gt; for more details.
+
+The F&lt;Cross&gt; directory contains various files related to
+cross-compiling Perl. See F&lt;Cross/README&gt; for more details.
+
+=head2 F&lt;AUTHORS&gt;
+
+This file lists everyone who&#39;s contributed to Perl. If you submit a
+patch, you should add your name to this file as part of the patch.
+
+=head2 F&lt;MANIFEST&gt;
+
+The F&lt;MANIFEST&gt; file in the root of the source tree contains a list of
+every file in the Perl core, as well as a brief description of each
+file.
+
+You can get an overview of all the files with this command:
+
+  % perl -lne &#39;print if /^[^\/]+\.[ch]\s+/&#39; MANIFEST
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

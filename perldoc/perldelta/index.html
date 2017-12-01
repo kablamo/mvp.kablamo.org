@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perldelta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perldelta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perldelta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perldelta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perldelta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perldelta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perldelta/">perldelta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perldelta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perldelta - what is new for perl v5.26.1</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.26.0 release and the 5.26.1 release.</p>
+
+<p>If you are upgrading from an earlier release such as 5.24.0, first read <a href="/perldoc/perl5260delta/">perl5260delta</a>, which describes differences between 5.24.0 and 5.26.0.</p>
+
+<h1 id="Security">Security</h1>
+
+<h2 id="CVE-2017-12837-Heap-buffer-overflow-in-regular-expression-compiler">[CVE-2017-12837] Heap buffer overflow in regular expression compiler</h2>
+
+<p>Compiling certain regular expression patterns with the case-insensitive modifier could cause a heap buffer overflow and crash perl. This has now been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131582" rel="external">[perl #131582]</a></p>
+
+<h2 id="CVE-2017-12883-Buffer-over-read-in-regular-expression-parser">[CVE-2017-12883] Buffer over-read in regular expression parser</h2>
+
+<p>For certain types of syntax error in a regular expression pattern, the error message could either contain the contents of a random, possibly large, chunk of memory, or could crash perl. This has now been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131598" rel="external">[perl #131598]</a></p>
+
+<h2 id="CVE-2017-12814-ENV-key-stack-buffer-overflow-on-Windows">[CVE-2017-12814] <code>$ENV{$key}</code> stack buffer overflow on Windows</h2>
+
+<p>A possible stack buffer overflow in the <code>%ENV</code> code on Windows has been fixed by removing the buffer completely since it was superfluous anyway. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131665" rel="external">[perl #131665]</a></p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes intentionally incompatible with 5.26.0. If any exist, they are bugs, and we request that you submit a report. See <a href="#Reporting-Bugs">&quot;Reporting Bugs&quot;</a> below.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<h2 id="Updated-Modules-and-Pragmata">Updated Modules and Pragmata</h2>
+
+<ul>
+
+<li><p><a href="https://metacpan.org/pod/base" rel="external">base</a> has been upgraded from version 2.25 to 2.26.</p>
+
+<p>The effects of dotless <code>@INC</code> on this module have been limited by the introduction of a more refined and accurate solution for removing <code>&#39;.&#39;</code> from <code>@INC</code> while reducing the false positives.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/charnames" rel="external">charnames</a> has been upgraded from version 1.44 to 1.45.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Module::CoreList" rel="external">Module::CoreList</a> has been upgraded from version 5.20170530 to 5.20170922_26.</p>
+
+</li>
+</ul>
+
+<h1 id="Platform-Support">Platform Support</h1>
+
+<h2 id="Platform-Specific-Notes">Platform-Specific Notes</h2>
+
+<dl>
+
+<dt>FreeBSD</dt>
+<dd>
+
+<ul>
+
+<li><p>Building with <b>g++</b> on FreeBSD-11.0 has been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131337" rel="external">[perl #131337]</a></p>
+
+</li>
+</ul>
+
+</dd>
+<dt>Windows</dt>
+<dd>
+
+<ul>
+
+<li><p>Support for compiling perl on Windows using Microsoft Visual Studio 2017 (containing Visual C++ 14.1) has been added.</p>
+
+</li>
+<li><p>Building XS modules with GCC 6 in a 64-bit build of Perl failed due to incorrect mapping of <code>strtoll</code> and <code>strtoull</code>. This has now been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131726" rel="external">[perl #131726]</a> <a href="https://rt.cpan.org/Public/Bug/Display.html?id=121683" rel="external">[cpan #121683]</a> <a href="https://rt.cpan.org/Public/Bug/Display.html?id=122353" rel="external">[cpan #122353]</a></p>
+
+</li>
+</ul>
+
+</dd>
+</dl>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<ul>
+
+<li><p>Several built-in functions previously had bugs that could cause them to write to the internal stack without allocating room for the item being written. In rare situations, this could have led to a crash. These bugs have now been fixed, and if any similar bugs are introduced in future, they will be detected automatically in debugging builds. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131732" rel="external">[perl #131732]</a></p>
+
+</li>
+<li><p>Using a symbolic ref with postderef syntax as the key in a hash lookup was yielding an assertion failure on debugging builds. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131627" rel="external">[perl #131627]</a></p>
+
+</li>
+<li><p>List assignment (<code>aassign</code>) could in some rare cases allocate an entry on the mortal stack and leave the entry uninitialized. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131570" rel="external">[perl #131570]</a></p>
+
+</li>
+<li><p>Attempting to apply an attribute to an <code>our</code> variable where a function of that name already exists could result in a NULL pointer being supplied where an SV was expected, crashing perl. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131597" rel="external">[perl #131597]</a></p>
+
+</li>
+<li><p>The code that vivifies a typeglob out of a code ref made some false assumptions that could lead to a crash in cases such as <code>$::{&quot;A&quot;} = sub {}; \&amp;{&quot;A&quot;}</code>. This has now been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131085" rel="external">[perl #131085]</a></p>
+
+</li>
+<li><p><code>my_atof2</code> no longer reads beyond the terminating NUL, which previously occurred if the decimal point is immediately before the NUL. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131526" rel="external">[perl #131526]</a></p>
+
+</li>
+<li><p>Occasional &quot;Malformed UTF-8 character&quot; crashes in <code>s//</code> on utf8 strings have been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131575" rel="external">[perl #131575]</a></p>
+
+</li>
+<li><p><code>perldoc -f s</code> now finds <code>s///</code>. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131371" rel="external">[perl #131371]</a></p>
+
+</li>
+<li><p>Some erroneous warnings after utf8 conversion have been fixed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131190" rel="external">[perl #131190]</a></p>
+
+</li>
+<li><p>The <code>jmpenv</code> frame to catch Perl exceptions is set up lazily, and this used to be a bit too lazy. The catcher is now set up earlier, preventing some possible crashes. <a href="https://rt.perl.org/Public/Bug/Display.html?id=105930" rel="external">[perl #105930]</a></p>
+
+</li>
+<li><p>Spurious &quot;Assuming NOT a POSIX class&quot; warnings have been removed. <a href="https://rt.perl.org/Public/Bug/Display.html?id=131522" rel="external">[perl #131522]</a></p>
+
+</li>
+</ul>
+
+<h1 id="Acknowledgements">Acknowledgements</h1>
+
+<p>Perl 5.26.1 represents approximately 4 months of development since Perl 5.26.0 and contains approximately 8,900 lines of changes across 85 files from 23 authors.</p>
+
+<p>Excluding auto-generated files, documentation and release tools, there were approximately 990 lines of changes to 38 .pm, .t, .c and .h files.</p>
+
+<p>Perl continues to flourish into its third decade thanks to a vibrant community of users and developers. The following people are known to have contributed the improvements that became Perl 5.26.1:</p>
+
+<p>Aaron Crane, Andy Dougherty, Aristotle Pagaltzis, Chris &#39;BinGOs&#39; Williams, Craig A. Berry, Dagfinn Ilmari Mannsåker, David Mitchell, E. Choroba, Eric Herman, Father Chrysostomos, Jacques Germishuys, James E Keenan, John SJ Anderson, Karl Williamson, Ken Brown, Lukas Mai, Matthew Horsfall, Ricardo Signes, Sawyer X, Steve Hay, Tony Cook, Yves Orton, Zefram.</p>
+
+<p>The list above is almost certainly incomplete as it is automatically generated from version control history. In particular, it does not include the names of the (very much appreciated) contributors who reported issues to the Perl bug tracker.</p>
+
+<p>Many of the changes included in this version originated in the CPAN modules included in Perl&#39;s core. We&#39;re grateful to the entire CPAN community for helping Perl to flourish.</p>
+
+<p>For a more complete list of all of Perl&#39;s historical contributors, please see the <i>AUTHORS</i> file in the Perl source distribution.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the perl bug database at <a href="https://rt.perl.org/" rel="external">https://rt.perl.org/</a> . There may also be information at <a href="http://www.perl.org/" rel="external">http://www.perl.org/</a> , the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <a href="/perldoc/perlbug/">perlbug</a> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team.</p>
+
+<p>If the bug you are reporting has security implications which make it inappropriate to send to a publicly archived mailing list, then see <a href="/perldoc/perlsec/#SECURITY-VULNERABILITY-CONTACT-INFORMATION">&quot;SECURITY VULNERABILITY CONTACT INFORMATION&quot; in perlsec</a> for details of how to report the issue.</p>
+
+<h1 id="Give-Thanks">Give Thanks</h1>
+
+<p>If you wish to thank the Perl 5 Porters for the work we had done in Perl 5, you can do so by running the <code>perlthanks</code> program:</p>
+
+<pre><code>    perlthanks</code></pre>
+
+<p>This will send an email to the Perl 5 Porters list with your show of thanks.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for an explanation of how to view exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

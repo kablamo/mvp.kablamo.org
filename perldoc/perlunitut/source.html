@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlunitut (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlunitut/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlunitut/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlunitut/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlunitut/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlunitut/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlunitut/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlunitut - Perl Unicode Tutorial
+
+=head1 DESCRIPTION
+
+The days of just flinging strings around are over. It&#39;s well established that
+modern programs need to be capable of communicating funny accented letters, and
+things like euro symbols. This means that programmers need new habits. It&#39;s
+easy to program Unicode capable software, but it does require discipline to do
+it right.
+
+There&#39;s a lot to know about character sets, and text encodings. It&#39;s probably
+best to spend a full day learning all this, but the basics can be learned in
+minutes. 
+
+These are not the very basics, though. It is assumed that you already
+know the difference between bytes and characters, and realise (and accept!)
+that there are many different character sets and encodings, and that your
+program has to be explicit about them. Recommended reading is &quot;The Absolute
+Minimum Every Software Developer Absolutely, Positively Must Know About Unicode
+and Character Sets (No Excuses!)&quot; by Joel Spolsky, at
+L&lt;http://joelonsoftware.com/articles/Unicode.html&gt;.
+
+This tutorial speaks in rather absolute terms, and provides only a limited view
+of the wealth of character string related features that Perl has to offer. For
+most projects, this information will probably suffice.
+
+=head2 Definitions
+
+It&#39;s important to set a few things straight first. This is the most important
+part of this tutorial. This view may conflict with other information that you
+may have found on the web, but that&#39;s mostly because many sources are wrong.
+
+You may have to re-read this entire section a few times...
+
+=head3 Unicode
+
+B&lt;Unicode&gt; is a character set with room for lots of characters. The ordinal
+value of a character is called a B&lt;code point&gt;.   (But in practice, the
+distinction between code point and character is blurred, so the terms often
+are used interchangeably.)
+
+There are many, many code points, but computers work with bytes, and a byte has
+room for only 256 values.  Unicode has many more characters than that,
+so you need a method to make these accessible.
+
+Unicode is encoded using several competing encodings, of which UTF-8 is the
+most used. In a Unicode encoding, multiple subsequent bytes can be used to
+store a single code point, or simply: character.
+
+=head3 UTF-8
+
+B&lt;UTF-8&gt; is a Unicode encoding. Many people think that Unicode and UTF-8 are
+the same thing, but they&#39;re not. There are more Unicode encodings, but much of
+the world has standardized on UTF-8. 
+
+UTF-8 treats the first 128 codepoints, 0..127, the same as ASCII. They take
+only one byte per character. All other characters are encoded as two to
+four bytes using a complex scheme. Fortunately, Perl handles this for
+us, so we don&#39;t have to worry about this.
+
+=head3 Text strings (character strings)
+
+B&lt;Text strings&gt;, or B&lt;character strings&gt; are made of characters. Bytes are
+irrelevant here, and so are encodings. Each character is just that: the
+character.
+
+On a text string, you would do things like:
+
+    $text =~ s/foo/bar/;
+    if ($string =~ /^\d+$/) { ... }
+    $text = ucfirst $text;
+    my $character_count = length $text;
+
+The value of a character (C&lt;ord&gt;, C&lt;chr&gt;) is the corresponding Unicode code
+point.
+
+=head3 Binary strings (byte strings)
+
+B&lt;Binary strings&gt;, or B&lt;byte strings&gt; are made of bytes. Here, you don&#39;t have
+characters, just bytes. All communication with the outside world (anything
+outside of your current Perl process) is done in binary.
+
+On a binary string, you would do things like:
+
+    my (@length_content) = unpack &quot;(V/a)*&quot;, $binary;
+    $binary =~ s/\x00\x0F/\xFF\xF0/;  # for the brave :)
+    print {$fh} $binary;
+    my $byte_count = length $binary;
+
+=head3 Encoding
+
+B&lt;Encoding&gt; (as a verb) is the conversion from I&lt;text&gt; to I&lt;binary&gt;. To encode,
+you have to supply the target encoding, for example C&lt;iso-8859-1&gt; or C&lt;UTF-8&gt;.
+Some encodings, like the C&lt;iso-8859&gt; (&quot;latin&quot;) range, do not support the full
+Unicode standard; characters that can&#39;t be represented are lost in the
+conversion.
+
+=head3 Decoding
+
+B&lt;Decoding&gt; is the conversion from I&lt;binary&gt; to I&lt;text&gt;. To decode, you have to
+know what encoding was used during the encoding phase. And most of all, it must
+be something decodable. It doesn&#39;t make much sense to decode a PNG image into a
+text string.
+
+=head3 Internal format
+
+Perl has an B&lt;internal format&gt;, an encoding that it uses to encode text strings
+so it can store them in memory. All text strings are in this internal format.
+In fact, text strings are never in any other format!
+
+You shouldn&#39;t worry about what this format is, because conversion is
+automatically done when you decode or encode.
+
+=head2 Your new toolkit
+
+Add to your standard heading the following line:
+
+    use Encode qw(encode decode);
+
+Or, if you&#39;re lazy, just:
+
+    use Encode;
+
+=head2 I/O flow (the actual 5 minute tutorial)
+
+The typical input/output flow of a program is:
+
+    1. Receive and decode
+    2. Process
+    3. Encode and output
+
+If your input is binary, and is supposed to remain binary, you shouldn&#39;t decode
+it to a text string, of course. But in all other cases, you should decode it.
+
+Decoding can&#39;t happen reliably if you don&#39;t know how the data was encoded. If
+you get to choose, it&#39;s a good idea to standardize on UTF-8.
+
+    my $foo   = decode(&#39;UTF-8&#39;, get &#39;http://example.com/&#39;);
+    my $bar   = decode(&#39;ISO-8859-1&#39;, readline STDIN);
+    my $xyzzy = decode(&#39;Windows-1251&#39;, $cgi-&gt;param(&#39;foo&#39;));
+
+Processing happens as you knew before. The only difference is that you&#39;re now
+using characters instead of bytes. That&#39;s very useful if you use things like
+C&lt;substr&gt;, or C&lt;length&gt;.
+
+It&#39;s important to realize that there are no bytes in a text string. Of course,
+Perl has its internal encoding to store the string in memory, but ignore that.
+If you have to do anything with the number of bytes, it&#39;s probably best to move
+that part to step 3, just after you&#39;ve encoded the string. Then you know
+exactly how many bytes it will be in the destination string.
+
+The syntax for encoding text strings to binary strings is as simple as decoding:
+
+    $body = encode(&#39;UTF-8&#39;, $body);
+
+If you needed to know the length of the string in bytes, now&#39;s the perfect time
+for that. Because C&lt;$body&gt; is now a byte string, C&lt;length&gt; will report the
+number of bytes, instead of the number of characters. The number of
+characters is no longer known, because characters only exist in text strings.
+
+    my $byte_count = length $body;
+
+And if the protocol you&#39;re using supports a way of letting the recipient know
+which character encoding you used, please help the receiving end by using that
+feature! For example, E-mail and HTTP support MIME headers, so you can use the
+C&lt;Content-Type&gt; header. They can also have C&lt;Content-Length&gt; to indicate the
+number of I&lt;bytes&gt;, which is always a good idea to supply if the number is
+known.
+
+    &quot;Content-Type: text/plain; charset=UTF-8&quot;,
+    &quot;Content-Length: $byte_count&quot;
+
+=head1 SUMMARY
+
+Decode everything you receive, encode everything you send out. (If it&#39;s text
+data.)
+
+=head1 Q and A (or FAQ)
+
+After reading this document, you ought to read L&lt;perlunifaq&gt; too, then
+L&lt;perluniintro&gt;.
+
+=head1 ACKNOWLEDGEMENTS
+
+Thanks to Johan Vromans from Squirrel Consultancy. His UTF-8 rants during the
+Amsterdam Perl Mongers meetings got me interested and determined to find out
+how to use character encodings in Perl in ways that don&#39;t break easily.
+
+Thanks to Gerard Goossen from TTY. His presentation &quot;UTF-8 in the wild&quot; (Dutch
+Perl Workshop 2006) inspired me to publish my thoughts and write this tutorial.
+
+Thanks to the people who asked about this kind of stuff in several Perl IRC
+channels, and have constantly reminded me that a simpler explanation was
+needed.
+
+Thanks to the people who reviewed this document for me, before it went public.
+They are: Benjamin Smith, Jan-Pieter Cornet, Johan Vromans, Lukas Mai, Nathan
+Gray.
+
+=head1 AUTHOR
+
+Juerd Waalboer &lt;#####@juerd.nl&gt;
+
+=head1 SEE ALSO
+
+L&lt;perlunifaq&gt;, L&lt;perlunicode&gt;, L&lt;perluniintro&gt;, L&lt;Encode&gt;
+
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

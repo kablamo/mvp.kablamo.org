@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl588delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl588delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl588delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl588delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl588delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl588delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl588delta/">perl588delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl588delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl588delta - what is new for perl v5.8.8</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.8.7 release and the 5.8.8 release.</p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes intentionally incompatible with 5.8.7. If any exist, they are bugs and reports are welcome.</p>
+
+<h1 id="Core-Enhancements">Core Enhancements</h1>
+
+<ul>
+
+<li><p><code>chdir</code>, <code>chmod</code> and <code>chown</code> can now work on filehandles as well as filenames, if the system supports respectively <code>fchdir</code>, <code>fchmod</code> and <code>fchown</code>, thanks to a patch provided by Gisle Aas.</p>
+
+</li>
+</ul>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<ul>
+
+<li><p><code>Attribute::Handlers</code> upgraded to version 0.78_02</p>
+
+<ul>
+
+<li><p>Documentation typo fix</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>attrs</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>Internal cleanup only</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>autouse</code> upgraded to version 1.05</p>
+
+<ul>
+
+<li><p>Simplified implementation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>B</code> upgraded to version 1.09_01</p>
+
+<ul>
+
+<li><p>The inheritance hierarchy of the <code>B::</code> modules has been corrected; <code>B::NV</code> now inherits from <code>B::SV</code> (instead of <code>B::IV</code>).</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>blib</code> upgraded to version 1.03</p>
+
+<ul>
+
+<li><p>Documentation typo fix</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>ByteLoader</code> upgraded to version 0.06</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>CGI</code> upgraded to version 3.15</p>
+
+<ul>
+
+<li><p>Extraneous &quot;?&quot; from <code>self_url()</code> removed</p>
+
+</li>
+<li><p><code>scrolling_list()</code> select attribute fixed</p>
+
+</li>
+<li><p><code>virtual_port</code> now works properly with the https protocol</p>
+
+</li>
+<li><p><code>upload_hook()</code> and <code>append()</code> now works in function-oriented mode</p>
+
+</li>
+<li><p><code>POST_MAX</code> doesn&#39;t cause the client to hang any more</p>
+
+</li>
+<li><p>Automatic tab indexes are now disabled and new <code>-tabindex</code> pragma has been added to turn automatic indexes back on</p>
+
+</li>
+<li><p><code>end_form()</code> doesn&#39;t emit empty (and non-validating) <code>&lt;div&gt;</code></p>
+
+</li>
+<li><p><code>CGI::Carp</code> works better in certain mod_perl configurations</p>
+
+</li>
+<li><p>Setting <code>$CGI::TMPDIRECTORY</code> is now effective</p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>charnames</code> upgraded to version 1.05</p>
+
+<ul>
+
+<li><p><code>viacode()</code> now accept hex strings and has been optimized.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>CPAN</code> upgraded to version 1.76_02</p>
+
+<ul>
+
+<li><p>1 minor bug fix for Win32</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Cwd</code> upgraded to version 3.12</p>
+
+<ul>
+
+<li><p><code>canonpath()</code> on Win32 now collapses <i>foo\..</i> sections correctly.</p>
+
+</li>
+<li><p>Improved behaviour on Symbian OS.</p>
+
+</li>
+<li><p>Enhanced documentation and typo fixes</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Data::Dumper</code> upgraded to version 2.121_08</p>
+
+<ul>
+
+<li><p>A problem where <code>Data::Dumper</code> would sometimes update the iterator state of hashes has been fixed</p>
+
+</li>
+<li><p>Numeric labels now work</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>DB</code> upgraded to version 1.01</p>
+
+<ul>
+
+<li><p>A problem where the state of the regexp engine would sometimes get clobbered when running under the debugger has been fixed.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>DB_File</code> upgraded to version 1.814</p>
+
+<ul>
+
+<li><p>Adds support for Berkeley DB 4.4.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Devel::DProf</code> upgraded to version 20050603.00</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Devel::Peek</code> upgraded to version 1.03</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Devel::PPPort</code> upgraded to version 3.06_01</p>
+
+<ul>
+
+<li><p><code>--compat-version</code> argument checking has been improved</p>
+
+</li>
+<li><p>Files passed on the command line are filtered by default</p>
+
+</li>
+<li><p><code>--nofilter</code> option to override the filtering has been added</p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>diagnostics</code> upgraded to version 1.15</p>
+
+<ul>
+
+<li><p>Documentation typo fix</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Digest</code> upgraded to version 1.14</p>
+
+<ul>
+
+<li><p>The constructor now knows which module implements SHA-224</p>
+
+</li>
+<li><p>Documentation tweaks and typo fixes</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Digest::MD5</code> upgraded to version 2.36</p>
+
+<ul>
+
+<li><p><code>XSLoader</code> is now used for faster loading</p>
+
+</li>
+<li><p>Enhanced documentation including MD5 weaknesses discovered lately</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Dumpvalue</code> upgraded to version 1.12</p>
+
+<ul>
+
+<li><p>Documentation fix</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>DynaLoader</code> upgraded but unfortunately we&#39;re not able to increment its version number :-(</p>
+
+<ul>
+
+<li><p>Implements <code>dl_unload_file</code> on Win32</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+<li><p><code>XSLoader</code> 0.06 incorporated; small optimisation for calling <code>bootstrap_inherit()</code> and documentation enhancements.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Encode</code> upgraded to version 2.12</p>
+
+<ul>
+
+<li><p>A coderef is now acceptable for <code>CHECK</code>!</p>
+
+</li>
+<li><p>3 new characters added to the ISO-8859-7 encoding</p>
+
+</li>
+<li><p>New encoding <code>MIME-Header-ISO_2022_JP</code> added</p>
+
+</li>
+<li><p>Problem with partial characters and <code>encoding(utf-8-strict)</code> fixed.</p>
+
+</li>
+<li><p>Documentation enhancements and typo fixes</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>English</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>the <code>$COMPILING</code> variable has been added</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>ExtUtils::Constant</code> upgraded to version 0.17</p>
+
+<ul>
+
+<li><p>Improved compatibility with older versions of perl</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>ExtUtils::MakeMaker</code> upgraded to version 6.30 (was 6.17)</p>
+
+<ul>
+
+<li><p>Too much to list here; see <a href="http://search.cpan.org/dist/ExtUtils-MakeMaker/Changes" rel="external">http://search.cpan.org/dist/ExtUtils-MakeMaker/Changes</a></p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>File::Basename</code> upgraded to version 2.74, with changes contributed by Michael Schwern.</p>
+
+<ul>
+
+<li><p>Documentation clarified and errors corrected.</p>
+
+</li>
+<li><p><code>basename</code> now strips trailing path separators before processing the name.</p>
+
+</li>
+<li><p><code>basename</code> now returns <code>/</code> for parameter <code>/</code>, to make <code>basename</code> consistent with the shell utility of the same name.</p>
+
+</li>
+<li><p>The suffix is no longer stripped if it is identical to the remaining characters in the name, again for consistency with the shell utility.</p>
+
+</li>
+<li><p>Some internal code cleanup.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>File::Copy</code> upgraded to version 2.09</p>
+
+<ul>
+
+<li><p>Copying a file onto itself used to fail.</p>
+
+</li>
+<li><p>Moving a file between file systems now preserves the access and modification time stamps</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>File::Find</code> upgraded to version 1.10</p>
+
+<ul>
+
+<li><p>Win32 portability fixes</p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>File::Glob</code> upgraded to version 1.05</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>File::Path</code> upgraded to version 1.08</p>
+
+<ul>
+
+<li><p><code>mkpath</code> now preserves <code>errno</code> when <code>mkdir</code> fails</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>File::Spec</code> upgraded to version 3.12</p>
+
+<ul>
+
+<li><p><code>File::Spec-</code>rootdir()&gt; now returns <code>\</code> on Win32, instead of <code>/</code></p>
+
+</li>
+<li><p><code>$^O</code> could sometimes become tainted. This has been fixed.</p>
+
+</li>
+<li><p><code>canonpath</code> on Win32 now collapses <code>foo/..</code> (or <code>foo\..</code>) sections correctly, rather than doing the &quot;misguided&quot; work it was previously doing. Note that <code>canonpath</code> on Unix still does <b>not</b> collapse these sections, as doing so would be incorrect.</p>
+
+</li>
+<li><p>Some documentation improvements</p>
+
+</li>
+<li><p>Some internal code cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>FileCache</code> upgraded to version 1.06</p>
+
+<ul>
+
+<li><p>POD formatting errors in the documentation fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Filter::Simple</code> upgraded to version 0.82</p>
+
+</li>
+<li><p><code>FindBin</code> upgraded to version 1.47</p>
+
+<ul>
+
+<li><p>Now works better with directories where access rights are more restrictive than usual.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>GDBM_File</code> upgraded to version 1.08</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Getopt::Long</code> upgraded to version 2.35</p>
+
+<ul>
+
+<li><p><code>prefix_pattern</code> has now been complemented by a new configuration option <code>long_prefix_pattern</code> that allows the user to specify what prefix patterns should have long option style semantics applied.</p>
+
+</li>
+<li><p>Options can now take multiple values at once (experimental)</p>
+
+</li>
+<li><p>Various bug fixes</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>if</code> upgraded to version 0.05</p>
+
+<ul>
+
+<li><p>Give more meaningful error messages from <code>if</code> when invoked with a condition in list context.</p>
+
+</li>
+<li><p>Restore backwards compatibility with earlier versions of perl</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>IO</code> upgraded to version 1.22</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>IPC::Open2</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>IPC::Open3</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>List::Util</code> upgraded to version 1.18 (was 1.14)</p>
+
+<ul>
+
+<li><p>Fix pure-perl version of <code>refaddr</code> to avoid blessing an un-blessed reference</p>
+
+</li>
+<li><p>Use <code>XSLoader</code> for faster loading</p>
+
+</li>
+<li><p>Fixed various memory leaks</p>
+
+</li>
+<li><p>Internal cleanup and portability fixes</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Math::Complex</code> upgraded to version 1.35</p>
+
+<ul>
+
+<li><p><code>atan2(0, i)</code> now works, as do all the (computable) complex argument cases</p>
+
+</li>
+<li><p>Fixes for certain bugs in <code>make</code> and <code>emake</code></p>
+
+</li>
+<li><p>Support returning the <i>k</i>th root directly</p>
+
+</li>
+<li><p>Support <code>[2,-3pi/8]</code> in <code>emake</code></p>
+
+</li>
+<li><p>Support <code>inf</code> for <code>make</code>/<code>emake</code></p>
+
+</li>
+<li><p>Document <code>make</code>/<code>emake</code> more visibly</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Math::Trig</code> upgraded to version 1.03</p>
+
+<ul>
+
+<li><p>Add more great circle routines: <code>great_circle_waypoint</code> and <code>great_circle_destination</code></p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>MIME::Base64</code> upgraded to version 3.07</p>
+
+<ul>
+
+<li><p>Use <code>XSLoader</code> for faster loading</p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>NDBM_File</code> upgraded to version 1.06</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>ODBM_File</code> upgraded to version 1.06</p>
+
+<ul>
+
+<li><p>Documentation typo fixed</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Opcode</code> upgraded to version 1.06</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>open</code> upgraded to version 1.05</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>overload</code> upgraded to version 1.04</p>
+
+<ul>
+
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>PerlIO</code> upgraded to version 1.04</p>
+
+<ul>
+
+<li><p><code>PerlIO::via</code> iterate over layers properly now</p>
+
+</li>
+<li><p><code>PerlIO::scalar</code> understands <code>$/ = &quot;&quot;</code> now</p>
+
+</li>
+<li><p><code>encoding(utf-8-strict)</code> with partial characters now works</p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Pod::Functions</code> upgraded to version 1.03</p>
+
+<ul>
+
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Pod::Html</code> upgraded to version 1.0504</p>
+
+<ul>
+
+<li><p>HTML output will now correctly link to <code>=item</code>s on the same page, and should be valid XHTML.</p>
+
+</li>
+<li><p>Variable names are recognized as intended</p>
+
+</li>
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Pod::Parser</code> upgraded to version 1.32</p>
+
+<ul>
+
+<li><p>Allow files that start with <code>=head</code> on the first line</p>
+
+</li>
+<li><p>Win32 portability fix</p>
+
+</li>
+<li><p>Exit status of <code>pod2usage</code> fixed</p>
+
+</li>
+<li><p>New <code>-noperldoc</code> switch for <code>pod2usage</code></p>
+
+</li>
+<li><p>Arbitrary URL schemes now allowed</p>
+
+</li>
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>POSIX</code> upgraded to version 1.09</p>
+
+<ul>
+
+<li><p>Documentation typos fixed</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>re</code> upgraded to version 0.05</p>
+
+<ul>
+
+<li><p>Documentation typo fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Safe</code> upgraded to version 2.12</p>
+
+<ul>
+
+<li><p>Minor documentation enhancement</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>SDBM_File</code> upgraded to version 1.05</p>
+
+<ul>
+
+<li><p>Documentation typo fixed</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Socket</code> upgraded to version 1.78</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Storable</code> upgraded to version 2.15</p>
+
+<ul>
+
+<li><p>This includes the <code>STORABLE_attach</code> hook functionality added by Adam Kennedy, and more frugal memory requirements when storing under <code>ithreads</code>, by using the <code>ithreads</code> cloning tracking code.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Switch</code> upgraded to version 2.10_01</p>
+
+<ul>
+
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Sys::Syslog</code> upgraded to version 0.13</p>
+
+<ul>
+
+<li><p>Now provides numeric macros and meaningful <code>Exporter</code> tags.</p>
+
+</li>
+<li><p>No longer uses <code>Sys::Hostname</code> as it may provide useless values in unconfigured network environments, so instead uses <code>INADDR_LOOPBACK</code> directly.</p>
+
+</li>
+<li><p><code>syslog()</code> now uses local timestamp.</p>
+
+</li>
+<li><p><code>setlogmask()</code> now behaves like its C counterpart.</p>
+
+</li>
+<li><p><code>setlogsock()</code> will now <code>croak()</code> as documented.</p>
+
+</li>
+<li><p>Improved error and warnings messages.</p>
+
+</li>
+<li><p>Improved documentation.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Term::ANSIColor</code> upgraded to version 1.10</p>
+
+<ul>
+
+<li><p>Fixes a bug in <code>colored</code> when <code>$EACHLINE</code> is set that caused it to not color lines consisting solely of 0 (literal zero).</p>
+
+</li>
+<li><p>Improved tests.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Term::ReadLine</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>Documentation tweaks</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Test::Harness</code> upgraded to version 2.56 (was 2.48)</p>
+
+<ul>
+
+<li><p>The <code>Test::Harness</code> timer is now off by default.</p>
+
+</li>
+<li><p>Now shows elapsed time in milliseconds.</p>
+
+</li>
+<li><p>Various bug fixes</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Test::Simple</code> upgraded to version 0.62 (was 0.54)</p>
+
+<ul>
+
+<li><p><code>is_deeply()</code> no longer fails to work for many cases</p>
+
+</li>
+<li><p>Various minor bug fixes</p>
+
+</li>
+<li><p>Documentation enhancements</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Text::Tabs</code> upgraded to version 2005.0824</p>
+
+<ul>
+
+<li><p>Provides a faster implementation of <code>expand</code></p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Text::Wrap</code> upgraded to version 2005.082401</p>
+
+<ul>
+
+<li><p>Adds <code>$Text::Wrap::separator2</code>, which allows you to preserve existing newlines but add line-breaks with some other string.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>threads</code> upgraded to version 1.07</p>
+
+<ul>
+
+<li><p><code>threads</code> will now honour <code>no warnings &#39;threads&#39;</code></p>
+
+</li>
+<li><p>A thread&#39;s interpreter is now freed after <code>$t-&gt;join()</code> rather than after <code>undef $t</code>, which should fix some <code>ithreads</code> memory leaks. (Fixed by Dave Mitchell)</p>
+
+</li>
+<li><p>Some documentation typo fixes.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>threads::shared</code> upgraded to version 0.94</p>
+
+<ul>
+
+<li><p>Documentation changes only</p>
+
+</li>
+<li><p>Note: An improved implementation of <code>threads::shared</code> is available on CPAN - this will be merged into 5.8.9 if it proves stable.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Tie::Hash</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>Documentation typo fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Time::HiRes</code> upgraded to version 1.86 (was 1.66)</p>
+
+<ul>
+
+<li><p><code>clock_nanosleep()</code> and <code>clock()</code> functions added</p>
+
+</li>
+<li><p>Support for the POSIX <code>clock_gettime()</code> and <code>clock_getres()</code> has been added</p>
+
+</li>
+<li><p>Return <code>undef</code> or an empty list if the C <code>gettimeofday()</code> function fails</p>
+
+</li>
+<li><p>Improved <code>nanosleep</code> detection</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Unicode::Collate</code> upgraded to version 0.52</p>
+
+<ul>
+
+<li><p>Now implements UCA Revision 14 (based on Unicode 4.1.0).</p>
+
+</li>
+<li><p><code>Unicode::Collate-</code>new&gt; method no longer overwrites user&#39;s <code>$_</code></p>
+
+</li>
+<li><p>Enhanced documentation</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Unicode::UCD</code> upgraded to version 0.24</p>
+
+<ul>
+
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>User::grent</code> upgraded to version 1.01</p>
+
+<ul>
+
+<li><p>Documentation typo fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>utf8</code> upgraded to version 1.06</p>
+
+<ul>
+
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>vmsish</code> upgraded to version 1.02</p>
+
+<ul>
+
+<li><p>Documentation typos fixed</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>warnings</code> upgraded to version 1.05</p>
+
+<ul>
+
+<li><p>Gentler messing with <code>Carp::</code> internals</p>
+
+</li>
+<li><p>Internal cleanup</p>
+
+</li>
+<li><p>Documentation update</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>Win32</code> upgraded to version 0.2601</p>
+
+<ul>
+
+<li><p>Provides Windows Vista support to <code>Win32::GetOSName</code></p>
+
+</li>
+<li><p>Documentation enhancements</p>
+
+</li>
+</ul>
+
+</li>
+<li><p><code>XS::Typemap</code> upgraded to version 0.02</p>
+
+<ul>
+
+<li><p>Internal cleanup</p>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+<h1 id="Utility-Changes">Utility Changes</h1>
+
+<h2 id="h2xs-enhancements"><code>h2xs</code> enhancements</h2>
+
+<p><code>h2xs</code> implements new option <code>--use-xsloader</code> to force use of <code>XSLoader</code> even in backwards compatible modules.</p>
+
+<p>The handling of authors&#39; names that had apostrophes has been fixed.</p>
+
+<p>Any enums with negative values are now skipped.</p>
+
+<h2 id="perlivp-enhancements"><code>perlivp</code> enhancements</h2>
+
+<p><code>perlivp</code> implements new option <code>-a</code> and will not check for <i>*.ph</i> files by default any more. Use the <code>-a</code> option to run <i>all</i> tests.</p>
+
+<h1 id="New-Documentation">New Documentation</h1>
+
+<p>The <a href="/perldoc/perlglossary/">perlglossary</a> manpage is a glossary of terms used in the Perl documentation, technical and otherwise, kindly provided by O&#39;Reilly Media, inc.</p>
+
+<h1 id="Performance-Enhancements">Performance Enhancements</h1>
+
+<ul>
+
+<li><p>Weak reference creation is now <i>O(1)</i> rather than <i>O(n)</i>, courtesy of Nicholas Clark. Weak reference deletion remains <i>O(n)</i>, but if deletion only happens at program exit, it may be skipped completely.</p>
+
+</li>
+<li><p>Salvador Fandiño provided improvements to reduce the memory usage of <code>sort</code> and to speed up some cases.</p>
+
+</li>
+<li><p>Jarkko Hietaniemi and Andy Lester worked to mark as much data as possible in the C source files as <code>static</code>, to increase the proportion of the executable file that the operating system can share between process, and thus reduce real memory usage on multi-user systems.</p>
+
+</li>
+</ul>
+
+<h1 id="Installation-and-Configuration-Improvements">Installation and Configuration Improvements</h1>
+
+<p>Parallel makes should work properly now, although there may still be problems if <code>make test</code> is instructed to run in parallel.</p>
+
+<p>Building with Borland&#39;s compilers on Win32 should work more smoothly. In particular Steve Hay has worked to side step many warnings emitted by their compilers and at least one C compiler internal error.</p>
+
+<p><code>Configure</code> will now detect <code>clearenv</code> and <code>unsetenv</code>, thanks to a patch from Alan Burlison. It will also probe for <code>futimes</code> and whether <code>sprintf</code> correctly returns the length of the formatted string, which will both be used in perl 5.8.9.</p>
+
+<p>There are improved hints for next-3.0, vmesa, IX, Darwin, Solaris, Linux, DEC/OSF, HP-UX and MPE/iX</p>
+
+<p>Perl extensions on Windows now can be statically built into the Perl DLL, thanks to a work by Vadim Konovalov. (This improvement was actually in 5.8.7, but was accidentally omitted from <a href="/perldoc/perl587delta/">perl587delta</a>).</p>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<h2 id="no-warnings-category-works-correctly-with--w">no warnings &#39;category&#39; works correctly with -w</h2>
+
+<p>Previously when running with warnings enabled globally via <code>-w</code>, selective disabling of specific warning categories would actually turn off all warnings. This is now fixed; now <code>no warnings &#39;io&#39;;</code> will only turn off warnings in the <code>io</code> class. Previously it would erroneously turn off all warnings.</p>
+
+<p>This bug fix may cause some programs to start correctly issuing warnings.</p>
+
+<h2 id="Remove-over-optimisation">Remove over-optimisation</h2>
+
+<p>Perl 5.8.4 introduced a change so that assignments of <code>undef</code> to a scalar, or of an empty list to an array or a hash, were optimised away. As this could cause problems when <code>goto</code> jumps were involved, this change has been backed out.</p>
+
+<h2 id="sprintf-fixes">sprintf() fixes</h2>
+
+<p>Using the sprintf() function with some formats could lead to a buffer overflow in some specific cases. This has been fixed, along with several other bugs, notably in bounds checking.</p>
+
+<p>In related fixes, it was possible for badly written code that did not follow the documentation of <code>Sys::Syslog</code> to have formatting vulnerabilities. <code>Sys::Syslog</code> has been changed to protect people from poor quality third party code.</p>
+
+<h2 id="Debugger-and-Unicode-slowdown">Debugger and Unicode slowdown</h2>
+
+<p>It had been reported that running under perl&#39;s debugger when processing Unicode data could cause unexpectedly large slowdowns. The most likely cause of this was identified and fixed by Nicholas Clark.</p>
+
+<h2 id="Smaller-fixes">Smaller fixes</h2>
+
+<ul>
+
+<li><p><code>FindBin</code> now works better with directories where access rights are more restrictive than usual.</p>
+
+</li>
+<li><p>Several memory leaks in ithreads were closed. An improved implementation of <code>threads::shared</code> is available on CPAN - this will be merged into 5.8.9 if it proves stable.</p>
+
+</li>
+<li><p>Trailing spaces are now trimmed from <code>$!</code> and <code>$^E</code>.</p>
+
+</li>
+<li><p>Operations that require perl to read a process&#39;s list of groups, such as reads of <code>$(</code> and <code>$)</code>, now dynamically allocate memory rather than using a fixed sized array. The fixed size array could cause C stack exhaustion on systems configured to use large numbers of groups.</p>
+
+</li>
+<li><p><code>PerlIO::scalar</code> now works better with non-default <code>$/</code> settings.</p>
+
+</li>
+<li><p>You can now use the <code>x</code> operator to repeat a <code>qw//</code> list. This used to raise a syntax error.</p>
+
+</li>
+<li><p>The debugger now traces correctly execution in eval(&quot;&quot;)uated code that contains #line directives.</p>
+
+</li>
+<li><p>The value of the <code>open</code> pragma is no longer ignored for three-argument opens.</p>
+
+</li>
+<li><p>The optimisation of <code>for (reverse @a)</code> introduced in perl 5.8.6 could misbehave when the array had undefined elements and was used in LVALUE context. Dave Mitchell provided a fix.</p>
+
+</li>
+<li><p>Some case insensitive matches between UTF-8 encoded data and 8 bit regexps, and vice versa, could give malformed character warnings. These have been fixed by Dave Mitchell and Yves Orton.</p>
+
+</li>
+<li><p><code>lcfirst</code> and <code>ucfirst</code> could corrupt the string for certain cases where the length UTF-8 encoding of the string in lower case, upper case or title case differed. This was fixed by Nicholas Clark.</p>
+
+</li>
+<li><p>Perl will now use the C library calls <code>unsetenv</code> and <code>clearenv</code> if present to delete keys from <code>%ENV</code> and delete <code>%ENV</code> entirely, thanks to a patch from Alan Burlison.</p>
+
+</li>
+</ul>
+
+<h1 id="New-or-Changed-Diagnostics">New or Changed Diagnostics</h1>
+
+<h2 id="Attempt-to-set-length-of-freed-array">Attempt to set length of freed array</h2>
+
+<p>This is a new warning, produced in situations such as this:</p>
+
+<pre><code>    $r = do {my @a; \$#a};
+    $$r = 503;</code></pre>
+
+<h2 id="Non-string-passed-as-bitmask">Non-string passed as bitmask</h2>
+
+<p>This is a new warning, produced when number has been passed as a argument to select(), instead of a bitmask.</p>
+
+<pre><code>    # Wrong, will now warn
+    $rin = fileno(STDIN);
+    ($nfound,$timeleft) = select($rout=$rin, undef, undef, $timeout);
+    
+    # Should be
+    $rin = &#39;&#39;;
+    vec($rin,fileno(STDIN),1) = 1;
+    ($nfound,$timeleft) = select($rout=$rin, undef, undef, $timeout);</code></pre>
+
+<h2 id="Search-pattern-not-terminated-or-ternary-operator-parsed-as-search-pattern">Search pattern not terminated or ternary operator parsed as search pattern</h2>
+
+<p>This syntax error indicates that the lexer couldn&#39;t find the final delimiter of a <code>?PATTERN?</code> construct. Mentioning the ternary operator in this error message makes it easier to diagnose syntax errors.</p>
+
+<h1 id="Changed-Internals">Changed Internals</h1>
+
+<p>There has been a fair amount of refactoring of the <code>C</code> source code, partly to make it tidier and more maintainable. The resulting object code and the <code>perl</code> binary may well be smaller than 5.8.7, in particular due to a change contributed by Dave Mitchell which reworked the warnings code to be significantly smaller. Apart from being smaller and possibly faster, there should be no user-detectable changes.</p>
+
+<p>Andy Lester supplied many improvements to determine which function parameters and local variables could actually be declared <code>const</code> to the C compiler. Steve Peters provided new <code>*_set</code> macros and reworked the core to use these rather than assigning to macros in LVALUE context.</p>
+
+<p>Dave Mitchell improved the lexer debugging output under <code>-DT</code></p>
+
+<p>Nicholas Clark changed the string buffer allocation so that it is now rounded up to the next multiple of 4 (or 8 on platforms with 64 bit pointers). This should reduce the number of calls to <code>realloc</code> without actually using any extra memory.</p>
+
+<p>The <code>HV</code>&#39;s array of <code>HE*</code>s is now allocated at the correct (minimal) size, thanks to another change by Nicholas Clark. Compile with <code>-DPERL_USE_LARGE_HV_ALLOC</code> to use the old, sloppier, default.</p>
+
+<p>For XS or embedding debugging purposes, if perl is compiled with <code>-DDEBUG_LEAKING_SCALARS_FORK_DUMP</code> in addition to <code>-DDEBUG_LEAKING_SCALARS</code> then a child process is <code>fork</code>ed just before global destruction, which is used to display the values of any scalars found to have leaked at the end of global destruction. Without this, the scalars have already been freed sufficiently at the point of detection that it is impossible to produce any meaningful dump of their contents. This feature was implemented by the indefatigable Nicholas Clark, based on an idea by Mike Giroux.</p>
+
+<h1 id="Platform-Specific-Problems">Platform Specific Problems</h1>
+
+<p>The optimiser on HP-UX 11.23 (Itanium 2) is currently partly disabled (scaled down to +O1) when using HP C-ANSI-C; the cause of problems at higher optimisation levels is still unclear.</p>
+
+<p>There are a handful of remaining test failures on VMS, mostly due to test fixes and minor module tweaks with too many dependencies to integrate into this release from the development stream, where they have all been corrected. The following is a list of expected failures with the patch number of the fix where that is known:</p>
+
+<pre><code>    ext/Devel/PPPort/t/ppphtest.t  #26913
+    ext/List/Util/t/p_tainted.t    #26912
+    lib/ExtUtils/t/PL_FILES.t      #26813
+    lib/ExtUtils/t/basic.t         #26813
+    t/io/fs.t
+    t/op/cmp.t</code></pre>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the perl bug database at http://bugs.perl.org. There may also be information at http://www.perl.org, the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <b>perlbug</b> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team. You can browse and search the Perl 5 bugs at http://bugs.perl.org/</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

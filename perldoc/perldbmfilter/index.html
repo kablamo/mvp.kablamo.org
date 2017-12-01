@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perldbmfilter - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perldbmfilter/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perldbmfilter/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perldbmfilter/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perldbmfilter/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perldbmfilter/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perldbmfilter/">perldbmfilter</a>
+    </li>
+</ul>
+(<a href="/perldoc/perldbmfilter/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perldbmfilter - Perl DBM Filters</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code>    $db = tie %hash, &#39;DBM&#39;, ...
+
+    $old_filter = $db-&gt;filter_store_key  ( sub { ... } );
+    $old_filter = $db-&gt;filter_store_value( sub { ... } );
+    $old_filter = $db-&gt;filter_fetch_key  ( sub { ... } );
+    $old_filter = $db-&gt;filter_fetch_value( sub { ... } );</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>The four <code>filter_*</code> methods shown above are available in all the DBM modules that ship with Perl, namely DB_File, GDBM_File, NDBM_File, ODBM_File and SDBM_File.</p>
+
+<p>Each of the methods works identically, and is used to install (or uninstall) a single DBM Filter. The only difference between them is the place that the filter is installed.</p>
+
+<p>To summarise:</p>
+
+<dl>
+
+<dt><b>filter_store_key</b></dt>
+<dd>
+
+<p>If a filter has been installed with this method, it will be invoked every time you write a key to a DBM database.</p>
+
+</dd>
+<dt><b>filter_store_value</b></dt>
+<dd>
+
+<p>If a filter has been installed with this method, it will be invoked every time you write a value to a DBM database.</p>
+
+</dd>
+<dt><b>filter_fetch_key</b></dt>
+<dd>
+
+<p>If a filter has been installed with this method, it will be invoked every time you read a key from a DBM database.</p>
+
+</dd>
+<dt><b>filter_fetch_value</b></dt>
+<dd>
+
+<p>If a filter has been installed with this method, it will be invoked every time you read a value from a DBM database.</p>
+
+</dd>
+</dl>
+
+<p>You can use any combination of the methods from none to all four.</p>
+
+<p>All filter methods return the existing filter, if present, or <code>undef</code> if not.</p>
+
+<p>To delete a filter pass <code>undef</code> to it.</p>
+
+<h2 id="The-Filter">The Filter</h2>
+
+<p>When each filter is called by Perl, a local copy of <code>$_</code> will contain the key or value to be filtered. Filtering is achieved by modifying the contents of <code>$_</code>. The return code from the filter is ignored.</p>
+
+<h2 id="An-Example:-the-NULL-termination-problem">An Example: the NULL termination problem.</h2>
+
+<p>DBM Filters are useful for a class of problems where you <i>always</i> want to make the same transformation to all keys, all values or both.</p>
+
+<p>For example, consider the following scenario. You have a DBM database that you need to share with a third-party C application. The C application assumes that <i>all</i> keys and values are NULL terminated. Unfortunately when Perl writes to DBM databases it doesn&#39;t use NULL termination, so your Perl application will have to manage NULL termination itself. When you write to the database you will have to use something like this:</p>
+
+<pre><code>    $hash{&quot;$key\0&quot;} = &quot;$value\0&quot;;</code></pre>
+
+<p>Similarly the NULL needs to be taken into account when you are considering the length of existing keys/values.</p>
+
+<p>It would be much better if you could ignore the NULL terminations issue in the main application code and have a mechanism that automatically added the terminating NULL to all keys and values whenever you write to the database and have them removed when you read from the database. As I&#39;m sure you have already guessed, this is a problem that DBM Filters can fix very easily.</p>
+
+<pre><code>    use strict;
+    use warnings;
+    use SDBM_File;
+    use Fcntl;
+
+    my %hash;
+    my $filename = &quot;filt&quot;;
+    unlink $filename;
+
+    my $db = tie(%hash, &#39;SDBM_File&#39;, $filename, O_RDWR|O_CREAT, 0640)
+      or die &quot;Cannot open $filename: $!\n&quot;;
+
+    # Install DBM Filters
+    $db-&gt;filter_fetch_key  ( sub { s/\0$//    } );
+    $db-&gt;filter_store_key  ( sub { $_ .= &quot;\0&quot; } );
+    $db-&gt;filter_fetch_value( 
+        sub { no warnings &#39;uninitialized&#39;; s/\0$// } );
+    $db-&gt;filter_store_value( sub { $_ .= &quot;\0&quot; } );
+
+    $hash{&quot;abc&quot;} = &quot;def&quot;;
+    my $a = $hash{&quot;ABC&quot;};
+    # ...
+    undef $db;
+    untie %hash;</code></pre>
+
+<p>The code above uses SDBM_File, but it will work with any of the DBM modules.</p>
+
+<p>Hopefully the contents of each of the filters should be self-explanatory. Both &quot;fetch&quot; filters remove the terminating NULL, and both &quot;store&quot; filters add a terminating NULL.</p>
+
+<h2 id="Another-Example:-Key-is-a-C-int">Another Example: Key is a C int.</h2>
+
+<p>Here is another real-life example. By default, whenever Perl writes to a DBM database it always writes the key and value as strings. So when you use this:</p>
+
+<pre><code>    $hash{12345} = &quot;something&quot;;</code></pre>
+
+<p>the key 12345 will get stored in the DBM database as the 5 byte string &quot;12345&quot;. If you actually want the key to be stored in the DBM database as a C int, you will have to use <code>pack</code> when writing, and <code>unpack</code> when reading.</p>
+
+<p>Here is a DBM Filter that does it:</p>
+
+<pre><code>    use strict;
+    use warnings;
+    use DB_File;
+    my %hash;
+    my $filename = &quot;filt&quot;;
+    unlink $filename;
+
+
+    my $db = tie %hash, &#39;DB_File&#39;, $filename, O_CREAT|O_RDWR, 0666,
+        $DB_HASH or die &quot;Cannot open $filename: $!\n&quot;;
+
+    $db-&gt;filter_fetch_key  ( sub { $_ = unpack(&quot;i&quot;, $_) } );
+    $db-&gt;filter_store_key  ( sub { $_ = pack (&quot;i&quot;, $_) } );
+    $hash{123} = &quot;def&quot;;
+    # ...
+    undef $db;
+    untie %hash;</code></pre>
+
+<p>The code above uses DB_File, but again it will work with any of the DBM modules.</p>
+
+<p>This time only two filters have been used; we only need to manipulate the contents of the key, so it wasn&#39;t necessary to install any value filters.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p><a href="https://metacpan.org/pod/DB_File" rel="external">DB_File</a>, <a href="https://metacpan.org/pod/GDBM_File" rel="external">GDBM_File</a>, <a href="https://metacpan.org/pod/NDBM_File" rel="external">NDBM_File</a>, <a href="https://metacpan.org/pod/ODBM_File" rel="external">ODBM_File</a> and <a href="https://metacpan.org/pod/SDBM_File" rel="external">SDBM_File</a>.</p>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>Paul Marquess</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

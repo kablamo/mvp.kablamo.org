@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlqnx - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlqnx/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlqnx/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlqnx/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlqnx/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlqnx/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlqnx/">perlqnx</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlqnx/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlqnx - Perl version 5 on QNX</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>As of perl5.7.2 all tests pass under:</p>
+
+<pre><code>  QNX 4.24G
+  Watcom 10.6 with Beta/970211.wcc.update.tar.F
+  socket3r.lib Nov21 1996.</code></pre>
+
+<p>As of perl5.8.1 there is at least one test still failing.</p>
+
+<p>Some tests may complain under known circumstances.</p>
+
+<p>See below and hints/qnx.sh for more information.</p>
+
+<p>Under QNX 6.2.0 there are still a few tests which fail. See below and hints/qnx.sh for more information.</p>
+
+<h2 id="Required-Software-for-Compiling-Perl-on-QNX4">Required Software for Compiling Perl on QNX4</h2>
+
+<p>As with many unix ports, this one depends on a few &quot;standard&quot; unix utilities which are not necessarily standard for QNX4.</p>
+
+<dl>
+
+<dt>/bin/sh</dt>
+<dd>
+
+<p>This is used heavily by Configure and then by perl itself. QNX4&#39;s version is fine, but Configure will choke on the 16-bit version, so if you are running QNX 4.22, link /bin/sh to /bin32/ksh</p>
+
+</dd>
+<dt>ar</dt>
+<dd>
+
+<p>This is the standard unix library builder. We use wlib. With Watcom 10.6, when wlib is linked as &quot;ar&quot;, it behaves like ar and all is fine. Under 9.5, a cover is required. One is included in ../qnx</p>
+
+</dd>
+<dt>nm</dt>
+<dd>
+
+<p>This is used (optionally) by configure to list the contents of libraries. I will generate a cover function on the fly in the UU directory.</p>
+
+</dd>
+<dt>cpp</dt>
+<dd>
+
+<p>Configure and perl need a way to invoke a C preprocessor. I have created a simple cover for cc which does the right thing. Without this, Configure will create its own wrapper which works, but it doesn&#39;t handle some of the command line arguments that perl will throw at it.</p>
+
+</dd>
+<dt>make</dt>
+<dd>
+
+<p>You really need GNU make to compile this. GNU make ships by default with QNX 4.23, but you can get it from quics for earlier versions.</p>
+
+</dd>
+</dl>
+
+<h2 id="Outstanding-Issues-with-Perl-on-QNX4">Outstanding Issues with Perl on QNX4</h2>
+
+<p>There is no support for dynamically linked libraries in QNX4.</p>
+
+<p>If you wish to compile with the Socket extension, you need to have the TCP/IP toolkit, and you need to make sure that -lsocket locates the correct copy of socket3r.lib. Beware that the Watcom compiler ships with a stub version of socket3r.lib which has very little functionality. Also beware the order in which wlink searches directories for libraries. You may have /usr/lib/socket3r.lib pointing to the correct library, but wlink may pick up /usr/watcom/10.6/usr/lib/socket3r.lib instead. Make sure they both point to the correct library, that is, /usr/tcptk/current/usr/lib/socket3r.lib.</p>
+
+<p>The following tests may report errors under QNX4:</p>
+
+<p>dist/Cwd/Cwd.t will complain if `pwd` and cwd don&#39;t give the same results. cwd calls `fullpath -t`, so if you cd `fullpath -t` before running the test, it will pass.</p>
+
+<p>lib/File/Find/taint.t will complain if &#39;.&#39; is in your PATH. The PATH test is triggered because cwd calls `fullpath -t`.</p>
+
+<p>ext/IO/lib/IO/t/io_sock.t: Subtests 14 and 22 are skipped due to the fact that the functionality to read back the non-blocking status of a socket is not implemented in QNX&#39;s TCP/IP. This has been reported to QNX and it may work with later versions of TCP/IP.</p>
+
+<p>t/io/tell.t: Subtest 27 is failing. We are still investigating.</p>
+
+<h2 id="QNX-auxiliary-files">QNX auxiliary files</h2>
+
+<p>The files in the &quot;qnx&quot; directory are:</p>
+
+<dl>
+
+<dt>qnx/ar</dt>
+<dd>
+
+<p>A script that emulates the standard unix archive (aka library) utility. Under Watcom 10.6, ar is linked to wlib and provides the expected interface. With Watcom 9.5, a cover function is required. This one is fairly crude but has proved adequate for compiling perl.</p>
+
+</dd>
+<dt>qnx/cpp</dt>
+<dd>
+
+<p>A script that provides C preprocessing functionality. Configure can generate a similar cover, but it doesn&#39;t handle all the command-line options that perl throws at it. This might be reasonably placed in /usr/local/bin.</p>
+
+</dd>
+</dl>
+
+<h2 id="Outstanding-issues-with-perl-under-QNX6">Outstanding issues with perl under QNX6</h2>
+
+<p>The following tests are still failing for Perl 5.8.1 under QNX 6.2.0:</p>
+
+<pre><code>  op/sprintf.........................FAILED at test 91
+  lib/Benchmark......................FAILED at test 26</code></pre>
+
+<p>This is due to a bug in the C library&#39;s printf routine. printf(&quot;&#39;%e&#39;&quot;, 0. ) produces &#39;0.000000e+0&#39;, but ANSI requires &#39;0.000000e+00&#39;. QNX has acknowledged the bug.</p>
+
+<h2 id="Cross-compilation">Cross-compilation</h2>
+
+<p>Perl supports cross-compiling to QNX NTO through the Native Development Kit (NDK) for the Blackberry 10. This means that you can cross-compile for both ARM and x86 versions of the platform.</p>
+
+<h3 id="Setting-up-a-cross-compilation-environment">Setting up a cross-compilation environment</h3>
+
+<p>You can download the NDK from <a href="http://developer.blackberry.com/native/downloads/" rel="external">http://developer.blackberry.com/native/downloads/</a>.</p>
+
+<p>See <a href="http://developer.blackberry.com/native/documentation/cascades/getting_started/setting_up.html" rel="external">http://developer.blackberry.com/native/documentation/cascades/getting_started/setting_up.html</a> for instructions to set up your device prior to attempting anything else.</p>
+
+<p>Once you&#39;ve installed the NDK and set up your device, all that&#39;s left to do is setting up the device and the cross-compilation environment. Blackberry provides a script, <code>bbndk-env.sh</code> (occasionally named something like <code>bbndk-env_10_1_0_4828.sh</code>) which can be used to do this. However, there&#39;s a bit of a snag that we have to work through: The script modifies PATH so that &#39;gcc&#39; or &#39;ar&#39; point to their cross-compilation equivalents, which screws over the build process.</p>
+
+<p>So instead you&#39;ll want to do something like this:</p>
+
+<pre><code>    $ orig_path=$PATH
+    $ source $location_of_bbndk/bbndk-env*.sh
+    $ export PATH=&quot;$orig_path:$PATH&quot;</code></pre>
+
+<p>Besides putting the cross-compiler and the rest of the toolchain in your PATH, this will also provide the QNX_TARGET variable, which we will pass to Configure through -Dsysroot.</p>
+
+<h3 id="Preparing-the-target-system">Preparing the target system</h3>
+
+<p>It&#39;s quite possible that the target system doesn&#39;t have a readily available /tmp, so it&#39;s generall safer to do something like this:</p>
+
+<pre><code> $ ssh $TARGETUSER@$TARGETHOST &#39;rm -rf perl; mkdir perl; mkdir perl/tmp&#39;
+ $ export TARGETDIR=`ssh $TARGETUSER@$TARGETHOST pwd`/perl
+ $ export TARGETENV=&quot;export TMPDIR=$TARGETDIR/tmp; &quot;</code></pre>
+
+<p>Later on, we&#39;ll pass this to Configure through -Dtargetenv</p>
+
+<h3 id="Calling-Configure">Calling Configure</h3>
+
+<p>If you are targetting an ARM device -- which currently includes the vast majority of phones and tablets -- you&#39;ll want to pass -Dcc=arm-unknown-nto-qnx8.0.0eabi-gcc to Configure. Alternatively, if you are targetting an x86 device, or using the simulator provided with the NDK, you should specify -Dcc=ntox86-gcc instead.</p>
+
+<p>A sample Configure invocation looks something like this:</p>
+
+<pre><code>    ./Configure -des -Dusecrosscompile \
+        -Dsysroot=$QNX_TARGET          \
+        -Dtargetdir=$TARGETDIR         \
+        -Dtargetenv=&quot;$TARGETENV&quot;       \
+        -Dcc=ntox86-gcc                \
+        -Dtarghost=... # Usual cross-compilation options</code></pre>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>Norton T. Allen (allen@huarp.harvard.edu)</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

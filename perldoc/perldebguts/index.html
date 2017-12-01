@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perldebguts - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perldebguts/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perldebguts/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perldebguts/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perldebguts/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perldebguts/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perldebguts/">perldebguts</a>
+    </li>
+</ul>
+(<a href="/perldoc/perldebguts/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perldebguts - Guts of Perl debugging</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This is not <a href="/perldoc/perldebug/">perldebug</a>, which tells you how to use the debugger. This manpage describes low-level details concerning the debugger&#39;s internals, which range from difficult to impossible to understand for anyone who isn&#39;t incredibly intimate with Perl&#39;s guts. Caveat lector.</p>
+
+<h1 id="Debugger-Internals">Debugger Internals</h1>
+
+<p>Perl has special debugging hooks at compile-time and run-time used to create debugging environments. These hooks are not to be confused with the <i>perl -Dxxx</i> command described in <a href="/perldoc/perlrun/">perlrun</a>, which is usable only if a special Perl is built per the instructions in the <i>INSTALL</i> podpage in the Perl source tree.</p>
+
+<p>For example, whenever you call Perl&#39;s built-in <code>caller</code> function from the package <code>DB</code>, the arguments that the corresponding stack frame was called with are copied to the <code>@DB::args</code> array. These mechanisms are enabled by calling Perl with the <b>-d</b> switch. Specifically, the following additional features are enabled (cf. <a href="/perldoc/perlvar/#P">&quot;$^P&quot; in perlvar</a>):</p>
+
+<ul>
+
+<li><p>Perl inserts the contents of <code>$ENV{PERL5DB}</code> (or <code>BEGIN {require &#39;perl5db.pl&#39;}</code> if not present) before the first line of your program.</p>
+
+</li>
+<li><p>Each array <code>@{&quot;_&lt;$filename&quot;}</code> holds the lines of $filename for a file compiled by Perl. The same is also true for <code>eval</code>ed strings that contain subroutines, or which are currently being executed. The $filename for <code>eval</code>ed strings looks like <code>(eval 34)</code>.</p>
+
+<p>Values in this array are magical in numeric context: they compare equal to zero only if the line is not breakable.</p>
+
+</li>
+<li><p>Each hash <code>%{&quot;_&lt;$filename&quot;}</code> contains breakpoints and actions keyed by line number. Individual entries (as opposed to the whole hash) are settable. Perl only cares about Boolean true here, although the values used by <i>perl5db.pl</i> have the form <code>&quot;$break_condition\0$action&quot;</code>.</p>
+
+<p>The same holds for evaluated strings that contain subroutines, or which are currently being executed. The $filename for <code>eval</code>ed strings looks like <code>(eval 34)</code>.</p>
+
+</li>
+<li><p>Each scalar <code>${&quot;_&lt;$filename&quot;}</code> contains <code>&quot;_&lt;$filename&quot;</code>. This is also the case for evaluated strings that contain subroutines, or which are currently being executed. The $filename for <code>eval</code>ed strings looks like <code>(eval 34)</code>.</p>
+
+</li>
+<li><p>After each <code>require</code>d file is compiled, but before it is executed, <code>DB::postponed(*{&quot;_&lt;$filename&quot;})</code> is called if the subroutine <code>DB::postponed</code> exists. Here, the $filename is the expanded name of the <code>require</code>d file, as found in the values of %INC.</p>
+
+</li>
+<li><p>After each subroutine <code>subname</code> is compiled, the existence of <code>$DB::postponed{subname}</code> is checked. If this key exists, <code>DB::postponed(subname)</code> is called if the <code>DB::postponed</code> subroutine also exists.</p>
+
+</li>
+<li><p>A hash <code>%DB::sub</code> is maintained, whose keys are subroutine names and whose values have the form <code>filename:startline-endline</code>. <code>filename</code> has the form <code>(eval 34)</code> for subroutines defined inside <code>eval</code>s.</p>
+
+</li>
+<li><p>When the execution of your program reaches a point that can hold a breakpoint, the <code>DB::DB()</code> subroutine is called if any of the variables <code>$DB::trace</code>, <code>$DB::single</code>, or <code>$DB::signal</code> is true. These variables are not <code>local</code>izable. This feature is disabled when executing inside <code>DB::DB()</code>, including functions called from it unless <code>$^D &amp; (1&lt;&lt;30)</code> is true.</p>
+
+</li>
+<li><p>When execution of the program reaches a subroutine call, a call to <code>&amp;DB::sub</code>(<i>args</i>) is made instead, with <code>$DB::sub</code> holding the name of the called subroutine. (This doesn&#39;t happen if the subroutine was compiled in the <code>DB</code> package.)</p>
+
+<p>If the call is to an lvalue subroutine, and <code>&amp;DB::lsub</code> is defined <code>&amp;DB::lsub</code>(<i>args</i>) is called instead, otherwise falling back to <code>&amp;DB::sub</code>(<i>args</i>).</p>
+
+</li>
+<li><p>When execution of the program uses <code>goto</code> to enter a non-XS subroutine and the 0x80 bit is set in <code>$^P</code>, a call to <code>&amp;DB::goto</code> is made, with <code>$DB::sub</code> holding the name of the subroutine being entered.</p>
+
+</li>
+</ul>
+
+<p>Note that if <code>&amp;DB::sub</code> needs external data for it to work, no subroutine call is possible without it. As an example, the standard debugger&#39;s <code>&amp;DB::sub</code> depends on the <code>$DB::deep</code> variable (it defines how many levels of recursion deep into the debugger you can go before a mandatory break). If <code>$DB::deep</code> is not defined, subroutine calls are not possible, even though <code>&amp;DB::sub</code> exists.</p>
+
+<h2 id="Writing-Your-Own-Debugger">Writing Your Own Debugger</h2>
+
+<h3 id="Environment-Variables">Environment Variables</h3>
+
+<p>The <code>PERL5DB</code> environment variable can be used to define a debugger. For example, the minimal &quot;working&quot; debugger (it actually doesn&#39;t do anything) consists of one line:</p>
+
+<pre><code>  sub DB::DB {}</code></pre>
+
+<p>It can easily be defined like this:</p>
+
+<pre><code>  $ PERL5DB=&quot;sub DB::DB {}&quot; perl -d your-script</code></pre>
+
+<p>Another brief debugger, slightly more useful, can be created with only the line:</p>
+
+<pre><code>  sub DB::DB {print ++$i; scalar &lt;STDIN&gt;}</code></pre>
+
+<p>This debugger prints a number which increments for each statement encountered and waits for you to hit a newline before continuing to the next statement.</p>
+
+<p>The following debugger is actually useful:</p>
+
+<pre><code>  {
+    package DB;
+    sub DB  {}
+    sub sub {print ++$i, &quot; $sub\n&quot;; &amp;$sub}
+  }</code></pre>
+
+<p>It prints the sequence number of each subroutine call and the name of the called subroutine. Note that <code>&amp;DB::sub</code> is being compiled into the package <code>DB</code> through the use of the <code>package</code> directive.</p>
+
+<p>When it starts, the debugger reads your rc file (<i>./.perldb</i> or <i>~/.perldb</i> under Unix), which can set important options. (A subroutine (<code>&amp;afterinit</code>) can be defined here as well; it is executed after the debugger completes its own initialization.)</p>
+
+<p>After the rc file is read, the debugger reads the PERLDB_OPTS environment variable and uses it to set debugger options. The contents of this variable are treated as if they were the argument of an <code>o ...</code> debugger command (q.v. in <a href="/perldoc/perldebug/#Configurable-Options">&quot;Configurable Options&quot; in perldebug</a>).</p>
+
+<h3 id="Debugger-Internal-Variables">Debugger Internal Variables</h3>
+
+<p>In addition to the file and subroutine-related variables mentioned above, the debugger also maintains various magical internal variables.</p>
+
+<ul>
+
+<li><p><code>@DB::dbline</code> is an alias for <code>@{&quot;::_&lt;current_file&quot;}</code>, which holds the lines of the currently-selected file (compiled by Perl), either explicitly chosen with the debugger&#39;s <code>f</code> command, or implicitly by flow of execution.</p>
+
+<p>Values in this array are magical in numeric context: they compare equal to zero only if the line is not breakable.</p>
+
+</li>
+<li><p><code>%DB::dbline</code> is an alias for <code>%{&quot;::_&lt;current_file&quot;}</code>, which contains breakpoints and actions keyed by line number in the currently-selected file, either explicitly chosen with the debugger&#39;s <code>f</code> command, or implicitly by flow of execution.</p>
+
+<p>As previously noted, individual entries (as opposed to the whole hash) are settable. Perl only cares about Boolean true here, although the values used by <i>perl5db.pl</i> have the form <code>&quot;$break_condition\0$action&quot;</code>.</p>
+
+</li>
+</ul>
+
+<h3 id="Debugger-Customization-Functions">Debugger Customization Functions</h3>
+
+<p>Some functions are provided to simplify customization.</p>
+
+<ul>
+
+<li><p>See <a href="/perldoc/perldebug/#Configurable-Options">&quot;Configurable Options&quot; in perldebug</a> for a description of options parsed by <code>DB::parse_options(string)</code>.</p>
+
+</li>
+<li><p><code>DB::dump_trace(skip[,count])</code> skips the specified number of frames and returns a list containing information about the calling frames (all of them, if <code>count</code> is missing). Each entry is reference to a hash with keys <code>context</code> (either <code>.</code>, <code>$</code>, or <code>@</code>), <code>sub</code> (subroutine name, or info about <code>eval</code>), <code>args</code> (<code>undef</code> or a reference to an array), <code>file</code>, and <code>line</code>.</p>
+
+</li>
+<li><p><code>DB::print_trace(FH, skip[, count[, short]])</code> prints formatted info about caller frames. The last two functions may be convenient as arguments to <code>&lt;</code>, <code>&lt;&lt;</code> commands.</p>
+
+</li>
+</ul>
+
+<p>Note that any variables and functions that are not documented in this manpages (or in <a href="/perldoc/perldebug/">perldebug</a>) are considered for internal use only, and as such are subject to change without notice.</p>
+
+<h1 id="Frame-Listing-Output-Examples">Frame Listing Output Examples</h1>
+
+<p>The <code>frame</code> option can be used to control the output of frame information. For example, contrast this expression trace:</p>
+
+<pre><code> $ perl -de 42
+ Stack dump during die enabled outside of evals.
+
+ Loading DB routines from perl5db.pl patch level 0.94
+ Emacs support available.
+
+ Enter h or &#39;h h&#39; for help.
+
+ main::(-e:1):   0
+   DB&lt;1&gt; sub foo { 14 }
+
+   DB&lt;2&gt; sub bar { 3 }
+
+   DB&lt;3&gt; t print foo() * bar()
+ main::((eval 172):3):   print foo() + bar();
+ main::foo((eval 168):2):
+ main::bar((eval 170):2):
+ 42</code></pre>
+
+<p>with this one, once the <code>o</code>ption <code>frame=2</code> has been set:</p>
+
+<pre><code>   DB&lt;4&gt; o f=2
+                frame = &#39;2&#39;
+   DB&lt;5&gt; t print foo() * bar()
+ 3:      foo() * bar()
+ entering main::foo
+  2:     sub foo { 14 };
+ exited main::foo
+ entering main::bar
+  2:     sub bar { 3 };
+ exited main::bar
+ 42</code></pre>
+
+<p>By way of demonstration, we present below a laborious listing resulting from setting your <code>PERLDB_OPTS</code> environment variable to the value <code>f=n N</code>, and running <i>perl -d -V</i> from the command line. Examples using various values of <code>n</code> are shown to give you a feel for the difference between settings. Long though it may be, this is not a complete listing, but only excerpts.</p>
+
+<ol>
+
+<li><p></p>
+
+<pre><code> entering main::BEGIN
+  entering Config::BEGIN
+   Package lib/Exporter.pm.
+   Package lib/Carp.pm.
+  Package lib/Config.pm.
+  entering Config::TIEHASH
+  entering Exporter::import
+   entering Exporter::export
+ entering Config::myconfig
+  entering Config::FETCH
+  entering Config::FETCH
+  entering Config::FETCH
+  entering Config::FETCH</code></pre>
+
+</li>
+<li><p></p>
+
+<pre><code> entering main::BEGIN
+  entering Config::BEGIN
+   Package lib/Exporter.pm.
+   Package lib/Carp.pm.
+  exited Config::BEGIN
+  Package lib/Config.pm.
+  entering Config::TIEHASH
+  exited Config::TIEHASH
+  entering Exporter::import
+   entering Exporter::export
+   exited Exporter::export
+  exited Exporter::import
+ exited main::BEGIN
+ entering Config::myconfig
+  entering Config::FETCH
+  exited Config::FETCH
+  entering Config::FETCH
+  exited Config::FETCH
+  entering Config::FETCH</code></pre>
+
+</li>
+<li><p></p>
+
+<pre><code> in  $=main::BEGIN() from /dev/null:0
+  in  $=Config::BEGIN() from lib/Config.pm:2
+   Package lib/Exporter.pm.
+   Package lib/Carp.pm.
+  Package lib/Config.pm.
+  in  $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:644
+  in  $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+   in  $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from li
+ in  @=Config::myconfig() from /dev/null:0
+  in  $=Config::FETCH(ref(Config), &#39;package&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;baserev&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;PERL_VERSION&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;PERL_SUBVERSION&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;osname&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;osvers&#39;) from lib/Config.pm:574</code></pre>
+
+</li>
+<li><p></p>
+
+<pre><code> in  $=main::BEGIN() from /dev/null:0
+  in  $=Config::BEGIN() from lib/Config.pm:2
+   Package lib/Exporter.pm.
+   Package lib/Carp.pm.
+  out $=Config::BEGIN() from lib/Config.pm:0
+  Package lib/Config.pm.
+  in  $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:644
+  out $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:644
+  in  $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+   in  $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from lib/
+   out $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from lib/
+  out $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+ out $=main::BEGIN() from /dev/null:0
+ in  @=Config::myconfig() from /dev/null:0
+  in  $=Config::FETCH(ref(Config), &#39;package&#39;) from lib/Config.pm:574
+  out $=Config::FETCH(ref(Config), &#39;package&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;baserev&#39;) from lib/Config.pm:574
+  out $=Config::FETCH(ref(Config), &#39;baserev&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;PERL_VERSION&#39;) from lib/Config.pm:574
+  out $=Config::FETCH(ref(Config), &#39;PERL_VERSION&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(ref(Config), &#39;PERL_SUBVERSION&#39;) from lib/Config.pm:574</code></pre>
+
+</li>
+<li><p></p>
+
+<pre><code> in  $=main::BEGIN() from /dev/null:0
+  in  $=Config::BEGIN() from lib/Config.pm:2
+   Package lib/Exporter.pm.
+   Package lib/Carp.pm.
+  out $=Config::BEGIN() from lib/Config.pm:0
+  Package lib/Config.pm.
+  in  $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:644
+  out $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:644
+  in  $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+   in  $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from lib/E
+   out $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from lib/E
+  out $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+ out $=main::BEGIN() from /dev/null:0
+ in  @=Config::myconfig() from /dev/null:0
+  in  $=Config::FETCH(&#39;Config=HASH(0x1aa444)&#39;, &#39;package&#39;) from lib/Config.pm:574
+  out $=Config::FETCH(&#39;Config=HASH(0x1aa444)&#39;, &#39;package&#39;) from lib/Config.pm:574
+  in  $=Config::FETCH(&#39;Config=HASH(0x1aa444)&#39;, &#39;baserev&#39;) from lib/Config.pm:574
+  out $=Config::FETCH(&#39;Config=HASH(0x1aa444)&#39;, &#39;baserev&#39;) from lib/Config.pm:574</code></pre>
+
+</li>
+<li><p></p>
+
+<pre><code> in  $=CODE(0x15eca4)() from /dev/null:0
+  in  $=CODE(0x182528)() from lib/Config.pm:2
+   Package lib/Exporter.pm.
+  out $=CODE(0x182528)() from lib/Config.pm:0
+  scalar context return from CODE(0x182528): undef
+  Package lib/Config.pm.
+  in  $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:628
+  out $=Config::TIEHASH(&#39;Config&#39;) from lib/Config.pm:628
+  scalar context return from Config::TIEHASH:   empty hash
+  in  $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+   in  $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from lib/Exporter.pm:171
+   out $=Exporter::export(&#39;Config&#39;, &#39;main&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from lib/Exporter.pm:171
+   scalar context return from Exporter::export: &#39;&#39;
+  out $=Exporter::import(&#39;Config&#39;, &#39;myconfig&#39;, &#39;config_vars&#39;) from /dev/null:0
+  scalar context return from Exporter::import: &#39;&#39;</code></pre>
+
+</li>
+</ol>
+
+<p>In all cases shown above, the line indentation shows the call tree. If bit 2 of <code>frame</code> is set, a line is printed on exit from a subroutine as well. If bit 4 is set, the arguments are printed along with the caller info. If bit 8 is set, the arguments are printed even if they are tied or references. If bit 16 is set, the return value is printed, too.</p>
+
+<p>When a package is compiled, a line like this</p>
+
+<pre><code>    Package lib/Carp.pm.</code></pre>
+
+<p>is printed with proper indentation.</p>
+
+<h1 id="Debugging-Regular-Expressions">Debugging Regular Expressions</h1>
+
+<p>There are two ways to enable debugging output for regular expressions.</p>
+
+<p>If your perl is compiled with <code>-DDEBUGGING</code>, you may use the <b>-Dr</b> flag on the command line.</p>
+
+<p>Otherwise, one can <code>use re &#39;debug&#39;</code>, which has effects at compile time and run time. Since Perl 5.9.5, this pragma is lexically scoped.</p>
+
+<h2 id="Compile-time-Output">Compile-time Output</h2>
+
+<p>The debugging output at compile time looks like this:</p>
+
+<pre><code>  Compiling REx &#39;[bc]d(ef*g)+h[ij]k$&#39;
+  size 45 Got 364 bytes for offset annotations.
+  first at 1
+  rarest char g at 0
+  rarest char d at 0
+     1: ANYOF[bc](12)
+    12: EXACT &lt;d&gt;(14)
+    14: CURLYX[0] {1,32767}(28)
+    16:   OPEN1(18)
+    18:     EXACT &lt;e&gt;(20)
+    20:     STAR(23)
+    21:       EXACT &lt;f&gt;(0)
+    23:     EXACT &lt;g&gt;(25)
+    25:   CLOSE1(27)
+    27:   WHILEM[1/1](0)
+    28: NOTHING(29)
+    29: EXACT &lt;h&gt;(31)
+    31: ANYOF[ij](42)
+    42: EXACT &lt;k&gt;(44)
+    44: EOL(45)
+    45: END(0)
+  anchored &#39;de&#39; at 1 floating &#39;gh&#39; at 3..2147483647 (checking floating) 
+        stclass &#39;ANYOF[bc]&#39; minlen 7 
+  Offsets: [45]
+        1[4] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 5[1]
+        0[0] 12[1] 0[0] 6[1] 0[0] 7[1] 0[0] 9[1] 8[1] 0[0] 10[1] 0[0]
+        11[1] 0[0] 12[0] 12[0] 13[1] 0[0] 14[4] 0[0] 0[0] 0[0] 0[0]
+        0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 18[1] 0[0] 19[1] 20[0]  
+  Omitting $` $&amp; $&#39; support.</code></pre>
+
+<p>The first line shows the pre-compiled form of the regex. The second shows the size of the compiled form (in arbitrary units, usually 4-byte words) and the total number of bytes allocated for the offset/length table, usually 4+<code>size</code>*8. The next line shows the label <i>id</i> of the first node that does a match.</p>
+
+<p>The</p>
+
+<pre><code>  anchored &#39;de&#39; at 1 floating &#39;gh&#39; at 3..2147483647 (checking floating) 
+        stclass &#39;ANYOF[bc]&#39; minlen 7 </code></pre>
+
+<p>line (split into two lines above) contains optimizer information. In the example shown, the optimizer found that the match should contain a substring <code>de</code> at offset 1, plus substring <code>gh</code> at some offset between 3 and infinity. Moreover, when checking for these substrings (to abandon impossible matches quickly), Perl will check for the substring <code>gh</code> before checking for the substring <code>de</code>. The optimizer may also use the knowledge that the match starts (at the <code>first</code> <i>id</i>) with a character class, and no string shorter than 7 characters can possibly match.</p>
+
+<p>The fields of interest which may appear in this line are</p>
+
+<dl>
+
+<dt><code>anchored</code> <i>STRING</i> <code>at</code> <i>POS</i></dt>
+<dd>
+
+</dd>
+<dt><code>floating</code> <i>STRING</i> <code>at</code> <i>POS1..POS2</i></dt>
+<dd>
+
+<p>See above.</p>
+
+</dd>
+<dt><code>matching floating/anchored</code></dt>
+<dd>
+
+<p>Which substring to check first.</p>
+
+</dd>
+<dt><code>minlen</code></dt>
+<dd>
+
+<p>The minimal length of the match.</p>
+
+</dd>
+<dt><code>stclass</code> <i>TYPE</i></dt>
+<dd>
+
+<p>Type of first matching node.</p>
+
+</dd>
+<dt><code>noscan</code></dt>
+<dd>
+
+<p>Don&#39;t scan for the found substrings.</p>
+
+</dd>
+<dt><code>isall</code></dt>
+<dd>
+
+<p>Means that the optimizer information is all that the regular expression contains, and thus one does not need to enter the regex engine at all.</p>
+
+</dd>
+<dt><code>GPOS</code></dt>
+<dd>
+
+<p>Set if the pattern contains <code>\G</code>.</p>
+
+</dd>
+<dt><code>plus</code></dt>
+<dd>
+
+<p>Set if the pattern starts with a repeated char (as in <code>x+y</code>).</p>
+
+</dd>
+<dt><code>implicit</code></dt>
+<dd>
+
+<p>Set if the pattern starts with <code>.*</code>.</p>
+
+</dd>
+<dt><code>with eval</code></dt>
+<dd>
+
+<p>Set if the pattern contain eval-groups, such as <code>(?{ code })</code> and <code>(??{ code })</code>.</p>
+
+</dd>
+<dt><code>anchored(TYPE)</code></dt>
+<dd>
+
+<p>If the pattern may match only at a handful of places, with <code>TYPE</code> being <code>SBOL</code>, <code>MBOL</code>, or <code>GPOS</code>. See the table below.</p>
+
+</dd>
+</dl>
+
+<p>If a substring is known to match at end-of-line only, it may be followed by <code>$</code>, as in <code>floating &#39;k&#39;$</code>.</p>
+
+<p>The optimizer-specific information is used to avoid entering (a slow) regex engine on strings that will not definitely match. If the <code>isall</code> flag is set, a call to the regex engine may be avoided even when the optimizer found an appropriate place for the match.</p>
+
+<p>Above the optimizer section is the list of <i>nodes</i> of the compiled form of the regex. Each line has format</p>
+
+<p><code> </code><i>id</i>: <i>TYPE</i> <i>OPTIONAL-INFO</i> (<i>next-id</i>)</p>
+
+<h2 id="Types-of-Nodes">Types of Nodes</h2>
+
+<p>Here are the current possible types, with short descriptions:</p>
+
+<pre><code> # TYPE arg-description [num-args] [longjump-len] DESCRIPTION
+
+ # Exit points
+
+ END             no         End of program.
+ SUCCEED         no         Return from a subroutine, basically.
+
+ # Line Start Anchors:
+ SBOL            no         Match &quot;&quot; at beginning of line: /^/, /\A/
+ MBOL            no         Same, assuming multiline: /^/m
+
+ # Line End Anchors:
+ SEOL            no         Match &quot;&quot; at end of line: /$/
+ MEOL            no         Same, assuming multiline: /$/m
+ EOS             no         Match &quot;&quot; at end of string: /\z/
+
+ # Match Start Anchors:
+ GPOS            no         Matches where last m//g left off.
+
+ # Word Boundary Opcodes:
+ BOUND           no         Like BOUNDA for non-utf8, otherwise match &quot;&quot;
+                            between any Unicode \w\W or \W\w
+ BOUNDL          no         Like BOUND/BOUNDU, but \w and \W are defined
+                            by current locale
+ BOUNDU          no         Match &quot;&quot; at any boundary of a given type
+                            using Unicode rules
+ BOUNDA          no         Match &quot;&quot; at any boundary between \w\W or
+                            \W\w, where \w is [_a-zA-Z0-9]
+ NBOUND          no         Like NBOUNDA for non-utf8, otherwise match
+                            &quot;&quot; between any Unicode \w\w or \W\W
+ NBOUNDL         no         Like NBOUND/NBOUNDU, but \w and \W are
+                            defined by current locale
+ NBOUNDU         no         Match &quot;&quot; at any non-boundary of a given type
+                            using using Unicode rules
+ NBOUNDA         no         Match &quot;&quot; betweeen any \w\w or \W\W, where \w
+                            is [_a-zA-Z0-9]
+
+ # [Special] alternatives:
+ REG_ANY         no         Match any one character (except newline).
+ SANY            no         Match any one character.
+ ANYOF           sv 1       Match character in (or not in) this class,
+                            single char match only
+ ANYOFD          sv 1       Like ANYOF, but /d is in effect
+ ANYOFL          sv 1       Like ANYOF, but /l is in effect
+
+ # POSIX Character Classes:
+ POSIXD          none       Some [[:class:]] under /d; the FLAGS field
+                            gives which one
+ POSIXL          none       Some [[:class:]] under /l; the FLAGS field
+                            gives which one
+ POSIXU          none       Some [[:class:]] under /u; the FLAGS field
+                            gives which one
+ POSIXA          none       Some [[:class:]] under /a; the FLAGS field
+                            gives which one
+ NPOSIXD         none       complement of POSIXD, [[:^class:]]
+ NPOSIXL         none       complement of POSIXL, [[:^class:]]
+ NPOSIXU         none       complement of POSIXU, [[:^class:]]
+ NPOSIXA         none       complement of POSIXA, [[:^class:]]
+
+ CLUMP           no         Match any extended grapheme cluster sequence
+
+ # Alternation
+
+ # BRANCH        The set of branches constituting a single choice are
+ #               hooked together with their &quot;next&quot; pointers, since
+ #               precedence prevents anything being concatenated to
+ #               any individual branch.  The &quot;next&quot; pointer of the last
+ #               BRANCH in a choice points to the thing following the
+ #               whole choice.  This is also where the final &quot;next&quot;
+ #               pointer of each individual branch points; each branch
+ #               starts with the operand node of a BRANCH node.
+ #
+ BRANCH          node       Match this alternative, or the next...
+
+ # Literals
+
+ EXACT           str        Match this string (preceded by length).
+ EXACTL          str        Like EXACT, but /l is in effect (used so
+                            locale-related warnings can be checked for).
+ EXACTF          str        Match this non-UTF-8 string (not guaranteed
+                            to be folded) using /id rules (w/len).
+ EXACTFL         str        Match this string (not guaranteed to be
+                            folded) using /il rules (w/len).
+ EXACTFU         str        Match this string (folded iff in UTF-8,
+                            length in folding doesn&#39;t change if not in
+                            UTF-8) using /iu rules (w/len).
+ EXACTFA         str        Match this string (not guaranteed to be
+                            folded) using /iaa rules (w/len).
+
+ EXACTFU_SS      str        Match this string (folded iff in UTF-8,
+                            length in folding may change even if not in
+                            UTF-8) using /iu rules (w/len).
+ EXACTFLU8       str        Rare cirucmstances: like EXACTFU, but is
+                            under /l, UTF-8, folded, and everything in
+                            it is above 255.
+ EXACTFA_NO_TRIE str        Match this string (which is not trie-able;
+                            not guaranteed to be folded) using /iaa
+                            rules (w/len).
+
+ # Do nothing types
+
+ NOTHING         no         Match empty string.
+ # A variant of above which delimits a group, thus stops optimizations
+ TAIL            no         Match empty string. Can jump here from
+                            outside.
+
+ # Loops
+
+ # STAR,PLUS    &#39;?&#39;, and complex &#39;*&#39; and &#39;+&#39;, are implemented as
+ #               circular BRANCH structures.  Simple cases
+ #               (one character per match) are implemented with STAR
+ #               and PLUS for speed and to minimize recursive plunges.
+ #
+ STAR            node       Match this (simple) thing 0 or more times.
+ PLUS            node       Match this (simple) thing 1 or more times.
+
+ CURLY           sv 2       Match this simple thing {n,m} times.
+ CURLYN          no 2       Capture next-after-this simple thing
+ CURLYM          no 2       Capture this medium-complex thing {n,m}
+                            times.
+ CURLYX          sv 2       Match this complex thing {n,m} times.
+
+ # This terminator creates a loop structure for CURLYX
+ WHILEM          no         Do curly processing and see if rest matches.
+
+ # Buffer related
+
+ # OPEN,CLOSE,GROUPP     ...are numbered at compile time.
+ OPEN            num 1      Mark this point in input as start of #n.
+ CLOSE           num 1      Analogous to OPEN.
+
+ REF             num 1      Match some already matched string
+ REFF            num 1      Match already matched string, folded using
+                            native charset rules for non-utf8
+ REFFL           num 1      Match already matched string, folded in loc.
+ REFFU           num 1      Match already matched string, folded using
+                            unicode rules for non-utf8
+ REFFA           num 1      Match already matched string, folded using
+                            unicode rules for non-utf8, no mixing ASCII,
+                            non-ASCII
+
+ # Named references.  Code in regcomp.c assumes that these all are after
+ # the numbered references
+ NREF            no-sv 1    Match some already matched string
+ NREFF           no-sv 1    Match already matched string, folded using
+                            native charset rules for non-utf8
+ NREFFL          no-sv 1    Match already matched string, folded in loc.
+ NREFFU          num 1      Match already matched string, folded using
+                            unicode rules for non-utf8
+ NREFFA          num 1      Match already matched string, folded using
+                            unicode rules for non-utf8, no mixing ASCII,
+                            non-ASCII
+
+ # Support for long RE
+ LONGJMP         off 1 1    Jump far away.
+ BRANCHJ         off 1 1    BRANCH with long offset.
+
+ # Special Case Regops
+ IFMATCH         off 1 2    Succeeds if the following matches.
+ UNLESSM         off 1 2    Fails if the following matches.
+ SUSPEND         off 1 1    &quot;Independent&quot; sub-RE.
+ IFTHEN          off 1 1    Switch, should be preceded by switcher.
+ GROUPP          num 1      Whether the group matched.
+
+ # The heavy worker
+
+ EVAL            evl/flags  Execute some Perl code.
+                 2L
+
+ # Modifiers
+
+ MINMOD          no         Next operator is not greedy.
+ LOGICAL         no         Next opcode should set the flag only.
+
+ # This is not used yet
+ RENUM           off 1 1    Group with independently numbered parens.
+
+ # Trie Related
+
+ # Behave the same as A|LIST|OF|WORDS would. The &#39;..C&#39; variants
+ # have inline charclass data (ascii only), the &#39;C&#39; store it in the
+ # structure.
+
+ TRIE            trie 1     Match many EXACT(F[ALU]?)? at once.
+                            flags==type
+ TRIEC           trie       Same as TRIE, but with embedded charclass
+                 charclass  data
+
+ AHOCORASICK     trie 1     Aho Corasick stclass. flags==type
+ AHOCORASICKC    trie       Same as AHOCORASICK, but with embedded
+                 charclass  charclass data
+
+ # Regex Subroutines
+ GOSUB           num/ofs 2L recurse to paren arg1 at (signed) ofs arg2
+
+ # Special conditionals
+ NGROUPP         no-sv 1    Whether the group matched.
+ INSUBP          num 1      Whether we are in a specific recurse.
+ DEFINEP         none 1     Never execute directly.
+
+ # Backtracking Verbs
+ ENDLIKE         none       Used only for the type field of verbs
+ OPFAIL          no-sv 1    Same as (?!), but with verb arg
+ ACCEPT          no-sv/num  Accepts the current matched string, with
+                 2L         verbar
+
+ # Verbs With Arguments
+ VERB            no-sv 1    Used only for the type field of verbs
+ PRUNE           no-sv 1    Pattern fails at this startpoint if no-
+                            backtracking through this
+ MARKPOINT       no-sv 1    Push the current location for rollback by
+                            cut.
+ SKIP            no-sv 1    On failure skip forward (to the mark) before
+                            retrying
+ COMMIT          no-sv 1    Pattern fails outright if backtracking
+                            through this
+ CUTGROUP        no-sv 1    On failure go to the next alternation in the
+                            group
+
+ # Control what to keep in $&amp;.
+ KEEPS           no         $&amp; begins here.
+
+ # New charclass like patterns
+ LNBREAK         none       generic newline pattern
+
+ # SPECIAL  REGOPS
+
+ # This is not really a node, but an optimized away piece of a &quot;long&quot;
+ # node.  To simplify debugging output, we mark it as if it were a node
+ OPTIMIZED       off        Placeholder for dump.
+
+ # Special opcode with the property that no opcode in a compiled program
+ # will ever be of this type. Thus it can be used as a flag value that
+ # no other opcode has been seen. END is used similarly, in that an END
+ # node cant be optimized. So END implies &quot;unoptimizable&quot; and PSEUDO
+ # mean &quot;not seen anything to optimize yet&quot;.
+ PSEUDO          off        Pseudo opcode for internal use.</code></pre>
+
+<p>Following the optimizer information is a dump of the offset/length table, here split across several lines:</p>
+
+<pre><code>  Offsets: [45]
+        1[4] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 5[1]
+        0[0] 12[1] 0[0] 6[1] 0[0] 7[1] 0[0] 9[1] 8[1] 0[0] 10[1] 0[0]
+        11[1] 0[0] 12[0] 12[0] 13[1] 0[0] 14[4] 0[0] 0[0] 0[0] 0[0]
+        0[0] 0[0] 0[0] 0[0] 0[0] 0[0] 18[1] 0[0] 19[1] 20[0]  </code></pre>
+
+<p>The first line here indicates that the offset/length table contains 45 entries. Each entry is a pair of integers, denoted by <code>offset[length]</code>. Entries are numbered starting with 1, so entry #1 here is <code>1[4]</code> and entry #12 is <code>5[1]</code>. <code>1[4]</code> indicates that the node labeled <code>1:</code> (the <code>1: ANYOF[bc]</code>) begins at character position 1 in the pre-compiled form of the regex, and has a length of 4 characters. <code>5[1]</code> in position 12 indicates that the node labeled <code>12:</code> (the <code>12: EXACT &lt;d&gt;</code>) begins at character position 5 in the pre-compiled form of the regex, and has a length of 1 character. <code>12[1]</code> in position 14 indicates that the node labeled <code>14:</code> (the <code>14: CURLYX[0] {1,32767}</code>) begins at character position 12 in the pre-compiled form of the regex, and has a length of 1 character---that is, it corresponds to the <code>+</code> symbol in the precompiled regex.</p>
+
+<p><code>0[0]</code> items indicate that there is no corresponding node.</p>
+
+<h2 id="Run-time-Output">Run-time Output</h2>
+
+<p>First of all, when doing a match, one may get no run-time output even if debugging is enabled. This means that the regex engine was never entered and that all of the job was therefore done by the optimizer.</p>
+
+<p>If the regex engine was entered, the output may look like this:</p>
+
+<pre><code>  Matching &#39;[bc]d(ef*g)+h[ij]k$&#39; against &#39;abcdefg__gh__&#39;
+    Setting an EVAL scope, savestack=3
+     2 &lt;ab&gt; &lt;cdefg__gh_&gt;    |  1: ANYOF
+     3 &lt;abc&gt; &lt;defg__gh_&gt;    | 11: EXACT &lt;d&gt;
+     4 &lt;abcd&gt; &lt;efg__gh_&gt;    | 13: CURLYX {1,32767}
+     4 &lt;abcd&gt; &lt;efg__gh_&gt;    | 26:   WHILEM
+                                0 out of 1..32767  cc=effff31c
+     4 &lt;abcd&gt; &lt;efg__gh_&gt;    | 15:     OPEN1
+     4 &lt;abcd&gt; &lt;efg__gh_&gt;    | 17:     EXACT &lt;e&gt;
+     5 &lt;abcde&gt; &lt;fg__gh_&gt;    | 19:     STAR
+                             EXACT &lt;f&gt; can match 1 times out of 32767...
+    Setting an EVAL scope, savestack=3
+     6 &lt;bcdef&gt; &lt;g__gh__&gt;    | 22:       EXACT &lt;g&gt;
+     7 &lt;bcdefg&gt; &lt;__gh__&gt;    | 24:       CLOSE1
+     7 &lt;bcdefg&gt; &lt;__gh__&gt;    | 26:       WHILEM
+                                    1 out of 1..32767  cc=effff31c
+    Setting an EVAL scope, savestack=12
+     7 &lt;bcdefg&gt; &lt;__gh__&gt;    | 15:         OPEN1
+     7 &lt;bcdefg&gt; &lt;__gh__&gt;    | 17:         EXACT &lt;e&gt;
+       restoring \1 to 4(4)..7
+                                    failed, try continuation...
+     7 &lt;bcdefg&gt; &lt;__gh__&gt;    | 27:         NOTHING
+     7 &lt;bcdefg&gt; &lt;__gh__&gt;    | 28:         EXACT &lt;h&gt;
+                                    failed...
+                                failed...</code></pre>
+
+<p>The most significant information in the output is about the particular <i>node</i> of the compiled regex that is currently being tested against the target string. The format of these lines is</p>
+
+<p><code> </code><i>STRING-OFFSET</i> &lt;<i>PRE-STRING</i>&gt; &lt;<i>POST-STRING</i>&gt; |<i>ID</i>: <i>TYPE</i></p>
+
+<p>The <i>TYPE</i> info is indented with respect to the backtracking level. Other incidental information appears interspersed within.</p>
+
+<h1 id="Debugging-Perl-Memory-Usage">Debugging Perl Memory Usage</h1>
+
+<p>Perl is a profligate wastrel when it comes to memory use. There is a saying that to estimate memory usage of Perl, assume a reasonable algorithm for memory allocation, multiply that estimate by 10, and while you still may miss the mark, at least you won&#39;t be quite so astonished. This is not absolutely true, but may provide a good grasp of what happens.</p>
+
+<p>Assume that an integer cannot take less than 20 bytes of memory, a float cannot take less than 24 bytes, a string cannot take less than 32 bytes (all these examples assume 32-bit architectures, the result are quite a bit worse on 64-bit architectures). If a variable is accessed in two of three different ways (which require an integer, a float, or a string), the memory footprint may increase yet another 20 bytes. A sloppy malloc(3) implementation can inflate these numbers dramatically.</p>
+
+<p>On the opposite end of the scale, a declaration like</p>
+
+<pre><code>  sub foo;</code></pre>
+
+<p>may take up to 500 bytes of memory, depending on which release of Perl you&#39;re running.</p>
+
+<p>Anecdotal estimates of source-to-compiled code bloat suggest an eightfold increase. This means that the compiled form of reasonable (normally commented, properly indented etc.) code will take about eight times more space in memory than the code took on disk.</p>
+
+<p>The <b>-DL</b> command-line switch is obsolete since circa Perl 5.6.0 (it was available only if Perl was built with <code>-DDEBUGGING</code>). The switch was used to track Perl&#39;s memory allocations and possible memory leaks. These days the use of malloc debugging tools like <i>Purify</i> or <i>valgrind</i> is suggested instead. See also <a href="/perldoc/perlhacktips/#PERL_MEM_LOG">&quot;PERL_MEM_LOG&quot; in perlhacktips</a>.</p>
+
+<p>One way to find out how much memory is being used by Perl data structures is to install the Devel::Size module from CPAN: it gives you the minimum number of bytes required to store a particular data structure. Please be mindful of the difference between the size() and total_size().</p>
+
+<p>If Perl has been compiled using Perl&#39;s malloc you can analyze Perl memory usage by setting $ENV{PERL_DEBUG_MSTATS}.</p>
+
+<h2 id="Using-ENV-PERL_DEBUG_MSTATS">Using <code>$ENV{PERL_DEBUG_MSTATS}</code></h2>
+
+<p>If your perl is using Perl&#39;s malloc() and was compiled with the necessary switches (this is the default), then it will print memory usage statistics after compiling your code when <code>$ENV{PERL_DEBUG_MSTATS} &gt; 1</code>, and before termination of the program when <code>$ENV{PERL_DEBUG_MSTATS} &gt;= 1</code>. The report format is similar to the following example:</p>
+
+<pre><code> $ PERL_DEBUG_MSTATS=2 perl -e &quot;require Carp&quot;
+ Memory allocation statistics after compilation: (buckets 4(4)..8188(8192)
+    14216 free:   130   117    28     7     9   0   2     2   1 0 0
+                437    61    36     0     5
+    60924 used:   125   137   161    55     7   8   6    16   2 0 1
+                 74   109   304    84    20
+ Total sbrk(): 77824/21:119. Odd ends: pad+heads+chain+tail: 0+636+0+2048.
+ Memory allocation statistics after execution:   (buckets 4(4)..8188(8192)
+    30888 free:   245    78    85    13     6   2   1     3   2 0 1
+                315   162    39    42    11
+   175816 used:   265   176  1112   111    26  22  11    27   2 1 1
+                196   178  1066   798    39
+ Total sbrk(): 215040/47:145. Odd ends: pad+heads+chain+tail: 0+2192+0+6144.</code></pre>
+
+<p>It is possible to ask for such a statistic at arbitrary points in your execution using the mstat() function out of the standard Devel::Peek module.</p>
+
+<p>Here is some explanation of that format:</p>
+
+<dl>
+
+<dt><code>buckets SMALLEST(APPROX)..GREATEST(APPROX)</code></dt>
+<dd>
+
+<p>Perl&#39;s malloc() uses bucketed allocations. Every request is rounded up to the closest bucket size available, and a bucket is taken from the pool of buckets of that size.</p>
+
+<p>The line above describes the limits of buckets currently in use. Each bucket has two sizes: memory footprint and the maximal size of user data that can fit into this bucket. Suppose in the above example that the smallest bucket were size 4. The biggest bucket would have usable size 8188, and the memory footprint would be 8192.</p>
+
+<p>In a Perl built for debugging, some buckets may have negative usable size. This means that these buckets cannot (and will not) be used. For larger buckets, the memory footprint may be one page greater than a power of 2. If so, the corresponding power of two is printed in the <code>APPROX</code> field above.</p>
+
+</dd>
+<dt>Free/Used</dt>
+<dd>
+
+<p>The 1 or 2 rows of numbers following that correspond to the number of buckets of each size between <code>SMALLEST</code> and <code>GREATEST</code>. In the first row, the sizes (memory footprints) of buckets are powers of two--or possibly one page greater. In the second row, if present, the memory footprints of the buckets are between the memory footprints of two buckets &quot;above&quot;.</p>
+
+<p>For example, suppose under the previous example, the memory footprints were</p>
+
+<pre><code>   free:    8     16    32    64    128  256 512 1024 2048 4096 8192
+           4     12    24    48    80</code></pre>
+
+<p>With a non-<code>DEBUGGING</code> perl, the buckets starting from <code>128</code> have a 4-byte overhead, and thus an 8192-long bucket may take up to 8188-byte allocations.</p>
+
+</dd>
+<dt><code>Total sbrk(): SBRKed/SBRKs:CONTINUOUS</code></dt>
+<dd>
+
+<p>The first two fields give the total amount of memory perl sbrk(2)ed (ess-broken? :-) and number of sbrk(2)s used. The third number is what perl thinks about continuity of returned chunks. So long as this number is positive, malloc() will assume that it is probable that sbrk(2) will provide continuous memory.</p>
+
+<p>Memory allocated by external libraries is not counted.</p>
+
+</dd>
+<dt><code>pad: 0</code></dt>
+<dd>
+
+<p>The amount of sbrk(2)ed memory needed to keep buckets aligned.</p>
+
+</dd>
+<dt><code>heads: 2192</code></dt>
+<dd>
+
+<p>Although memory overhead of bigger buckets is kept inside the bucket, for smaller buckets, it is kept in separate areas. This field gives the total size of these areas.</p>
+
+</dd>
+<dt><code>chain: 0</code></dt>
+<dd>
+
+<p>malloc() may want to subdivide a bigger bucket into smaller buckets. If only a part of the deceased bucket is left unsubdivided, the rest is kept as an element of a linked list. This field gives the total size of these chunks.</p>
+
+</dd>
+<dt><code>tail: 6144</code></dt>
+<dd>
+
+<p>To minimize the number of sbrk(2)s, malloc() asks for more memory. This field gives the size of the yet unused part, which is sbrk(2)ed, but never touched.</p>
+
+</dd>
+</dl>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p><a href="/perldoc/perldebug/">perldebug</a>, <a href="/perldoc/perlguts/">perlguts</a>, <a href="/perldoc/perlrun/">perlrun</a> <a href="https://metacpan.org/pod/re" rel="external">re</a>, and <a href="https://metacpan.org/pod/Devel::DProf" rel="external">Devel::DProf</a>.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

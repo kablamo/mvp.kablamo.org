@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlexperiment - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlexperiment/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlexperiment/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlexperiment/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlexperiment/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlexperiment/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlexperiment/">perlexperiment</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlexperiment/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlexperiment - A listing of experimental features in Perl</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document lists the current and past experimental features in the perl core. Although all of these are documented with their appropriate topics, this succinct listing gives you an overview and basic facts about their status.</p>
+
+<p>So far we&#39;ve merely tried to find and list the experimental features and infer their inception, versions, etc. There&#39;s a lot of speculation here.</p>
+
+<h2 id="Current-experiments">Current experiments</h2>
+
+<dl>
+
+<dt><code>our</code> can now have an experimental optional attribute <code>unique</code></dt>
+<dd>
+
+<p>Introduced in Perl 5.8.0</p>
+
+<p>Deprecated in Perl 5.10.0</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=119313" rel="external">[perl #119313]</a>.</p>
+
+</dd>
+<dt>Smart match (<code>~~</code>)</dt>
+<dd>
+
+<p>Introduced in Perl 5.10.0</p>
+
+<p>Modified in Perl 5.10.1, 5.12.0</p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::smartmatch</code>.</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=119317" rel="external">[perl #119317]</a>.</p>
+
+</dd>
+<dt>Pluggable keywords</dt>
+<dd>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=119455" rel="external">[perl #119455]</a>.</p>
+
+<p>See <a href="/perldoc/perlapi/#PL_keyword_plugin">&quot;PL_keyword_plugin&quot; in perlapi</a> for the mechanism.</p>
+
+<p>Introduced in Perl 5.11.2</p>
+
+</dd>
+<dt>Regular Expression Set Operations</dt>
+<dd>
+
+<p>Introduced in Perl 5.18</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=119451" rel="external">[perl #119451]</a>.</p>
+
+<p>See also: <a href="/perldoc/perlrecharclass/#Extended-Bracketed-Character-Classes">&quot;Extended Bracketed Character Classes&quot; in perlrecharclass</a></p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::regex_sets</code>.</p>
+
+</dd>
+<dt>Subroutine signatures</dt>
+<dd>
+
+<p>Introduced in Perl 5.20.0</p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::signatures</code>.</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/Ticket/Display.html?id=121481" rel="external">[perl #121481]</a>.</p>
+
+</dd>
+<dt>Aliasing via reference</dt>
+<dd>
+
+<p>Introduced in Perl 5.22.0</p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::refaliasing</code>.</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=122947" rel="external">[perl #122947]</a>.</p>
+
+<p>See also: <a href="/perldoc/perlref/#Assigning-to-References">&quot;Assigning to References&quot; in perlref</a></p>
+
+</dd>
+<dt>The &quot;const&quot; attribute</dt>
+<dd>
+
+<p>Introduced in Perl 5.22.0</p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::const_attr</code>.</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=123630" rel="external">[perl #123630]</a>.</p>
+
+<p>See also: <a href="/perldoc/perlsub/#Constant-Functions">&quot;Constant Functions&quot; in perlsub</a></p>
+
+</dd>
+<dt>use re &#39;strict&#39;;</dt>
+<dd>
+
+<p>Introduced in Perl 5.22.0</p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::re_strict</code>.</p>
+
+<p>See <a href="https://metacpan.org/pod/re#strict-mode" rel="external">&quot;&#39;strict&#39; mode&quot; in re</a></p>
+
+</dd>
+<dt>String- and number-specific bitwise operators</dt>
+<dd>
+
+<p>Introduced in Perl 5.22.0</p>
+
+<p>See also: <a href="/perldoc/perlop/#Bitwise-String-Operators">&quot;Bitwise String Operators&quot; in perlop</a></p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::bitwise</code>.</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=123707" rel="external">[perl #123707]</a>.</p>
+
+</dd>
+<dt>The &lt;:win32&gt; IO pseudolayer</dt>
+<dd>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=119453" rel="external">[perl #119453]</a>.</p>
+
+<p>See also <a href="/perldoc/perlrun/">perlrun</a></p>
+
+</dd>
+<dt>Declaring a reference to a variable</dt>
+<dd>
+
+<p>Introduced in Perl 5.26.0</p>
+
+<p>Using this feature triggers warnings in the category <code>experimental::declared_refs</code>.</p>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=128654" rel="external">[perl #128654]</a>.</p>
+
+<p>See also: <a href="/perldoc/perlref/#Declaring-a-Reference-to-a-Variable">&quot;Declaring a Reference to a Variable&quot; in perlref</a></p>
+
+</dd>
+<dt>There is an <code>installhtml</code> target in the Makefile.</dt>
+<dd>
+
+<p>The ticket for this feature is <a href="https://rt.perl.org/rt3/Ticket/Display.html?id=116487" rel="external">[perl #116487]</a>.</p>
+
+</dd>
+<dt>Unicode in Perl on EBCDIC</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="Accepted-features">Accepted features</h2>
+
+<p>These features were so wildly successful and played so well with others that we decided to remove their experimental status and admit them as full, stable features in the world of Perl, lavishing all the benefits and luxuries thereof. They are also awarded +5 Stability and +3 Charisma.</p>
+
+<dl>
+
+<dt>64-bit support</dt>
+<dd>
+
+<p>Introduced in Perl 5.005</p>
+
+</dd>
+<dt>die accepts a reference</dt>
+<dd>
+
+<p>Introduced in Perl 5.005</p>
+
+</dd>
+<dt>DB module</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+<p>See also <a href="/perldoc/perldebug/">perldebug</a>, <a href="/perldoc/perldebtut/">perldebtut</a></p>
+
+</dd>
+<dt>Weak references</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+</dd>
+<dt>Internal file glob</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+</dd>
+<dt>fork() emulation</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.1</p>
+
+<p>See also <a href="/perldoc/perlfork/">perlfork</a></p>
+
+</dd>
+<dt>-Dusemultiplicity -Duseithreads</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+<p>Accepted in Perl 5.8.0</p>
+
+</dd>
+<dt>Support for long doubles</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+<p>Accepted in Perl 5.8.1</p>
+
+</dd>
+<dt>The <code>\N</code> regex character class</dt>
+<dd>
+
+<p>The <code>\N</code> character class, not to be confused with the named character sequence <code>\N{NAME}</code>, denotes any non-newline character in a regular expression.</p>
+
+<p>Introduced in Perl 5.12</p>
+
+<p>Exact version of acceptance unclear, but no later than Perl 5.18.</p>
+
+</dd>
+<dt><code>(?{code})</code> and <code>(??{ code })</code></dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+<p>Accepted in Perl 5.20.0</p>
+
+<p>See also <a href="/perldoc/perlre/">perlre</a></p>
+
+</dd>
+<dt>Linux abstract Unix domain sockets</dt>
+<dd>
+
+<p>Introduced in Perl 5.9.2</p>
+
+<p>Accepted before Perl 5.20.0. The Socket library is now primarily maintained on CPAN, rather than in the perl core.</p>
+
+<p>See also <a href="https://metacpan.org/pod/Socket" rel="external">Socket</a></p>
+
+</dd>
+<dt>Lvalue subroutines</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+<p>Accepted in Perl 5.20.0</p>
+
+<p>See also <a href="/perldoc/perlsub/">perlsub</a></p>
+
+</dd>
+<dt>Backtracking control verbs</dt>
+<dd>
+
+<p><code>(*ACCEPT)</code></p>
+
+<p>Introduced in Perl 5.10</p>
+
+<p>Accepted in Perl 5.20.0</p>
+
+</dd>
+<dt>The &lt;:pop&gt; IO pseudolayer</dt>
+<dd>
+
+<p>See also <a href="/perldoc/perlrun/">perlrun</a></p>
+
+<p>Accepted in Perl 5.20.0</p>
+
+</dd>
+<dt><code>\s</code> in regexp matches vertical tab</dt>
+<dd>
+
+<p>Accepted in Perl 5.22.0</p>
+
+</dd>
+<dt>Postfix dereference syntax</dt>
+<dd>
+
+<p>Introduced in Perl 5.20.0</p>
+
+<p>Accepted in Perl 5.24.0</p>
+
+</dd>
+<dt>Lexical subroutines</dt>
+<dd>
+
+<p>Introduced in Perl 5.18.0</p>
+
+<p>Accepted in Perl 5.26.0</p>
+
+</dd>
+</dl>
+
+<h2 id="Removed-features">Removed features</h2>
+
+<p>These features are no longer considered experimental and their functionality has disappeared. It&#39;s your own fault if you wrote production programs using these features after we explicitly told you not to (see <a href="/perldoc/perlpolicy/">perlpolicy</a>).</p>
+
+<dl>
+
+<dt>5.005-style threading</dt>
+<dd>
+
+<p>Introduced in Perl 5.005</p>
+
+<p>Removed in Perl 5.10</p>
+
+</dd>
+<dt>perlcc</dt>
+<dd>
+
+<p>Introduced in Perl 5.005</p>
+
+<p>Moved from Perl 5.9.0 to CPAN</p>
+
+</dd>
+<dt>The pseudo-hash data type</dt>
+<dd>
+
+<p>Introduced in Perl 5.6.0</p>
+
+<p>Removed in Perl 5.9.0</p>
+
+</dd>
+<dt>GetOpt::Long Options can now take multiple values at once (experimental)</dt>
+<dd>
+
+<p><code>Getopt::Long</code> upgraded to version 2.35</p>
+
+<p>Removed in Perl 5.8.8</p>
+
+</dd>
+<dt>Assertions</dt>
+<dd>
+
+<p>The <code>-A</code> command line switch</p>
+
+<p>Introduced in Perl 5.9.0</p>
+
+<p>Removed in Perl 5.9.5</p>
+
+</dd>
+<dt>Test::Harness::Straps</dt>
+<dd>
+
+<p>Moved from Perl 5.10.1 to CPAN</p>
+
+</dd>
+<dt><code>legacy</code></dt>
+<dd>
+
+<p>The experimental <code>legacy</code> pragma was swallowed by the <code>feature</code> pragma.</p>
+
+<p>Introduced in Perl 5.11.2</p>
+
+<p>Removed in Perl 5.11.3</p>
+
+</dd>
+<dt>Lexical <code>$_</code></dt>
+<dd>
+
+<p>Using this feature triggered warnings in the category <code>experimental::lexical_topic</code>.</p>
+
+<p>Introduced in Perl 5.10.0</p>
+
+<p>Removed in Perl 5.24.0</p>
+
+</dd>
+<dt>Array and hash container functions accept references</dt>
+<dd>
+
+<p>Using this feature triggered warnings in the category <code>experimental::autoderef</code>.</p>
+
+<p>Superseded by <a href="#Postfix-dereference-syntax">&quot;Postfix dereference syntax&quot;</a>.</p>
+
+<p>Introduced in Perl 5.14.0</p>
+
+<p>Removed in Perl 5.24.0</p>
+
+</dd>
+</dl>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>For a complete list of features check <a href="https://metacpan.org/pod/feature" rel="external">feature</a>.</p>
+
+<h1 id="AUTHORS">AUTHORS</h1>
+
+<p>brian d foy <code>&lt;brian.d.foy@gmail.com&gt;</code></p>
+
+<p>Sébastien Aperghis-Tramoni <code>&lt;saper@cpan.org&gt;</code></p>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 2010, brian d foy <code>&lt;brian.d.foy@gmail.com&gt;</code></p>
+
+<h1 id="LICENSE">LICENSE</h1>
+
+<p>You can use and redistribute this document under the same terms as Perl itself.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

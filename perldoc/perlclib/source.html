@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlclib (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlclib/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlclib/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlclib/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlclib/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlclib/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlclib/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlclib - Internal replacements for standard C library functions
+
+=head1 DESCRIPTION
+
+One thing Perl porters should note is that F&lt;perl&gt; doesn&#39;t tend to use that
+much of the C standard library internally; you&#39;ll see very little use of, 
+for example, the F&lt;ctype.h&gt; functions in there. This is because Perl
+tends to reimplement or abstract standard library functions, so that we
+know exactly how they&#39;re going to operate.
+
+This is a reference card for people who are familiar with the C library
+and who want to do things the Perl way; to tell them which functions
+they ought to use instead of the more normal C functions. 
+
+=head2 Conventions
+
+In the following tables:
+
+=over 3
+
+=item C&lt;t&gt;
+
+is a type.
+
+=item C&lt;p&gt;
+
+is a pointer.
+
+=item C&lt;n&gt;
+
+is a number.
+
+=item C&lt;s&gt;
+
+is a string.
+
+=back
+
+C&lt;sv&gt;, C&lt;av&gt;, C&lt;hv&gt;, etc. represent variables of their respective types.
+
+=head2 File Operations
+
+Instead of the F&lt;stdio.h&gt; functions, you should use the Perl abstraction
+layer. Instead of C&lt;FILE*&gt; types, you need to be handling C&lt;PerlIO*&gt;
+types.  Don&#39;t forget that with the new PerlIO layered I/O abstraction 
+C&lt;FILE*&gt; types may not even be available. See also the C&lt;perlapio&gt;
+documentation for more information about the following functions:
+
+ Instead Of:                 Use:
+
+ stdin                       PerlIO_stdin()
+ stdout                      PerlIO_stdout()
+ stderr                      PerlIO_stderr()
+
+ fopen(fn, mode)             PerlIO_open(fn, mode)
+ freopen(fn, mode, stream)   PerlIO_reopen(fn, mode, perlio) (Dep-
+                               recated)
+ fflush(stream)              PerlIO_flush(perlio)
+ fclose(stream)              PerlIO_close(perlio)
+
+=head2 File Input and Output
+
+ Instead Of:                 Use:
+
+ fprintf(stream, fmt, ...)   PerlIO_printf(perlio, fmt, ...)
+
+ [f]getc(stream)             PerlIO_getc(perlio)
+ [f]putc(stream, n)          PerlIO_putc(perlio, n)
+ ungetc(n, stream)           PerlIO_ungetc(perlio, n)
+
+Note that the PerlIO equivalents of C&lt;fread&gt; and C&lt;fwrite&gt; are slightly
+different from their C library counterparts:
+
+ fread(p, size, n, stream)   PerlIO_read(perlio, buf, numbytes)
+ fwrite(p, size, n, stream)  PerlIO_write(perlio, buf, numbytes)
+
+ fputs(s, stream)            PerlIO_puts(perlio, s)
+
+There is no equivalent to C&lt;fgets&gt;; one should use C&lt;sv_gets&gt; instead:
+
+ fgets(s, n, stream)         sv_gets(sv, perlio, append)
+
+=head2 File Positioning
+
+ Instead Of:                 Use:
+
+ feof(stream)                PerlIO_eof(perlio)
+ fseek(stream, n, whence)    PerlIO_seek(perlio, n, whence)
+ rewind(stream)              PerlIO_rewind(perlio)
+
+ fgetpos(stream, p)          PerlIO_getpos(perlio, sv)
+ fsetpos(stream, p)          PerlIO_setpos(perlio, sv)
+
+ ferror(stream)              PerlIO_error(perlio)
+ clearerr(stream)            PerlIO_clearerr(perlio)
+
+=head2 Memory Management and String Handling
+
+ Instead Of:                    Use:
+
+ t* p = malloc(n)               Newx(p, n, t)
+ t* p = calloc(n, s)            Newxz(p, n, t)
+ p = realloc(p, n)              Renew(p, n, t)
+ memcpy(dst, src, n)            Copy(src, dst, n, t)
+ memmove(dst, src, n)           Move(src, dst, n, t)
+ memcpy(dst, src, sizeof(t))    StructCopy(src, dst, t)
+ memset(dst, 0, n * sizeof(t))  Zero(dst, n, t)
+ memzero(dst, 0)                Zero(dst, n, char)
+ free(p)                        Safefree(p)
+
+ strdup(p)                      savepv(p)
+ strndup(p, n)                  savepvn(p, n) (Hey, strndup doesn&#39;t
+                                               exist!)
+
+ strstr(big, little)            instr(big, little)
+ strcmp(s1, s2)                 strLE(s1, s2) / strEQ(s1, s2)
+                                              / strGT(s1,s2)
+ strncmp(s1, s2, n)             strnNE(s1, s2, n) / strnEQ(s1, s2, n)
+
+ memcmp(p1, p2, n)              memNE(p1, p2, n)
+ !memcmp(p1, p2, n)             memEQ(p1, p2, n)
+
+Notice the different order of arguments to C&lt;Copy&gt; and C&lt;Move&gt; than used
+in C&lt;memcpy&gt; and C&lt;memmove&gt;.
+
+Most of the time, though, you&#39;ll want to be dealing with SVs internally
+instead of raw C&lt;char *&gt; strings:
+
+ strlen(s)                   sv_len(sv)
+ strcpy(dt, src)             sv_setpv(sv, s)
+ strncpy(dt, src, n)         sv_setpvn(sv, s, n)
+ strcat(dt, src)             sv_catpv(sv, s)
+ strncat(dt, src)            sv_catpvn(sv, s)
+ sprintf(s, fmt, ...)        sv_setpvf(sv, fmt, ...)
+
+Note also the existence of C&lt;sv_catpvf&gt; and C&lt;sv_vcatpvfn&gt;, combining
+concatenation with formatting.
+
+Sometimes instead of zeroing the allocated heap by using Newxz() you
+should consider &quot;poisoning&quot; the data.  This means writing a bit
+pattern into it that should be illegal as pointers (and floating point
+numbers), and also hopefully surprising enough as integers, so that
+any code attempting to use the data without forethought will break
+sooner rather than later.  Poisoning can be done using the Poison()
+macros, which have similar arguments to Zero():
+
+ PoisonWith(dst, n, t, b)    scribble memory with byte b
+ PoisonNew(dst, n, t)        equal to PoisonWith(dst, n, t, 0xAB)
+ PoisonFree(dst, n, t)       equal to PoisonWith(dst, n, t, 0xEF)
+ Poison(dst, n, t)           equal to PoisonFree(dst, n, t)
+
+=head2 Character Class Tests
+
+There are several types of character class tests that Perl implements.
+The only ones described here are those that directly correspond to C
+library functions that operate on 8-bit characters, but there are
+equivalents that operate on wide characters, and UTF-8 encoded strings.
+All are more fully described in L&lt;perlapi/Character classification&gt; and
+L&lt;perlapi/Character case changing&gt;.
+
+The C library routines listed in the table below return values based on
+the current locale.  Use the entries in the final column for that
+functionality.  The other two columns always assume a POSIX (or C)
+locale.  The entries in the ASCII column are only meaningful for ASCII
+inputs, returning FALSE for anything else.  Use these only when you
+B&lt;know&gt; that is what you want.  The entries in the Latin1 column assume
+that the non-ASCII 8-bit characters are as Unicode defines, them, the
+same as ISO-8859-1, often called Latin 1.
+
+ Instead Of:  Use for ASCII:   Use for Latin1:      Use for locale:
+
+ isalnum(c)  isALPHANUMERIC(c) isALPHANUMERIC_L1(c) isALPHANUMERIC_LC(c)
+ isalpha(c)  isALPHA(c)        isALPHA_L1(c)        isALPHA_LC(u )
+ isascii(c)  isASCII(c)                             isASCII_LC(c)
+ isblank(c)  isBLANK(c)        isBLANK_L1(c)        isBLANK_LC(c)
+ iscntrl(c)  isCNTRL(c)        isCNTRL_L1(c)        isCNTRL_LC(c)
+ isdigit(c)  isDIGIT(c)        isDIGIT_L1(c)        isDIGIT_LC(c)
+ isgraph(c)  isGRAPH(c)        isGRAPH_L1(c)        isGRAPH_LC(c)
+ islower(c)  isLOWER(c)        isLOWER_L1(c)        isLOWER_LC(c)
+ isprint(c)  isPRINT(c)        isPRINT_L1(c)        isPRINT_LC(c)
+ ispunct(c)  isPUNCT(c)        isPUNCT_L1(c)        isPUNCT_LC(c)
+ isspace(c)  isSPACE(c)        isSPACE_L1(c)        isSPACE_LC(c)
+ isupper(c)  isUPPER(c)        isUPPER_L1(c)        isUPPER_LC(c)
+ isxdigit(c) isXDIGIT(c)       isXDIGIT_L1(c)       isXDIGIT_LC(c)
+
+ tolower(c)  toLOWER(c)        toLOWER_L1(c)        toLOWER_LC(c)
+ toupper(c)  toUPPER(c)                             toUPPER_LC(c)
+
+To emphasize that you are operating only on ASCII characters, you can
+append C&lt;_A&gt; to each of the macros in the ASCII column: C&lt;isALPHA_A&gt;,
+C&lt;isDIGIT_A&gt;, and so on.
+
+(There is no entry in the Latin1 column for C&lt;isascii&gt; even though there
+is an C&lt;isASCII_L1&gt;, which is identical to C&lt;isASCII&gt;;  the
+latter name is clearer.  There is no entry in the Latin1 column for
+C&lt;toupper&gt; because the result can be non-Latin1.  You have to use
+C&lt;toUPPER_uni&gt;, as described in L&lt;perlapi/Character case changing&gt;.)
+
+=head2 F&lt;stdlib.h&gt; functions
+
+ Instead Of:                 Use:
+
+ atof(s)                     Atof(s)
+ atoi(s)                     grok_atoUV(s, &amp;uv, &amp;e)
+ atol(s)                     grok_atoUV(s, &amp;uv, &amp;e)
+ strtod(s, &amp;p)               Nothing.  Just don&#39;t use it.
+ strtol(s, &amp;p, n)            grok_atoUV(s, &amp;uv, &amp;e)
+ strtoul(s, &amp;p, n)           grok_atoUV(s, &amp;uv, &amp;e)
+
+Typical use is to do range checks on C&lt;uv&gt; before casting:
+
+  int i; UV uv; char* end_ptr;
+  if (grok_atoUV(input, &amp;uv, &amp;end_ptr)
+      &amp;&amp; uv &lt;= INT_MAX)
+    i = (int)uv;
+    ... /* continue parsing from end_ptr */
+  } else {
+    ... /* parse error: not a decimal integer in range 0 .. MAX_IV */
+  }
+
+Notice also the C&lt;grok_bin&gt;, C&lt;grok_hex&gt;, and C&lt;grok_oct&gt; functions in
+F&lt;numeric.c&gt; for converting strings representing numbers in the respective
+bases into C&lt;NV&gt;s.  Note that grok_atoUV() doesn&#39;t handle negative inputs,
+or leading whitespace (being purposefully strict).
+
+Note that strtol() and strtoul() may be disguised as Strtol(), Strtoul(),
+Atol(), Atoul().  Avoid those, too.
+
+In theory C&lt;Strtol&gt; and C&lt;Strtoul&gt; may not be defined if the machine perl is
+built on doesn&#39;t actually have strtol and strtoul. But as those 2
+functions are part of the 1989 ANSI C spec we suspect you&#39;ll find them
+everywhere by now.
+
+ int rand()                  double Drand01()
+ srand(n)                    { seedDrand01((Rand_seed_t)n);
+                               PL_srand_called = TRUE; }
+
+ exit(n)                     my_exit(n)
+ system(s)                   Don&#39;t. Look at pp_system or use my_popen.
+
+ getenv(s)                   PerlEnv_getenv(s)
+ setenv(s, val)              my_setenv(s, val)
+
+=head2 Miscellaneous functions
+
+You should not even B&lt;want&gt; to use F&lt;setjmp.h&gt; functions, but if you
+think you do, use the C&lt;JMPENV&gt; stack in F&lt;scope.h&gt; instead.
+
+For C&lt;signal&gt;/C&lt;sigaction&gt;, use C&lt;rsignal(signo, handler)&gt;.
+
+=head1 SEE ALSO
+
+L&lt;perlapi&gt;, L&lt;perlapio&gt;, L&lt;perlguts&gt;
+
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

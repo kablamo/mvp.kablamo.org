@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl588delta (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl588delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl588delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl588delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl588delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl588delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perl588delta/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+=head1 NAME
+
+perl588delta - what is new for perl v5.8.8
+
+=head1 DESCRIPTION
+
+This document describes differences between the 5.8.7 release and
+the 5.8.8 release.
+
+=head1 Incompatible Changes
+
+There are no changes intentionally incompatible with 5.8.7. If any exist,
+they are bugs and reports are welcome.
+
+=head1 Core Enhancements
+
+=over
+
+=item *
+
+C&lt;chdir&gt;, C&lt;chmod&gt; and C&lt;chown&gt; can now work on filehandles as well as
+filenames, if the system supports respectively C&lt;fchdir&gt;, C&lt;fchmod&gt; and
+C&lt;fchown&gt;, thanks to a patch provided by Gisle Aas.
+
+=back
+
+=head1 Modules and Pragmata
+
+=over
+
+=item *
+
+C&lt;Attribute::Handlers&gt; upgraded to version 0.78_02
+
+=over
+
+=item *
+
+Documentation typo fix
+
+=back
+
+=item *
+
+C&lt;attrs&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+Internal cleanup only
+
+=back
+
+=item *
+
+C&lt;autouse&gt; upgraded to version 1.05
+
+=over
+
+=item *
+
+Simplified implementation
+
+=back
+
+=item *
+
+C&lt;B&gt; upgraded to version 1.09_01
+
+=over
+
+=item *
+
+The inheritance hierarchy of the C&lt;B::&gt; modules has been corrected;
+C&lt;B::NV&gt; now inherits from C&lt;B::SV&gt; (instead of C&lt;B::IV&gt;).
+
+=back
+
+=item *
+
+C&lt;blib&gt; upgraded to version 1.03
+
+=over
+
+=item *
+
+Documentation typo fix
+
+=back
+
+=item *
+
+C&lt;ByteLoader&gt; upgraded to version 0.06
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;CGI&gt; upgraded to version 3.15
+
+=over
+
+=item *
+
+Extraneous &quot;?&quot; from C&lt;self_url()&gt; removed
+
+=item *
+
+C&lt;scrolling_list()&gt; select attribute fixed
+
+=item *
+
+C&lt;virtual_port&gt; now works properly with the https protocol
+
+=item *
+
+C&lt;upload_hook()&gt; and C&lt;append()&gt; now works in function-oriented mode
+
+=item *
+
+C&lt;POST_MAX&gt; doesn&#39;t cause the client to hang any more
+
+=item *
+
+Automatic tab indexes are now disabled and new C&lt;-tabindex&gt; pragma has
+been added to turn automatic indexes back on
+
+=item *
+
+C&lt;end_form()&gt; doesn&#39;t emit empty (and non-validating) C&lt;&lt; &lt;div&gt; &gt;&gt;
+
+=item *
+
+C&lt;CGI::Carp&gt; works better in certain mod_perl configurations
+
+=item *
+
+Setting C&lt;$CGI::TMPDIRECTORY&gt; is now effective
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;charnames&gt; upgraded to version 1.05
+
+=over
+
+=item *
+
+C&lt;viacode()&gt; now accept hex strings and has been optimized.
+
+=back
+
+=item *
+
+C&lt;CPAN&gt; upgraded to version 1.76_02
+
+=over
+
+=item *
+
+1 minor bug fix for Win32
+
+=back
+
+=item *
+
+C&lt;Cwd&gt; upgraded to version 3.12
+
+=over
+
+=item *
+
+C&lt;canonpath()&gt; on Win32 now collapses F&lt;foo\..&gt; sections correctly.
+
+=item *
+
+Improved behaviour on Symbian OS.
+
+=item *
+
+Enhanced documentation and typo fixes
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Data::Dumper&gt; upgraded to version 2.121_08
+
+=over
+
+=item *
+
+A problem where C&lt;Data::Dumper&gt; would sometimes update the iterator state
+of hashes has been fixed
+
+=item *
+
+Numeric labels now work
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;DB&gt; upgraded to version 1.01
+
+=over
+
+=item *
+
+A problem where the state of the regexp engine would sometimes get clobbered when running
+under the debugger has been fixed.
+
+=back
+
+=item *
+
+C&lt;DB_File&gt; upgraded to version 1.814
+
+=over
+
+=item *
+
+Adds support for Berkeley DB 4.4.
+
+=back
+
+=item *
+
+C&lt;Devel::DProf&gt; upgraded to version 20050603.00
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Devel::Peek&gt; upgraded to version 1.03
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Devel::PPPort&gt; upgraded to version 3.06_01
+
+=over
+
+=item *
+
+C&lt;--compat-version&gt; argument checking has been improved
+
+=item *
+
+Files passed on the command line are filtered by default
+
+=item *
+
+C&lt;--nofilter&gt; option to override the filtering has been added
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;diagnostics&gt; upgraded to version 1.15
+
+=over
+
+=item *
+
+Documentation typo fix
+
+=back
+
+=item *
+
+C&lt;Digest&gt; upgraded to version 1.14
+
+=over
+
+=item *
+
+The constructor now knows which module implements SHA-224
+
+=item *
+
+Documentation tweaks and typo fixes
+
+=back
+
+=item *
+
+C&lt;Digest::MD5&gt; upgraded to version 2.36
+
+=over
+
+=item *
+
+C&lt;XSLoader&gt; is now used for faster loading
+
+=item *
+
+Enhanced documentation including MD5 weaknesses discovered lately
+
+=back
+
+=item *
+
+C&lt;Dumpvalue&gt; upgraded to version 1.12
+
+=over
+
+=item *
+
+Documentation fix
+
+=back
+
+=item *
+
+C&lt;DynaLoader&gt; upgraded but unfortunately we&#39;re not able to increment its version number :-(
+
+=over
+
+=item *
+
+Implements C&lt;dl_unload_file&gt; on Win32
+
+=item *
+
+Internal cleanup
+
+=item *
+
+C&lt;XSLoader&gt; 0.06 incorporated; small optimisation for calling
+C&lt;bootstrap_inherit()&gt; and documentation enhancements.
+
+=back
+
+=item *
+
+C&lt;Encode&gt; upgraded to version 2.12
+
+=over
+
+=item *
+
+A coderef is now acceptable for C&lt;CHECK&gt;!
+
+=item *
+
+3 new characters added to the ISO-8859-7 encoding
+
+=item *
+
+New encoding C&lt;MIME-Header-ISO_2022_JP&gt; added
+
+=item *
+
+Problem with partial characters and C&lt;&lt; encoding(utf-8-strict) &gt;&gt; fixed.
+
+=item *
+
+Documentation enhancements and typo fixes
+
+=back
+
+=item *
+
+C&lt;English&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+the C&lt;&lt; $COMPILING &gt;&gt; variable has been added
+
+=back
+
+=item *
+
+C&lt;ExtUtils::Constant&gt; upgraded to version 0.17
+
+=over
+
+=item *
+
+Improved compatibility with older versions of perl
+
+=back
+
+=item *
+
+C&lt;ExtUtils::MakeMaker&gt; upgraded to version 6.30 (was 6.17)
+
+=over
+
+=item *
+
+Too much to list here;  see L&lt;http://search.cpan.org/dist/ExtUtils-MakeMaker/Changes&gt;
+
+=back
+
+=item *
+
+C&lt;File::Basename&gt; upgraded to version 2.74, with changes contributed by Michael Schwern.
+
+=over
+
+=item *
+
+Documentation clarified and errors corrected.
+
+=item *
+
+C&lt;basename&gt; now strips trailing path separators before processing the name.
+
+=item *
+
+C&lt;basename&gt; now returns C&lt;/&gt; for parameter C&lt;/&gt;, to make C&lt;basename&gt;
+consistent with the shell utility of the same name.
+
+=item *
+
+The suffix is no longer stripped if it is identical to the remaining characters
+in the name, again for consistency with the shell utility.
+
+=item *
+
+Some internal code cleanup.
+
+=back
+
+=item *
+
+C&lt;File::Copy&gt; upgraded to version 2.09
+
+=over
+
+=item *
+
+Copying a file onto itself used to fail.
+
+=item *
+
+Moving a file between file systems now preserves the access and
+modification time stamps
+
+=back
+
+=item *
+
+C&lt;File::Find&gt; upgraded to version 1.10
+
+=over
+
+=item *
+
+Win32 portability fixes
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;File::Glob&gt; upgraded to version 1.05
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;File::Path&gt; upgraded to version 1.08
+
+=over
+
+=item *
+
+C&lt;mkpath&gt; now preserves C&lt;errno&gt; when C&lt;mkdir&gt; fails
+
+=back
+
+=item *
+
+C&lt;File::Spec&gt; upgraded to version 3.12
+
+=over
+
+=item *
+
+C&lt;File::Spec-&gt;rootdir()&gt; now returns C&lt;\&gt; on Win32, instead of C&lt;/&gt;
+
+=item *
+
+C&lt;$^O&gt; could sometimes become tainted. This has been fixed.
+
+=item *
+
+C&lt;canonpath&gt; on Win32 now collapses C&lt;foo/..&gt; (or C&lt;foo\..&gt;) sections
+correctly, rather than doing the &quot;misguided&quot; work it was previously doing.
+Note that C&lt;canonpath&gt; on Unix still does B&lt;not&gt; collapse these sections, as
+doing so would be incorrect.
+
+=item *
+
+Some documentation improvements
+
+=item *
+
+Some internal code cleanup
+
+=back
+
+=item *
+
+C&lt;FileCache&gt; upgraded to version 1.06
+
+=over
+
+=item *
+
+POD formatting errors in the documentation fixed
+
+=back
+
+=item *
+
+C&lt;Filter::Simple&gt; upgraded to version 0.82
+
+=item *
+
+C&lt;FindBin&gt; upgraded to version 1.47
+
+=over
+
+=item *
+
+Now works better with directories where access rights are more
+restrictive than usual.
+
+=back
+
+=item *
+
+C&lt;GDBM_File&gt; upgraded to version 1.08
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Getopt::Long&gt; upgraded to version 2.35
+
+=over
+
+=item *
+
+C&lt;prefix_pattern&gt; has now been complemented by a new configuration
+option C&lt;long_prefix_pattern&gt; that allows the user to specify what
+prefix patterns should have long option style semantics applied.
+
+=item *
+
+Options can now take multiple values at once (experimental)
+
+=item *
+
+Various bug fixes
+
+=back
+
+=item *
+
+C&lt;if&gt; upgraded to version 0.05
+
+=over
+
+=item *
+
+Give more meaningful error messages from C&lt;if&gt; when invoked with a
+condition in list context.
+
+=item *
+
+Restore backwards compatibility with earlier versions of perl
+
+=back
+
+=item *
+
+C&lt;IO&gt; upgraded to version 1.22
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;IPC::Open2&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;IPC::Open3&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;List::Util&gt; upgraded to version 1.18 (was 1.14)
+
+=over
+
+=item *
+
+Fix pure-perl version of C&lt;refaddr&gt; to avoid blessing an un-blessed reference
+
+=item *
+
+Use C&lt;XSLoader&gt; for faster loading
+
+=item *
+
+Fixed various memory leaks
+
+=item *
+
+Internal cleanup and portability fixes
+
+=back
+
+=item *
+
+C&lt;Math::Complex&gt; upgraded to version 1.35
+
+=over
+
+=item *
+
+C&lt;atan2(0, i)&gt; now works, as do all the (computable) complex argument cases
+
+=item *
+
+Fixes for certain bugs in C&lt;make&gt; and C&lt;emake&gt;
+
+=item *
+
+Support returning the I&lt;k&gt;th root directly
+
+=item *
+
+Support C&lt;[2,-3pi/8]&gt; in C&lt;emake&gt;
+
+=item *
+
+Support C&lt;inf&gt; for C&lt;make&gt;/C&lt;emake&gt;
+
+=item *
+
+Document C&lt;make&gt;/C&lt;emake&gt; more visibly
+
+=back
+
+=item *
+
+C&lt;Math::Trig&gt; upgraded to version 1.03
+
+=over
+
+=item *
+
+Add more great circle routines: C&lt;great_circle_waypoint&gt; and
+C&lt;great_circle_destination&gt;
+
+=back
+
+=item *
+
+C&lt;MIME::Base64&gt; upgraded to version 3.07
+
+=over
+
+=item *
+
+Use C&lt;XSLoader&gt; for faster loading
+
+=item *
+
+Enhanced documentation
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;NDBM_File&gt; upgraded to version 1.06
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;ODBM_File&gt; upgraded to version 1.06
+
+=over
+
+=item *
+
+Documentation typo fixed
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Opcode&gt; upgraded to version 1.06
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;open&gt; upgraded to version 1.05
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;overload&gt; upgraded to version 1.04
+
+=over
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;PerlIO&gt; upgraded to version 1.04
+
+=over
+
+=item *
+
+C&lt;PerlIO::via&gt; iterate over layers properly now
+
+=item *
+
+C&lt;PerlIO::scalar&gt; understands C&lt;&lt; $/ = &quot;&quot; &gt;&gt; now
+
+=item *
+
+C&lt;encoding(utf-8-strict)&gt; with partial characters now works
+
+=item *
+
+Enhanced documentation
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Pod::Functions&gt; upgraded to version 1.03
+
+=over
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;Pod::Html&gt; upgraded to version 1.0504
+
+=over
+
+=item *
+
+HTML output will now correctly link
+to C&lt;=item&gt;s on the same page, and should be valid XHTML.
+
+=item *
+
+Variable names are recognized as intended
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;Pod::Parser&gt; upgraded to version 1.32
+
+=over
+
+=item *
+
+Allow files that start with C&lt;=head&gt; on the first line
+
+=item *
+
+Win32 portability fix
+
+=item *
+
+Exit status of C&lt;pod2usage&gt; fixed
+
+=item *
+
+New C&lt;-noperldoc&gt; switch for C&lt;pod2usage&gt;
+
+=item *
+
+Arbitrary URL schemes now allowed
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;POSIX&gt; upgraded to version 1.09
+
+=over
+
+=item *
+
+Documentation typos fixed
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;re&gt; upgraded to version 0.05
+
+=over
+
+=item *
+
+Documentation typo fixed
+
+=back
+
+=item *
+
+C&lt;Safe&gt; upgraded to version 2.12
+
+=over
+
+=item *
+
+Minor documentation enhancement
+
+=back
+
+=item *
+
+C&lt;SDBM_File&gt; upgraded to version 1.05
+
+=over
+
+=item *
+
+Documentation typo fixed
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Socket&gt; upgraded to version 1.78
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=item *
+
+C&lt;Storable&gt; upgraded to version 2.15
+
+=over
+
+=item *
+
+This includes the C&lt;STORABLE_attach&gt; hook functionality added by
+Adam Kennedy, and more frugal memory requirements when storing under C&lt;ithreads&gt;, by
+using the C&lt;ithreads&gt; cloning tracking code.
+
+=back
+
+=item *
+
+C&lt;Switch&gt; upgraded to version 2.10_01
+
+=over
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;Sys::Syslog&gt; upgraded to version 0.13
+
+=over
+
+=item *
+
+Now provides numeric macros and meaningful C&lt;Exporter&gt; tags.
+
+=item *
+
+No longer uses C&lt;Sys::Hostname&gt; as it may provide useless values in
+unconfigured network environments, so instead uses C&lt;INADDR_LOOPBACK&gt; directly.
+
+=item *
+
+C&lt;syslog()&gt; now uses local timestamp.
+
+=item *
+
+C&lt;setlogmask()&gt; now behaves like its C counterpart.
+
+=item *
+
+C&lt;setlogsock()&gt; will now C&lt;croak()&gt; as documented.
+
+=item *
+
+Improved error and warnings messages.
+
+=item *
+
+Improved documentation.
+
+=back
+
+=item *
+
+C&lt;Term::ANSIColor&gt; upgraded to version 1.10
+
+=over
+
+=item *
+
+Fixes a bug in C&lt;colored&gt; when C&lt;$EACHLINE&gt; is set that caused it to not color
+lines consisting solely of 0 (literal zero).
+
+=item *
+
+Improved tests.
+
+=back
+
+=item *
+
+C&lt;Term::ReadLine&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+Documentation tweaks
+
+=back
+
+=item *
+
+C&lt;Test::Harness&gt; upgraded to version 2.56 (was 2.48)
+
+=over
+
+=item *
+
+The C&lt;Test::Harness&gt; timer is now off by default.
+
+=item *
+
+Now shows elapsed time in milliseconds.
+
+=item *
+
+Various bug fixes
+
+=back
+
+=item *
+
+C&lt;Test::Simple&gt; upgraded to version 0.62 (was 0.54)
+
+=over
+
+=item *
+
+C&lt;is_deeply()&gt; no longer fails to work for many cases
+
+=item *
+
+Various minor bug fixes
+
+=item *
+
+Documentation enhancements
+
+=back
+
+=item *
+
+C&lt;Text::Tabs&gt; upgraded to version 2005.0824
+
+=over
+
+=item *
+
+Provides a faster implementation of C&lt;expand&gt;
+
+=back
+
+=item *
+
+C&lt;Text::Wrap&gt; upgraded to version 2005.082401
+
+=over
+
+=item *
+
+Adds C&lt;$Text::Wrap::separator2&gt;, which allows you to preserve existing newlines
+but add line-breaks with some other string.
+
+=back
+
+=item *
+
+C&lt;threads&gt; upgraded to version 1.07
+
+=over
+
+=item *
+
+C&lt;threads&gt; will now honour C&lt;no warnings &#39;threads&#39;&gt;
+
+=item *
+
+A thread&#39;s interpreter is now freed after C&lt;&lt; $t-&gt;join() &gt;&gt; rather than after
+C&lt;undef $t&gt;, which should fix some C&lt;ithreads&gt; memory leaks. (Fixed by Dave
+Mitchell)
+
+=item *
+
+Some documentation typo fixes.
+
+=back
+
+=item *
+
+C&lt;threads::shared&gt; upgraded to version 0.94
+
+=over
+
+=item *
+
+Documentation changes only
+
+=item *
+
+Note: An improved implementation of C&lt;threads::shared&gt; is available on
+CPAN - this will be merged into 5.8.9 if it proves stable.
+
+=back
+
+=item *
+
+C&lt;Tie::Hash&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+Documentation typo fixed
+
+=back
+
+=item *
+
+C&lt;Time::HiRes&gt; upgraded to version 1.86 (was 1.66)
+
+=over
+
+=item *
+
+C&lt;clock_nanosleep()&gt; and C&lt;clock()&gt; functions added
+
+=item *
+
+Support for the POSIX C&lt;clock_gettime()&gt; and C&lt;clock_getres()&gt; has been added
+
+=item *
+
+Return C&lt;undef&gt; or an empty list if the C C&lt;gettimeofday()&gt; function fails
+
+=item *
+
+Improved C&lt;nanosleep&gt; detection
+
+=item *
+
+Internal cleanup
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;Unicode::Collate&gt; upgraded to version 0.52
+
+=over
+
+=item *
+
+Now implements UCA Revision 14 (based on Unicode 4.1.0).
+
+=item *
+
+C&lt;Unicode::Collate-&gt;new&gt; method no longer overwrites user&#39;s C&lt;$_&gt;
+
+=item *
+
+Enhanced documentation
+
+=back
+
+=item *
+
+C&lt;Unicode::UCD&gt; upgraded to version 0.24
+
+=over
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;User::grent&gt; upgraded to version 1.01
+
+=over
+
+=item *
+
+Documentation typo fixed
+
+=back
+
+=item *
+
+C&lt;utf8&gt; upgraded to version 1.06
+
+=over
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;vmsish&gt; upgraded to version 1.02
+
+=over
+
+=item *
+
+Documentation typos fixed
+
+=back
+
+=item *
+
+C&lt;warnings&gt; upgraded to version 1.05
+
+=over
+
+=item *
+
+Gentler messing with C&lt;Carp::&gt; internals
+
+=item *
+
+Internal cleanup
+
+=item *
+
+Documentation update
+
+=back
+
+=item *
+
+C&lt;Win32&gt; upgraded to version 0.2601
+
+=for cynics And how many perl 5.8.x versions can I release ahead of Vista?
+
+=over
+
+=item *
+
+Provides Windows Vista support to C&lt;Win32::GetOSName&gt;
+
+=item *
+
+Documentation enhancements
+
+=back
+
+=item *
+
+C&lt;XS::Typemap&gt; upgraded to version 0.02
+
+=over
+
+=item *
+
+Internal cleanup
+
+=back
+
+=back
+
+=head1 Utility Changes
+
+=head2 C&lt;h2xs&gt; enhancements
+
+C&lt;h2xs&gt; implements new option C&lt;--use-xsloader&gt; to force use of
+C&lt;XSLoader&gt; even in backwards compatible modules.
+
+The handling of authors&#39; names that had apostrophes has been fixed.
+
+Any enums with negative values are now skipped.
+
+=head2 C&lt;perlivp&gt; enhancements
+
+C&lt;perlivp&gt; implements new option C&lt;-a&gt; and will not check for F&lt;*.ph&gt;
+files by default any more.  Use the C&lt;-a&gt; option to run I&lt;all&gt; tests.
+
+=head1 New Documentation
+
+The L&lt;perlglossary&gt; manpage is a glossary of terms used in the Perl
+documentation, technical and otherwise, kindly provided by O&#39;Reilly Media,
+inc.
+
+=head1 Performance Enhancements
+
+=over 4
+
+=item *
+
+Weak reference creation is now I&lt;O(1)&gt; rather than I&lt;O(n)&gt;, courtesy of
+Nicholas Clark. Weak reference deletion remains I&lt;O(n)&gt;, but if deletion only
+happens at program exit, it may be skipped completely.
+
+=item *
+
+Salvador FandiÃ±o provided improvements to reduce the memory usage of C&lt;sort&gt;
+and to speed up some cases.
+
+=item *
+
+Jarkko Hietaniemi and Andy Lester worked to mark as much data as possible in
+the C source files as C&lt;static&gt;, to increase the proportion of the executable
+file that the operating system can share between process, and thus reduce
+real memory usage on multi-user systems.
+
+=back
+
+=head1 Installation and Configuration Improvements
+
+Parallel makes should work properly now, although there may still be problems
+if C&lt;make test&gt; is instructed to run in parallel.
+
+Building with Borland&#39;s compilers on Win32 should work more smoothly. In
+particular Steve Hay has worked to side step many warnings emitted by their
+compilers and at least one C compiler internal error.
+
+C&lt;Configure&gt; will now detect C&lt;clearenv&gt; and C&lt;unsetenv&gt;, thanks to a patch
+from Alan Burlison. It will also probe for C&lt;futimes&gt; and whether C&lt;sprintf&gt;
+correctly returns the length of the formatted string, which will both be used
+in perl 5.8.9.
+
+There are improved hints for next-3.0, vmesa, IX, Darwin, Solaris, Linux,
+DEC/OSF, HP-UX and MPE/iX
+
+Perl extensions on Windows now can be statically built into the Perl DLL,
+thanks to a work by Vadim Konovalov. (This improvement was actually in 5.8.7,
+but was accidentally omitted from L&lt;perl587delta&gt;).
+
+=head1 Selected Bug Fixes
+
+=head2 no warnings &#39;category&#39; works correctly with -w
+
+Previously when running with warnings enabled globally via C&lt;-w&gt;, selective
+disabling of specific warning categories would actually turn off all warnings.
+This is now fixed; now C&lt;no warnings &#39;io&#39;;&gt; will only turn off warnings in the
+C&lt;io&gt; class. Previously it would erroneously turn off all warnings.
+
+This bug fix may cause some programs to start correctly issuing warnings.
+
+=head2 Remove over-optimisation
+
+Perl 5.8.4 introduced a change so that assignments of C&lt;undef&gt; to a
+scalar, or of an empty list to an array or a hash, were optimised away. As
+this could cause problems when C&lt;goto&gt; jumps were involved, this change
+has been backed out.
+
+=head2 sprintf() fixes
+
+Using the sprintf() function with some formats could lead to a buffer
+overflow in some specific cases. This has been fixed, along with several
+other bugs, notably in bounds checking.
+
+In related fixes, it was possible for badly written code that did not follow
+the documentation of C&lt;Sys::Syslog&gt; to have formatting vulnerabilities.
+C&lt;Sys::Syslog&gt; has been changed to protect people from poor quality third
+party code.
+
+=head2 Debugger and Unicode slowdown
+
+It had been reported that running under perl&#39;s debugger when processing
+Unicode data could cause unexpectedly large slowdowns. The most likely cause
+of this was identified and fixed by Nicholas Clark.
+
+=head2 Smaller fixes
+
+=over 4
+
+=item *
+
+C&lt;FindBin&gt; now works better with directories where access rights are more
+restrictive than usual.
+
+=item *
+
+Several memory leaks in ithreads were closed. An improved implementation of
+C&lt;threads::shared&gt; is available on CPAN - this will be merged into 5.8.9 if
+it proves stable.
+
+=item *
+
+Trailing spaces are now trimmed from C&lt;$!&gt; and C&lt;$^E&gt;.
+
+=item *
+
+Operations that require perl to read a process&#39;s list of groups, such as reads
+of C&lt;$(&gt; and C&lt;$)&gt;, now dynamically allocate memory rather than using a
+fixed sized array. The fixed size array could cause C stack exhaustion on
+systems configured to use large numbers of groups.
+
+=item *
+
+C&lt;PerlIO::scalar&gt; now works better with non-default C&lt;$/&gt; settings.
+
+=item *
+
+You can now use the C&lt;x&gt; operator to repeat a C&lt;qw//&gt; list. This used
+to raise a syntax error.
+
+=item *
+
+The debugger now traces correctly execution in eval(&quot;&quot;)uated code that
+contains #line directives.
+
+=item *
+
+The value of the C&lt;open&gt; pragma is no longer ignored for three-argument
+opens.
+
+=item *
+
+The optimisation of C&lt;for (reverse @a)&gt; introduced in perl 5.8.6 could
+misbehave when the array had undefined elements and was used in LVALUE
+context. Dave Mitchell provided a fix.
+
+=item *
+
+Some case insensitive matches between UTF-8 encoded data and 8 bit regexps,
+and vice versa, could give malformed character warnings. These have been
+fixed by Dave Mitchell and Yves Orton.
+
+=item *
+
+C&lt;lcfirst&gt; and C&lt;ucfirst&gt; could corrupt the string for certain cases where
+the length UTF-8 encoding of the string in lower case, upper case or title
+case differed. This was fixed by Nicholas Clark.
+
+=item *
+
+Perl will now use the C library calls C&lt;unsetenv&gt; and C&lt;clearenv&gt; if present
+to delete keys from C&lt;%ENV&gt; and delete C&lt;%ENV&gt; entirely, thanks to a patch
+from Alan Burlison.
+
+=back
+
+=head1 New or Changed Diagnostics
+
+=head2 Attempt to set length of freed array
+
+This is a new warning, produced in situations such as this:
+
+    $r = do {my @a; \$#a};
+    $$r = 503;
+
+=head2 Non-string passed as bitmask
+
+This is a new warning, produced when number has been passed as a argument to
+select(), instead of a bitmask.
+
+    # Wrong, will now warn
+    $rin = fileno(STDIN);
+    ($nfound,$timeleft) = select($rout=$rin, undef, undef, $timeout);
+    
+    # Should be
+    $rin = &#39;&#39;;
+    vec($rin,fileno(STDIN),1) = 1;
+    ($nfound,$timeleft) = select($rout=$rin, undef, undef, $timeout);
+
+=head2 Search pattern not terminated or ternary operator parsed as search pattern
+
+This syntax error indicates that the lexer couldn&#39;t find the final
+delimiter of a C&lt;?PATTERN?&gt; construct. Mentioning the ternary operator in
+this error message makes it easier to diagnose syntax errors.
+
+=head1 Changed Internals
+
+There has been a fair amount of refactoring of the C&lt;C&gt; source code, partly to
+make it tidier and more maintainable. The resulting object code and the
+C&lt;perl&gt; binary may well be smaller than 5.8.7, in particular due to a change
+contributed by Dave Mitchell which reworked the warnings code to be
+significantly smaller. Apart from being smaller and possibly faster, there
+should be no user-detectable changes.
+
+Andy Lester supplied many improvements to determine which function
+parameters and local variables could actually be declared C&lt;const&gt; to the C
+compiler. Steve Peters provided new C&lt;*_set&gt; macros and reworked the core to
+use these rather than assigning to macros in LVALUE context.
+
+Dave Mitchell improved the lexer debugging output under C&lt;-DT&gt;
+
+Nicholas Clark changed the string buffer allocation so that it is now rounded
+up to the next multiple of 4 (or 8 on platforms with 64 bit pointers). This
+should reduce the number of calls to C&lt;realloc&gt; without actually using any
+extra memory.
+
+The C&lt;HV&gt;&#39;s array of C&lt;HE*&gt;s is now allocated at the correct (minimal) size,
+thanks to another change by Nicholas Clark. Compile with
+C&lt;-DPERL_USE_LARGE_HV_ALLOC&gt; to use the old, sloppier, default.
+
+For XS or embedding debugging purposes, if perl is compiled with
+C&lt;-DDEBUG_LEAKING_SCALARS_FORK_DUMP&gt; in addition to
+C&lt;-DDEBUG_LEAKING_SCALARS&gt; then a child process is C&lt;fork&gt;ed just before
+global destruction, which is used to display the values of any scalars
+found to have leaked at the end of global destruction. Without this, the
+scalars have already been freed sufficiently at the point of detection that
+it is impossible to produce any meaningful dump of their contents.  This
+feature was implemented by the indefatigable Nicholas Clark, based on an idea
+by Mike Giroux.
+
+=head1 Platform Specific Problems
+
+The optimiser on HP-UX 11.23 (Itanium 2) is currently partly disabled (scaled
+down to +O1) when using HP C-ANSI-C; the cause of problems at higher
+optimisation levels is still unclear.
+
+There are a handful of remaining test failures on VMS, mostly due to
+test fixes and minor module tweaks with too many dependencies to
+integrate into this release from the development stream, where they have
+all been corrected.  The following is a list of expected failures with
+the patch number of the fix where that is known:
+
+    ext/Devel/PPPort/t/ppphtest.t  #26913
+    ext/List/Util/t/p_tainted.t    #26912
+    lib/ExtUtils/t/PL_FILES.t      #26813
+    lib/ExtUtils/t/basic.t         #26813
+    t/io/fs.t
+    t/op/cmp.t
+
+=head1 Reporting Bugs
+
+If you find what you think is a bug, you might check the articles
+recently posted to the comp.lang.perl.misc newsgroup and the perl
+bug database at http://bugs.perl.org.  There may also be
+information at http://www.perl.org, the Perl Home Page.
+
+If you believe you have an unreported bug, please run the B&lt;perlbug&gt;
+program included with your release.  Be sure to trim your bug down
+to a tiny but sufficient test case.  Your bug report, along with the
+output of C&lt;perl -V&gt;, will be sent off to perlbug@perl.org to be
+analysed by the Perl porting team.  You can browse and search
+the Perl 5 bugs at http://bugs.perl.org/
+
+=head1 SEE ALSO
+
+The F&lt;Changes&gt; file for exhaustive details on what changed.
+
+The F&lt;INSTALL&gt; file for how to build Perl.
+
+The F&lt;README&gt; file for general stuff.
+
+The F&lt;Artistic&gt; and F&lt;Copying&gt; files for copyright information.
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

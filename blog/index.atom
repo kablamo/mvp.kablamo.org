@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://mvp.kablamo.org/blog/</id>
+    <title>Minimum Viable Perl</title>
+    <updated>2017-11-27T00:00:00Z</updated>
+    <link href="http://mvp.kablamo.org/blog/index.atom" rel="self" />
+    <link href="http://mvp.kablamo.org/blog/" rel="alternate" />
+    <generator version="0.086">Statocles</generator>
+
+    <entry>
+        <id>http://mvp.kablamo.org/blog/2017/11/27/first-post/</id>
+        <title>First Post</title>
+        <link href="http://mvp.kablamo.org/blog/2017/11/27/first-post/" rel="alternate" />
+        <content type="html"><![CDATA[
+            <h1>Welcome To Your Blog</h1>
+
+<p>This is your first post. To edit this post, open up /blog/2017/11/27/first-post/index.markdown
+in your text editor.</p>
+
+<p><a href="http://preaction.me/statocles/pod/Statocles/Help/Content">Check the documentation for how to write Statocles
+content</a></p>
+
+
+
+        ]]></content>
+        <updated>2017-11-27T00:00:00Z</updated>
+    </entry>
+</feed>
+

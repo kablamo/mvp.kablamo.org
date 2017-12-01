@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlrun (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlrun/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlrun/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlrun/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlrun/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlrun/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlrun/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlrun - how to execute the Perl interpreter
+
+=head1 SYNOPSIS
+
+B&lt;perl&gt;	S&lt;[ B&lt;-sTtuUWX&gt; ]&gt;
+	S&lt;[ B&lt;-hv&gt; ] [ B&lt;-V&gt;[:I&lt;configvar&gt;] ]&gt;
+	S&lt;[ B&lt;-cw&gt; ] [ B&lt;-d&gt;[B&lt;t&gt;][:I&lt;debugger&gt;] ] [ B&lt;-D&gt;[I&lt;number/list&gt;] ]&gt;
+	S&lt;[ B&lt;-pna&gt; ] [ B&lt;-F&gt;I&lt;pattern&gt; ] [ B&lt;-l&gt;[I&lt;octal&gt;] ] [ B&lt;-0&gt;[I&lt;octal/hexadecimal&gt;] ]&gt;
+	S&lt;[ B&lt;-I&gt;I&lt;dir&gt; ] [ B&lt;-m&gt;[B&lt;-&gt;]I&lt;module&gt; ] [ B&lt;-M&gt;[B&lt;-&gt;]I&lt;&#39;module...&#39;&gt; ] [ B&lt;-f&gt; ]&gt;
+	S&lt;[ B&lt;-C [I&lt;number/list&gt;] &gt;]&gt;
+	S&lt;[ B&lt;-S&gt; ]&gt;
+	S&lt;[ B&lt;-x&gt;[I&lt;dir&gt;] ]&gt;
+	S&lt;[ B&lt;-i&gt;[I&lt;extension&gt;] ]&gt;
+	S&lt;[ [B&lt;-e&gt;|B&lt;-E&gt;] I&lt;&#39;command&#39;&gt; ] [ B&lt;--&gt; ] [ I&lt;programfile&gt; ] [ I&lt;argument&gt; ]...&gt;
+
+=head1 DESCRIPTION
+
+The normal way to run a Perl program is by making it directly
+executable, or else by passing the name of the source file as an
+argument on the command line.  (An interactive Perl environment
+is also possible--see L&lt;perldebug&gt; for details on how to do that.)
+Upon startup, Perl looks for your program in one of the following
+places:
+
+=over 4
+
+=item 1.
+
+Specified line by line via B&lt;-e&gt; or B&lt;-E&gt; switches on the command line.
+
+=item 2.
+
+Contained in the file specified by the first filename on the command line.
+(Note that systems supporting the C&lt;#!&gt; notation invoke interpreters this
+way. See L&lt;/Location of Perl&gt;.)
+
+=item 3.
+
+Passed in implicitly via standard input.  This works only if there are
+no filename arguments--to pass arguments to a STDIN-read program you
+must explicitly specify a &quot;-&quot; for the program name.
+
+=back
+
+With methods 2 and 3, Perl starts parsing the input file from the
+beginning, unless you&#39;ve specified a B&lt;-x&gt; switch, in which case it
+scans for the first line starting with C&lt;#!&gt; and containing the word
+&quot;perl&quot;, and starts there instead.  This is useful for running a program
+embedded in a larger message.  (In this case you would indicate the end
+of the program using the C&lt;__END__&gt; token.)
+
+The C&lt;#!&gt; line is always examined for switches as the line is being
+parsed.  Thus, if you&#39;re on a machine that allows only one argument
+with the C&lt;#!&gt; line, or worse, doesn&#39;t even recognize the C&lt;#!&gt; line, you
+still can get consistent switch behaviour regardless of how Perl was
+invoked, even if B&lt;-x&gt; was used to find the beginning of the program.
+
+Because historically some operating systems silently chopped off
+kernel interpretation of the C&lt;#!&gt; line after 32 characters, some
+switches may be passed in on the command line, and some may not;
+you could even get a &quot;-&quot; without its letter, if you&#39;re not careful.
+You probably want to make sure that all your switches fall either
+before or after that 32-character boundary.  Most switches don&#39;t
+actually care if they&#39;re processed redundantly, but getting a &quot;-&quot;
+instead of a complete switch could cause Perl to try to execute
+standard input instead of your program.  And a partial B&lt;-I&gt; switch
+could also cause odd results.
+
+Some switches do care if they are processed twice, for instance
+combinations of B&lt;-l&gt; and B&lt;-0&gt;.  Either put all the switches after
+the 32-character boundary (if applicable), or replace the use of
+B&lt;-0&gt;I&lt;digits&gt; by C&lt;BEGIN{ $/ = &quot;\0digits&quot;; }&gt;.
+
+Parsing of the C&lt;#!&gt; switches starts wherever &quot;perl&quot; is mentioned in the line.
+The sequences &quot;-*&quot; and &quot;- &quot; are specifically ignored so that you could,
+if you were so inclined, say
+
+    #!/bin/sh
+    #! -*-perl-*-
+    eval &#39;exec perl -x -wS $0 ${1+&quot;$@&quot;}&#39;
+        if 0;
+
+to let Perl see the B&lt;-p&gt; switch.
+
+A similar trick involves the I&lt;env&gt; program, if you have it.
+
+    #!/usr/bin/env perl
+
+The examples above use a relative path to the perl interpreter,
+getting whatever version is first in the user&#39;s path.  If you want
+a specific version of Perl, say, perl5.14.1, you should place
+that directly in the C&lt;#!&gt; line&#39;s path.
+
+If the C&lt;#!&gt; line does not contain the word &quot;perl&quot; nor the word &quot;indir&quot;,
+the program named after the C&lt;#!&gt; is executed instead of the Perl
+interpreter.  This is slightly bizarre, but it helps people on machines
+that don&#39;t do C&lt;#!&gt;, because they can tell a program that their SHELL is
+F&lt;/usr/bin/perl&gt;, and Perl will then dispatch the program to the correct
+interpreter for them.
+
+After locating your program, Perl compiles the entire program to an
+internal form.  If there are any compilation errors, execution of the
+program is not attempted.  (This is unlike the typical shell script,
+which might run part-way through before finding a syntax error.)
+
+If the program is syntactically correct, it is executed.  If the program
+runs off the end without hitting an exit() or die() operator, an implicit
+C&lt;exit(0)&gt; is provided to indicate successful completion.
+
+=head2 #! and quoting on non-Unix systems
+X&lt;hashbang&gt; X&lt;#!&gt;
+
+Unix&#39;s C&lt;#!&gt; technique can be simulated on other systems:
+
+=over 4
+
+=item OS/2
+
+Put
+
+    extproc perl -S -your_switches
+
+as the first line in C&lt;*.cmd&gt; file (B&lt;-S&gt; due to a bug in cmd.exe&#39;s
+`extproc&#39; handling).
+
+=item MS-DOS
+
+Create a batch file to run your program, and codify it in
+C&lt;ALTERNATE_SHEBANG&gt; (see the F&lt;dosish.h&gt; file in the source
+distribution for more information).
+
+=item Win95/NT
+
+The Win95/NT installation, when using the ActiveState installer for Perl,
+will modify the Registry to associate the F&lt;.pl&gt; extension with the perl
+interpreter.  If you install Perl by other means (including building from
+the sources), you may have to modify the Registry yourself.  Note that
+this means you can no longer tell the difference between an executable
+Perl program and a Perl library file.
+
+=item VMS
+
+Put
+
+ $ perl -mysw &#39;f$env(&quot;procedure&quot;)&#39; &#39;p1&#39; &#39;p2&#39; &#39;p3&#39; &#39;p4&#39; &#39;p5&#39; &#39;p6&#39; &#39;p7&#39; &#39;p8&#39; !
+ $ exit++ + ++$status != 0 and $exit = $status = undef;
+
+at the top of your program, where B&lt;-mysw&gt; are any command line switches you
+want to pass to Perl.  You can now invoke the program directly, by saying
+C&lt;perl program&gt;, or as a DCL procedure, by saying C&lt;@program&gt; (or implicitly
+via F&lt;DCL$PATH&gt; by just using the name of the program).
+
+This incantation is a bit much to remember, but Perl will display it for
+you if you say C&lt;perl &quot;-V:startperl&quot;&gt;.
+
+=back
+
+Command-interpreters on non-Unix systems have rather different ideas
+on quoting than Unix shells.  You&#39;ll need to learn the special
+characters in your command-interpreter (C&lt;*&gt;, C&lt;\&gt; and C&lt;&quot;&gt; are
+common) and how to protect whitespace and these characters to run
+one-liners (see L&lt;-e|/-e commandline&gt; below).
+
+On some systems, you may have to change single-quotes to double ones,
+which you must I&lt;not&gt; do on Unix or Plan 9 systems.  You might also
+have to change a single % to a %%.
+
+For example:
+
+    # Unix
+    perl -e &#39;print &quot;Hello world\n&quot;&#39;
+
+    # MS-DOS, etc.
+    perl -e &quot;print \&quot;Hello world\n\&quot;&quot;
+
+    # VMS
+    perl -e &quot;print &quot;&quot;Hello world\n&quot;&quot;&quot;
+
+The problem is that none of this is reliable: it depends on the
+command and it is entirely possible neither works.  If I&lt;4DOS&gt; were
+the command shell, this would probably work better:
+
+    perl -e &quot;print &lt;Ctrl-x&gt;&quot;Hello world\n&lt;Ctrl-x&gt;&quot;&quot;
+
+B&lt;CMD.EXE&gt; in Windows NT slipped a lot of standard Unix functionality in
+when nobody was looking, but just try to find documentation for its
+quoting rules.
+
+There is no general solution to all of this.  It&#39;s just a mess.
+
+=head2 Location of Perl
+X&lt;perl, location of interpreter&gt;
+
+It may seem obvious to say, but Perl is useful only when users can
+easily find it.  When possible, it&#39;s good for both F&lt;/usr/bin/perl&gt;
+and F&lt;/usr/local/bin/perl&gt; to be symlinks to the actual binary.  If
+that can&#39;t be done, system administrators are strongly encouraged
+to put (symlinks to) perl and its accompanying utilities into a
+directory typically found along a user&#39;s PATH, or in some other
+obvious and convenient place.
+
+In this documentation, C&lt;#!/usr/bin/perl&gt; on the first line of the program
+will stand in for whatever method works on your system.  You are
+advised to use a specific path if you care about a specific version.
+
+    #!/usr/local/bin/perl5.14
+
+or if you just want to be running at least version, place a statement
+like this at the top of your program:
+
+    use 5.014;
+
+=head2 Command Switches
+X&lt;perl, command switches&gt; X&lt;command switches&gt;
+
+As with all standard commands, a single-character switch may be
+clustered with the following switch, if any.
+
+    #!/usr/bin/perl -spi.orig	# same as -s -p -i.orig
+
+A C&lt;--&gt; signals the end of options and disables further option processing. Any
+arguments after the C&lt;--&gt; are treated as filenames and arguments.
+
+Switches include:
+
+=over 5
+
+=item B&lt;-0&gt;[I&lt;octal/hexadecimal&gt;]
+X&lt;-0&gt; X&lt;$/&gt;
+
+specifies the input record separator (C&lt;$/&gt;) as an octal or
+hexadecimal number.  If there are no digits, the null character is the
+separator.  Other switches may precede or follow the digits.  For
+example, if you have a version of I&lt;find&gt; which can print filenames
+terminated by the null character, you can say this:
+
+    find . -name &#39;*.orig&#39; -print0 | perl -n0e unlink
+
+The special value 00 will cause Perl to slurp files in paragraph mode.
+Any value 0400 or above will cause Perl to slurp files whole, but by convention
+the value 0777 is the one normally used for this purpose.
+
+You can also specify the separator character using hexadecimal notation:
+B&lt;-0xI&lt;HHH...&gt;&gt;, where the C&lt;I&lt;H&gt;&gt; are valid hexadecimal digits.  Unlike
+the octal form, this one may be used to specify any Unicode character, even
+those beyond 0xFF.  So if you I&lt;really&gt; want a record separator of 0777,
+specify it as B&lt;-0x1FF&gt;.  (This means that you cannot use the B&lt;-x&gt; option
+with a directory name that consists of hexadecimal digits, or else Perl
+will think you have specified a hex number to B&lt;-0&gt;.)
+
+=item B&lt;-a&gt;
+X&lt;-a&gt; X&lt;autosplit&gt;
+
+turns on autosplit mode when used with a B&lt;-n&gt; or B&lt;-p&gt;.  An implicit
+split command to the @F array is done as the first thing inside the
+implicit while loop produced by the B&lt;-n&gt; or B&lt;-p&gt;.
+
+    perl -ane &#39;print pop(@F), &quot;\n&quot;;&#39;
+
+is equivalent to
+
+    while (&lt;&gt;) {
+	@F = split(&#39; &#39;);
+	print pop(@F), &quot;\n&quot;;
+    }
+
+An alternate delimiter may be specified using B&lt;-F&gt;.
+
+B&lt;-a&gt; implicitly sets B&lt;-n&gt;.
+
+=item B&lt;-C [I&lt;number/list&gt;]&gt;
+X&lt;-C&gt;
+
+The B&lt;-C&gt; flag controls some of the Perl Unicode features.
+
+As of 5.8.1, the B&lt;-C&gt; can be followed either by a number or a list
+of option letters.  The letters, their numeric values, and effects
+are as follows; listing the letters is equal to summing the numbers.
+
+    I     1   STDIN is assumed to be in UTF-8
+    O     2   STDOUT will be in UTF-8
+    E     4   STDERR will be in UTF-8
+    S     7   I + O + E
+    i     8   UTF-8 is the default PerlIO layer for input streams
+    o    16   UTF-8 is the default PerlIO layer for output streams
+    D    24   i + o
+    A    32   the @ARGV elements are expected to be strings encoded
+              in UTF-8
+    L    64   normally the &quot;IOEioA&quot; are unconditional, the L makes
+              them conditional on the locale environment variables
+              (the LC_ALL, LC_CTYPE, and LANG, in the order of
+              decreasing precedence) -- if the variables indicate
+              UTF-8, then the selected &quot;IOEioA&quot; are in effect
+    a   256   Set ${^UTF8CACHE} to -1, to run the UTF-8 caching
+              code in debugging mode.
+
+=for documenting_the_underdocumented
+perl.h gives W/128 as PERL_UNICODE_WIDESYSCALLS &quot;/* for Sarathy */&quot;
+
+=for todo
+perltodo mentions Unicode in %ENV and filenames. I guess that these will be
+options e and f (or F).
+
+For example, B&lt;-COE&gt; and B&lt;-C6&gt; will both turn on UTF-8-ness on both
+STDOUT and STDERR.  Repeating letters is just redundant, not cumulative
+nor toggling.
+
+The C&lt;io&gt; options mean that any subsequent open() (or similar I/O
+operations) in the current file scope will have the C&lt;:utf8&gt; PerlIO layer
+implicitly applied to them, in other words, UTF-8 is expected from any
+input stream, and UTF-8 is produced to any output stream.  This is just
+the default, with explicit layers in open() and with binmode() one can
+manipulate streams as usual.
+
+B&lt;-C&gt; on its own (not followed by any number or option list), or the
+empty string C&lt;&quot;&quot;&gt; for the C&lt;PERL_UNICODE&gt; environment variable, has the
+same effect as B&lt;-CSDL&gt;.  In other words, the standard I/O handles and
+the default C&lt;open()&gt; layer are UTF-8-fied I&lt;but&gt; only if the locale
+environment variables indicate a UTF-8 locale.  This behaviour follows
+the I&lt;implicit&gt; (and problematic) UTF-8 behaviour of Perl 5.8.0.
+(See L&lt;perl581delta/UTF-8 no longer default under UTF-8 locales&gt;.)
+
+You can use B&lt;-C0&gt; (or C&lt;&quot;0&quot;&gt; for C&lt;PERL_UNICODE&gt;) to explicitly
+disable all the above Unicode features.
+
+The read-only magic variable C&lt;${^UNICODE}&gt; reflects the numeric value
+of this setting.  This variable is set during Perl startup and is
+thereafter read-only.  If you want runtime effects, use the three-arg
+open() (see L&lt;perlfunc/open&gt;), the two-arg binmode() (see L&lt;perlfunc/binmode&gt;),
+and the C&lt;open&gt; pragma (see L&lt;open&gt;).
+
+(In Perls earlier than 5.8.1 the B&lt;-C&gt; switch was a Win32-only switch
+that enabled the use of Unicode-aware &quot;wide system call&quot; Win32 APIs.
+This feature was practically unused, however, and the command line
+switch was therefore &quot;recycled&quot;.)
+
+B&lt;Note:&gt; Since perl 5.10.1, if the B&lt;-C&gt; option is used on the C&lt;#!&gt; line,
+it must be specified on the command line as well, since the standard streams
+are already set up at this point in the execution of the perl interpreter.
+You can also use binmode() to set the encoding of an I/O stream.
+
+=item B&lt;-c&gt;
+X&lt;-c&gt;
+
+causes Perl to check the syntax of the program and then exit without
+executing it.  Actually, it I&lt;will&gt; execute any C&lt;BEGIN&gt;, C&lt;UNITCHECK&gt;,
+or C&lt;CHECK&gt; blocks and any C&lt;use&gt; statements: these are considered as
+occurring outside the execution of your program.  C&lt;INIT&gt; and C&lt;END&gt;
+blocks, however, will be skipped.
+
+=item B&lt;-d&gt;
+X&lt;-d&gt; X&lt;-dt&gt;
+
+=item B&lt;-dt&gt;
+
+runs the program under the Perl debugger.  See L&lt;perldebug&gt;.
+If B&lt;t&gt; is specified, it indicates to the debugger that threads
+will be used in the code being debugged.
+
+=item B&lt;-d:&gt;I&lt;MOD[=bar,baz]&gt;
+X&lt;-d&gt; X&lt;-dt&gt;
+
+=item B&lt;-dt:&gt;I&lt;MOD[=bar,baz]&gt;
+
+runs the program under the control of a debugging, profiling, or tracing
+module installed as C&lt;Devel::I&lt;MOD&gt;&gt;. E.g., B&lt;-d:DProf&gt; executes the
+program using the C&lt;Devel::DProf&gt; profiler.  As with the B&lt;-M&gt; flag, options
+may be passed to the C&lt;Devel::I&lt;MOD&gt;&gt; package where they will be received
+and interpreted by the C&lt;Devel::I&lt;MOD&gt;::import&gt; routine.  Again, like B&lt;-M&gt;,
+use -B&lt;-d:-I&lt;MOD&gt;&gt; to call C&lt;Devel::I&lt;MOD&gt;::unimport&gt; instead of import.  The
+comma-separated list of options must follow a C&lt;=&gt; character.  If B&lt;t&gt; is
+specified, it indicates to the debugger that threads will be used in the
+code being debugged.  See L&lt;perldebug&gt;.
+
+=item B&lt;-D&gt;I&lt;letters&gt;
+X&lt;-D&gt; X&lt;DEBUGGING&gt; X&lt;-DDEBUGGING&gt;
+
+=item B&lt;-D&gt;I&lt;number&gt;
+
+sets debugging flags. This switch is enabled only if your perl binary has
+been built with debugging enabled: normal production perls won&#39;t have
+been.
+
+For example, to watch how perl executes your program, use B&lt;-Dtls&gt;.
+Another nice value is B&lt;-Dx&gt;, which lists your compiled syntax tree, and
+B&lt;-Dr&gt; displays compiled regular expressions; the format of the output is
+explained in L&lt;perldebguts&gt;.
+
+As an alternative, specify a number instead of list of letters (e.g.,
+B&lt;-D14&gt; is equivalent to B&lt;-Dtls&gt;):
+
+         1  p  Tokenizing and parsing (with v, displays parse
+               stack)
+         2  s  Stack snapshots (with v, displays all stacks)
+         4  l  Context (loop) stack processing
+         8  t  Trace execution
+        16  o  Method and overloading resolution
+        32  c  String/numeric conversions
+        64  P  Print profiling info, source file input state
+       128  m  Memory and SV allocation
+       256  f  Format processing
+       512  r  Regular expression parsing and execution
+      1024  x  Syntax tree dump
+      2048  u  Tainting checks
+      4096  U  Unofficial, User hacking (reserved for private,
+               unreleased use)
+      8192  H  Hash dump -- usurps values()
+     16384  X  Scratchpad allocation
+     32768  D  Cleaning up
+     65536  S  Op slab allocation
+    131072  T  Tokenizing
+    262144  R  Include reference counts of dumped variables
+               (eg when using -Ds)
+    524288  J  show s,t,P-debug (don&#39;t Jump over) on opcodes within
+               package DB
+   1048576  v  Verbose: use in conjunction with other flags
+   2097152  C  Copy On Write
+   4194304  A  Consistency checks on internal structures
+   8388608  q  quiet - currently only suppresses the &quot;EXECUTING&quot;
+               message
+  16777216  M  trace smart match resolution
+  33554432  B  dump suBroutine definitions, including special
+               Blocks like BEGIN
+  67108864  L  trace Locale-related info; what gets output is very
+               subject to change
+ 134217728  i  trace PerlIO layer processing.  Set PERLIO_DEBUG to
+               the filename to trace to.
+
+All these flags require B&lt;-DDEBUGGING&gt; when you compile the Perl
+executable (but see C&lt;:opd&gt; in L&lt;Devel::Peek&gt; or L&lt;re/&#39;debug&#39; mode&gt;
+which may change this).
+See the F&lt;INSTALL&gt; file in the Perl source distribution
+for how to do this.
+
+If you&#39;re just trying to get a print out of each line of Perl code
+as it executes, the way that C&lt;sh -x&gt; provides for shell scripts,
+you can&#39;t use Perl&#39;s B&lt;-D&gt; switch.  Instead do this
+
+  # If you have &quot;env&quot; utility
+  env PERLDB_OPTS=&quot;NonStop=1 AutoTrace=1 frame=2&quot; perl -dS program
+
+  # Bourne shell syntax
+  $ PERLDB_OPTS=&quot;NonStop=1 AutoTrace=1 frame=2&quot; perl -dS program
+
+  # csh syntax
+  % (setenv PERLDB_OPTS &quot;NonStop=1 AutoTrace=1 frame=2&quot;; perl -dS program)
+
+See L&lt;perldebug&gt; for details and variations.
+
+=item B&lt;-e&gt; I&lt;commandline&gt;
+X&lt;-e&gt;
+
+may be used to enter one line of program.  If B&lt;-e&gt; is given, Perl
+will not look for a filename in the argument list.  Multiple B&lt;-e&gt;
+commands may be given to build up a multi-line script.  Make sure
+to use semicolons where you would in a normal program.
+
+=item B&lt;-E&gt; I&lt;commandline&gt;
+X&lt;-E&gt;
+
+behaves just like B&lt;-e&gt;, except that it implicitly enables all
+optional features (in the main compilation unit). See L&lt;feature&gt;.
+
+=item B&lt;-f&gt;
+X&lt;-f&gt; X&lt;sitecustomize&gt; X&lt;sitecustomize.pl&gt;
+
+Disable executing F&lt;$Config{sitelib}/sitecustomize.pl&gt; at startup.
+
+Perl can be built so that it by default will try to execute
+F&lt;$Config{sitelib}/sitecustomize.pl&gt; at startup (in a BEGIN block).
+This is a hook that allows the sysadmin to customize how Perl behaves.
+It can for instance be used to add entries to the @INC array to make Perl
+find modules in non-standard locations.
+
+Perl actually inserts the following code:
+
+    BEGIN {
+        do { local $!; -f &quot;$Config{sitelib}/sitecustomize.pl&quot;; }
+            &amp;&amp; do &quot;$Config{sitelib}/sitecustomize.pl&quot;;
+    }
+
+Since it is an actual C&lt;do&gt; (not a C&lt;require&gt;), F&lt;sitecustomize.pl&gt;
+doesn&#39;t need to return a true value. The code is run in package C&lt;main&gt;,
+in its own lexical scope. However, if the script dies, C&lt;$@&gt; will not
+be set.
+
+The value of C&lt;$Config{sitelib}&gt; is also determined in C code and not
+read from C&lt;Config.pm&gt;, which is not loaded.
+
+The code is executed I&lt;very&gt; early. For example, any changes made to
+C&lt;@INC&gt; will show up in the output of `perl -V`. Of course, C&lt;END&gt;
+blocks will be likewise executed very late.
+
+To determine at runtime if this capability has been compiled in your
+perl, you can check the value of C&lt;$Config{usesitecustomize}&gt;.
+
+=item B&lt;-F&gt;I&lt;pattern&gt;
+X&lt;-F&gt;
+
+specifies the pattern to split on for B&lt;-a&gt;. The pattern may be
+surrounded by C&lt;//&gt;, C&lt;&quot;&quot;&gt;, or C&lt;&#39;&#39;&gt;, otherwise it will be put in single
+quotes. You can&#39;t use literal whitespace or NUL characters in the pattern.
+
+B&lt;-F&gt; implicitly sets both B&lt;-a&gt; and B&lt;-n&gt;.
+
+=item B&lt;-h&gt;
+X&lt;-h&gt;
+
+prints a summary of the options.
+
+=item B&lt;-i&gt;[I&lt;extension&gt;]
+X&lt;-i&gt; X&lt;in-place&gt;
+
+specifies that files processed by the C&lt;E&lt;lt&gt;E&lt;gt&gt;&gt; construct are to be
+edited in-place.  It does this by renaming the input file, opening the
+output file by the original name, and selecting that output file as the
+default for print() statements.  The extension, if supplied, is used to
+modify the name of the old file to make a backup copy, following these
+rules:
+
+If no extension is supplied, and your system supports it, the original
+I&lt;file&gt; is kept open without a name while the output is redirected to
+a new file with the original I&lt;filename&gt;.  When perl exits, cleanly or not,
+the original I&lt;file&gt; is unlinked.
+
+If the extension doesn&#39;t contain a C&lt;*&gt;, then it is appended to the
+end of the current filename as a suffix.  If the extension does
+contain one or more C&lt;*&gt; characters, then each C&lt;*&gt; is replaced
+with the current filename.  In Perl terms, you could think of this
+as:
+
+    ($backup = $extension) =~ s/\*/$file_name/g;
+
+This allows you to add a prefix to the backup file, instead of (or in
+addition to) a suffix:
+
+ $ perl -pi&#39;orig_*&#39; -e &#39;s/bar/baz/&#39; fileA  # backup to
+                                           # &#39;orig_fileA&#39;
+
+Or even to place backup copies of the original files into another
+directory (provided the directory already exists):
+
+ $ perl -pi&#39;old/*.orig&#39; -e &#39;s/bar/baz/&#39; fileA  # backup to
+                                               # &#39;old/fileA.orig&#39;
+
+These sets of one-liners are equivalent:
+
+ $ perl -pi -e &#39;s/bar/baz/&#39; fileA          # overwrite current file
+ $ perl -pi&#39;*&#39; -e &#39;s/bar/baz/&#39; fileA       # overwrite current file
+
+ $ perl -pi&#39;.orig&#39; -e &#39;s/bar/baz/&#39; fileA   # backup to &#39;fileA.orig&#39;
+ $ perl -pi&#39;*.orig&#39; -e &#39;s/bar/baz/&#39; fileA  # backup to &#39;fileA.orig&#39;
+
+From the shell, saying
+
+    $ perl -p -i.orig -e &quot;s/foo/bar/; ... &quot;
+
+is the same as using the program:
+
+    #!/usr/bin/perl -pi.orig
+    s/foo/bar/;
+
+which is equivalent to
+
+    #!/usr/bin/perl
+    $extension = &#39;.orig&#39;;
+    LINE: while (&lt;&gt;) {
+	if ($ARGV ne $oldargv) {
+	    if ($extension !~ /\*/) {
+		$backup = $ARGV . $extension;
+	    }
+	    else {
+		($backup = $extension) =~ s/\*/$ARGV/g;
+	    }
+	    rename($ARGV, $backup);
+	    open(ARGVOUT, &quot;&gt;$ARGV&quot;);
+	    select(ARGVOUT);
+	    $oldargv = $ARGV;
+	}
+	s/foo/bar/;
+    }
+    continue {
+	print;	# this prints to original filename
+    }
+    select(STDOUT);
+
+except that the B&lt;-i&gt; form doesn&#39;t need to compare $ARGV to $oldargv to
+know when the filename has changed.  It does, however, use ARGVOUT for
+the selected filehandle.  Note that STDOUT is restored as the default
+output filehandle after the loop.
+
+As shown above, Perl creates the backup file whether or not any output
+is actually changed.  So this is just a fancy way to copy files:
+
+    $ perl -p -i&#39;/some/file/path/*&#39; -e 1 file1 file2 file3...
+or
+    $ perl -p -i&#39;.orig&#39; -e 1 file1 file2 file3...
+
+You can use C&lt;eof&gt; without parentheses to locate the end of each input
+file, in case you want to append to each file, or reset line numbering
+(see example in L&lt;perlfunc/eof&gt;).
+
+If, for a given file, Perl is unable to create the backup file as
+specified in the extension then it will skip that file and continue on
+with the next one (if it exists).
+
+For a discussion of issues surrounding file permissions and B&lt;-i&gt;, see
+L&lt;perlfaq5/Why does Perl let me delete read-only files?  Why does -i clobber
+protected files?  Isn&#39;t this a bug in Perl?&gt;.
+
+You cannot use B&lt;-i&gt; to create directories or to strip extensions from
+files.
+
+Perl does not expand C&lt;~&gt; in filenames, which is good, since some
+folks use it for their backup files:
+
+    $ perl -pi~ -e &#39;s/foo/bar/&#39; file1 file2 file3...
+
+Note that because B&lt;-i&gt; renames or deletes the original file before
+creating a new file of the same name, Unix-style soft and hard links will
+not be preserved.
+
+Finally, the B&lt;-i&gt; switch does not impede execution when no
+files are given on the command line.  In this case, no backup is made
+(the original file cannot, of course, be determined) and processing
+proceeds from STDIN to STDOUT as might be expected.
+
+=item B&lt;-I&gt;I&lt;directory&gt;
+X&lt;-I&gt; X&lt;@INC&gt;
+
+Directories specified by B&lt;-I&gt; are prepended to the search path for
+modules (C&lt;@INC&gt;).
+
+=item B&lt;-l&gt;[I&lt;octnum&gt;]
+X&lt;-l&gt; X&lt;$/&gt; X&lt;$\&gt;
+
+enables automatic line-ending processing.  It has two separate
+effects.  First, it automatically chomps C&lt;$/&gt; (the input record
+separator) when used with B&lt;-n&gt; or B&lt;-p&gt;.  Second, it assigns C&lt;$\&gt;
+(the output record separator) to have the value of I&lt;octnum&gt; so
+that any print statements will have that separator added back on.
+If I&lt;octnum&gt; is omitted, sets C&lt;$\&gt; to the current value of
+C&lt;$/&gt;.  For instance, to trim lines to 80 columns:
+
+    perl -lpe &#39;substr($_, 80) = &quot;&quot;&#39;
+
+Note that the assignment C&lt;$\ = $/&gt; is done when the switch is processed,
+so the input record separator can be different than the output record
+separator if the B&lt;-l&gt; switch is followed by a B&lt;-0&gt; switch:
+
+    gnufind / -print0 | perl -ln0e &#39;print &quot;found $_&quot; if -p&#39;
+
+This sets C&lt;$\&gt; to newline and then sets C&lt;$/&gt; to the null character.
+
+=item B&lt;-m&gt;[B&lt;-&gt;]I&lt;module&gt;
+X&lt;-m&gt; X&lt;-M&gt;
+
+=item B&lt;-M&gt;[B&lt;-&gt;]I&lt;module&gt;
+
+=item B&lt;-M&gt;[B&lt;-&gt;]I&lt;&#39;module ...&#39;&gt;
+
+=item B&lt;-[mM]&gt;[B&lt;-&gt;]I&lt;module=arg[,arg]...&gt;
+
+B&lt;-m&gt;I&lt;module&gt; executes C&lt;use&gt; I&lt;module&gt; C&lt;();&gt; before executing your
+program.
+
+B&lt;-M&gt;I&lt;module&gt; executes C&lt;use&gt; I&lt;module&gt; C&lt;;&gt; before executing your
+program.  You can use quotes to add extra code after the module name,
+e.g., C&lt;&#39;-MI&lt;MODULE&gt; qw(foo bar)&#39;&gt;.
+
+If the first character after the B&lt;-M&gt; or B&lt;-m&gt; is a dash (B&lt;-&gt;)
+then the &#39;use&#39; is replaced with &#39;no&#39;.
+
+A little builtin syntactic sugar means you can also say
+B&lt;-mI&lt;MODULE&gt;=foo,bar&gt; or B&lt;-MI&lt;MODULE&gt;=foo,bar&gt; as a shortcut for
+B&lt;&#39;-MI&lt;MODULE&gt; qw(foo bar)&#39;&gt;.  This avoids the need to use quotes when
+importing symbols.  The actual code generated by B&lt;-MI&lt;MODULE&gt;=foo,bar&gt; is
+C&lt;use module split(/,/,q{foo,bar})&gt;.  Note that the C&lt;=&gt; form
+removes the distinction between B&lt;-m&gt; and B&lt;-M&gt;; that is,
+B&lt;-mI&lt;MODULE&gt;=foo,bar&gt; is the same as B&lt;-MI&lt;MODULE&gt;=foo,bar&gt;.
+
+A consequence of this is that B&lt;-MI&lt;MODULE&gt;=number&gt; never does a version check,
+unless C&lt;I&lt;MODULE&gt;::import()&gt; itself is set up to do a version check, which
+could happen for example if I&lt;MODULE&gt; inherits from L&lt;Exporter&gt;.
+
+=item B&lt;-n&gt;
+X&lt;-n&gt;
+
+causes Perl to assume the following loop around your program, which
+makes it iterate over filename arguments somewhat like I&lt;sed -n&gt; or
+I&lt;awk&gt;:
+
+  LINE:
+    while (&lt;&gt;) {
+	...		# your program goes here
+    }
+
+Note that the lines are not printed by default.  See L&lt;/-p&gt; to have
+lines printed.  If a file named by an argument cannot be opened for
+some reason, Perl warns you about it and moves on to the next file.
+
+Also note that C&lt;&lt; &lt;&gt; &gt;&gt; passes command line arguments to
+L&lt;perlfunc/open&gt;, which doesn&#39;t necessarily interpret them as file names.
+See  L&lt;perlop&gt; for possible security implications.
+
+Here is an efficient way to delete all files that haven&#39;t been modified for
+at least a week:
+
+    find . -mtime +7 -print | perl -nle unlink
+
+This is faster than using the B&lt;-exec&gt; switch of I&lt;find&gt; because you don&#39;t
+have to start a process on every filename found (but it&#39;s not faster
+than using the B&lt;-delete&gt; switch available in newer versions of I&lt;find&gt;.
+It does suffer from the bug of mishandling newlines in pathnames, which
+you can fix if you follow the example under B&lt;-0&gt;.
+
+C&lt;BEGIN&gt; and C&lt;END&gt; blocks may be used to capture control before or after
+the implicit program loop, just as in I&lt;awk&gt;.
+
+=item B&lt;-p&gt;
+X&lt;-p&gt;
+
+causes Perl to assume the following loop around your program, which
+makes it iterate over filename arguments somewhat like I&lt;sed&gt;:
+
+
+  LINE:
+    while (&lt;&gt;) {
+	...		# your program goes here
+    } continue {
+	print or die &quot;-p destination: $!\n&quot;;
+    }
+
+If a file named by an argument cannot be opened for some reason, Perl
+warns you about it, and moves on to the next file.  Note that the
+lines are printed automatically.  An error occurring during printing is
+treated as fatal.  To suppress printing use the B&lt;-n&gt; switch.  A B&lt;-p&gt;
+overrides a B&lt;-n&gt; switch.
+
+C&lt;BEGIN&gt; and C&lt;END&gt; blocks may be used to capture control before or after
+the implicit loop, just as in I&lt;awk&gt;.
+
+=item B&lt;-s&gt;
+X&lt;-s&gt;
+
+enables rudimentary switch parsing for switches on the command
+line after the program name but before any filename arguments (or before
+an argument of B&lt;--&gt;).  Any switch found there is removed from @ARGV and sets the
+corresponding variable in the Perl program.  The following program
+prints &quot;1&quot; if the program is invoked with a B&lt;-xyz&gt; switch, and &quot;abc&quot;
+if it is invoked with B&lt;-xyz=abc&gt;.
+
+    #!/usr/bin/perl -s
+    if ($xyz) { print &quot;$xyz\n&quot; }
+
+Do note that a switch like B&lt;--help&gt; creates the variable C&lt;${-help}&gt;, which is
+not compliant with C&lt;use strict &quot;refs&quot;&gt;.  Also, when using this option on a
+script with warnings enabled you may get a lot of spurious &quot;used only once&quot;
+warnings.
+
+=item B&lt;-S&gt;
+X&lt;-S&gt;
+
+makes Perl use the PATH environment variable to search for the
+program unless the name of the program contains path separators.
+
+On some platforms, this also makes Perl append suffixes to the
+filename while searching for it.  For example, on Win32 platforms,
+the &quot;.bat&quot; and &quot;.cmd&quot; suffixes are appended if a lookup for the
+original name fails, and if the name does not already end in one
+of those suffixes.  If your Perl was compiled with C&lt;DEBUGGING&gt; turned
+on, using the B&lt;-Dp&gt; switch to Perl shows how the search progresses.
+
+Typically this is used to emulate C&lt;#!&gt; startup on platforms that don&#39;t
+support C&lt;#!&gt;.  It&#39;s also convenient when debugging a script that uses C&lt;#!&gt;,
+and is thus normally found by the shell&#39;s $PATH search mechanism.
+
+This example works on many platforms that have a shell compatible with
+Bourne shell:
+
+    #!/usr/bin/perl
+    eval &#39;exec /usr/bin/perl -wS $0 ${1+&quot;$@&quot;}&#39;
+	    if $running_under_some_shell;
+
+The system ignores the first line and feeds the program to F&lt;/bin/sh&gt;,
+which proceeds to try to execute the Perl program as a shell script.
+The shell executes the second line as a normal shell command, and thus
+starts up the Perl interpreter.  On some systems $0 doesn&#39;t always
+contain the full pathname, so the B&lt;-S&gt; tells Perl to search for the
+program if necessary.  After Perl locates the program, it parses the
+lines and ignores them because the variable $running_under_some_shell
+is never true.  If the program will be interpreted by csh, you will need
+to replace C&lt;${1+&quot;$@&quot;}&gt; with C&lt;$*&gt;, even though that doesn&#39;t understand
+embedded spaces (and such) in the argument list.  To start up I&lt;sh&gt; rather
+than I&lt;csh&gt;, some systems may have to replace the C&lt;#!&gt; line with a line
+containing just a colon, which will be politely ignored by Perl.  Other
+systems can&#39;t control that, and need a totally devious construct that
+will work under any of I&lt;csh&gt;, I&lt;sh&gt;, or Perl, such as the following:
+
+	eval &#39;(exit $?0)&#39; &amp;&amp; eval &#39;exec perl -wS $0 ${1+&quot;$@&quot;}&#39;
+	&amp; eval &#39;exec /usr/bin/perl -wS $0 $argv:q&#39;
+		if $running_under_some_shell;
+
+If the filename supplied contains directory separators (and so is an
+absolute or relative pathname), and if that file is not found,
+platforms that append file extensions will do so and try to look
+for the file with those extensions added, one by one.
+
+On DOS-like platforms, if the program does not contain directory
+separators, it will first be searched for in the current directory
+before being searched for on the PATH.  On Unix platforms, the
+program will be searched for strictly on the PATH.
+
+=item B&lt;-t&gt;
+X&lt;-t&gt;
+
+Like B&lt;-T&gt;, but taint checks will issue warnings rather than fatal
+errors.  These warnings can now be controlled normally with C&lt;no warnings
+qw(taint)&gt;.
+
+B&lt;Note: This is not a substitute for C&lt;-T&gt;!&gt; This is meant to be
+used I&lt;only&gt; as a temporary development aid while securing legacy code:
+for real production code and for new secure code written from scratch,
+always use the real B&lt;-T&gt;.
+
+=item B&lt;-T&gt;
+X&lt;-T&gt;
+
+turns on &quot;taint&quot; so you can test them.  Ordinarily
+these checks are done only when running setuid or setgid.  It&#39;s a
+good idea to turn them on explicitly for programs that run on behalf
+of someone else whom you might not necessarily trust, such as CGI
+programs or any internet servers you might write in Perl.  See
+L&lt;perlsec&gt; for details.  For security reasons, this option must be
+seen by Perl quite early; usually this means it must appear early
+on the command line or in the C&lt;#!&gt; line for systems which support
+that construct.
+
+=item B&lt;-u&gt;
+X&lt;-u&gt;
+
+This switch causes Perl to dump core after compiling your
+program.  You can then in theory take this core dump and turn it
+into an executable file by using the I&lt;undump&gt; program (not supplied).
+This speeds startup at the expense of some disk space (which you
+can minimize by stripping the executable).  (Still, a &quot;hello world&quot;
+executable comes out to about 200K on my machine.)  If you want to
+execute a portion of your program before dumping, use the dump()
+operator instead.  Note: availability of I&lt;undump&gt; is platform
+specific and may not be available for a specific port of Perl.
+
+=item B&lt;-U&gt;
+X&lt;-U&gt;
+
+allows Perl to do unsafe operations.  Currently the only &quot;unsafe&quot;
+operations are attempting to unlink directories while running as superuser
+and running setuid programs with fatal taint checks turned into warnings.
+Note that warnings must be enabled along with this option to actually
+I&lt;generate&gt; the taint-check warnings.
+
+=item B&lt;-v&gt;
+X&lt;-v&gt;
+
+prints the version and patchlevel of your perl executable.
+
+=item B&lt;-V&gt;
+X&lt;-V&gt;
+
+prints summary of the major perl configuration values and the current
+values of @INC.
+
+=item B&lt;-V:&gt;I&lt;configvar&gt;
+
+Prints to STDOUT the value of the named configuration variable(s),
+with multiples when your C&lt;I&lt;configvar&gt;&gt; argument looks like a regex (has
+non-letters).  For example:
+
+    $ perl -V:libc
+	libc=&#39;/lib/libc-2.2.4.so&#39;;
+    $ perl -V:lib.
+	libs=&#39;-lnsl -lgdbm -ldb -ldl -lm -lcrypt -lutil -lc&#39;;
+	libc=&#39;/lib/libc-2.2.4.so&#39;;
+    $ perl -V:lib.*
+	libpth=&#39;/usr/local/lib /lib /usr/lib&#39;;
+	libs=&#39;-lnsl -lgdbm -ldb -ldl -lm -lcrypt -lutil -lc&#39;;
+	lib_ext=&#39;.a&#39;;
+	libc=&#39;/lib/libc-2.2.4.so&#39;;
+	libperl=&#39;libperl.a&#39;;
+	....
+
+Additionally, extra colons can be used to control formatting.  A
+trailing colon suppresses the linefeed and terminator &quot;;&quot;, allowing
+you to embed queries into shell commands.  (mnemonic: PATH separator
+&quot;:&quot;.)
+
+    $ echo &quot;compression-vars: &quot; `perl -V:z.*: ` &quot; are here !&quot;
+    compression-vars:  zcat=&#39;&#39; zip=&#39;zip&#39;  are here !
+
+A leading colon removes the &quot;name=&quot; part of the response, this allows
+you to map to the name you need.  (mnemonic: empty label)
+
+    $ echo &quot;goodvfork=&quot;`./perl -Ilib -V::usevfork`
+    goodvfork=false;
+
+Leading and trailing colons can be used together if you need
+positional parameter values without the names.  Note that in the case
+below, the C&lt;PERL_API&gt; params are returned in alphabetical order.
+
+    $ echo building_on `perl -V::osname: -V::PERL_API_.*:` now
+    building_on &#39;linux&#39; &#39;5&#39; &#39;1&#39; &#39;9&#39; now
+
+=item B&lt;-w&gt;
+X&lt;-w&gt;
+
+prints warnings about dubious constructs, such as variable names
+mentioned only once and scalar variables used
+before being set; redefined subroutines; references to undefined
+filehandles; filehandles opened read-only that you are attempting
+to write on; values used as a number that don&#39;t I&lt;look&gt; like numbers;
+using an array as though it were a scalar; if your subroutines
+recurse more than 100 deep; and innumerable other things.
+
+This switch really just enables the global C&lt;$^W&gt; variable; normally,
+the lexically scoped C&lt;use warnings&gt; pragma is preferred. You
+can disable or promote into fatal errors specific warnings using
+C&lt;__WARN__&gt; hooks, as described in L&lt;perlvar&gt; and L&lt;perlfunc/warn&gt;.
+See also L&lt;perldiag&gt; and L&lt;perltrap&gt;.  A fine-grained warning
+facility is also available if you want to manipulate entire classes
+of warnings; see L&lt;warnings&gt;.
+
+=item B&lt;-W&gt;
+X&lt;-W&gt;
+
+Enables all warnings regardless of C&lt;no warnings&gt; or C&lt;$^W&gt;.
+See L&lt;warnings&gt;.
+
+=item B&lt;-X&gt;
+X&lt;-X&gt;
+
+Disables all warnings regardless of C&lt;use warnings&gt; or C&lt;$^W&gt;.
+See L&lt;warnings&gt;.
+
+=item B&lt;-x&gt;
+X&lt;-x&gt;
+
+=item B&lt;-x&gt;I&lt;directory&gt;
+
+tells Perl that the program is embedded in a larger chunk of unrelated
+text, such as in a mail message.  Leading garbage will be
+discarded until the first line that starts with C&lt;#!&gt; and contains the
+string &quot;perl&quot;.  Any meaningful switches on that line will be applied.
+
+All references to line numbers by the program (warnings, errors, ...)
+will treat the C&lt;#!&gt; line as the first line.
+Thus a warning on the 2nd line of the program, which is on the 100th
+line in the file will be reported as line 2, not as line 100.
+This can be overridden by using the C&lt;#line&gt; directive.
+(See L&lt;perlsyn/&quot;Plain Old Comments (Not!)&quot;&gt;)
+
+If a directory name is specified, Perl will switch to that directory
+before running the program.  The B&lt;-x&gt; switch controls only the
+disposal of leading garbage.  The program must be terminated with
+C&lt;__END__&gt; if there is trailing garbage to be ignored;  the program
+can process any or all of the trailing garbage via the C&lt;DATA&gt; filehandle
+if desired.
+
+The directory, if specified, must appear immediately following the B&lt;-x&gt;
+with no intervening whitespace.
+
+=back
+
+=head1 ENVIRONMENT
+X&lt;perl, environment variables&gt;
+
+=over 12
+
+=item HOME
+X&lt;HOME&gt;
+
+Used if C&lt;chdir&gt; has no argument.
+
+=item LOGDIR
+X&lt;LOGDIR&gt;
+
+Used if C&lt;chdir&gt; has no argument and HOME is not set.
+
+=item PATH
+X&lt;PATH&gt;
+
+Used in executing subprocesses, and in finding the program if B&lt;-S&gt; is
+used.
+
+=item PERL5LIB
+X&lt;PERL5LIB&gt;
+
+A list of directories in which to look for Perl library
+files before looking in the standard library and the current
+directory.  Any architecture-specific and version-specific directories,
+such as F&lt;version/archname/&gt;, F&lt;version/&gt;, or F&lt;archname/&gt; under the
+specified locations are automatically included if they exist, with this
+lookup done at interpreter startup time.  In addition, any directories
+matching the entries in C&lt;$Config{inc_version_list}&gt; are added.
+(These typically would be for older compatible perl versions installed
+in the same directory tree.)
+
+If PERL5LIB is not defined, PERLLIB is used.  Directories are separated
+(like in PATH) by a colon on Unixish platforms and by a semicolon on
+Windows (the proper path separator being given by the command C&lt;perl
+-V:I&lt;path_sep&gt;&gt;).
+
+When running taint checks, either because the program was running setuid or
+setgid, or the B&lt;-T&gt; or B&lt;-t&gt; switch was specified, neither PERL5LIB nor
+PERLLIB is consulted. The program should instead say:
+
+    use lib &quot;/my/directory&quot;;
+
+=item PERL5OPT
+X&lt;PERL5OPT&gt;
+
+Command-line options (switches).  Switches in this variable are treated
+as if they were on every Perl command line.  Only the B&lt;-[CDIMUdmtwW]&gt;
+switches are allowed.  When running taint checks (either because the
+program was running setuid or setgid, or because the B&lt;-T&gt; or B&lt;-t&gt;
+switch was used), this variable is ignored.  If PERL5OPT begins with
+B&lt;-T&gt;, tainting will be enabled and subsequent options ignored.  If
+PERL5OPT begins with B&lt;-t&gt;, tainting will be enabled, a writable dot
+removed from @INC, and subsequent options honored.
+
+=item PERLIO
+X&lt;PERLIO&gt;
+
+A space (or colon) separated list of PerlIO layers. If perl is built
+to use PerlIO system for IO (the default) these layers affect Perl&#39;s IO.
+
+It is conventional to start layer names with a colon (for example, C&lt;:perlio&gt;) to
+emphasize their similarity to variable &quot;attributes&quot;. But the code that parses
+layer specification strings, which is also used to decode the PERLIO
+environment variable, treats the colon as a separator.
+
+An unset or empty PERLIO is equivalent to the default set of layers for
+your platform; for example, C&lt;:unix:perlio&gt; on Unix-like systems
+and C&lt;:unix:crlf&gt; on Windows and other DOS-like systems.
+
+The list becomes the default for I&lt;all&gt; Perl&#39;s IO. Consequently only built-in
+layers can appear in this list, as external layers (such as C&lt;:encoding()&gt;) need
+IO in order to load them!  See L&lt;&quot;open pragma&quot;|open&gt; for how to add external
+encodings as defaults.
+
+Layers it makes sense to include in the PERLIO environment
+variable are briefly summarized below. For more details see L&lt;PerlIO&gt;.
+
+=over 8
+
+=item :bytes
+X&lt;:bytes&gt;
+
+A pseudolayer that turns the C&lt;:utf8&gt; flag I&lt;off&gt; for the layer below;
+unlikely to be useful on its own in the global PERLIO environment variable.
+You perhaps were thinking of C&lt;:crlf:bytes&gt; or C&lt;:perlio:bytes&gt;.
+
+=item :crlf
+X&lt;:crlf&gt;
+
+A layer which does CRLF to C&lt;&quot;\n&quot;&gt; translation distinguishing &quot;text&quot; and
+&quot;binary&quot; files in the manner of MS-DOS and similar operating systems.
+(It currently does I&lt;not&gt; mimic MS-DOS as far as treating of Control-Z
+as being an end-of-file marker.)
+
+=item :mmap
+X&lt;:mmap&gt;
+
+A layer that implements &quot;reading&quot; of files by using I&lt;mmap&gt;(2) to
+make an entire file appear in the process&#39;s address space, and then
+using that as PerlIO&#39;s &quot;buffer&quot;.
+
+=item :perlio
+X&lt;:perlio&gt;
+
+This is a re-implementation of stdio-like buffering written as a
+PerlIO layer.  As such it will call whatever layer is below it for
+its operations, typically C&lt;:unix&gt;.
+
+=item :pop
+X&lt;:pop&gt;
+
+An experimental pseudolayer that removes the topmost layer.
+Use with the same care as is reserved for nitroglycerine.
+
+=item :raw
+X&lt;:raw&gt;
+
+A pseudolayer that manipulates other layers.  Applying the C&lt;:raw&gt;
+layer is equivalent to calling C&lt;binmode($fh)&gt;.  It makes the stream
+pass each byte as-is without translation.  In particular, both CRLF
+translation and intuiting C&lt;:utf8&gt; from the locale are disabled.
+
+Unlike in earlier versions of Perl, C&lt;:raw&gt; is I&lt;not&gt;
+just the inverse of C&lt;:crlf&gt;: other layers which would affect the
+binary nature of the stream are also removed or disabled.
+
+=item :stdio
+X&lt;:stdio&gt;
+
+This layer provides a PerlIO interface by wrapping system&#39;s ANSI C &quot;stdio&quot;
+library calls. The layer provides both buffering and IO.
+Note that the C&lt;:stdio&gt; layer does I&lt;not&gt; do CRLF translation even if that
+is the platform&#39;s normal behaviour. You will need a C&lt;:crlf&gt; layer above it
+to do that.
+
+=item :unix
+X&lt;:unix&gt;
+
+Low-level layer that calls C&lt;read&gt;, C&lt;write&gt;, C&lt;lseek&gt;, etc.
+
+=item :utf8
+X&lt;:utf8&gt;
+
+A pseudolayer that enables a flag in the layer below to tell Perl
+that output should be in utf8 and that input should be regarded as
+already in valid utf8 form. B&lt;WARNING: It does not check for validity and as such
+should be handled with extreme caution for input, because security violations
+can occur with non-shortest UTF-8 encodings, etc.&gt; Generally C&lt;:encoding(UTF-8)&gt; is
+the best option when reading UTF-8 encoded data.
+
+=item :win32
+X&lt;:win32&gt;
+
+On Win32 platforms this I&lt;experimental&gt; layer uses native &quot;handle&quot; IO
+rather than a Unix-like numeric file descriptor layer. Known to be
+buggy in this release (5.14).
+
+=back
+
+The default set of layers should give acceptable results on all platforms
+
+For Unix platforms that will be the equivalent of &quot;unix perlio&quot; or &quot;stdio&quot;.
+Configure is set up to prefer the &quot;stdio&quot; implementation if the system&#39;s library
+provides for fast access to the buffer; otherwise, it uses the &quot;unix perlio&quot;
+implementation.
+
+On Win32 the default in this release (5.14) is &quot;unix crlf&quot;. Win32&#39;s &quot;stdio&quot;
+has a number of bugs/mis-features for Perl IO which are somewhat depending
+on the version and vendor of the C compiler. Using our own C&lt;crlf&gt; layer as
+the buffer avoids those issues and makes things more uniform.  The C&lt;crlf&gt;
+layer provides CRLF conversion as well as buffering.
+
+This release (5.14) uses C&lt;unix&gt; as the bottom layer on Win32, and so still
+uses the C compiler&#39;s numeric file descriptor routines. There is an
+experimental native C&lt;win32&gt; layer, which is expected to be enhanced and
+should eventually become the default under Win32.
+
+The PERLIO environment variable is completely ignored when Perl
+is run in taint mode.
+
+=item PERLIO_DEBUG
+X&lt;PERLIO_DEBUG&gt;
+
+If set to the name of a file or device when Perl is run with the
+B&lt;-Di&gt; command-line switch, the logging of certain operations of
+the PerlIO subsystem will be redirected to the specified file rather
+than going to stderr, which is the default. The file is opened in append
+mode. Typical uses are in Unix:
+
+   % env PERLIO_DEBUG=/tmp/perlio.log perl -Di script ...
+
+and under Win32, the approximately equivalent:
+
+   &gt; set PERLIO_DEBUG=CON
+   perl -Di script ...
+
+This functionality is disabled for setuid scripts, for scripts run
+with B&lt;-T&gt;, and for scripts run on a Perl built without C&lt;-DDEBUGGING&gt;
+support.
+
+=item PERLLIB
+X&lt;PERLLIB&gt;
+
+A list of directories in which to look for Perl library
+files before looking in the standard library and the current directory.
+If PERL5LIB is defined, PERLLIB is not used.
+
+The PERLLIB environment variable is completely ignored when Perl
+is run in taint mode.
+
+=item PERL5DB
+X&lt;PERL5DB&gt;
+
+The command used to load the debugger code.  The default is:
+
+	BEGIN { require &quot;perl5db.pl&quot; }
+
+The PERL5DB environment variable is only used when Perl is started with
+a bare B&lt;-d&gt; switch.
+
+=item PERL5DB_THREADED
+X&lt;PERL5DB_THREADED&gt;
+
+If set to a true value, indicates to the debugger that the code being
+debugged uses threads.
+
+=item PERL5SHELL (specific to the Win32 port)
+X&lt;PERL5SHELL&gt;
+
+On Win32 ports only, may be set to an alternative shell that Perl must use
+internally for executing &quot;backtick&quot; commands or system().  Default is
+C&lt;cmd.exe /x/d/c&gt; on WindowsNT and C&lt;command.com /c&gt; on Windows95.  The
+value is considered space-separated.  Precede any character that
+needs to be protected, like a space or backslash, with another backslash.
+
+Note that Perl doesn&#39;t use COMSPEC for this purpose because
+COMSPEC has a high degree of variability among users, leading to
+portability concerns.  Besides, Perl can use a shell that may not be
+fit for interactive use, and setting COMSPEC to such a shell may
+interfere with the proper functioning of other programs (which usually
+look in COMSPEC to find a shell fit for interactive use).
+
+Before Perl 5.10.0 and 5.8.8, PERL5SHELL was not taint checked
+when running external commands.  It is recommended that
+you explicitly set (or delete) C&lt;$ENV{PERL5SHELL}&gt; when running
+in taint mode under Windows.
+
+=item PERL_ALLOW_NON_IFS_LSP (specific to the Win32 port)
+X&lt;PERL_ALLOW_NON_IFS_LSP&gt;
+
+Set to 1 to allow the use of non-IFS compatible LSPs (Layered Service Providers).
+Perl normally searches for an IFS-compatible LSP because this is required
+for its emulation of Windows sockets as real filehandles.  However, this may
+cause problems if you have a firewall such as I&lt;McAfee Guardian&gt;, which requires
+that all applications use its LSP but which is not IFS-compatible, because clearly
+Perl will normally avoid using such an LSP.
+
+Setting this environment variable to 1 means that Perl will simply use the
+first suitable LSP enumerated in the catalog, which keeps I&lt;McAfee Guardian&gt;
+happy--and in that particular case Perl still works too because I&lt;McAfee
+Guardian&gt;&#39;s LSP actually plays other games which allow applications
+requiring IFS compatibility to work.
+
+=item PERL_DEBUG_MSTATS
+X&lt;PERL_DEBUG_MSTATS&gt;
+
+Relevant only if Perl is compiled with the C&lt;malloc&gt; included with the Perl
+distribution; that is, if C&lt;perl -V:d_mymalloc&gt; is &quot;define&quot;.
+
+If set, this dumps out memory statistics after execution.  If set
+to an integer greater than one, also dumps out memory statistics
+after compilation.
+
+=item PERL_DESTRUCT_LEVEL
+X&lt;PERL_DESTRUCT_LEVEL&gt;
+
+Relevant only if your Perl executable was built with B&lt;-DDEBUGGING&gt;,
+this controls the behaviour of global destruction of objects and other
+references.  See L&lt;perlhacktips/PERL_DESTRUCT_LEVEL&gt; for more information.
+
+=item PERL_DL_NONLAZY
+X&lt;PERL_DL_NONLAZY&gt;
+
+Set to C&lt;&quot;1&quot;&gt; to have Perl resolve I&lt;all&gt; undefined symbols when it loads
+a dynamic library.  The default behaviour is to resolve symbols when
+they are used.  Setting this variable is useful during testing of
+extensions, as it ensures that you get an error on misspelled function
+names even if the test suite doesn&#39;t call them.
+
+=item PERL_ENCODING
+X&lt;PERL_ENCODING&gt;
+
+If using the C&lt;use encoding&gt; pragma without an explicit encoding name, the
+PERL_ENCODING environment variable is consulted for an encoding name.
+
+=item PERL_HASH_SEED
+X&lt;PERL_HASH_SEED&gt;
+
+(Since Perl 5.8.1, new semantics in Perl 5.18.0)  Used to override
+the randomization of Perl&#39;s internal hash function. The value is expressed
+in hexadecimal, and may include a leading 0x. Truncated patterns
+are treated as though they are suffixed with sufficient 0&#39;s as required.
+
+If the option is provided, and C&lt;PERL_PERTURB_KEYS&gt; is NOT set, then
+a value of &#39;0&#39; implies C&lt;PERL_PERTURB_KEYS=0&gt; and any other value
+implies C&lt;PERL_PERTURB_KEYS=2&gt;.
+
+B&lt;PLEASE NOTE: The hash seed is sensitive information&gt;. Hashes are
+randomized to protect against local and remote attacks against Perl
+code. By manually setting a seed, this protection may be partially or
+completely lost.
+
+See L&lt;perlsec/&quot;Algorithmic Complexity Attacks&quot;&gt;, L&lt;/PERL_PERTURB_KEYS&gt;, and
+L&lt;/PERL_HASH_SEED_DEBUG&gt; for more information.
+
+=item PERL_PERTURB_KEYS
+X&lt;PERL_PERTURB_KEYS&gt;
+
+(Since Perl 5.18.0)  Set to C&lt;&quot;0&quot;&gt; or C&lt;&quot;NO&quot;&gt; then traversing keys
+will be repeatable from run to run for the same PERL_HASH_SEED.
+Insertion into a hash will not change the order, except to provide
+for more space in the hash. When combined with setting PERL_HASH_SEED
+this mode is as close to pre 5.18 behavior as you can get.
+
+When set to C&lt;&quot;1&quot;&gt; or C&lt;&quot;RANDOM&quot;&gt; then traversing keys will be randomized.
+Every time a hash is inserted into the key order will change in a random
+fashion. The order may not be repeatable in a following program run
+even if the PERL_HASH_SEED has been specified. This is the default
+mode for perl.
+
+When set to C&lt;&quot;2&quot;&gt; or C&lt;&quot;DETERMINISTIC&quot;&gt; then inserting keys into a hash
+will cause the key order to change, but in a way that is repeatable
+from program run to program run.
+
+B&lt;NOTE:&gt; Use of this option is considered insecure, and is intended only
+for debugging non-deterministic behavior in Perl&#39;s hash function. Do
+not use it in production.
+
+See L&lt;perlsec/&quot;Algorithmic Complexity Attacks&quot;&gt; and L&lt;/PERL_HASH_SEED&gt;
+and L&lt;/PERL_HASH_SEED_DEBUG&gt; for more information. You can get and set the
+key traversal mask for a specific hash by using the C&lt;hash_traversal_mask()&gt;
+function from L&lt;Hash::Util&gt;.
+
+=item PERL_HASH_SEED_DEBUG
+X&lt;PERL_HASH_SEED_DEBUG&gt;
+
+(Since Perl 5.8.1.)  Set to C&lt;&quot;1&quot;&gt; to display (to STDERR) information
+about the hash function, seed, and what type of key traversal
+randomization is in effect at the beginning of execution.  This, combined
+with L&lt;/PERL_HASH_SEED&gt; and L&lt;/PERL_PERTURB_KEYS&gt; is intended to aid in
+debugging nondeterministic behaviour caused by hash randomization.
+
+B&lt;Note&gt; that any information about the hash function, especially the hash
+seed is B&lt;sensitive information&gt;: by knowing it, one can craft a denial-of-service
+attack against Perl code, even remotely; see L&lt;perlsec/&quot;Algorithmic Complexity Attacks&quot;&gt;
+for more information. B&lt;Do not disclose the hash seed&gt; to people who
+don&#39;t need to know it. See also C&lt;hash_seed()&gt; and
+C&lt;key_traversal_mask()&gt; in L&lt;Hash::Util&gt;.
+
+An example output might be:
+
+ HASH_FUNCTION = ONE_AT_A_TIME_HARD HASH_SEED = 0x652e9b9349a7a032 PERTURB_KEYS = 1 (RANDOM)
+
+=item PERL_MEM_LOG
+X&lt;PERL_MEM_LOG&gt;
+
+If your Perl was configured with B&lt;-Accflags=-DPERL_MEM_LOG&gt;, setting
+the environment variable C&lt;PERL_MEM_LOG&gt; enables logging debug
+messages. The value has the form C&lt;&lt; &lt;I&lt;number&gt;&gt;[m][s][t] &gt;&gt;, where
+C&lt;I&lt;number&gt;&gt; is the file descriptor number you want to write to (2 is
+default), and the combination of letters specifies that you want
+information about (m)emory and/or (s)v, optionally with
+(t)imestamps. For example, C&lt;PERL_MEM_LOG=1mst&gt; logs all
+information to stdout. You can write to other opened file descriptors
+in a variety of ways:
+
+  $ 3&gt;foo3 PERL_MEM_LOG=3m perl ...
+
+=item PERL_ROOT (specific to the VMS port)
+X&lt;PERL_ROOT&gt;
+
+A translation-concealed rooted logical name that contains Perl and the
+logical device for the @INC path on VMS only.  Other logical names that
+affect Perl on VMS include PERLSHR, PERL_ENV_TABLES, and
+SYS$TIMEZONE_DIFFERENTIAL, but are optional and discussed further in
+L&lt;perlvms&gt; and in F&lt;README.vms&gt; in the Perl source distribution.
+
+=item PERL_SIGNALS
+X&lt;PERL_SIGNALS&gt;
+
+Available in Perls 5.8.1 and later.  If set to C&lt;&quot;unsafe&quot;&gt;, the pre-Perl-5.8.0
+signal behaviour (which is immediate but unsafe) is restored.  If set
+to C&lt;safe&gt;, then safe (but deferred) signals are used.  See
+L&lt;perlipc/&quot;Deferred Signals (Safe Signals)&quot;&gt;.
+
+=item PERL_UNICODE
+X&lt;PERL_UNICODE&gt;
+
+Equivalent to the B&lt;-C&gt; command-line switch.  Note that this is not
+a boolean variable. Setting this to C&lt;&quot;1&quot;&gt; is not the right way to
+&quot;enable Unicode&quot; (whatever that would mean).  You can use C&lt;&quot;0&quot;&gt; to
+&quot;disable Unicode&quot;, though (or alternatively unset PERL_UNICODE in
+your shell before starting Perl).  See the description of the B&lt;-C&gt;
+switch for more information.
+
+=item PERL_USE_UNSAFE_INC
+X&lt;PERL_USE_UNSAFE_INC&gt;
+
+If perl has been configured to not have the current directory in
+L&lt;C&lt;@INC&gt;|perlvar/@INC&gt; by default, this variable can be set to C&lt;&quot;1&quot;&gt;
+to reinstate it.  It&#39;s primarily intended for use while building and
+testing modules that have not been updated to deal with &quot;.&quot; not being in
+C&lt;@INC&gt; and should not be set in the environment for day-to-day use.
+
+=item SYS$LOGIN (specific to the VMS port)
+X&lt;SYS$LOGIN&gt;
+
+Used if chdir has no argument and HOME and LOGDIR are not set.
+
+=back
+
+Perl also has environment variables that control how Perl handles data
+specific to particular natural languages; see L&lt;perllocale&gt;.
+
+Perl and its various modules and components, including its test frameworks,
+may sometimes make use of certain other environment variables.  Some of
+these are specific to a particular platform.  Please consult the
+appropriate module documentation and any documentation for your platform
+(like L&lt;perlsolaris&gt;, L&lt;perllinux&gt;, L&lt;perlmacosx&gt;, L&lt;perlwin32&gt;, etc) for
+variables peculiar to those specific situations.
+
+Perl makes all environment variables available to the program being
+executed, and passes these along to any child processes it starts.
+However, programs running setuid would do well to execute the following
+lines before doing anything else, just to keep people honest:
+
+    $ENV{PATH}  = &quot;/bin:/usr/bin&quot;;    # or whatever you need
+    $ENV{SHELL} = &quot;/bin/sh&quot; if exists $ENV{SHELL};
+    delete @ENV{qw(IFS CDPATH ENV BASH_ENV)};
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

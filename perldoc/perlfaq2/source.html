@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlfaq2 (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlfaq2/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlfaq2/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlfaq2/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlfaq2/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlfaq2/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlfaq2/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlfaq2 - Obtaining and Learning about Perl
+
+=head1 VERSION
+
+version 5.021011
+
+=head1 DESCRIPTION
+
+This section of the FAQ answers questions about where to find
+source and documentation for Perl, support, and
+related matters.
+
+=head2 What machines support Perl? Where do I get it?
+
+The standard release of Perl (the one maintained by the Perl
+development team) is distributed only in source code form. You
+can find the latest releases at L&lt;http://www.cpan.org/src/&gt;.
+
+Perl builds and runs on a bewildering number of platforms. Virtually
+all known and current Unix derivatives are supported (perl&#39;s native
+platform), as are other systems like VMS, DOS, OS/2, Windows,
+QNX, BeOS, OS X, MPE/iX and the Amiga.
+
+Binary distributions for some proprietary platforms can be found
+L&lt;http://www.cpan.org/ports/&gt; directory. Because these are not part of
+the standard distribution, they may and in fact do differ from the
+base perl port in a variety of ways. You&#39;ll have to check their
+respective release notes to see just what the differences are. These
+differences can be either positive (e.g. extensions for the features
+of the particular platform that are not supported in the source
+release of perl) or negative (e.g. might be based upon a less current
+source release of perl).
+
+=head2 How can I get a binary version of Perl?
+
+See L&lt;CPAN Ports|http://www.cpan.org/ports/&gt;
+
+=head2 I don&#39;t have a C compiler. How can I build my own Perl interpreter?
+
+For Windows, use a binary version of Perl,
+L&lt;Strawberry Perl|http://strawberryperl.com/&gt; and
+L&lt;ActivePerl|http://www.activestate.com/activeperl&gt; come with a
+bundled C compiler.
+
+Otherwise if you really do want to build Perl, you need to get a
+binary version of C&lt;gcc&gt; for your system first. Use a search
+engine to find out how to do this for your operating system.
+
+=head2 I copied the Perl binary from one machine to another, but scripts don&#39;t work.
+
+That&#39;s probably because you forgot libraries, or library paths differ.
+You really should build the whole distribution on the machine it will
+eventually live on, and then type C&lt;make install&gt;. Most other
+approaches are doomed to failure.
+
+One simple way to check that things are in the right place is to print out
+the hard-coded C&lt;@INC&gt; that perl looks through for libraries:
+
+    % perl -le &#39;print for @INC&#39;
+
+If this command lists any paths that don&#39;t exist on your system, then you
+may need to move the appropriate libraries to these locations, or create
+symbolic links, aliases, or shortcuts appropriately. C&lt;@INC&gt; is also printed as
+part of the output of
+
+    % perl -V
+
+You might also want to check out
+L&lt;perlfaq8/&quot;How do I keep my own module/library directory?&quot;&gt;.
+
+=head2 I grabbed the sources and tried to compile but gdbm/dynamic loading/malloc/linking/... failed. How do I make it work?
+
+Read the F&lt;INSTALL&gt; file, which is part of the source distribution.
+It describes in detail how to cope with most idiosyncrasies that the
+C&lt;Configure&gt; script can&#39;t work around for any given system or
+architecture.
+
+=head2 What modules and extensions are available for Perl? What is CPAN?
+
+CPAN stands for Comprehensive Perl Archive Network, a multi-gigabyte
+archive replicated on hundreds of machines all over the world. CPAN
+contains tens of thousands of modules and extensions, source code
+and documentation, designed for I&lt;everything&gt; from commercial
+database interfaces to keyboard/screen control and running large web sites.
+
+You can search CPAN on L&lt;http://metacpan.org&gt; or
+L&lt;http://search.cpan.org/&gt;.
+
+The master web site for CPAN is L&lt;http://www.cpan.org/&gt;,
+L&lt;http://www.cpan.org/SITES.html&gt; lists all mirrors.
+
+See the CPAN FAQ at L&lt;http://www.cpan.org/misc/cpan-faq.html&gt; for answers
+to the most frequently asked questions about CPAN.
+
+The L&lt;Task::Kensho&gt; module has a list of recommended modules which
+you should review as a good starting point.
+
+=head2 Where can I get information on Perl?
+
+=over 4
+
+=item * L&lt;http://www.perl.org/&gt;
+
+=item * L&lt;http://perldoc.perl.org/&gt;
+
+=item * L&lt;http://learn.perl.org/&gt;
+
+=back
+
+The complete Perl documentation is available with the Perl distribution.
+If you have Perl installed locally, you probably have the documentation
+installed as well: type C&lt;perldoc perl&gt; in a terminal or
+L&lt;view online|http://perldoc.perl.org/perl.html&gt;.
+
+(Some operating system distributions may ship the documentation in a different
+package; for instance, on Debian, you need to install the C&lt;perl-doc&gt; package.)
+
+Many good books have been written about Perl--see the section later in
+L&lt;perlfaq2&gt; for more details.
+
+=head2 What is perl.com? Perl Mongers? pm.org? perl.org? cpan.org?
+
+L&lt;Perl.com|http://www.perl.com/&gt; used to be part of the O&#39;Reilly
+Network, a subsidiary of O&#39;Reilly Media. Although it retains most of
+the original content from its O&#39;Reilly Network, it is now hosted by
+L&lt;The Perl Foundation|http://www.perlfoundation.org/&gt;.
+
+The Perl Foundation is an advocacy organization for the Perl language
+which maintains the web site L&lt;http://www.perl.org/&gt; as a general
+advocacy site for the Perl language. It uses the domain to provide
+general support services to the Perl community, including the hosting
+of mailing lists, web sites, and other services. There are also many
+other sub-domains for special topics like learning Perl and jobs in Perl,
+such as:
+
+=over 4
+
+=item * L&lt;http://www.perl.org/&gt;
+
+=item * L&lt;http://learn.perl.org/&gt;
+
+=item * L&lt;http://jobs.perl.org/&gt;
+
+=item * L&lt;http://lists.perl.org/&gt;
+
+=back
+
+L&lt;Perl Mongers|http://www.pm.org/&gt; uses the pm.org domain for services
+related to local Perl user groups, including the hosting of mailing lists
+and web sites. See the L&lt;Perl Mongers web site|http://www.pm.org/&gt; for more
+information about joining, starting, or requesting services for a
+Perl user group.
+
+CPAN, or the Comprehensive Perl Archive Network L&lt;http://www.cpan.org/&gt;,
+is a replicated, worldwide repository of Perl software.
+See L&lt;What is CPAN?|/&quot;What modules and extensions are available for Perl? What is CPAN?&quot;&gt;.
+
+=head2 Where can I post questions?
+
+There are many Perl L&lt;mailing lists|lists.perl.org&gt; for various
+topics, specifically the L&lt;beginners list|http://lists.perl.org/list/beginners.html&gt;
+may be of use.
+
+Other places to ask questions are on the
+L&lt;PerlMonks site|http://www.perlmonks.org/&gt; or
+L&lt;stackoverflow|http://stackoverflow.com/questions/tagged/perl&gt;.
+
+=head2 Perl Books
+
+There are many good L&lt;books on Perl|http://www.perl.org/books/library.html&gt;.
+
+=head2 Which magazines have Perl content?
+
+There&#39;s also I&lt;$foo Magazin&gt;, a German magazine dedicated to Perl, at
+( L&lt;http://www.foo-magazin.de&gt; ). The I&lt;Perl-Zeitung&gt; is another
+German-speaking magazine for Perl beginners (see
+L&lt;http://perl-zeitung.at.tf&gt; ).
+
+Several Unix/Linux related magazines frequently include articles on Perl.
+
+=head2 Which Perl blogs should I read?
+
+L&lt;Perl News|http://perlnews.org/&gt; covers some of the major events in the Perl
+world, L&lt;Perl Weekly|http://perlweekly.com/&gt; is a weekly e-mail
+(and RSS feed) of hand-picked Perl articles.
+
+L&lt;http://blogs.perl.org/&gt; hosts many Perl blogs, there are also
+several blog aggregators: L&lt;Perlsphere|http://perlsphere.net/&gt; and
+L&lt;IronMan|http://ironman.enlightenedperl.org/&gt; are two of them.
+
+=head2 What mailing lists are there for Perl?
+
+A comprehensive list of Perl-related mailing lists can be found at
+L&lt;http://lists.perl.org/&gt;
+
+=head2 Where can I buy a commercial version of Perl?
+
+Perl already I&lt;is&gt; commercial software: it has a license
+that you can grab and carefully read to your manager. It is distributed
+in releases and comes in well-defined packages. There is a very large
+and supportive user community and an extensive literature.
+
+If you still need commercial support
+L&lt;ActiveState|http://www.activestate.com/activeperl&gt; offers
+this.
+
+=head2 Where do I send bug reports?
+
+(contributed by brian d foy)
+
+First, ensure that you&#39;ve found an actual bug. Second, ensure you&#39;ve
+found an actual bug.
+
+If you&#39;ve found a bug with the perl interpreter or one of the modules
+in the standard library (those that come with Perl), you can use the
+L&lt;perlbug&gt; utility that comes with Perl (&gt;= 5.004). It collects
+information about your installation to include with your message, then
+sends the message to the right place.
+
+To determine if a module came with your version of Perl, you can
+install and use the L&lt;Module::CoreList&gt; module. It has the information
+about the modules (with their versions) included with each release
+of Perl.
+
+Every CPAN module has a bug tracker set up in RT, L&lt;http://rt.cpan.org&gt;.
+You can submit bugs to RT either through its web interface or by
+email. To email a bug report, send it to
+bug-E&lt;lt&gt;distribution-nameE&lt;gt&gt;@rt.cpan.org . For example, if you
+wanted to report a bug in L&lt;Business::ISBN&gt;, you could send a message to
+bug-Business-ISBN@rt.cpan.org .
+
+Some modules might have special reporting requirements, such as a
+Github or Google Code tracking system, so you should check the
+module documentation too.
+
+=head1 AUTHOR AND COPYRIGHT
+
+Copyright (c) 1997-2010 Tom Christiansen, Nathan Torkington, and
+other authors as noted. All rights reserved.
+
+This documentation is free; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+Irrespective of its distribution, all code examples here are in the public
+domain. You are permitted and encouraged to use this code and any
+derivatives thereof in your own programs for fun or for profit as you
+see fit. A simple comment in the code giving credit to the FAQ would
+be courteous but is not required.
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

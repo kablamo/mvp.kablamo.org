@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlpodstyle - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlpodstyle/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlpodstyle/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlpodstyle/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlpodstyle/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlpodstyle/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlpodstyle/">perlpodstyle</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlpodstyle/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlpodstyle - Perl POD style guide</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>These are general guidelines for how to write POD documentation for Perl scripts and modules, based on general guidelines for writing good UNIX man pages. All of these guidelines are, of course, optional, but following them will make your documentation more consistent with other documentation on the system.</p>
+
+<p>The name of the program being documented is conventionally written in bold (using B&lt;&gt;) wherever it occurs, as are all program options. Arguments should be written in italics (I&lt;&gt;). Function names are traditionally written in italics; if you write a function as function(), Pod::Man will take care of this for you. Literal code or commands should be in C&lt;&gt;. References to other man pages should be in the form <code>manpage(section)</code> or <code>L&lt;manpage(section)&gt;</code>, and Pod::Man will automatically format those appropriately. The second form, with L&lt;&gt;, is used to request that a POD formatter make a link to the man page if possible. As an exception, one normally omits the section when referring to module documentation since it&#39;s not clear what section module documentation will be in; use <code>L&lt;Module::Name&gt;</code> for module references instead.</p>
+
+<p>References to other programs or functions are normally in the form of man page references so that cross-referencing tools can provide the user with links and the like. It&#39;s possible to overdo this, though, so be careful not to clutter your documentation with too much markup. References to other programs that are not given as man page references should be enclosed in B&lt;&gt;.</p>
+
+<p>The major headers should be set out using a <code>=head1</code> directive, and are historically written in the rather startling ALL UPPER CASE format; this is not mandatory, but it&#39;s strongly recommended so that sections have consistent naming across different software packages. Minor headers may be included using <code>=head2</code>, and are typically in mixed case.</p>
+
+<p>The standard sections of a manual page are:</p>
+
+<dl>
+
+<dt>NAME</dt>
+<dd>
+
+<p>Mandatory section; should be a comma-separated list of programs or functions documented by this POD page, such as:</p>
+
+<pre><code>    foo, bar - programs to do something</code></pre>
+
+<p>Manual page indexers are often extremely picky about the format of this section, so don&#39;t put anything in it except this line. Every program or function documented by this POD page should be listed, separated by a comma and a space. For a Perl module, just give the module name. A single dash, and only a single dash, should separate the list of programs or functions from the description. Do not use any markup such as C&lt;&gt; or B&lt;&gt; anywhere in this line. Functions should not be qualified with <code>()</code> or the like. The description should ideally fit on a single line, even if a man program replaces the dash with a few tabs.</p>
+
+</dd>
+<dt>SYNOPSIS</dt>
+<dd>
+
+<p>A short usage summary for programs and functions. This section is mandatory for section 3 pages. For Perl module documentation, it&#39;s usually convenient to have the contents of this section be a verbatim block showing some (brief) examples of typical ways the module is used.</p>
+
+</dd>
+<dt>DESCRIPTION</dt>
+<dd>
+
+<p>Extended description and discussion of the program or functions, or the body of the documentation for man pages that document something else. If particularly long, it&#39;s a good idea to break this up into subsections <code>=head2</code> directives like:</p>
+
+<pre><code>    =head2 Normal Usage
+
+    =head2 Advanced Features
+
+    =head2 Writing Configuration Files</code></pre>
+
+<p>or whatever is appropriate for your documentation.</p>
+
+<p>For a module, this is generally where the documentation of the interfaces provided by the module goes, usually in the form of a list with an <code>=item</code> for each interface. Depending on how many interfaces there are, you may want to put that documentation in separate METHODS, FUNCTIONS, CLASS METHODS, or INSTANCE METHODS sections instead and save the DESCRIPTION section for an overview.</p>
+
+</dd>
+<dt>OPTIONS</dt>
+<dd>
+
+<p>Detailed description of each of the command-line options taken by the program. This should be separate from the description for the use of parsers like <a href="https://metacpan.org/pod/Pod::Usage" rel="external">Pod::Usage</a>. This is normally presented as a list, with each option as a separate <code>=item</code>. The specific option string should be enclosed in B&lt;&gt;. Any values that the option takes should be enclosed in I&lt;&gt;. For example, the section for the option <b>--section</b>=<i>manext</i> would be introduced with:</p>
+
+<pre><code>    =item B&lt;--section&gt;=I&lt;manext&gt;</code></pre>
+
+<p>Synonymous options (like both the short and long forms) are separated by a comma and a space on the same <code>=item</code> line, or optionally listed as their own item with a reference to the canonical name. For example, since <b>--section</b> can also be written as <b>-s</b>, the above would be:</p>
+
+<pre><code>    =item B&lt;-s&gt; I&lt;manext&gt;, B&lt;--section&gt;=I&lt;manext&gt;</code></pre>
+
+<p>Writing the short option first is recommended because it&#39;s easier to read. The long option is long enough to draw the eye to it anyway and the short option can otherwise get lost in visual noise.</p>
+
+</dd>
+<dt>RETURN VALUE</dt>
+<dd>
+
+<p>What the program or function returns, if successful. This section can be omitted for programs whose precise exit codes aren&#39;t important, provided they return 0 on success and non-zero on failure as is standard. It should always be present for functions. For modules, it may be useful to summarize return values from the module interface here, or it may be more useful to discuss return values separately in the documentation of each function or method the module provides.</p>
+
+</dd>
+<dt>ERRORS</dt>
+<dd>
+
+<p>Exceptions, error return codes, exit statuses, and errno settings. Typically used for function or module documentation; program documentation uses DIAGNOSTICS instead. The general rule of thumb is that errors printed to <code>STDOUT</code> or <code>STDERR</code> and intended for the end user are documented in DIAGNOSTICS while errors passed internal to the calling program and intended for other programmers are documented in ERRORS. When documenting a function that sets errno, a full list of the possible errno values should be given here.</p>
+
+</dd>
+<dt>DIAGNOSTICS</dt>
+<dd>
+
+<p>All possible messages the program can print out and what they mean. You may wish to follow the same documentation style as the Perl documentation; see perldiag(1) for more details (and look at the POD source as well).</p>
+
+<p>If applicable, please include details on what the user should do to correct the error; documenting an error as indicating &quot;the input buffer is too small&quot; without telling the user how to increase the size of the input buffer (or at least telling them that it isn&#39;t possible) aren&#39;t very useful.</p>
+
+</dd>
+<dt>EXAMPLES</dt>
+<dd>
+
+<p>Give some example uses of the program or function. Don&#39;t skimp; users often find this the most useful part of the documentation. The examples are generally given as verbatim paragraphs.</p>
+
+<p>Don&#39;t just present an example without explaining what it does. Adding a short paragraph saying what the example will do can increase the value of the example immensely.</p>
+
+</dd>
+<dt>ENVIRONMENT</dt>
+<dd>
+
+<p>Environment variables that the program cares about, normally presented as a list using <code>=over</code>, <code>=item</code>, and <code>=back</code>. For example:</p>
+
+<pre><code>    =over 6
+
+    =item HOME
+
+    Used to determine the user&#39;s home directory.  F&lt;.foorc&gt; in this
+    directory is read for configuration details, if it exists.
+
+    =back</code></pre>
+
+<p>Since environment variables are normally in all uppercase, no additional special formatting is generally needed; they&#39;re glaring enough as it is.</p>
+
+</dd>
+<dt>FILES</dt>
+<dd>
+
+<p>All files used by the program or function, normally presented as a list, and what it uses them for. File names should be enclosed in F&lt;&gt;. It&#39;s particularly important to document files that will be potentially modified.</p>
+
+</dd>
+<dt>CAVEATS</dt>
+<dd>
+
+<p>Things to take special care with, sometimes called WARNINGS.</p>
+
+</dd>
+<dt>BUGS</dt>
+<dd>
+
+<p>Things that are broken or just don&#39;t work quite right.</p>
+
+</dd>
+<dt>RESTRICTIONS</dt>
+<dd>
+
+<p>Bugs you don&#39;t plan to fix. :-)</p>
+
+</dd>
+<dt>NOTES</dt>
+<dd>
+
+<p>Miscellaneous commentary.</p>
+
+</dd>
+<dt>AUTHOR</dt>
+<dd>
+
+<p>Who wrote it (use AUTHORS for multiple people). It&#39;s a good idea to include your current e-mail address (or some e-mail address to which bug reports should be sent) or some other contact information so that users have a way of contacting you. Remember that program documentation tends to roam the wild for far longer than you expect and pick a contact method that&#39;s likely to last.</p>
+
+</dd>
+<dt>HISTORY</dt>
+<dd>
+
+<p>Programs derived from other sources sometimes have this. Some people keep a modification log here, but that usually gets long and is normally better maintained in a separate file.</p>
+
+</dd>
+<dt>COPYRIGHT AND LICENSE</dt>
+<dd>
+
+<p>For copyright</p>
+
+<pre><code>    Copyright YEAR(s) YOUR NAME(s)</code></pre>
+
+<p>(No, (C) is not needed. No, &quot;all rights reserved&quot; is not needed.)</p>
+
+<p>For licensing the easiest way is to use the same licensing as Perl itself:</p>
+
+<pre><code>    This library is free software; you may redistribute it and/or
+    modify it under the same terms as Perl itself.</code></pre>
+
+<p>This makes it easy for people to use your module with Perl. Note that this licensing example is neither an endorsement or a requirement, you are of course free to choose any licensing.</p>
+
+</dd>
+<dt>SEE ALSO</dt>
+<dd>
+
+<p>Other man pages to check out, like man(1), man(7), makewhatis(8), or catman(8). Normally a simple list of man pages separated by commas, or a paragraph giving the name of a reference work. Man page references, if they use the standard <code>name(section)</code> form, don&#39;t have to be enclosed in L&lt;&gt; (although it&#39;s recommended), but other things in this section probably should be when appropriate.</p>
+
+<p>If the package has a mailing list, include a URL or subscription instructions here.</p>
+
+<p>If the package has a web site, include a URL here.</p>
+
+</dd>
+</dl>
+
+<p>Documentation of object-oriented libraries or modules may want to use CONSTRUCTORS and METHODS sections, or CLASS METHODS and INSTANCE METHODS sections, for detailed documentation of the parts of the library and save the DESCRIPTION section for an overview. Large modules with a function interface may want to use FUNCTIONS for similar reasons. Some people use OVERVIEW to summarize the description if it&#39;s quite long.</p>
+
+<p>Section ordering varies, although NAME must always be the first section (you&#39;ll break some man page systems otherwise), and NAME, SYNOPSIS, DESCRIPTION, and OPTIONS generally always occur first and in that order if present. In general, SEE ALSO, AUTHOR, and similar material should be left for last. Some systems also move WARNINGS and NOTES to last. The order given above should be reasonable for most purposes.</p>
+
+<p>Some systems use CONFORMING TO to note conformance to relevant standards and MT-LEVEL to note safeness for use in threaded programs or signal handlers. These headings are primarily useful when documenting parts of a C library.</p>
+
+<p>Finally, as a general note, try not to use an excessive amount of markup. As documented here and in <a href="https://metacpan.org/pod/Pod::Man" rel="external">Pod::Man</a>, you can safely leave Perl variables, function names, man page references, and the like unadorned by markup and the POD translators will figure it out for you. This makes it much easier to later edit the documentation. Note that many existing translators will do the wrong thing with e-mail addresses when wrapped in L&lt;&gt;, so don&#39;t do that.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>For additional information that may be more accurate for your specific system, see either <a href="http://man.he.net/man5/man" rel="external">man(5)</a> or <a href="http://man.he.net/man7/man" rel="external">man(7)</a> depending on your system manual section numbering conventions.</p>
+
+<p>This documentation is maintained as part of the podlators distribution. The current version is always available from its web site at <a href="http://www.eyrie.org/~eagle/software/podlators/" rel="external">http://www.eyrie.org/~eagle/software/podlators/</a>.</p>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>Russ Allbery &lt;rra@cpan.org&gt;, with large portions of this documentation taken from the documentation of the original <b>pod2man</b> implementation by Larry Wall and Tom Christiansen.</p>
+
+<h1 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h1>
+
+<p>Copyright 1999, 2000, 2001, 2004, 2006, 2008, 2010, 2015 Russ Allbery &lt;rra@cpan.org&gt;</p>
+
+<p>Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved. This file is offered as-is, without any warranty.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

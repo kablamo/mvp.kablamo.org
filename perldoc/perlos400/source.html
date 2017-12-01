@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlos400 (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlos400/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlos400/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlos400/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlos400/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlos400/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlos400/">
+    Back to documentation
+</a>
+<pre>If you read this file _as_is_, just ignore the funny characters you see.
+It is written in the POD format (see pod/perlpod.pod) which is specially
+designed to be readable as is.
+
+=head1 NAME
+
+perlos400 - Perl version 5 on OS/400
+
+B&lt;This document needs to be updated, but we don&#39;t know what it should say.
+Please email comments to L&lt;perlbug@perl.org|mailto:perlbug@perl.org&gt;.&gt;
+
+=head1 DESCRIPTION
+
+This document describes various features of IBM&#39;s OS/400 operating
+system that will affect how Perl version 5 (hereafter just Perl) is
+compiled and/or runs.
+
+By far the easiest way to build Perl for OS/400 is to use the PASE
+(Portable Application Solutions Environment), for more information see
+L&lt;http://www.iseries.ibm.com/developer/factory/pase/index.html&gt;
+This environment allows one to use AIX APIs while programming, and it
+provides a runtime that allows AIX binaries to execute directly on the
+PowerPC iSeries.
+
+=head2 Compiling Perl for OS/400 PASE
+
+The recommended way to build Perl for the OS/400 PASE is to build the
+Perl 5 source code (release 5.8.1 or later) under AIX.
+
+The trick is to give a special parameter to the Configure shell script
+when running it on AIX:
+
+  sh Configure -DPASE ...
+
+The default installation directory of Perl under PASE is /QOpenSys/perl.
+This can be modified if needed with Configure parameter -Dprefix=/some/dir.
+
+Starting from OS/400 V5R2 the IBM Visual Age compiler is supported
+on OS/400 PASE, so it is possible to build Perl natively on OS/400.  
+The easier way, however, is to compile in AIX, as just described.
+
+If you don&#39;t want to install the compiled Perl in AIX into /QOpenSys
+(for packaging it before copying it to PASE), you can use a Configure
+parameter: -Dinstallprefix=/tmp/QOpenSys/perl.  This will cause the
+&quot;make install&quot; to install everything into that directory, while the
+installed files still think they are (will be) in /QOpenSys/perl.
+
+If building natively on PASE, please do the build under the /QOpenSys
+directory, since Perl is happier when built on a case sensitive filesystem.
+
+=head2 Installing Perl in OS/400 PASE
+
+If you are compiling on AIX, simply do a &quot;make install&quot; on the AIX box.
+Once the install finishes, tar up the /QOpenSys/perl directory.  Transfer
+the tarball to the OS/400 using FTP with the following commands:
+
+  &gt; binary
+  &gt; site namefmt 1
+  &gt; put perl.tar /QOpenSys
+
+Once you have it on, simply bring up a PASE shell and extract the tarball.
+
+If you are compiling in PASE, then &quot;make install&quot; is the only thing you
+will need to do.
+
+The default path for perl binary is /QOpenSys/perl/bin/perl.  You&#39;ll
+want to symlink /QOpenSys/usr/bin/perl to this file so you don&#39;t have
+to modify your path.
+
+=head2 Using Perl in OS/400 PASE
+
+Perl in PASE may be used in the same manner as you would use Perl on AIX.
+
+Scripts starting with #!/usr/bin/perl should work if you have
+/QOpenSys/usr/bin/perl symlinked to your perl binary.  This will not
+work if you&#39;ve done a setuid/setgid or have environment variable
+PASE_EXEC_QOPENSYS=&quot;N&quot;.  If you have V5R1, you&#39;ll need to get the
+latest PTFs to have this feature.  Scripts starting with
+#!/QOpenSys/perl/bin/perl should always work.
+
+=head2 Known Problems
+
+When compiling in PASE, there is no &quot;oslevel&quot; command.  Therefore,
+you may want to create a script called &quot;oslevel&quot; that echoes the
+level of AIX that your version of PASE runtime supports.  If you&#39;re
+unsure, consult your documentation or use &quot;4.3.3.0&quot;.
+
+If you have test cases that fail, check for the existence of spool files.
+The test case may be trying to use a syscall that is not implemented
+in PASE.  To avoid the SIGILL, try setting the PASE_SYSCALL_NOSIGILL
+environment variable or have a handler for the SIGILL.  If you can
+compile programs for PASE, run the config script and edit config.sh
+when it gives you the option.  If you want to remove fchdir(), which
+isn&#39;t implement in V5R1, simply change the line that says:
+
+d_fchdir=&#39;define&#39;
+
+to
+
+d_fchdir=&#39;undef&#39;
+
+and then compile Perl.  The places where fchdir() is used have
+alternatives for systems that do not have fchdir() available.
+
+=head2 Perl on ILE
+
+There exists a port of Perl to the ILE environment.  This port, however,
+is based quite an old release of Perl, Perl 5.00502 (August 1998).
+(As of July 2002 the latest release of Perl is 5.8.0, and even 5.6.1
+has been out since April 2001.)  If you need to run Perl on ILE, though,
+you may need this older port: L&lt;http://www.cpan.org/ports/#os400&gt;
+Note that any Perl release later than 5.00502 has not been ported to ILE.
+
+If you need to use Perl in the ILE environment, you may want to consider
+using Qp2RunPase() to call the PASE version of Perl.
+
+=head1 AUTHORS
+
+Jarkko Hietaniemi &lt;jhi@iki.fi&gt;
+Bryan Logan &lt;bryanlog@us.ibm.com&gt;
+David Larson &lt;larson1@us.ibm.com&gt;
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

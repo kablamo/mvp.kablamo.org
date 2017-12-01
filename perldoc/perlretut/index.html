@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlretut - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlretut/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlretut/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlretut/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlretut/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlretut/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlretut/">perlretut</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlretut/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlretut - Perl regular expressions tutorial</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This page provides a basic tutorial on understanding, creating and using regular expressions in Perl. It serves as a complement to the reference page on regular expressions <a href="/perldoc/perlre/">perlre</a>. Regular expressions are an integral part of the <code>m//</code>, <code>s///</code>, <code>qr//</code> and <code>split</code> operators and so this tutorial also overlaps with <a href="/perldoc/perlop/#Regexp-Quote-Like-Operators">&quot;Regexp Quote-Like Operators&quot; in perlop</a> and <a href="/perldoc/perlfunc/#split">&quot;split&quot; in perlfunc</a>.</p>
+
+<p>Perl is widely renowned for excellence in text processing, and regular expressions are one of the big factors behind this fame. Perl regular expressions display an efficiency and flexibility unknown in most other computer languages. Mastering even the basics of regular expressions will allow you to manipulate text with surprising ease.</p>
+
+<p>What is a regular expression? At its most basic, a regular expression is a template that is used to determine if a string has certain characteristics. The string is most often some text, such as a line, sentence, web page, or even a whole book, but less commonly it could be some binary data as well. Suppose we want to determine if the text in variable, <code>$var</code> contains the sequence of characters <span style="white-space: nowrap;"><code>m u s h r o o m</code></span> (blanks added for legibility). We can write in Perl</p>
+
+<pre><code> $var =~ m/mushroom/</code></pre>
+
+<p>The value of this expression will be TRUE if <code>$var</code> contains that sequence of characters, and FALSE otherwise. The portion enclosed in <code>&#39;/&#39;</code> characters denotes the characteristic we are looking for. We use the term <i>pattern</i> for it. The process of looking to see if the pattern occurs in the string is called <i>matching</i>, and the <code>&quot;=~&quot;</code> operator along with the <code>m//</code> tell Perl to try to match the pattern against the string. Note that the pattern is also a string, but a very special kind of one, as we will see. Patterns are in common use these days; examples are the patterns typed into a search engine to find web pages and the patterns used to list files in a directory, <i>e.g.</i>, &quot;<code>ls *.txt</code>&quot; or &quot;<code>dir *.*</code>&quot;. In Perl, the patterns described by regular expressions are used not only to search strings, but to also extract desired parts of strings, and to do search and replace operations.</p>
+
+<p>Regular expressions have the undeserved reputation of being abstract and difficult to understand. This really stems simply because the notation used to express them tends to be terse and dense, and not because of inherent complexity. We recommend using the <code>/x</code> regular expression modifier (described below) along with plenty of white space to make them less dense, and easier to read. Regular expressions are constructed using simple concepts like conditionals and loops and are no more difficult to understand than the corresponding <code>if</code> conditionals and <code>while</code> loops in the Perl language itself.</p>
+
+<p>This tutorial flattens the learning curve by discussing regular expression concepts, along with their notation, one at a time and with many examples. The first part of the tutorial will progress from the simplest word searches to the basic regular expression concepts. If you master the first part, you will have all the tools needed to solve about 98% of your needs. The second part of the tutorial is for those comfortable with the basics and hungry for more power tools. It discusses the more advanced regular expression operators and introduces the latest cutting-edge innovations.</p>
+
+<p>A note: to save time, &quot;regular expression&quot; is often abbreviated as regexp or regex. Regexp is a more natural abbreviation than regex, but is harder to pronounce. The Perl pod documentation is evenly split on regexp vs regex; in Perl, there is more than one way to abbreviate it. We&#39;ll use regexp in this tutorial.</p>
+
+<p>New in v5.22, <a href="https://metacpan.org/pod/re#strict-mode" rel="external"><code>use re &#39;strict&#39;</code></a> applies stricter rules than otherwise when compiling regular expression patterns. It can find things that, while legal, may not be what you intended.</p>
+
+<h1 id="Part-1:-The-basics">Part 1: The basics</h1>
+
+<h2 id="Simple-word-matching">Simple word matching</h2>
+
+<p>The simplest regexp is simply a word, or more generally, a string of characters. A regexp consisting of just a word matches any string that contains that word:</p>
+
+<pre><code>    &quot;Hello World&quot; =~ /World/;  # matches</code></pre>
+
+<p>What is this Perl statement all about? <code>&quot;Hello World&quot;</code> is a simple double-quoted string. <code>World</code> is the regular expression and the <code>//</code> enclosing <code>/World/</code> tells Perl to search a string for a match. The operator <code>=~</code> associates the string with the regexp match and produces a true value if the regexp matched, or false if the regexp did not match. In our case, <code>World</code> matches the second word in <code>&quot;Hello World&quot;</code>, so the expression is true. Expressions like this are useful in conditionals:</p>
+
+<pre><code>    if (&quot;Hello World&quot; =~ /World/) {
+        print &quot;It matches\n&quot;;
+    }
+    else {
+        print &quot;It doesn&#39;t match\n&quot;;
+    }</code></pre>
+
+<p>There are useful variations on this theme. The sense of the match can be reversed by using the <code>!~</code> operator:</p>
+
+<pre><code>    if (&quot;Hello World&quot; !~ /World/) {
+        print &quot;It doesn&#39;t match\n&quot;;
+    }
+    else {
+        print &quot;It matches\n&quot;;
+    }</code></pre>
+
+<p>The literal string in the regexp can be replaced by a variable:</p>
+
+<pre><code>    my $greeting = &quot;World&quot;;
+    if (&quot;Hello World&quot; =~ /$greeting/) {
+        print &quot;It matches\n&quot;;
+    }
+    else {
+        print &quot;It doesn&#39;t match\n&quot;;
+    }</code></pre>
+
+<p>If you&#39;re matching against the special default variable <code>$_</code>, the <code>$_ =~</code> part can be omitted:</p>
+
+<pre><code>    $_ = &quot;Hello World&quot;;
+    if (/World/) {
+        print &quot;It matches\n&quot;;
+    }
+    else {
+        print &quot;It doesn&#39;t match\n&quot;;
+    }</code></pre>
+
+<p>And finally, the <code>//</code> default delimiters for a match can be changed to arbitrary delimiters by putting an <code>&#39;m&#39;</code> out front:</p>
+
+<pre><code>    &quot;Hello World&quot; =~ m!World!;   # matches, delimited by &#39;!&#39;
+    &quot;Hello World&quot; =~ m{World};   # matches, note the matching &#39;{}&#39;
+    &quot;/usr/bin/perl&quot; =~ m&quot;/perl&quot;; # matches after &#39;/usr/bin&#39;,
+                                 # &#39;/&#39; becomes an ordinary char</code></pre>
+
+<p><code>/World/</code>, <code>m!World!</code>, and <code>m{World}</code> all represent the same thing. When, <i>e.g.</i>, the quote (<code>&#39;&quot;&#39;</code>) is used as a delimiter, the forward slash <code>&#39;/&#39;</code> becomes an ordinary character and can be used in this regexp without trouble.</p>
+
+<p>Let&#39;s consider how different regexps would match <code>&quot;Hello World&quot;</code>:</p>
+
+<pre><code>    &quot;Hello World&quot; =~ /world/;  # doesn&#39;t match
+    &quot;Hello World&quot; =~ /o W/;    # matches
+    &quot;Hello World&quot; =~ /oW/;     # doesn&#39;t match
+    &quot;Hello World&quot; =~ /World /; # doesn&#39;t match</code></pre>
+
+<p>The first regexp <code>world</code> doesn&#39;t match because regexps are case-sensitive. The second regexp matches because the substring <span style="white-space: nowrap;"><code>&#39;o W&#39;</code></span> occurs in the string <span style="white-space: nowrap;"><code>&quot;Hello World&quot;</code></span>. The space character <code>&#39; &#39;</code> is treated like any other character in a regexp and is needed to match in this case. The lack of a space character is the reason the third regexp <code>&#39;oW&#39;</code> doesn&#39;t match. The fourth regexp &quot;<code>World </code>&quot; doesn&#39;t match because there is a space at the end of the regexp, but not at the end of the string. The lesson here is that regexps must match a part of the string <i>exactly</i> in order for the statement to be true.</p>
+
+<p>If a regexp matches in more than one place in the string, Perl will always match at the earliest possible point in the string:</p>
+
+<pre><code>    &quot;Hello World&quot; =~ /o/;       # matches &#39;o&#39; in &#39;Hello&#39;
+    &quot;That hat is red&quot; =~ /hat/; # matches &#39;hat&#39; in &#39;That&#39;</code></pre>
+
+<p>With respect to character matching, there are a few more points you need to know about. First of all, not all characters can be used &quot;as is&quot; in a match. Some characters, called <i>metacharacters</i>, are reserved for use in regexp notation. The metacharacters are</p>
+
+<pre><code>    {}[]()^$.|*+?-\</code></pre>
+
+<p>The significance of each of these will be explained in the rest of the tutorial, but for now, it is important only to know that a metacharacter can be matched as-is by putting a backslash before it:</p>
+
+<pre><code>    &quot;2+2=4&quot; =~ /2+2/;    # doesn&#39;t match, + is a metacharacter
+    &quot;2+2=4&quot; =~ /2\+2/;   # matches, \+ is treated like an ordinary +
+    &quot;The interval is [0,1).&quot; =~ /[0,1)./     # is a syntax error!
+    &quot;The interval is [0,1).&quot; =~ /\[0,1\)\./  # matches
+    &quot;#!/usr/bin/perl&quot; =~ /#!\/usr\/bin\/perl/;  # matches</code></pre>
+
+<p>In the last regexp, the forward slash <code>&#39;/&#39;</code> is also backslashed, because it is used to delimit the regexp. This can lead to LTS (leaning toothpick syndrome), however, and it is often more readable to change delimiters.</p>
+
+<pre><code>    &quot;#!/usr/bin/perl&quot; =~ m!#\!/usr/bin/perl!;  # easier to read</code></pre>
+
+<p>The backslash character <code>&#39;\&#39;</code> is a metacharacter itself and needs to be backslashed:</p>
+
+<pre><code>    &#39;C:\WIN32&#39; =~ /C:\\WIN/;   # matches</code></pre>
+
+<p>In situations where it doesn&#39;t make sense for a particular metacharacter to mean what it normally does, it automatically loses its metacharacter-ness and becomes an ordinary character that is to be matched literally. For example, the <code>&#39;}&#39;</code> is a metacharacter only when it is the mate of a <code>&#39;{&#39;</code> metacharacter. Otherwise it is treated as a literal RIGHT CURLY BRACKET. This may lead to unexpected results. <a href="https://metacpan.org/pod/re#strict-mode" rel="external"><code>use re &#39;strict&#39;</code></a> can catch some of these.</p>
+
+<p>In addition to the metacharacters, there are some ASCII characters which don&#39;t have printable character equivalents and are instead represented by <i>escape sequences</i>. Common examples are <code>\t</code> for a tab, <code>\n</code> for a newline, <code>\r</code> for a carriage return and <code>\a</code> for a bell (or alert). If your string is better thought of as a sequence of arbitrary bytes, the octal escape sequence, <i>e.g.</i>, <code>\033</code>, or hexadecimal escape sequence, <i>e.g.</i>, <code>\x1B</code> may be a more natural representation for your bytes. Here are some examples of escapes:</p>
+
+<pre><code>    &quot;1000\t2000&quot; =~ m(0\t2)   # matches
+    &quot;1000\n2000&quot; =~ /0\n20/   # matches
+    &quot;1000\t2000&quot; =~ /\000\t2/ # doesn&#39;t match, &quot;0&quot; ne &quot;\000&quot;
+    &quot;cat&quot;   =~ /\o{143}\x61\x74/ # matches in ASCII, but a weird way
+                                 # to spell cat</code></pre>
+
+<p>If you&#39;ve been around Perl a while, all this talk of escape sequences may seem familiar. Similar escape sequences are used in double-quoted strings and in fact the regexps in Perl are mostly treated as double-quoted strings. This means that variables can be used in regexps as well. Just like double-quoted strings, the values of the variables in the regexp will be substituted in before the regexp is evaluated for matching purposes. So we have:</p>
+
+<pre><code>    $foo = &#39;house&#39;;
+    &#39;housecat&#39; =~ /$foo/;      # matches
+    &#39;cathouse&#39; =~ /cat$foo/;   # matches
+    &#39;housecat&#39; =~ /${foo}cat/; # matches</code></pre>
+
+<p>So far, so good. With the knowledge above you can already perform searches with just about any literal string regexp you can dream up. Here is a <i>very simple</i> emulation of the Unix grep program:</p>
+
+<pre><code>    % cat &gt; simple_grep
+    #!/usr/bin/perl
+    $regexp = shift;
+    while (&lt;&gt;) {
+        print if /$regexp/;
+    }
+    ^D
+
+    % chmod +x simple_grep
+
+    % simple_grep abba /usr/dict/words
+    Babbage
+    cabbage
+    cabbages
+    sabbath
+    Sabbathize
+    Sabbathizes
+    sabbatical
+    scabbard
+    scabbards</code></pre>
+
+<p>This program is easy to understand. <code>#!/usr/bin/perl</code> is the standard way to invoke a perl program from the shell. <span style="white-space: nowrap;"><code>$regexp = shift;</code></span> saves the first command line argument as the regexp to be used, leaving the rest of the command line arguments to be treated as files. <span style="white-space: nowrap;"><code>while (&lt;&gt;)</code></span> loops over all the lines in all the files. For each line, <span style="white-space: nowrap;"><code>print if /$regexp/;</code></span> prints the line if the regexp matches the line. In this line, both <code>print</code> and <code>/$regexp/</code> use the default variable <code>$_</code> implicitly.</p>
+
+<p>With all of the regexps above, if the regexp matched anywhere in the string, it was considered a match. Sometimes, however, we&#39;d like to specify <i>where</i> in the string the regexp should try to match. To do this, we would use the <i>anchor</i> metacharacters <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code>. The anchor <code>&#39;^&#39;</code> means match at the beginning of the string and the anchor <code>&#39;$&#39;</code> means match at the end of the string, or before a newline at the end of the string. Here is how they are used:</p>
+
+<pre><code>    &quot;housekeeper&quot; =~ /keeper/;    # matches
+    &quot;housekeeper&quot; =~ /^keeper/;   # doesn&#39;t match
+    &quot;housekeeper&quot; =~ /keeper$/;   # matches
+    &quot;housekeeper\n&quot; =~ /keeper$/; # matches</code></pre>
+
+<p>The second regexp doesn&#39;t match because <code>&#39;^&#39;</code> constrains <code>keeper</code> to match only at the beginning of the string, but <code>&quot;housekeeper&quot;</code> has keeper starting in the middle. The third regexp does match, since the <code>&#39;$&#39;</code> constrains <code>keeper</code> to match only at the end of the string.</p>
+
+<p>When both <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code> are used at the same time, the regexp has to match both the beginning and the end of the string, <i>i.e.</i>, the regexp matches the whole string. Consider</p>
+
+<pre><code>    &quot;keeper&quot; =~ /^keep$/;      # doesn&#39;t match
+    &quot;keeper&quot; =~ /^keeper$/;    # matches
+    &quot;&quot;       =~ /^$/;          # ^$ matches an empty string</code></pre>
+
+<p>The first regexp doesn&#39;t match because the string has more to it than <code>keep</code>. Since the second regexp is exactly the string, it matches. Using both <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code> in a regexp forces the complete string to match, so it gives you complete control over which strings match and which don&#39;t. Suppose you are looking for a fellow named bert, off in a string by himself:</p>
+
+<pre><code>    &quot;dogbert&quot; =~ /bert/;   # matches, but not what you want
+
+    &quot;dilbert&quot; =~ /^bert/;  # doesn&#39;t match, but ..
+    &quot;bertram&quot; =~ /^bert/;  # matches, so still not good enough
+
+    &quot;bertram&quot; =~ /^bert$/; # doesn&#39;t match, good
+    &quot;dilbert&quot; =~ /^bert$/; # doesn&#39;t match, good
+    &quot;bert&quot;    =~ /^bert$/; # matches, perfect</code></pre>
+
+<p>Of course, in the case of a literal string, one could just as easily use the string comparison <span style="white-space: nowrap;"><code>$string eq &#39;bert&#39;</code></span> and it would be more efficient. The <code>^...$</code> regexp really becomes useful when we add in the more powerful regexp tools below.</p>
+
+<h2 id="Using-character-classes">Using character classes</h2>
+
+<p>Although one can already do quite a lot with the literal string regexps above, we&#39;ve only scratched the surface of regular expression technology. In this and subsequent sections we will introduce regexp concepts (and associated metacharacter notations) that will allow a regexp to represent not just a single character sequence, but a <i>whole class</i> of them.</p>
+
+<p>One such concept is that of a <i>character class</i>. A character class allows a set of possible characters, rather than just a single character, to match at a particular point in a regexp. You can define your own custom character classes. These are denoted by brackets <code>[...]</code>, with the set of characters to be possibly matched inside. Here are some examples:</p>
+
+<pre><code>    /cat/;       # matches &#39;cat&#39;
+    /[bcr]at/;   # matches &#39;bat, &#39;cat&#39;, or &#39;rat&#39;
+    /item[0123456789]/;  # matches &#39;item0&#39; or ... or &#39;item9&#39;
+    &quot;abc&quot; =~ /[cab]/;    # matches &#39;a&#39;</code></pre>
+
+<p>In the last statement, even though <code>&#39;c&#39;</code> is the first character in the class, <code>&#39;a&#39;</code> matches because the first character position in the string is the earliest point at which the regexp can match.</p>
+
+<pre><code>    /[yY][eE][sS]/;      # match &#39;yes&#39; in a case-insensitive way
+                         # &#39;yes&#39;, &#39;Yes&#39;, &#39;YES&#39;, etc.</code></pre>
+
+<p>This regexp displays a common task: perform a case-insensitive match. Perl provides a way of avoiding all those brackets by simply appending an <code>&#39;i&#39;</code> to the end of the match. Then <code>/[yY][eE][sS]/;</code> can be rewritten as <code>/yes/i;</code>. The <code>&#39;i&#39;</code> stands for case-insensitive and is an example of a <i>modifier</i> of the matching operation. We will meet other modifiers later in the tutorial.</p>
+
+<p>We saw in the section above that there were ordinary characters, which represented themselves, and special characters, which needed a backslash <code>&#39;\&#39;</code> to represent themselves. The same is true in a character class, but the sets of ordinary and special characters inside a character class are different than those outside a character class. The special characters for a character class are <code>-]\^$</code> (and the pattern delimiter, whatever it is). <code>&#39;]&#39;</code> is special because it denotes the end of a character class. <code>&#39;$&#39;</code> is special because it denotes a scalar variable. <code>&#39;\&#39;</code> is special because it is used in escape sequences, just like above. Here is how the special characters <code>]$\</code> are handled:</p>
+
+<pre><code>   /[\]c]def/; # matches &#39;]def&#39; or &#39;cdef&#39;
+   $x = &#39;bcr&#39;;
+   /[$x]at/;   # matches &#39;bat&#39;, &#39;cat&#39;, or &#39;rat&#39;
+   /[\$x]at/;  # matches &#39;$at&#39; or &#39;xat&#39;
+   /[\\$x]at/; # matches &#39;\at&#39;, &#39;bat, &#39;cat&#39;, or &#39;rat&#39;</code></pre>
+
+<p>The last two are a little tricky. In <code>[\$x]</code>, the backslash protects the dollar sign, so the character class has two members <code>&#39;$&#39;</code> and <code>&#39;x&#39;</code>. In <code>[\\$x]</code>, the backslash is protected, so <code>$x</code> is treated as a variable and substituted in double quote fashion.</p>
+
+<p>The special character <code>&#39;-&#39;</code> acts as a range operator within character classes, so that a contiguous set of characters can be written as a range. With ranges, the unwieldy <code>[0123456789]</code> and <code>[abc...xyz]</code> become the svelte <code>[0-9]</code> and <code>[a-z]</code>. Some examples are</p>
+
+<pre><code>    /item[0-9]/;  # matches &#39;item0&#39; or ... or &#39;item9&#39;
+    /[0-9bx-z]aa/;  # matches &#39;0aa&#39;, ..., &#39;9aa&#39;,
+                    # &#39;baa&#39;, &#39;xaa&#39;, &#39;yaa&#39;, or &#39;zaa&#39;
+    /[0-9a-fA-F]/;  # matches a hexadecimal digit
+    /[0-9a-zA-Z_]/; # matches a &quot;word&quot; character,
+                    # like those in a Perl variable name</code></pre>
+
+<p>If <code>&#39;-&#39;</code> is the first or last character in a character class, it is treated as an ordinary character; <code>[-ab]</code>, <code>[ab-]</code> and <code>[a\-b]</code> are all equivalent.</p>
+
+<p>The special character <code>&#39;^&#39;</code> in the first position of a character class denotes a <i>negated character class</i>, which matches any character but those in the brackets. Both <code>[...]</code> and <code>[^...]</code> must match a character, or the match fails. Then</p>
+
+<pre><code>    /[^a]at/;  # doesn&#39;t match &#39;aat&#39; or &#39;at&#39;, but matches
+               # all other &#39;bat&#39;, &#39;cat, &#39;0at&#39;, &#39;%at&#39;, etc.
+    /[^0-9]/;  # matches a non-numeric character
+    /[a^]at/;  # matches &#39;aat&#39; or &#39;^at&#39;; here &#39;^&#39; is ordinary</code></pre>
+
+<p>Now, even <code>[0-9]</code> can be a bother to write multiple times, so in the interest of saving keystrokes and making regexps more readable, Perl has several abbreviations for common character classes, as shown below. Since the introduction of Unicode, unless the <code>/a</code> modifier is in effect, these character classes match more than just a few characters in the ASCII range.</p>
+
+<ul>
+
+<li><p><code>\d</code> matches a digit, not just <code>[0-9]</code> but also digits from non-roman scripts</p>
+
+</li>
+<li><p><code>\s</code> matches a whitespace character, the set <code>[\ \t\r\n\f]</code> and others</p>
+
+</li>
+<li><p><code>\w</code> matches a word character (alphanumeric or <code>&#39;_&#39;</code>), not just <code>[0-9a-zA-Z_]</code> but also digits and characters from non-roman scripts</p>
+
+</li>
+<li><p><code>\D</code> is a negated <code>\d</code>; it represents any other character than a digit, or <code>[^\d]</code></p>
+
+</li>
+<li><p><code>\S</code> is a negated <code>\s</code>; it represents any non-whitespace character <code>[^\s]</code></p>
+
+</li>
+<li><p><code>\W</code> is a negated <code>\w</code>; it represents any non-word character <code>[^\w]</code></p>
+
+</li>
+<li><p>The period <code>&#39;.&#39;</code> matches any character but <code>&quot;\n&quot;</code> (unless the modifier <code>/s</code> is in effect, as explained below).</p>
+
+</li>
+<li><p><code>\N</code>, like the period, matches any character but <code>&quot;\n&quot;</code>, but it does so regardless of whether the modifier <code>/s</code> is in effect.</p>
+
+</li>
+</ul>
+
+<p>The <code>/a</code> modifier, available starting in Perl 5.14, is used to restrict the matches of <code>\d</code>, <code>\s</code>, and <code>\w</code> to just those in the ASCII range. It is useful to keep your program from being needlessly exposed to full Unicode (and its accompanying security considerations) when all you want is to process English-like text. (The &quot;a&quot; may be doubled, <code>/aa</code>, to provide even more restrictions, preventing case-insensitive matching of ASCII with non-ASCII characters; otherwise a Unicode &quot;Kelvin Sign&quot; would caselessly match a &quot;k&quot; or &quot;K&quot;.)</p>
+
+<p>The <code>\d\s\w\D\S\W</code> abbreviations can be used both inside and outside of bracketed character classes. Here are some in use:</p>
+
+<pre><code>    /\d\d:\d\d:\d\d/; # matches a hh:mm:ss time format
+    /[\d\s]/;         # matches any digit or whitespace character
+    /\w\W\w/;         # matches a word char, followed by a
+                      # non-word char, followed by a word char
+    /..rt/;           # matches any two chars, followed by &#39;rt&#39;
+    /end\./;          # matches &#39;end.&#39;
+    /end[.]/;         # same thing, matches &#39;end.&#39;</code></pre>
+
+<p>Because a period is a metacharacter, it needs to be escaped to match as an ordinary period. Because, for example, <code>\d</code> and <code>\w</code> are sets of characters, it is incorrect to think of <code>[^\d\w]</code> as <code>[\D\W]</code>; in fact <code>[^\d\w]</code> is the same as <code>[^\w]</code>, which is the same as <code>[\W]</code>. Think DeMorgan&#39;s laws.</p>
+
+<p>In actuality, the period and <code>\d\s\w\D\S\W</code> abbreviations are themselves types of character classes, so the ones surrounded by brackets are just one type of character class. When we need to make a distinction, we refer to them as &quot;bracketed character classes.&quot;</p>
+
+<p>An anchor useful in basic regexps is the <i>word anchor</i> <code>\b</code>. This matches a boundary between a word character and a non-word character <code>\w\W</code> or <code>\W\w</code>:</p>
+
+<pre><code>    $x = &quot;Housecat catenates house and cat&quot;;
+    $x =~ /cat/;    # matches cat in &#39;housecat&#39;
+    $x =~ /\bcat/;  # matches cat in &#39;catenates&#39;
+    $x =~ /cat\b/;  # matches cat in &#39;housecat&#39;
+    $x =~ /\bcat\b/;  # matches &#39;cat&#39; at end of string</code></pre>
+
+<p>Note in the last example, the end of the string is considered a word boundary.</p>
+
+<p>For natural language processing (so that, for example, apostrophes are included in words), use instead <code>\b{wb}</code></p>
+
+<pre><code>    &quot;don&#39;t&quot; =~ / .+? \b{wb} /x;  # matches the whole string</code></pre>
+
+<p>You might wonder why <code>&#39;.&#39;</code> matches everything but <code>&quot;\n&quot;</code> - why not every character? The reason is that often one is matching against lines and would like to ignore the newline characters. For instance, while the string <code>&quot;\n&quot;</code> represents one line, we would like to think of it as empty. Then</p>
+
+<pre><code>    &quot;&quot;   =~ /^$/;    # matches
+    &quot;\n&quot; =~ /^$/;    # matches, $ anchors before &quot;\n&quot;
+
+    &quot;&quot;   =~ /./;      # doesn&#39;t match; it needs a char
+    &quot;&quot;   =~ /^.$/;    # doesn&#39;t match; it needs a char
+    &quot;\n&quot; =~ /^.$/;    # doesn&#39;t match; it needs a char other than &quot;\n&quot;
+    &quot;a&quot;  =~ /^.$/;    # matches
+    &quot;a\n&quot;  =~ /^.$/;  # matches, $ anchors before &quot;\n&quot;</code></pre>
+
+<p>This behavior is convenient, because we usually want to ignore newlines when we count and match characters in a line. Sometimes, however, we want to keep track of newlines. We might even want <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code> to anchor at the beginning and end of lines within the string, rather than just the beginning and end of the string. Perl allows us to choose between ignoring and paying attention to newlines by using the <code>/s</code> and <code>/m</code> modifiers. <code>/s</code> and <code>/m</code> stand for single line and multi-line and they determine whether a string is to be treated as one continuous string, or as a set of lines. The two modifiers affect two aspects of how the regexp is interpreted: 1) how the <code>&#39;.&#39;</code> character class is defined, and 2) where the anchors <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code> are able to match. Here are the four possible combinations:</p>
+
+<ul>
+
+<li><p>no modifiers: Default behavior. <code>&#39;.&#39;</code> matches any character except <code>&quot;\n&quot;</code>. <code>&#39;^&#39;</code> matches only at the beginning of the string and <code>&#39;$&#39;</code> matches only at the end or before a newline at the end.</p>
+
+</li>
+<li><p>s modifier (<code>/s</code>): Treat string as a single long line. <code>&#39;.&#39;</code> matches any character, even <code>&quot;\n&quot;</code>. <code>&#39;^&#39;</code> matches only at the beginning of the string and <code>&#39;$&#39;</code> matches only at the end or before a newline at the end.</p>
+
+</li>
+<li><p>m modifier (<code>/m</code>): Treat string as a set of multiple lines. <code>&#39;.&#39;</code> matches any character except <code>&quot;\n&quot;</code>. <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code> are able to match at the start or end of <i>any</i> line within the string.</p>
+
+</li>
+<li><p>both s and m modifiers (<code>/sm</code>): Treat string as a single long line, but detect multiple lines. <code>&#39;.&#39;</code> matches any character, even <code>&quot;\n&quot;</code>. <code>&#39;^&#39;</code> and <code>&#39;$&#39;</code>, however, are able to match at the start or end of <i>any</i> line within the string.</p>
+
+</li>
+</ul>
+
+<p>Here are examples of <code>/s</code> and <code>/m</code> in action:</p>
+
+<pre><code>    $x = &quot;There once was a girl\nWho programmed in Perl\n&quot;;
+
+    $x =~ /^Who/;   # doesn&#39;t match, &quot;Who&quot; not at start of string
+    $x =~ /^Who/s;  # doesn&#39;t match, &quot;Who&quot; not at start of string
+    $x =~ /^Who/m;  # matches, &quot;Who&quot; at start of second line
+    $x =~ /^Who/sm; # matches, &quot;Who&quot; at start of second line
+
+    $x =~ /girl.Who/;   # doesn&#39;t match, &quot;.&quot; doesn&#39;t match &quot;\n&quot;
+    $x =~ /girl.Who/s;  # matches, &quot;.&quot; matches &quot;\n&quot;
+    $x =~ /girl.Who/m;  # doesn&#39;t match, &quot;.&quot; doesn&#39;t match &quot;\n&quot;
+    $x =~ /girl.Who/sm; # matches, &quot;.&quot; matches &quot;\n&quot;</code></pre>
+
+<p>Most of the time, the default behavior is what is wanted, but <code>/s</code> and <code>/m</code> are occasionally very useful. If <code>/m</code> is being used, the start of the string can still be matched with <code>\A</code> and the end of the string can still be matched with the anchors <code>\Z</code> (matches both the end and the newline before, like <code>&#39;$&#39;</code>), and <code>\z</code> (matches only the end):</p>
+
+<pre><code>    $x =~ /^Who/m;   # matches, &quot;Who&quot; at start of second line
+    $x =~ /\AWho/m;  # doesn&#39;t match, &quot;Who&quot; is not at start of string
+
+    $x =~ /girl$/m;  # matches, &quot;girl&quot; at end of first line
+    $x =~ /girl\Z/m; # doesn&#39;t match, &quot;girl&quot; is not at end of string
+
+    $x =~ /Perl\Z/m; # matches, &quot;Perl&quot; is at newline before end
+    $x =~ /Perl\z/m; # doesn&#39;t match, &quot;Perl&quot; is not at end of string</code></pre>
+
+<p>We now know how to create choices among classes of characters in a regexp. What about choices among words or character strings? Such choices are described in the next section.</p>
+
+<h2 id="Matching-this-or-that">Matching this or that</h2>
+
+<p>Sometimes we would like our regexp to be able to match different possible words or character strings. This is accomplished by using the <i>alternation</i> metacharacter <code>&#39;|&#39;</code>. To match <code>dog</code> or <code>cat</code>, we form the regexp <code>dog|cat</code>. As before, Perl will try to match the regexp at the earliest possible point in the string. At each character position, Perl will first try to match the first alternative, <code>dog</code>. If <code>dog</code> doesn&#39;t match, Perl will then try the next alternative, <code>cat</code>. If <code>cat</code> doesn&#39;t match either, then the match fails and Perl moves to the next position in the string. Some examples:</p>
+
+<pre><code>    &quot;cats and dogs&quot; =~ /cat|dog|bird/;  # matches &quot;cat&quot;
+    &quot;cats and dogs&quot; =~ /dog|cat|bird/;  # matches &quot;cat&quot;</code></pre>
+
+<p>Even though <code>dog</code> is the first alternative in the second regexp, <code>cat</code> is able to match earlier in the string.</p>
+
+<pre><code>    &quot;cats&quot;          =~ /c|ca|cat|cats/; # matches &quot;c&quot;
+    &quot;cats&quot;          =~ /cats|cat|ca|c/; # matches &quot;cats&quot;</code></pre>
+
+<p>Here, all the alternatives match at the first string position, so the first alternative is the one that matches. If some of the alternatives are truncations of the others, put the longest ones first to give them a chance to match.</p>
+
+<pre><code>    &quot;cab&quot; =~ /a|b|c/ # matches &quot;c&quot;
+                     # /a|b|c/ == /[abc]/</code></pre>
+
+<p>The last example points out that character classes are like alternations of characters. At a given character position, the first alternative that allows the regexp match to succeed will be the one that matches.</p>
+
+<h2 id="Grouping-things-and-hierarchical-matching">Grouping things and hierarchical matching</h2>
+
+<p>Alternation allows a regexp to choose among alternatives, but by itself it is unsatisfying. The reason is that each alternative is a whole regexp, but sometime we want alternatives for just part of a regexp. For instance, suppose we want to search for housecats or housekeepers. The regexp <code>housecat|housekeeper</code> fits the bill, but is inefficient because we had to type <code>house</code> twice. It would be nice to have parts of the regexp be constant, like <code>house</code>, and some parts have alternatives, like <code>cat|keeper</code>.</p>
+
+<p>The <i>grouping</i> metacharacters <code>()</code> solve this problem. Grouping allows parts of a regexp to be treated as a single unit. Parts of a regexp are grouped by enclosing them in parentheses. Thus we could solve the <code>housecat|housekeeper</code> by forming the regexp as <code>house(cat|keeper)</code>. The regexp <code>house(cat|keeper)</code> means match <code>house</code> followed by either <code>cat</code> or <code>keeper</code>. Some more examples are</p>
+
+<pre><code>    /(a|b)b/;    # matches &#39;ab&#39; or &#39;bb&#39;
+    /(ac|b)b/;   # matches &#39;acb&#39; or &#39;bb&#39;
+    /(^a|b)c/;   # matches &#39;ac&#39; at start of string or &#39;bc&#39; anywhere
+    /(a|[bc])d/; # matches &#39;ad&#39;, &#39;bd&#39;, or &#39;cd&#39;
+
+    /house(cat|)/;  # matches either &#39;housecat&#39; or &#39;house&#39;
+    /house(cat(s|)|)/;  # matches either &#39;housecats&#39; or &#39;housecat&#39; or
+                        # &#39;house&#39;.  Note groups can be nested.
+
+    /(19|20|)\d\d/;  # match years 19xx, 20xx, or the Y2K problem, xx
+    &quot;20&quot; =~ /(19|20|)\d\d/;  # matches the null alternative &#39;()\d\d&#39;,
+                             # because &#39;20\d\d&#39; can&#39;t match</code></pre>
+
+<p>Alternations behave the same way in groups as out of them: at a given string position, the leftmost alternative that allows the regexp to match is taken. So in the last example at the first string position, <code>&quot;20&quot;</code> matches the second alternative, but there is nothing left over to match the next two digits <code>\d\d</code>. So Perl moves on to the next alternative, which is the null alternative and that works, since <code>&quot;20&quot;</code> is two digits.</p>
+
+<p>The process of trying one alternative, seeing if it matches, and moving on to the next alternative, while going back in the string from where the previous alternative was tried, if it doesn&#39;t, is called <i>backtracking</i>. The term &quot;backtracking&quot; comes from the idea that matching a regexp is like a walk in the woods. Successfully matching a regexp is like arriving at a destination. There are many possible trailheads, one for each string position, and each one is tried in order, left to right. From each trailhead there may be many paths, some of which get you there, and some which are dead ends. When you walk along a trail and hit a dead end, you have to backtrack along the trail to an earlier point to try another trail. If you hit your destination, you stop immediately and forget about trying all the other trails. You are persistent, and only if you have tried all the trails from all the trailheads and not arrived at your destination, do you declare failure. To be concrete, here is a step-by-step analysis of what Perl does when it tries to match the regexp</p>
+
+<pre><code>    &quot;abcde&quot; =~ /(abd|abc)(df|d|de)/;</code></pre>
+
+<dl>
+
+<dt>0. Start with the first letter in the string <code>&#39;a&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>1. Try the first alternative in the first group <code>&#39;abd&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>2. Match <code>&#39;a&#39;</code> followed by <code>&#39;b&#39;</code>. So far so good.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>3. <code>&#39;d&#39;</code> in the regexp doesn&#39;t match <code>&#39;c&#39;</code> in the string - a dead end. So backtrack two characters and pick the second alternative in the first group <code>&#39;abc&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>4. Match <code>&#39;a&#39;</code> followed by <code>&#39;b&#39;</code> followed by <code>&#39;c&#39;</code>. We are on a roll and have satisfied the first group. Set <code>$1</code> to <code>&#39;abc&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>5 Move on to the second group and pick the first alternative <code>&#39;df&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>6 Match the <code>&#39;d&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>7. <code>&#39;f&#39;</code> in the regexp doesn&#39;t match <code>&#39;e&#39;</code> in the string, so a dead end. Backtrack one character and pick the second alternative in the second group <code>&#39;d&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>8. <code>&#39;d&#39;</code> matches. The second grouping is satisfied, so set <code>$2</code> to <code>&#39;d&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>9. We are at the end of the regexp, so we are done! We have matched <code>&#39;abcd&#39;</code> out of the string <code>&quot;abcde&quot;</code>.</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>There are a couple of things to note about this analysis. First, the third alternative in the second group <code>&#39;de&#39;</code> also allows a match, but we stopped before we got to it - at a given character position, leftmost wins. Second, we were able to get a match at the first character position of the string <code>&#39;a&#39;</code>. If there were no matches at the first position, Perl would move to the second character position <code>&#39;b&#39;</code> and attempt the match all over again. Only when all possible paths at all possible character positions have been exhausted does Perl give up and declare <span style="white-space: nowrap;"><code>$string =~ /(abd|abc)(df|d|de)/;</code></span> to be false.</p>
+
+<p>Even with all this work, regexp matching happens remarkably fast. To speed things up, Perl compiles the regexp into a compact sequence of opcodes that can often fit inside a processor cache. When the code is executed, these opcodes can then run at full throttle and search very quickly.</p>
+
+<h2 id="Extracting-matches">Extracting matches</h2>
+
+<p>The grouping metacharacters <code>()</code> also serve another completely different function: they allow the extraction of the parts of a string that matched. This is very useful to find out what matched and for text processing in general. For each grouping, the part that matched inside goes into the special variables <code>$1</code>, <code>$2</code>, <i>etc</i>. They can be used just as ordinary variables:</p>
+
+<pre><code>    # extract hours, minutes, seconds
+    if ($time =~ /(\d\d):(\d\d):(\d\d)/) {    # match hh:mm:ss format
+        $hours = $1;
+        $minutes = $2;
+        $seconds = $3;
+    }</code></pre>
+
+<p>Now, we know that in scalar context, <span style="white-space: nowrap;"><code>$time =~ /(\d\d):(\d\d):(\d\d)/</code></span> returns a true or false value. In list context, however, it returns the list of matched values <code>($1,$2,$3)</code>. So we could write the code more compactly as</p>
+
+<pre><code>    # extract hours, minutes, seconds
+    ($hours, $minutes, $second) = ($time =~ /(\d\d):(\d\d):(\d\d)/);</code></pre>
+
+<p>If the groupings in a regexp are nested, <code>$1</code> gets the group with the leftmost opening parenthesis, <code>$2</code> the next opening parenthesis, <i>etc</i>. Here is a regexp with nested groups:</p>
+
+<pre><code>    /(ab(cd|ef)((gi)|j))/;
+     1  2      34</code></pre>
+
+<p>If this regexp matches, <code>$1</code> contains a string starting with <code>&#39;ab&#39;</code>, <code>$2</code> is either set to <code>&#39;cd&#39;</code> or <code>&#39;ef&#39;</code>, <code>$3</code> equals either <code>&#39;gi&#39;</code> or <code>&#39;j&#39;</code>, and <code>$4</code> is either set to <code>&#39;gi&#39;</code>, just like <code>$3</code>, or it remains undefined.</p>
+
+<p>For convenience, Perl sets <code>$+</code> to the string held by the highest numbered <code>$1</code>, <code>$2</code>,... that got assigned (and, somewhat related, <code>$^N</code> to the value of the <code>$1</code>, <code>$2</code>,... most-recently assigned; <i>i.e.</i> the <code>$1</code>, <code>$2</code>,... associated with the rightmost closing parenthesis used in the match).</p>
+
+<h2 id="Backreferences">Backreferences</h2>
+
+<p>Closely associated with the matching variables <code>$1</code>, <code>$2</code>, ... are the <i>backreferences</i> <code>\g1</code>, <code>\g2</code>,... Backreferences are simply matching variables that can be used <i>inside</i> a regexp. This is a really nice feature; what matches later in a regexp is made to depend on what matched earlier in the regexp. Suppose we wanted to look for doubled words in a text, like &quot;the the&quot;. The following regexp finds all 3-letter doubles with a space in between:</p>
+
+<pre><code>    /\b(\w\w\w)\s\g1\b/;</code></pre>
+
+<p>The grouping assigns a value to <code>\g1</code>, so that the same 3-letter sequence is used for both parts.</p>
+
+<p>A similar task is to find words consisting of two identical parts:</p>
+
+<pre><code>    % simple_grep &#39;^(\w\w\w\w|\w\w\w|\w\w|\w)\g1$&#39; /usr/dict/words
+    beriberi
+    booboo
+    coco
+    mama
+    murmur
+    papa</code></pre>
+
+<p>The regexp has a single grouping which considers 4-letter combinations, then 3-letter combinations, <i>etc</i>., and uses <code>\g1</code> to look for a repeat. Although <code>$1</code> and <code>\g1</code> represent the same thing, care should be taken to use matched variables <code>$1</code>, <code>$2</code>,... only <i>outside</i> a regexp and backreferences <code>\g1</code>, <code>\g2</code>,... only <i>inside</i> a regexp; not doing so may lead to surprising and unsatisfactory results.</p>
+
+<h2 id="Relative-backreferences">Relative backreferences</h2>
+
+<p>Counting the opening parentheses to get the correct number for a backreference is error-prone as soon as there is more than one capturing group. A more convenient technique became available with Perl 5.10: relative backreferences. To refer to the immediately preceding capture group one now may write <code>\g{-1}</code>, the next but last is available via <code>\g{-2}</code>, and so on.</p>
+
+<p>Another good reason in addition to readability and maintainability for using relative backreferences is illustrated by the following example, where a simple pattern for matching peculiar strings is used:</p>
+
+<pre><code>    $a99a = &#39;([a-z])(\d)\g2\g1&#39;;   # matches a11a, g22g, x33x, etc.</code></pre>
+
+<p>Now that we have this pattern stored as a handy string, we might feel tempted to use it as a part of some other pattern:</p>
+
+<pre><code>    $line = &quot;code=e99e&quot;;
+    if ($line =~ /^(\w+)=$a99a$/){   # unexpected behavior!
+        print &quot;$1 is valid\n&quot;;
+    } else {
+        print &quot;bad line: &#39;$line&#39;\n&quot;;
+    }</code></pre>
+
+<p>But this doesn&#39;t match, at least not the way one might expect. Only after inserting the interpolated <code>$a99a</code> and looking at the resulting full text of the regexp is it obvious that the backreferences have backfired. The subexpression <code>(\w+)</code> has snatched number 1 and demoted the groups in <code>$a99a</code> by one rank. This can be avoided by using relative backreferences:</p>
+
+<pre><code>    $a99a = &#39;([a-z])(\d)\g{-1}\g{-2}&#39;;  # safe for being interpolated</code></pre>
+
+<h2 id="Named-backreferences">Named backreferences</h2>
+
+<p>Perl 5.10 also introduced named capture groups and named backreferences. To attach a name to a capturing group, you write either <code>(?&lt;name&gt;...)</code> or <code>(?&#39;name&#39;...)</code>. The backreference may then be written as <code>\g{name}</code>. It is permissible to attach the same name to more than one group, but then only the leftmost one of the eponymous set can be referenced. Outside of the pattern a named capture group is accessible through the <code>%+</code> hash.</p>
+
+<p>Assuming that we have to match calendar dates which may be given in one of the three formats yyyy-mm-dd, mm/dd/yyyy or dd.mm.yyyy, we can write three suitable patterns where we use <code>&#39;d&#39;</code>, <code>&#39;m&#39;</code> and <code>&#39;y&#39;</code> respectively as the names of the groups capturing the pertaining components of a date. The matching operation combines the three patterns as alternatives:</p>
+
+<pre><code>    $fmt1 = &#39;(?&lt;y&gt;\d\d\d\d)-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)&#39;;
+    $fmt2 = &#39;(?&lt;m&gt;\d\d)/(?&lt;d&gt;\d\d)/(?&lt;y&gt;\d\d\d\d)&#39;;
+    $fmt3 = &#39;(?&lt;d&gt;\d\d)\.(?&lt;m&gt;\d\d)\.(?&lt;y&gt;\d\d\d\d)&#39;;
+    for my $d qw( 2006-10-21 15.01.2007 10/31/2005 ){
+        if ( $d =~ m{$fmt1|$fmt2|$fmt3} ){
+            print &quot;day=$+{d} month=$+{m} year=$+{y}\n&quot;;
+        }
+    }</code></pre>
+
+<p>If any of the alternatives matches, the hash <code>%+</code> is bound to contain the three key-value pairs.</p>
+
+<h2 id="Alternative-capture-group-numbering">Alternative capture group numbering</h2>
+
+<p>Yet another capturing group numbering technique (also as from Perl 5.10) deals with the problem of referring to groups within a set of alternatives. Consider a pattern for matching a time of the day, civil or military style:</p>
+
+<pre><code>    if ( $time =~ /(\d\d|\d):(\d\d)|(\d\d)(\d\d)/ ){
+        # process hour and minute
+    }</code></pre>
+
+<p>Processing the results requires an additional if statement to determine whether <code>$1</code> and <code>$2</code> or <code>$3</code> and <code>$4</code> contain the goodies. It would be easier if we could use group numbers 1 and 2 in second alternative as well, and this is exactly what the parenthesized construct <code>(?|...)</code>, set around an alternative achieves. Here is an extended version of the previous pattern:</p>
+
+<pre><code>  if($time =~ /(?|(\d\d|\d):(\d\d)|(\d\d)(\d\d))\s+([A-Z][A-Z][A-Z])/){
+      print &quot;hour=$1 minute=$2 zone=$3\n&quot;;
+  }</code></pre>
+
+<p>Within the alternative numbering group, group numbers start at the same position for each alternative. After the group, numbering continues with one higher than the maximum reached across all the alternatives.</p>
+
+<h2 id="Position-information">Position information</h2>
+
+<p>In addition to what was matched, Perl also provides the positions of what was matched as contents of the <code>@-</code> and <code>@+</code> arrays. <code>$-[0]</code> is the position of the start of the entire match and <code>$+[0]</code> is the position of the end. Similarly, <code>$-[n]</code> is the position of the start of the <code>$n</code> match and <code>$+[n]</code> is the position of the end. If <code>$n</code> is undefined, so are <code>$-[n]</code> and <code>$+[n]</code>. Then this code</p>
+
+<pre><code>    $x = &quot;Mmm...donut, thought Homer&quot;;
+    $x =~ /^(Mmm|Yech)\.\.\.(donut|peas)/; # matches
+    foreach $exp (1..$#-) {
+        print &quot;Match $exp: &#39;${$exp}&#39; at position ($-[$exp],$+[$exp])\n&quot;;
+    }</code></pre>
+
+<p>prints</p>
+
+<pre><code>    Match 1: &#39;Mmm&#39; at position (0,3)
+    Match 2: &#39;donut&#39; at position (6,11)</code></pre>
+
+<p>Even if there are no groupings in a regexp, it is still possible to find out what exactly matched in a string. If you use them, Perl will set <code>$`</code> to the part of the string before the match, will set <code>$&amp;</code> to the part of the string that matched, and will set <code>&#39;$&#39;</code> to the part of the string after the match. An example:</p>
+
+<pre><code>    $x = &quot;the cat caught the mouse&quot;;
+    $x =~ /cat/;  # $` = &#39;the &#39;, $&amp; = &#39;cat&#39;, $&#39; = &#39; caught the mouse&#39;
+    $x =~ /the/;  # $` = &#39;&#39;, $&amp; = &#39;the&#39;, $&#39; = &#39; cat caught the mouse&#39;</code></pre>
+
+<p>In the second match, <code>$`</code> equals <code>&#39;&#39;</code> because the regexp matched at the first character position in the string and stopped; it never saw the second &quot;the&quot;.</p>
+
+<p>If your code is to run on Perl versions earlier than 5.20, it is worthwhile to note that using <code>$`</code> and <code>&#39;$&#39;</code> slows down regexp matching quite a bit, while <code>$&amp;</code> slows it down to a lesser extent, because if they are used in one regexp in a program, they are generated for <i>all</i> regexps in the program. So if raw performance is a goal of your application, they should be avoided. If you need to extract the corresponding substrings, use <code>@-</code> and <code>@+</code> instead:</p>
+
+<pre><code>    $` is the same as substr( $x, 0, $-[0] )
+    $&amp; is the same as substr( $x, $-[0], $+[0]-$-[0] )
+    $&#39; is the same as substr( $x, $+[0] )</code></pre>
+
+<p>As of Perl 5.10, the <code>${^PREMATCH}</code>, <code>${^MATCH}</code> and <code>${^POSTMATCH}</code> variables may be used. These are only set if the <code>/p</code> modifier is present. Consequently they do not penalize the rest of the program. In Perl 5.20, <code>${^PREMATCH}</code>, <code>${^MATCH}</code> and <code>${^POSTMATCH}</code> are available whether the <code>/p</code> has been used or not (the modifier is ignored), and <code>$`</code>, <code>&#39;$&#39;</code> and <code>$&amp;</code> do not cause any speed difference.</p>
+
+<h2 id="Non-capturing-groupings">Non-capturing groupings</h2>
+
+<p>A group that is required to bundle a set of alternatives may or may not be useful as a capturing group. If it isn&#39;t, it just creates a superfluous addition to the set of available capture group values, inside as well as outside the regexp. Non-capturing groupings, denoted by <code>(?:regexp)</code>, still allow the regexp to be treated as a single unit, but don&#39;t establish a capturing group at the same time. Both capturing and non-capturing groupings are allowed to co-exist in the same regexp. Because there is no extraction, non-capturing groupings are faster than capturing groupings. Non-capturing groupings are also handy for choosing exactly which parts of a regexp are to be extracted to matching variables:</p>
+
+<pre><code>    # match a number, $1-$4 are set, but we only want $1
+    /([+-]?\ *(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?)/;
+
+    # match a number faster , only $1 is set
+    /([+-]?\ *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)/;
+
+    # match a number, get $1 = whole number, $2 = exponent
+    /([+-]?\ *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE]([+-]?\d+))?)/;</code></pre>
+
+<p>Non-capturing groupings are also useful for removing nuisance elements gathered from a split operation where parentheses are required for some reason:</p>
+
+<pre><code>    $x = &#39;12aba34ba5&#39;;
+    @num = split /(a|b)+/, $x;    # @num = (&#39;12&#39;,&#39;a&#39;,&#39;34&#39;,&#39;a&#39;,&#39;5&#39;)
+    @num = split /(?:a|b)+/, $x;  # @num = (&#39;12&#39;,&#39;34&#39;,&#39;5&#39;)</code></pre>
+
+<p>In Perl 5.22 and later, all groups within a regexp can be set to non-capturing by using the new <code>/n</code> flag:</p>
+
+<pre><code>    &quot;hello&quot; =~ /(hi|hello)/n; # $1 is not set!</code></pre>
+
+<p>See <a href="/perldoc/perlre/#n">&quot;n&quot; in perlre</a> for more information.</p>
+
+<h2 id="Matching-repetitions">Matching repetitions</h2>
+
+<p>The examples in the previous section display an annoying weakness. We were only matching 3-letter words, or chunks of words of 4 letters or less. We&#39;d like to be able to match words or, more generally, strings of any length, without writing out tedious alternatives like <code>\w\w\w\w|\w\w\w|\w\w|\w</code>.</p>
+
+<p>This is exactly the problem the <i>quantifier</i> metacharacters <code>&#39;?&#39;</code>, <code>&#39;*&#39;</code>, <code>&#39;+&#39;</code>, and <code>{}</code> were created for. They allow us to delimit the number of repeats for a portion of a regexp we consider to be a match. Quantifiers are put immediately after the character, character class, or grouping that we want to specify. They have the following meanings:</p>
+
+<ul>
+
+<li><p><code>a?</code> means: match <code>&#39;a&#39;</code> 1 or 0 times</p>
+
+</li>
+<li><p><code>a*</code> means: match <code>&#39;a&#39;</code> 0 or more times, <i>i.e.</i>, any number of times</p>
+
+</li>
+<li><p><code>a+</code> means: match <code>&#39;a&#39;</code> 1 or more times, <i>i.e.</i>, at least once</p>
+
+</li>
+<li><p><code>a{n,m}</code> means: match at least <code>n</code> times, but not more than <code>m</code> times.</p>
+
+</li>
+<li><p><code>a{n,}</code> means: match at least <code>n</code> or more times</p>
+
+</li>
+<li><p><code>a{n}</code> means: match exactly <code>n</code> times</p>
+
+</li>
+</ul>
+
+<p>Here are some examples:</p>
+
+<pre><code>    /[a-z]+\s+\d*/;  # match a lowercase word, at least one space, and
+                     # any number of digits
+    /(\w+)\s+\g1/;    # match doubled words of arbitrary length
+    /y(es)?/i;       # matches &#39;y&#39;, &#39;Y&#39;, or a case-insensitive &#39;yes&#39;
+    $year =~ /^\d{2,4}$/;  # make sure year is at least 2 but not more
+                           # than 4 digits
+    $year =~ /^\d{4}$|^\d{2}$/; # better match; throw out 3-digit dates
+    $year =~ /^\d{2}(\d{2})?$/; # same thing written differently.
+                                # However, this captures the last two
+                                # digits in $1 and the other does not.
+
+    % simple_grep &#39;^(\w+)\g1$&#39; /usr/dict/words   # isn&#39;t this easier?
+    beriberi
+    booboo
+    coco
+    mama
+    murmur
+    papa</code></pre>
+
+<p>For all of these quantifiers, Perl will try to match as much of the string as possible, while still allowing the regexp to succeed. Thus with <code>/a?.../</code>, Perl will first try to match the regexp with the <code>&#39;a&#39;</code> present; if that fails, Perl will try to match the regexp without the <code>&#39;a&#39;</code> present. For the quantifier <code>&#39;*&#39;</code>, we get the following:</p>
+
+<pre><code>    $x = &quot;the cat in the hat&quot;;
+    $x =~ /^(.*)(cat)(.*)$/; # matches,
+                             # $1 = &#39;the &#39;
+                             # $2 = &#39;cat&#39;
+                             # $3 = &#39; in the hat&#39;</code></pre>
+
+<p>Which is what we might expect, the match finds the only <code>cat</code> in the string and locks onto it. Consider, however, this regexp:</p>
+
+<pre><code>    $x =~ /^(.*)(at)(.*)$/; # matches,
+                            # $1 = &#39;the cat in the h&#39;
+                            # $2 = &#39;at&#39;
+                            # $3 = &#39;&#39;   (0 characters match)</code></pre>
+
+<p>One might initially guess that Perl would find the <code>at</code> in <code>cat</code> and stop there, but that wouldn&#39;t give the longest possible string to the first quantifier <code>.*</code>. Instead, the first quantifier <code>.*</code> grabs as much of the string as possible while still having the regexp match. In this example, that means having the <code>at</code> sequence with the final <code>at</code> in the string. The other important principle illustrated here is that, when there are two or more elements in a regexp, the <i>leftmost</i> quantifier, if there is one, gets to grab as much of the string as possible, leaving the rest of the regexp to fight over scraps. Thus in our example, the first quantifier <code>.*</code> grabs most of the string, while the second quantifier <code>.*</code> gets the empty string. Quantifiers that grab as much of the string as possible are called <i>maximal match</i> or <i>greedy</i> quantifiers.</p>
+
+<p>When a regexp can match a string in several different ways, we can use the principles above to predict which way the regexp will match:</p>
+
+<ul>
+
+<li><p>Principle 0: Taken as a whole, any regexp will be matched at the earliest possible position in the string.</p>
+
+</li>
+<li><p>Principle 1: In an alternation <code>a|b|c...</code>, the leftmost alternative that allows a match for the whole regexp will be the one used.</p>
+
+</li>
+<li><p>Principle 2: The maximal matching quantifiers <code>&#39;?&#39;</code>, <code>&#39;*&#39;</code>, <code>&#39;+&#39;</code> and <code>{n,m}</code> will in general match as much of the string as possible while still allowing the whole regexp to match.</p>
+
+</li>
+<li><p>Principle 3: If there are two or more elements in a regexp, the leftmost greedy quantifier, if any, will match as much of the string as possible while still allowing the whole regexp to match. The next leftmost greedy quantifier, if any, will try to match as much of the string remaining available to it as possible, while still allowing the whole regexp to match. And so on, until all the regexp elements are satisfied.</p>
+
+</li>
+</ul>
+
+<p>As we have seen above, Principle 0 overrides the others. The regexp will be matched as early as possible, with the other principles determining how the regexp matches at that earliest character position.</p>
+
+<p>Here is an example of these principles in action:</p>
+
+<pre><code>    $x = &quot;The programming republic of Perl&quot;;
+    $x =~ /^(.+)(e|r)(.*)$/;  # matches,
+                              # $1 = &#39;The programming republic of Pe&#39;
+                              # $2 = &#39;r&#39;
+                              # $3 = &#39;l&#39;</code></pre>
+
+<p>This regexp matches at the earliest string position, <code>&#39;T&#39;</code>. One might think that <code>&#39;e&#39;</code>, being leftmost in the alternation, would be matched, but <code>&#39;r&#39;</code> produces the longest string in the first quantifier.</p>
+
+<pre><code>    $x =~ /(m{1,2})(.*)$/;  # matches,
+                            # $1 = &#39;mm&#39;
+                            # $2 = &#39;ing republic of Perl&#39;</code></pre>
+
+<p>Here, The earliest possible match is at the first <code>&#39;m&#39;</code> in <code>programming</code>. <code>m{1,2}</code> is the first quantifier, so it gets to match a maximal <code>mm</code>.</p>
+
+<pre><code>    $x =~ /.*(m{1,2})(.*)$/;  # matches,
+                              # $1 = &#39;m&#39;
+                              # $2 = &#39;ing republic of Perl&#39;</code></pre>
+
+<p>Here, the regexp matches at the start of the string. The first quantifier <code>.*</code> grabs as much as possible, leaving just a single <code>&#39;m&#39;</code> for the second quantifier <code>m{1,2}</code>.</p>
+
+<pre><code>    $x =~ /(.?)(m{1,2})(.*)$/;  # matches,
+                                # $1 = &#39;a&#39;
+                                # $2 = &#39;mm&#39;
+                                # $3 = &#39;ing republic of Perl&#39;</code></pre>
+
+<p>Here, <code>.?</code> eats its maximal one character at the earliest possible position in the string, <code>&#39;a&#39;</code> in <code>programming</code>, leaving <code>m{1,2}</code> the opportunity to match both <code>&#39;m&#39;</code>&#39;s. Finally,</p>
+
+<pre><code>    &quot;aXXXb&quot; =~ /(X*)/; # matches with $1 = &#39;&#39;</code></pre>
+
+<p>because it can match zero copies of <code>&#39;X&#39;</code> at the beginning of the string. If you definitely want to match at least one <code>&#39;X&#39;</code>, use <code>X+</code>, not <code>X*</code>.</p>
+
+<p>Sometimes greed is not good. At times, we would like quantifiers to match a <i>minimal</i> piece of string, rather than a maximal piece. For this purpose, Larry Wall created the <i>minimal match</i> or <i>non-greedy</i> quantifiers <code>??</code>, <code>*?</code>, <code>+?</code>, and <code>{}?</code>. These are the usual quantifiers with a <code>&#39;?&#39;</code> appended to them. They have the following meanings:</p>
+
+<ul>
+
+<li><p><code>a??</code> means: match <code>&#39;a&#39;</code> 0 or 1 times. Try 0 first, then 1.</p>
+
+</li>
+<li><p><code>a*?</code> means: match <code>&#39;a&#39;</code> 0 or more times, <i>i.e.</i>, any number of times, but as few times as possible</p>
+
+</li>
+<li><p><code>a+?</code> means: match <code>&#39;a&#39;</code> 1 or more times, <i>i.e.</i>, at least once, but as few times as possible</p>
+
+</li>
+<li><p><code>a{n,m}?</code> means: match at least <code>n</code> times, not more than <code>m</code> times, as few times as possible</p>
+
+</li>
+<li><p><code>a{n,}?</code> means: match at least <code>n</code> times, but as few times as possible</p>
+
+</li>
+<li><p><code>a{n}?</code> means: match exactly <code>n</code> times. Because we match exactly <code>n</code> times, <code>a{n}?</code> is equivalent to <code>a{n}</code> and is just there for notational consistency.</p>
+
+</li>
+</ul>
+
+<p>Let&#39;s look at the example above, but with minimal quantifiers:</p>
+
+<pre><code>    $x = &quot;The programming republic of Perl&quot;;
+    $x =~ /^(.+?)(e|r)(.*)$/; # matches,
+                              # $1 = &#39;Th&#39;
+                              # $2 = &#39;e&#39;
+                              # $3 = &#39; programming republic of Perl&#39;</code></pre>
+
+<p>The minimal string that will allow both the start of the string <code>&#39;^&#39;</code> and the alternation to match is <code>Th</code>, with the alternation <code>e|r</code> matching <code>&#39;e&#39;</code>. The second quantifier <code>.*</code> is free to gobble up the rest of the string.</p>
+
+<pre><code>    $x =~ /(m{1,2}?)(.*?)$/;  # matches,
+                              # $1 = &#39;m&#39;
+                              # $2 = &#39;ming republic of Perl&#39;</code></pre>
+
+<p>The first string position that this regexp can match is at the first <code>&#39;m&#39;</code> in <code>programming</code>. At this position, the minimal <code>m{1,2}?</code> matches just one <code>&#39;m&#39;</code>. Although the second quantifier <code>.*?</code> would prefer to match no characters, it is constrained by the end-of-string anchor <code>&#39;$&#39;</code> to match the rest of the string.</p>
+
+<pre><code>    $x =~ /(.*?)(m{1,2}?)(.*)$/;  # matches,
+                                  # $1 = &#39;The progra&#39;
+                                  # $2 = &#39;m&#39;
+                                  # $3 = &#39;ming republic of Perl&#39;</code></pre>
+
+<p>In this regexp, you might expect the first minimal quantifier <code>.*?</code> to match the empty string, because it is not constrained by a <code>&#39;^&#39;</code> anchor to match the beginning of the word. Principle 0 applies here, however. Because it is possible for the whole regexp to match at the start of the string, it <i>will</i> match at the start of the string. Thus the first quantifier has to match everything up to the first <code>&#39;m&#39;</code>. The second minimal quantifier matches just one <code>&#39;m&#39;</code> and the third quantifier matches the rest of the string.</p>
+
+<pre><code>    $x =~ /(.??)(m{1,2})(.*)$/;  # matches,
+                                 # $1 = &#39;a&#39;
+                                 # $2 = &#39;mm&#39;
+                                 # $3 = &#39;ing republic of Perl&#39;</code></pre>
+
+<p>Just as in the previous regexp, the first quantifier <code>.??</code> can match earliest at position <code>&#39;a&#39;</code>, so it does. The second quantifier is greedy, so it matches <code>mm</code>, and the third matches the rest of the string.</p>
+
+<p>We can modify principle 3 above to take into account non-greedy quantifiers:</p>
+
+<ul>
+
+<li><p>Principle 3: If there are two or more elements in a regexp, the leftmost greedy (non-greedy) quantifier, if any, will match as much (little) of the string as possible while still allowing the whole regexp to match. The next leftmost greedy (non-greedy) quantifier, if any, will try to match as much (little) of the string remaining available to it as possible, while still allowing the whole regexp to match. And so on, until all the regexp elements are satisfied.</p>
+
+</li>
+</ul>
+
+<p>Just like alternation, quantifiers are also susceptible to backtracking. Here is a step-by-step analysis of the example</p>
+
+<pre><code>    $x = &quot;the cat in the hat&quot;;
+    $x =~ /^(.*)(at)(.*)$/; # matches,
+                            # $1 = &#39;the cat in the h&#39;
+                            # $2 = &#39;at&#39;
+                            # $3 = &#39;&#39;   (0 matches)</code></pre>
+
+<dl>
+
+<dt>0. Start with the first letter in the string <code>&#39;t&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>1. The first quantifier <code>&#39;.*&#39;</code> starts out by matching the whole string &quot;<code>the cat in the hat</code>&quot;.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>2. <code>&#39;a&#39;</code> in the regexp element <code>&#39;at&#39;</code> doesn&#39;t match the end of the string. Backtrack one character.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>3. <code>&#39;a&#39;</code> in the regexp element <code>&#39;at&#39;</code> still doesn&#39;t match the last letter of the string <code>&#39;t&#39;</code>, so backtrack one more character.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>4. Now we can match the <code>&#39;a&#39;</code> and the <code>&#39;t&#39;</code>.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>5. Move on to the third element <code>&#39;.*&#39;</code>. Since we are at the end of the string and <code>&#39;.*&#39;</code> can match 0 times, assign it the empty string.</dt>
+<dd>
+
+<p> </p>
+
+</dd>
+<dt>6. We are done!</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>Most of the time, all this moving forward and backtracking happens quickly and searching is fast. There are some pathological regexps, however, whose execution time exponentially grows with the size of the string. A typical structure that blows up in your face is of the form</p>
+
+<pre><code>    /(a|b+)*/;</code></pre>
+
+<p>The problem is the nested indeterminate quantifiers. There are many different ways of partitioning a string of length n between the <code>&#39;+&#39;</code> and <code>&#39;*&#39;</code>: one repetition with <code>b+</code> of length n, two repetitions with the first <code>b+</code> length k and the second with length n-k, m repetitions whose bits add up to length n, <i>etc</i>. In fact there are an exponential number of ways to partition a string as a function of its length. A regexp may get lucky and match early in the process, but if there is no match, Perl will try <i>every</i> possibility before giving up. So be careful with nested <code>&#39;*&#39;</code>&#39;s, <code>{n,m}</code>&#39;s, and <code>&#39;+&#39;</code>&#39;s. The book <i>Mastering Regular Expressions</i> by Jeffrey Friedl gives a wonderful discussion of this and other efficiency issues.</p>
+
+<h2 id="Possessive-quantifiers">Possessive quantifiers</h2>
+
+<p>Backtracking during the relentless search for a match may be a waste of time, particularly when the match is bound to fail. Consider the simple pattern</p>
+
+<pre><code>    /^\w+\s+\w+$/; # a word, spaces, a word</code></pre>
+
+<p>Whenever this is applied to a string which doesn&#39;t quite meet the pattern&#39;s expectations such as <span style="white-space: nowrap;"><code>&quot;abc &quot;</code></span> or <span style="white-space: nowrap;"><code>&quot;abc def &quot;</code></span>, the regexp engine will backtrack, approximately once for each character in the string. But we know that there is no way around taking <i>all</i> of the initial word characters to match the first repetition, that <i>all</i> spaces must be eaten by the middle part, and the same goes for the second word.</p>
+
+<p>With the introduction of the <i>possessive quantifiers</i> in Perl 5.10, we have a way of instructing the regexp engine not to backtrack, with the usual quantifiers with a <code>&#39;+&#39;</code> appended to them. This makes them greedy as well as stingy; once they succeed they won&#39;t give anything back to permit another solution. They have the following meanings:</p>
+
+<ul>
+
+<li><p><code>a{n,m}+</code> means: match at least <code>n</code> times, not more than <code>m</code> times, as many times as possible, and don&#39;t give anything up. <code>a?+</code> is short for <code>a{0,1}+</code></p>
+
+</li>
+<li><p><code>a{n,}+</code> means: match at least <code>n</code> times, but as many times as possible, and don&#39;t give anything up. <code>a*+</code> is short for <code>a{0,}+</code> and <code>a++</code> is short for <code>a{1,}+</code>.</p>
+
+</li>
+<li><p><code>a{n}+</code> means: match exactly <code>n</code> times. It is just there for notational consistency.</p>
+
+</li>
+</ul>
+
+<p>These possessive quantifiers represent a special case of a more general concept, the <i>independent subexpression</i>, see below.</p>
+
+<p>As an example where a possessive quantifier is suitable we consider matching a quoted string, as it appears in several programming languages. The backslash is used as an escape character that indicates that the next character is to be taken literally, as another character for the string. Therefore, after the opening quote, we expect a (possibly empty) sequence of alternatives: either some character except an unescaped quote or backslash or an escaped character.</p>
+
+<pre><code>    /&quot;(?:[^&quot;\\]++|\\.)*+&quot;/;</code></pre>
+
+<h2 id="Building-a-regexp">Building a regexp</h2>
+
+<p>At this point, we have all the basic regexp concepts covered, so let&#39;s give a more involved example of a regular expression. We will build a regexp that matches numbers.</p>
+
+<p>The first task in building a regexp is to decide what we want to match and what we want to exclude. In our case, we want to match both integers and floating point numbers and we want to reject any string that isn&#39;t a number.</p>
+
+<p>The next task is to break the problem down into smaller problems that are easily converted into a regexp.</p>
+
+<p>The simplest case is integers. These consist of a sequence of digits, with an optional sign in front. The digits we can represent with <code>\d+</code> and the sign can be matched with <code>[+-]</code>. Thus the integer regexp is</p>
+
+<pre><code>    /[+-]?\d+/;  # matches integers</code></pre>
+
+<p>A floating point number potentially has a sign, an integral part, a decimal point, a fractional part, and an exponent. One or more of these parts is optional, so we need to check out the different possibilities. Floating point numbers which are in proper form include 123., 0.345, .34, -1e6, and 25.4E-72. As with integers, the sign out front is completely optional and can be matched by <code>[+-]?</code>. We can see that if there is no exponent, floating point numbers must have a decimal point, otherwise they are integers. We might be tempted to model these with <code>\d*\.\d*</code>, but this would also match just a single decimal point, which is not a number. So the three cases of floating point number without exponent are</p>
+
+<pre><code>   /[+-]?\d+\./;  # 1., 321., etc.
+   /[+-]?\.\d+/;  # .1, .234, etc.
+   /[+-]?\d+\.\d+/;  # 1.0, 30.56, etc.</code></pre>
+
+<p>These can be combined into a single regexp with a three-way alternation:</p>
+
+<pre><code>   /[+-]?(\d+\.\d+|\d+\.|\.\d+)/;  # floating point, no exponent</code></pre>
+
+<p>In this alternation, it is important to put <code>&#39;\d+\.\d+&#39;</code> before <code>&#39;\d+\.&#39;</code>. If <code>&#39;\d+\.&#39;</code> were first, the regexp would happily match that and ignore the fractional part of the number.</p>
+
+<p>Now consider floating point numbers with exponents. The key observation here is that <i>both</i> integers and numbers with decimal points are allowed in front of an exponent. Then exponents, like the overall sign, are independent of whether we are matching numbers with or without decimal points, and can be &quot;decoupled&quot; from the mantissa. The overall form of the regexp now becomes clear:</p>
+
+<pre><code>    /^(optional sign)(integer | f.p. mantissa)(optional exponent)$/;</code></pre>
+
+<p>The exponent is an <code>&#39;e&#39;</code> or <code>&#39;E&#39;</code>, followed by an integer. So the exponent regexp is</p>
+
+<pre><code>   /[eE][+-]?\d+/;  # exponent</code></pre>
+
+<p>Putting all the parts together, we get a regexp that matches numbers:</p>
+
+<pre><code>   /^[+-]?(\d+\.\d+|\d+\.|\.\d+|\d+)([eE][+-]?\d+)?$/;  # Ta da!</code></pre>
+
+<p>Long regexps like this may impress your friends, but can be hard to decipher. In complex situations like this, the <code>/x</code> modifier for a match is invaluable. It allows one to put nearly arbitrary whitespace and comments into a regexp without affecting their meaning. Using it, we can rewrite our &quot;extended&quot; regexp in the more pleasing form</p>
+
+<pre><code>   /^
+      [+-]?         # first, match an optional sign
+      (             # then match integers or f.p. mantissas:
+          \d+\.\d+  # mantissa of the form a.b
+         |\d+\.     # mantissa of the form a.
+         |\.\d+     # mantissa of the form .b
+         |\d+       # integer of the form a
+      )
+      ( [eE] [+-]? \d+ )?  # finally, optionally match an exponent
+   $/x;</code></pre>
+
+<p>If whitespace is mostly irrelevant, how does one include space characters in an extended regexp? The answer is to backslash it <span style="white-space: nowrap;"><code>&#39;\ &#39;</code></span> or put it in a character class <span style="white-space: nowrap;"><code>[ ]</code></span>. The same thing goes for pound signs: use <code>\#</code> or <code>[#]</code>. For instance, Perl allows a space between the sign and the mantissa or integer, and we could add this to our regexp as follows:</p>
+
+<pre><code>   /^
+      [+-]?\ *      # first, match an optional sign *and space*
+      (             # then match integers or f.p. mantissas:
+          \d+\.\d+  # mantissa of the form a.b
+         |\d+\.     # mantissa of the form a.
+         |\.\d+     # mantissa of the form .b
+         |\d+       # integer of the form a
+      )
+      ( [eE] [+-]? \d+ )?  # finally, optionally match an exponent
+   $/x;</code></pre>
+
+<p>In this form, it is easier to see a way to simplify the alternation. Alternatives 1, 2, and 4 all start with <code>\d+</code>, so it could be factored out:</p>
+
+<pre><code>   /^
+      [+-]?\ *      # first, match an optional sign
+      (             # then match integers or f.p. mantissas:
+          \d+       # start out with a ...
+          (
+              \.\d* # mantissa of the form a.b or a.
+          )?        # ? takes care of integers of the form a
+         |\.\d+     # mantissa of the form .b
+      )
+      ( [eE] [+-]? \d+ )?  # finally, optionally match an exponent
+   $/x;</code></pre>
+
+<p>Starting in Perl v5.26, specifying <code>/xx</code> changes the square-bracketed portions of a pattern to ignore tabs and space characters unless they are escaped by preceding them with a backslash. So, we could write</p>
+
+<pre><code>   /^
+      [ + - ]?\ *   # first, match an optional sign
+      (             # then match integers or f.p. mantissas:
+          \d+       # start out with a ...
+          (
+              \.\d* # mantissa of the form a.b or a.
+          )?        # ? takes care of integers of the form a
+         |\.\d+     # mantissa of the form .b
+      )
+      ( [ e E ] [ + - ]? \d+ )?  # finally, optionally match an exponent
+   $/xx;</code></pre>
+
+<p>This doesn&#39;t really improve the legibility of this example, but it&#39;s available in case you want it. Squashing the pattern down to the compact form, we have</p>
+
+<pre><code>    /^[+-]?\ *(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;</code></pre>
+
+<p>This is our final regexp. To recap, we built a regexp by</p>
+
+<ul>
+
+<li><p>specifying the task in detail,</p>
+
+</li>
+<li><p>breaking down the problem into smaller parts,</p>
+
+</li>
+<li><p>translating the small parts into regexps,</p>
+
+</li>
+<li><p>combining the regexps,</p>
+
+</li>
+<li><p>and optimizing the final combined regexp.</p>
+
+</li>
+</ul>
+
+<p>These are also the typical steps involved in writing a computer program. This makes perfect sense, because regular expressions are essentially programs written in a little computer language that specifies patterns.</p>
+
+<h2 id="Using-regular-expressions-in-Perl">Using regular expressions in Perl</h2>
+
+<p>The last topic of Part 1 briefly covers how regexps are used in Perl programs. Where do they fit into Perl syntax?</p>
+
+<p>We have already introduced the matching operator in its default <code>/regexp/</code> and arbitrary delimiter <code>m!regexp!</code> forms. We have used the binding operator <code>=~</code> and its negation <code>!~</code> to test for string matches. Associated with the matching operator, we have discussed the single line <code>/s</code>, multi-line <code>/m</code>, case-insensitive <code>/i</code> and extended <code>/x</code> modifiers. There are a few more things you might want to know about matching operators.</p>
+
+<h3 id="Prohibiting-substitution">Prohibiting substitution</h3>
+
+<p>If you change <code>$pattern</code> after the first substitution happens, Perl will ignore it. If you don&#39;t want any substitutions at all, use the special delimiter <code>m&#39;&#39;</code>:</p>
+
+<pre><code>    @pattern = (&#39;Seuss&#39;);
+    while (&lt;&gt;) {
+        print if m&#39;@pattern&#39;;  # matches literal &#39;@pattern&#39;, not &#39;Seuss&#39;
+    }</code></pre>
+
+<p>Similar to strings, <code>m&#39;&#39;</code> acts like apostrophes on a regexp; all other <code>&#39;m&#39;</code> delimiters act like quotes. If the regexp evaluates to the empty string, the regexp in the <i>last successful match</i> is used instead. So we have</p>
+
+<pre><code>    &quot;dog&quot; =~ /d/;  # &#39;d&#39; matches
+    &quot;dogbert =~ //;  # this matches the &#39;d&#39; regexp used before</code></pre>
+
+<h3 id="Global-matching">Global matching</h3>
+
+<p>The final two modifiers we will discuss here, <code>/g</code> and <code>/c</code>, concern multiple matches. The modifier <code>/g</code> stands for global matching and allows the matching operator to match within a string as many times as possible. In scalar context, successive invocations against a string will have <code>/g</code> jump from match to match, keeping track of position in the string as it goes along. You can get or set the position with the <code>pos()</code> function.</p>
+
+<p>The use of <code>/g</code> is shown in the following example. Suppose we have a string that consists of words separated by spaces. If we know how many words there are in advance, we could extract the words using groupings:</p>
+
+<pre><code>    $x = &quot;cat dog house&quot;; # 3 words
+    $x =~ /^\s*(\w+)\s+(\w+)\s+(\w+)\s*$/; # matches,
+                                           # $1 = &#39;cat&#39;
+                                           # $2 = &#39;dog&#39;
+                                           # $3 = &#39;house&#39;</code></pre>
+
+<p>But what if we had an indeterminate number of words? This is the sort of task <code>/g</code> was made for. To extract all words, form the simple regexp <code>(\w+)</code> and loop over all matches with <code>/(\w+)/g</code>:</p>
+
+<pre><code>    while ($x =~ /(\w+)/g) {
+        print &quot;Word is $1, ends at position &quot;, pos $x, &quot;\n&quot;;
+    }</code></pre>
+
+<p>prints</p>
+
+<pre><code>    Word is cat, ends at position 3
+    Word is dog, ends at position 7
+    Word is house, ends at position 13</code></pre>
+
+<p>A failed match or changing the target string resets the position. If you don&#39;t want the position reset after failure to match, add the <code>/c</code>, as in <code>/regexp/gc</code>. The current position in the string is associated with the string, not the regexp. This means that different strings have different positions and their respective positions can be set or read independently.</p>
+
+<p>In list context, <code>/g</code> returns a list of matched groupings, or if there are no groupings, a list of matches to the whole regexp. So if we wanted just the words, we could use</p>
+
+<pre><code>    @words = ($x =~ /(\w+)/g);  # matches,
+                                # $words[0] = &#39;cat&#39;
+                                # $words[1] = &#39;dog&#39;
+                                # $words[2] = &#39;house&#39;</code></pre>
+
+<p>Closely associated with the <code>/g</code> modifier is the <code>\G</code> anchor. The <code>\G</code> anchor matches at the point where the previous <code>/g</code> match left off. <code>\G</code> allows us to easily do context-sensitive matching:</p>
+
+<pre><code>    $metric = 1;  # use metric units
+    ...
+    $x = &lt;FILE&gt;;  # read in measurement
+    $x =~ /^([+-]?\d+)\s*/g;  # get magnitude
+    $weight = $1;
+    if ($metric) { # error checking
+        print &quot;Units error!&quot; unless $x =~ /\Gkg\./g;
+    }
+    else {
+        print &quot;Units error!&quot; unless $x =~ /\Glbs\./g;
+    }
+    $x =~ /\G\s+(widget|sprocket)/g;  # continue processing</code></pre>
+
+<p>The combination of <code>/g</code> and <code>\G</code> allows us to process the string a bit at a time and use arbitrary Perl logic to decide what to do next. Currently, the <code>\G</code> anchor is only fully supported when used to anchor to the start of the pattern.</p>
+
+<p><code>\G</code> is also invaluable in processing fixed-length records with regexps. Suppose we have a snippet of coding region DNA, encoded as base pair letters <code>ATCGTTGAAT...</code> and we want to find all the stop codons <code>TGA</code>. In a coding region, codons are 3-letter sequences, so we can think of the DNA snippet as a sequence of 3-letter records. The naive regexp</p>
+
+<pre><code>    # expanded, this is &quot;ATC GTT GAA TGC AAA TGA CAT GAC&quot;
+    $dna = &quot;ATCGTTGAATGCAAATGACATGAC&quot;;
+    $dna =~ /TGA/;</code></pre>
+
+<p>doesn&#39;t work; it may match a <code>TGA</code>, but there is no guarantee that the match is aligned with codon boundaries, <i>e.g.</i>, the substring <span style="white-space: nowrap;"><code>GTT GAA</code></span> gives a match. A better solution is</p>
+
+<pre><code>    while ($dna =~ /(\w\w\w)*?TGA/g) {  # note the minimal *?
+        print &quot;Got a TGA stop codon at position &quot;, pos $dna, &quot;\n&quot;;
+    }</code></pre>
+
+<p>which prints</p>
+
+<pre><code>    Got a TGA stop codon at position 18
+    Got a TGA stop codon at position 23</code></pre>
+
+<p>Position 18 is good, but position 23 is bogus. What happened?</p>
+
+<p>The answer is that our regexp works well until we get past the last real match. Then the regexp will fail to match a synchronized <code>TGA</code> and start stepping ahead one character position at a time, not what we want. The solution is to use <code>\G</code> to anchor the match to the codon alignment:</p>
+
+<pre><code>    while ($dna =~ /\G(\w\w\w)*?TGA/g) {
+        print &quot;Got a TGA stop codon at position &quot;, pos $dna, &quot;\n&quot;;
+    }</code></pre>
+
+<p>This prints</p>
+
+<pre><code>    Got a TGA stop codon at position 18</code></pre>
+
+<p>which is the correct answer. This example illustrates that it is important not only to match what is desired, but to reject what is not desired.</p>
+
+<p>(There are other regexp modifiers that are available, such as <code>/o</code>, but their specialized uses are beyond the scope of this introduction. )</p>
+
+<h3 id="Search-and-replace">Search and replace</h3>
+
+<p>Regular expressions also play a big role in <i>search and replace</i> operations in Perl. Search and replace is accomplished with the <code>s///</code> operator. The general form is <code>s/regexp/replacement/modifiers</code>, with everything we know about regexps and modifiers applying in this case as well. The <i>replacement</i> is a Perl double-quoted string that replaces in the string whatever is matched with the <code>regexp</code>. The operator <code>=~</code> is also used here to associate a string with <code>s///</code>. If matching against <code>$_</code>, the <span style="white-space: nowrap;"><code>$_ =~</code></span> can be dropped. If there is a match, <code>s///</code> returns the number of substitutions made; otherwise it returns false. Here are a few examples:</p>
+
+<pre><code>    $x = &quot;Time to feed the cat!&quot;;
+    $x =~ s/cat/hacker/;   # $x contains &quot;Time to feed the hacker!&quot;
+    if ($x =~ s/^(Time.*hacker)!$/$1 now!/) {
+        $more_insistent = 1;
+    }
+    $y = &quot;&#39;quoted words&#39;&quot;;
+    $y =~ s/^&#39;(.*)&#39;$/$1/;  # strip single quotes,
+                           # $y contains &quot;quoted words&quot;</code></pre>
+
+<p>In the last example, the whole string was matched, but only the part inside the single quotes was grouped. With the <code>s///</code> operator, the matched variables <code>$1</code>, <code>$2</code>, <i>etc</i>. are immediately available for use in the replacement expression, so we use <code>$1</code> to replace the quoted string with just what was quoted. With the global modifier, <code>s///g</code> will search and replace all occurrences of the regexp in the string:</p>
+
+<pre><code>    $x = &quot;I batted 4 for 4&quot;;
+    $x =~ s/4/four/;   # doesn&#39;t do it all:
+                       # $x contains &quot;I batted four for 4&quot;
+    $x = &quot;I batted 4 for 4&quot;;
+    $x =~ s/4/four/g;  # does it all:
+                       # $x contains &quot;I batted four for four&quot;</code></pre>
+
+<p>If you prefer &quot;regex&quot; over &quot;regexp&quot; in this tutorial, you could use the following program to replace it:</p>
+
+<pre><code>    % cat &gt; simple_replace
+    #!/usr/bin/perl
+    $regexp = shift;
+    $replacement = shift;
+    while (&lt;&gt;) {
+        s/$regexp/$replacement/g;
+        print;
+    }
+    ^D
+
+    % simple_replace regexp regex perlretut.pod</code></pre>
+
+<p>In <code>simple_replace</code> we used the <code>s///g</code> modifier to replace all occurrences of the regexp on each line. (Even though the regular expression appears in a loop, Perl is smart enough to compile it only once.) As with <code>simple_grep</code>, both the <code>print</code> and the <code>s/$regexp/$replacement/g</code> use <code>$_</code> implicitly.</p>
+
+<p>If you don&#39;t want <code>s///</code> to change your original variable you can use the non-destructive substitute modifier, <code>s///r</code>. This changes the behavior so that <code>s///r</code> returns the final substituted string (instead of the number of substitutions):</p>
+
+<pre><code>    $x = &quot;I like dogs.&quot;;
+    $y = $x =~ s/dogs/cats/r;
+    print &quot;$x $y\n&quot;;</code></pre>
+
+<p>That example will print &quot;I like dogs. I like cats&quot;. Notice the original <code>$x</code> variable has not been affected. The overall result of the substitution is instead stored in <code>$y</code>. If the substitution doesn&#39;t affect anything then the original string is returned:</p>
+
+<pre><code>    $x = &quot;I like dogs.&quot;;
+    $y = $x =~ s/elephants/cougars/r;
+    print &quot;$x $y\n&quot;; # prints &quot;I like dogs. I like dogs.&quot;</code></pre>
+
+<p>One other interesting thing that the <code>s///r</code> flag allows is chaining substitutions:</p>
+
+<pre><code>    $x = &quot;Cats are great.&quot;;
+    print $x =~ s/Cats/Dogs/r =~ s/Dogs/Frogs/r =~
+        s/Frogs/Hedgehogs/r, &quot;\n&quot;;
+    # prints &quot;Hedgehogs are great.&quot;</code></pre>
+
+<p>A modifier available specifically to search and replace is the <code>s///e</code> evaluation modifier. <code>s///e</code> treats the replacement text as Perl code, rather than a double-quoted string. The value that the code returns is substituted for the matched substring. <code>s///e</code> is useful if you need to do a bit of computation in the process of replacing text. This example counts character frequencies in a line:</p>
+
+<pre><code>    $x = &quot;Bill the cat&quot;;
+    $x =~ s/(.)/$chars{$1}++;$1/eg; # final $1 replaces char with itself
+    print &quot;frequency of &#39;$_&#39; is $chars{$_}\n&quot;
+        foreach (sort {$chars{$b} &lt;=&gt; $chars{$a}} keys %chars);</code></pre>
+
+<p>This prints</p>
+
+<pre><code>    frequency of &#39; &#39; is 2
+    frequency of &#39;t&#39; is 2
+    frequency of &#39;l&#39; is 2
+    frequency of &#39;B&#39; is 1
+    frequency of &#39;c&#39; is 1
+    frequency of &#39;e&#39; is 1
+    frequency of &#39;h&#39; is 1
+    frequency of &#39;i&#39; is 1
+    frequency of &#39;a&#39; is 1</code></pre>
+
+<p>As with the match <code>m//</code> operator, <code>s///</code> can use other delimiters, such as <code>s!!!</code> and <code>s{}{}</code>, and even <code>s{}//</code>. If single quotes are used <code>s&#39;&#39;&#39;</code>, then the regexp and replacement are treated as single-quoted strings and there are no variable substitutions. <code>s///</code> in list context returns the same thing as in scalar context, <i>i.e.</i>, the number of matches.</p>
+
+<h3 id="The-split-function">The split function</h3>
+
+<p>The <code>split()</code> function is another place where a regexp is used. <code>split /regexp/, string, limit</code> separates the <code>string</code> operand into a list of substrings and returns that list. The regexp must be designed to match whatever constitutes the separators for the desired substrings. The <code>limit</code>, if present, constrains splitting into no more than <code>limit</code> number of strings. For example, to split a string into words, use</p>
+
+<pre><code>    $x = &quot;Calvin and Hobbes&quot;;
+    @words = split /\s+/, $x;  # $word[0] = &#39;Calvin&#39;
+                               # $word[1] = &#39;and&#39;
+                               # $word[2] = &#39;Hobbes&#39;</code></pre>
+
+<p>If the empty regexp <code>//</code> is used, the regexp always matches and the string is split into individual characters. If the regexp has groupings, then the resulting list contains the matched substrings from the groupings as well. For instance,</p>
+
+<pre><code>    $x = &quot;/usr/bin/perl&quot;;
+    @dirs = split m!/!, $x;  # $dirs[0] = &#39;&#39;
+                             # $dirs[1] = &#39;usr&#39;
+                             # $dirs[2] = &#39;bin&#39;
+                             # $dirs[3] = &#39;perl&#39;
+    @parts = split m!(/)!, $x;  # $parts[0] = &#39;&#39;
+                                # $parts[1] = &#39;/&#39;
+                                # $parts[2] = &#39;usr&#39;
+                                # $parts[3] = &#39;/&#39;
+                                # $parts[4] = &#39;bin&#39;
+                                # $parts[5] = &#39;/&#39;
+                                # $parts[6] = &#39;perl&#39;</code></pre>
+
+<p>Since the first character of <code>$x</code> matched the regexp, <code>split</code> prepended an empty initial element to the list.</p>
+
+<p>If you have read this far, congratulations! You now have all the basic tools needed to use regular expressions to solve a wide range of text processing problems. If this is your first time through the tutorial, why not stop here and play around with regexps a while.... <span style="white-space: nowrap;">Part 2</span> concerns the more esoteric aspects of regular expressions and those concepts certainly aren&#39;t needed right at the start.</p>
+
+<h1 id="Part-2:-Power-tools">Part 2: Power tools</h1>
+
+<p>OK, you know the basics of regexps and you want to know more. If matching regular expressions is analogous to a walk in the woods, then the tools discussed in Part 1 are analogous to topo maps and a compass, basic tools we use all the time. Most of the tools in part 2 are analogous to flare guns and satellite phones. They aren&#39;t used too often on a hike, but when we are stuck, they can be invaluable.</p>
+
+<p>What follows are the more advanced, less used, or sometimes esoteric capabilities of Perl regexps. In Part 2, we will assume you are comfortable with the basics and concentrate on the advanced features.</p>
+
+<h2 id="More-on-characters-strings-and-character-classes">More on characters, strings, and character classes</h2>
+
+<p>There are a number of escape sequences and character classes that we haven&#39;t covered yet.</p>
+
+<p>There are several escape sequences that convert characters or strings between upper and lower case, and they are also available within patterns. <code>\l</code> and <code>\u</code> convert the next character to lower or upper case, respectively:</p>
+
+<pre><code>    $x = &quot;perl&quot;;
+    $string =~ /\u$x/;  # matches &#39;Perl&#39; in $string
+    $x = &quot;M(rs?|s)\\.&quot;; # note the double backslash
+    $string =~ /\l$x/;  # matches &#39;mr.&#39;, &#39;mrs.&#39;, and &#39;ms.&#39;,</code></pre>
+
+<p>A <code>\L</code> or <code>\U</code> indicates a lasting conversion of case, until terminated by <code>\E</code> or thrown over by another <code>\U</code> or <code>\L</code>:</p>
+
+<pre><code>    $x = &quot;This word is in lower case:\L SHOUT\E&quot;;
+    $x =~ /shout/;       # matches
+    $x = &quot;I STILL KEYPUNCH CARDS FOR MY 360&quot;
+    $x =~ /\Ukeypunch/;  # matches punch card string</code></pre>
+
+<p>If there is no <code>\E</code>, case is converted until the end of the string. The regexps <code>\L\u$word</code> or <code>\u\L$word</code> convert the first character of <code>$word</code> to uppercase and the rest of the characters to lowercase.</p>
+
+<p>Control characters can be escaped with <code>\c</code>, so that a control-Z character would be matched with <code>\cZ</code>. The escape sequence <code>\Q</code>...<code>\E</code> quotes, or protects most non-alphabetic characters. For instance,</p>
+
+<pre><code>    $x = &quot;\QThat !^*&amp;%~&amp; cat!&quot;;
+    $x =~ /\Q!^*&amp;%~&amp;\E/;  # check for rough language</code></pre>
+
+<p>It does not protect <code>&#39;$&#39;</code> or <code>&#39;@&#39;</code>, so that variables can still be substituted.</p>
+
+<p><code>\Q</code>, <code>\L</code>, <code>\l</code>, <code>\U</code>, <code>\u</code> and <code>\E</code> are actually part of double-quotish syntax, and not part of regexp syntax proper. They will work if they appear in a regular expression embedded directly in a program, but not when contained in a string that is interpolated in a pattern.</p>
+
+<p>Perl regexps can handle more than just the standard ASCII character set. Perl supports <i>Unicode</i>, a standard for representing the alphabets from virtually all of the world&#39;s written languages, and a host of symbols. Perl&#39;s text strings are Unicode strings, so they can contain characters with a value (codepoint or character number) higher than 255.</p>
+
+<p>What does this mean for regexps? Well, regexp users don&#39;t need to know much about Perl&#39;s internal representation of strings. But they do need to know 1) how to represent Unicode characters in a regexp and 2) that a matching operation will treat the string to be searched as a sequence of characters, not bytes. The answer to 1) is that Unicode characters greater than <code>chr(255)</code> are represented using the <code>\x{hex}</code> notation, because <code>\x</code><i>XY</i> (without curly braces and <i>XY</i> are two hex digits) doesn&#39;t go further than 255. (Starting in Perl 5.14, if you&#39;re an octal fan, you can also use <code>\o{oct}</code>.)</p>
+
+<pre><code>    /\x{263a}/;  # match a Unicode smiley face :)</code></pre>
+
+<p><b>NOTE</b>: In Perl 5.6.0 it used to be that one needed to say <code>use utf8</code> to use any Unicode features. This is no more the case: for almost all Unicode processing, the explicit <code>utf8</code> pragma is not needed. (The only case where it matters is if your Perl script is in Unicode and encoded in UTF-8, then an explicit <code>use utf8</code> is needed.)</p>
+
+<p>Figuring out the hexadecimal sequence of a Unicode character you want or deciphering someone else&#39;s hexadecimal Unicode regexp is about as much fun as programming in machine code. So another way to specify Unicode characters is to use the <i>named character</i> escape sequence <code>\N{<i>name</i>}</code>. <i>name</i> is a name for the Unicode character, as specified in the Unicode standard. For instance, if we wanted to represent or match the astrological sign for the planet Mercury, we could use</p>
+
+<pre><code>    $x = &quot;abc\N{MERCURY}def&quot;;
+    $x =~ /\N{MERCURY}/;   # matches</code></pre>
+
+<p>One can also use &quot;short&quot; names:</p>
+
+<pre><code>    print &quot;\N{GREEK SMALL LETTER SIGMA} is called sigma.\n&quot;;
+    print &quot;\N{greek:Sigma} is an upper-case sigma.\n&quot;;</code></pre>
+
+<p>You can also restrict names to a certain alphabet by specifying the <a href="https://metacpan.org/pod/charnames" rel="external">charnames</a> pragma:</p>
+
+<pre><code>    use charnames qw(greek);
+    print &quot;\N{sigma} is Greek sigma\n&quot;;</code></pre>
+
+<p>An index of character names is available on-line from the Unicode Consortium, <a href="http://www.unicode.org/charts/charindex.html" rel="external">http://www.unicode.org/charts/charindex.html</a>; explanatory material with links to other resources at <a href="http://www.unicode.org/standard/where" rel="external">http://www.unicode.org/standard/where</a>.</p>
+
+<p>The answer to requirement 2) is that a regexp (mostly) uses Unicode characters. The &quot;mostly&quot; is for messy backward compatibility reasons, but starting in Perl 5.14, any regexp compiled in the scope of a <code>use feature &#39;unicode_strings&#39;</code> (which is automatically turned on within the scope of a <code>use 5.012</code> or higher) will turn that &quot;mostly&quot; into &quot;always&quot;. If you want to handle Unicode properly, you should ensure that <code>&#39;unicode_strings&#39;</code> is turned on. Internally, this is encoded to bytes using either UTF-8 or a native 8 bit encoding, depending on the history of the string, but conceptually it is a sequence of characters, not bytes. See <a href="/perldoc/perlunitut/">perlunitut</a> for a tutorial about that.</p>
+
+<p>Let us now discuss Unicode character classes, most usually called &quot;character properties&quot;. These are represented by the <code>\p{<i>name</i>}</code> escape sequence. The negation of this is <code>\P{<i>name</i>}</code>. For example, to match lower and uppercase characters,</p>
+
+<pre><code>    $x = &quot;BOB&quot;;
+    $x =~ /^\p{IsUpper}/;   # matches, uppercase char class
+    $x =~ /^\P{IsUpper}/;   # doesn&#39;t match, char class sans uppercase
+    $x =~ /^\p{IsLower}/;   # doesn&#39;t match, lowercase char class
+    $x =~ /^\P{IsLower}/;   # matches, char class sans lowercase</code></pre>
+
+<p>(The &quot;<code>Is</code>&quot; is optional.)</p>
+
+<p>There are many, many Unicode character properties. For the full list see <a href="/perldoc/perluniprops/">perluniprops</a>. Most of them have synonyms with shorter names, also listed there. Some synonyms are a single character. For these, you can drop the braces. For instance, <code>\pM</code> is the same thing as <code>\p{Mark}</code>, meaning things like accent marks.</p>
+
+<p>The Unicode <code>\p{Script}</code> and <code>\p{Script_Extensions}</code> properties are used to categorize every Unicode character into the language script it is written in. (<code>Script_Extensions</code> is an improved version of <code>Script</code>, which is retained for backward compatibility, and so you should generally use <code>Script_Extensions</code>.) For example, English, French, and a bunch of other European languages are written in the Latin script. But there is also the Greek script, the Thai script, the Katakana script, <i>etc</i>. You can test whether a character is in a particular script (based on <code>Script_Extensions</code>) with, for example <code>\p{Latin}</code>, <code>\p{Greek}</code>, or <code>\p{Katakana}</code>. To test if it isn&#39;t in the Balinese script, you would use <code>\P{Balinese}</code>.</p>
+
+<p>What we have described so far is the single form of the <code>\p{...}</code> character classes. There is also a compound form which you may run into. These look like <code>\p{<i>name</i>=<i>value</i>}</code> or <code>\p{<i>name</i>:<i>value</i>}</code> (the equals sign and colon can be used interchangeably). These are more general than the single form, and in fact most of the single forms are just Perl-defined shortcuts for common compound forms. For example, the script examples in the previous paragraph could be written equivalently as <code>\p{Script_Extensions=Latin}</code>, <code>\p{Script_Extensions:Greek}</code>, <code>\p{script_extensions=katakana}</code>, and <code>\P{script_extensions=balinese}</code> (case is irrelevant between the <code>{}</code> braces). You may never have to use the compound forms, but sometimes it is necessary, and their use can make your code easier to understand.</p>
+
+<p><code>\X</code> is an abbreviation for a character class that comprises a Unicode <i>extended grapheme cluster</i>. This represents a &quot;logical character&quot;: what appears to be a single character, but may be represented internally by more than one. As an example, using the Unicode full names, <i>e.g.</i>, &quot;<span style="white-space: nowrap;">A + COMBINING RING</span>&quot; is a grapheme cluster with base character &quot;A&quot; and combining character &quot;<span style="white-space: nowrap;">COMBINING RING</span>, which translates in Danish to &quot;A&quot; with the circle atop it, as in the word Ångstrom.</p>
+
+<p>For the full and latest information about Unicode see the latest Unicode standard, or the Unicode Consortium&#39;s website <a href="http://www.unicode.org" rel="external">http://www.unicode.org</a></p>
+
+<p>As if all those classes weren&#39;t enough, Perl also defines POSIX-style character classes. These have the form <code>[:<i>name</i>:]</code>, with <i>name</i> the name of the POSIX class. The POSIX classes are <code>alpha</code>, <code>alnum</code>, <code>ascii</code>, <code>cntrl</code>, <code>digit</code>, <code>graph</code>, <code>lower</code>, <code>print</code>, <code>punct</code>, <code>space</code>, <code>upper</code>, and <code>xdigit</code>, and two extensions, <code>word</code> (a Perl extension to match <code>\w</code>), and <code>blank</code> (a GNU extension). The <code>/a</code> modifier restricts these to matching just in the ASCII range; otherwise they can match the same as their corresponding Perl Unicode classes: <code>[:upper:]</code> is the same as <code>\p{IsUpper}</code>, <i>etc</i>. (There are some exceptions and gotchas with this; see <a href="/perldoc/perlrecharclass/">perlrecharclass</a> for a full discussion.) The <code>[:digit:]</code>, <code>[:word:]</code>, and <code>[:space:]</code> correspond to the familiar <code>\d</code>, <code>\w</code>, and <code>\s</code> character classes. To negate a POSIX class, put a <code>&#39;^&#39;</code> in front of the name, so that, <i>e.g.</i>, <code>[:^digit:]</code> corresponds to <code>\D</code> and, under Unicode, <code>\P{IsDigit}</code>. The Unicode and POSIX character classes can be used just like <code>\d</code>, with the exception that POSIX character classes can only be used inside of a character class:</p>
+
+<pre><code>    /\s+[abc[:digit:]xyz]\s*/;  # match a,b,c,x,y,z, or a digit
+    /^=item\s[[:digit:]]/;      # match &#39;=item&#39;,
+                                # followed by a space and a digit
+    /\s+[abc\p{IsDigit}xyz]\s+/;  # match a,b,c,x,y,z, or a digit
+    /^=item\s\p{IsDigit}/;        # match &#39;=item&#39;,
+                                  # followed by a space and a digit</code></pre>
+
+<p>Whew! That is all the rest of the characters and character classes.</p>
+
+<h2 id="Compiling-and-saving-regular-expressions">Compiling and saving regular expressions</h2>
+
+<p>In Part 1 we mentioned that Perl compiles a regexp into a compact sequence of opcodes. Thus, a compiled regexp is a data structure that can be stored once and used again and again. The regexp quote <code>qr//</code> does exactly that: <code>qr/string/</code> compiles the <code>string</code> as a regexp and transforms the result into a form that can be assigned to a variable:</p>
+
+<pre><code>    $reg = qr/foo+bar?/;  # reg contains a compiled regexp</code></pre>
+
+<p>Then <code>$reg</code> can be used as a regexp:</p>
+
+<pre><code>    $x = &quot;fooooba&quot;;
+    $x =~ $reg;     # matches, just like /foo+bar?/
+    $x =~ /$reg/;   # same thing, alternate form</code></pre>
+
+<p><code>$reg</code> can also be interpolated into a larger regexp:</p>
+
+<pre><code>    $x =~ /(abc)?$reg/;  # still matches</code></pre>
+
+<p>As with the matching operator, the regexp quote can use different delimiters, <i>e.g.</i>, <code>qr!!</code>, <code>qr{}</code> or <code>qr~~</code>. Apostrophes as delimiters (<code>qr&#39;&#39;</code>) inhibit any interpolation.</p>
+
+<p>Pre-compiled regexps are useful for creating dynamic matches that don&#39;t need to be recompiled each time they are encountered. Using pre-compiled regexps, we write a <code>grep_step</code> program which greps for a sequence of patterns, advancing to the next pattern as soon as one has been satisfied.</p>
+
+<pre><code>    % cat &gt; grep_step
+    #!/usr/bin/perl
+    # grep_step - match &lt;number&gt; regexps, one after the other
+    # usage: multi_grep &lt;number&gt; regexp1 regexp2 ... file1 file2 ...
+
+    $number = shift;
+    $regexp[$_] = shift foreach (0..$number-1);
+    @compiled = map qr/$_/, @regexp;
+    while ($line = &lt;&gt;) {
+        if ($line =~ /$compiled[0]/) {
+            print $line;
+            shift @compiled;
+            last unless @compiled;
+        }
+    }
+    ^D
+
+    % grep_step 3 shift print last grep_step
+    $number = shift;
+            print $line;
+            last unless @compiled;</code></pre>
+
+<p>Storing pre-compiled regexps in an array <code>@compiled</code> allows us to simply loop through the regexps without any recompilation, thus gaining flexibility without sacrificing speed.</p>
+
+<h2 id="Composing-regular-expressions-at-runtime">Composing regular expressions at runtime</h2>
+
+<p>Backtracking is more efficient than repeated tries with different regular expressions. If there are several regular expressions and a match with any of them is acceptable, then it is possible to combine them into a set of alternatives. If the individual expressions are input data, this can be done by programming a join operation. We&#39;ll exploit this idea in an improved version of the <code>simple_grep</code> program: a program that matches multiple patterns:</p>
+
+<pre><code>    % cat &gt; multi_grep
+    #!/usr/bin/perl
+    # multi_grep - match any of &lt;number&gt; regexps
+    # usage: multi_grep &lt;number&gt; regexp1 regexp2 ... file1 file2 ...
+
+    $number = shift;
+    $regexp[$_] = shift foreach (0..$number-1);
+    $pattern = join &#39;|&#39;, @regexp;
+
+    while ($line = &lt;&gt;) {
+        print $line if $line =~ /$pattern/;
+    }
+    ^D
+
+    % multi_grep 2 shift for multi_grep
+    $number = shift;
+    $regexp[$_] = shift foreach (0..$number-1);</code></pre>
+
+<p>Sometimes it is advantageous to construct a pattern from the <i>input</i> that is to be analyzed and use the permissible values on the left hand side of the matching operations. As an example for this somewhat paradoxical situation, let&#39;s assume that our input contains a command verb which should match one out of a set of available command verbs, with the additional twist that commands may be abbreviated as long as the given string is unique. The program below demonstrates the basic algorithm.</p>
+
+<pre><code>    % cat &gt; keymatch
+    #!/usr/bin/perl
+    $kwds = &#39;copy compare list print&#39;;
+    while( $cmd = &lt;&gt; ){
+        $cmd =~ s/^\s+|\s+$//g;  # trim leading and trailing spaces
+        if( ( @matches = $kwds =~ /\b$cmd\w*/g ) == 1 ){
+            print &quot;command: &#39;@matches&#39;\n&quot;;
+        } elsif( @matches == 0 ){
+            print &quot;no such command: &#39;$cmd&#39;\n&quot;;
+        } else {
+            print &quot;not unique: &#39;$cmd&#39; (could be one of: @matches)\n&quot;;
+        }
+    }
+    ^D
+
+    % keymatch
+    li
+    command: &#39;list&#39;
+    co
+    not unique: &#39;co&#39; (could be one of: copy compare)
+    printer
+    no such command: &#39;printer&#39;</code></pre>
+
+<p>Rather than trying to match the input against the keywords, we match the combined set of keywords against the input. The pattern matching operation <span style="white-space: nowrap;"><code>$kwds =~ /\b($cmd\w*)/g</code></span> does several things at the same time. It makes sure that the given command begins where a keyword begins (<code>\b</code>). It tolerates abbreviations due to the added <code>\w*</code>. It tells us the number of matches (<code>scalar @matches</code>) and all the keywords that were actually matched. You could hardly ask for more.</p>
+
+<h2 id="Embedding-comments-and-modifiers-in-a-regular-expression">Embedding comments and modifiers in a regular expression</h2>
+
+<p>Starting with this section, we will be discussing Perl&#39;s set of <i>extended patterns</i>. These are extensions to the traditional regular expression syntax that provide powerful new tools for pattern matching. We have already seen extensions in the form of the minimal matching constructs <code>??</code>, <code>*?</code>, <code>+?</code>, <code>{n,m}?</code>, and <code>{n,}?</code>. Most of the extensions below have the form <code>(?char...)</code>, where the <code>char</code> is a character that determines the type of extension.</p>
+
+<p>The first extension is an embedded comment <code>(?#text)</code>. This embeds a comment into the regular expression without affecting its meaning. The comment should not have any closing parentheses in the text. An example is</p>
+
+<pre><code>    /(?# Match an integer:)[+-]?\d+/;</code></pre>
+
+<p>This style of commenting has been largely superseded by the raw, freeform commenting that is allowed with the <code>/x</code> modifier.</p>
+
+<p>Most modifiers, such as <code>/i</code>, <code>/m</code>, <code>/s</code> and <code>/x</code> (or any combination thereof) can also be embedded in a regexp using <code>(?i)</code>, <code>(?m)</code>, <code>(?s)</code>, and <code>(?x)</code>. For instance,</p>
+
+<pre><code>    /(?i)yes/;  # match &#39;yes&#39; case insensitively
+    /yes/i;     # same thing
+    /(?x)(          # freeform version of an integer regexp
+             [+-]?  # match an optional sign
+             \d+    # match a sequence of digits
+         )
+    /x;</code></pre>
+
+<p>Embedded modifiers can have two important advantages over the usual modifiers. Embedded modifiers allow a custom set of modifiers for <i>each</i> regexp pattern. This is great for matching an array of regexps that must have different modifiers:</p>
+
+<pre><code>    $pattern[0] = &#39;(?i)doctor&#39;;
+    $pattern[1] = &#39;Johnson&#39;;
+    ...
+    while (&lt;&gt;) {
+        foreach $patt (@pattern) {
+            print if /$patt/;
+        }
+    }</code></pre>
+
+<p>The second advantage is that embedded modifiers (except <code>/p</code>, which modifies the entire regexp) only affect the regexp inside the group the embedded modifier is contained in. So grouping can be used to localize the modifier&#39;s effects:</p>
+
+<pre><code>    /Answer: ((?i)yes)/;  # matches &#39;Answer: yes&#39;, &#39;Answer: YES&#39;, etc.</code></pre>
+
+<p>Embedded modifiers can also turn off any modifiers already present by using, <i>e.g.</i>, <code>(?-i)</code>. Modifiers can also be combined into a single expression, <i>e.g.</i>, <code>(?s-i)</code> turns on single line mode and turns off case insensitivity.</p>
+
+<p>Embedded modifiers may also be added to a non-capturing grouping. <code>(?i-m:regexp)</code> is a non-capturing grouping that matches <code>regexp</code> case insensitively and turns off multi-line mode.</p>
+
+<h2 id="Looking-ahead-and-looking-behind">Looking ahead and looking behind</h2>
+
+<p>This section concerns the lookahead and lookbehind assertions. First, a little background.</p>
+
+<p>In Perl regular expressions, most regexp elements &quot;eat up&quot; a certain amount of string when they match. For instance, the regexp element <code>[abc]</code> eats up one character of the string when it matches, in the sense that Perl moves to the next character position in the string after the match. There are some elements, however, that don&#39;t eat up characters (advance the character position) if they match. The examples we have seen so far are the anchors. The anchor <code>&#39;^&#39;</code> matches the beginning of the line, but doesn&#39;t eat any characters. Similarly, the word boundary anchor <code>\b</code> matches wherever a character matching <code>\w</code> is next to a character that doesn&#39;t, but it doesn&#39;t eat up any characters itself. Anchors are examples of <i>zero-width assertions</i>: zero-width, because they consume no characters, and assertions, because they test some property of the string. In the context of our walk in the woods analogy to regexp matching, most regexp elements move us along a trail, but anchors have us stop a moment and check our surroundings. If the local environment checks out, we can proceed forward. But if the local environment doesn&#39;t satisfy us, we must backtrack.</p>
+
+<p>Checking the environment entails either looking ahead on the trail, looking behind, or both. <code>&#39;^&#39;</code> looks behind, to see that there are no characters before. <code>&#39;$&#39;</code> looks ahead, to see that there are no characters after. <code>\b</code> looks both ahead and behind, to see if the characters on either side differ in their &quot;word-ness&quot;.</p>
+
+<p>The lookahead and lookbehind assertions are generalizations of the anchor concept. Lookahead and lookbehind are zero-width assertions that let us specify which characters we want to test for. The lookahead assertion is denoted by <code>(?=regexp)</code> and the lookbehind assertion is denoted by <code>(?&lt;=fixed-regexp)</code>. Some examples are</p>
+
+<pre><code>    $x = &quot;I catch the housecat &#39;Tom-cat&#39; with catnip&quot;;
+    $x =~ /cat(?=\s)/;   # matches &#39;cat&#39; in &#39;housecat&#39;
+    @catwords = ($x =~ /(?&lt;=\s)cat\w+/g);  # matches,
+                                           # $catwords[0] = &#39;catch&#39;
+                                           # $catwords[1] = &#39;catnip&#39;
+    $x =~ /\bcat\b/;  # matches &#39;cat&#39; in &#39;Tom-cat&#39;
+    $x =~ /(?&lt;=\s)cat(?=\s)/; # doesn&#39;t match; no isolated &#39;cat&#39; in
+                              # middle of $x</code></pre>
+
+<p>Note that the parentheses in <code>(?=regexp)</code> and <code>(?&lt;=regexp)</code> are non-capturing, since these are zero-width assertions. Thus in the second regexp, the substrings captured are those of the whole regexp itself. Lookahead <code>(?=regexp)</code> can match arbitrary regexps, but lookbehind <code>(?&lt;=fixed-regexp)</code> only works for regexps of fixed width, <i>i.e.</i>, a fixed number of characters long. Thus <code>(?&lt;=(ab|bc))</code> is fine, but <code>(?&lt;=(ab)*)</code> is not. The negated versions of the lookahead and lookbehind assertions are denoted by <code>(?!regexp)</code> and <code>(?&lt;!fixed-regexp)</code> respectively. They evaluate true if the regexps do <i>not</i> match:</p>
+
+<pre><code>    $x = &quot;foobar&quot;;
+    $x =~ /foo(?!bar)/;  # doesn&#39;t match, &#39;bar&#39; follows &#39;foo&#39;
+    $x =~ /foo(?!baz)/;  # matches, &#39;baz&#39; doesn&#39;t follow &#39;foo&#39;
+    $x =~ /(?&lt;!\s)foo/;  # matches, there is no \s before &#39;foo&#39;</code></pre>
+
+<p>Here is an example where a string containing blank-separated words, numbers and single dashes is to be split into its components. Using <code>/\s+/</code> alone won&#39;t work, because spaces are not required between dashes, or a word or a dash. Additional places for a split are established by looking ahead and behind:</p>
+
+<pre><code>    $str = &quot;one two - --6-8&quot;;
+    @toks = split / \s+              # a run of spaces
+                  | (?&lt;=\S) (?=-)    # any non-space followed by &#39;-&#39;
+                  | (?&lt;=-)  (?=\S)   # a &#39;-&#39; followed by any non-space
+                  /x, $str;          # @toks = qw(one two - - - 6 - 8)</code></pre>
+
+<h2 id="Using-independent-subexpressions-to-prevent-backtracking">Using independent subexpressions to prevent backtracking</h2>
+
+<p><i>Independent subexpressions</i> are regular expressions, in the context of a larger regular expression, that function independently of the larger regular expression. That is, they consume as much or as little of the string as they wish without regard for the ability of the larger regexp to match. Independent subexpressions are represented by <code>(?&gt;regexp)</code>. We can illustrate their behavior by first considering an ordinary regexp:</p>
+
+<pre><code>    $x = &quot;ab&quot;;
+    $x =~ /a*ab/;  # matches</code></pre>
+
+<p>This obviously matches, but in the process of matching, the subexpression <code>a*</code> first grabbed the <code>&#39;a&#39;</code>. Doing so, however, wouldn&#39;t allow the whole regexp to match, so after backtracking, <code>a*</code> eventually gave back the <code>&#39;a&#39;</code> and matched the empty string. Here, what <code>a*</code> matched was <i>dependent</i> on what the rest of the regexp matched.</p>
+
+<p>Contrast that with an independent subexpression:</p>
+
+<pre><code>    $x =~ /(?&gt;a*)ab/;  # doesn&#39;t match!</code></pre>
+
+<p>The independent subexpression <code>(?&gt;a*)</code> doesn&#39;t care about the rest of the regexp, so it sees an <code>&#39;a&#39;</code> and grabs it. Then the rest of the regexp <code>ab</code> cannot match. Because <code>(?&gt;a*)</code> is independent, there is no backtracking and the independent subexpression does not give up its <code>&#39;a&#39;</code>. Thus the match of the regexp as a whole fails. A similar behavior occurs with completely independent regexps:</p>
+
+<pre><code>    $x = &quot;ab&quot;;
+    $x =~ /a*/g;   # matches, eats an &#39;a&#39;
+    $x =~ /\Gab/g; # doesn&#39;t match, no &#39;a&#39; available</code></pre>
+
+<p>Here <code>/g</code> and <code>\G</code> create a &quot;tag team&quot; handoff of the string from one regexp to the other. Regexps with an independent subexpression are much like this, with a handoff of the string to the independent subexpression, and a handoff of the string back to the enclosing regexp.</p>
+
+<p>The ability of an independent subexpression to prevent backtracking can be quite useful. Suppose we want to match a non-empty string enclosed in parentheses up to two levels deep. Then the following regexp matches:</p>
+
+<pre><code>    $x = &quot;abc(de(fg)h&quot;;  # unbalanced parentheses
+    $x =~ /\( ( [ ^ () ]+ | \( [ ^ () ]* \) )+ \)/xx;</code></pre>
+
+<p>The regexp matches an open parenthesis, one or more copies of an alternation, and a close parenthesis. The alternation is two-way, with the first alternative <code>[^()]+</code> matching a substring with no parentheses and the second alternative <code>\([^()]*\)</code> matching a substring delimited by parentheses. The problem with this regexp is that it is pathological: it has nested indeterminate quantifiers of the form <code>(a+|b)+</code>. We discussed in Part 1 how nested quantifiers like this could take an exponentially long time to execute if there was no match possible. To prevent the exponential blowup, we need to prevent useless backtracking at some point. This can be done by enclosing the inner quantifier as an independent subexpression:</p>
+
+<pre><code>    $x =~ /\( ( (?&gt; [ ^ () ]+ ) | \([ ^ () ]* \) )+ \)/xx;</code></pre>
+
+<p>Here, <code>(?&gt;[^()]+)</code> breaks the degeneracy of string partitioning by gobbling up as much of the string as possible and keeping it. Then match failures fail much more quickly.</p>
+
+<h2 id="Conditional-expressions">Conditional expressions</h2>
+
+<p>A <i>conditional expression</i> is a form of if-then-else statement that allows one to choose which patterns are to be matched, based on some condition. There are two types of conditional expression: <code>(?(<i>condition</i>)<i>yes-regexp</i>)</code> and <code>(?(condition)<i>yes-regexp</i>|<i>no-regexp</i>)</code>. <code>(?(<i>condition</i>)<i>yes-regexp</i>)</code> is like an <span style="white-space: nowrap;"><code>&#39;if () {}&#39;</code></span> statement in Perl. If the <i>condition</i> is true, the <i>yes-regexp</i> will be matched. If the <i>condition</i> is false, the <i>yes-regexp</i> will be skipped and Perl will move onto the next regexp element. The second form is like an <span style="white-space: nowrap;"><code>&#39;if () {} else {}&#39;</code></span> statement in Perl. If the <i>condition</i> is true, the <i>yes-regexp</i> will be matched, otherwise the <i>no-regexp</i> will be matched.</p>
+
+<p>The <i>condition</i> can have several forms. The first form is simply an integer in parentheses <code>(<i>integer</i>)</code>. It is true if the corresponding backreference <code>\<i>integer</i></code> matched earlier in the regexp. The same thing can be done with a name associated with a capture group, written as <code>(&lt;<i>name</i>&gt;)</code> or <code>(&#39;<i>name</i>&#39;)</code>. The second form is a bare zero-width assertion <code>(?...)</code>, either a lookahead, a lookbehind, or a code assertion (discussed in the next section). The third set of forms provides tests that return true if the expression is executed within a recursion (<code>(R)</code>) or is being called from some capturing group, referenced either by number (<code>(R1)</code>, <code>(R2)</code>,...) or by name (<code>(R&amp;<i>name</i>)</code>).</p>
+
+<p>The integer or name form of the <code>condition</code> allows us to choose, with more flexibility, what to match based on what matched earlier in the regexp. This searches for words of the form <code>&quot;$x$x&quot;</code> or <code>&quot;$x$y$y$x&quot;</code>:</p>
+
+<pre><code>    % simple_grep &#39;^(\w+)(\w+)?(?(2)\g2\g1|\g1)$&#39; /usr/dict/words
+    beriberi
+    coco
+    couscous
+    deed
+    ...
+    toot
+    toto
+    tutu</code></pre>
+
+<p>The lookbehind <code>condition</code> allows, along with backreferences, an earlier part of the match to influence a later part of the match. For instance,</p>
+
+<pre><code>    /[ATGC]+(?(?&lt;=AA)G|C)$/;</code></pre>
+
+<p>matches a DNA sequence such that it either ends in <code>AAG</code>, or some other base pair combination and <code>&#39;C&#39;</code>. Note that the form is <code>(?(?&lt;=AA)G|C)</code> and not <code>(?((?&lt;=AA))G|C)</code>; for the lookahead, lookbehind or code assertions, the parentheses around the conditional are not needed.</p>
+
+<h2 id="Defining-named-patterns">Defining named patterns</h2>
+
+<p>Some regular expressions use identical subpatterns in several places. Starting with Perl 5.10, it is possible to define named subpatterns in a section of the pattern so that they can be called up by name anywhere in the pattern. This syntactic pattern for this definition group is <code>(?(DEFINE)(?&lt;<i>name</i>&gt;<i>pattern</i>)...)</code>. An insertion of a named pattern is written as <code>(?&amp;<i>name</i>)</code>.</p>
+
+<p>The example below illustrates this feature using the pattern for floating point numbers that was presented earlier on. The three subpatterns that are used more than once are the optional sign, the digit sequence for an integer and the decimal fraction. The <code>DEFINE</code> group at the end of the pattern contains their definition. Notice that the decimal fraction pattern is the first place where we can reuse the integer pattern.</p>
+
+<pre><code>   /^ (?&amp;osg)\ * ( (?&amp;int)(?&amp;dec)? | (?&amp;dec) )
+      (?: [eE](?&amp;osg)(?&amp;int) )?
+    $
+    (?(DEFINE)
+      (?&lt;osg&gt;[-+]?)         # optional sign
+      (?&lt;int&gt;\d++)          # integer
+      (?&lt;dec&gt;\.(?&amp;int))     # decimal fraction
+    )/x</code></pre>
+
+<h2 id="Recursive-patterns">Recursive patterns</h2>
+
+<p>This feature (introduced in Perl 5.10) significantly extends the power of Perl&#39;s pattern matching. By referring to some other capture group anywhere in the pattern with the construct <code>(?<i>group-ref</i>)</code>, the <i>pattern</i> within the referenced group is used as an independent subpattern in place of the group reference itself. Because the group reference may be contained <i>within</i> the group it refers to, it is now possible to apply pattern matching to tasks that hitherto required a recursive parser.</p>
+
+<p>To illustrate this feature, we&#39;ll design a pattern that matches if a string contains a palindrome. (This is a word or a sentence that, while ignoring spaces, interpunctuation and case, reads the same backwards as forwards. We begin by observing that the empty string or a string containing just one word character is a palindrome. Otherwise it must have a word character up front and the same at its end, with another palindrome in between.</p>
+
+<pre><code>    /(?: (\w) (?...Here be a palindrome...) \g{-1} | \w? )/x</code></pre>
+
+<p>Adding <code>\W*</code> at either end to eliminate what is to be ignored, we already have the full pattern:</p>
+
+<pre><code>    my $pp = qr/^(\W* (?: (\w) (?1) \g{-1} | \w? ) \W*)$/ix;
+    for $s ( &quot;saippuakauppias&quot;, &quot;A man, a plan, a canal: Panama!&quot; ){
+        print &quot;&#39;$s&#39; is a palindrome\n&quot; if $s =~ /$pp/;
+    }</code></pre>
+
+<p>In <code>(?...)</code> both absolute and relative backreferences may be used. The entire pattern can be reinserted with <code>(?R)</code> or <code>(?0)</code>. If you prefer to name your groups, you can use <code>(?&amp;<i>name</i>)</code> to recurse into that group.</p>
+
+<h2 id="A-bit-of-magic:-executing-Perl-code-in-a-regular-expression">A bit of magic: executing Perl code in a regular expression</h2>
+
+<p>Normally, regexps are a part of Perl expressions. <i>Code evaluation</i> expressions turn that around by allowing arbitrary Perl code to be a part of a regexp. A code evaluation expression is denoted <code>(?{<i>code</i>})</code>, with <i>code</i> a string of Perl statements.</p>
+
+<p>Code expressions are zero-width assertions, and the value they return depends on their environment. There are two possibilities: either the code expression is used as a conditional in a conditional expression <code>(?(<i>condition</i>)...)</code>, or it is not. If the code expression is a conditional, the code is evaluated and the result (<i>i.e.</i>, the result of the last statement) is used to determine truth or falsehood. If the code expression is not used as a conditional, the assertion always evaluates true and the result is put into the special variable <code>$^R</code>. The variable <code>$^R</code> can then be used in code expressions later in the regexp. Here are some silly examples:</p>
+
+<pre><code>    $x = &quot;abcdef&quot;;
+    $x =~ /abc(?{print &quot;Hi Mom!&quot;;})def/; # matches,
+                                         # prints &#39;Hi Mom!&#39;
+    $x =~ /aaa(?{print &quot;Hi Mom!&quot;;})def/; # doesn&#39;t match,
+                                         # no &#39;Hi Mom!&#39;</code></pre>
+
+<p>Pay careful attention to the next example:</p>
+
+<pre><code>    $x =~ /abc(?{print &quot;Hi Mom!&quot;;})ddd/; # doesn&#39;t match,
+                                         # no &#39;Hi Mom!&#39;
+                                         # but why not?</code></pre>
+
+<p>At first glance, you&#39;d think that it shouldn&#39;t print, because obviously the <code>ddd</code> isn&#39;t going to match the target string. But look at this example:</p>
+
+<pre><code>    $x =~ /abc(?{print &quot;Hi Mom!&quot;;})[dD]dd/; # doesn&#39;t match,
+                                            # but _does_ print</code></pre>
+
+<p>Hmm. What happened here? If you&#39;ve been following along, you know that the above pattern should be effectively (almost) the same as the last one; enclosing the <code>&#39;d&#39;</code> in a character class isn&#39;t going to change what it matches. So why does the first not print while the second one does?</p>
+
+<p>The answer lies in the optimizations the regexp engine makes. In the first case, all the engine sees are plain old characters (aside from the <code>?{}</code> construct). It&#39;s smart enough to realize that the string <code>&#39;ddd&#39;</code> doesn&#39;t occur in our target string before actually running the pattern through. But in the second case, we&#39;ve tricked it into thinking that our pattern is more complicated. It takes a look, sees our character class, and decides that it will have to actually run the pattern to determine whether or not it matches, and in the process of running it hits the print statement before it discovers that we don&#39;t have a match.</p>
+
+<p>To take a closer look at how the engine does optimizations, see the section <a href="#Pragmas-and-debugging">&quot;Pragmas and debugging&quot;</a> below.</p>
+
+<p>More fun with <code>?{}</code>:</p>
+
+<pre><code>    $x =~ /(?{print &quot;Hi Mom!&quot;;})/;       # matches,
+                                         # prints &#39;Hi Mom!&#39;
+    $x =~ /(?{$c = 1;})(?{print &quot;$c&quot;;})/;  # matches,
+                                           # prints &#39;1&#39;
+    $x =~ /(?{$c = 1;})(?{print &quot;$^R&quot;;})/; # matches,
+                                           # prints &#39;1&#39;</code></pre>
+
+<p>The bit of magic mentioned in the section title occurs when the regexp backtracks in the process of searching for a match. If the regexp backtracks over a code expression and if the variables used within are localized using <code>local</code>, the changes in the variables produced by the code expression are undone! Thus, if we wanted to count how many times a character got matched inside a group, we could use, <i>e.g.</i>,</p>
+
+<pre><code>    $x = &quot;aaaa&quot;;
+    $count = 0;  # initialize &#39;a&#39; count
+    $c = &quot;bob&quot;;  # test if $c gets clobbered
+    $x =~ /(?{local $c = 0;})         # initialize count
+           ( a                        # match &#39;a&#39;
+             (?{local $c = $c + 1;})  # increment count
+           )*                         # do this any number of times,
+           aa                         # but match &#39;aa&#39; at the end
+           (?{$count = $c;})          # copy local $c var into $count
+          /x;
+    print &quot;&#39;a&#39; count is $count, \$c variable is &#39;$c&#39;\n&quot;;</code></pre>
+
+<p>This prints</p>
+
+<pre><code>    &#39;a&#39; count is 2, $c variable is &#39;bob&#39;</code></pre>
+
+<p>If we replace the <span style="white-space: nowrap;"><code> (?{local $c = $c + 1;})</code></span> with <span style="white-space: nowrap;"><code> (?{$c = $c + 1;})</code></span>, the variable changes are <i>not</i> undone during backtracking, and we get</p>
+
+<pre><code>    &#39;a&#39; count is 4, $c variable is &#39;bob&#39;</code></pre>
+
+<p>Note that only localized variable changes are undone. Other side effects of code expression execution are permanent. Thus</p>
+
+<pre><code>    $x = &quot;aaaa&quot;;
+    $x =~ /(a(?{print &quot;Yow\n&quot;;}))*aa/;</code></pre>
+
+<p>produces</p>
+
+<pre><code>   Yow
+   Yow
+   Yow
+   Yow</code></pre>
+
+<p>The result <code>$^R</code> is automatically localized, so that it will behave properly in the presence of backtracking.</p>
+
+<p>This example uses a code expression in a conditional to match a definite article, either <code>&#39;the&#39;</code> in English or <code>&#39;der|die|das&#39;</code> in German:</p>
+
+<pre><code>    $lang = &#39;DE&#39;;  # use German
+    ...
+    $text = &quot;das&quot;;
+    print &quot;matched\n&quot;
+        if $text =~ /(?(?{
+                          $lang eq &#39;EN&#39;; # is the language English?
+                         })
+                       the |             # if so, then match &#39;the&#39;
+                       (der|die|das)     # else, match &#39;der|die|das&#39;
+                     )
+                    /xi;</code></pre>
+
+<p>Note that the syntax here is <code>(?(?{...})<i>yes-regexp</i>|<i>no-regexp</i>)</code>, not <code>(?((?{...}))<i>yes-regexp</i>|<i>no-regexp</i>)</code>. In other words, in the case of a code expression, we don&#39;t need the extra parentheses around the conditional.</p>
+
+<p>If you try to use code expressions where the code text is contained within an interpolated variable, rather than appearing literally in the pattern, Perl may surprise you:</p>
+
+<pre><code>    $bar = 5;
+    $pat = &#39;(?{ 1 })&#39;;
+    /foo(?{ $bar })bar/; # compiles ok, $bar not interpolated
+    /foo(?{ 1 })$bar/;   # compiles ok, $bar interpolated
+    /foo${pat}bar/;      # compile error!
+
+    $pat = qr/(?{ $foo = 1 })/;  # precompile code regexp
+    /foo${pat}bar/;      # compiles ok</code></pre>
+
+<p>If a regexp has a variable that interpolates a code expression, Perl treats the regexp as an error. If the code expression is precompiled into a variable, however, interpolating is ok. The question is, why is this an error?</p>
+
+<p>The reason is that variable interpolation and code expressions together pose a security risk. The combination is dangerous because many programmers who write search engines often take user input and plug it directly into a regexp:</p>
+
+<pre><code>    $regexp = &lt;&gt;;       # read user-supplied regexp
+    $chomp $regexp;     # get rid of possible newline
+    $text =~ /$regexp/; # search $text for the $regexp</code></pre>
+
+<p>If the <code>$regexp</code> variable contains a code expression, the user could then execute arbitrary Perl code. For instance, some joker could search for <span style="white-space: nowrap;"><code>system(&#39;rm -rf *&#39;);</code></span> to erase your files. In this sense, the combination of interpolation and code expressions <i>taints</i> your regexp. So by default, using both interpolation and code expressions in the same regexp is not allowed. If you&#39;re not concerned about malicious users, it is possible to bypass this security check by invoking <span style="white-space: nowrap;"><code>use re &#39;eval&#39;</code></span>:</p>
+
+<pre><code>    use re &#39;eval&#39;;       # throw caution out the door
+    $bar = 5;
+    $pat = &#39;(?{ 1 })&#39;;
+    /foo${pat}bar/;      # compiles ok</code></pre>
+
+<p>Another form of code expression is the <i>pattern code expression</i>. The pattern code expression is like a regular code expression, except that the result of the code evaluation is treated as a regular expression and matched immediately. A simple example is</p>
+
+<pre><code>    $length = 5;
+    $char = &#39;a&#39;;
+    $x = &#39;aaaaabb&#39;;
+    $x =~ /(??{$char x $length})/x; # matches, there are 5 of &#39;a&#39;</code></pre>
+
+<p>This final example contains both ordinary and pattern code expressions. It detects whether a binary string <code>1101010010001...</code> has a Fibonacci spacing 0,1,1,2,3,5,... of the <code>&#39;1&#39;</code>&#39;s:</p>
+
+<pre><code>    $x = &quot;1101010010001000001&quot;;
+    $z0 = &#39;&#39;; $z1 = &#39;0&#39;;   # initial conditions
+    print &quot;It is a Fibonacci sequence\n&quot;
+        if $x =~ /^1         # match an initial &#39;1&#39;
+                    (?:
+                       ((??{ $z0 })) # match some &#39;0&#39;
+                       1             # and then a &#39;1&#39;
+                       (?{ $z0 = $z1; $z1 .= $^N; })
+                    )+   # repeat as needed
+                  $      # that is all there is
+                 /x;
+    printf &quot;Largest sequence matched was %d\n&quot;, length($z1)-length($z0);</code></pre>
+
+<p>Remember that <code>$^N</code> is set to whatever was matched by the last completed capture group. This prints</p>
+
+<pre><code>    It is a Fibonacci sequence
+    Largest sequence matched was 5</code></pre>
+
+<p>Ha! Try that with your garden variety regexp package...</p>
+
+<p>Note that the variables <code>$z0</code> and <code>$z1</code> are not substituted when the regexp is compiled, as happens for ordinary variables outside a code expression. Rather, the whole code block is parsed as perl code at the same time as perl is compiling the code containing the literal regexp pattern.</p>
+
+<p>This regexp without the <code>/x</code> modifier is</p>
+
+<pre><code>    /^1(?:((??{ $z0 }))1(?{ $z0 = $z1; $z1 .= $^N; }))+$/</code></pre>
+
+<p>which shows that spaces are still possible in the code parts. Nevertheless, when working with code and conditional expressions, the extended form of regexps is almost necessary in creating and debugging regexps.</p>
+
+<h2 id="Backtracking-control-verbs">Backtracking control verbs</h2>
+
+<p>Perl 5.10 introduced a number of control verbs intended to provide detailed control over the backtracking process, by directly influencing the regexp engine and by providing monitoring techniques. See <a href="/perldoc/perlre/#Special-Backtracking-Control-Verbs">&quot;Special Backtracking Control Verbs&quot; in perlre</a> for a detailed description.</p>
+
+<p>Below is just one example, illustrating the control verb <code>(*FAIL)</code>, which may be abbreviated as <code>(*F)</code>. If this is inserted in a regexp it will cause it to fail, just as it would at some mismatch between the pattern and the string. Processing of the regexp continues as it would after any &quot;normal&quot; failure, so that, for instance, the next position in the string or another alternative will be tried. As failing to match doesn&#39;t preserve capture groups or produce results, it may be necessary to use this in combination with embedded code.</p>
+
+<pre><code>   %count = ();
+   &quot;supercalifragilisticexpialidocious&quot; =~
+       /([aeiou])(?{ $count{$1}++; })(*FAIL)/i;
+   printf &quot;%3d &#39;%s&#39;\n&quot;, $count{$_}, $_ for (sort keys %count);</code></pre>
+
+<p>The pattern begins with a class matching a subset of letters. Whenever this matches, a statement like <code>$count{&#39;a&#39;}++;</code> is executed, incrementing the letter&#39;s counter. Then <code>(*FAIL)</code> does what it says, and the regexp engine proceeds according to the book: as long as the end of the string hasn&#39;t been reached, the position is advanced before looking for another vowel. Thus, match or no match makes no difference, and the regexp engine proceeds until the entire string has been inspected. (It&#39;s remarkable that an alternative solution using something like</p>
+
+<pre><code>   $count{lc($_)}++ for split(&#39;&#39;, &quot;supercalifragilisticexpialidocious&quot;);
+   printf &quot;%3d &#39;%s&#39;\n&quot;, $count2{$_}, $_ for ( qw{ a e i o u } );</code></pre>
+
+<p>is considerably slower.)</p>
+
+<h2 id="Pragmas-and-debugging">Pragmas and debugging</h2>
+
+<p>Speaking of debugging, there are several pragmas available to control and debug regexps in Perl. We have already encountered one pragma in the previous section, <span style="white-space: nowrap;"><code>use re &#39;eval&#39;;</code></span>, that allows variable interpolation and code expressions to coexist in a regexp. The other pragmas are</p>
+
+<pre><code>    use re &#39;taint&#39;;
+    $tainted = &lt;&gt;;
+    @parts = ($tainted =~ /(\w+)\s+(\w+)/; # @parts is now tainted</code></pre>
+
+<p>The <code>taint</code> pragma causes any substrings from a match with a tainted variable to be tainted as well. This is not normally the case, as regexps are often used to extract the safe bits from a tainted variable. Use <code>taint</code> when you are not extracting safe bits, but are performing some other processing. Both <code>taint</code> and <code>eval</code> pragmas are lexically scoped, which means they are in effect only until the end of the block enclosing the pragmas.</p>
+
+<pre><code>    use re &#39;/m&#39;;  # or any other flags
+    $multiline_string =~ /^foo/; # /m is implied</code></pre>
+
+<p>The <code>re &#39;/flags&#39;</code> pragma (introduced in Perl 5.14) turns on the given regular expression flags until the end of the lexical scope. See <a href="https://metacpan.org/pod/re#flags-mode" rel="external">&quot;&#39;/flags&#39; mode&quot; in re</a> for more detail.</p>
+
+<pre><code>    use re &#39;debug&#39;;
+    /^(.*)$/s;       # output debugging info
+
+    use re &#39;debugcolor&#39;;
+    /^(.*)$/s;       # output debugging info in living color</code></pre>
+
+<p>The global <code>debug</code> and <code>debugcolor</code> pragmas allow one to get detailed debugging info about regexp compilation and execution. <code>debugcolor</code> is the same as debug, except the debugging information is displayed in color on terminals that can display termcap color sequences. Here is example output:</p>
+
+<pre><code>    % perl -e &#39;use re &quot;debug&quot;; &quot;abc&quot; =~ /a*b+c/;&#39;
+    Compiling REx &#39;a*b+c&#39;
+    size 9 first at 1
+       1: STAR(4)
+       2:   EXACT &lt;a&gt;(0)
+       4: PLUS(7)
+       5:   EXACT &lt;b&gt;(0)
+       7: EXACT &lt;c&gt;(9)
+       9: END(0)
+    floating &#39;bc&#39; at 0..2147483647 (checking floating) minlen 2
+    Guessing start of match, REx &#39;a*b+c&#39; against &#39;abc&#39;...
+    Found floating substr &#39;bc&#39; at offset 1...
+    Guessed: match at offset 0
+    Matching REx &#39;a*b+c&#39; against &#39;abc&#39;
+      Setting an EVAL scope, savestack=3
+       0 &lt;&gt; &lt;abc&gt;           |  1:  STAR
+                             EXACT &lt;a&gt; can match 1 times out of 32767...
+      Setting an EVAL scope, savestack=3
+       1 &lt;a&gt; &lt;bc&gt;           |  4:    PLUS
+                             EXACT &lt;b&gt; can match 1 times out of 32767...
+      Setting an EVAL scope, savestack=3
+       2 &lt;ab&gt; &lt;c&gt;           |  7:      EXACT &lt;c&gt;
+       3 &lt;abc&gt; &lt;&gt;           |  9:      END
+    Match successful!
+    Freeing REx: &#39;a*b+c&#39;</code></pre>
+
+<p>If you have gotten this far into the tutorial, you can probably guess what the different parts of the debugging output tell you. The first part</p>
+
+<pre><code>    Compiling REx &#39;a*b+c&#39;
+    size 9 first at 1
+       1: STAR(4)
+       2:   EXACT &lt;a&gt;(0)
+       4: PLUS(7)
+       5:   EXACT &lt;b&gt;(0)
+       7: EXACT &lt;c&gt;(9)
+       9: END(0)</code></pre>
+
+<p>describes the compilation stage. <code>STAR(4)</code> means that there is a starred object, in this case <code>&#39;a&#39;</code>, and if it matches, goto line 4, <i>i.e.</i>, <code>PLUS(7)</code>. The middle lines describe some heuristics and optimizations performed before a match:</p>
+
+<pre><code>    floating &#39;bc&#39; at 0..2147483647 (checking floating) minlen 2
+    Guessing start of match, REx &#39;a*b+c&#39; against &#39;abc&#39;...
+    Found floating substr &#39;bc&#39; at offset 1...
+    Guessed: match at offset 0</code></pre>
+
+<p>Then the match is executed and the remaining lines describe the process:</p>
+
+<pre><code>    Matching REx &#39;a*b+c&#39; against &#39;abc&#39;
+      Setting an EVAL scope, savestack=3
+       0 &lt;&gt; &lt;abc&gt;           |  1:  STAR
+                             EXACT &lt;a&gt; can match 1 times out of 32767...
+      Setting an EVAL scope, savestack=3
+       1 &lt;a&gt; &lt;bc&gt;           |  4:    PLUS
+                             EXACT &lt;b&gt; can match 1 times out of 32767...
+      Setting an EVAL scope, savestack=3
+       2 &lt;ab&gt; &lt;c&gt;           |  7:      EXACT &lt;c&gt;
+       3 &lt;abc&gt; &lt;&gt;           |  9:      END
+    Match successful!
+    Freeing REx: &#39;a*b+c&#39;</code></pre>
+
+<p>Each step is of the form <span style="white-space: nowrap;"><code>n &lt;x&gt; &lt;y&gt;</code></span>, with <code>&lt;x&gt;</code> the part of the string matched and <code>&lt;y&gt;</code> the part not yet matched. The <span style="white-space: nowrap;"><code>| 1: STAR</code></span> says that Perl is at line number 1 in the compilation list above. See <a href="/perldoc/perldebguts/#Debugging-Regular-Expressions">&quot;Debugging Regular Expressions&quot; in perldebguts</a> for much more detail.</p>
+
+<p>An alternative method of debugging regexps is to embed <code>print</code> statements within the regexp. This provides a blow-by-blow account of the backtracking in an alternation:</p>
+
+<pre><code>    &quot;that this&quot; =~ m@(?{print &quot;Start at position &quot;, pos, &quot;\n&quot;;})
+                     t(?{print &quot;t1\n&quot;;})
+                     h(?{print &quot;h1\n&quot;;})
+                     i(?{print &quot;i1\n&quot;;})
+                     s(?{print &quot;s1\n&quot;;})
+                         |
+                     t(?{print &quot;t2\n&quot;;})
+                     h(?{print &quot;h2\n&quot;;})
+                     a(?{print &quot;a2\n&quot;;})
+                     t(?{print &quot;t2\n&quot;;})
+                     (?{print &quot;Done at position &quot;, pos, &quot;\n&quot;;})
+                    @x;</code></pre>
+
+<p>prints</p>
+
+<pre><code>    Start at position 0
+    t1
+    h1
+    t2
+    h2
+    a2
+    t2
+    Done at position 4</code></pre>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>This is just a tutorial. For the full story on Perl regular expressions, see the <a href="/perldoc/perlre/">perlre</a> regular expressions reference page.</p>
+
+<p>For more information on the matching <code>m//</code> and substitution <code>s///</code> operators, see <a href="/perldoc/perlop/#Regexp-Quote-Like-Operators">&quot;Regexp Quote-Like Operators&quot; in perlop</a>. For information on the <code>split</code> operation, see <a href="/perldoc/perlfunc/#split">&quot;split&quot; in perlfunc</a>.</p>
+
+<p>For an excellent all-around resource on the care and feeding of regular expressions, see the book <i>Mastering Regular Expressions</i> by Jeffrey Friedl (published by O&#39;Reilly, ISBN 1556592-257-3).</p>
+
+<h1 id="AUTHOR-AND-COPYRIGHT">AUTHOR AND COPYRIGHT</h1>
+
+<p>Copyright (c) 2000 Mark Kvale. All rights reserved. Now maintained by Perl porters.</p>
+
+<p>This document may be distributed under the same terms as Perl itself.</p>
+
+<h2 id="Acknowledgments">Acknowledgments</h2>
+
+<p>The inspiration for the stop codon DNA example came from the ZIP code example in chapter 7 of <i>Mastering Regular Expressions</i>.</p>
+
+<p>The author would like to thank Jeff Pinyan, Andrew Johnson, Peter Haworth, Ronald J Kimball, and Joe Smith for all their helpful comments.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

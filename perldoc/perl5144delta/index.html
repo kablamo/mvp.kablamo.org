@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5144delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5144delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5144delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5144delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5144delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5144delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl5144delta/">perl5144delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl5144delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl5144delta - what is new for perl v5.14.4</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.14.3 release and the 5.14.4 release.</p>
+
+<p>If you are upgrading from an earlier release such as 5.12.0, first read <a href="/perldoc/perl5140delta/">perl5140delta</a>, which describes differences between 5.12.0 and 5.14.0.</p>
+
+<h1 id="Core-Enhancements">Core Enhancements</h1>
+
+<p>No changes since 5.14.0.</p>
+
+<h1 id="Security">Security</h1>
+
+<p>This release contains one major, and medium, and a number of minor security fixes. The latter are included mainly to allow the test suite to pass cleanly with the clang compiler&#39;s address sanitizer facility.</p>
+
+<h2 id="CVE-2013-1667:-memory-exhaustion-with-arbitrary-hash-keys">CVE-2013-1667: memory exhaustion with arbitrary hash keys</h2>
+
+<p>With a carefully crafted set of hash keys (for example arguments on a URL), it is possible to cause a hash to consume a large amount of memory and CPU, and thus possibly to achieve a Denial-of-Service.</p>
+
+<p>This problem has been fixed.</p>
+
+<h2 id="memory-leak-in-Encode">memory leak in Encode</h2>
+
+<p>The UTF-8 encoding implementation in Encode.xs had a memory leak which has been fixed.</p>
+
+<h2 id="perl-111594-Socket::unpack_sockaddr_un-heap-buffer-overflow">[perl #111594] Socket::unpack_sockaddr_un heap-buffer-overflow</h2>
+
+<p>A read buffer overflow could occur when copying <code>sockaddr</code> buffers. Fairly harmless.</p>
+
+<p>This problem has been fixed.</p>
+
+<h2 id="perl-111586-SDBM_File:-fix-off-by-one-access-to-global-.dir">[perl #111586] SDBM_File: fix off-by-one access to global &quot;.dir&quot;</h2>
+
+<p>An extra byte was being copied for some string literals. Fairly harmless.</p>
+
+<p>This problem has been fixed.</p>
+
+<h2 id="off-by-two-error-in-List::Util">off-by-two error in List::Util</h2>
+
+<p>A string literal was being used that included two bytes beyond the end of the string. Fairly harmless.</p>
+
+<p>This problem has been fixed.</p>
+
+<h2 id="perl-115994-fix-segv-in-regcomp.c:S_join_exact">[perl #115994] fix segv in regcomp.c:S_join_exact()</h2>
+
+<p>Under debugging builds, while marking optimised-out regex nodes as type <code>OPTIMIZED</code>, it could treat blocks of exact text as if they were nodes, and thus SEGV. Fairly harmless.</p>
+
+<p>This problem has been fixed.</p>
+
+<h2 id="perl-115992-PL_eval_start-use-after-free">[perl #115992] PL_eval_start use-after-free</h2>
+
+<p>The statement <code>local $[;</code>, when preceded by an <code>eval</code>, and when not part of an assignment, could crash. Fairly harmless.</p>
+
+<p>This problem has been fixed.</p>
+
+<h2 id="wrap-around-with-IO-on-long-strings">wrap-around with IO on long strings</h2>
+
+<p>Reading or writing strings greater than 2**31 bytes in size could segfault due to integer wraparound.</p>
+
+<p>This problem has been fixed.</p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes intentionally incompatible with 5.14.0. If any exist, they are bugs and reports are welcome.</p>
+
+<h1 id="Deprecations">Deprecations</h1>
+
+<p>There have been no deprecations since 5.14.0.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<h2 id="New-Modules-and-Pragmata">New Modules and Pragmata</h2>
+
+<p>None</p>
+
+<h2 id="Updated-Modules-and-Pragmata">Updated Modules and Pragmata</h2>
+
+<p>The following modules have just the minor code fixes as listed above in <a href="#Security">&quot;Security&quot;</a> (version numbers have not changed):</p>
+
+<dl>
+
+<dt>Socket</dt>
+<dd>
+
+</dd>
+<dt>SDBM_File</dt>
+<dd>
+
+</dd>
+<dt>List::Util</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p><a href="https://metacpan.org/pod/Encode" rel="external">Encode</a> has been upgraded from version 2.42_01 to version 2.42_02.</p>
+
+<p><a href="https://metacpan.org/pod/Module::CoreList" rel="external">Module::CoreList</a> has been updated to version 2.49_06 to add data for this release.</p>
+
+<h2 id="Removed-Modules-and-Pragmata">Removed Modules and Pragmata</h2>
+
+<p>None.</p>
+
+<h1 id="Documentation">Documentation</h1>
+
+<h2 id="New-Documentation">New Documentation</h2>
+
+<p>None.</p>
+
+<h2 id="Changes-to-Existing-Documentation">Changes to Existing Documentation</h2>
+
+<p>None.</p>
+
+<h1 id="Diagnostics">Diagnostics</h1>
+
+<p>No new or changed diagnostics.</p>
+
+<h1 id="Utility-Changes">Utility Changes</h1>
+
+<p>None</p>
+
+<h1 id="Configuration-and-Compilation">Configuration and Compilation</h1>
+
+<p>No changes.</p>
+
+<h1 id="Platform-Support">Platform Support</h1>
+
+<h2 id="New-Platforms">New Platforms</h2>
+
+<p>None.</p>
+
+<h2 id="Discontinued-Platforms">Discontinued Platforms</h2>
+
+<p>None.</p>
+
+<h2 id="Platform-Specific-Notes">Platform-Specific Notes</h2>
+
+<dl>
+
+<dt>VMS</dt>
+<dd>
+
+<p>5.14.3 failed to compile on VMS due to incomplete application of a patch series that allowed <code>userelocatableinc</code> and <code>usesitecustomize</code> to be used simultaneously. Other platforms were not affected and the problem has now been corrected.</p>
+
+</dd>
+</dl>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<ul>
+
+<li><p>In Perl 5.14.0, <code>$tainted ~~ @array</code> stopped working properly. Sometimes it would erroneously fail (when <code>$tainted</code> contained a string that occurs in the array <i>after</i> the first element) or erroneously succeed (when <code>undef</code> occurred after the first element) [perl #93590].</p>
+
+</li>
+</ul>
+
+<h1 id="Known-Problems">Known Problems</h1>
+
+<p>None.</p>
+
+<h1 id="Acknowledgements">Acknowledgements</h1>
+
+<p>Perl 5.14.4 represents approximately 5 months of development since Perl 5.14.3 and contains approximately 1,700 lines of changes across 49 files from 12 authors.</p>
+
+<p>Perl continues to flourish into its third decade thanks to a vibrant community of users and developers. The following people are known to have contributed the improvements that became Perl 5.14.4:</p>
+
+<p>Andy Dougherty, Chris &#39;BinGOs&#39; Williams, Christian Hansen, Craig A. Berry, Dave Rolsky, David Mitchell, Dominic Hargreaves, Father Chrysostomos, Florian Ragwitz, Reini Urban, Ricardo Signes, Yves Orton.</p>
+
+<p>The list above is almost certainly incomplete as it is automatically generated from version control history. In particular, it does not include the names of the (very much appreciated) contributors who reported issues to the Perl bug tracker.</p>
+
+<p>For a more complete list of all of Perl&#39;s historical contributors, please see the <i>AUTHORS</i> file in the Perl source distribution.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the perl bug database at http://rt.perl.org/perlbug/ . There may also be information at http://www.perl.org/ , the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <a href="/perldoc/perlbug/">perlbug</a> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team.</p>
+
+<p>If the bug you are reporting has security implications, which make it inappropriate to send to a publicly archived mailing list, then please send it to perl5-security-report@perl.org. This points to a closed subscription unarchived mailing list, which includes all the core committers, who be able to help assess the impact of issues, figure out a resolution, and help co-ordinate the release of patches to mitigate or fix the problem across all platforms on which Perl is supported. Please only use this address for security issues in the Perl core, not for modules independently distributed on CPAN.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for an explanation of how to view exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

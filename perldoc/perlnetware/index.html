@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlnetware - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlnetware/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlnetware/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlnetware/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlnetware/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlnetware/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlnetware/">perlnetware</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlnetware/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlnetware - Perl for NetWare</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This file gives instructions for building Perl 5.7 and above, and also Perl modules for NetWare. Before you start, you may want to read the README file found in the top level directory into which the Perl source code distribution was extracted. Make sure you read and understand the terms under which the software is being distributed.</p>
+
+<h1 id="BUILD">BUILD</h1>
+
+<p>This section describes the steps to be performed to build a Perl NLM and other associated NLMs.</p>
+
+<h2 id="Tools-SDK">Tools &amp; SDK</h2>
+
+<p>The build requires CodeWarrior compiler and linker. In addition, the &quot;NetWare SDK&quot;, &quot;NLM &amp; NetWare Libraries for C&quot; and &quot;NetWare Server Protocol Libraries for C&quot;, all available at <a href="http://developer.novell.com/wiki/index.php/Category:Novell_Developer_Kit" rel="external">http://developer.novell.com/wiki/index.php/Category:Novell_Developer_Kit</a>, are required. Microsoft Visual C++ version 4.2 or later is also required.</p>
+
+<h2 id="Setup">Setup</h2>
+
+<p>The build process is dependent on the location of the NetWare SDK. Once the Tools &amp; SDK are installed, the build environment has to be setup. The following batch files setup the environment.</p>
+
+<dl>
+
+<dt>SetNWBld.bat</dt>
+<dd>
+
+<p>The Execution of this file takes 2 parameters as input. The first being the NetWare SDK path, second being the path for CodeWarrior Compiler &amp; tools. Execution of this file sets these paths and also sets the build type to Release by default.</p>
+
+</dd>
+<dt>Buildtype.bat</dt>
+<dd>
+
+<p>This is used to set the build type to debug or release. Change the build type only after executing SetNWBld.bat</p>
+
+<p>Example:</p>
+
+<ol>
+
+<li><p>Typing &quot;buildtype d on&quot; at the command prompt causes the buildtype to be set to Debug type with D2 flag set.</p>
+
+</li>
+<li><p>Typing &quot;buildtype d off&quot; or &quot;buildtype d&quot; at the command prompt causes the buildtype to be set to Debug type with D1 flag set.</p>
+
+</li>
+<li><p>Typing &quot;buildtype r&quot; at the command prompt sets it to Release Build type.</p>
+
+</li>
+</ol>
+
+</dd>
+</dl>
+
+<h2 id="Make">Make</h2>
+
+<p>The make process runs only under WinNT shell. The NetWare makefile is located under the NetWare folder. This makes use of miniperl.exe to run some of the Perl scripts. To create miniperl.exe, first set the required paths for Visual c++ compiler (specify vcvars32 location) at the command prompt. Then run nmake from win32 folder through WinNT command prompt. The build process can be stopped after miniperl.exe is created. Then run nmake from NetWare folder through WinNT command prompt.</p>
+
+<p>Currently the following two build types are tested on NetWare:</p>
+
+<ul>
+
+<li><p>USE_MULTI, USE_ITHREADS &amp; USE_IMP_SYS defined</p>
+
+</li>
+<li><p>USE_MULTI &amp; USE_IMP_SYS defined and USE_ITHREADS not defined</p>
+
+</li>
+</ul>
+
+<h2 id="Interpreter">Interpreter</h2>
+
+<p>Once miniperl.exe creation is over, run nmake from the NetWare folder. This will build the Perl interpreter for NetWare as <i>perl.nlm</i>. This is copied under the <i>Release</i> folder if you are doing a release build, else will be copied under <i>Debug</i> folder for debug builds.</p>
+
+<h2 id="Extensions">Extensions</h2>
+
+<p>The make process also creates the Perl extensions as <i>&lt;Extension</i>.nlm&gt;</p>
+
+<h1 id="INSTALL">INSTALL</h1>
+
+<p>To install NetWare Perl onto a NetWare server, first map the Sys volume of a NetWare server to <i>i:</i>. This is because the makefile by default sets the drive letter to <i>i:</i>. Type <i>nmake nwinstall</i> from NetWare folder on a WinNT command prompt. This will copy the binaries and module files onto the NetWare server under <i>sys:\Perl</i> folder. The Perl interpreter, <i>perl.nlm</i>, is copied under <i>sys:\perl\system</i> folder. Copy this to <i>sys:\system</i> folder.</p>
+
+<p>Example: At the command prompt Type &quot;nmake nwinstall&quot;. This will install NetWare Perl on the NetWare Server. Similarly, if you type &quot;nmake install&quot;, this will cause the binaries to be installed on the local machine. (Typically under the c:\perl folder)</p>
+
+<h1 id="BUILD-NEW-EXTENSIONS">BUILD NEW EXTENSIONS</h1>
+
+<p>To build extensions other than standard extensions, NetWare Perl has to be installed on Windows along with Windows Perl. The Perl for Windows can be either downloaded from the CPAN site and built using the sources, or the binaries can be directly downloaded from the ActiveState site. Installation can be done by invoking <i>nmake install</i> from the NetWare folder on a WinNT command prompt after building NetWare Perl by following steps given above. This will copy all the *.pm files and other required files. Documentation files are not copied. Thus one must first install Windows Perl, Then install NetWare Perl.</p>
+
+<p>Once this is done, do the following to build any extension:</p>
+
+<ul>
+
+<li><p>Change to the extension directory where its source files are present.</p>
+
+</li>
+<li><p>Run the following command at the command prompt:</p>
+
+<pre><code>    perl -II&lt;path to NetWare lib dir&gt; -II&lt;path to lib&gt; Makefile.pl</code></pre>
+
+<p>Example:</p>
+
+<pre><code>    perl -Ic:/perl/5.6.1/lib/NetWare-x86-multi-thread           \
+                                -Ic:\perl\5.6.1\lib MakeFile.pl</code></pre>
+
+<p>or</p>
+
+<pre><code>    perl -Ic:/perl/5.8.0/lib/NetWare-x86-multi-thread           \
+                                -Ic:\perl\5.8.0\lib MakeFile.pl</code></pre>
+
+</li>
+<li><p>nmake</p>
+
+</li>
+<li><p>nmake install</p>
+
+<p>Install will copy the files into the Windows machine where NetWare Perl is installed and these files may have to be copied to the NetWare server manually. Alternatively, pass <i>INSTALLSITELIB=i:\perl\lib</i> as an input to makefile.pl above. Here <i>i:</i> is the mapped drive to the sys: volume of the server where Perl on NetWare is installed. Now typing <i>nmake install</i>, will copy the files onto the NetWare server.</p>
+
+<p>Example: You can execute the following on the command prompt.</p>
+
+<pre><code>  perl -Ic:/perl/5.6.1/lib/NetWare-x86-multi-thread             \
+                                -Ic:\perl\5.6.1\lib MakeFile.pl
+  INSTALLSITELIB=i:\perl\lib</code></pre>
+
+<p>or</p>
+
+<pre><code>  perl -Ic:/perl/5.8.0/lib/NetWare-x86-multi-thread             \
+                                -Ic:\perl\5.8.0\lib MakeFile.pl
+  INSTALLSITELIB=i:\perl\lib</code></pre>
+
+</li>
+<li><p>Note: Some modules downloaded from CPAN may require NetWare related API in order to build on NetWare. Other modules may however build smoothly with or without minor changes depending on the type of module.</p>
+
+</li>
+</ul>
+
+<h1 id="ACKNOWLEDGEMENTS">ACKNOWLEDGEMENTS</h1>
+
+<p>The makefile for Win32 is used as a reference to create the makefile for NetWare. Also, the make process for NetWare port uses miniperl.exe to run scripts during the make and installation process.</p>
+
+<h1 id="AUTHORS">AUTHORS</h1>
+
+<p>Anantha Kesari H Y (hyanantha@novell.com) Aditya C (caditya@novell.com)</p>
+
+<h1 id="DATE">DATE</h1>
+
+<ul>
+
+<li><p>Created - 18 Jan 2001</p>
+
+</li>
+<li><p>Modified - 25 June 2001</p>
+
+</li>
+<li><p>Modified - 13 July 2001</p>
+
+</li>
+<li><p>Modified - 28 May 2002</p>
+
+</li>
+</ul>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

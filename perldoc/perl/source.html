@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perl - The Perl 5 language interpreter
+
+=head1 SYNOPSIS
+
+B&lt;perl&gt;	S&lt;[ B&lt;-sTtuUWX&gt; ]&gt;
+	S&lt;[ B&lt;-hv&gt; ] [ B&lt;-V&gt;[:I&lt;configvar&gt;] ]&gt;
+	S&lt;[ B&lt;-cw&gt; ] [ B&lt;-d&gt;[B&lt;t&gt;][:I&lt;debugger&gt;] ] [ B&lt;-D&gt;[I&lt;number/list&gt;] ]&gt;
+	S&lt;[ B&lt;-pna&gt; ] [ B&lt;-F&gt;I&lt;pattern&gt; ] [ B&lt;-l&gt;[I&lt;octal&gt;] ] [ B&lt;-0&gt;[I&lt;octal/hexadecimal&gt;] ]&gt;
+	S&lt;[ B&lt;-I&gt;I&lt;dir&gt; ] [ B&lt;-m&gt;[B&lt;-&gt;]I&lt;module&gt; ] [ B&lt;-M&gt;[B&lt;-&gt;]I&lt;&#39;module...&#39;&gt; ] [ B&lt;-f&gt; ]&gt;
+	S&lt;[ B&lt;-C [I&lt;number/list&gt;] &gt;]&gt;
+	S&lt;[ B&lt;-S&gt; ]&gt;
+	S&lt;[ B&lt;-x&gt;[I&lt;dir&gt;] ]&gt;
+	S&lt;[ B&lt;-i&gt;[I&lt;extension&gt;] ]&gt;
+	S&lt;[ [B&lt;-e&gt;|B&lt;-E&gt;] I&lt;&#39;command&#39;&gt; ] [ B&lt;--&gt; ] [ I&lt;programfile&gt; ] [ I&lt;argument&gt; ]...&gt;
+
+For more information on these options, you can run C&lt;perldoc perlrun&gt;.
+
+=head1 GETTING HELP
+
+The F&lt;perldoc&gt; program gives you access to all the documentation that comes
+with Perl.  You can get more documentation, tutorials and community support
+online at L&lt;http://www.perl.org/&gt;.
+
+If you&#39;re new to Perl, you should start by running C&lt;perldoc perlintro&gt;,
+which is a general intro for beginners and provides some background to help
+you navigate the rest of Perl&#39;s extensive documentation.  Run C&lt;perldoc
+perldoc&gt; to learn more things you can do with F&lt;perldoc&gt;.
+
+For ease of access, the Perl manual has been split up into several sections.
+
+=begin buildtoc
+
+# This section is parsed by Porting/pod_lib.pl for use by pod/buildtoc etc
+
+flag =g  perluniprops perlmodlib perlapi perlintern
+flag =go perltoc
+flag =ro perlcn perljp perlko perltw
+flag =   perlvms
+
+path perlfaq.*               cpan/perlfaq/lib/
+path perlglossary            cpan/perlfaq/lib/
+path perlxs(?:tut|typemap)?  dist/ExtUtils-ParseXS/lib/
+path perldoc                 cpan/Pod-Perldoc/
+
+aux h2ph h2xs perlbug pl2pm pod2html pod2man splain xsubpp
+
+=end buildtoc
+
+=head2 Overview
+
+    perl		Perl overview (this section)
+    perlintro		Perl introduction for beginners
+    perlrun		Perl execution and options
+    perltoc		Perl documentation table of contents
+
+=head2 Tutorials
+
+    perlreftut		Perl references short introduction
+    perldsc		Perl data structures intro
+    perllol		Perl data structures: arrays of arrays
+
+    perlrequick 	Perl regular expressions quick start
+    perlretut		Perl regular expressions tutorial
+
+    perlootut		Perl OO tutorial for beginners
+
+    perlperf		Perl Performance and Optimization Techniques
+
+    perlstyle		Perl style guide
+
+    perlcheat		Perl cheat sheet
+    perltrap		Perl traps for the unwary
+    perldebtut		Perl debugging tutorial
+
+    perlfaq		Perl frequently asked questions
+      perlfaq1		General Questions About Perl
+      perlfaq2		Obtaining and Learning about Perl
+      perlfaq3		Programming Tools
+      perlfaq4		Data Manipulation
+      perlfaq5		Files and Formats
+      perlfaq6		Regexes
+      perlfaq7		Perl Language Issues
+      perlfaq8		System Interaction
+      perlfaq9		Networking
+
+=head2 Reference Manual
+
+    perlsyn		Perl syntax
+    perldata		Perl data structures
+    perlop		Perl operators and precedence
+    perlsub		Perl subroutines
+    perlfunc		Perl built-in functions
+      perlopentut	Perl open() tutorial
+      perlpacktut	Perl pack() and unpack() tutorial
+    perlpod		Perl plain old documentation
+    perlpodspec 	Perl plain old documentation format specification
+    perlpodstyle	Perl POD style guide
+    perldiag		Perl diagnostic messages
+    perldeprecation     Perl deprecations
+    perllexwarn 	Perl warnings and their control
+    perldebug		Perl debugging
+    perlvar		Perl predefined variables
+    perlre		Perl regular expressions, the rest of the story
+    perlrebackslash	Perl regular expression backslash sequences
+    perlrecharclass	Perl regular expression character classes
+    perlreref		Perl regular expressions quick reference
+    perlref		Perl references, the rest of the story
+    perlform		Perl formats
+    perlobj		Perl objects
+    perltie		Perl objects hidden behind simple variables
+      perldbmfilter	Perl DBM filters
+
+    perlipc		Perl interprocess communication
+    perlfork		Perl fork() information
+    perlnumber		Perl number semantics
+
+    perlthrtut		Perl threads tutorial
+
+    perlport		Perl portability guide
+    perllocale		Perl locale support
+    perluniintro	Perl Unicode introduction
+    perlunicode 	Perl Unicode support
+    perlunicook 	Perl Unicode cookbook
+    perlunifaq		Perl Unicode FAQ
+    perluniprops	Index of Unicode properties in Perl
+    perlunitut		Perl Unicode tutorial
+    perlebcdic		Considerations for running Perl on EBCDIC platforms
+
+    perlsec		Perl security
+
+    perlmod		Perl modules: how they work
+    perlmodlib		Perl modules: how to write and use
+    perlmodstyle	Perl modules: how to write modules with style
+    perlmodinstall	Perl modules: how to install from CPAN
+    perlnewmod		Perl modules: preparing a new module for distribution
+    perlpragma		Perl modules: writing a user pragma
+
+    perlutil		utilities packaged with the Perl distribution
+
+    perlfilter		Perl source filters
+
+    perldtrace		Perl&#39;s support for DTrace
+
+    perlglossary	Perl Glossary
+
+=head2 Internals and C Language Interface
+
+    perlembed		Perl ways to embed perl in your C or C++ application
+    perldebguts 	Perl debugging guts and tips
+    perlxstut		Perl XS tutorial
+    perlxs		Perl XS application programming interface
+    perlxstypemap	Perl XS C/Perl type conversion tools
+    perlclib		Internal replacements for standard C library functions
+    perlguts		Perl internal functions for those doing extensions
+    perlcall		Perl calling conventions from C
+    perlmroapi		Perl method resolution plugin interface
+    perlreapi		Perl regular expression plugin interface
+    perlreguts		Perl regular expression engine internals
+
+    perlapi		Perl API listing (autogenerated)
+    perlintern		Perl internal functions (autogenerated)
+    perliol		C API for Perl&#39;s implementation of IO in Layers
+    perlapio		Perl internal IO abstraction interface
+
+    perlhack		Perl hackers guide
+    perlsource		Guide to the Perl source tree
+    perlinterp		Overview of the Perl interpreter source and how it works
+    perlhacktut 	Walk through the creation of a simple C code patch
+    perlhacktips	Tips for Perl core C code hacking
+    perlpolicy		Perl development policies
+    perlgit		Using git with the Perl repository
+
+=head2 Miscellaneous
+
+    perlbook		Perl book information
+    perlcommunity	Perl community information
+
+    perldoc		Look up Perl documentation in Pod format
+
+    perlhist		Perl history records
+    perldelta		Perl changes since previous version
+    perl5260delta	Perl changes in version 5.26.0
+    perl5242delta	Perl changes in version 5.24.2
+    perl5241delta	Perl changes in version 5.24.1
+    perl5240delta	Perl changes in version 5.24.0
+    perl5224delta	Perl changes in version 5.22.4
+    perl5223delta	Perl changes in version 5.22.3
+    perl5222delta	Perl changes in version 5.22.2
+    perl5221delta	Perl changes in version 5.22.1
+    perl5220delta	Perl changes in version 5.22.0
+    perl5203delta	Perl changes in version 5.20.3
+    perl5202delta	Perl changes in version 5.20.2
+    perl5201delta	Perl changes in version 5.20.1
+    perl5200delta	Perl changes in version 5.20.0
+    perl5184delta	Perl changes in version 5.18.4
+    perl5182delta	Perl changes in version 5.18.2
+    perl5181delta	Perl changes in version 5.18.1
+    perl5180delta	Perl changes in version 5.18.0
+    perl5163delta	Perl changes in version 5.16.3
+    perl5162delta	Perl changes in version 5.16.2
+    perl5161delta	Perl changes in version 5.16.1
+    perl5160delta	Perl changes in version 5.16.0
+    perl5144delta	Perl changes in version 5.14.4
+    perl5143delta	Perl changes in version 5.14.3
+    perl5142delta	Perl changes in version 5.14.2
+    perl5141delta	Perl changes in version 5.14.1
+    perl5140delta	Perl changes in version 5.14.0
+    perl5125delta	Perl changes in version 5.12.5
+    perl5124delta	Perl changes in version 5.12.4
+    perl5123delta	Perl changes in version 5.12.3
+    perl5122delta	Perl changes in version 5.12.2
+    perl5121delta	Perl changes in version 5.12.1
+    perl5120delta	Perl changes in version 5.12.0
+    perl5101delta	Perl changes in version 5.10.1
+    perl5100delta	Perl changes in version 5.10.0
+    perl589delta	Perl changes in version 5.8.9
+    perl588delta	Perl changes in version 5.8.8
+    perl587delta	Perl changes in version 5.8.7
+    perl586delta	Perl changes in version 5.8.6
+    perl585delta	Perl changes in version 5.8.5
+    perl584delta	Perl changes in version 5.8.4
+    perl583delta	Perl changes in version 5.8.3
+    perl582delta	Perl changes in version 5.8.2
+    perl581delta	Perl changes in version 5.8.1
+    perl58delta 	Perl changes in version 5.8.0
+    perl561delta	Perl changes in version 5.6.1
+    perl56delta 	Perl changes in version 5.6
+    perl5005delta	Perl changes in version 5.005
+    perl5004delta	Perl changes in version 5.004
+
+    perlexperiment	A listing of experimental features in Perl
+
+    perlartistic	Perl Artistic License
+    perlgpl		GNU General Public License
+
+=head2 Language-Specific
+
+=for buildtoc flag +r
+
+    perlcn		Perl for Simplified Chinese (in EUC-CN)
+    perljp		Perl for Japanese (in EUC-JP)
+    perlko		Perl for Korean (in EUC-KR)
+    perltw		Perl for Traditional Chinese (in Big5)
+
+=head2 Platform-Specific
+
+    perlaix		Perl notes for AIX
+    perlamiga		Perl notes for AmigaOS
+    perlandroid		Perl notes for Android
+    perlbs2000		Perl notes for POSIX-BC BS2000
+    perlce		Perl notes for WinCE
+    perlcygwin		Perl notes for Cygwin
+    perldos		Perl notes for DOS
+    perlfreebsd 	Perl notes for FreeBSD
+    perlhaiku		Perl notes for Haiku
+    perlhpux		Perl notes for HP-UX
+    perlhurd		Perl notes for Hurd
+    perlirix		Perl notes for Irix
+    perllinux		Perl notes for Linux
+    perlmacos		Perl notes for Mac OS (Classic)
+    perlmacosx		Perl notes for Mac OS X
+    perlnetware 	Perl notes for NetWare
+    perlopenbsd 	Perl notes for OpenBSD
+    perlos2		Perl notes for OS/2
+    perlos390		Perl notes for OS/390
+    perlos400		Perl notes for OS/400
+    perlplan9		Perl notes for Plan 9
+    perlqnx		Perl notes for QNX
+    perlriscos		Perl notes for RISC OS
+    perlsolaris 	Perl notes for Solaris
+    perlsymbian 	Perl notes for Symbian
+    perlsynology 	Perl notes for Synology
+    perltru64		Perl notes for Tru64
+    perlvms		Perl notes for VMS
+    perlvos		Perl notes for Stratus VOS
+    perlwin32		Perl notes for Windows
+
+=for buildtoc flag -r
+
+=head2 Stubs for Deleted Documents
+
+    perlboot		
+    perlbot		
+    perlrepository
+    perltodo
+    perltooc		
+    perltoot		
+
+=for buildtoc __END__
+
+On a Unix-like system, these documentation files will usually also be
+available as manpages for use with the F&lt;man&gt; program.
+
+Some documentation is not available as man pages, so if a
+cross-reference is not found by man, try it with L&lt;perldoc&gt;.  Perldoc can
+also take you directly to documentation for functions (with the B&lt;-f&gt;
+switch). See C&lt;perldoc --help&gt; (or C&lt;perldoc perldoc&gt; or C&lt;man perldoc&gt;)
+for other helpful options L&lt;perldoc&gt; has to offer.
+
+In general, if something strange has gone wrong with your program and you&#39;re
+not sure where you should look for help, try making your code comply with
+B&lt;use strict&gt; and B&lt;use warnings&gt;.  These will often point out exactly
+where the trouble is.
+
+=head1 DESCRIPTION
+
+Perl officially stands for Practical Extraction and Report Language,
+except when it doesn&#39;t.
+
+Perl was originally a language optimized for scanning arbitrary
+text files, extracting information from those text files, and printing
+reports based on that information.  It quickly became a good language
+for many system management tasks. Over the years, Perl has grown into
+a general-purpose programming language. It&#39;s widely used for everything
+from quick &quot;one-liners&quot; to full-scale application development.
+
+The language is intended to be practical (easy to use, efficient,
+complete) rather than beautiful (tiny, elegant, minimal).  It combines
+(in the author&#39;s opinion, anyway) some of the best features of B&lt;sed&gt;,
+B&lt;awk&gt;, and B&lt;sh&gt;, making it familiar and easy to use for Unix users to
+whip up quick solutions to annoying problems.  Its general-purpose
+programming facilities support procedural, functional, and
+object-oriented programming paradigms, making Perl a comfortable
+language for the long haul on major projects, whatever your bent.
+
+Perl&#39;s roots in text processing haven&#39;t been forgotten over the years.
+It still boasts some of the most powerful regular expressions to be
+found anywhere, and its support for Unicode text is world-class.  It
+handles all kinds of structured text, too, through an extensive
+collection of extensions.  Those libraries, collected in the CPAN,
+provide ready-made solutions to an astounding array of problems.  When
+they haven&#39;t set the standard themselves, they steal from the best
+-- just like Perl itself.
+
+=head1 AVAILABILITY
+
+Perl is available for most operating systems, including virtually
+all Unix-like platforms.  See L&lt;perlport/&quot;Supported Platforms&quot;&gt;
+for a listing.
+
+=head1 ENVIRONMENT
+
+See L&lt;perlrun&gt;.
+
+=head1 AUTHOR
+
+Larry Wall &lt;larry@wall.org&gt;, with the help of oodles of other folks.
+
+If your Perl success stories and testimonials may be of help to others 
+who wish to advocate the use of Perl in their applications, 
+or if you wish to simply express your gratitude to Larry and the 
+Perl developers, please write to perl-thanks@perl.org .
+
+=head1 FILES
+
+ &quot;@INC&quot;			locations of perl libraries
+
+&quot;@INC&quot; above is a reference to the built-in variable of the same name;
+see L&lt;perlvar&gt; for more information.
+
+=head1 SEE ALSO
+
+ http://www.perl.org/       the Perl homepage
+ http://www.perl.com/       Perl articles (O&#39;Reilly)
+ http://www.cpan.org/       the Comprehensive Perl Archive
+ http://www.pm.org/         the Perl Mongers
+
+=head1 DIAGNOSTICS
+
+Using the C&lt;use strict&gt; pragma ensures that all variables are properly
+declared and prevents other misuses of legacy Perl features.
+
+The C&lt;use warnings&gt; pragma produces some lovely diagnostics. One can
+also use the B&lt;-w&gt; flag, but its use is normally discouraged, because
+it gets applied to all executed Perl code, including that not under
+your control.
+
+See L&lt;perldiag&gt; for explanations of all Perl&#39;s diagnostics.  The C&lt;use
+diagnostics&gt; pragma automatically turns Perl&#39;s normally terse warnings
+and errors into these longer forms.
+
+Compilation errors will tell you the line number of the error, with an
+indication of the next token or token type that was to be examined.
+(In a script passed to Perl via B&lt;-e&gt; switches, each
+B&lt;-e&gt; is counted as one line.)
+
+Setuid scripts have additional constraints that can produce error
+messages such as &quot;Insecure dependency&quot;.  See L&lt;perlsec&gt;.
+
+Did we mention that you should definitely consider using the B&lt;use warnings&gt;
+pragma?
+
+=head1 BUGS
+
+The behavior implied by the B&lt;use warnings&gt; pragma is not mandatory.
+
+Perl is at the mercy of your machine&#39;s definitions of various
+operations such as type casting, atof(), and floating-point
+output with sprintf().
+
+If your stdio requires a seek or eof between reads and writes on a
+particular stream, so does Perl.  (This doesn&#39;t apply to sysread()
+and syswrite().)
+
+While none of the built-in data types have any arbitrary size limits
+(apart from memory size), there are still a few arbitrary limits:  a
+given variable name may not be longer than 251 characters.  Line numbers
+displayed by diagnostics are internally stored as short integers,
+so they are limited to a maximum of 65535 (higher numbers usually being
+affected by wraparound).
+
+You may mail your bug reports (be sure to include full configuration
+information as output by the myconfig program in the perl source
+tree, or by C&lt;perl -V&gt;) to perlbug@perl.org .  If you&#39;ve succeeded
+in compiling perl, the L&lt;perlbug&gt; script in the F&lt;utils/&gt; subdirectory
+can be used to help mail in a bug report.
+
+Perl actually stands for Pathologically Eclectic Rubbish Lister, but
+don&#39;t tell anyone I said that.
+
+=head1 NOTES
+
+The Perl motto is &quot;There&#39;s more than one way to do it.&quot;  Divining
+how many more is left as an exercise to the reader.
+
+The three principal virtues of a programmer are Laziness,
+Impatience, and Hubris.  See the Camel Book for why.
+
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

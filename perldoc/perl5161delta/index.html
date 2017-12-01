@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5161delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5161delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5161delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5161delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5161delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5161delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl5161delta/">perl5161delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl5161delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl5161delta - what is new for perl v5.16.1</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.16.0 release and the 5.16.1 release.</p>
+
+<p>If you are upgrading from an earlier release such as 5.14.0, first read <a href="/perldoc/perl5160delta/">perl5160delta</a>, which describes differences between 5.14.0 and 5.16.0.</p>
+
+<h1 id="Security">Security</h1>
+
+<h2 id="an-off-by-two-error-in-Scalar-List-Util-has-been-fixed">an off-by-two error in Scalar-List-Util has been fixed</h2>
+
+<p>The bugfix was in Scalar-List-Util 1.23_04, and perl 5.16.1 includes Scalar-List-Util 1.25.</p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes intentionally incompatible with 5.16.0 If any exist, they are bugs, and we request that you submit a report. See <a href="#Reporting-Bugs">&quot;Reporting Bugs&quot;</a> below.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<h2 id="Updated-Modules-and-Pragmata">Updated Modules and Pragmata</h2>
+
+<ul>
+
+<li><p><a href="https://metacpan.org/pod/Scalar::Util" rel="external">Scalar::Util</a> and <a href="https://metacpan.org/pod/List::Util" rel="external">List::Util</a> have been upgraded from version 1.23 to version 1.25.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/B::Deparse" rel="external">B::Deparse</a> has been updated from version 1.14 to 1.14_01. An &quot;uninitialized&quot; warning emitted by B::Deparse has been squashed [perl #113464].</p>
+
+</li>
+</ul>
+
+<h1 id="Configuration-and-Compilation">Configuration and Compilation</h1>
+
+<ul>
+
+<li><p>Building perl with some Windows compilers used to fail due to a problem with miniperl&#39;s <code>glob</code> operator (which uses the <code>perlglob</code> program) deleting the PATH environment variable [perl #113798].</p>
+
+</li>
+</ul>
+
+<h1 id="Platform-Support">Platform Support</h1>
+
+<h2 id="Platform-Specific-Notes">Platform-Specific Notes</h2>
+
+<dl>
+
+<dt>VMS</dt>
+<dd>
+
+<p>All C header files from the top-level directory of the distribution are now installed on VMS, providing consistency with a long-standing practice on other platforms. Previously only a subset were installed, which broke non-core extension builds for extensions that depended on the missing include files.</p>
+
+</dd>
+</dl>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<ul>
+
+<li><p>A regression introduced in Perl v5.16.0 involving <code>tr/<i>SEARCHLIST</i>/<i>REPLACEMENTLIST</i>/</code> has been fixed. Only the first instance is supposed to be meaningful if a character appears more than once in <code><i>SEARCHLIST</i></code>. Under some circumstances, the final instance was overriding all earlier ones. [perl #113584]</p>
+
+</li>
+<li><p><code>B::COP::stashlen</code> has been added. This provides access to an internal field added in perl 5.16 under threaded builds. It was broken at the last minute before 5.16 was released [perl #113034].</p>
+
+</li>
+<li><p>The <a href="https://metacpan.org/pod/re" rel="external">re</a> pragma will no longer clobber <code>$_</code>. [perl #113750]</p>
+
+</li>
+<li><p>Unicode 6.1 published an incorrect alias for one of the Canonical_Combining_Class property&#39;s values (which range between 0 and 254). The alias <code>CCC133</code> should have been <code>CCC132</code>. Perl now overrides the data file furnished by Unicode to give the correct value.</p>
+
+</li>
+<li><p>Duplicating scalar filehandles works again. [perl #113764]</p>
+
+</li>
+<li><p>Under threaded perls, a runtime code block in a regular expression could corrupt the package name stored in the op tree, resulting in bad reads in <code>caller</code>, and possibly crashes [perl #113060].</p>
+
+</li>
+<li><p>For efficiency&#39;s sake, many operators and built-in functions return the same scalar each time. Lvalue subroutines and subroutines in the CORE:: namespace were allowing this implementation detail to leak through. <code>print &amp;CORE::uc(&quot;a&quot;), &amp;CORE::uc(&quot;b&quot;)</code> used to print &quot;BB&quot;. The same thing would happen with an lvalue subroutine returning the return value of <code>uc</code>. Now the value is copied in such cases [perl #113044].</p>
+
+</li>
+<li><p><code>__SUB__</code> now works in special blocks (<code>BEGIN</code>, <code>END</code>, etc.).</p>
+
+</li>
+<li><p>Formats that reference lexical variables from outside no longer result in crashes.</p>
+
+</li>
+</ul>
+
+<h1 id="Known-Problems">Known Problems</h1>
+
+<p>There are no new known problems, but consult <a href="/perldoc/perl5160delta/#Known-Problems">&quot;Known Problems&quot; in perl5160delta</a> to see those identified in the 5.16.0 release.</p>
+
+<h1 id="Acknowledgements">Acknowledgements</h1>
+
+<p>Perl 5.16.1 represents approximately 2 months of development since Perl 5.16.0 and contains approximately 14,000 lines of changes across 96 files from 8 authors.</p>
+
+<p>Perl continues to flourish into its third decade thanks to a vibrant community of users and developers. The following people are known to have contributed the improvements that became Perl 5.16.1:</p>
+
+<p>Chris &#39;BinGOs&#39; Williams, Craig A. Berry, Father Chrysostomos, Karl Williamson, Paul Johnson, Reini Urban, Ricardo Signes, Tony Cook.</p>
+
+<p>The list above is almost certainly incomplete as it is automatically generated from version control history. In particular, it does not include the names of the (very much appreciated) contributors who reported issues to the Perl bug tracker.</p>
+
+<p>Many of the changes included in this version originated in the CPAN modules included in Perl&#39;s core. We&#39;re grateful to the entire CPAN community for helping Perl to flourish.</p>
+
+<p>For a more complete list of all of Perl&#39;s historical contributors, please see the <i>AUTHORS</i> file in the Perl source distribution.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the perl bug database at http://rt.perl.org/perlbug/ . There may also be information at http://www.perl.org/ , the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <a href="/perldoc/perlbug/">perlbug</a> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team.</p>
+
+<p>If the bug you are reporting has security implications, which make it inappropriate to send to a publicly archived mailing list, then please send it to perl5-security-report@perl.org. This points to a closed subscription unarchived mailing list, which includes all the core committers, who will be able to help assess the impact of issues, figure out a resolution, and help co-ordinate the release of patches to mitigate or fix the problem across all platforms on which Perl is supported. Please only use this address for security issues in the Perl core, not for modules independently distributed on CPAN.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for an explanation of how to view exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

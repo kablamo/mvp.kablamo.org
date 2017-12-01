@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl583delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl583delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl583delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl583delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl583delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl583delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl583delta/">perl583delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl583delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl583delta - what is new for perl v5.8.3</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.8.2 release and the 5.8.3 release.</p>
+
+<p>If you are upgrading from an earlier release such as 5.6.1, first read the <a href="/perldoc/perl58delta/">perl58delta</a>, which describes differences between 5.6.0 and 5.8.0, and the <a href="/perldoc/perl581delta/">perl581delta</a> and <a href="/perldoc/perl582delta/">perl582delta</a>, which describe differences between 5.8.0, 5.8.1 and 5.8.2</p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes incompatible with 5.8.2.</p>
+
+<h1 id="Core-Enhancements">Core Enhancements</h1>
+
+<p>A <code>SCALAR</code> method is now available for tied hashes. This is called when a tied hash is used in scalar context, such as</p>
+
+<pre><code>    if (%tied_hash) {
+        ...
+    }</code></pre>
+
+<p>The old behaviour was that %tied_hash would return whatever would have been returned for that hash before the hash was tied (so usually 0). The new behaviour in the absence of a SCALAR method is to return TRUE if in the middle of an <code>each</code> iteration, and otherwise call FIRSTKEY to check if the hash is empty (making sure that a subsequent <code>each</code> will also begin by calling FIRSTKEY). Please see <a href="/perldoc/perltie/#SCALAR">&quot;SCALAR&quot; in perltie</a> for the full details and caveats.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<dl>
+
+<dt>CGI</dt>
+<dd>
+
+</dd>
+<dt>Cwd</dt>
+<dd>
+
+</dd>
+<dt>Digest</dt>
+<dd>
+
+</dd>
+<dt>Digest::MD5</dt>
+<dd>
+
+</dd>
+<dt>Encode</dt>
+<dd>
+
+</dd>
+<dt>File::Spec</dt>
+<dd>
+
+</dd>
+<dt>FindBin</dt>
+<dd>
+
+<p>A function <code>again</code> is provided to resolve problems where modules in different directories wish to use FindBin.</p>
+
+</dd>
+<dt>List::Util</dt>
+<dd>
+
+<p>You can now weaken references to read only values.</p>
+
+</dd>
+<dt>Math::BigInt</dt>
+<dd>
+
+</dd>
+<dt>PodParser</dt>
+<dd>
+
+</dd>
+<dt>Pod::Perldoc</dt>
+<dd>
+
+</dd>
+<dt>POSIX</dt>
+<dd>
+
+</dd>
+<dt>Unicode::Collate</dt>
+<dd>
+
+</dd>
+<dt>Unicode::Normalize</dt>
+<dd>
+
+</dd>
+<dt>Test::Harness</dt>
+<dd>
+
+</dd>
+<dt>threads::shared</dt>
+<dd>
+
+<p><code>cond_wait</code> has a new two argument form. <code>cond_timedwait</code> has been added.</p>
+
+</dd>
+</dl>
+
+<h1 id="Utility-Changes">Utility Changes</h1>
+
+<p><code>find2perl</code> now assumes <code>-print</code> as a default action. Previously, it needed to be specified explicitly.</p>
+
+<p>A new utility, <code>prove</code>, makes it easy to run an individual regression test at the command line. <code>prove</code> is part of Test::Harness, which users of earlier Perl versions can install from CPAN.</p>
+
+<h1 id="New-Documentation">New Documentation</h1>
+
+<p>The documentation has been revised in places to produce more standard manpages.</p>
+
+<p>The documentation for the special code blocks (BEGIN, CHECK, INIT, END) has been improved.</p>
+
+<h1 id="Installation-and-Configuration-Improvements">Installation and Configuration Improvements</h1>
+
+<p>Perl now builds on OpenVMS I64</p>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<p>Using substr() on a UTF8 string could cause subsequent accesses on that string to return garbage. This was due to incorrect UTF8 offsets being cached, and is now fixed.</p>
+
+<p>join() could return garbage when the same join() statement was used to process 8 bit data having earlier processed UTF8 data, due to the flags on that statement&#39;s temporary workspace not being reset correctly. This is now fixed.</p>
+
+<p><code>$a .. $b</code> will now work as expected when either $a or $b is <code>undef</code></p>
+
+<p>Using Unicode keys with tied hashes should now work correctly.</p>
+
+<p>Reading $^E now preserves $!. Previously, the C code implementing $^E did not preserve <code>errno</code>, so reading $^E could cause <code>errno</code> and therefore <code>$!</code> to change unexpectedly.</p>
+
+<p>Reentrant functions will (once more) work with C++. 5.8.2 introduced a bugfix which accidentally broke the compilation of Perl extensions written in C++</p>
+
+<h1 id="New-or-Changed-Diagnostics">New or Changed Diagnostics</h1>
+
+<p>The fatal error &quot;DESTROY created new reference to dead object&quot; is now documented in <a href="/perldoc/perldiag/">perldiag</a>.</p>
+
+<h1 id="Changed-Internals">Changed Internals</h1>
+
+<p>The hash code has been refactored to reduce source duplication. The external interface is unchanged, and aside from the bug fixes described above, there should be no change in behaviour.</p>
+
+<p><code>hv_clear_placeholders</code> is now part of the perl API</p>
+
+<p>Some C macros have been tidied. In particular macros which create temporary local variables now name these variables more defensively, which should avoid bugs where names clash.</p>
+
+<p>&lt;signal.h&gt; is now always included.</p>
+
+<h1 id="Configuration-and-Building">Configuration and Building</h1>
+
+<p><code>Configure</code> now invokes callbacks regardless of the value of the variable they are called for. Previously callbacks were only invoked in the <code>case $variable $define)</code> branch. This change should only affect platform maintainers writing configuration hints files.</p>
+
+<h1 id="Platform-Specific-Problems">Platform Specific Problems</h1>
+
+<p>The regression test ext/threads/shared/t/wait.t fails on early RedHat 9 and HP-UX 10.20 due to bugs in their threading implementations. RedHat users should see https://rhn.redhat.com/errata/RHBA-2003-136.html and consider upgrading their glibc.</p>
+
+<h1 id="Known-Problems">Known Problems</h1>
+
+<p>Detached threads aren&#39;t supported on Windows yet, as they may lead to memory access violation problems.</p>
+
+<p>There is a known race condition opening scripts in <code>suidperl</code>. <code>suidperl</code> is neither built nor installed by default, and has been deprecated since perl 5.8.0. You are advised to replace use of suidperl with tools such as sudo ( http://www.courtesan.com/sudo/ )</p>
+
+<p>We have a backlog of unresolved bugs. Dealing with bugs and bug reports is unglamorous work; not something ideally suited to volunteer labour, but that is all that we have.</p>
+
+<p>The perl5 development team are implementing changes to help address this problem, which should go live in early 2004.</p>
+
+<h1 id="Future-Directions">Future Directions</h1>
+
+<p>Code freeze for the next maintenance release (5.8.4) is on March 31st 2004, with release expected by mid April. Similarly 5.8.5&#39;s freeze will be at the end of June, with release by mid July.</p>
+
+<h1 id="Obituary">Obituary</h1>
+
+<p>Iain &#39;Spoon&#39; Truskett, Perl hacker, author of <a href="/perldoc/perlreref/">perlreref</a> and contributor to CPAN, died suddenly on 29th December 2003, aged 24. He will be missed.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the perl bug database at http://bugs.perl.org. There may also be information at http://www.perl.org, the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <b>perlbug</b> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team. You can browse and search the Perl 5 bugs at http://bugs.perl.org/</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

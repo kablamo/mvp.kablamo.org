@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlcommunity (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlcommunity/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlcommunity/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlcommunity/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlcommunity/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlcommunity/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlcommunity/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlcommunity - a brief overview of the Perl community
+
+=head1 DESCRIPTION
+
+This document aims to provide an overview of the vast perl community, which is
+far too large and diverse to provide a detailed listing. If any specific niche
+has been forgotten, it is not meant as an insult but an omission for the sake
+of brevity.
+
+The Perl community is as diverse as Perl, and there is a large amount of
+evidence that the Perl users apply TMTOWTDI to all endeavors, not just
+programming. From websites, to IRC, to mailing lists, there is more than one
+way to get involved in the community.
+
+=head2 Where to Find the Community
+
+There is a central directory for the Perl community: L&lt;http://perl.org&gt;
+maintained by the Perl Foundation (L&lt;http://www.perlfoundation.org/&gt;),
+which tracks and provides services for a variety of other community sites.
+
+=head2 Mailing Lists and Newsgroups
+
+Perl runs on e-mail; there is no doubt about it. The Camel book was originally
+written mostly over e-mail and today Perl&#39;s development is co-ordinated through
+mailing lists. The largest repository of Perl mailing lists is located at
+L&lt;http://lists.perl.org&gt;.
+
+Most Perl-related projects set up mailing lists for both users and
+contributors. If you don&#39;t see a certain project listed at
+L&lt;http://lists.perl.org&gt;, check the particular website for that project.
+Most mailing lists are archived at L&lt;http://nntp.perl.org/&gt;.
+
+=head2 IRC
+
+The Perl community has a rather large IRC presence. For starters, it has its
+own IRC network, L&lt;irc://irc.perl.org&gt;. General (not help-oriented) chat can be
+found at L&lt;irc://irc.perl.org/#perl&gt;. Many other more specific chats are also
+hosted on the network. Information about irc.perl.org is located on the
+network&#39;s website: L&lt;http://www.irc.perl.org&gt;. For a more help-oriented #perl,
+check out L&lt;irc://irc.freenode.net/#perl&gt;. Perl 6 development also has a
+presence in L&lt;irc://irc.freenode.net/#perl6&gt;. Most Perl-related channels will
+be kind enough to point you in the right direction if you ask nicely.
+
+Any large IRC network (Dalnet, EFnet) is also likely to have a #perl channel,
+with varying activity levels.
+
+=head2 Websites
+
+Perl websites come in a variety of forms, but they fit into two large
+categories: forums and news websites. There are many Perl-related
+websites, so only a few of the community&#39;s largest are mentioned here.
+
+=head3 News sites
+
+=over 4
+
+=item L&lt;http://perl.com/&gt;
+
+Originally run by O&#39;Reilly Media (the publisher of L&lt;the Camel Book|perlbook&gt;,
+this site provides quality articles mostly about technical details of Perl.
+
+=item L&lt;http://blogs.perl.org/&gt;
+
+Many members of the community have a Perl-related blog on this site. If
+you&#39;d like to join them, you can sign up for free.
+
+=item L&lt;http://perlsphere.net/&gt;
+
+Perlsphere is one of several aggregators of Perl-related blog feeds.
+
+=item L&lt;http://perlweekly.com/&gt;
+
+Perl Weekly is a weekly mailing list that keeps you up to date on conferences,
+releases and notable blog posts.
+
+=item L&lt;http://use.perl.org/&gt;
+
+use Perl; used to provide a slashdot-style news/blog website covering all
+things Perl, from minutes of the meetings of the Perl 6 Design team to
+conference announcements with (ir)relevant discussion. It no longer accepts
+updates, but you can still use the site to read old entries and comments.
+
+=back
+
+=head3 Forums
+
+=over 4
+
+=item L&lt;http://www.perlmonks.org/&gt;
+
+PerlMonks is one of the largest Perl forums, and describes itself as &quot;A place
+for individuals to polish, improve, and showcase their Perl skills.&quot; and &quot;A
+community which allows everyone to grow and learn from each other.&quot;
+
+=item L&lt;http://stackoverflow.com/&gt;
+
+Stack Overflow is a free question-and-answer site for programmers. It&#39;s not
+focussed solely on Perl, but it does have an active group of users who do
+their best to help people with their Perl programming questions.
+
+=item L&lt;http://prepan.org/&gt;
+
+PrePAN is used as a place to discuss modules that you&#39;re considering uploading
+to the CPAN.  You can get feedback on their design before you upload.
+
+=back
+
+=head2 User Groups
+
+Many cities around the world have local Perl Mongers chapters. A Perl Mongers
+chapter is a local user group which typically holds regular in-person meetings,
+both social and technical; helps organize local conferences, workshops, and
+hackathons; and provides a mailing list or other continual contact method for
+its members to keep in touch.
+
+To find your local Perl Mongers (or PM as they&#39;re commonly abbreviated) group
+check the international Perl Mongers directory at L&lt;http://www.pm.org/&gt;.
+
+=head2 Workshops
+
+Perl workshops are, as the name might suggest, workshops where Perl is taught
+in a variety of ways. At the workshops, subjects range from a beginner&#39;s
+introduction (such as the Pittsburgh Perl Workshop&#39;s &quot;Zero To Perl&quot;) to much
+more advanced subjects.
+
+There are several great resources for locating workshops: the
+L&lt;websites|&quot;Websites&quot;&gt; mentioned above, the
+L&lt;calendar|&quot;Calendar of Perl Events&quot;&gt; mentioned below, and the YAPC Europe
+website, L&lt;http://www.yapceurope.org/&gt;, which is probably the best resource for
+European Perl events.
+
+=head2 Hackathons
+
+Hackathons are a very different kind of gathering where Perl hackers gather to
+do just that, hack nonstop for an extended (several day) period on a specific
+project or projects. Information about hackathons can be located in the same
+place as information about L&lt;workshops|&quot;Workshops&quot;&gt; as well as in
+L&lt;irc://irc.perl.org/#perl&gt;.
+
+If you have never been to a hackathon, here are a few basic things you need to
+know before attending: have a working laptop and know how to use it; check out
+the involved projects beforehand; have the necessary version control client;
+and bring backup equipment (an extra LAN cable, additional power strips, etc.)
+because someone will forget.
+
+=head2 Conventions
+
+Perl has two major annual conventions: The Perl Conference (now part of OSCON),
+put on by O&#39;Reilly, and Yet Another Perl Conference or YAPC (pronounced
+yap-see), which is localized into several regional YAPCs (North America,
+Europe, Asia) in a stunning grassroots display by the Perl community. For more
+information about either conference, check out their respective web pages:
+OSCON L&lt;http://conferences.oreillynet.com/&gt;; YAPC L&lt;http://www.yapc.org&gt;.
+
+A relatively new conference franchise with a large Perl portion is the
+Open Source Developers Conference or OSDC. First held in Australia it has
+recently also spread to Israel and France. More information can be found at:
+L&lt;http://www.osdc.com.au/&gt; for Australia, L&lt;http://www.osdc.org.il&gt;
+for Israel, and L&lt;http://www.osdc.fr/&gt; for France.
+
+=head2 Calendar of Perl Events
+
+The Perl Review, L&lt;http://www.theperlreview.com&gt; maintains a website
+and Google calendar
+(L&lt;http://www.theperlreview.com/community_calendar&gt;) for tracking
+workshops, hackathons, Perl Mongers meetings, and other events. Views
+of this calendar are at L&lt;http://www.perl.org/events.html&gt; and
+L&lt;http://www.yapc.org&gt;.
+
+Not every event or Perl Mongers group is on that calendar, so don&#39;t lose
+heart if you don&#39;t see yours posted. To have your event or group listed,
+contact brian d foy (brian@theperlreview.com).
+
+=head1 AUTHOR
+
+Edgar &quot;Trizor&quot; Bering &lt;trizor@gmail.com&gt;
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

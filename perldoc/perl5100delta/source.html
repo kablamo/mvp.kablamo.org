@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5100delta (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5100delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5100delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5100delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5100delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5100delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perl5100delta/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+=head1 NAME
+
+perl5100delta - what is new for perl 5.10.0
+
+=head1 DESCRIPTION
+
+This document describes the differences between the 5.8.8 release and
+the 5.10.0 release.
+
+Many of the bug fixes in 5.10.0 were already seen in the 5.8.X maintenance
+releases; they are not duplicated here and are documented in the set of
+man pages named perl58[1-8]?delta.
+
+=head1 Core Enhancements
+
+=head2 The C&lt;feature&gt; pragma
+
+The C&lt;feature&gt; pragma is used to enable new syntax that would break Perl&#39;s
+backwards-compatibility with older releases of the language. It&#39;s a lexical
+pragma, like C&lt;strict&gt; or C&lt;warnings&gt;.
+
+Currently the following new features are available: C&lt;switch&gt; (adds a
+switch statement), C&lt;say&gt; (adds a C&lt;say&gt; built-in function), and C&lt;state&gt;
+(adds a C&lt;state&gt; keyword for declaring &quot;static&quot; variables). Those
+features are described in their own sections of this document.
+
+The C&lt;feature&gt; pragma is also implicitly loaded when you require a minimal
+perl version (with the C&lt;use VERSION&gt; construct) greater than, or equal
+to, 5.9.5. See L&lt;feature&gt; for details.
+
+=head2 New B&lt;-E&gt; command-line switch
+
+B&lt;-E&gt; is equivalent to B&lt;-e&gt;, but it implicitly enables all
+optional features (like C&lt;use feature &quot;:5.10&quot;&gt;).
+
+=head2 Defined-or operator
+
+A new operator C&lt;//&gt; (defined-or) has been implemented.
+The following expression:
+
+    $a // $b
+
+is merely equivalent to
+
+   defined $a ? $a : $b
+
+and the statement
+
+   $c //= $d;
+
+can now be used instead of
+
+   $c = $d unless defined $c;
+
+The C&lt;//&gt; operator has the same precedence and associativity as C&lt;||&gt;.
+Special care has been taken to ensure that this operator Do What You Mean
+while not breaking old code, but some edge cases involving the empty
+regular expression may now parse differently.  See L&lt;perlop&gt; for
+details.
+
+=head2 Switch and Smart Match operator
+
+Perl 5 now has a switch statement. It&#39;s available when C&lt;use feature
+&#39;switch&#39;&gt; is in effect. This feature introduces three new keywords,
+C&lt;given&gt;, C&lt;when&gt;, and C&lt;default&gt;:
+
+    given ($foo) {
+	when (/^abc/) { $abc = 1; }
+	when (/^def/) { $def = 1; }
+	when (/^xyz/) { $xyz = 1; }
+	default { $nothing = 1; }
+    }
+
+A more complete description of how Perl matches the switch variable
+against the C&lt;when&gt; conditions is given in L&lt;perlsyn/&quot;Switch statements&quot;&gt;.
+
+This kind of match is called I&lt;smart match&gt;, and it&#39;s also possible to use
+it outside of switch statements, via the new C&lt;~~&gt; operator. See
+L&lt;perlsyn/&quot;Smart matching in detail&quot;&gt;.
+
+This feature was contributed by Robin Houston.
+
+=head2 Regular expressions
+
+=over 4
+
+=item Recursive Patterns
+
+It is now possible to write recursive patterns without using the C&lt;(??{})&gt;
+construct. This new way is more efficient, and in many cases easier to
+read.
+
+Each capturing parenthesis can now be treated as an independent pattern
+that can be entered by using the C&lt;(?PARNO)&gt; syntax (C&lt;PARNO&gt; standing for
+&quot;parenthesis number&quot;). For example, the following pattern will match
+nested balanced angle brackets:
+
+    /
+     ^                      # start of line
+     (                      # start capture buffer 1
+	&lt;                   #   match an opening angle bracket
+	(?:                 #   match one of:
+	    (?&gt;             #     don&#39;t backtrack over the inside of this group
+	        [^&lt;&gt;]+      #       one or more non angle brackets
+	    )               #     end non backtracking group
+	|                   #     ... or ...
+	    (?1)            #     recurse to bracket 1 and try it again
+	)*                  #   0 or more times.
+	&gt;                   #   match a closing angle bracket
+     )                      # end capture buffer one
+     $                      # end of line
+    /x
+
+PCRE users should note that Perl&#39;s recursive regex feature allows
+backtracking into a recursed pattern, whereas in PCRE the recursion is
+atomic or &quot;possessive&quot; in nature.  As in the example above, you can
+add (?&gt;) to control this selectively.  (Yves Orton)
+
+=item Named Capture Buffers
+
+It is now possible to name capturing parenthesis in a pattern and refer to
+the captured contents by name. The naming syntax is C&lt;&lt; (?&lt;NAME&gt;....) &gt;&gt;.
+It&#39;s possible to backreference to a named buffer with the C&lt;&lt; \k&lt;NAME&gt; &gt;&gt;
+syntax. In code, the new magical hashes C&lt;%+&gt; and C&lt;%-&gt; can be used to
+access the contents of the capture buffers.
+
+Thus, to replace all doubled chars with a single copy, one could write
+
+    s/(?&lt;letter&gt;.)\k&lt;letter&gt;/$+{letter}/g
+
+Only buffers with defined contents will be &quot;visible&quot; in the C&lt;%+&gt; hash, so
+it&#39;s possible to do something like
+
+    foreach my $name (keys %+) {
+        print &quot;content of buffer &#39;$name&#39; is $+{$name}\n&quot;;
+    }
+
+The C&lt;%-&gt; hash is a bit more complete, since it will contain array refs
+holding values from all capture buffers similarly named, if there should
+be many of them.
+
+C&lt;%+&gt; and C&lt;%-&gt; are implemented as tied hashes through the new module
+C&lt;Tie::Hash::NamedCapture&gt;.
+
+Users exposed to the .NET regex engine will find that the perl
+implementation differs in that the numerical ordering of the buffers
+is sequential, and not &quot;unnamed first, then named&quot;. Thus in the pattern
+
+   /(A)(?&lt;B&gt;B)(C)(?&lt;D&gt;D)/
+
+$1 will be &#39;A&#39;, $2 will be &#39;B&#39;, $3 will be &#39;C&#39; and $4 will be &#39;D&#39; and not
+$1 is &#39;A&#39;, $2 is &#39;C&#39; and $3 is &#39;B&#39; and $4 is &#39;D&#39; that a .NET programmer
+would expect. This is considered a feature. :-) (Yves Orton)
+
+=item Possessive Quantifiers
+
+Perl now supports the &quot;possessive quantifier&quot; syntax of the &quot;atomic match&quot;
+pattern. Basically a possessive quantifier matches as much as it can and never
+gives any back. Thus it can be used to control backtracking. The syntax is
+similar to non-greedy matching, except instead of using a &#39;?&#39; as the modifier
+the &#39;+&#39; is used. Thus C&lt;?+&gt;, C&lt;*+&gt;, C&lt;++&gt;, C&lt;{min,max}+&gt; are now legal
+quantifiers. (Yves Orton)
+
+=item Backtracking control verbs
+
+The regex engine now supports a number of special-purpose backtrack
+control verbs: (*THEN), (*PRUNE), (*MARK), (*SKIP), (*COMMIT), (*FAIL)
+and (*ACCEPT). See L&lt;perlre&gt; for their descriptions. (Yves Orton)
+
+=item Relative backreferences
+
+A new syntax C&lt;\g{N}&gt; or C&lt;\gN&gt; where &quot;N&quot; is a decimal integer allows a
+safer form of back-reference notation as well as allowing relative
+backreferences. This should make it easier to generate and embed patterns
+that contain backreferences. See L&lt;perlre/&quot;Capture buffers&quot;&gt;. (Yves Orton)
+
+=item C&lt;\K&gt; escape
+
+The functionality of Jeff Pinyan&#39;s module Regexp::Keep has been added to
+the core. In regular expressions you can now use the special escape C&lt;\K&gt;
+as a way to do something like floating length positive lookbehind. It is
+also useful in substitutions like:
+
+  s/(foo)bar/$1/g
+
+that can now be converted to
+
+  s/foo\Kbar//g
+
+which is much more efficient. (Yves Orton)
+
+=item Vertical and horizontal whitespace, and linebreak
+
+Regular expressions now recognize the C&lt;\v&gt; and C&lt;\h&gt; escapes that match
+vertical and horizontal whitespace, respectively. C&lt;\V&gt; and C&lt;\H&gt;
+logically match their complements.
+
+C&lt;\R&gt; matches a generic linebreak, that is, vertical whitespace, plus
+the multi-character sequence C&lt;&quot;\x0D\x0A&quot;&gt;.
+
+=item Optional pre-match and post-match captures with the /p flag
+
+There is a new flag C&lt;/p&gt; for regular expressions.  Using this
+makes the engine preserve a copy of the part of the matched string before
+the matching substring to the new special variable C&lt;${^PREMATCH}&gt;, the
+part after the matching substring to C&lt;${^POSTMATCH}&gt;, and the matched
+substring itself to C&lt;${^MATCH}&gt;.
+
+Perl is still able to store these substrings to the special variables
+C&lt;$`&gt;, C&lt;$&#39;&gt;, C&lt;$&amp;&gt;, but using these variables anywhere in the program
+adds a penalty to all regular expression matches, whereas if you use
+the C&lt;/p&gt; flag and the new special variables instead, you pay only for
+the regular expressions where the flag is used.
+
+For more detail on the new variables, see L&lt;perlvar&gt;; for the use of
+the regular expression flag, see L&lt;perlop&gt; and L&lt;perlre&gt;.
+
+=back
+
+=head2 C&lt;say()&gt;
+
+say() is a new built-in, only available when C&lt;use feature &#39;say&#39;&gt; is in
+effect, that is similar to print(), but that implicitly appends a newline
+to the printed string. See L&lt;perlfunc/say&gt;. (Robin Houston)
+
+=head2 Lexical C&lt;$_&gt;
+
+The default variable C&lt;$_&gt; can now be lexicalized, by declaring it like
+any other lexical variable, with a simple
+
+    my $_;
+
+The operations that default on C&lt;$_&gt; will use the lexically-scoped
+version of C&lt;$_&gt; when it exists, instead of the global C&lt;$_&gt;.
+
+In a C&lt;map&gt; or a C&lt;grep&gt; block, if C&lt;$_&gt; was previously my&#39;ed, then the
+C&lt;$_&gt; inside the block is lexical as well (and scoped to the block).
+
+In a scope where C&lt;$_&gt; has been lexicalized, you can still have access to
+the global version of C&lt;$_&gt; by using C&lt;$::_&gt;, or, more simply, by
+overriding the lexical declaration with C&lt;our $_&gt;. (Rafael Garcia-Suarez)
+
+=head2 The C&lt;_&gt; prototype
+
+A new prototype character has been added. C&lt;_&gt; is equivalent to C&lt;$&gt; but
+defaults to C&lt;$_&gt; if the corresponding argument isn&#39;t supplied (both C&lt;$&gt;
+and C&lt;_&gt; denote a scalar). Due to the optional nature of the argument, 
+you can only use it at the end of a prototype, or before a semicolon.
+
+This has a small incompatible consequence: the prototype() function has
+been adjusted to return C&lt;_&gt; for some built-ins in appropriate cases (for
+example, C&lt;prototype(&#39;CORE::rmdir&#39;)&gt;). (Rafael Garcia-Suarez)
+
+=head2 UNITCHECK blocks
+
+C&lt;UNITCHECK&gt;, a new special code block has been introduced, in addition to
+C&lt;BEGIN&gt;, C&lt;CHECK&gt;, C&lt;INIT&gt; and C&lt;END&gt;.
+
+C&lt;CHECK&gt; and C&lt;INIT&gt; blocks, while useful for some specialized purposes,
+are always executed at the transition between the compilation and the
+execution of the main program, and thus are useless whenever code is
+loaded at runtime. On the other hand, C&lt;UNITCHECK&gt; blocks are executed
+just after the unit which defined them has been compiled. See L&lt;perlmod&gt;
+for more information. (Alex Gough)
+
+=head2 New Pragma, C&lt;mro&gt;
+
+A new pragma, C&lt;mro&gt; (for Method Resolution Order) has been added. It
+permits to switch, on a per-class basis, the algorithm that perl uses to
+find inherited methods in case of a multiple inheritance hierarchy. The
+default MRO hasn&#39;t changed (DFS, for Depth First Search). Another MRO is
+available: the C3 algorithm. See L&lt;mro&gt; for more information.
+(Brandon Black)
+
+Note that, due to changes in the implementation of class hierarchy search,
+code that used to undef the C&lt;*ISA&gt; glob will most probably break. Anyway,
+undef&#39;ing C&lt;*ISA&gt; had the side-effect of removing the magic on the @ISA
+array and should not have been done in the first place. Also, the
+cache C&lt;*::ISA::CACHE::&gt; no longer exists; to force reset the @ISA cache,
+you now need to use the C&lt;mro&gt; API, or more simply to assign to @ISA
+(e.g. with C&lt;@ISA = @ISA&gt;).
+
+=head2 readdir() may return a &quot;short filename&quot; on Windows
+
+The readdir() function may return a &quot;short filename&quot; when the long
+filename contains characters outside the ANSI codepage.  Similarly
+Cwd::cwd() may return a short directory name, and glob() may return short
+names as well.  On the NTFS file system these short names can always be
+represented in the ANSI codepage.  This will not be true for all other file
+system drivers; e.g. the FAT filesystem stores short filenames in the OEM
+codepage, so some files on FAT volumes remain unaccessible through the
+ANSI APIs.
+
+Similarly, $^X, @INC, and $ENV{PATH} are preprocessed at startup to make
+sure all paths are valid in the ANSI codepage (if possible).
+
+The Win32::GetLongPathName() function now returns the UTF-8 encoded
+correct long file name instead of using replacement characters to force
+the name into the ANSI codepage.  The new Win32::GetANSIPathName()
+function can be used to turn a long pathname into a short one only if the
+long one cannot be represented in the ANSI codepage.
+
+Many other functions in the C&lt;Win32&gt; module have been improved to accept
+UTF-8 encoded arguments.  Please see L&lt;Win32&gt; for details.
+
+=head2 readpipe() is now overridable
+
+The built-in function readpipe() is now overridable. Overriding it permits
+also to override its operator counterpart, C&lt;qx//&gt; (a.k.a. C&lt;``&gt;).
+Moreover, it now defaults to C&lt;$_&gt; if no argument is provided. (Rafael
+Garcia-Suarez)
+
+=head2 Default argument for readline()
+
+readline() now defaults to C&lt;*ARGV&gt; if no argument is provided. (Rafael
+Garcia-Suarez)
+
+=head2 state() variables
+
+A new class of variables has been introduced. State variables are similar
+to C&lt;my&gt; variables, but are declared with the C&lt;state&gt; keyword in place of
+C&lt;my&gt;. They&#39;re visible only in their lexical scope, but their value is
+persistent: unlike C&lt;my&gt; variables, they&#39;re not undefined at scope entry,
+but retain their previous value. (Rafael Garcia-Suarez, Nicholas Clark)
+
+To use state variables, one needs to enable them by using
+
+    use feature &#39;state&#39;;
+
+or by using the C&lt;-E&gt; command-line switch in one-liners.
+See L&lt;perlsub/&quot;Persistent Private Variables&quot;&gt;.
+
+=head2 Stacked filetest operators
+
+As a new form of syntactic sugar, it&#39;s now possible to stack up filetest
+operators. You can now write C&lt;-f -w -x $file&gt; in a row to mean
+C&lt;-x $file &amp;&amp; -w _ &amp;&amp; -f _&gt;. See L&lt;perlfunc/-X&gt;.
+
+=head2 UNIVERSAL::DOES()
+
+The C&lt;UNIVERSAL&gt; class has a new method, C&lt;DOES()&gt;. It has been added to
+solve semantic problems with the C&lt;isa()&gt; method. C&lt;isa()&gt; checks for
+inheritance, while C&lt;DOES()&gt; has been designed to be overridden when
+module authors use other types of relations between classes (in addition
+to inheritance). (chromatic)
+
+See L&lt;&lt; UNIVERSAL/&quot;$obj-&gt;DOES( ROLE )&quot; &gt;&gt;.
+
+=head2 Formats
+
+Formats were improved in several ways. A new field, C&lt;^*&gt;, can be used for
+variable-width, one-line-at-a-time text. Null characters are now handled
+correctly in picture lines. Using C&lt;@#&gt; and C&lt;~~&gt; together will now
+produce a compile-time error, as those format fields are incompatible.
+L&lt;perlform&gt; has been improved, and miscellaneous bugs fixed.
+
+=head2 Byte-order modifiers for pack() and unpack()
+
+There are two new byte-order modifiers, C&lt;E&lt;gt&gt;&gt; (big-endian) and C&lt;E&lt;lt&gt;&gt;
+(little-endian), that can be appended to most pack() and unpack() template
+characters and groups to force a certain byte-order for that type or group.
+See L&lt;perlfunc/pack&gt; and L&lt;perlpacktut&gt; for details.
+
+=head2 C&lt;no VERSION&gt;
+
+You can now use C&lt;no&gt; followed by a version number to specify that you
+want to use a version of perl older than the specified one.
+
+=head2 C&lt;chdir&gt;, C&lt;chmod&gt; and C&lt;chown&gt; on filehandles
+
+C&lt;chdir&gt;, C&lt;chmod&gt; and C&lt;chown&gt; can now work on filehandles as well as
+filenames, if the system supports respectively C&lt;fchdir&gt;, C&lt;fchmod&gt; and
+C&lt;fchown&gt;, thanks to a patch provided by Gisle Aas.
+
+=head2 OS groups
+
+C&lt;$(&gt; and C&lt;$)&gt; now return groups in the order where the OS returns them,
+thanks to Gisle Aas. This wasn&#39;t previously the case.
+
+=head2 Recursive sort subs
+
+You can now use recursive subroutines with sort(), thanks to Robin Houston.
+
+=head2 Exceptions in constant folding
+
+The constant folding routine is now wrapped in an exception handler, and
+if folding throws an exception (such as attempting to evaluate 0/0), perl
+now retains the current optree, rather than aborting the whole program.
+Without this change, programs would not compile if they had expressions that
+happened to generate exceptions, even though those expressions were in code
+that could never be reached at runtime. (Nicholas Clark, Dave Mitchell)
+
+=head2 Source filters in @INC
+
+It&#39;s possible to enhance the mechanism of subroutine hooks in @INC by
+adding a source filter on top of the filehandle opened and returned by the
+hook. This feature was planned a long time ago, but wasn&#39;t quite working
+until now. See L&lt;perlfunc/require&gt; for details. (Nicholas Clark)
+
+=head2 New internal variables
+
+=over 4
+
+=item C&lt;${^RE_DEBUG_FLAGS}&gt;
+
+This variable controls what debug flags are in effect for the regular
+expression engine when running under C&lt;use re &quot;debug&quot;&gt;. See L&lt;re&gt; for
+details.
+
+=item C&lt;${^CHILD_ERROR_NATIVE}&gt;
+
+This variable gives the native status returned by the last pipe close,
+backtick command, successful call to wait() or waitpid(), or from the
+system() operator. See L&lt;perlvar&gt; for details. (Contributed by Gisle Aas.)
+
+=item C&lt;${^RE_TRIE_MAXBUF}&gt;
+
+See L&lt;/&quot;Trie optimisation of literal string alternations&quot;&gt;.
+
+=item C&lt;${^WIN32_SLOPPY_STAT}&gt;
+
+See L&lt;/&quot;Sloppy stat on Windows&quot;&gt;.
+
+=back
+
+=head2 Miscellaneous
+
+C&lt;unpack()&gt; now defaults to unpacking the C&lt;$_&gt; variable.
+
+C&lt;mkdir()&gt; without arguments now defaults to C&lt;$_&gt;.
+
+The internal dump output has been improved, so that non-printable characters
+such as newline and backspace are output in C&lt;\x&gt; notation, rather than
+octal.
+
+The B&lt;-C&gt; option can no longer be used on the C&lt;#!&gt; line. It wasn&#39;t
+working there anyway, since the standard streams are already set up
+at this point in the execution of the perl interpreter. You can use
+binmode() instead to get the desired behaviour.
+
+=head2 UCD 5.0.0
+
+The copy of the Unicode Character Database included in Perl 5 has
+been updated to version 5.0.0.
+
+=head2 MAD
+
+MAD, which stands for I&lt;Miscellaneous Attribute Decoration&gt;, is a
+still-in-development work leading to a Perl 5 to Perl 6 converter. To
+enable it, it&#39;s necessary to pass the argument C&lt;-Dmad&gt; to Configure. The
+obtained perl isn&#39;t binary compatible with a regular perl 5.10, and has
+space and speed penalties; moreover not all regression tests still pass
+with it. (Larry Wall, Nicholas Clark)
+
+=head2 kill() on Windows
+
+On Windows platforms, C&lt;kill(-9, $pid)&gt; now kills a process tree.
+(On Unix, this delivers the signal to all processes in the same process
+group.)
+
+=head1 Incompatible Changes
+
+=head2 Packing and UTF-8 strings
+
+The semantics of pack() and unpack() regarding UTF-8-encoded data has been
+changed. Processing is now by default character per character instead of
+byte per byte on the underlying encoding. Notably, code that used things
+like C&lt;pack(&quot;a*&quot;, $string)&gt; to see through the encoding of string will now
+simply get back the original $string. Packed strings can also get upgraded
+during processing when you store upgraded characters. You can get the old
+behaviour by using C&lt;use bytes&gt;.
+
+To be consistent with pack(), the C&lt;C0&gt; in unpack() templates indicates
+that the data is to be processed in character mode, i.e. character by
+character; on the contrary, C&lt;U0&gt; in unpack() indicates UTF-8 mode, where
+the packed string is processed in its UTF-8-encoded Unicode form on a byte
+by byte basis. This is reversed with regard to perl 5.8.X, but now consistent
+between pack() and unpack().
+
+Moreover, C&lt;C0&gt; and C&lt;U0&gt; can also be used in pack() templates to specify
+respectively character and byte modes.
+
+C&lt;C0&gt; and C&lt;U0&gt; in the middle of a pack or unpack format now switch to the
+specified encoding mode, honoring parens grouping. Previously, parens were
+ignored.
+
+Also, there is a new pack() character format, C&lt;W&gt;, which is intended to
+replace the old C&lt;C&gt;. C&lt;C&gt; is kept for unsigned chars coded as bytes in
+the strings internal representation. C&lt;W&gt; represents unsigned (logical)
+character values, which can be greater than 255. It is therefore more
+robust when dealing with potentially UTF-8-encoded data (as C&lt;C&gt; will wrap
+values outside the range 0..255, and not respect the string encoding).
+
+In practice, that means that pack formats are now encoding-neutral, except
+C&lt;C&gt;.
+
+For consistency, C&lt;A&gt; in unpack() format now trims all Unicode whitespace
+from the end of the string. Before perl 5.9.2, it used to strip only the
+classical ASCII space characters.
+
+=head2 Byte/character count feature in unpack()
+
+A new unpack() template character, C&lt;&quot;.&quot;&gt;, returns the number of bytes or
+characters (depending on the selected encoding mode, see above) read so far.
+
+=head2 The C&lt;$*&gt; and C&lt;$#&gt; variables have been removed
+
+C&lt;$*&gt;, which was deprecated in favor of the C&lt;/s&gt; and C&lt;/m&gt; regexp
+modifiers, has been removed.
+
+The deprecated C&lt;$#&gt; variable (output format for numbers) has been
+removed.
+
+Two new severe warnings, C&lt;$#/$* is no longer supported&gt;, have been added.
+
+=head2 substr() lvalues are no longer fixed-length
+
+The lvalues returned by the three argument form of substr() used to be a
+&quot;fixed length window&quot; on the original string. In some cases this could
+cause surprising action at distance or other undefined behaviour. Now the
+length of the window adjusts itself to the length of the string assigned to
+it.
+
+=head2 Parsing of C&lt;-f _&gt;
+
+The identifier C&lt;_&gt; is now forced to be a bareword after a filetest
+operator. This solves a number of misparsing issues when a global C&lt;_&gt;
+subroutine is defined.
+
+=head2 C&lt;:unique&gt;
+
+The C&lt;:unique&gt; attribute has been made a no-op, since its current
+implementation was fundamentally flawed and not threadsafe.
+
+=head2 Effect of pragmas in eval
+
+The compile-time value of the C&lt;%^H&gt; hint variable can now propagate into
+eval(&quot;&quot;)uated code. This makes it more useful to implement lexical
+pragmas.
+
+As a side-effect of this, the overloaded-ness of constants now propagates
+into eval(&quot;&quot;).
+
+=head2 chdir FOO
+
+A bareword argument to chdir() is now recognized as a file handle.
+Earlier releases interpreted the bareword as a directory name.
+(Gisle Aas)
+
+=head2 Handling of .pmc files
+
+An old feature of perl was that before C&lt;require&gt; or C&lt;use&gt; look for a
+file with a F&lt;.pm&gt; extension, they will first look for a similar filename
+with a F&lt;.pmc&gt; extension. If this file is found, it will be loaded in
+place of any potentially existing file ending in a F&lt;.pm&gt; extension.
+
+Previously, F&lt;.pmc&gt; files were loaded only if more recent than the
+matching F&lt;.pm&gt; file. Starting with 5.9.4, they&#39;ll be always loaded if
+they exist.
+
+=head2 $^V is now a C&lt;version&gt; object instead of a v-string
+
+$^V can still be used with the C&lt;%vd&gt; format in printf, but any
+character-level operations will now access the string representation
+of the C&lt;version&gt; object and not the ordinals of a v-string.
+Expressions like C&lt;&lt; substr($^V, 0, 2) &gt;&gt; or C&lt;&lt; split //, $^V &gt;&gt;
+no longer work and must be rewritten.
+
+=head2 @- and @+ in patterns
+
+The special arrays C&lt;@-&gt; and C&lt;@+&gt; are no longer interpolated in regular
+expressions. (Sadahiro Tomoyuki)
+
+=head2 $AUTOLOAD can now be tainted
+
+If you call a subroutine by a tainted name, and if it defers to an
+AUTOLOAD function, then $AUTOLOAD will be (correctly) tainted.
+(Rick Delaney)
+
+=head2 Tainting and printf
+
+When perl is run under taint mode, C&lt;printf()&gt; and C&lt;sprintf()&gt; will now
+reject any tainted format argument. (Rafael Garcia-Suarez)
+
+=head2 undef and signal handlers
+
+Undefining or deleting a signal handler via C&lt;undef $SIG{FOO}&gt; is now
+equivalent to setting it to C&lt;&#39;DEFAULT&#39;&gt;. (Rafael Garcia-Suarez)
+
+=head2 strictures and dereferencing in defined()
+
+C&lt;use strict &#39;refs&#39;&gt; was ignoring taking a hard reference in an argument
+to defined(), as in :
+
+    use strict &#39;refs&#39;;
+    my $x = &#39;foo&#39;;
+    if (defined $$x) {...}
+
+This now correctly produces the run-time error C&lt;Can&#39;t use string as a
+SCALAR ref while &quot;strict refs&quot; in use&gt;.
+
+C&lt;defined @$foo&gt; and C&lt;defined %$bar&gt; are now also subject to C&lt;strict
+&#39;refs&#39;&gt; (that is, C&lt;$foo&gt; and C&lt;$bar&gt; shall be proper references there.)
+(C&lt;defined(@foo)&gt; and C&lt;defined(%bar)&gt; are discouraged constructs anyway.)
+(Nicholas Clark)
+
+=head2 C&lt;(?p{})&gt; has been removed
+
+The regular expression construct C&lt;(?p{})&gt;, which was deprecated in perl
+5.8, has been removed. Use C&lt;(??{})&gt; instead. (Rafael Garcia-Suarez)
+
+=head2 Pseudo-hashes have been removed
+
+Support for pseudo-hashes has been removed from Perl 5.9. (The C&lt;fields&gt;
+pragma remains here, but uses an alternate implementation.)
+
+=head2 Removal of the bytecode compiler and of perlcc
+
+C&lt;perlcc&gt;, the byteloader and the supporting modules (B::C, B::CC,
+B::Bytecode, etc.) are no longer distributed with the perl sources. Those
+experimental tools have never worked reliably, and, due to the lack of
+volunteers to keep them in line with the perl interpreter developments, it
+was decided to remove them instead of shipping a broken version of those.
+The last version of those modules can be found with perl 5.9.4.
+
+However the B compiler framework stays supported in the perl core, as with
+the more useful modules it has permitted (among others, B::Deparse and
+B::Concise).
+
+=head2 Removal of the JPL
+
+The JPL (Java-Perl Lingo) has been removed from the perl sources tarball.
+
+=head2 Recursive inheritance detected earlier
+
+Perl will now immediately throw an exception if you modify any package&#39;s
+C&lt;@ISA&gt; in such a way that it would cause recursive inheritance.
+
+Previously, the exception would not occur until Perl attempted to make
+use of the recursive inheritance while resolving a method or doing a
+C&lt;$foo-E&lt;gt&gt;isa($bar)&gt; lookup.
+
+=head2 warnings::enabled and warnings::warnif changed to favor users of modules
+
+The behaviour in 5.10.x favors the person using the module;
+The behaviour in 5.8.x favors the module writer;
+
+Assume the following code:
+
+  main calls Foo::Bar::baz()
+  Foo::Bar inherits from Foo::Base
+  Foo::Bar::baz() calls Foo::Base::_bazbaz()
+  Foo::Base::_bazbaz() calls: warnings::warnif(&#39;substr&#39;, &#39;some warning 
+message&#39;);
+
+On 5.8.x, the code warns when Foo::Bar contains C&lt;use warnings;&gt;
+It does not matter if Foo::Base or main have warnings enabled
+to disable the warning one has to modify Foo::Bar.
+
+On 5.10.0 and newer, the code warns when main contains C&lt;use warnings;&gt;
+It does not matter if Foo::Base or Foo::Bar have warnings enabled
+to disable the warning one has to modify main.
+
+=head1 Modules and Pragmata
+
+=head2 Upgrading individual core modules
+
+Even more core modules are now also available separately through the
+CPAN.  If you wish to update one of these modules, you don&#39;t need to
+wait for a new perl release.  From within the cpan shell, running the
+&#39;r&#39; command will report on modules with upgrades available.  See
+C&lt;perldoc CPAN&gt; for more information.
+
+=head2 Pragmata Changes
+
+=over 4
+
+=item C&lt;feature&gt;
+
+The new pragma C&lt;feature&gt; is used to enable new features that might break
+old code. See L&lt;/&quot;The C&lt;feature&gt; pragma&quot;&gt; above.
+
+=item C&lt;mro&gt;
+
+This new pragma enables to change the algorithm used to resolve inherited
+methods. See L&lt;/&quot;New Pragma, C&lt;mro&gt;&quot;&gt; above.
+
+=item Scoping of the C&lt;sort&gt; pragma
+
+The C&lt;sort&gt; pragma is now lexically scoped. Its effect used to be global.
+
+=item Scoping of C&lt;bignum&gt;, C&lt;bigint&gt;, C&lt;bigrat&gt;
+
+The three numeric pragmas C&lt;bignum&gt;, C&lt;bigint&gt; and C&lt;bigrat&gt; are now
+lexically scoped. (Tels)
+
+=item C&lt;base&gt;
+
+The C&lt;base&gt; pragma now warns if a class tries to inherit from itself.
+(Curtis &quot;Ovid&quot; Poe)
+
+=item C&lt;strict&gt; and C&lt;warnings&gt;
+
+C&lt;strict&gt; and C&lt;warnings&gt; will now complain loudly if they are loaded via
+incorrect casing (as in C&lt;use Strict;&gt;). (Johan Vromans)
+
+=item C&lt;version&gt;
+
+The C&lt;version&gt; module provides support for version objects.
+
+=item C&lt;warnings&gt;
+
+The C&lt;warnings&gt; pragma doesn&#39;t load C&lt;Carp&gt; anymore. That means that code
+that used C&lt;Carp&gt; routines without having loaded it at compile time might
+need to be adjusted; typically, the following (faulty) code won&#39;t work
+anymore, and will require parentheses to be added after the function name:
+
+    use warnings;
+    require Carp;
+    Carp::confess &#39;argh&#39;;
+
+=item C&lt;less&gt;
+
+C&lt;less&gt; now does something useful (or at least it tries to). In fact, it
+has been turned into a lexical pragma. So, in your modules, you can now
+test whether your users have requested to use less CPU, or less memory,
+less magic, or maybe even less fat. See L&lt;less&gt; for more. (Joshua ben
+Jore)
+
+=back
+
+=head2 New modules
+
+=over 4
+
+=item *
+
+C&lt;encoding::warnings&gt;, by Audrey Tang, is a module to emit warnings
+whenever an ASCII character string containing high-bit bytes is implicitly
+converted into UTF-8. It&#39;s a lexical pragma since Perl 5.9.4; on older
+perls, its effect is global.
+
+=item *
+
+C&lt;Module::CoreList&gt;, by Richard Clamp, is a small handy module that tells
+you what versions of core modules ship with any versions of Perl 5. It
+comes with a command-line frontend, C&lt;corelist&gt;.
+
+=item *
+
+C&lt;Math::BigInt::FastCalc&gt; is an XS-enabled, and thus faster, version of
+C&lt;Math::BigInt::Calc&gt;.
+
+=item *
+
+C&lt;Compress::Zlib&gt; is an interface to the zlib compression library. It
+comes with a bundled version of zlib, so having a working zlib is not a
+prerequisite to install it. It&#39;s used by C&lt;Archive::Tar&gt; (see below).
+
+=item *
+
+C&lt;IO::Zlib&gt; is an C&lt;IO::&gt;-style interface to C&lt;Compress::Zlib&gt;.
+
+=item *
+
+C&lt;Archive::Tar&gt; is a module to manipulate C&lt;tar&gt; archives.
+
+=item *
+
+C&lt;Digest::SHA&gt; is a module used to calculate many types of SHA digests,
+has been included for SHA support in the CPAN module.
+
+=item *
+
+C&lt;ExtUtils::CBuilder&gt; and C&lt;ExtUtils::ParseXS&gt; have been added.
+
+=item *
+
+C&lt;Hash::Util::FieldHash&gt;, by Anno Siegel, has been added. This module
+provides support for I&lt;field hashes&gt;: hashes that maintain an association
+of a reference with a value, in a thread-safe garbage-collected way.
+Such hashes are useful to implement inside-out objects.
+
+=item *
+
+C&lt;Module::Build&gt;, by Ken Williams, has been added. It&#39;s an alternative to
+C&lt;ExtUtils::MakeMaker&gt; to build and install perl modules.
+
+=item *
+
+C&lt;Module::Load&gt;, by Jos Boumans, has been added. It provides a single
+interface to load Perl modules and F&lt;.pl&gt; files.
+
+=item *
+
+C&lt;Module::Loaded&gt;, by Jos Boumans, has been added. It&#39;s used to mark
+modules as loaded or unloaded.
+
+=item *
+
+C&lt;Package::Constants&gt;, by Jos Boumans, has been added. It&#39;s a simple
+helper to list all constants declared in a given package.
+
+=item *
+
+C&lt;Win32API::File&gt;, by Tye McQueen, has been added (for Windows builds).
+This module provides low-level access to Win32 system API calls for
+files/dirs.
+
+=item *
+
+C&lt;Locale::Maketext::Simple&gt;, needed by CPANPLUS, is a simple wrapper around
+C&lt;Locale::Maketext::Lexicon&gt;. Note that C&lt;Locale::Maketext::Lexicon&gt; isn&#39;t
+included in the perl core; the behaviour of C&lt;Locale::Maketext::Simple&gt;
+gracefully degrades when the later isn&#39;t present.
+
+=item *
+
+C&lt;Params::Check&gt; implements a generic input parsing/checking mechanism. It
+is used by CPANPLUS.
+
+=item *
+
+C&lt;Term::UI&gt; simplifies the task to ask questions at a terminal prompt.
+
+=item *
+
+C&lt;Object::Accessor&gt; provides an interface to create per-object accessors.
+
+=item *
+
+C&lt;Module::Pluggable&gt; is a simple framework to create modules that accept
+pluggable sub-modules.
+
+=item *
+
+C&lt;Module::Load::Conditional&gt; provides simple ways to query and possibly
+load installed modules.
+
+=item *
+
+C&lt;Time::Piece&gt; provides an object oriented interface to time functions,
+overriding the built-ins localtime() and gmtime().
+
+=item *
+
+C&lt;IPC::Cmd&gt; helps to find and run external commands, possibly
+interactively.
+
+=item *
+
+C&lt;File::Fetch&gt; provide a simple generic file fetching mechanism.
+
+=item *
+
+C&lt;Log::Message&gt; and C&lt;Log::Message::Simple&gt; are used by the log facility
+of C&lt;CPANPLUS&gt;.
+
+=item *
+
+C&lt;Archive::Extract&gt; is a generic archive extraction mechanism
+for F&lt;.tar&gt; (plain, gzipped or bzipped) or F&lt;.zip&gt; files.
+
+=item *
+
+C&lt;CPANPLUS&gt; provides an API and a command-line tool to access the CPAN
+mirrors.
+
+=item *
+
+C&lt;Pod::Escapes&gt; provides utilities that are useful in decoding Pod
+EE&lt;lt&gt;...E&lt;gt&gt; sequences.
+
+=item *
+
+C&lt;Pod::Simple&gt; is now the backend for several of the Pod-related modules
+included with Perl.
+
+=back
+
+=head2 Selected Changes to Core Modules
+
+=over 4
+
+=item C&lt;Attribute::Handlers&gt;
+
+C&lt;Attribute::Handlers&gt; can now report the caller&#39;s file and line number.
+(David Feldman)
+
+All interpreted attributes are now passed as array references. (Damian
+Conway)
+
+=item C&lt;B::Lint&gt;
+
+C&lt;B::Lint&gt; is now based on C&lt;Module::Pluggable&gt;, and so can be extended
+with plugins. (Joshua ben Jore)
+
+=item C&lt;B&gt;
+
+It&#39;s now possible to access the lexical pragma hints (C&lt;%^H&gt;) by using the
+method B::COP::hints_hash(). It returns a C&lt;B::RHE&gt; object, which in turn
+can be used to get a hash reference via the method B::RHE::HASH(). (Joshua
+ben Jore)
+
+=item C&lt;Thread&gt;
+
+As the old 5005thread threading model has been removed, in favor of the
+ithreads scheme, the C&lt;Thread&gt; module is now a compatibility wrapper, to
+be used in old code only. It has been removed from the default list of
+dynamic extensions.
+
+=back
+
+=head1 Utility Changes
+
+=over 4
+
+=item perl -d
+
+The Perl debugger can now save all debugger commands for sourcing later;
+notably, it can now emulate stepping backwards, by restarting and
+rerunning all bar the last command from a saved command history.
+
+It can also display the parent inheritance tree of a given class, with the
+C&lt;i&gt; command.
+
+=item ptar
+
+C&lt;ptar&gt; is a pure perl implementation of C&lt;tar&gt; that comes with
+C&lt;Archive::Tar&gt;.
+
+=item ptardiff
+
+C&lt;ptardiff&gt; is a small utility used to generate a diff between the contents
+of a tar archive and a directory tree. Like C&lt;ptar&gt;, it comes with
+C&lt;Archive::Tar&gt;.
+
+=item shasum
+
+C&lt;shasum&gt; is a command-line utility, used to print or to check SHA
+digests. It comes with the new C&lt;Digest::SHA&gt; module.
+
+=item corelist
+
+The C&lt;corelist&gt; utility is now installed with perl (see L&lt;/&quot;New modules&quot;&gt;
+above).
+
+=item h2ph and h2xs
+
+C&lt;h2ph&gt; and C&lt;h2xs&gt; have been made more robust with regard to
+&quot;modern&quot; C code.
+
+C&lt;h2xs&gt; implements a new option C&lt;--use-xsloader&gt; to force use of
+C&lt;XSLoader&gt; even in backwards compatible modules.
+
+The handling of authors&#39; names that had apostrophes has been fixed.
+
+Any enums with negative values are now skipped.
+
+=item perlivp
+
+C&lt;perlivp&gt; no longer checks for F&lt;*.ph&gt; files by default.  Use the new C&lt;-a&gt;
+option to run I&lt;all&gt; tests.
+
+=item find2perl
+
+C&lt;find2perl&gt; now assumes C&lt;-print&gt; as a default action. Previously, it
+needed to be specified explicitly.
+
+Several bugs have been fixed in C&lt;find2perl&gt;, regarding C&lt;-exec&gt; and
+C&lt;-eval&gt;. Also the options C&lt;-path&gt;, C&lt;-ipath&gt; and C&lt;-iname&gt; have been
+added.
+
+=item config_data
+
+C&lt;config_data&gt; is a new utility that comes with C&lt;Module::Build&gt;. It
+provides a command-line interface to the configuration of Perl modules
+that use Module::Build&#39;s framework of configurability (that is,
+C&lt;*::ConfigData&gt; modules that contain local configuration information for
+their parent modules.)
+
+=item cpanp
+
+C&lt;cpanp&gt;, the CPANPLUS shell, has been added. (C&lt;cpanp-run-perl&gt;, a
+helper for CPANPLUS operation, has been added too, but isn&#39;t intended for
+direct use).
+
+=item cpan2dist
+
+C&lt;cpan2dist&gt; is a new utility that comes with CPANPLUS. It&#39;s a tool to
+create distributions (or packages) from CPAN modules.
+
+=item pod2html
+
+The output of C&lt;pod2html&gt; has been enhanced to be more customizable via
+CSS. Some formatting problems were also corrected. (Jari Aalto)
+
+=back
+
+=head1 New Documentation
+
+The L&lt;perlpragma&gt; manpage documents how to write one&#39;s own lexical
+pragmas in pure Perl (something that is possible starting with 5.9.4).
+
+The new L&lt;perlglossary&gt; manpage is a glossary of terms used in the Perl
+documentation, technical and otherwise, kindly provided by O&#39;Reilly Media,
+Inc.
+
+The L&lt;perlreguts&gt; manpage, courtesy of Yves Orton, describes internals of the
+Perl regular expression engine.
+
+The L&lt;perlreapi&gt; manpage describes the interface to the perl interpreter
+used to write pluggable regular expression engines (by Ãvar ArnfjÃ¶rÃ°
+Bjarmason).
+
+The L&lt;perlunitut&gt; manpage is an tutorial for programming with Unicode and
+string encodings in Perl, courtesy of Juerd Waalboer.
+
+A new manual page, L&lt;perlunifaq&gt; (the Perl Unicode FAQ), has been added
+(Juerd Waalboer).
+
+The L&lt;perlcommunity&gt; manpage gives a description of the Perl community
+on the Internet and in real life. (Edgar &quot;Trizor&quot; Bering)
+
+The L&lt;CORE&gt; manual page documents the C&lt;CORE::&gt; namespace. (Tels)
+
+The long-existing feature of C&lt;/(?{...})/&gt; regexps setting C&lt;$_&gt; and pos()
+is now documented.
+
+=head1 Performance Enhancements
+
+=head2 In-place sorting
+
+Sorting arrays in place (C&lt;@a = sort @a&gt;) is now optimized to avoid
+making a temporary copy of the array.
+
+Likewise, C&lt;reverse sort ...&gt; is now optimized to sort in reverse,
+avoiding the generation of a temporary intermediate list.
+
+=head2 Lexical array access
+
+Access to elements of lexical arrays via a numeric constant between 0 and
+255 is now faster. (This used to be only the case for global arrays.)
+
+=head2 XS-assisted SWASHGET
+
+Some pure-perl code that perl was using to retrieve Unicode properties and
+transliteration mappings has been reimplemented in XS.
+
+=head2 Constant subroutines
+
+The interpreter internals now support a far more memory efficient form of
+inlineable constants. Storing a reference to a constant value in a symbol
+table is equivalent to a full typeglob referencing a constant subroutine,
+but using about 400 bytes less memory. This proxy constant subroutine is
+automatically upgraded to a real typeglob with subroutine if necessary.
+The approach taken is analogous to the existing space optimisation for
+subroutine stub declarations, which are stored as plain scalars in place
+of the full typeglob.
+
+Several of the core modules have been converted to use this feature for
+their system dependent constants - as a result C&lt;use POSIX;&gt; now takes about
+200K less memory.
+
+=head2 C&lt;PERL_DONT_CREATE_GVSV&gt;
+
+The new compilation flag C&lt;PERL_DONT_CREATE_GVSV&gt;, introduced as an option
+in perl 5.8.8, is turned on by default in perl 5.9.3. It prevents perl
+from creating an empty scalar with every new typeglob. See L&lt;perl589delta&gt;
+for details.
+
+=head2 Weak references are cheaper
+
+Weak reference creation is now I&lt;O(1)&gt; rather than I&lt;O(n)&gt;, courtesy of
+Nicholas Clark. Weak reference deletion remains I&lt;O(n)&gt;, but if deletion only
+happens at program exit, it may be skipped completely.
+
+=head2 sort() enhancements
+
+Salvador FandiÃ±o provided improvements to reduce the memory usage of C&lt;sort&gt;
+and to speed up some cases.
+
+=head2 Memory optimisations
+
+Several internal data structures (typeglobs, GVs, CVs, formats) have been
+restructured to use less memory. (Nicholas Clark)
+
+=head2 UTF-8 cache optimisation
+
+The UTF-8 caching code is now more efficient, and used more often.
+(Nicholas Clark)
+
+=head2 Sloppy stat on Windows
+
+On Windows, perl&#39;s stat() function normally opens the file to determine
+the link count and update attributes that may have been changed through
+hard links. Setting ${^WIN32_SLOPPY_STAT} to a true value speeds up
+stat() by not performing this operation. (Jan Dubois)
+
+=head2 Regular expressions optimisations
+
+=over 4
+
+=item Engine de-recursivised
+
+The regular expression engine is no longer recursive, meaning that
+patterns that used to overflow the stack will either die with useful
+explanations, or run to completion, which, since they were able to blow
+the stack before, will likely take a very long time to happen. If you were
+experiencing the occasional stack overflow (or segfault) and upgrade to
+discover that now perl apparently hangs instead, look for a degenerate
+regex. (Dave Mitchell)
+
+=item Single char char-classes treated as literals
+
+Classes of a single character are now treated the same as if the character
+had been used as a literal, meaning that code that uses char-classes as an
+escaping mechanism will see a speedup. (Yves Orton)
+
+=item Trie optimisation of literal string alternations
+
+Alternations, where possible, are optimised into more efficient matching
+structures. String literal alternations are merged into a trie and are
+matched simultaneously.  This means that instead of O(N) time for matching
+N alternations at a given point, the new code performs in O(1) time.
+A new special variable, ${^RE_TRIE_MAXBUF}, has been added to fine-tune
+this optimization. (Yves Orton)
+
+B&lt;Note:&gt; Much code exists that works around perl&#39;s historic poor
+performance on alternations. Often the tricks used to do so will disable
+the new optimisations. Hopefully the utility modules used for this purpose
+will be educated about these new optimisations.
+
+=item Aho-Corasick start-point optimisation
+
+When a pattern starts with a trie-able alternation and there aren&#39;t
+better optimisations available, the regex engine will use Aho-Corasick
+matching to find the start point. (Yves Orton)
+
+=back
+
+=head1 Installation and Configuration Improvements
+
+=head2 Configuration improvements
+
+=over 4
+
+=item C&lt;-Dusesitecustomize&gt;
+
+Run-time customization of @INC can be enabled by passing the
+C&lt;-Dusesitecustomize&gt; flag to Configure. When enabled, this will make perl
+run F&lt;$sitelibexp/sitecustomize.pl&gt; before anything else.  This script can
+then be set up to add additional entries to @INC.
+
+=item Relocatable installations
+
+There is now Configure support for creating a relocatable perl tree. If
+you Configure with C&lt;-Duserelocatableinc&gt;, then the paths in @INC (and
+everything else in %Config) can be optionally located via the path of the
+perl executable.
+
+That means that, if the string C&lt;&quot;.../&quot;&gt; is found at the start of any
+path, it&#39;s substituted with the directory of $^X. So, the relocation can
+be configured on a per-directory basis, although the default with
+C&lt;-Duserelocatableinc&gt; is that everything is relocated. The initial
+install is done to the original configured prefix.
+
+=item strlcat() and strlcpy()
+
+The configuration process now detects whether strlcat() and strlcpy() are
+available.  When they are not available, perl&#39;s own version is used (from
+Russ Allbery&#39;s public domain implementation).  Various places in the perl
+interpreter now use them. (Steve Peters)
+
+=item C&lt;d_pseudofork&gt; and C&lt;d_printf_format_null&gt;
+
+A new configuration variable, available as C&lt;$Config{d_pseudofork}&gt; in
+the L&lt;Config&gt; module, has been added, to distinguish real fork() support
+from fake pseudofork used on Windows platforms.
+
+A new configuration variable, C&lt;d_printf_format_null&gt;, has been added, 
+to see if printf-like formats are allowed to be NULL.
+
+=item Configure help
+
+C&lt;Configure -h&gt; has been extended with the most commonly used options.
+
+=back
+
+=head2 Compilation improvements
+
+=over 4
+
+=item Parallel build
+
+Parallel makes should work properly now, although there may still be problems
+if C&lt;make test&gt; is instructed to run in parallel.
+
+=item Borland&#39;s compilers support
+
+Building with Borland&#39;s compilers on Win32 should work more smoothly. In
+particular Steve Hay has worked to side step many warnings emitted by their
+compilers and at least one C compiler internal error.
+
+=item Static build on Windows
+
+Perl extensions on Windows now can be statically built into the Perl DLL.
+
+Also, it&#39;s now possible to build a C&lt;perl-static.exe&gt; that doesn&#39;t depend
+on the Perl DLL on Win32. See the Win32 makefiles for details.
+(Vadim Konovalov)
+
+=item ppport.h files
+
+All F&lt;ppport.h&gt; files in the XS modules bundled with perl are now
+autogenerated at build time. (Marcus Holland-Moritz)
+
+=item C++ compatibility
+
+Efforts have been made to make perl and the core XS modules compilable
+with various C++ compilers (although the situation is not perfect with
+some of the compilers on some of the platforms tested.)
+
+=item Support for Microsoft 64-bit compiler
+
+Support for building perl with Microsoft&#39;s 64-bit compiler has been
+improved. (ActiveState)
+
+=item Visual C++
+
+Perl can now be compiled with Microsoft Visual C++ 2005 (and 2008 Beta 2).
+
+=item Win32 builds
+
+All win32 builds (MS-Win, WinCE) have been merged and cleaned up.
+
+=back
+
+=head2 Installation improvements
+
+=over 4
+
+=item Module auxiliary files
+
+README files and changelogs for CPAN modules bundled with perl are no
+longer installed.
+
+=back
+
+=head2 New Or Improved Platforms
+
+Perl has been reported to work on Symbian OS. See L&lt;perlsymbian&gt; for more
+information.
+
+Many improvements have been made towards making Perl work correctly on
+z/OS.
+
+Perl has been reported to work on DragonFlyBSD and MidnightBSD.
+
+Perl has also been reported to work on NexentaOS
+( http://www.gnusolaris.org/ ).
+
+The VMS port has been improved. See L&lt;perlvms&gt;.
+
+Support for Cray XT4 Catamount/Qk has been added. See
+F&lt;hints/catamount.sh&gt; in the source code distribution for more
+information.
+
+Vendor patches have been merged for RedHat and Gentoo.
+
+DynaLoader::dl_unload_file() now works on Windows.
+
+=head1 Selected Bug Fixes
+
+=over 4
+
+=item strictures in regexp-eval blocks
+
+C&lt;strict&gt; wasn&#39;t in effect in regexp-eval blocks (C&lt;/(?{...})/&gt;).
+
+=item Calling CORE::require()
+
+CORE::require() and CORE::do() were always parsed as require() and do()
+when they were overridden. This is now fixed.
+
+=item Subscripts of slices
+
+You can now use a non-arrowed form for chained subscripts after a list
+slice, like in:
+
+    ({foo =&gt; &quot;bar&quot;})[0]{foo}
+
+This used to be a syntax error; a C&lt;&lt; -&gt; &gt;&gt; was required.
+
+=item C&lt;no warnings &#39;category&#39;&gt; works correctly with -w
+
+Previously when running with warnings enabled globally via C&lt;-w&gt;, selective
+disabling of specific warning categories would actually turn off all warnings.
+This is now fixed; now C&lt;no warnings &#39;io&#39;;&gt; will only turn off warnings in the
+C&lt;io&gt; class. Previously it would erroneously turn off all warnings.
+
+=item threads improvements
+
+Several memory leaks in ithreads were closed. Also, ithreads were made
+less memory-intensive.
+
+C&lt;threads&gt; is now a dual-life module, also available on CPAN. It has been
+expanded in many ways. A kill() method is available for thread signalling.
+One can get thread status, or the list of running or joinable threads.
+
+A new C&lt;&lt; threads-&gt;exit() &gt;&gt; method is used to exit from the application
+(this is the default for the main thread) or from the current thread only
+(this is the default for all other threads). On the other hand, the exit()
+built-in now always causes the whole application to terminate. (Jerry
+D. Hedden)
+
+=item chr() and negative values
+
+chr() on a negative value now gives C&lt;\x{FFFD}&gt;, the Unicode replacement
+character, unless when the C&lt;bytes&gt; pragma is in effect, where the low
+eight bits of the value are used.
+
+=item PERL5SHELL and tainting
+
+On Windows, the PERL5SHELL environment variable is now checked for
+taintedness. (Rafael Garcia-Suarez)
+
+=item Using *FILE{IO}
+
+C&lt;stat()&gt; and C&lt;-X&gt; filetests now treat *FILE{IO} filehandles like *FILE
+filehandles. (Steve Peters)
+
+=item Overloading and reblessing
+
+Overloading now works when references are reblessed into another class.
+Internally, this has been implemented by moving the flag for &quot;overloading&quot;
+from the reference to the referent, which logically is where it should
+always have been. (Nicholas Clark)
+
+=item Overloading and UTF-8
+
+A few bugs related to UTF-8 handling with objects that have
+stringification overloaded have been fixed. (Nicholas Clark)
+
+=item eval memory leaks fixed
+
+Traditionally, C&lt;eval &#39;syntax error&#39;&gt; has leaked badly. Many (but not all)
+of these leaks have now been eliminated or reduced. (Dave Mitchell)
+
+=item Random device on Windows
+
+In previous versions, perl would read the file F&lt;/dev/urandom&gt; if it
+existed when seeding its random number generator.  That file is unlikely
+to exist on Windows, and if it did would probably not contain appropriate
+data, so perl no longer tries to read it on Windows. (Alex Davies)
+
+=item PERLIO_DEBUG
+
+The C&lt;PERLIO_DEBUG&gt; environment variable no longer has any effect for
+setuid scripts and for scripts run with B&lt;-T&gt;.
+
+Moreover, with a thread-enabled perl, using C&lt;PERLIO_DEBUG&gt; could lead to
+an internal buffer overflow. This has been fixed.
+
+=item PerlIO::scalar and read-only scalars
+
+PerlIO::scalar will now prevent writing to read-only scalars. Moreover,
+seek() is now supported with PerlIO::scalar-based filehandles, the
+underlying string being zero-filled as needed. (Rafael, Jarkko Hietaniemi)
+
+=item study() and UTF-8
+
+study() never worked for UTF-8 strings, but could lead to false results.
+It&#39;s now a no-op on UTF-8 data. (Yves Orton)
+
+=item Critical signals
+
+The signals SIGILL, SIGBUS and SIGSEGV are now always delivered in an
+&quot;unsafe&quot; manner (contrary to other signals, that are deferred until the
+perl interpreter reaches a reasonably stable state; see
+L&lt;perlipc/&quot;Deferred Signals (Safe Signals)&quot;&gt;). (Rafael)
+
+=item @INC-hook fix
+
+When a module or a file is loaded through an @INC-hook, and when this hook
+has set a filename entry in %INC, __FILE__ is now set for this module
+accordingly to the contents of that %INC entry. (Rafael)
+
+=item C&lt;-t&gt; switch fix
+
+The C&lt;-w&gt; and C&lt;-t&gt; switches can now be used together without messing
+up which categories of warnings are activated. (Rafael)
+
+=item Duping UTF-8 filehandles
+
+Duping a filehandle which has the C&lt;:utf8&gt; PerlIO layer set will now
+properly carry that layer on the duped filehandle. (Rafael)
+
+=item Localisation of hash elements
+
+Localizing a hash element whose key was given as a variable didn&#39;t work
+correctly if the variable was changed while the local() was in effect (as
+in C&lt;local $h{$x}; ++$x&gt;). (Bo Lindbergh)
+
+=back
+
+=head1 New or Changed Diagnostics
+
+=over 4
+
+=item Use of uninitialized value
+
+Perl will now try to tell you the name of the variable (if any) that was
+undefined.
+
+=item Deprecated use of my() in false conditional
+
+A new deprecation warning, I&lt;Deprecated use of my() in false conditional&gt;,
+has been added, to warn against the use of the dubious and deprecated
+construct
+
+    my $x if 0;
+
+See L&lt;perldiag&gt;. Use C&lt;state&gt; variables instead.
+
+=item !=~ should be !~
+
+A new warning, C&lt;!=~ should be !~&gt;, is emitted to prevent this misspelling
+of the non-matching operator.
+
+=item Newline in left-justified string
+
+The warning I&lt;Newline in left-justified string&gt; has been removed.
+
+=item Too late for &quot;-T&quot; option
+
+The error I&lt;Too late for &quot;-T&quot; option&gt; has been reformulated to be more
+descriptive.
+
+=item &quot;%s&quot; variable %s masks earlier declaration
+
+This warning is now emitted in more consistent cases; in short, when one
+of the declarations involved is a C&lt;my&gt; variable:
+
+    my $x;   my $x;	# warns
+    my $x;  our $x;	# warns
+    our $x;  my $x;	# warns
+
+On the other hand, the following:
+
+    our $x; our $x;
+
+now gives a C&lt;&quot;our&quot; variable %s redeclared&gt; warning.
+
+=item readdir()/closedir()/etc. attempted on invalid dirhandle
+
+These new warnings are now emitted when a dirhandle is used but is
+either closed or not really a dirhandle.
+
+=item Opening dirhandle/filehandle %s also as a file/directory
+
+Two deprecation warnings have been added: (Rafael)
+
+    Opening dirhandle %s also as a file
+    Opening filehandle %s also as a directory
+
+=item Use of -P is deprecated
+
+Perl&#39;s command-line switch C&lt;-P&gt; is now deprecated.
+
+=item v-string in use/require is non-portable
+
+Perl will warn you against potential backwards compatibility problems with
+the C&lt;use VERSION&gt; syntax.
+
+=item perl -V
+
+C&lt;perl -V&gt; has several improvements, making it more useable from shell
+scripts to get the value of configuration variables. See L&lt;perlrun&gt; for
+details.
+
+=back
+
+=head1 Changed Internals
+
+In general, the source code of perl has been refactored, tidied up,
+and optimized in many places. Also, memory management and allocation
+has been improved in several points.
+
+When compiling the perl core with gcc, as many gcc warning flags are
+turned on as is possible on the platform.  (This quest for cleanliness
+doesn&#39;t extend to XS code because we cannot guarantee the tidiness of
+code we didn&#39;t write.)  Similar strictness flags have been added or
+tightened for various other C compilers.
+
+=head2 Reordering of SVt_* constants
+
+The relative ordering of constants that define the various types of C&lt;SV&gt;
+have changed; in particular, C&lt;SVt_PVGV&gt; has been moved before C&lt;SVt_PVLV&gt;,
+C&lt;SVt_PVAV&gt;, C&lt;SVt_PVHV&gt; and C&lt;SVt_PVCV&gt;.  This is unlikely to make any
+difference unless you have code that explicitly makes assumptions about that
+ordering. (The inheritance hierarchy of C&lt;B::*&gt; objects has been changed
+to reflect this.)
+
+=head2 Elimination of SVt_PVBM
+
+Related to this, the internal type C&lt;SVt_PVBM&gt; has been removed. This
+dedicated type of C&lt;SV&gt; was used by the C&lt;index&gt; operator and parts of the
+regexp engine to facilitate fast Boyer-Moore matches. Its use internally has
+been replaced by C&lt;SV&gt;s of type C&lt;SVt_PVGV&gt;.
+
+=head2 New type SVt_BIND
+
+A new type C&lt;SVt_BIND&gt; has been added, in readiness for the project to
+implement Perl 6 on 5. There deliberately is no implementation yet, and
+they cannot yet be created or destroyed.
+
+=head2 Removal of CPP symbols
+
+The C preprocessor symbols C&lt;PERL_PM_APIVERSION&gt; and
+C&lt;PERL_XS_APIVERSION&gt;, which were supposed to give the version number of
+the oldest perl binary-compatible (resp. source-compatible) with the
+present one, were not used, and sometimes had misleading values. They have
+been removed.
+
+=head2 Less space is used by ops
+
+The C&lt;BASEOP&gt; structure now uses less space. The C&lt;op_seq&gt; field has been
+removed and replaced by a single bit bit-field C&lt;op_opt&gt;. C&lt;op_type&gt; is now 9
+bits long. (Consequently, the C&lt;B::OP&gt; class doesn&#39;t provide an C&lt;seq&gt;
+method anymore.)
+
+=head2 New parser
+
+perl&#39;s parser is now generated by bison (it used to be generated by
+byacc.) As a result, it seems to be a bit more robust.
+
+Also, Dave Mitchell improved the lexer debugging output under C&lt;-DT&gt;.
+
+=head2 Use of C&lt;const&gt;
+
+Andy Lester supplied many improvements to determine which function
+parameters and local variables could actually be declared C&lt;const&gt; to the C
+compiler. Steve Peters provided new C&lt;*_set&gt; macros and reworked the core to
+use these rather than assigning to macros in LVALUE context.
+
+=head2 Mathoms
+
+A new file, F&lt;mathoms.c&gt;, has been added. It contains functions that are
+no longer used in the perl core, but that remain available for binary or
+source compatibility reasons. However, those functions will not be
+compiled in if you add C&lt;-DNO_MATHOMS&gt; in the compiler flags.
+
+=head2 C&lt;AvFLAGS&gt; has been removed
+
+The C&lt;AvFLAGS&gt; macro has been removed.
+
+=head2 C&lt;av_*&gt; changes
+
+The C&lt;av_*()&gt; functions, used to manipulate arrays, no longer accept null
+C&lt;AV*&gt; parameters.
+
+=head2 $^H and %^H
+
+The implementation of the special variables $^H and %^H has changed, to
+allow implementing lexical pragmas in pure Perl.
+
+=head2 B:: modules inheritance changed
+
+The inheritance hierarchy of C&lt;B::&gt; modules has changed; C&lt;B::NV&gt; now
+inherits from C&lt;B::SV&gt; (it used to inherit from C&lt;B::IV&gt;).
+
+=head2 Anonymous hash and array constructors
+
+The anonymous hash and array constructors now take 1 op in the optree
+instead of 3, now that pp_anonhash and pp_anonlist return a reference to
+an hash/array when the op is flagged with OPf_SPECIAL. (Nicholas Clark)
+
+=head1 Known Problems
+
+There&#39;s still a remaining problem in the implementation of the lexical
+C&lt;$_&gt;: it doesn&#39;t work inside C&lt;/(?{...})/&gt; blocks. (See the TODO test in
+F&lt;t/op/mydef.t&gt;.)
+
+Stacked filetest operators won&#39;t work when the C&lt;filetest&gt; pragma is in
+effect, because they rely on the stat() buffer C&lt;_&gt; being populated, and
+filetest bypasses stat().
+
+=head2 UTF-8 problems
+
+The handling of Unicode still is unclean in several places, where it&#39;s
+dependent on whether a string is internally flagged as UTF-8. This will
+be made more consistent in perl 5.12, but that won&#39;t be possible without
+a certain amount of backwards incompatibility.
+
+=head1 Platform Specific Problems
+
+When compiled with g++ and thread support on Linux, it&#39;s reported that the
+C&lt;$!&gt; stops working correctly. This is related to the fact that the glibc
+provides two strerror_r(3) implementation, and perl selects the wrong
+one.
+
+=head1 Reporting Bugs
+
+If you find what you think is a bug, you might check the articles
+recently posted to the comp.lang.perl.misc newsgroup and the perl
+bug database at http://rt.perl.org/rt3/ .  There may also be
+information at http://www.perl.org/ , the Perl Home Page.
+
+If you believe you have an unreported bug, please run the B&lt;perlbug&gt;
+program included with your release.  Be sure to trim your bug down
+to a tiny but sufficient test case.  Your bug report, along with the
+output of C&lt;perl -V&gt;, will be sent off to perlbug@perl.org to be
+analysed by the Perl porting team.
+
+=head1 SEE ALSO
+
+The F&lt;Changes&gt; file and the perl590delta to perl595delta man pages for
+exhaustive details on what changed.
+
+The F&lt;INSTALL&gt; file for how to build Perl.
+
+The F&lt;README&gt; file for general stuff.
+
+The F&lt;Artistic&gt; and F&lt;Copying&gt; files for copyright information.
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

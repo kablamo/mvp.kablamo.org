@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5241delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5241delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5241delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5241delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5241delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5241delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl5241delta/">perl5241delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl5241delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl5241delta - what is new for perl v5.24.1</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.24.0 release and the 5.24.1 release.</p>
+
+<p>If you are upgrading from an earlier release such as 5.22.0, first read <a href="/perldoc/perl5240delta/">perl5240delta</a>, which describes differences between 5.22.0 and 5.24.0.</p>
+
+<h1 id="Security">Security</h1>
+
+<h2 id="Di-switch-is-now-required-for-PerlIO-debugging-output"><b>-Di</b> switch is now required for PerlIO debugging output</h2>
+
+<p>Previously PerlIO debugging output would be sent to the file specified by the <code>PERLIO_DEBUG</code> environment variable if perl wasn&#39;t running setuid and the <b>-T</b> or <b>-t</b> switches hadn&#39;t been parsed yet.</p>
+
+<p>If perl performed output at a point where it hadn&#39;t yet parsed its switches this could result in perl creating or overwriting the file named by <code>PERLIO_DEBUG</code> even when the <b>-T</b> switch had been supplied.</p>
+
+<p>Perl now requires the <b>-Di</b> switch to produce PerlIO debugging output. By default this is written to <code>stderr</code>, but can optionally be redirected to a file by setting the <code>PERLIO_DEBUG</code> environment variable.</p>
+
+<p>If perl is running setuid or the <b>-T</b> switch was supplied <code>PERLIO_DEBUG</code> is ignored and the debugging output is sent to <code>stderr</code> as for any other <b>-D</b> switch.</p>
+
+<h2 id="Core-modules-and-tools-no-longer-search-.-for-optional-modules">Core modules and tools no longer search <i>&quot;.&quot;</i> for optional modules</h2>
+
+<p>The tools and many modules supplied in core no longer search the default current directory entry in <a href="/perldoc/perlvar/#INC"><code>@INC</code></a> for optional modules. For example, <a href="https://metacpan.org/pod/Storable" rel="external">Storable</a> will remove the final <i>&quot;.&quot;</i> from <code>@INC</code> before trying to load <a href="https://metacpan.org/pod/Log::Agent" rel="external">Log::Agent</a>.</p>
+
+<p>This prevents an attacker injecting an optional module into a process run by another user where the current directory is writable by the attacker, e.g. the <i>/tmp</i> directory.</p>
+
+<p>In most cases this removal should not cause problems, but difficulties were encountered with <a href="https://metacpan.org/pod/base" rel="external">base</a>, which treats every module name supplied as optional. These difficulties have not yet been resolved, so for this release there are no changes to <a href="https://metacpan.org/pod/base" rel="external">base</a>. We hope to have a fix for <a href="https://metacpan.org/pod/base" rel="external">base</a> in Perl 5.24.2.</p>
+
+<p>To protect your own code from this attack, either remove the default <i>&quot;.&quot;</i> entry from <code>@INC</code> at the start of your script, so:</p>
+
+<pre><code>  #!/usr/bin/perl
+  use strict;
+  ...</code></pre>
+
+<p>becomes:</p>
+
+<pre><code>  #!/usr/bin/perl
+  BEGIN { pop @INC if $INC[-1] eq &#39;.&#39; }
+  use strict;
+  ...</code></pre>
+
+<p>or for modules, remove <i>&quot;.&quot;</i> from a localized <code>@INC</code>, so:</p>
+
+<pre><code>  my $can_foo = eval { require Foo; }</code></pre>
+
+<p>becomes:</p>
+
+<pre><code>  my $can_foo = eval {
+      local @INC = @INC;
+      pop @INC if $INC[-1] eq &#39;.&#39;;
+      require Foo;
+  };</code></pre>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>Other than the security changes above there are no changes intentionally incompatible with Perl 5.24.0. If any exist, they are bugs, and we request that you submit a report. See <a href="#Reporting-Bugs">&quot;Reporting Bugs&quot;</a> below.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<h2 id="Updated-Modules-and-Pragmata">Updated Modules and Pragmata</h2>
+
+<ul>
+
+<li><p><a href="https://metacpan.org/pod/Archive::Tar" rel="external">Archive::Tar</a> has been upgraded from version 2.04 to 2.04_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/bignum" rel="external">bignum</a> has been upgraded from version 0.42 to 0.42_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/CPAN" rel="external">CPAN</a> has been upgraded from version 2.11 to 2.11_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Digest" rel="external">Digest</a> has been upgraded from version 1.17 to 1.17_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Digest::SHA" rel="external">Digest::SHA</a> has been upgraded from version 5.95 to 5.95_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Encode" rel="external">Encode</a> has been upgraded from version 2.80 to 2.80_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/ExtUtils::MakeMaker" rel="external">ExtUtils::MakeMaker</a> has been upgraded from version 7.10_01 to 7.10_02.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/File::Fetch" rel="external">File::Fetch</a> has been upgraded from version 0.48 to 0.48_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/File::Spec" rel="external">File::Spec</a> has been upgraded from version 3.63 to 3.63_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/HTTP::Tiny" rel="external">HTTP::Tiny</a> has been upgraded from version 0.056 to 0.056_001.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/IO" rel="external">IO</a> has been upgraded from version 1.36 to 1.36_01.</p>
+
+</li>
+<li><p>The IO-Compress modules have been upgraded from version 2.069 to 2.069_001.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/IPC::Cmd" rel="external">IPC::Cmd</a> has been upgraded from version 0.92 to 0.92_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/JSON::PP" rel="external">JSON::PP</a> has been upgraded from version 2.27300 to 2.27300_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Locale::Maketext" rel="external">Locale::Maketext</a> has been upgraded from version 1.26 to 1.26_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Locale::Maketext::Simple" rel="external">Locale::Maketext::Simple</a> has been upgraded from version 0.21 to 0.21_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Memoize" rel="external">Memoize</a> has been upgraded from version 1.03 to 1.03_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Module::CoreList" rel="external">Module::CoreList</a> has been upgraded from version 5.20160506 to 5.20170114_24.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Net::Ping" rel="external">Net::Ping</a> has been upgraded from version 2.43 to 2.43_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Parse::CPAN::Meta" rel="external">Parse::CPAN::Meta</a> has been upgraded from version 1.4417 to 1.4417_001.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Pod::Html" rel="external">Pod::Html</a> has been upgraded from version 1.22 to 1.2201.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Pod::Perldoc" rel="external">Pod::Perldoc</a> has been upgraded from version 3.25_02 to 3.25_03.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Storable" rel="external">Storable</a> has been upgraded from version 2.56 to 2.56_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Sys::Syslog" rel="external">Sys::Syslog</a> has been upgraded from version 0.33 to 0.33_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Test" rel="external">Test</a> has been upgraded from version 1.28 to 1.28_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Test::Harness" rel="external">Test::Harness</a> has been upgraded from version 3.36 to 3.36_01.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/XSLoader" rel="external">XSLoader</a> has been upgraded from version 0.21 to 0.22, fixing a security hole in which binary files could be loaded from a path outside of <code>@INC</code>. <a href="https://rt.perl.org/Public/Bug/Display.html?id=128528" rel="external">[perl #128528]</a></p>
+
+</li>
+</ul>
+
+<h1 id="Documentation">Documentation</h1>
+
+<h2 id="Changes-to-Existing-Documentation">Changes to Existing Documentation</h2>
+
+<h3 id="perlapio"><a href="/perldoc/perlapio/">perlapio</a></h3>
+
+<ul>
+
+<li><p>The documentation of <code>PERLIO_DEBUG</code> has been updated.</p>
+
+</li>
+</ul>
+
+<h3 id="perlrun"><a href="/perldoc/perlrun/">perlrun</a></h3>
+
+<ul>
+
+<li><p>The new <b>-Di</b> switch has been documented, and the documentation of <code>PERLIO_DEBUG</code> has been updated.</p>
+
+</li>
+</ul>
+
+<h1 id="Testing">Testing</h1>
+
+<ul>
+
+<li><p>A new test script, <i>t/run/switchDx.t</i>, has been added to test that the new <b>-Di</b> switch is working correctly.</p>
+
+</li>
+</ul>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<ul>
+
+<li><p>The change to hashbang redirection introduced in Perl 5.24.0, whereby perl would redirect to another interpreter (Perl 6) if it found a hashbang path which contains &quot;perl&quot; followed by &quot;6&quot;, has been reverted because it broke in cases such as <code>#!/opt/perl64/bin/perl</code>.</p>
+
+</li>
+</ul>
+
+<h1 id="Acknowledgements">Acknowledgements</h1>
+
+<p>Perl 5.24.1 represents approximately 8 months of development since Perl 5.24.0 and contains approximately 8,100 lines of changes across 240 files from 18 authors.</p>
+
+<p>Excluding auto-generated files, documentation and release tools, there were approximately 2,200 lines of changes to 170 .pm, .t, .c and .h files.</p>
+
+<p>Perl continues to flourish into its third decade thanks to a vibrant community of users and developers. The following people are known to have contributed the improvements that became Perl 5.24.1:</p>
+
+<p>Aaron Crane, Alex Vandiver, Aristotle Pagaltzis, Chad Granum, Chris &#39;BinGOs&#39; Williams, Craig A. Berry, Father Chrysostomos, James E Keenan, Jarkko Hietaniemi, Karen Etheridge, Leon Timmermans, Matthew Horsfall, Ricardo Signes, Sawyer X, Sébastien Aperghis-Tramoni, Stevan Little, Steve Hay, Tony Cook.</p>
+
+<p>The list above is almost certainly incomplete as it is automatically generated from version control history. In particular, it does not include the names of the (very much appreciated) contributors who reported issues to the Perl bug tracker.</p>
+
+<p>Many of the changes included in this version originated in the CPAN modules included in Perl&#39;s core. We&#39;re grateful to the entire CPAN community for helping Perl to flourish.</p>
+
+<p>For a more complete list of all of Perl&#39;s historical contributors, please see the <i>AUTHORS</i> file in the Perl source distribution.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the Perl bug database at <a href="https://rt.perl.org/" rel="external">https://rt.perl.org/</a> . There may also be information at <a href="http://www.perl.org/" rel="external">http://www.perl.org/</a> , the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <a href="/perldoc/perlbug/">perlbug</a> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team.</p>
+
+<p>If the bug you are reporting has security implications which make it inappropriate to send to a publicly archived mailing list, then see <a href="/perldoc/perlsec/#SECURITY-VULNERABILITY-CONTACT-INFORMATION">&quot;SECURITY VULNERABILITY CONTACT INFORMATION&quot; in perlsec</a> for details of how to report the issue.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for an explanation of how to view exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

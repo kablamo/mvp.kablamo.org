@@ -1,0 +1,6964 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perllocal - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perllocal/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perllocal/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perllocal/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perllocal/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perllocal/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perllocal/">perllocal</a>
+    </li>
+</ul>
+(<a href="/perldoc/perllocal/source.html">source</a>)
+</div>
+<h2 id="Mon-Nov-27-09:42:01-2017:-Module-App::cpanminus">Mon Nov 27 09:42:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/App::cpanminus" rel="external">App::cpanminus</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.7043</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/cpanm</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:42:04-2017:-Module-Algorithm::Diff">Mon Nov 27 09:42:04 2017: <code>Module</code> <a href="https://metacpan.org/pod/Algorithm::Diff" rel="external">Algorithm::Diff</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.1903</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:42:06-2017:-Module-ExtUtils::Helpers">Mon Nov 27 09:42:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/ExtUtils::Helpers" rel="external">ExtUtils::Helpers</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.026</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:42:07-2017:-Module-ExtUtils::Config">Mon Nov 27 09:42:07 2017: <code>Module</code> <a href="https://metacpan.org/pod/ExtUtils::Config" rel="external">ExtUtils::Config</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:42:27-2017:-Module-ExtUtils::InstallPaths">Mon Nov 27 09:42:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/ExtUtils::InstallPaths" rel="external">ExtUtils::InstallPaths</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.011</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:31-2017:-Module-Test::MockTime">Mon Nov 27 09:43:31 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::MockTime" rel="external">Test::MockTime</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.15</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:33-2017:-Module-Try::Tiny">Mon Nov 27 09:43:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/Try::Tiny" rel="external">Try::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.28</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:36-2017:-Module-Test::Needs">Mon Nov 27 09:43:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Needs" rel="external">Test::Needs</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:38-2017:-Module-URI">Mon Nov 27 09:43:38 2017: <code>Module</code> <a href="https://metacpan.org/pod/URI" rel="external">URI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.72</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:38-2017:-Module-Test::Requires">Mon Nov 27 09:43:38 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Requires" rel="external">Test::Requires</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.10</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:40-2017:-Module-HTTP::Date">Mon Nov 27 09:43:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::Date" rel="external">HTTP::Date</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:40-2017:-Module-LWP::MediaTypes">Mon Nov 27 09:43:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/LWP::MediaTypes" rel="external">LWP::MediaTypes</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:41-2017:-Module-IO::HTML">Mon Nov 27 09:43:41 2017: <code>Module</code> <a href="https://metacpan.org/pod/IO::HTML" rel="external">IO::HTML</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:42-2017:-Module-Encode::Locale">Mon Nov 27 09:43:42 2017: <code>Module</code> <a href="https://metacpan.org/pod/Encode::Locale" rel="external">Encode::Locale</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.05</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:43-2017:-Module-HTTP::Message">Mon Nov 27 09:43:43 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::Message" rel="external">HTTP::Message</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.13</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:47-2017:-Module-Sub::Install">Mon Nov 27 09:43:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Install" rel="external">Sub::Install</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.928</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:49-2017:-Module-Params::Util">Mon Nov 27 09:43:49 2017: <code>Module</code> <a href="https://metacpan.org/pod/Params::Util" rel="external">Params::Util</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.07</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:50-2017:-Module-Data::OptList">Mon Nov 27 09:43:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::OptList" rel="external">Data::OptList</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.110</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:51-2017:-Module-Sub::Exporter">Mon Nov 27 09:43:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Exporter" rel="external">Sub::Exporter</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.987</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:52-2017:-Module-String::RewritePrefix">Mon Nov 27 09:43:52 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::RewritePrefix" rel="external">String::RewritePrefix</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:53-2017:-Module-IO::TieCombine">Mon Nov 27 09:43:53 2017: <code>Module</code> <a href="https://metacpan.org/pod/IO::TieCombine" rel="external">IO::TieCombine</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:56-2017:-Module-Test::Deep">Mon Nov 27 09:43:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Deep" rel="external">Test::Deep</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.127</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:57-2017:-Module-CPAN::Meta::Check">Mon Nov 27 09:43:57 2017: <code>Module</code> <a href="https://metacpan.org/pod/CPAN::Meta::Check" rel="external">CPAN::Meta::Check</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.014</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:43:58-2017:-Module-Test::Warnings">Mon Nov 27 09:43:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Warnings" rel="external">Test::Warnings</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.026</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:02-2017:-Module-Test::Fatal">Mon Nov 27 09:44:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Fatal" rel="external">Test::Fatal</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.014</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:04-2017:-Module-Module::Implementation">Mon Nov 27 09:44:04 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Implementation" rel="external">Module::Implementation</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.09</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:08-2017:-Module-Getopt::Long::Descriptive">Mon Nov 27 09:44:08 2017: <code>Module</code> <a href="https://metacpan.org/pod/Getopt::Long::Descriptive" rel="external">Getopt::Long::Descriptive</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.100</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:28-2017:-Module-Capture::Tiny">Mon Nov 27 09:44:28 2017: <code>Module</code> <a href="https://metacpan.org/pod/Capture::Tiny" rel="external">Capture::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.46</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:31-2017:-Module-Module::Pluggable">Mon Nov 27 09:44:31 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Pluggable" rel="external">Module::Pluggable</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 5.2</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:33-2017:-Module-Dist::CheckConflicts">Mon Nov 27 09:44:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::CheckConflicts" rel="external">Dist::CheckConflicts</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.11</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:35-2017:-Module-Package::Stash::XS">Mon Nov 27 09:44:35 2017: <code>Module</code> <a href="https://metacpan.org/pod/Package::Stash::XS" rel="external">Package::Stash::XS</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.28</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:36-2017:-Module-Package::Stash">Mon Nov 27 09:44:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/Package::Stash" rel="external">Package::Stash</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.37</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/package-stash-conflicts</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:38-2017:-Module-Class::Load">Mon Nov 27 09:44:38 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Load" rel="external">Class::Load</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.24</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:40-2017:-Module-App::Cmd">Mon Nov 27 09:44:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/App::Cmd" rel="external">App::Cmd</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.331</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:42-2017:-Module-App::FatPacker">Mon Nov 27 09:44:42 2017: <code>Module</code> <a href="https://metacpan.org/pod/App::FatPacker" rel="external">App::FatPacker</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.010007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/fatpack</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:47-2017:-Module-Test::LeakTrace">Mon Nov 27 09:44:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::LeakTrace" rel="external">Test::LeakTrace</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.16</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:50-2017:-Module-List::SomeUtils::XS">Mon Nov 27 09:44:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/List::SomeUtils::XS" rel="external">List::SomeUtils::XS</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.55</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:52-2017:-Module-List::SomeUtils">Mon Nov 27 09:44:52 2017: <code>Module</code> <a href="https://metacpan.org/pod/List::SomeUtils" rel="external">List::SomeUtils</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.56</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:54-2017:-Module-List::AllUtils">Mon Nov 27 09:44:54 2017: <code>Module</code> <a href="https://metacpan.org/pod/List::AllUtils" rel="external">List::AllUtils</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.14</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:57-2017:-Module-Class::Method::Modifiers">Mon Nov 27 09:44:57 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Method::Modifiers" rel="external">Class::Method::Modifiers</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.12</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:58-2017:-Module-Sub::Exporter::Progressive">Mon Nov 27 09:44:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Exporter::Progressive" rel="external">Sub::Exporter::Progressive</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.001013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:44:58-2017:-Module-Devel::GlobalDestruction">Mon Nov 27 09:44:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::GlobalDestruction" rel="external">Devel::GlobalDestruction</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.14</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:00-2017:-Module-Sub::Quote">Mon Nov 27 09:45:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Quote" rel="external">Sub::Quote</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.004000</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:01-2017:-Module-Role::Tiny">Mon Nov 27 09:45:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/Role::Tiny" rel="external">Role::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.000006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:05-2017:-Module-Moo">Mon Nov 27 09:45:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/Moo" rel="external">Moo</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.003003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:07-2017:-Module-MooX::Types::MooseLike">Mon Nov 27 09:45:07 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX::Types::MooseLike" rel="external">MooX::Types::MooseLike</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.29</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:09-2017:-Module-Exporter::Tiny">Mon Nov 27 09:45:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/Exporter::Tiny" rel="external">Exporter::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000000</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:20-2017:-Module-List::MoreUtils::XS">Mon Nov 27 09:45:20 2017: <code>Module</code> <a href="https://metacpan.org/pod/List::MoreUtils::XS" rel="external">List::MoreUtils::XS</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.426</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:45:36-2017:-Module-List::MoreUtils">Mon Nov 27 09:45:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/List::MoreUtils" rel="external">List::MoreUtils</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.426</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:18-2017:-Module-Test::SharedFork">Mon Nov 27 09:46:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::SharedFork" rel="external">Test::SharedFork</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.35</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:19-2017:-Module-Sub::Uplevel">Mon Nov 27 09:46:19 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Uplevel" rel="external">Sub::Uplevel</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.2800</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:21-2017:-Module-Test::Warn">Mon Nov 27 09:46:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Warn" rel="external">Test::Warn</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.32</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:23-2017:-Module-Test::Exception">Mon Nov 27 09:46:23 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Exception" rel="external">Test::Exception</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.43</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:27-2017:-Module-Variable::Magic">Mon Nov 27 09:46:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/Variable::Magic" rel="external">Variable::Magic</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.62</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:28-2017:-Module-B::Hooks::EndOfScope">Mon Nov 27 09:46:28 2017: <code>Module</code> <a href="https://metacpan.org/pod/B::Hooks::EndOfScope" rel="external">B::Hooks::EndOfScope</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.21</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:30-2017:-Module-namespace::clean">Mon Nov 27 09:46:30 2017: <code>Module</code> <a href="https://metacpan.org/pod/namespace::clean" rel="external">namespace::clean</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.27</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:31-2017:-Module-Module::Find">Mon Nov 27 09:46:31 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Find" rel="external">Module::Find</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.13</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:42-2017:-Module-Type::Tiny">Mon Nov 27 09:46:42 2017: <code>Module</code> <a href="https://metacpan.org/pod/Type::Tiny" rel="external">Type::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.002001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:44-2017:-Module-Test::NoWarnings">Mon Nov 27 09:46:44 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::NoWarnings" rel="external">Test::NoWarnings</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:45-2017:-Module-Math::Random::ISAAC">Mon Nov 27 09:46:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/Math::Random::ISAAC" rel="external">Math::Random::ISAAC</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:47-2017:-Module-Math::Random::Secure">Mon Nov 27 09:46:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Math::Random::Secure" rel="external">Math::Random::Secure</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.080001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:48-2017:-Module-File::Which">Mon Nov 27 09:46:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Which" rel="external">File::Which</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.22</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:48-2017:-Module-File::HomeDir">Mon Nov 27 09:46:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::HomeDir" rel="external">File::HomeDir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:46:50-2017:-Module-Config::Any">Mon Nov 27 09:46:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::Any" rel="external">Config::Any</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.32</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:24-2017:-Module-Test::TCP">Mon Nov 27 09:47:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::TCP" rel="external">Test::TCP</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.19</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:27-2017:-Module-Stream::Buffered">Mon Nov 27 09:47:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/Stream::Buffered" rel="external">Stream::Buffered</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:29-2017:-Module-Hash::MultiValue">Mon Nov 27 09:47:29 2017: <code>Module</code> <a href="https://metacpan.org/pod/Hash::MultiValue" rel="external">Hash::MultiValue</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.16</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:40-2017:-Module-Cpanel::JSON::XS">Mon Nov 27 09:47:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/Cpanel::JSON::XS" rel="external">Cpanel::JSON::XS</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 3.0239</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/cpanel_json_xs</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:41-2017:-Module-JSON::MaybeXS">Mon Nov 27 09:47:41 2017: <code>Module</code> <a href="https://metacpan.org/pod/JSON::MaybeXS" rel="external">JSON::MaybeXS</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.003009</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:50-2017:-Module-JSON">Mon Nov 27 09:47:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/JSON" rel="external">JSON</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.97000</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:47:53-2017:-Module-HTTP::MultiPartParser">Mon Nov 27 09:47:53 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::MultiPartParser" rel="external">HTTP::MultiPartParser</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:09-2017:-Module-Filesys::Notify::Simple">Mon Nov 27 09:48:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/Filesys::Notify::Simple" rel="external">Filesys::Notify::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.12</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:10-2017:-Module-Class::Inspector">Mon Nov 27 09:48:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Inspector" rel="external">Class::Inspector</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.32</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:11-2017:-Module-File::ShareDir">Mon Nov 27 09:48:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::ShareDir" rel="external">File::ShareDir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.104</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:13-2017:-Module-Devel::StackTrace">Mon Nov 27 09:48:13 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::StackTrace" rel="external">Devel::StackTrace</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:14-2017:-Module-Devel::StackTrace::AsHTML">Mon Nov 27 09:48:14 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::StackTrace::AsHTML" rel="external">Devel::StackTrace::AsHTML</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.15</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:15-2017:-Module-Test::Time">Mon Nov 27 09:48:15 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Time" rel="external">Test::Time</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.05</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:31-2017:-Module-Plack">Mon Nov 27 09:48:31 2017: <code>Module</code> <a href="https://metacpan.org/pod/Plack" rel="external">Plack</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.0044</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/plackup</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:33-2017:-Module-Class::Accessor">Mon Nov 27 09:48:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Accessor" rel="external">Class::Accessor</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.51</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:35-2017:-Module-Want">Mon Nov 27 09:48:35 2017: <code>Module</code> <a href="https://metacpan.org/pod/Want" rel="external">Want</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.29</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:37-2017:-Module-App::HTTPThis">Mon Nov 27 09:48:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/App::HTTPThis" rel="external">App::HTTPThis</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/http_this</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:40-2017:-Module-Module::CPANfile">Mon Nov 27 09:48:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::CPANfile" rel="external">Module::CPANfile</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.1002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/cpanfile-dump script/mymeta-cpanfile</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:45-2017:-Module-File::Copy::Recursive">Mon Nov 27 09:48:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Copy::Recursive" rel="external">File::Copy::Recursive</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.38</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:55-2017:-Module-Devel::FindPerl">Mon Nov 27 09:48:55 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::FindPerl" rel="external">Devel::FindPerl</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.014</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:48:56-2017:-Module-Module::Path">Mon Nov 27 09:48:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Path" rel="external">Module::Path</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.19</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/mpath</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:02-2017:-Module-Sub::Identify">Mon Nov 27 09:49:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Identify" rel="external">Sub::Identify</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.14</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:06-2017:-Module-Archive::Zip">Mon Nov 27 09:49:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/Archive::Zip" rel="external">Archive::Zip</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.59</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/crc32</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:08-2017:-Module-File::MMagic">Mon Nov 27 09:49:08 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::MMagic" rel="external">File::MMagic</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.30</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:09-2017:-Module-MIME::Types">Mon Nov 27 09:49:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/MIME::Types" rel="external">MIME::Types</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.14</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:11-2017:-Module-ExtUtils::Depends">Mon Nov 27 09:49:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/ExtUtils::Depends" rel="external">ExtUtils::Depends</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.405</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:12-2017:-Module-B::Hooks::OP::Check">Mon Nov 27 09:49:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/B::Hooks::OP::Check" rel="external">B::Hooks::OP::Check</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.22</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:13-2017:-Module-B::Keywords">Mon Nov 27 09:49:13 2017: <code>Module</code> <a href="https://metacpan.org/pod/B::Keywords" rel="external">B::Keywords</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.15</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:14-2017:-Module-Test::Lib">Mon Nov 27 09:49:14 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Lib" rel="external">Test::Lib</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:15-2017:-Module-Test::API">Mon Nov 27 09:49:15 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::API" rel="external">Test::API</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:17-2017:-Module-Beam::Emitter">Mon Nov 27 09:49:17 2017: <code>Module</code> <a href="https://metacpan.org/pod/Beam::Emitter" rel="external">Beam::Emitter</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:18-2017:-Module-HTML::Tagset">Mon Nov 27 09:49:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTML::Tagset" rel="external">HTML::Tagset</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 3.20</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:21-2017:-Module-HTML::Parser">Mon Nov 27 09:49:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTML::Parser" rel="external">HTML::Parser</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 3.72</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:25-2017:-Module-CGI">Mon Nov 27 09:49:25 2017: <code>Module</code> <a href="https://metacpan.org/pod/CGI" rel="external">CGI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 4.37</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:26-2017:-Module-CPAN::DistnameInfo">Mon Nov 27 09:49:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/CPAN::DistnameInfo" rel="external">CPAN::DistnameInfo</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.12</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:49:32-2017:-Module-HTTP::Daemon">Mon Nov 27 09:49:32 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::Daemon" rel="external">HTTP::Daemon</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.01</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:05-2017:-Module-Net::HTTP">Mon Nov 27 09:50:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/Net::HTTP" rel="external">Net::HTTP</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:06-2017:-Module-HTTP::Cookies">Mon Nov 27 09:50:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::Cookies" rel="external">HTTP::Cookies</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:09-2017:-Module-File::Listing">Mon Nov 27 09:50:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Listing" rel="external">File::Listing</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:10-2017:-Module-HTTP::Negotiate">Mon Nov 27 09:50:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::Negotiate" rel="external">HTTP::Negotiate</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.01</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:16-2017:-Module-WWW::RobotRules">Mon Nov 27 09:50:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/WWW::RobotRules" rel="external">WWW::RobotRules</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:17-2017:-Module-Test::RequiresInternet">Mon Nov 27 09:50:17 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::RequiresInternet" rel="external">Test::RequiresInternet</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.05</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:34-2017:-Module-libwww::perl">Mon Nov 27 09:50:34 2017: <code>Module</code> <a href="https://metacpan.org/pod/libwww::perl" rel="external">libwww::perl</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.29</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/lwp-download bin/lwp-dump bin/lwp-mirror bin/lwp-request</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:36-2017:-Module-CPAN::Mini">Mon Nov 27 09:50:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/CPAN::Mini" rel="external">CPAN::Mini</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.111016</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/minicpan</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:38-2017:-Module-Mozilla::CA">Mon Nov 27 09:50:38 2017: <code>Module</code> <a href="https://metacpan.org/pod/Mozilla::CA" rel="external">Mozilla::CA</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 20160104</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:50:47-2017:-Module-Net::SSLeay">Mon Nov 27 09:50:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Net::SSLeay" rel="external">Net::SSLeay</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.82</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:11-2017:-Module-IO::Socket::SSL">Mon Nov 27 09:52:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/IO::Socket::SSL" rel="external">IO::Socket::SSL</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.052</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:16-2017:-Module-LWP::Protocol::https">Mon Nov 27 09:52:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/LWP::Protocol::https" rel="external">LWP::Protocol::https</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.07</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:18-2017:-Module-Term::ReadKey">Mon Nov 27 09:52:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::ReadKey" rel="external">Term::ReadKey</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.37</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:19-2017:-Module-CPAN::Uploader">Mon Nov 27 09:52:19 2017: <code>Module</code> <a href="https://metacpan.org/pod/CPAN::Uploader" rel="external">CPAN::Uploader</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.103013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/cpan-upload</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:21-2017:-Module-Text::Diff">Mon Nov 27 09:52:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::Diff" rel="external">Text::Diff</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.45</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:23-2017:-Module-Spiffy">Mon Nov 27 09:52:23 2017: <code>Module</code> <a href="https://metacpan.org/pod/Spiffy" rel="external">Spiffy</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.46</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:29-2017:-Module-Test::Base">Mon Nov 27 09:52:29 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Base" rel="external">Test::Base</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.88</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:29-2017:-Module-Carp::Always">Mon Nov 27 09:52:29 2017: <code>Module</code> <a href="https://metacpan.org/pod/Carp::Always" rel="external">Carp::Always</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.13</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:30-2017:-Module-Carp::Clan">Mon Nov 27 09:52:30 2017: <code>Module</code> <a href="https://metacpan.org/pod/Carp::Clan" rel="external">Carp::Clan</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.06</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:32-2017:-Module-Module::Reader">Mon Nov 27 09:52:32 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Reader" rel="external">Module::Reader</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:34-2017:-Module-Path::Tiny">Mon Nov 27 09:52:34 2017: <code>Module</code> <a href="https://metacpan.org/pod/Path::Tiny" rel="external">Path::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.104</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:36-2017:-Module-Class::Tiny">Mon Nov 27 09:52:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Tiny" rel="external">Class::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:36-2017:-Module-Carton">Mon Nov 27 09:52:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/Carton" rel="external">Carton</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: v1.0.28</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/carton</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:37-2017:-Module-Class::Data::Inheritable">Mon Nov 27 09:52:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Data::Inheritable" rel="external">Class::Data::Inheritable</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:39-2017:-Module-Class::Load::XS">Mon Nov 27 09:52:39 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Load::XS" rel="external">Class::Load::XS</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.10</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:46-2017:-Module-Class::MethodMaker">Mon Nov 27 09:52:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::MethodMaker" rel="external">Class::MethodMaker</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.24</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:47-2017:-Module-Class::Singleton">Mon Nov 27 09:52:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::Singleton" rel="external">Class::Singleton</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.5</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:50-2017:-Module-Class::XSAccessor">Mon Nov 27 09:52:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/Class::XSAccessor" rel="external">Class::XSAccessor</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.19</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:51-2017:-Module-Clone">Mon Nov 27 09:52:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Clone" rel="external">Clone</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.39</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:51-2017:-Module-Clone::PP">Mon Nov 27 09:52:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Clone::PP" rel="external">Clone::PP</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.07</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:55-2017:-Module-PerlIO::utf8_strict">Mon Nov 27 09:52:55 2017: <code>Module</code> <a href="https://metacpan.org/pod/PerlIO::utf8_strict" rel="external">PerlIO::utf8_strict</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:55-2017:-Module-Mixin::Linewise">Mon Nov 27 09:52:55 2017: <code>Module</code> <a href="https://metacpan.org/pod/Mixin::Linewise" rel="external">Mixin::Linewise</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.108</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:56-2017:-Module-Config::INI">Mon Nov 27 09:52:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::INI" rel="external">Config::INI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.025</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:52:58-2017:-Module-Config::INI::Reader::Ordered">Mon Nov 27 09:52:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::INI::Reader::Ordered" rel="external">Config::INI::Reader::Ordered</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.020</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:10-2017:-Module-IPC::Run">Mon Nov 27 09:53:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/IPC::Run" rel="external">IPC::Run</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.96</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:11-2017:-Module-Config::Identity">Mon Nov 27 09:53:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::Identity" rel="external">Config::Identity</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.0019</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:15-2017:-Module-Throwable">Mon Nov 27 09:53:15 2017: <code>Module</code> <a href="https://metacpan.org/pod/Throwable" rel="external">Throwable</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.200013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:17-2017:-Module-Module::Runtime::Conflicts">Mon Nov 27 09:53:17 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Runtime::Conflicts" rel="external">Module::Runtime::Conflicts</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:18-2017:-Module-MRO::Compat">Mon Nov 27 09:53:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/MRO::Compat" rel="external">MRO::Compat</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.13</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:19-2017:-Module-Devel::OverloadInfo">Mon Nov 27 09:53:19 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::OverloadInfo" rel="external">Devel::OverloadInfo</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:20-2017:-Module-Sub::Name">Mon Nov 27 09:53:20 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Name" rel="external">Sub::Name</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.21</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:21-2017:-Module-Eval::Closure">Mon Nov 27 09:53:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Eval::Closure" rel="external">Eval::Closure</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.14</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:22-2017:-Module-Package::DeprecationManager">Mon Nov 27 09:53:22 2017: <code>Module</code> <a href="https://metacpan.org/pod/Package::DeprecationManager" rel="external">Package::DeprecationManager</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:24-2017:-Module-File::pushd">Mon Nov 27 09:53:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::pushd" rel="external">File::pushd</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.014</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:53:25-2017:-Module-Test::CleanNamespaces">Mon Nov 27 09:53:25 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::CleanNamespaces" rel="external">Test::CleanNamespaces</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.22</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:54:46-2017:-Module-Moose">Mon Nov 27 09:54:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/Moose" rel="external">Moose</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.2008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/moose-outdated</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:54:50-2017:-Module-namespace::autoclean">Mon Nov 27 09:54:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/namespace::autoclean" rel="external">namespace::autoclean</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.28</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:54:56-2017:-Module-MooseX::Role::WithOverloading">Mon Nov 27 09:54:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::Role::WithOverloading" rel="external">MooseX::Role::WithOverloading</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:02-2017:-Module-MooseX::OneArgNew">Mon Nov 27 09:55:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::OneArgNew" rel="external">MooseX::OneArgNew</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:04-2017:-Module-Role::Identifiable">Mon Nov 27 09:55:04 2017: <code>Module</code> <a href="https://metacpan.org/pod/Role::Identifiable" rel="external">Role::Identifiable</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:08-2017:-Module-Date::Parse">Mon Nov 27 09:55:08 2017: <code>Module</code> <a href="https://metacpan.org/pod/Date::Parse" rel="external">Date::Parse</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.30</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:09-2017:-Module-String::Formatter">Mon Nov 27 09:55:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::Formatter" rel="external">String::Formatter</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.102084</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:09-2017:-Module-String::Errf">Mon Nov 27 09:55:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::Errf" rel="external">String::Errf</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:11-2017:-Module-Role::HasMessage">Mon Nov 27 09:55:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/Role::HasMessage" rel="external">Role::HasMessage</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:12-2017:-Module-Config::MVP">Mon Nov 27 09:55:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::MVP" rel="external">Config::MVP</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.200010</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:14-2017:-Module-Config::MVP::Reader::INI">Mon Nov 27 09:55:14 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::MVP::Reader::INI" rel="external">Config::MVP::Reader::INI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.101463</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:16-2017:-Module-Config::Tiny">Mon Nov 27 09:55:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::Tiny" rel="external">Config::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.23</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:55:18-2017:-Module-Crypt::SSLeay">Mon Nov 27 09:55:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/Crypt::SSLeay" rel="external">Crypt::SSLeay</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.72</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:56:18-2017:-Module-DBI">Mon Nov 27 09:56:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/DBI" rel="external">DBI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.637</code></p>
+
+</li>
+<li><p><code>EXE_FILES: dbilogstrip dbiprof dbiproxy</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:56:56-2017:-Module-DBD::SQLite">Mon Nov 27 09:56:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/DBD::SQLite" rel="external">DBD::SQLite</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.54</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:01-2017:-Module-Exception::Class">Mon Nov 27 09:57:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/Exception::Class" rel="external">Exception::Class</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.43</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:02-2017:-Module-Iterator">Mon Nov 27 09:57:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Iterator" rel="external">Iterator</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:02-2017:-Module-Iterator::Util">Mon Nov 27 09:57:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Iterator::Util" rel="external">Iterator::Util</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:05-2017:-Module-Data::DPath">Mon Nov 27 09:57:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::DPath" rel="external">Data::DPath</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.57</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:06-2017:-Module-Data::Dump">Mon Nov 27 09:57:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::Dump" rel="external">Data::Dump</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.23</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:10-2017:-Module-Data::MessagePack">Mon Nov 27 09:57:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::MessagePack" rel="external">Data::MessagePack</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.00</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:12-2017:-Module-Sort::Naturally">Mon Nov 27 09:57:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sort::Naturally" rel="external">Sort::Naturally</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:16-2017:-Module-Data::Printer">Mon Nov 27 09:57:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::Printer" rel="external">Data::Printer</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.40</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:19-2017:-Module-Test::FailWarnings">Mon Nov 27 09:57:19 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::FailWarnings" rel="external">Test::FailWarnings</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:20-2017:-Module-Data::Section">Mon Nov 27 09:57:20 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::Section" rel="external">Data::Section</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.200007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:21-2017:-Module-Data::Section::Simple">Mon Nov 27 09:57:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Data::Section::Simple" rel="external">Data::Section::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.07</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:24-2017:-Module-Test::Without::Module">Mon Nov 27 09:57:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Without::Module" rel="external">Test::Without::Module</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.20</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:26-2017:-Module-Importer">Mon Nov 27 09:57:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/Importer" rel="external">Importer</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.024</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:39-2017:-Module-Test::Simple">Mon Nov 27 09:57:39 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Simple" rel="external">Test::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.302113</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:40-2017:-Module-Term::Table">Mon Nov 27 09:57:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::Table" rel="external">Term::Table</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.012</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:41-2017:-Module-Sub::Info">Mon Nov 27 09:57:41 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Info" rel="external">Sub::Info</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:49-2017:-Module-Test2::Suite">Mon Nov 27 09:57:49 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test2::Suite" rel="external">Test2::Suite</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.000084</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:51-2017:-Module-IPC::Run3">Mon Nov 27 09:57:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/IPC::Run3" rel="external">IPC::Run3</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.048</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:57:51-2017:-Module-Test2::Plugin::NoWarnings">Mon Nov 27 09:57:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test2::Plugin::NoWarnings" rel="external">Test2::Plugin::NoWarnings</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.06</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:01-2017:-Module-Specio">Mon Nov 27 09:58:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/Specio" rel="external">Specio</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.42</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:03-2017:-Module-Params::ValidationCompiler">Mon Nov 27 09:58:03 2017: <code>Module</code> <a href="https://metacpan.org/pod/Params::ValidationCompiler" rel="external">Params::ValidationCompiler</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.25</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:06-2017:-Module-DateTime::TimeZone">Mon Nov 27 09:58:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/DateTime::TimeZone" rel="external">DateTime::TimeZone</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.15</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:09-2017:-Module-Scope::Guard">Mon Nov 27 09:58:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/Scope::Guard" rel="external">Scope::Guard</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.21</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:10-2017:-Module-Test::File::ShareDir">Mon Nov 27 09:58:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::File::ShareDir" rel="external">Test::File::ShareDir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.001002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:36-2017:-Module-DateTime::Locale">Mon Nov 27 09:58:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/DateTime::Locale" rel="external">DateTime::Locale</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:52-2017:-Module-DateTime">Mon Nov 27 09:58:52 2017: <code>Module</code> <a href="https://metacpan.org/pod/DateTime" rel="external">DateTime</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.44</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:58:59-2017:-Module-DateTime::Moonpig">Mon Nov 27 09:58:59 2017: <code>Module</code> <a href="https://metacpan.org/pod/DateTime::Moonpig" rel="external">DateTime::Moonpig</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:00-2017:-Module-PadWalker">Mon Nov 27 09:59:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/PadWalker" rel="external">PadWalker</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.3</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:01-2017:-Module-Devel::Caller">Mon Nov 27 09:59:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::Caller" rel="external">Devel::Caller</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.06</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:03-2017:-Module-Devel::CheckBin">Mon Nov 27 09:59:03 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::CheckBin" rel="external">Devel::CheckBin</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:06-2017:-Module-Devel::Confess">Mon Nov 27 09:59:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::Confess" rel="external">Devel::Confess</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.009004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:06-2017:-Module-Devel::Hide">Mon Nov 27 09:59:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::Hide" rel="external">Devel::Hide</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.0009</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:07-2017:-Module-Devel::LexAlias">Mon Nov 27 09:59:07 2017: <code>Module</code> <a href="https://metacpan.org/pod/Devel::LexAlias" rel="external">Devel::LexAlias</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.05</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:10-2017:-Module-Dir::Self">Mon Nov 27 09:59:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dir::Self" rel="external">Dir::Self</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.11</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:16-2017:-Module-IO::String">Mon Nov 27 09:59:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/IO::String" rel="external">IO::String</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:20-2017:-Module-File::Remove">Mon Nov 27 09:59:20 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Remove" rel="external">File::Remove</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.57</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:21-2017:-Module-Task::Weaken">Mon Nov 27 09:59:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Task::Weaken" rel="external">Task::Weaken</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:22-2017:-Module-Test::Object">Mon Nov 27 09:59:22 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Object" rel="external">Test::Object</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.07</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:24-2017:-Module-Hook::LexWrap">Mon Nov 27 09:59:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/Hook::LexWrap" rel="external">Hook::LexWrap</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.26</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:24-2017:-Module-Test::SubCalls">Mon Nov 27 09:59:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::SubCalls" rel="external">Test::SubCalls</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.09</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:53-2017:-Module-PPI">Mon Nov 27 09:59:53 2017: <code>Module</code> <a href="https://metacpan.org/pod/PPI" rel="external">PPI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.236</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:54-2017:-Module-Module::Extract::Namespaces">Mon Nov 27 09:59:54 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Extract::Namespaces" rel="external">Module::Extract::Namespaces</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:56-2017:-Module-UNIVERSAL::can">Mon Nov 27 09:59:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/UNIVERSAL::can" rel="external">UNIVERSAL::can</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.20140328</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:58-2017:-Module-UNIVERSAL::isa">Mon Nov 27 09:59:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/UNIVERSAL::isa" rel="external">UNIVERSAL::isa</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.20171012</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-09:59:59-2017:-Module-Test::MockObject">Mon Nov 27 09:59:59 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::MockObject" rel="external">Test::MockObject</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.20161202</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:00-2017:-Module-File::Spec::Native">Mon Nov 27 10:00:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Spec::Native" rel="external">File::Spec::Native</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:02-2017:-Module-Dist::Metadata">Mon Nov 27 10:00:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Metadata" rel="external">Dist::Metadata</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.927</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:03-2017:-Module-Dist::Data">Mon Nov 27 10:00:03 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Data" rel="external">Dist::Data</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:06-2017:-Module-Number::Compare">Mon Nov 27 10:00:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/Number::Compare" rel="external">Number::Compare</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:07-2017:-Module-Text::Glob">Mon Nov 27 10:00:07 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::Glob" rel="external">Text::Glob</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.11</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:07-2017:-Module-File::Find::Rule">Mon Nov 27 10:00:07 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Find::Rule" rel="external">File::Find::Rule</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.34</code></p>
+
+</li>
+<li><p><code>EXE_FILES: findrule</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:10-2017:-Module-Sub::Exporter::ForMethods">Mon Nov 27 10:00:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Exporter::ForMethods" rel="external">Sub::Exporter::ForMethods</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.100052</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:15-2017:-Module-MooseX::Types::Perl">Mon Nov 27 10:00:15 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::Types::Perl" rel="external">MooseX::Types::Perl</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.101343</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:21-2017:-Module-Log::Dispatch">Mon Nov 27 10:00:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Log::Dispatch" rel="external">Log::Dispatch</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.67</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:23-2017:-Module-Sub::Exporter::GlobExporter">Mon Nov 27 10:00:23 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sub::Exporter::GlobExporter" rel="external">Sub::Exporter::GlobExporter</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:25-2017:-Module-String::Flogger">Mon Nov 27 10:00:25 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::Flogger" rel="external">String::Flogger</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.101245</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:27-2017:-Module-Log::Dispatch::Array">Mon Nov 27 10:00:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/Log::Dispatch::Array" rel="external">Log::Dispatch::Array</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:28-2017:-Module-Log::Dispatchouli">Mon Nov 27 10:00:28 2017: <code>Module</code> <a href="https://metacpan.org/pod/Log::Dispatchouli" rel="external">Log::Dispatchouli</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.015</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:29-2017:-Module-Text::Template">Mon Nov 27 10:00:29 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::Template" rel="external">Text::Template</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.47</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:33-2017:-Module-Perl::PrereqScanner">Mon Nov 27 10:00:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/Perl::PrereqScanner" rel="external">Perl::PrereqScanner</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.023</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/scan-perl-prereqs bin/scan_prereqs</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:35-2017:-Module-YAML::Tiny">Mon Nov 27 10:00:35 2017: <code>Module</code> <a href="https://metacpan.org/pod/YAML::Tiny" rel="external">YAML::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.70</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:37-2017:-Module-MooseX::SetOnce">Mon Nov 27 10:00:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::SetOnce" rel="external">MooseX::SetOnce</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.200002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:38-2017:-Module-Term::Encoding">Mon Nov 27 10:00:38 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::Encoding" rel="external">Term::Encoding</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.02</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:40-2017:-Module-Software::License">Mon Nov 27 10:00:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/Software::License" rel="external">Software::License</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.103013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:44-2017:-Module-Log::Message">Mon Nov 27 10:00:44 2017: <code>Module</code> <a href="https://metacpan.org/pod/Log::Message" rel="external">Log::Message</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:45-2017:-Module-Log::Message::Simple">Mon Nov 27 10:00:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/Log::Message::Simple" rel="external">Log::Message::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.10</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:45-2017:-Module-Term::UI">Mon Nov 27 10:00:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::UI" rel="external">Term::UI</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.46</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:00:46-2017:-Module-Pod::Eventual">Mon Nov 27 10:00:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Eventual" rel="external">Pod::Eventual</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.094001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:26-2017:-Module-Dist::Zilla">Mon Nov 27 10:01:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla" rel="external">Dist::Zilla</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 6.010</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/dzil</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:35-2017:-Module-Dist::Zilla::Role::Bootstrap">Mon Nov 27 10:01:35 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Role::Bootstrap" rel="external">Dist::Zilla::Role::Bootstrap</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.001004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:39-2017:-Module-Dist::Zilla::Plugin::Bootstrap::lib">Mon Nov 27 10:01:39 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::Bootstrap::lib" rel="external">Dist::Zilla::Plugin::Bootstrap::lib</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.001002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:43-2017:-Module-File::chdir">Mon Nov 27 10:01:43 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::chdir" rel="external">File::chdir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.1010</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:44-2017:-Module-Sort::Versions">Mon Nov 27 10:01:44 2017: <code>Module</code> <a href="https://metacpan.org/pod/Sort::Versions" rel="external">Sort::Versions</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.62</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:45-2017:-Module-Git::Wrapper">Mon Nov 27 10:01:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/Git::Wrapper" rel="external">Git::Wrapper</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.047</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:46-2017:-Module-Version::Next">Mon Nov 27 10:01:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/Version::Next" rel="external">Version::Next</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:48-2017:-Module-Dist::Zilla::Plugin::BumpVersionFromGit">Mon Nov 27 10:01:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::BumpVersionFromGit" rel="external">Dist::Zilla::Plugin::BumpVersionFromGit</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.010</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:50-2017:-Module-Test::CheckDeps">Mon Nov 27 10:01:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::CheckDeps" rel="external">Test::CheckDeps</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.010</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:01:51-2017:-Module-Dist::Zilla::Plugin::Config::Git">Mon Nov 27 10:01:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::Config::Git" rel="external">Dist::Zilla::Plugin::Config::Git</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.92</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:06-2017:-Module-MooseX::Types::Stringlike">Mon Nov 27 10:02:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::Types::Stringlike" rel="external">MooseX::Types::Stringlike</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:11-2017:-Module-MooseX::Has::Sugar">Mon Nov 27 10:02:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::Has::Sugar" rel="external">MooseX::Has::Sugar</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:12-2017:-Module-IPC::System::Simple">Mon Nov 27 10:02:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/IPC::System::Simple" rel="external">IPC::System::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.25</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:30-2017:-Module-Dist::Zilla::Plugin::Git">Mon Nov 27 10:02:30 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::Git" rel="external">Dist::Zilla::Plugin::Git</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.042</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:35-2017:-Module-URI::FromHash">Mon Nov 27 10:02:35 2017: <code>Module</code> <a href="https://metacpan.org/pod/URI::FromHash" rel="external">URI::FromHash</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.05</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:41-2017:-Module-Dist::Zilla::Plugin::GithubMeta">Mon Nov 27 10:02:41 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::GithubMeta" rel="external">Dist::Zilla::Plugin::GithubMeta</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.54</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:48-2017:-Module-Test::Most">Mon Nov 27 10:02:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Most" rel="external">Test::Most</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.35</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:48-2017:-Module-Hash::Merge::Simple">Mon Nov 27 10:02:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/Hash::Merge::Simple" rel="external">Hash::Merge::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.051</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:02:54-2017:-Module-Dist::Zilla::Plugin::MetaProvides">Mon Nov 27 10:02:54 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::MetaProvides" rel="external">Dist::Zilla::Plugin::MetaProvides</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.002004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:00-2017:-Module-Safe::Isa">Mon Nov 27 10:03:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/Safe::Isa" rel="external">Safe::Isa</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:06-2017:-Module-Dist::Zilla::Plugin::MetaProvides::Package">Mon Nov 27 10:03:06 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::MetaProvides::Package" rel="external">Dist::Zilla::Plugin::MetaProvides::Package</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.004003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:09-2017:-Module-Exporter::Lite">Mon Nov 27 10:03:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/Exporter::Lite" rel="external">Exporter::Lite</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:13-2017:-Module-Dist::Zilla::Plugin::OSPrereqs">Mon Nov 27 10:03:13 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::OSPrereqs" rel="external">Dist::Zilla::Plugin::OSPrereqs</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:16-2017:-Module-File::Find::Rule::Perl">Mon Nov 27 10:03:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Find::Rule::Perl" rel="external">File::Find::Rule::Perl</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.15</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:18-2017:-Module-Test::Version">Mon Nov 27 10:03:18 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Version" rel="external">Test::Version</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.05</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:22-2017:-Module-Dist::Zilla::Plugin::OurPkgVersion">Mon Nov 27 10:03:22 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::OurPkgVersion" rel="external">Dist::Zilla::Plugin::OurPkgVersion</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.12</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:28-2017:-Module-String::Truncate">Mon Nov 27 10:03:28 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::Truncate" rel="external">String::Truncate</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.100602</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:33-2017:-Module-Pod::Elemental">Mon Nov 27 10:03:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Elemental" rel="external">Pod::Elemental</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.103004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:40-2017:-Module-Pod::Weaver">Mon Nov 27 10:03:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Weaver" rel="external">Pod::Weaver</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 4.015</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:42-2017:-Module-Pod::Elemental::PerlMunger">Mon Nov 27 10:03:42 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Elemental::PerlMunger" rel="external">Pod::Elemental::PerlMunger</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.200006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:43-2017:-Module-Dist::Zilla::Plugin::PodWeaver">Mon Nov 27 10:03:43 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::PodWeaver" rel="external">Dist::Zilla::Plugin::PodWeaver</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 4.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:46-2017:-Module-Dist::Zilla::Plugin::Repository">Mon Nov 27 10:03:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::Repository" rel="external">Dist::Zilla::Plugin::Repository</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.21</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:47-2017:-Module-Dist::Zilla::Plugin::TaskWeaver">Mon Nov 27 10:03:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::TaskWeaver" rel="external">Dist::Zilla::Plugin::TaskWeaver</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.101628</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:54-2017:-Module-Perl::Tidy">Mon Nov 27 10:03:54 2017: <code>Module</code> <a href="https://metacpan.org/pod/Perl::Tidy" rel="external">Perl::Tidy</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 20170521</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/perltidy</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:03:59-2017:-Module-String::Format">Mon Nov 27 10:03:59 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::Format" rel="external">String::Format</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:05-2017:-Module-Email::Address">Mon Nov 27 10:04:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/Email::Address" rel="external">Email::Address</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.908</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:09-2017:-Module-Lingua::EN::Inflect">Mon Nov 27 10:04:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/Lingua::EN::Inflect" rel="external">Lingua::EN::Inflect</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.903</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:11-2017:-Module-Pod::Spell">Mon Nov 27 10:04:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Spell" rel="external">Pod::Spell</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.20</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/podspell</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:49-2017:-Module-Probe::Perl">Mon Nov 27 10:04:49 2017: <code>Module</code> <a href="https://metacpan.org/pod/Probe::Perl" rel="external">Probe::Perl</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.03</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:51-2017:-Module-Test::Script">Mon Nov 27 10:04:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Script" rel="external">Test::Script</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.23</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:55-2017:-Module-Perl::MinimumVersion">Mon Nov 27 10:04:55 2017: <code>Module</code> <a href="https://metacpan.org/pod/Perl::MinimumVersion" rel="external">Perl::MinimumVersion</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.38</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/perlver</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:56-2017:-Module-Test::MinimumVersion">Mon Nov 27 10:04:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::MinimumVersion" rel="external">Test::MinimumVersion</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.101082</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:04:58-2017:-Module-Test::Output">Mon Nov 27 10:04:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Output" rel="external">Test::Output</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.031</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:01-2017:-Module-Dist::Zilla::Plugin::Test::MinimumVersion">Mon Nov 27 10:05:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Plugin::Test::MinimumVersion" rel="external">Dist::Zilla::Plugin::Test::MinimumVersion</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.000007</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:05-2017:-Module-MCE">Mon Nov 27 10:05:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/MCE" rel="external">MCE</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.832</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:11-2017:-Module-Pod::Elemental::Transformer::List">Mon Nov 27 10:05:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Elemental::Transformer::List" rel="external">Pod::Elemental::Transformer::List</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.102000</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:17-2017:-Module-Dist::Zilla::Util::ConfigDumper">Mon Nov 27 10:05:17 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Util::ConfigDumper" rel="external">Dist::Zilla::Util::ConfigDumper</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003009</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:20-2017:-Module-recommended">Mon Nov 27 10:05:20 2017: <code>Module</code> <a href="https://metacpan.org/pod/recommended" rel="external">recommended</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:24-2017:-Module-Dist::Zilla::Util::Test::KENTNL">Mon Nov 27 10:05:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/Dist::Zilla::Util::Test::KENTNL" rel="external">Dist::Zilla::Util::Test::KENTNL</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.005014</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:26-2017:-Module-MailTools">Mon Nov 27 10:05:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/MailTools" rel="external">MailTools</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.19</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-10:05:28-2017:-Module-Email::Valid">Mon Nov 27 10:05:28 2017: <code>Module</code> <a href="https://metacpan.org/pod/Email::Valid" rel="external">Email::Valid</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.202</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:12-2017:-Module-ExtUtils::MakeMaker">Mon Nov 27 02:06:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/ExtUtils::MakeMaker" rel="external">ExtUtils::MakeMaker</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 7.30</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/instmodsh</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:13-2017:-Module-ExtUtils::MakeMaker::CPANfile">Mon Nov 27 02:06:13 2017: <code>Module</code> <a href="https://metacpan.org/pod/ExtUtils::MakeMaker::CPANfile" rel="external">ExtUtils::MakeMaker::CPANfile</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:14-2017:-Module-File::ConfigDir">Mon Nov 27 02:06:14 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::ConfigDir" rel="external">File::ConfigDir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.018</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:15-2017:-Module-File::FindLib">Mon Nov 27 02:06:15 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::FindLib" rel="external">File::FindLib</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.001004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:16-2017:-Module-File::Share">Mon Nov 27 02:06:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Share" rel="external">File::Share</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.25</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:22-2017:-Module-Path::IsDev">Mon Nov 27 02:06:22 2017: <code>Module</code> <a href="https://metacpan.org/pod/Path::IsDev" rel="external">Path::IsDev</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.001003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:23-2017:-Module-Path::FindDev">Mon Nov 27 02:06:23 2017: <code>Module</code> <a href="https://metacpan.org/pod/Path::FindDev" rel="external">Path::FindDev</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: v0.5.3</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:25-2017:-Module-File::ShareDir::ProjectDistDir">Mon Nov 27 02:06:25 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::ShareDir::ProjectDistDir" rel="external">File::ShareDir::ProjectDistDir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000009</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:26-2017:-Module-File::Slurp::Tiny">Mon Nov 27 02:06:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/File::Slurp::Tiny" rel="external">File::Slurp::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:27-2017:-Module-Getopt::Long">Mon Nov 27 02:06:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/Getopt::Long" rel="external">Getopt::Long</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.50</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:29-2017:-Module-Git::Version::Compare">Mon Nov 27 02:06:29 2017: <code>Module</code> <a href="https://metacpan.org/pod/Git::Version::Compare" rel="external">Git::Version::Compare</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:45-2017:-Module-System::Command">Mon Nov 27 02:06:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/System::Command" rel="external">System::Command</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.118</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:47-2017:-Module-Test::Requires::Git">Mon Nov 27 02:06:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Requires::Git" rel="external">Test::Requires::Git</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:50-2017:-Module-Git::Repository">Mon Nov 27 02:06:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/Git::Repository" rel="external">Git::Repository</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.321</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:06:55-2017:-Module-HTTP::Body">Mon Nov 27 02:06:55 2017: <code>Module</code> <a href="https://metacpan.org/pod/HTTP::Body" rel="external">HTTP::Body</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.22</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:10-2017:-Module-IO::Tty">Mon Nov 27 02:07:10 2017: <code>Module</code> <a href="https://metacpan.org/pod/IO::Tty" rel="external">IO::Tty</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.12</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:11-2017:-Module-IPC::Open3::Simple">Mon Nov 27 02:07:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/IPC::Open3::Simple" rel="external">IPC::Open3::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:12-2017:-Module-Import::Into">Mon Nov 27 02:07:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/Import::Into" rel="external">Import::Into</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.002005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:16-2017:-Module-MIME::Charset">Mon Nov 27 02:07:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/MIME::Charset" rel="external">MIME::Charset</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.012.2</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:21-2017:-Module-Text::MicroTemplate">Mon Nov 27 02:07:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::MicroTemplate" rel="external">Text::MicroTemplate</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.24</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:25-2017:-Module-Math::Round">Mon Nov 27 02:07:25 2017: <code>Module</code> <a href="https://metacpan.org/pod/Math::Round" rel="external">Math::Round</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.07</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:26-2017:-Module-common::sense">Mon Nov 27 02:07:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/common::sense" rel="external">common::sense</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 3.74</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:27-2017:-Module-Types::Serialiser">Mon Nov 27 02:07:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/Types::Serialiser" rel="external">Types::Serialiser</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.0</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:07:32-2017:-Module-Pod::Markdown">Mon Nov 27 02:07:32 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pod::Markdown" rel="external">Pod::Markdown</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 3.005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/pod2markdown</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:08:19-2017:-Module-Path::ScanINC">Mon Nov 27 02:08:19 2017: <code>Module</code> <a href="https://metacpan.org/pod/Path::ScanINC" rel="external">Path::ScanINC</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:08:20-2017:-Module-Module::Data">Mon Nov 27 02:08:20 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Data" rel="external">Module::Data</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:08:23-2017:-Module-Module::ScanDeps">Mon Nov 27 02:08:23 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::ScanDeps" rel="external">Module::ScanDeps</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.24</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/scandeps.pl</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:08:37-2017:-Module-Module::Install">Mon Nov 27 02:08:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Install" rel="external">Module::Install</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.18</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:08:38-2017:-Module-Module::Install::AuthorTests">Mon Nov 27 02:08:38 2017: <code>Module</code> <a href="https://metacpan.org/pod/Module::Install::AuthorTests" rel="external">Module::Install::AuthorTests</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:14-2017:-Module-Mojolicious">Mon Nov 27 02:09:14 2017: <code>Module</code> <a href="https://metacpan.org/pod/Mojolicious" rel="external">Mojolicious</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 7.57</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/hypnotoad script/mojo script/morbo</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:16-2017:-Module-MooX">Mon Nov 27 02:09:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX" rel="external">MooX</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.101</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:32-2017:-Module-Regexp::Common">Mon Nov 27 02:09:32 2017: <code>Module</code> <a href="https://metacpan.org/pod/Regexp::Common" rel="external">Regexp::Common</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2017060201</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:33-2017:-Module-MooX::Cmd">Mon Nov 27 02:09:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX::Cmd" rel="external">MooX::Cmd</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.015</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:36-2017:-Module-Clone::Choose">Mon Nov 27 02:09:36 2017: <code>Module</code> <a href="https://metacpan.org/pod/Clone::Choose" rel="external">Clone::Choose</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:37-2017:-Module-Hash::Merge">Mon Nov 27 02:09:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/Hash::Merge" rel="external">Hash::Merge</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.299</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:39-2017:-Module-MooX::File::ConfigDir">Mon Nov 27 02:09:39 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX::File::ConfigDir" rel="external">MooX::File::ConfigDir</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:40-2017:-Module-MooX::ConfigFromFile">Mon Nov 27 02:09:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX::ConfigFromFile" rel="external">MooX::ConfigFromFile</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:41-2017:-Module-MooX::Locale::Passthrough">Mon Nov 27 02:09:41 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX::Locale::Passthrough" rel="external">MooX::Locale::Passthrough</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:47-2017:-Module-Unicode::LineBreak">Mon Nov 27 02:09:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/Unicode::LineBreak" rel="external">Unicode::LineBreak</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2017.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:51-2017:-Module-indirect">Mon Nov 27 02:09:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/indirect" rel="external">indirect</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.38</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:52-2017:-Module-bareword::filehandles">Mon Nov 27 02:09:52 2017: <code>Module</code> <a href="https://metacpan.org/pod/bareword::filehandles" rel="external">bareword::filehandles</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:53-2017:-Module-multidimensional">Mon Nov 27 02:09:53 2017: <code>Module</code> <a href="https://metacpan.org/pod/multidimensional" rel="external">multidimensional</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:54-2017:-Module-strictures">Mon Nov 27 02:09:54 2017: <code>Module</code> <a href="https://metacpan.org/pod/strictures" rel="external">strictures</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.000003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:09:58-2017:-Module-MooX::Options">Mon Nov 27 02:09:58 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooX::Options" rel="external">MooX::Options</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 4.103</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:09-2017:-Module-autobox">Mon Nov 27 02:10:09 2017: <code>Module</code> <a href="https://metacpan.org/pod/autobox" rel="external">autobox</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.85</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:12-2017:-Module-syntax">Mon Nov 27 02:10:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/syntax" rel="external">syntax</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.004</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:13-2017:-Module-Syntax::Keyword::Junction">Mon Nov 27 02:10:13 2017: <code>Module</code> <a href="https://metacpan.org/pod/Syntax::Keyword::Junction" rel="external">Syntax::Keyword::Junction</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003008</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:26-2017:-Module-Perl::Version">Mon Nov 27 02:10:26 2017: <code>Module</code> <a href="https://metacpan.org/pod/Perl::Version" rel="external">Perl::Version</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.013</code></p>
+
+</li>
+<li><p><code>EXE_FILES: examples/perl-reversion</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:27-2017:-Module-TAP::SimpleOutput">Mon Nov 27 02:10:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/TAP::SimpleOutput" rel="external">TAP::SimpleOutput</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.009</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:35-2017:-Module-Test::Moose::More">Mon Nov 27 02:10:35 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Moose::More" rel="external">Test::Moose::More</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.050</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:37-2017:-Module-MooseX::Meta::TypeConstraint::Mooish">Mon Nov 27 02:10:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::Meta::TypeConstraint::Mooish" rel="external">MooseX::Meta::TypeConstraint::Mooish</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:43-2017:-Module-autobox::Core">Mon Nov 27 02:10:43 2017: <code>Module</code> <a href="https://metacpan.org/pod/autobox::Core" rel="external">autobox::Core</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.33</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:45-2017:-Module-MooseX::TraitFor::Meta::Class::BetterAnonClassNames">Mon Nov 27 02:10:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::TraitFor::Meta::Class::BetterAnonClassNames" rel="external">MooseX::TraitFor::Meta::Class::BetterAnonClassNames</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002003</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:10:47-2017:-Module-MooseX::Util">Mon Nov 27 02:10:47 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::Util" rel="external">MooseX::Util</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.006</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:11:00-2017:-Module-MooseX::AttributeShortcuts">Mon Nov 27 02:11:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/MooseX::AttributeShortcuts" rel="external">MooseX::AttributeShortcuts</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.037</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:00-2017:-Module-Net::OpenSSH">Mon Nov 27 02:12:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/Net::OpenSSH" rel="external">Net::OpenSSH</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.74</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:01-2017:-Module-Time::Duration">Mon Nov 27 02:12:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/Time::Duration" rel="external">Time::Duration</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.20</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:02-2017:-Module-Time::Duration::Parse">Mon Nov 27 02:12:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Time::Duration::Parse" rel="external">Time::Duration::Parse</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.13</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:03-2017:-Module-PAUSE::Permissions">Mon Nov 27 02:12:03 2017: <code>Module</code> <a href="https://metacpan.org/pod/PAUSE::Permissions" rel="external">PAUSE::Permissions</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/pause-permissions</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:05-2017:-Module-Parse::CPAN::Packages::Fast">Mon Nov 27 02:12:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/Parse::CPAN::Packages::Fast" rel="external">Parse::CPAN::Packages::Fast</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.09</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:08-2017:-Module-Test::UseAllModules">Mon Nov 27 02:12:08 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::UseAllModules" rel="external">Test::UseAllModules</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.17</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:11-2017:-Module-Parse::PMFile">Mon Nov 27 02:12:11 2017: <code>Module</code> <a href="https://metacpan.org/pod/Parse::PMFile" rel="external">Parse::PMFile</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.41</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:13-2017:-Module-Parse::LocalDistribution">Mon Nov 27 02:12:13 2017: <code>Module</code> <a href="https://metacpan.org/pod/Parse::LocalDistribution" rel="external">Parse::LocalDistribution</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.19</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:16-2017:-Module-UNIVERSAL::require">Mon Nov 27 02:12:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/UNIVERSAL::require" rel="external">UNIVERSAL::require</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.18</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:21-2017:-Module-Reply">Mon Nov 27 02:12:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Reply" rel="external">Reply</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.42</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/reply</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:21-2017:-Module-Pry">Mon Nov 27 02:12:21 2017: <code>Module</code> <a href="https://metacpan.org/pod/Pry" rel="external">Pry</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.003001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:24-2017:-Module-String::ShellQuote">Mon Nov 27 02:12:24 2017: <code>Module</code> <a href="https://metacpan.org/pod/String::ShellQuote" rel="external">String::ShellQuote</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.04</code></p>
+
+</li>
+<li><p><code>EXE_FILES: shell-quote</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:25-2017:-Module-Test::Pod">Mon Nov 27 02:12:25 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Pod" rel="external">Test::Pod</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.51</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:45-2017:-Module-Term::ProgressBar">Mon Nov 27 02:12:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::ProgressBar" rel="external">Term::ProgressBar</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.21</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:49-2017:-Module-Term::ReadLine::Gnu">Mon Nov 27 02:12:49 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::ReadLine::Gnu" rel="external">Term::ReadLine::Gnu</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.35</code></p>
+
+</li>
+<li><p><code>EXE_FILES: eg/perlsh</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:50-2017:-Module-Term::Size::Perl">Mon Nov 27 02:12:50 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::Size::Perl" rel="external">Term::Size::Perl</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.029</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:51-2017:-Module-Term::Size::Any">Mon Nov 27 02:12:51 2017: <code>Module</code> <a href="https://metacpan.org/pod/Term::Size::Any" rel="external">Term::Size::Any</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:52-2017:-Module-Test::CPAN::Meta">Mon Nov 27 02:12:52 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::CPAN::Meta" rel="external">Test::CPAN::Meta</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.25</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:54-2017:-Module-Test::Exception::LessClever">Mon Nov 27 02:12:54 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Exception::LessClever" rel="external">Test::Exception::LessClever</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.009</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:56-2017:-Module-Test::LoadAllModules">Mon Nov 27 02:12:56 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::LoadAllModules" rel="external">Test::LoadAllModules</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.022</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:57-2017:-Module-Test::PAUSE::Permissions">Mon Nov 27 02:12:57 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::PAUSE::Permissions" rel="external">Test::PAUSE::Permissions</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.06</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:12:59-2017:-Module-Test::Script::Run">Mon Nov 27 02:12:59 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::Script::Run" rel="external">Test::Script::Run</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:00-2017:-Module-Test::YAML">Mon Nov 27 02:13:00 2017: <code>Module</code> <a href="https://metacpan.org/pod/Test::YAML" rel="external">Test::YAML</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.06</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/test-yaml</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:02-2017:-Module-Text::Markdown">Mon Nov 27 02:13:02 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::Markdown" rel="external">Text::Markdown</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.000031</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/Markdown.pl</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:04-2017:-Module-Text::Unidecode">Mon Nov 27 02:13:04 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::Unidecode" rel="external">Text::Unidecode</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.30</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:33-2017:-Module-Text::Xslate">Mon Nov 27 02:13:33 2017: <code>Module</code> <a href="https://metacpan.org/pod/Text::Xslate" rel="external">Text::Xslate</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 3.4.0</code></p>
+
+</li>
+<li><p><code>EXE_FILES: script/xslate</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:34-2017:-Module-Types::Path::Tiny">Mon Nov 27 02:13:34 2017: <code>Module</code> <a href="https://metacpan.org/pod/Types::Path::Tiny" rel="external">Types::Path::Tiny</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.005</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:37-2017:-Module-WWW::DuckDuckGo">Mon Nov 27 02:13:37 2017: <code>Module</code> <a href="https://metacpan.org/pod/WWW::DuckDuckGo" rel="external">WWW::DuckDuckGo</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.016</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:41-2017:-Module-XML::Parser">Mon Nov 27 02:13:41 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::Parser" rel="external">XML::Parser</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.44</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:42-2017:-Module-XML::Dumper">Mon Nov 27 02:13:42 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::Dumper" rel="external">XML::Dumper</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.81</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:43-2017:-Module-XML::NamespaceSupport">Mon Nov 27 02:13:43 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::NamespaceSupport" rel="external">XML::NamespaceSupport</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.12</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:45-2017:-Module-XML::Parser::Nodes">Mon Nov 27 02:13:45 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::Parser::Nodes" rel="external">XML::Parser::Nodes</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.08</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:46-2017:-Module-XML::SAX::Base">Mon Nov 27 02:13:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::SAX::Base" rel="external">XML::SAX::Base</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.09</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:48-2017:-Module-XML::SAX">Mon Nov 27 02:13:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::SAX" rel="external">XML::SAX</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.99</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:13:48-2017:-Module-XML::SAX::Expat">Mon Nov 27 02:13:48 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::SAX::Expat" rel="external">XML::SAX::Expat</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.51</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:14:01-2017:-Module-XML::Simple">Mon Nov 27 02:14:01 2017: <code>Module</code> <a href="https://metacpan.org/pod/XML::Simple" rel="external">XML::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.24</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:14:05-2017:-Module-YAML">Mon Nov 27 02:14:05 2017: <code>Module</code> <a href="https://metacpan.org/pod/YAML" rel="external">YAML</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.24</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:14:12-2017:-Module-YAML::LibYAML">Mon Nov 27 02:14:12 2017: <code>Module</code> <a href="https://metacpan.org/pod/YAML::LibYAML" rel="external">YAML::LibYAML</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.67</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:14:14-2017:-Module-autobox::Junctions">Mon Nov 27 02:14:14 2017: <code>Module</code> <a href="https://metacpan.org/pod/autobox::Junctions" rel="external">autobox::Junctions</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.002</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:14:16-2017:-Module-local::lib">Mon Nov 27 02:14:16 2017: <code>Module</code> <a href="https://metacpan.org/pod/local::lib" rel="external">local::lib</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.000024</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-02:14:27-2017:-Module-utf8::all">Mon Nov 27 02:14:27 2017: <code>Module</code> <a href="https://metacpan.org/pod/utf8::all" rel="external">utf8::all</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.023</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-04:46:04-2017:-Module-Config::Simple">Mon Nov 27 04:46:04 2017: <code>Module</code> <a href="https://metacpan.org/pod/Config::Simple" rel="external">Config::Simple</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.01</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-05:14:28-2017:-Module-pmtools">Mon Nov 27 05:14:28 2017: <code>Module</code> <a href="https://metacpan.org/pod/pmtools" rel="external">pmtools</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 2.0.0</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/basepods bin/faqpods bin/modpods bin/pfcat bin/plxload bin/pmall bin/pman bin/pmcat bin/pmcheck bin/pmdesc bin/pmeth bin/pmexp bin/pmfunc bin/pminclude bin/pminst bin/pmload bin/pmls bin/pmpath bin/pmvers bin/podgrep bin/podpath bin/pods bin/podtoc bin/sitepods bin/stdpods</code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-05:14:40-2017:-Module-Beam::Service">Mon Nov 27 05:14:40 2017: <code>Module</code> <a href="https://metacpan.org/pod/Beam::Service" rel="external">Beam::Service</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.001</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-05:14:46-2017:-Module-Beam::Wire">Mon Nov 27 05:14:46 2017: <code>Module</code> <a href="https://metacpan.org/pod/Beam::Wire" rel="external">Beam::Wire</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 1.020</code></p>
+
+</li>
+<li><p><code>EXE_FILES: </code></p>
+
+</li>
+</ul>
+
+<h2 id="Mon-Nov-27-05:15:55-2017:-Module-Statocles">Mon Nov 27 05:15:55 2017: <code>Module</code> <a href="https://metacpan.org/pod/Statocles" rel="external">Statocles</a></h2>
+
+<ul>
+
+<li><p><code>installed into: /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1</code></p>
+
+</li>
+<li><p><code>LINKTYPE: dynamic</code></p>
+
+</li>
+<li><p><code>VERSION: 0.086</code></p>
+
+</li>
+<li><p><code>EXE_FILES: bin/statocles</code></p>
+
+</li>
+</ul>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

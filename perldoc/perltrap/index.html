@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perltrap - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perltrap/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perltrap/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perltrap/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perltrap/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perltrap/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perltrap/">perltrap</a>
+    </li>
+</ul>
+(<a href="/perldoc/perltrap/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perltrap - Perl traps for the unwary</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>The biggest trap of all is forgetting to <code>use warnings</code> or use the <b>-w</b> switch; see <a href="https://metacpan.org/pod/warnings" rel="external">warnings</a> and <a href="/perldoc/perlrun/">perlrun</a>. The second biggest trap is not making your entire program runnable under <code>use strict</code>. The third biggest trap is not reading the list of changes in this version of Perl; see <a href="/perldoc/perldelta/">perldelta</a>.</p>
+
+<h2 id="Awk-Traps">Awk Traps</h2>
+
+<p>Accustomed <b>awk</b> users should take special note of the following:</p>
+
+<ul>
+
+<li><p>A Perl program executes only once, not once for each input line. You can do an implicit loop with <code>-n</code> or <code>-p</code>.</p>
+
+</li>
+<li><p>The English module, loaded via</p>
+
+<pre><code>    use English;</code></pre>
+
+<p>allows you to refer to special variables (like <code>$/</code>) with names (like $RS), as though they were in <b>awk</b>; see <a href="/perldoc/perlvar/">perlvar</a> for details.</p>
+
+</li>
+<li><p>Semicolons are required after all simple statements in Perl (except at the end of a block). Newline is not a statement delimiter.</p>
+
+</li>
+<li><p>Curly brackets are required on <code>if</code>s and <code>while</code>s.</p>
+
+</li>
+<li><p>Variables begin with &quot;$&quot;, &quot;@&quot; or &quot;%&quot; in Perl.</p>
+
+</li>
+<li><p>Arrays index from 0. Likewise string positions in substr() and index().</p>
+
+</li>
+<li><p>You have to decide whether your array has numeric or string indices.</p>
+
+</li>
+<li><p>Hash values do not spring into existence upon mere reference.</p>
+
+</li>
+<li><p>You have to decide whether you want to use string or numeric comparisons.</p>
+
+</li>
+<li><p>Reading an input line does not split it for you. You get to split it to an array yourself. And the split() operator has different arguments than <b>awk</b>&#39;s.</p>
+
+</li>
+<li><p>The current input line is normally in $_, not $0. It generally does not have the newline stripped. ($0 is the name of the program executed.) See <a href="/perldoc/perlvar/">perlvar</a>.</p>
+
+</li>
+<li><p>$&lt;<i>digit</i>&gt; does not refer to fields--it refers to substrings matched by the last match pattern.</p>
+
+</li>
+<li><p>The print() statement does not add field and record separators unless you set <code>$,</code> and <code>$\</code>. You can set $OFS and $ORS if you&#39;re using the English module.</p>
+
+</li>
+<li><p>You must open your files before you print to them.</p>
+
+</li>
+<li><p>The range operator is &quot;..&quot;, not comma. The comma operator works as in C.</p>
+
+</li>
+<li><p>The match operator is &quot;=~&quot;, not &quot;~&quot;. (&quot;~&quot; is the one&#39;s complement operator, as in C.)</p>
+
+</li>
+<li><p>The exponentiation operator is &quot;**&quot;, not &quot;^&quot;. &quot;^&quot; is the XOR operator, as in C. (You know, one could get the feeling that <b>awk</b> is basically incompatible with C.)</p>
+
+</li>
+<li><p>The concatenation operator is &quot;.&quot;, not the null string. (Using the null string would render <code>/pat/ /pat/</code> unparsable, because the third slash would be interpreted as a division operator--the tokenizer is in fact slightly context sensitive for operators like &quot;/&quot;, &quot;?&quot;, and &quot;&gt;&quot;. And in fact, &quot;.&quot; itself can be the beginning of a number.)</p>
+
+</li>
+<li><p>The <code>next</code>, <code>exit</code>, and <code>continue</code> keywords work differently.</p>
+
+</li>
+<li><p>The following variables work differently:</p>
+
+<pre><code>      Awk       Perl
+      ARGC      scalar @ARGV (compare with $#ARGV)
+      ARGV[0]   $0
+      FILENAME  $ARGV
+      FNR       $. - something
+      FS        (whatever you like)
+      NF        $#Fld, or some such
+      NR        $.
+      OFMT      $#
+      OFS       $,
+      ORS       $\
+      RLENGTH   length($&amp;)
+      RS        $/
+      RSTART    length($`)
+      SUBSEP    $;</code></pre>
+
+</li>
+<li><p>You cannot set $RS to a pattern, only a string.</p>
+
+</li>
+<li><p>When in doubt, run the <b>awk</b> construct through <b>a2p</b> and see what it gives you.</p>
+
+</li>
+</ul>
+
+<h2 id="C-C-Traps">C/C++ Traps</h2>
+
+<p>Cerebral C and C++ programmers should take note of the following:</p>
+
+<ul>
+
+<li><p>Curly brackets are required on <code>if</code>&#39;s and <code>while</code>&#39;s.</p>
+
+</li>
+<li><p>You must use <code>elsif</code> rather than <code>else if</code>.</p>
+
+</li>
+<li><p>The <code>break</code> and <code>continue</code> keywords from C become in Perl <code>last</code> and <code>next</code>, respectively. Unlike in C, these do <i>not</i> work within a <code>do { } while</code> construct. See <a href="/perldoc/perlsyn/#Loop-Control">&quot;Loop Control&quot; in perlsyn</a>.</p>
+
+</li>
+<li><p>The switch statement is called <code>given</code>/<code>when</code> and only available in perl 5.10 or newer. See <a href="/perldoc/perlsyn/#Switch-Statements">&quot;Switch Statements&quot; in perlsyn</a>.</p>
+
+</li>
+<li><p>Variables begin with &quot;$&quot;, &quot;@&quot; or &quot;%&quot; in Perl.</p>
+
+</li>
+<li><p>Comments begin with &quot;#&quot;, not &quot;/*&quot; or &quot;//&quot;. Perl may interpret C/C++ comments as division operators, unterminated regular expressions or the defined-or operator.</p>
+
+</li>
+<li><p>You can&#39;t take the address of anything, although a similar operator in Perl is the backslash, which creates a reference.</p>
+
+</li>
+<li><p><code>ARGV</code> must be capitalized. <code>$ARGV[0]</code> is C&#39;s <code>argv[1]</code>, and <code>argv[0]</code> ends up in <code>$0</code>.</p>
+
+</li>
+<li><p>System calls such as link(), unlink(), rename(), etc. return nonzero for success, not 0. (system(), however, returns zero for success.)</p>
+
+</li>
+<li><p>Signal handlers deal with signal names, not numbers. Use <code>kill -l</code> to find their names on your system.</p>
+
+</li>
+</ul>
+
+<h2 id="JavaScript-Traps">JavaScript Traps</h2>
+
+<p>Judicious JavaScript programmers should take note of the following:</p>
+
+<ul>
+
+<li><p>In Perl, binary <code>+</code> is always addition. <code>$string1 + $string2</code> converts both strings to numbers and then adds them. To concatenate two strings, use the <code>.</code> operator.</p>
+
+</li>
+<li><p>The <code>+</code> unary operator doesn&#39;t do anything in Perl. It exists to avoid syntactic ambiguities.</p>
+
+</li>
+<li><p>Unlike <code>for...in</code>, Perl&#39;s <code>for</code> (also spelled <code>foreach</code>) does not allow the left-hand side to be an arbitrary expression. It must be a variable:</p>
+
+<pre><code>   for my $variable (keys %hash) {
+        ...
+   }</code></pre>
+
+<p>Furthermore, don&#39;t forget the <code>keys</code> in there, as <code>foreach my $kv (%hash) {}</code> iterates over the keys and values, and is generally not useful ($kv would be a key, then a value, and so on).</p>
+
+</li>
+<li><p>To iterate over the indices of an array, use <code>foreach my $i (0 .. $#array) {}</code>. <code>foreach my $v (@array) {}</code> iterates over the values.</p>
+
+</li>
+<li><p>Perl requires braces following <code>if</code>, <code>while</code>, <code>foreach</code>, etc.</p>
+
+</li>
+<li><p>In Perl, <code>else if</code> is spelled <code>elsif</code>.</p>
+
+</li>
+<li><p><code>? :</code> has higher precedence than assignment. In JavaScript, one can write:</p>
+
+<pre><code>    condition ? do_something() : variable = 3</code></pre>
+
+<p>and the variable is only assigned if the condition is false. In Perl, you need parentheses:</p>
+
+<pre><code>    $condition ? do_something() : ($variable = 3);</code></pre>
+
+<p>Or just use <code>if</code>.</p>
+
+</li>
+<li><p>Perl requires semicolons to separate statements.</p>
+
+</li>
+<li><p>Variables declared with <code>my</code> only affect code <i>after</i> the declaration. You cannot write <code>$x = 1; my $x;</code> and expect the first assignment to affect the same variable. It will instead assign to an <code>$x</code> declared previously in an outer scope, or to a global variable.</p>
+
+<p>Note also that the variable is not visible until the following <i>statement</i>. This means that in <code>my $x = 1 + $x</code> the second $x refers to one declared previously.</p>
+
+</li>
+<li><p><code>my</code> variables are scoped to the current block, not to the current function. If you write <code>{my $x;} $x;</code>, the second <code>$x</code> does not refer to the one declared inside the block.</p>
+
+</li>
+<li><p>An object&#39;s members cannot be made accessible as variables. The closest Perl equivalent to <code>with(object) { method() }</code> is <code>for</code>, which can alias <code>$_</code> to the object:</p>
+
+<pre><code>    for ($object) {
+        $_-&gt;method;
+    }</code></pre>
+
+</li>
+<li><p>The object or class on which a method is called is passed as one of the method&#39;s arguments, not as a separate <code>this</code> value.</p>
+
+</li>
+</ul>
+
+<h2 id="Sed-Traps">Sed Traps</h2>
+
+<p>Seasoned <b>sed</b> programmers should take note of the following:</p>
+
+<ul>
+
+<li><p>A Perl program executes only once, not once for each input line. You can do an implicit loop with <code>-n</code> or <code>-p</code>.</p>
+
+</li>
+<li><p>Backreferences in substitutions use &quot;$&quot; rather than &quot;\&quot;.</p>
+
+</li>
+<li><p>The pattern matching metacharacters &quot;(&quot;, &quot;)&quot;, and &quot;|&quot; do not have backslashes in front.</p>
+
+</li>
+<li><p>The range operator is <code>...</code>, rather than comma.</p>
+
+</li>
+</ul>
+
+<h2 id="Shell-Traps">Shell Traps</h2>
+
+<p>Sharp shell programmers should take note of the following:</p>
+
+<ul>
+
+<li><p>The backtick operator does variable interpolation without regard to the presence of single quotes in the command.</p>
+
+</li>
+<li><p>The backtick operator does no translation of the return value, unlike <b>csh</b>.</p>
+
+</li>
+<li><p>Shells (especially <b>csh</b>) do several levels of substitution on each command line. Perl does substitution in only certain constructs such as double quotes, backticks, angle brackets, and search patterns.</p>
+
+</li>
+<li><p>Shells interpret scripts a little bit at a time. Perl compiles the entire program before executing it (except for <code>BEGIN</code> blocks, which execute at compile time).</p>
+
+</li>
+<li><p>The arguments are available via @ARGV, not $1, $2, etc.</p>
+
+</li>
+<li><p>The environment is not automatically made available as separate scalar variables.</p>
+
+</li>
+<li><p>The shell&#39;s <code>test</code> uses &quot;=&quot;, &quot;!=&quot;, &quot;&lt;&quot; etc for string comparisons and &quot;-eq&quot;, &quot;-ne&quot;, &quot;-lt&quot; etc for numeric comparisons. This is the reverse of Perl, which uses <code>eq</code>, <code>ne</code>, <code>lt</code> for string comparisons, and <code>==</code>, <code>!=</code> <code>&lt;</code> etc for numeric comparisons.</p>
+
+</li>
+</ul>
+
+<h2 id="Perl-Traps">Perl Traps</h2>
+
+<p>Practicing Perl Programmers should take note of the following:</p>
+
+<ul>
+
+<li><p>Remember that many operations behave differently in a list context than they do in a scalar one. See <a href="/perldoc/perldata/">perldata</a> for details.</p>
+
+</li>
+<li><p>Avoid barewords if you can, especially all lowercase ones. You can&#39;t tell by just looking at it whether a bareword is a function or a string. By using quotes on strings and parentheses on function calls, you won&#39;t ever get them confused.</p>
+
+</li>
+<li><p>You cannot discern from mere inspection which builtins are unary operators (like chop() and chdir()) and which are list operators (like print() and unlink()). (Unless prototyped, user-defined subroutines can <b>only</b> be list operators, never unary ones.) See <a href="/perldoc/perlop/">perlop</a> and <a href="/perldoc/perlsub/">perlsub</a>.</p>
+
+</li>
+<li><p>People have a hard time remembering that some functions default to $_, or @ARGV, or whatever, but that others which you might expect to do not.</p>
+
+</li>
+<li><p>The &lt;FH&gt; construct is not the name of the filehandle, it is a readline operation on that handle. The data read is assigned to $_ only if the file read is the sole condition in a while loop:</p>
+
+<pre><code>    while (&lt;FH&gt;)      { }
+    while (defined($_ = &lt;FH&gt;)) { }..
+    &lt;FH&gt;;  # data discarded!</code></pre>
+
+</li>
+<li><p>Remember not to use <code>=</code> when you need <code>=~</code>; these two constructs are quite different:</p>
+
+<pre><code>    $x =  /foo/;
+    $x =~ /foo/;</code></pre>
+
+</li>
+<li><p>The <code>do {}</code> construct isn&#39;t a real loop that you can use loop control on.</p>
+
+</li>
+<li><p>Use <code>my()</code> for local variables whenever you can get away with it (but see <a href="/perldoc/perlform/">perlform</a> for where you can&#39;t). Using <code>local()</code> actually gives a local value to a global variable, which leaves you open to unforeseen side-effects of dynamic scoping.</p>
+
+</li>
+<li><p>If you localize an exported variable in a module, its exported value will not change. The local name becomes an alias to a new value but the external name is still an alias for the original.</p>
+
+</li>
+</ul>
+
+<p>As always, if any of these are ever officially declared as bugs, they&#39;ll be fixed and removed.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

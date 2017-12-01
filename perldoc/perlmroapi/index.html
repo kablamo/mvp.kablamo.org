@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlmroapi - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlmroapi/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlmroapi/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlmroapi/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlmroapi/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlmroapi/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlmroapi/">perlmroapi</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlmroapi/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlmroapi - Perl method resolution plugin interface</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>As of Perl 5.10.1 there is a new interface for plugging and using method resolution orders other than the default (linear depth first search). The C3 method resolution order added in 5.10.0 has been re-implemented as a plugin, without changing its Perl-space interface.</p>
+
+<p>Each plugin should register itself by providing the following structure</p>
+
+<pre><code>    struct mro_alg {
+        AV *(*resolve)(pTHX_ HV *stash, U32 level);
+        const char *name;
+        U16 length;
+        U16 kflags;
+        U32 hash;
+    };</code></pre>
+
+<p>and calling <code>Perl_mro_register</code>:</p>
+
+<pre><code>    Perl_mro_register(aTHX_ &amp;my_mro_alg);</code></pre>
+
+<dl>
+
+<dt>resolve</dt>
+<dd>
+
+<p>Pointer to the linearisation function, described below.</p>
+
+</dd>
+<dt>name</dt>
+<dd>
+
+<p>Name of the MRO, either in ISO-8859-1 or UTF-8.</p>
+
+</dd>
+<dt>length</dt>
+<dd>
+
+<p>Length of the name.</p>
+
+</dd>
+<dt>kflags</dt>
+<dd>
+
+<p>If the name is given in UTF-8, set this to <code>HVhek_UTF8</code>. The value is passed direct as the parameter <i>kflags</i> to <code>hv_common()</code>.</p>
+
+</dd>
+<dt>hash</dt>
+<dd>
+
+<p>A precomputed hash value for the MRO&#39;s name, or 0.</p>
+
+</dd>
+</dl>
+
+<h1 id="Callbacks">Callbacks</h1>
+
+<p>The <code>resolve</code> function is called to generate a linearised ISA for the given stash, using this MRO. It is called with a pointer to the stash, and a <i>level</i> of 0. The core always sets <i>level</i> to 0 when it calls your function - the parameter is provided to allow your implementation to track depth if it needs to recurse.</p>
+
+<p>The function should return a reference to an array containing the parent classes in order. The names of the classes should be the result of calling <code>HvENAME()</code> on the stash. In those cases where <code>HvENAME()</code> returns null, <code>HvNAME()</code> should be used instead.</p>
+
+<p>The caller is responsible for incrementing the reference count of the array returned if it wants to keep the structure. Hence, if you have created a temporary value that you keep no pointer to, <code>sv_2mortal()</code> to ensure that it is disposed of correctly. If you have cached your return value, then return a pointer to it without changing the reference count.</p>
+
+<h1 id="Caching">Caching</h1>
+
+<p>Computing MROs can be expensive. The implementation provides a cache, in which you can store a single <code>SV *</code>, or anything that can be cast to <code>SV *</code>, such as <code>AV *</code>. To read your private value, use the macro <code>MRO_GET_PRIVATE_DATA()</code>, passing it the <code>mro_meta</code> structure from the stash, and a pointer to your <code>mro_alg</code> structure:</p>
+
+<pre><code>    meta = HvMROMETA(stash);
+    private_sv = MRO_GET_PRIVATE_DATA(meta, &amp;my_mro_alg);</code></pre>
+
+<p>To set your private value, call <code>Perl_mro_set_private_data()</code>:</p>
+
+<pre><code>    Perl_mro_set_private_data(aTHX_ meta, &amp;c3_alg, private_sv);</code></pre>
+
+<p>The private data cache will take ownership of a reference to private_sv, much the same way that <code>hv_store()</code> takes ownership of a reference to the value that you pass it.</p>
+
+<h1 id="Examples">Examples</h1>
+
+<p>For examples of MRO implementations, see <code>S_mro_get_linear_isa_c3()</code> and the <code>BOOT:</code> section of <i>ext/mro/mro.xs</i>, and <code>S_mro_get_linear_isa_dfs()</code> in <i>mro_core.c</i></p>
+
+<h1 id="AUTHORS">AUTHORS</h1>
+
+<p>The implementation of the C3 MRO and switchable MROs within the perl core was written by Brandon L Black. Nicholas Clark created the pluggable interface, refactored Brandon&#39;s implementation to work with it, and wrote this document.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

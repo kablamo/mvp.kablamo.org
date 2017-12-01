@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5122delta - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5122delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5122delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5122delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5122delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5122delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perl5122delta/">perl5122delta</a>
+    </li>
+</ul>
+(<a href="/perldoc/perl5122delta/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perl5122delta - what is new for perl v5.12.2</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document describes differences between the 5.12.1 release and the 5.12.2 release.</p>
+
+<p>If you are upgrading from an earlier major version, such as 5.10.1, first read <a href="/perldoc/perl5120delta/">perl5120delta</a>, which describes differences between 5.10.1 and 5.12.0, as well as <a href="/perldoc/perl5121delta/">perl5121delta</a>, which describes earlier changes in the 5.12 stable release series.</p>
+
+<h1 id="Incompatible-Changes">Incompatible Changes</h1>
+
+<p>There are no changes intentionally incompatible with 5.12.1. If any exist, they are bugs and reports are welcome.</p>
+
+<h1 id="Core-Enhancements">Core Enhancements</h1>
+
+<p>Other than the bug fixes listed below, there should be no user-visible changes to the core language in this release.</p>
+
+<h1 id="Modules-and-Pragmata">Modules and Pragmata</h1>
+
+<h2 id="New-Modules-and-Pragmata">New Modules and Pragmata</h2>
+
+<p>This release does not introduce any new modules or pragmata.</p>
+
+<h2 id="Pragmata-Changes">Pragmata Changes</h2>
+
+<p>In the previous release, <code>no <i>VERSION</i>;</code> statements triggered a bug which could cause <a href="https://metacpan.org/pod/feature" rel="external">feature</a> bundles to be loaded and <a href="https://metacpan.org/pod/strict" rel="external">strict</a> mode to be enabled unintentionally.</p>
+
+<h2 id="Updated-Modules">Updated Modules</h2>
+
+<dl>
+
+<dt><code>Carp</code></dt>
+<dd>
+
+<p>Upgraded from version 1.16 to 1.17.</p>
+
+<p><a href="https://metacpan.org/pod/Carp" rel="external">Carp</a> now detects incomplete <a href="/perldoc/perlfunc/#caller-EXPR">caller()</a> overrides and avoids using bogus <code>@DB::args</code>. To provide backtraces, Carp relies on particular behaviour of the caller built-in. Carp now detects if other code has overridden this with an incomplete implementation, and modifies its backtrace accordingly. Previously incomplete overrides would cause incorrect values in backtraces (best case), or obscure fatal errors (worst case)</p>
+
+<p>This fixes certain cases of <code>Bizarre copy of ARRAY</code> caused by modules overriding <code>caller()</code> incorrectly.</p>
+
+</dd>
+<dt><code>CPANPLUS</code></dt>
+<dd>
+
+<p>A patch to <i>cpanp-run-perl</i> has been backported from CPANPLUS <code>0.9004</code>. This resolves <a href="http://rt.cpan.org/Public/Bug/Display.html?id=55964" rel="external">RT #55964</a> and <a href="http://rt.cpan.org/Public/Bug/Display.html?id=57106" rel="external">RT #57106</a>, both of which related to failures to install distributions that use <code>Module::Install::DSL</code>.</p>
+
+</dd>
+<dt><code>File::Glob</code></dt>
+<dd>
+
+<p>A regression which caused a failure to find <code>CORE::GLOBAL::glob</code> after loading <code>File::Glob</code> to crash has been fixed. Now, it correctly falls back to external globbing via <code>pp_glob</code>.</p>
+
+</dd>
+<dt><code>File::Copy</code></dt>
+<dd>
+
+<p><code>File::Copy::copy(FILE, DIR)</code> is now documented.</p>
+
+</dd>
+<dt><code>File::Spec</code></dt>
+<dd>
+
+<p>Upgraded from version 3.31 to 3.31_01.</p>
+
+<p>Several portability fixes were made in <code>File::Spec::VMS</code>: a colon is now recognized as a delimiter in native filespecs; caret-escaped delimiters are recognized for better handling of extended filespecs; <code>catpath()</code> returns an empty directory rather than the current directory if the input directory name is empty; <code>abs2rel()</code> properly handles Unix-style input.</p>
+
+</dd>
+</dl>
+
+<h1 id="Utility-Changes">Utility Changes</h1>
+
+<ul>
+
+<li><p><i>perlbug</i> now always gives the reporter a chance to change the email address it guesses for them.</p>
+
+</li>
+<li><p><i>perlbug</i> should no longer warn about uninitialized values when using the <code>-d</code> and <code>-v</code> options.</p>
+
+</li>
+</ul>
+
+<h1 id="Changes-to-Existing-Documentation">Changes to Existing Documentation</h1>
+
+<ul>
+
+<li><p>The existing policy on backward-compatibility and deprecation has been added to <a href="/perldoc/perlpolicy/">perlpolicy</a>, along with definitions of terms like <i>deprecation</i>.</p>
+
+</li>
+<li><p><a href="/perldoc/perlfunc/#srand">&quot;srand&quot; in perlfunc</a>&#39;s usage has been clarified.</p>
+
+</li>
+<li><p>The entry for <a href="/perldoc/perlfunc/#die">&quot;die&quot; in perlfunc</a> was reorganized to emphasize its role in the exception mechanism.</p>
+
+</li>
+<li><p>Perl&#39;s <a href="https://metacpan.org/pod/INSTALL" rel="external">INSTALL</a> file has been clarified to explicitly state that Perl requires a C89 compliant ANSI C Compiler.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/IO::Socket" rel="external">IO::Socket</a>&#39;s <code>getsockopt()</code> and <code>setsockopt()</code> have been documented.</p>
+
+</li>
+<li><p><i>alarm()</i>&#39;s inability to interrupt blocking IO on Windows has been documented.</p>
+
+</li>
+<li><p><a href="https://metacpan.org/pod/Math::TrulyRandom" rel="external">Math::TrulyRandom</a> hasn&#39;t been updated since 1996 and has been removed as a recommended solution for random number generation.</p>
+
+</li>
+<li><p><a href="/perldoc/perlrun/">perlrun</a> has been updated to clarify the behaviour of octal flags to <i>perl</i>.</p>
+
+</li>
+<li><p>To ease user confusion, <code>$#</code> and <code>$*</code>, two special variables that were removed in earlier versions of Perl have been documented.</p>
+
+</li>
+<li><p>The version of <a href="/perldoc/perlfaq/">perlfaq</a> shipped with the Perl core has been updated from the official FAQ version, which is now maintained in the <code>briandfoy/perlfaq</code> branch of the Perl repository at <a href="git://perl5.git.perl.org/perl.git" rel="external">git://perl5.git.perl.org/perl.git</a>.</p>
+
+</li>
+</ul>
+
+<h1 id="Installation-and-Configuration-Improvements">Installation and Configuration Improvements</h1>
+
+<h2 id="Configuration-improvements">Configuration improvements</h2>
+
+<ul>
+
+<li><p>The <code>d_u32align</code> configuration probe on ARM has been fixed.</p>
+
+</li>
+</ul>
+
+<h2 id="Compilation-improvements">Compilation improvements</h2>
+
+<ul>
+
+<li><p>An &quot;<code>incompatible operand types</code>&quot; error in ternary expressions when building with <code>clang</code> has been fixed.</p>
+
+</li>
+<li><p>Perl now skips setuid <code>File::Copy</code> tests on partitions it detects to be mounted as <code>nosuid</code>.</p>
+
+</li>
+</ul>
+
+<h1 id="Selected-Bug-Fixes">Selected Bug Fixes</h1>
+
+<ul>
+
+<li><p>A possible segfault in the <code>T_PRTOBJ</code> default typemap has been fixed.</p>
+
+</li>
+<li><p>A possible memory leak when using <a href="/perldoc/perlfunc/#caller-EXPR">caller()</a> to set <code>@DB::args</code> has been fixed.</p>
+
+</li>
+<li><p>Several memory leaks when loading XS modules were fixed.</p>
+
+</li>
+<li><p><code>unpack()</code> now handles scalar context correctly for <code>%32H</code> and <code>%32u</code>, fixing a potential crash. <code>split()</code> would crash because the third item on the stack wasn&#39;t the regular expression it expected. <code>unpack(&quot;%2H&quot;, ...)</code> would return both the unpacked result and the checksum on the stack, as would <code>unpack(&quot;%2u&quot;, ...)</code>. <a href="http://rt.perl.org/rt3/Ticket/Display.html?id=73814" rel="external">[perl #73814]</a></p>
+
+</li>
+<li><p>Perl now avoids using memory after calling <code>free()</code> in <i>pp_require</i> when there are CODEREFs in <code>@INC</code>.</p>
+
+</li>
+<li><p>A bug that could cause &quot;<code>Unknown error</code>&quot; messages when &quot;<code>call_sv(code, G_EVAL)</code>&quot; is called from an XS destructor has been fixed.</p>
+
+</li>
+<li><p>The implementation of the <code>open $fh, &#39;&gt;&#39; \$buffer</code> feature now supports get/set magic and thus tied buffers correctly.</p>
+
+</li>
+<li><p>The <code>pp_getc</code>, <code>pp_tell</code>, and <code>pp_eof</code> opcodes now make room on the stack for their return values in cases where no argument was passed in.</p>
+
+</li>
+<li><p>When matching unicode strings under some conditions inappropriate backtracking would result in a <code>Malformed UTF-8 character (fatal)</code> error. This should no longer occur. See <a href="http://rt.perl.org/rt3/Public/Bug/Display.html?id=75680" rel="external">[perl #75680]</a></p>
+
+</li>
+</ul>
+
+<h1 id="Platform-Specific-Notes">Platform Specific Notes</h1>
+
+<h2 id="AIX">AIX</h2>
+
+<ul>
+
+<li><p><i>README.aix</i> has been updated with information about the XL C/C++ V11 compiler suite.</p>
+
+</li>
+</ul>
+
+<h2 id="Windows">Windows</h2>
+
+<ul>
+
+<li><p>When building Perl with the mingw64 x64 cross-compiler <code>incpath</code>, <code>libpth</code>, <code>ldflags</code>, <code>lddlflags</code> and <code>ldflags_nolargefiles</code> values in <i>Config.pm</i> and <i>Config_heavy.pl</i> were not previously being set correctly because, with that compiler, the include and lib directories are not immediately below <code>$(CCHOME)</code>.</p>
+
+</li>
+</ul>
+
+<h2 id="VMS">VMS</h2>
+
+<ul>
+
+<li><p><i>git_version.h</i> is now installed on VMS. This was an oversight in v5.12.0 which caused some extensions to fail to build.</p>
+
+</li>
+<li><p>Several memory leaks in <a href="/perldoc/perlfunc/#stat-FILEHANDLE">stat()</a> have been fixed.</p>
+
+</li>
+<li><p>A memory leak in <code>Perl_rename()</code> due to a double allocation has been fixed.</p>
+
+</li>
+<li><p>A memory leak in <code>vms_fid_to_name()</code> (used by <code>realpath()</code> and <code>realname()</code>) has been fixed.</p>
+
+</li>
+</ul>
+
+<h1 id="Acknowledgements">Acknowledgements</h1>
+
+<p>Perl 5.12.2 represents approximately three months of development since Perl 5.12.1 and contains approximately 2,000 lines of changes across 100 files from 36 authors.</p>
+
+<p>Perl continues to flourish into its third decade thanks to a vibrant community of users and developers. The following people are known to have contributed the improvements that became Perl 5.12.2:</p>
+
+<p>Abigail, Ævar Arnfjörð Bjarmason, Ben Morrow, brian d foy, Brian Phillips, Chas. Owens, Chris &#39;BinGOs&#39; Williams, Chris Williams, Craig A. Berry, Curtis Jewell, Dan Dascalescu, David Golden, David Mitchell, Father Chrysostomos, Florian Ragwitz, George Greer, H.Merijn Brand, Jan Dubois, Jesse Vincent, Jim Cromie, Karl Williamson, Lars Dɪᴇᴄᴋᴏᴡ 迪拉斯, Leon Brocard, Maik Hentsche, Matt S Trout, Nicholas Clark, Rafael Garcia-Suarez, Rainer Tammer, Ricardo Signes, Salvador Ortiz Garcia, Sisyphus, Slaven Rezic, Steffen Mueller, Tony Cook, Vincent Pit and Yves Orton.</p>
+
+<h1 id="Reporting-Bugs">Reporting Bugs</h1>
+
+<p>If you find what you think is a bug, you might check the articles recently posted to the comp.lang.perl.misc newsgroup and the perl bug database at http://rt.perl.org/perlbug/ . There may also be information at http://www.perl.org/ , the Perl Home Page.</p>
+
+<p>If you believe you have an unreported bug, please run the <b>perlbug</b> program included with your release. Be sure to trim your bug down to a tiny but sufficient test case. Your bug report, along with the output of <code>perl -V</code>, will be sent off to perlbug@perl.org to be analysed by the Perl porting team.</p>
+
+<p>If the bug you are reporting has security implications, which make it inappropriate to send to a publicly archived mailing list, then please send it to perl5-security-report@perl.org. This points to a closed subscription unarchived mailing list, which includes all the core committers, who will be able to help assess the impact of issues, figure out a resolution, and help co-ordinate the release of patches to mitigate or fix the problem across all platforms on which Perl is supported. Please only use this address for security issues in the Perl core, not for modules independently distributed on CPAN.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p>The <i>Changes</i> file for an explanation of how to view exhaustive details on what changed.</p>
+
+<p>The <i>INSTALL</i> file for how to build Perl.</p>
+
+<p>The <i>README</i> file for general stuff.</p>
+
+<p>The <i>Artistic</i> and <i>Copying</i> files for copyright information.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

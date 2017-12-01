@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlport - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlport/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlport/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlport/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlport/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlport/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlport/">perlport</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlport/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlport - Writing portable Perl</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Perl runs on numerous operating systems. While most of them share much in common, they also have their own unique features.</p>
+
+<p>This document is meant to help you to find out what constitutes portable Perl code. That way once you make a decision to write portably, you know where the lines are drawn, and you can stay within them.</p>
+
+<p>There is a tradeoff between taking full advantage of one particular type of computer and taking advantage of a full range of them. Naturally, as you broaden your range and become more diverse, the common factors drop, and you are left with an increasingly smaller area of common ground in which you can operate to accomplish a particular task. Thus, when you begin attacking a problem, it is important to consider under which part of the tradeoff curve you want to operate. Specifically, you must decide whether it is important that the task that you are coding has the full generality of being portable, or whether to just get the job done right now. This is the hardest choice to be made. The rest is easy, because Perl provides many choices, whichever way you want to approach your problem.</p>
+
+<p>Looking at it another way, writing portable code is usually about willfully limiting your available choices. Naturally, it takes discipline and sacrifice to do that. The product of portability and convenience may be a constant. You have been warned.</p>
+
+<p>Be aware of two important points:</p>
+
+<dl>
+
+<dt>Not all Perl programs have to be portable</dt>
+<dd>
+
+<p>There is no reason you should not use Perl as a language to glue Unix tools together, or to prototype a Macintosh application, or to manage the Windows registry. If it makes no sense to aim for portability for one reason or another in a given program, then don&#39;t bother.</p>
+
+</dd>
+<dt>Nearly all of Perl already <i>is</i> portable</dt>
+<dd>
+
+<p>Don&#39;t be fooled into thinking that it is hard to create portable Perl code. It isn&#39;t. Perl tries its level-best to bridge the gaps between what&#39;s available on different platforms, and all the means available to use those features. Thus almost all Perl code runs on any machine without modification. But there are some significant issues in writing portable code, and this document is entirely about those issues.</p>
+
+</dd>
+</dl>
+
+<p>Here&#39;s the general rule: When you approach a task commonly done using a whole range of platforms, think about writing portable code. That way, you don&#39;t sacrifice much by way of the implementation choices you can avail yourself of, and at the same time you can give your users lots of platform choices. On the other hand, when you have to take advantage of some unique feature of a particular platform, as is often the case with systems programming (whether for Unix, Windows, VMS, etc.), consider writing platform-specific code.</p>
+
+<p>When the code will run on only two or three operating systems, you may need to consider only the differences of those particular systems. The important thing is to decide where the code will run and to be deliberate in your decision.</p>
+
+<p>The material below is separated into three main sections: main issues of portability (<a href="#ISSUES">&quot;ISSUES&quot;</a>), platform-specific issues (<a href="#PLATFORMS">&quot;PLATFORMS&quot;</a>), and built-in Perl functions that behave differently on various ports (<a href="#FUNCTION-IMPLEMENTATIONS">&quot;FUNCTION IMPLEMENTATIONS&quot;</a>).</p>
+
+<p>This information should not be considered complete; it includes possibly transient information about idiosyncrasies of some of the ports, almost all of which are in a state of constant evolution. Thus, this material should be considered a perpetual work in progress (<code>&lt;IMG SRC=&quot;yellow_sign.gif&quot; ALT=&quot;Under Construction&quot;&gt;</code>).</p>
+
+<h1 id="ISSUES">ISSUES</h1>
+
+<h2 id="Newlines">Newlines</h2>
+
+<p>In most operating systems, lines in files are terminated by newlines. Just what is used as a newline may vary from OS to OS. Unix traditionally uses <code>\012</code>, one type of DOSish I/O uses <code>\015\012</code>, <span style="white-space: nowrap;">Mac OS</span> uses <code>\015</code>, and z/OS uses <code>\025</code>.</p>
+
+<p>Perl uses <code>\n</code> to represent the &quot;logical&quot; newline, where what is logical may depend on the platform in use. In MacPerl, <code>\n</code> always means <code>\015</code>. On EBCDIC platforms, <code>\n</code> could be <code>\025</code> or <code>\045</code>. In DOSish perls, <code>\n</code> usually means <code>\012</code>, but when accessing a file in &quot;text&quot; mode, perl uses the <code>:crlf</code> layer that translates it to (or from) <code>\015\012</code>, depending on whether you&#39;re reading or writing. Unix does the same thing on ttys in canonical mode. <code>\015\012</code> is commonly referred to as CRLF.</p>
+
+<p>To trim trailing newlines from text lines use <a href="/perldoc/perlfunc/#chomp-VARIABLE"><code>chomp</code></a>. With default settings that function looks for a trailing <code>\n</code> character and thus trims in a portable way.</p>
+
+<p>When dealing with binary files (or text files in binary mode) be sure to explicitly set <a href="/perldoc/perlvar/#pod"><code>$/</code></a> to the appropriate value for your file format before using <a href="/perldoc/perlfunc/#chomp-VARIABLE"><code>chomp</code></a>.</p>
+
+<p>Because of the &quot;text&quot; mode translation, DOSish perls have limitations in using <a href="/perldoc/perlfunc/#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a> and <a href="/perldoc/perlfunc/#tell-FILEHANDLE"><code>tell</code></a> on a file accessed in &quot;text&quot; mode. Stick to <a href="/perldoc/perlfunc/#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a>-ing to locations you got from <a href="/perldoc/perlfunc/#tell-FILEHANDLE"><code>tell</code></a> (and no others), and you are usually free to use <a href="/perldoc/perlfunc/#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a> and <a href="/perldoc/perlfunc/#tell-FILEHANDLE"><code>tell</code></a> even in &quot;text&quot; mode. Using <a href="/perldoc/perlfunc/#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a> or <a href="/perldoc/perlfunc/#tell-FILEHANDLE"><code>tell</code></a> or other file operations may be non-portable. If you use <a href="/perldoc/perlfunc/#binmode-FILEHANDLE"><code>binmode</code></a> on a file, however, you can usually <a href="/perldoc/perlfunc/#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a> and <a href="/perldoc/perlfunc/#tell-FILEHANDLE"><code>tell</code></a> with arbitrary values safely.</p>
+
+<p>A common misconception in socket programming is that <span style="white-space: nowrap;"><code>\n eq \012</code></span> everywhere. When using protocols such as common Internet protocols, <code>\012</code> and <code>\015</code> are called for specifically, and the values of the logical <code>\n</code> and <code>\r</code> (carriage return) are not reliable.</p>
+
+<pre><code>    print $socket &quot;Hi there, client!\r\n&quot;;      # WRONG
+    print $socket &quot;Hi there, client!\015\012&quot;;  # RIGHT</code></pre>
+
+<p>However, using <code>\015\012</code> (or <code>\cM\cJ</code>, or <code>\x0D\x0A</code>) can be tedious and unsightly, as well as confusing to those maintaining the code. As such, the <a href="https://metacpan.org/pod/Socket" rel="external"><code>Socket</code></a> module supplies the Right Thing for those who want it.</p>
+
+<pre><code>    use Socket qw(:DEFAULT :crlf);
+    print $socket &quot;Hi there, client!$CRLF&quot;      # RIGHT</code></pre>
+
+<p>When reading from a socket, remember that the default input record separator <a href="/perldoc/perlvar/#pod"><code>$/</code></a> is <code>\n</code>, but robust socket code will recognize as either <code>\012</code> or <code>\015\012</code> as end of line:</p>
+
+<pre><code>    while (&lt;$socket&gt;) {  # NOT ADVISABLE!
+        # ...
+    }</code></pre>
+
+<p>Because both CRLF and LF end in LF, the input record separator can be set to LF and any CR stripped later. Better to write:</p>
+
+<pre><code>    use Socket qw(:DEFAULT :crlf);
+    local($/) = LF;      # not needed if $/ is already \012
+
+    while (&lt;$socket&gt;) {
+        s/$CR?$LF/\n/;   # not sure if socket uses LF or CRLF, OK
+    #   s/\015?\012/\n/; # same thing
+    }</code></pre>
+
+<p>This example is preferred over the previous one--even for Unix platforms--because now any <code>\015</code>&#39;s (<code>\cM</code>&#39;s) are stripped out (and there was much rejoicing).</p>
+
+<p>Similarly, functions that return text data--such as a function that fetches a web page--should sometimes translate newlines before returning the data, if they&#39;ve not yet been translated to the local newline representation. A single line of code will often suffice:</p>
+
+<pre><code>    $data =~ s/\015?\012/\n/g;
+    return $data;</code></pre>
+
+<p>Some of this may be confusing. Here&#39;s a handy reference to the ASCII CR and LF characters. You can print it out and stick it in your wallet.</p>
+
+<pre><code>    LF  eq  \012  eq  \x0A  eq  \cJ  eq  chr(10)  eq  ASCII 10
+    CR  eq  \015  eq  \x0D  eq  \cM  eq  chr(13)  eq  ASCII 13
+
+             | Unix | DOS  | Mac  |
+        ---------------------------
+        \n   |  LF  |  LF  |  CR  |
+        \r   |  CR  |  CR  |  LF  |
+        \n * |  LF  | CRLF |  CR  |
+        \r * |  CR  |  CR  |  LF  |
+        ---------------------------
+        * text-mode STDIO</code></pre>
+
+<p>The Unix column assumes that you are not accessing a serial line (like a tty) in canonical mode. If you are, then CR on input becomes &quot;\n&quot;, and &quot;\n&quot; on output becomes CRLF.</p>
+
+<p>These are just the most common definitions of <code>\n</code> and <code>\r</code> in Perl. There may well be others. For example, on an EBCDIC implementation such as z/OS (OS/390) or OS/400 (using the ILE, the PASE is ASCII-based) the above material is similar to &quot;Unix&quot; but the code numbers change:</p>
+
+<pre><code>    LF  eq  \025  eq  \x15  eq  \cU  eq  chr(21)  eq  CP-1047 21
+    LF  eq  \045  eq  \x25  eq           chr(37)  eq  CP-0037 37
+    CR  eq  \015  eq  \x0D  eq  \cM  eq  chr(13)  eq  CP-1047 13
+    CR  eq  \015  eq  \x0D  eq  \cM  eq  chr(13)  eq  CP-0037 13
+
+             | z/OS | OS/400 |
+        ----------------------
+        \n   |  LF  |  LF    |
+        \r   |  CR  |  CR    |
+        \n * |  LF  |  LF    |
+        \r * |  CR  |  CR    |
+        ----------------------
+        * text-mode STDIO</code></pre>
+
+<h2 id="Numbers-endianness-and-Width">Numbers endianness and Width</h2>
+
+<p>Different CPUs store integers and floating point numbers in different orders (called <i>endianness</i>) and widths (32-bit and 64-bit being the most common today). This affects your programs when they attempt to transfer numbers in binary format from one CPU architecture to another, usually either &quot;live&quot; via network connection, or by storing the numbers to secondary storage such as a disk file or tape.</p>
+
+<p>Conflicting storage orders make an utter mess out of the numbers. If a little-endian host (Intel, VAX) stores 0x12345678 (305419896 in decimal), a big-endian host (Motorola, Sparc, PA) reads it as 0x78563412 (2018915346 in decimal). Alpha and MIPS can be either: Digital/Compaq used/uses them in little-endian mode; SGI/Cray uses them in big-endian mode. To avoid this problem in network (socket) connections use the <a href="/perldoc/perlfunc/#pack-TEMPLATE-LIST"><code>pack</code></a> and <a href="/perldoc/perlfunc/#unpack-TEMPLATE-EXPR"><code>unpack</code></a> formats <code>n</code> and <code>N</code>, the &quot;network&quot; orders. These are guaranteed to be portable.</p>
+
+<p>As of Perl 5.10.0, you can also use the <code>&gt;</code> and <code>&lt;</code> modifiers to force big- or little-endian byte-order. This is useful if you want to store signed integers or 64-bit integers, for example.</p>
+
+<p>You can explore the endianness of your platform by unpacking a data structure packed in native format such as:</p>
+
+<pre><code>    print unpack(&quot;h*&quot;, pack(&quot;s2&quot;, 1, 2)), &quot;\n&quot;;
+    # &#39;10002000&#39; on e.g. Intel x86 or Alpha 21064 in little-endian mode
+    # &#39;00100020&#39; on e.g. Motorola 68040</code></pre>
+
+<p>If you need to distinguish between endian architectures you could use either of the variables set like so:</p>
+
+<pre><code>    $is_big_endian   = unpack(&quot;h*&quot;, pack(&quot;s&quot;, 1)) =~ /01/;
+    $is_little_endian = unpack(&quot;h*&quot;, pack(&quot;s&quot;, 1)) =~ /^1/;</code></pre>
+
+<p>Differing widths can cause truncation even between platforms of equal endianness. The platform of shorter width loses the upper parts of the number. There is no good solution for this problem except to avoid transferring or storing raw binary numbers.</p>
+
+<p>One can circumnavigate both these problems in two ways. Either transfer and store numbers always in text format, instead of raw binary, or else consider using modules like <a href="https://metacpan.org/pod/Data::Dumper" rel="external"><code>Data::Dumper</code></a> and <a href="https://metacpan.org/pod/Storable" rel="external"><code>Storable</code></a> (included as of Perl 5.8). Keeping all data as text significantly simplifies matters.</p>
+
+<h2 id="Files-and-Filesystems">Files and Filesystems</h2>
+
+<p>Most platforms these days structure files in a hierarchical fashion. So, it is reasonably safe to assume that all platforms support the notion of a &quot;path&quot; to uniquely identify a file on the system. How that path is really written, though, differs considerably.</p>
+
+<p>Although similar, file path specifications differ between Unix, Windows, <span style="white-space: nowrap;">Mac OS</span>, OS/2, VMS, VOS, <span style="white-space: nowrap;">RISC OS</span>, and probably others. Unix, for example, is one of the few OSes that has the elegant idea of a single root directory.</p>
+
+<p>DOS, OS/2, VMS, VOS, and Windows can work similarly to Unix with <code>/</code> as path separator, or in their own idiosyncratic ways (such as having several root directories and various &quot;unrooted&quot; device files such NIL: and LPT:).</p>
+
+<p><span style="white-space: nowrap;">Mac OS</span> 9 and earlier used <code>:</code> as a path separator instead of <code>/</code>.</p>
+
+<p>The filesystem may support neither hard links (<a href="/perldoc/perlfunc/#link-OLDFILE-NEWFILE"><code>link</code></a>) nor symbolic links (<a href="/perldoc/perlfunc/#symlink-OLDFILE-NEWFILE"><code>symlink</code></a>, <a href="/perldoc/perlfunc/#readlink-EXPR"><code>readlink</code></a>, <a href="/perldoc/perlfunc/#lstat-FILEHANDLE"><code>lstat</code></a>).</p>
+
+<p>The filesystem may support neither access timestamp nor change timestamp (meaning that about the only portable timestamp is the modification timestamp), or one second granularity of any timestamps (e.g. the FAT filesystem limits the time granularity to two seconds).</p>
+
+<p>The &quot;inode change timestamp&quot; (the <a href="/perldoc/perlfunc/#X-FILEHANDLE"><code>-C</code></a> filetest) may really be the &quot;creation timestamp&quot; (which it is not in Unix).</p>
+
+<p>VOS perl can emulate Unix filenames with <code>/</code> as path separator. The native pathname characters greater-than, less-than, number-sign, and percent-sign are always accepted.</p>
+
+<p><span style="white-space: nowrap;">RISC OS</span> perl can emulate Unix filenames with <code>/</code> as path separator, or go native and use <code>.</code> for path separator and <code>:</code> to signal filesystems and disk names.</p>
+
+<p>Don&#39;t assume Unix filesystem access semantics: that read, write, and execute are all the permissions there are, and even if they exist, that their semantics (for example what do <code>r</code>, <code>w</code>, and <code>x</code> mean on a directory) are the Unix ones. The various Unix/POSIX compatibility layers usually try to make interfaces like <a href="/perldoc/perlfunc/#chmod-LIST"><code>chmod</code></a> work, but sometimes there simply is no good mapping.</p>
+
+<p>The <a href="https://metacpan.org/pod/File::Spec" rel="external"><code>File::Spec</code></a> modules provide methods to manipulate path specifications and return the results in native format for each platform. This is often unnecessary as Unix-style paths are understood by Perl on every supported platform, but if you need to produce native paths for a native utility that does not understand Unix syntax, or if you are operating on paths or path components in unknown (and thus possibly native) syntax, <a href="https://metacpan.org/pod/File::Spec" rel="external"><code>File::Spec</code></a> is your friend. Here are two brief examples:</p>
+
+<pre><code>    use File::Spec::Functions;
+    chdir(updir());        # go up one directory
+
+    # Concatenate a path from its components
+    my $file = catfile(updir(), &#39;temp&#39;, &#39;file.txt&#39;);
+    # on Unix:    &#39;../temp/file.txt&#39;
+    # on Win32:   &#39;..\temp\file.txt&#39;
+    # on VMS:     &#39;[-.temp]file.txt&#39;</code></pre>
+
+<p>In general, production code should not have file paths hardcoded. Making them user-supplied or read from a configuration file is better, keeping in mind that file path syntax varies on different machines.</p>
+
+<p>This is especially noticeable in scripts like Makefiles and test suites, which often assume <code>/</code> as a path separator for subdirectories.</p>
+
+<p>Also of use is <a href="https://metacpan.org/pod/File::Basename" rel="external"><code>File::Basename</code></a> from the standard distribution, which splits a pathname into pieces (base filename, full path to directory, and file suffix).</p>
+
+<p>Even when on a single platform (if you can call Unix a single platform), remember not to count on the existence or the contents of particular system-specific files or directories, like <i>/etc/passwd</i>, <i>/etc/sendmail.conf</i>, <i>/etc/resolv.conf</i>, or even <i>/tmp/</i>. For example, <i>/etc/passwd</i> may exist but not contain the encrypted passwords, because the system is using some form of enhanced security. Or it may not contain all the accounts, because the system is using NIS. If code does need to rely on such a file, include a description of the file and its format in the code&#39;s documentation, then make it easy for the user to override the default location of the file.</p>
+
+<p>Don&#39;t assume a text file will end with a newline. They should, but people forget.</p>
+
+<p>Do not have two files or directories of the same name with different case, like <i>test.pl</i> and <i>Test.pl</i>, as many platforms have case-insensitive (or at least case-forgiving) filenames. Also, try not to have non-word characters (except for <code>.</code>) in the names, and keep them to the 8.3 convention, for maximum portability, onerous a burden though this may appear.</p>
+
+<p>Likewise, when using the <a href="https://metacpan.org/pod/AutoSplit" rel="external"><code>AutoSplit</code></a> module, try to keep your functions to 8.3 naming and case-insensitive conventions; or, at the least, make it so the resulting files have a unique (case-insensitively) first 8 characters.</p>
+
+<p>Whitespace in filenames is tolerated on most systems, but not all, and even on systems where it might be tolerated, some utilities might become confused by such whitespace.</p>
+
+<p>Many systems (DOS, VMS ODS-2) cannot have more than one <code>.</code> in their filenames.</p>
+
+<p>Don&#39;t assume <code>&gt;</code> won&#39;t be the first character of a filename. Always use the three-arg version of <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a>:</p>
+
+<pre><code>    open my $fh, &#39;&lt;&#39;, $existing_file) or die $!;</code></pre>
+
+<p>Two-arg <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a> is magic and can translate characters like <code>&gt;</code>, <code>&lt;</code>, and <code>|</code> in filenames, which is usually the wrong thing to do. <a href="/perldoc/perlfunc/#sysopen-FILEHANDLE-FILENAME-MODE"><code>sysopen</code></a> and three-arg <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a> don&#39;t have this problem.</p>
+
+<p>Don&#39;t use <code>:</code> as a part of a filename since many systems use that for their own semantics (Mac OS Classic for separating pathname components, many networking schemes and utilities for separating the nodename and the pathname, and so on). For the same reasons, avoid <code>@</code>, <code>;</code> and <code>|</code>.</p>
+
+<p>Don&#39;t assume that in pathnames you can collapse two leading slashes <code>//</code> into one: some networking and clustering filesystems have special semantics for that. Let the operating system sort it out.</p>
+
+<p>The <i>portable filename characters</i> as defined by ANSI C are</p>
+
+<pre><code> a b c d e f g h i j k l m n o p q r s t u v w x y z
+ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+ 0 1 2 3 4 5 6 7 8 9
+ . _ -</code></pre>
+
+<p>and <code>-</code> shouldn&#39;t be the first character. If you want to be hypercorrect, stay case-insensitive and within the 8.3 naming convention (all the files and directories have to be unique within one directory if their names are lowercased and truncated to eight characters before the <code>.</code>, if any, and to three characters after the <code>.</code>, if any). (And do not use <code>.</code>s in directory names.)</p>
+
+<h2 id="System-Interaction">System Interaction</h2>
+
+<p>Not all platforms provide a command line. These are usually platforms that rely primarily on a Graphical User Interface (GUI) for user interaction. A program requiring a command line interface might not work everywhere. This is probably for the user of the program to deal with, so don&#39;t stay up late worrying about it.</p>
+
+<p>Some platforms can&#39;t delete or rename files held open by the system, this limitation may also apply to changing filesystem metainformation like file permissions or owners. Remember to <a href="/perldoc/perlfunc/#close-FILEHANDLE"><code>close</code></a> files when you are done with them. Don&#39;t <a href="/perldoc/perlfunc/#unlink-LIST"><code>unlink</code></a> or <a href="/perldoc/perlfunc/#rename-OLDNAME-NEWNAME"><code>rename</code></a> an open file. Don&#39;t <a href="/perldoc/perlfunc/#tie-VARIABLE-CLASSNAME-LIST"><code>tie</code></a> or <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a> a file already tied or opened; <a href="/perldoc/perlfunc/#untie-VARIABLE"><code>untie</code></a> or <a href="/perldoc/perlfunc/#close-FILEHANDLE"><code>close</code></a> it first.</p>
+
+<p>Don&#39;t open the same file more than once at a time for writing, as some operating systems put mandatory locks on such files.</p>
+
+<p>Don&#39;t assume that write/modify permission on a directory gives the right to add or delete files/directories in that directory. That is filesystem specific: in some filesystems you need write/modify permission also (or even just) in the file/directory itself. In some filesystems (AFS, DFS) the permission to add/delete directory entries is a completely separate permission.</p>
+
+<p>Don&#39;t assume that a single <a href="/perldoc/perlfunc/#unlink-LIST"><code>unlink</code></a> completely gets rid of the file: some filesystems (most notably the ones in VMS) have versioned filesystems, and <a href="/perldoc/perlfunc/#unlink-LIST"><code>unlink</code></a> removes only the most recent one (it doesn&#39;t remove all the versions because by default the native tools on those platforms remove just the most recent version, too). The portable idiom to remove all the versions of a file is</p>
+
+<pre><code>    1 while unlink &quot;file&quot;;</code></pre>
+
+<p>This will terminate if the file is undeleteable for some reason (protected, not there, and so on).</p>
+
+<p>Don&#39;t count on a specific environment variable existing in <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a>. Don&#39;t count on <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> entries being case-sensitive, or even case-preserving. Don&#39;t try to clear <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> by saying <code>%ENV = ();</code>, or, if you really have to, make it conditional on <code>$^O ne &#39;VMS&#39;</code> since in VMS the <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> table is much more than a per-process key-value string table.</p>
+
+<p>On VMS, some entries in the <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> hash are dynamically created when their key is used on a read if they did not previously exist. The values for <code>$ENV{HOME}</code>, <code>$ENV{TERM}</code>, <code>$ENV{PATH}</code>, and <code>$ENV{USER}</code>, are known to be dynamically generated. The specific names that are dynamically generated may vary with the version of the C library on VMS, and more may exist than are documented.</p>
+
+<p>On VMS by default, changes to the <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> hash persist after perl exits. Subsequent invocations of perl in the same process can inadvertently inherit environment settings that were meant to be temporary.</p>
+
+<p>Don&#39;t count on signals or <a href="/perldoc/perlvar/#SIG"><code>%SIG</code></a> for anything.</p>
+
+<p>Don&#39;t count on filename globbing. Use <a href="/perldoc/perlfunc/#opendir-DIRHANDLE-EXPR"><code>opendir</code></a>, <a href="/perldoc/perlfunc/#readdir-DIRHANDLE"><code>readdir</code></a>, and <a href="/perldoc/perlfunc/#closedir-DIRHANDLE"><code>closedir</code></a> instead.</p>
+
+<p>Don&#39;t count on per-program environment variables, or per-program current directories.</p>
+
+<p>Don&#39;t count on specific values of <a href="/perldoc/perlvar/#pod"><code>$!</code></a>, neither numeric nor especially the string values. Users may switch their locales causing error messages to be translated into their languages. If you can trust a POSIXish environment, you can portably use the symbols defined by the <a href="https://metacpan.org/pod/Errno" rel="external"><code>Errno</code></a> module, like <code>ENOENT</code>. And don&#39;t trust on the values of <a href="/perldoc/perlvar/#pod"><code>$!</code></a> at all except immediately after a failed system call.</p>
+
+<h2 id="Command-names-versus-file-pathnames">Command names versus file pathnames</h2>
+
+<p>Don&#39;t assume that the name used to invoke a command or program with <a href="/perldoc/perlfunc/#system-LIST"><code>system</code></a> or <a href="/perldoc/perlfunc/#exec-LIST"><code>exec</code></a> can also be used to test for the existence of the file that holds the executable code for that command or program. First, many systems have &quot;internal&quot; commands that are built-in to the shell or OS and while these commands can be invoked, there is no corresponding file. Second, some operating systems (e.g., Cygwin, DJGPP, OS/2, and VOS) have required suffixes for executable files; these suffixes are generally permitted on the command name but are not required. Thus, a command like <code>perl</code> might exist in a file named <i>perl</i>, <i>perl.exe</i>, or <i>perl.pm</i>, depending on the operating system. The variable <a href="https://metacpan.org/pod/Config#exe" rel="external"><code>$Config{_exe}</code></a> in the <a href="https://metacpan.org/pod/Config" rel="external"><code>Config</code></a> module holds the executable suffix, if any. Third, the VMS port carefully sets up <a href="/perldoc/perlvar/#X"><code>$^X</code></a> and <a href="https://metacpan.org/pod/Config#perlpath" rel="external"><code>$Config{perlpath}</code></a> so that no further processing is required. This is just as well, because the matching regular expression used below would then have to deal with a possible trailing version number in the VMS file name.</p>
+
+<p>To convert <a href="/perldoc/perlvar/#X"><code>$^X</code></a> to a file pathname, taking account of the requirements of the various operating system possibilities, say:</p>
+
+<pre><code> use Config;
+ my $thisperl = $^X;
+ if ($^O ne &#39;VMS&#39;) {
+     $thisperl .= $Config{_exe}
+         unless $thisperl =~ m/\Q$Config{_exe}\E$/i;
+ }</code></pre>
+
+<p>To convert <a href="https://metacpan.org/pod/Config#perlpath" rel="external"><code>$Config{perlpath}</code></a> to a file pathname, say:</p>
+
+<pre><code> use Config;
+ my $thisperl = $Config{perlpath};
+ if ($^O ne &#39;VMS&#39;) {
+     $thisperl .= $Config{_exe}
+         unless $thisperl =~ m/\Q$Config{_exe}\E$/i;
+ }</code></pre>
+
+<h2 id="Networking">Networking</h2>
+
+<p>Don&#39;t assume that you can reach the public Internet.</p>
+
+<p>Don&#39;t assume that there is only one way to get through firewalls to the public Internet.</p>
+
+<p>Don&#39;t assume that you can reach outside world through any other port than 80, or some web proxy. ftp is blocked by many firewalls.</p>
+
+<p>Don&#39;t assume that you can send email by connecting to the local SMTP port.</p>
+
+<p>Don&#39;t assume that you can reach yourself or any node by the name &#39;localhost&#39;. The same goes for &#39;127.0.0.1&#39;. You will have to try both.</p>
+
+<p>Don&#39;t assume that the host has only one network card, or that it can&#39;t bind to many virtual IP addresses.</p>
+
+<p>Don&#39;t assume a particular network device name.</p>
+
+<p>Don&#39;t assume a particular set of <a href="/perldoc/perlfunc/#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>s will work.</p>
+
+<p>Don&#39;t assume that you can ping hosts and get replies.</p>
+
+<p>Don&#39;t assume that any particular port (service) will respond.</p>
+
+<p>Don&#39;t assume that <a href="https://metacpan.org/pod/Sys::Hostname" rel="external"><code>Sys::Hostname</code></a> (or any other API or command) returns either a fully qualified hostname or a non-qualified hostname: it all depends on how the system had been configured. Also remember that for things such as DHCP and NAT, the hostname you get back might not be very useful.</p>
+
+<p>All the above <i>don&#39;t</i>s may look daunting, and they are, but the key is to degrade gracefully if one cannot reach the particular network service one wants. Croaking or hanging do not look very professional.</p>
+
+<h2 id="Interprocess-Communication-IPC">Interprocess Communication (IPC)</h2>
+
+<p>In general, don&#39;t directly access the system in code meant to be portable. That means, no <a href="/perldoc/perlfunc/#system-LIST"><code>system</code></a>, <a href="/perldoc/perlfunc/#exec-LIST"><code>exec</code></a>, <a href="/perldoc/perlfunc/#fork"><code>fork</code></a>, <a href="/perldoc/perlfunc/#pipe-READHANDLE-WRITEHANDLE"><code>pipe</code></a>, <a href="/perldoc/perlop/#qx-STRING"><code>``</code> or <code>qx//</code></a>, <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a> with a <code>|</code>, nor any of the other things that makes being a Perl hacker worth being.</p>
+
+<p>Commands that launch external processes are generally supported on most platforms (though many of them do not support any type of forking). The problem with using them arises from what you invoke them on. External tools are often named differently on different platforms, may not be available in the same location, might accept different arguments, can behave differently, and often present their results in a platform-dependent way. Thus, you should seldom depend on them to produce consistent results. (Then again, if you&#39;re calling <code>netstat -a</code>, you probably don&#39;t expect it to run on both Unix and CP/M.)</p>
+
+<p>One especially common bit of Perl code is opening a pipe to <b>sendmail</b>:</p>
+
+<pre><code>    open(my $mail, &#39;|-&#39;, &#39;/usr/lib/sendmail -t&#39;)
+        or die &quot;cannot fork sendmail: $!&quot;;</code></pre>
+
+<p>This is fine for systems programming when sendmail is known to be available. But it is not fine for many non-Unix systems, and even some Unix systems that may not have sendmail installed. If a portable solution is needed, see the various distributions on CPAN that deal with it. <a href="https://metacpan.org/pod/Mail::Mailer" rel="external"><code>Mail::Mailer</code></a> and <a href="https://metacpan.org/pod/Mail::Send" rel="external"><code>Mail::Send</code></a> in the <code>MailTools</code> distribution are commonly used, and provide several mailing methods, including <code>mail</code>, <code>sendmail</code>, and direct SMTP (via <a href="https://metacpan.org/pod/Net::SMTP" rel="external"><code>Net::SMTP</code></a>) if a mail transfer agent is not available. <a href="https://metacpan.org/pod/Mail::Sendmail" rel="external"><code>Mail::Sendmail</code></a> is a standalone module that provides simple, platform-independent mailing.</p>
+
+<p>The Unix System V IPC (<code>msg*(), sem*(), shm*()</code>) is not available even on all Unix platforms.</p>
+
+<p>Do not use either the bare result of <code>pack(&quot;N&quot;, 10, 20, 30, 40)</code> or bare v-strings (such as <code>v10.20.30.40</code>) to represent IPv4 addresses: both forms just pack the four bytes into network order. That this would be equal to the C language <code>in_addr</code> struct (which is what the socket code internally uses) is not guaranteed. To be portable use the routines of the <a href="https://metacpan.org/pod/Socket" rel="external"><code>Socket</code></a> module, such as <a href="https://metacpan.org/pod/Socket#ip_address-inet_aton-string" rel="external"><code>inet_aton</code></a>, <a href="https://metacpan.org/pod/Socket#string-inet_ntoa-ip_address" rel="external"><code>inet_ntoa</code></a>, and <a href="https://metacpan.org/pod/Socket#sockaddr-sockaddr_in-port-ip_address" rel="external"><code>sockaddr_in</code></a>.</p>
+
+<p>The rule of thumb for portable code is: Do it all in portable Perl, or use a module (that may internally implement it with platform-specific code, but exposes a common interface).</p>
+
+<h2 id="External-Subroutines-XS">External Subroutines (XS)</h2>
+
+<p>XS code can usually be made to work with any platform, but dependent libraries, header files, etc., might not be readily available or portable, or the XS code itself might be platform-specific, just as Perl code might be. If the libraries and headers are portable, then it is normally reasonable to make sure the XS code is portable, too.</p>
+
+<p>A different type of portability issue arises when writing XS code: availability of a C compiler on the end-user&#39;s system. C brings with it its own portability issues, and writing XS code will expose you to some of those. Writing purely in Perl is an easier way to achieve portability.</p>
+
+<h2 id="Standard-Modules">Standard Modules</h2>
+
+<p>In general, the standard modules work across platforms. Notable exceptions are the <a href="https://metacpan.org/pod/CPAN" rel="external"><code>CPAN</code></a> module (which currently makes connections to external programs that may not be available), platform-specific modules (like <a href="https://metacpan.org/pod/ExtUtils::MM_VMS" rel="external"><code>ExtUtils::MM_VMS</code></a>), and DBM modules.</p>
+
+<p>There is no one DBM module available on all platforms. <a href="https://metacpan.org/pod/SDBM_File" rel="external"><code>SDBM_File</code></a> and the others are generally available on all Unix and DOSish ports, but not in MacPerl, where only <a href="https://metacpan.org/pod/NDBM_File" rel="external"><code>NDBM_File</code></a> and <a href="https://metacpan.org/pod/DB_File" rel="external"><code>DB_File</code></a> are available.</p>
+
+<p>The good news is that at least some DBM module should be available, and <a href="https://metacpan.org/pod/AnyDBM_File" rel="external"><code>AnyDBM_File</code></a> will use whichever module it can find. Of course, then the code needs to be fairly strict, dropping to the greatest common factor (e.g., not exceeding 1K for each record), so that it will work with any DBM module. See <a href="https://metacpan.org/pod/AnyDBM_File" rel="external">AnyDBM_File</a> for more details.</p>
+
+<h2 id="Time-and-Date">Time and Date</h2>
+
+<p>The system&#39;s notion of time of day and calendar date is controlled in widely different ways. Don&#39;t assume the timezone is stored in <code>$ENV{TZ}</code>, and even if it is, don&#39;t assume that you can control the timezone through that variable. Don&#39;t assume anything about the three-letter timezone abbreviations (for example that MST would be the Mountain Standard Time, it&#39;s been known to stand for Moscow Standard Time). If you need to use timezones, express them in some unambiguous format like the exact number of minutes offset from UTC, or the POSIX timezone format.</p>
+
+<p>Don&#39;t assume that the epoch starts at 00:00:00, January 1, 1970, because that is OS- and implementation-specific. It is better to store a date in an unambiguous representation. The ISO 8601 standard defines YYYY-MM-DD as the date format, or YYYY-MM-DDTHH:MM:SS (that&#39;s a literal &quot;T&quot; separating the date from the time). Please do use the ISO 8601 instead of making us guess what date 02/03/04 might be. ISO 8601 even sorts nicely as-is. A text representation (like &quot;1987-12-18&quot;) can be easily converted into an OS-specific value using a module like <a href="https://metacpan.org/pod/Time::Piece" rel="external"><code>Time::Piece</code></a> (see <a href="https://metacpan.org/pod/Time::Piece#Date-Parsing" rel="external">&quot;Date Parsing&quot; in Time::Piece</a>) or <a href="https://metacpan.org/pod/Date::Parse" rel="external"><code>Date::Parse</code></a>. An array of values, such as those returned by <a href="/perldoc/perlfunc/#localtime-EXPR"><code>localtime</code></a>, can be converted to an OS-specific representation using <a href="https://metacpan.org/pod/Time::Local" rel="external"><code>Time::Local</code></a>.</p>
+
+<p>When calculating specific times, such as for tests in time or date modules, it may be appropriate to calculate an offset for the epoch.</p>
+
+<pre><code>    use Time::Local qw(timegm);
+    my $offset = timegm(0, 0, 0, 1, 0, 70);</code></pre>
+
+<p>The value for <code>$offset</code> in Unix will be <code>0</code>, but in Mac OS Classic will be some large number. <code>$offset</code> can then be added to a Unix time value to get what should be the proper value on any system.</p>
+
+<h2 id="Character-sets-and-character-encoding">Character sets and character encoding</h2>
+
+<p>Assume very little about character sets.</p>
+
+<p>Assume nothing about numerical values (<a href="/perldoc/perlfunc/#ord-EXPR"><code>ord</code></a>, <a href="/perldoc/perlfunc/#chr-NUMBER"><code>chr</code></a>) of characters. Do not use explicit code point ranges (like <code>\xHH-\xHH)</code>. However, starting in Perl v5.22, regular expression pattern bracketed character class ranges specified like <code>qr/[\N{U+HH}-\N{U+HH}]/</code> are portable, and starting in Perl v5.24, the same ranges are portable in <a href="/perldoc/perlop/#tr-SEARCHLIST-REPLACEMENTLIST-cdsr"><code>tr///</code></a>. You can portably use symbolic character classes like <code>[:print:]</code>.</p>
+
+<p>Do not assume that the alphabetic characters are encoded contiguously (in the numeric sense). There may be gaps. Special coding in Perl, however, guarantees that all subsets of <code>qr/[A-Z]/</code>, <code>qr/[a-z]/</code>, and <code>qr/[0-9]/</code> behave as expected. <a href="/perldoc/perlop/#tr-SEARCHLIST-REPLACEMENTLIST-cdsr"><code>tr///</code></a> behaves the same for these ranges. In patterns, any ranges specified with end points using the <code>\N{...}</code> notations ensures character set portability, but it is a bug in Perl v5.22 that this isn&#39;t true of <a href="/perldoc/perlop/#tr-SEARCHLIST-REPLACEMENTLIST-cdsr"><code>tr///</code></a>, fixed in v5.24.</p>
+
+<p>Do not assume anything about the ordering of the characters. The lowercase letters may come before or after the uppercase letters; the lowercase and uppercase may be interlaced so that both &quot;a&quot; and &quot;A&quot; come before &quot;b&quot;; the accented and other international characters may be interlaced so that ä comes before &quot;b&quot;. <a href="https://metacpan.org/pod/Unicode::Collate" rel="external">Unicode::Collate</a> can be used to sort this all out.</p>
+
+<h2 id="Internationalisation">Internationalisation</h2>
+
+<p>If you may assume POSIX (a rather large assumption), you may read more about the POSIX locale system from <a href="/perldoc/perllocale/">perllocale</a>. The locale system at least attempts to make things a little bit more portable, or at least more convenient and native-friendly for non-English users. The system affects character sets and encoding, and date and time formatting--amongst other things.</p>
+
+<p>If you really want to be international, you should consider Unicode. See <a href="/perldoc/perluniintro/">perluniintro</a> and <a href="/perldoc/perlunicode/">perlunicode</a> for more information.</p>
+
+<p>By default Perl assumes your source code is written in an 8-bit ASCII superset. To embed Unicode characters in your strings and regexes, you can use the <a href="/perldoc/perlop/#Quote-and-Quote-like-Operators"><code>\x{HH}</code> or (more portably) <code>\N{U+HH}</code> notations</a>. You can also use the <a href="https://metacpan.org/pod/utf8" rel="external"><code>utf8</code></a> pragma and write your code in UTF-8, which lets you use Unicode characters directly (not just in quoted constructs but also in identifiers).</p>
+
+<h2 id="System-Resources">System Resources</h2>
+
+<p>If your code is destined for systems with severely constrained (or missing!) virtual memory systems then you want to be <i>especially</i> mindful of avoiding wasteful constructs such as:</p>
+
+<pre><code>    my @lines = &lt;$very_large_file&gt;;            # bad
+
+    while (&lt;$fh&gt;) {$file .= $_}                # sometimes bad
+    my $file = join(&#39;&#39;, &lt;$fh&gt;);                # better</code></pre>
+
+<p>The last two constructs may appear unintuitive to most people. The first repeatedly grows a string, whereas the second allocates a large chunk of memory in one go. On some systems, the second is more efficient than the first.</p>
+
+<h2 id="Security">Security</h2>
+
+<p>Most multi-user platforms provide basic levels of security, usually implemented at the filesystem level. Some, however, unfortunately do not. Thus the notion of user id, or &quot;home&quot; directory, or even the state of being logged-in, may be unrecognizable on many platforms. If you write programs that are security-conscious, it is usually best to know what type of system you will be running under so that you can write code explicitly for that platform (or class of platforms).</p>
+
+<p>Don&#39;t assume the Unix filesystem access semantics: the operating system or the filesystem may be using some ACL systems, which are richer languages than the usual <code>rwx</code>. Even if the <code>rwx</code> exist, their semantics might be different.</p>
+
+<p>(From the security viewpoint, testing for permissions before attempting to do something is silly anyway: if one tries this, there is potential for race conditions. Someone or something might change the permissions between the permissions check and the actual operation. Just try the operation.)</p>
+
+<p>Don&#39;t assume the Unix user and group semantics: especially, don&#39;t expect <a href="/perldoc/perlvar/#pod"><code>$&lt;</code></a> and <a href="/perldoc/perlvar/#pod"><code>$&gt;</code></a> (or <a href="/perldoc/perlvar/#pod"><code>$(</code></a> and <a href="/perldoc/perlvar/#pod"><code>$)</code></a>) to work for switching identities (or memberships).</p>
+
+<p>Don&#39;t assume set-uid and set-gid semantics. (And even if you do, think twice: set-uid and set-gid are a known can of security worms.)</p>
+
+<h2 id="Style">Style</h2>
+
+<p>For those times when it is necessary to have platform-specific code, consider keeping the platform-specific code in one place, making porting to other platforms easier. Use the <a href="https://metacpan.org/pod/Config" rel="external"><code>Config</code></a> module and the special variable <a href="/perldoc/perlvar/#O"><code>$^O</code></a> to differentiate platforms, as described in <a href="#PLATFORMS">&quot;PLATFORMS&quot;</a>.</p>
+
+<p>Beware of the &quot;else syndrome&quot;:</p>
+
+<pre><code>  if ($^O eq &#39;MSWin32&#39;) {
+    # code that assumes Windows
+  } else {
+    # code that assumes Linux
+  }</code></pre>
+
+<p>The <code>else</code> branch should be used for the really ultimate fallback, not for code specific to some platform.</p>
+
+<p>Be careful in the tests you supply with your module or programs. Module code may be fully portable, but its tests might not be. This often happens when tests spawn off other processes or call external programs to aid in the testing, or when (as noted above) the tests assume certain things about the filesystem and paths. Be careful not to depend on a specific output style for errors, such as when checking <a href="/perldoc/perlvar/#pod"><code>$!</code></a> after a failed system call. Using <a href="/perldoc/perlvar/#pod"><code>$!</code></a> for anything else than displaying it as output is doubtful (though see the <a href="https://metacpan.org/pod/Errno" rel="external"><code>Errno</code></a> module for testing reasonably portably for error value). Some platforms expect a certain output format, and Perl on those platforms may have been adjusted accordingly. Most specifically, don&#39;t anchor a regex when testing an error value.</p>
+
+<h1 id="CPAN-Testers">CPAN Testers</h1>
+
+<p>Modules uploaded to CPAN are tested by a variety of volunteers on different platforms. These CPAN testers are notified by mail of each new upload, and reply to the list with PASS, FAIL, NA (not applicable to this platform), or UNKNOWN (unknown), along with any relevant notations.</p>
+
+<p>The purpose of the testing is twofold: one, to help developers fix any problems in their code that crop up because of lack of testing on other platforms; two, to provide users with information about whether a given module works on a given platform.</p>
+
+<p>Also see:</p>
+
+<ul>
+
+<li><p>Mailing list: cpan-testers-discuss@perl.org</p>
+
+</li>
+<li><p>Testing results: <a href="http://www.cpantesters.org/" rel="external">http://www.cpantesters.org/</a></p>
+
+</li>
+</ul>
+
+<h1 id="PLATFORMS">PLATFORMS</h1>
+
+<p>Perl is built with a <a href="/perldoc/perlvar/#O"><code>$^O</code></a> variable that indicates the operating system it was built on. This was implemented to help speed up code that would otherwise have to <code>use Config</code> and use the value of <a href="https://metacpan.org/pod/Config#osname" rel="external"><code>$Config{osname}</code></a>. Of course, to get more detailed information about the system, looking into <a href="https://metacpan.org/pod/Config#DESCRIPTION" rel="external"><code>%Config</code></a> is certainly recommended.</p>
+
+<p><a href="https://metacpan.org/pod/Config#DESCRIPTION" rel="external"><code>%Config</code></a> cannot always be trusted, however, because it was built at compile time. If perl was built in one place, then transferred elsewhere, some values may be wrong. The values may even have been edited after the fact.</p>
+
+<h2 id="Unix">Unix</h2>
+
+<p>Perl works on a bewildering variety of Unix and Unix-like platforms (see e.g. most of the files in the <i>hints/</i> directory in the source code kit). On most of these systems, the value of <a href="/perldoc/perlvar/#O"><code>$^O</code></a> (hence <a href="https://metacpan.org/pod/Config#osname" rel="external"><code>$Config{osname}</code></a>, too) is determined either by lowercasing and stripping punctuation from the first field of the string returned by typing <code>uname -a</code> (or a similar command) at the shell prompt or by testing the file system for the presence of uniquely named files such as a kernel or header file. Here, for example, are a few of the more popular Unix flavors:</p>
+
+<pre><code>    uname         $^O        $Config{archname}
+    --------------------------------------------
+    AIX           aix        aix
+    BSD/OS        bsdos      i386-bsdos
+    Darwin        darwin     darwin
+    DYNIX/ptx     dynixptx   i386-dynixptx
+    FreeBSD       freebsd    freebsd-i386
+    Haiku         haiku      BePC-haiku
+    Linux         linux      arm-linux
+    Linux         linux      armv5tel-linux
+    Linux         linux      i386-linux
+    Linux         linux      i586-linux
+    Linux         linux      ppc-linux
+    HP-UX         hpux       PA-RISC1.1
+    IRIX          irix       irix
+    Mac OS X      darwin     darwin
+    NeXT 3        next       next-fat
+    NeXT 4        next       OPENSTEP-Mach
+    openbsd       openbsd    i386-openbsd
+    OSF1          dec_osf    alpha-dec_osf
+    reliantunix-n svr4       RM400-svr4
+    SCO_SV        sco_sv     i386-sco_sv
+    SINIX-N       svr4       RM400-svr4
+    sn4609        unicos     CRAY_C90-unicos
+    sn6521        unicosmk   t3e-unicosmk
+    sn9617        unicos     CRAY_J90-unicos
+    SunOS         solaris    sun4-solaris
+    SunOS         solaris    i86pc-solaris
+    SunOS4        sunos      sun4-sunos</code></pre>
+
+<p>Because the value of <a href="https://metacpan.org/pod/Config#archname" rel="external"><code>$Config{archname}</code></a> may depend on the hardware architecture, it can vary more than the value of <a href="/perldoc/perlvar/#O"><code>$^O</code></a>.</p>
+
+<h2 id="DOS-and-Derivatives">DOS and Derivatives</h2>
+
+<p>Perl has long been ported to Intel-style microcomputers running under systems like PC-DOS, MS-DOS, OS/2, and most Windows platforms you can bring yourself to mention (except for Windows CE, if you count that). Users familiar with <i>COMMAND.COM</i> or <i>CMD.EXE</i> style shells should be aware that each of these file specifications may have subtle differences:</p>
+
+<pre><code>    my $filespec0 = &quot;c:/foo/bar/file.txt&quot;;
+    my $filespec1 = &quot;c:\\foo\\bar\\file.txt&quot;;
+    my $filespec2 = &#39;c:\foo\bar\file.txt&#39;;
+    my $filespec3 = &#39;c:\\foo\\bar\\file.txt&#39;;</code></pre>
+
+<p>System calls accept either <code>/</code> or <code>\</code> as the path separator. However, many command-line utilities of DOS vintage treat <code>/</code> as the option prefix, so may get confused by filenames containing <code>/</code>. Aside from calling any external programs, <code>/</code> will work just fine, and probably better, as it is more consistent with popular usage, and avoids the problem of remembering what to backwhack and what not to.</p>
+
+<p>The DOS FAT filesystem can accommodate only &quot;8.3&quot; style filenames. Under the &quot;case-insensitive, but case-preserving&quot; HPFS (OS/2) and NTFS (NT) filesystems you may have to be careful about case returned with functions like <a href="/perldoc/perlfunc/#readdir-DIRHANDLE"><code>readdir</code></a> or used with functions like <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a> or <a href="/perldoc/perlfunc/#opendir-DIRHANDLE-EXPR"><code>opendir</code></a>.</p>
+
+<p>DOS also treats several filenames as special, such as <i>AUX</i>, <i>PRN</i>, <i>NUL</i>, <i>CON</i>, <i>COM1</i>, <i>LPT1</i>, <i>LPT2</i>, etc. Unfortunately, sometimes these filenames won&#39;t even work if you include an explicit directory prefix. It is best to avoid such filenames, if you want your code to be portable to DOS and its derivatives. It&#39;s hard to know what these all are, unfortunately.</p>
+
+<p>Users of these operating systems may also wish to make use of scripts such as <i>pl2bat.bat</i> to put wrappers around your scripts.</p>
+
+<p>Newline (<code>\n</code>) is translated as <code>\015\012</code> by the I/O system when reading from and writing to files (see <a href="#Newlines">&quot;Newlines&quot;</a>). <code>binmode($filehandle)</code> will keep <code>\n</code> translated as <code>\012</code> for that filehandle. <a href="/perldoc/perlfunc/#binmode-FILEHANDLE"><code>binmode</code></a> should always be used for code that deals with binary data. That&#39;s assuming you realize in advance that your data is in binary. General-purpose programs should often assume nothing about their data.</p>
+
+<p>The <a href="/perldoc/perlvar/#O"><code>$^O</code></a> variable and the <a href="https://metacpan.org/pod/Config#archname" rel="external"><code>$Config{archname}</code></a> values for various DOSish perls are as follows:</p>
+
+<pre><code>    OS             $^O       $Config{archname}  ID    Version
+    ---------------------------------------------------------
+    MS-DOS         dos       ?
+    PC-DOS         dos       ?
+    OS/2           os2       ?
+    Windows 3.1    ?         ?                  0     3 01
+    Windows 95     MSWin32   MSWin32-x86        1     4 00
+    Windows 98     MSWin32   MSWin32-x86        1     4 10
+    Windows ME     MSWin32   MSWin32-x86        1     ?
+    Windows NT     MSWin32   MSWin32-x86        2     4 xx
+    Windows NT     MSWin32   MSWin32-ALPHA      2     4 xx
+    Windows NT     MSWin32   MSWin32-ppc        2     4 xx
+    Windows 2000   MSWin32   MSWin32-x86        2     5 00
+    Windows XP     MSWin32   MSWin32-x86        2     5 01
+    Windows 2003   MSWin32   MSWin32-x86        2     5 02
+    Windows Vista  MSWin32   MSWin32-x86        2     6 00
+    Windows 7      MSWin32   MSWin32-x86        2     6 01
+    Windows 7      MSWin32   MSWin32-x64        2     6 01
+    Windows 2008   MSWin32   MSWin32-x86        2     6 01
+    Windows 2008   MSWin32   MSWin32-x64        2     6 01
+    Windows CE     MSWin32   ?                  3
+    Cygwin         cygwin    cygwin</code></pre>
+
+<p>The various MSWin32 Perl&#39;s can distinguish the OS they are running on via the value of the fifth element of the list returned from <a href="https://metacpan.org/pod/Win32#Win32::GetOSVersion" rel="external"><code>Win32::GetOSVersion()</code></a>. For example:</p>
+
+<pre><code>    if ($^O eq &#39;MSWin32&#39;) {
+        my @os_version_info = Win32::GetOSVersion();
+        print +(&#39;3.1&#39;,&#39;95&#39;,&#39;NT&#39;)[$os_version_info[4]],&quot;\n&quot;;
+    }</code></pre>
+
+<p>There are also <code>Win32::IsWinNT()|Win32/Win32::IsWinNT()</code>, <code>Win32::IsWin95()|Win32/Win32::IsWin95()</code>, and <a href="https://metacpan.org/pod/Win32#Win32::GetOSName" rel="external"><code>Win32::GetOSName()</code></a>; try <a href="https://metacpan.org/pod/Win32" rel="external"><code>perldoc Win32</code></a>. The very portable <a href="https://metacpan.org/pod/POSIX#uname" rel="external"><code>POSIX::uname()</code></a> will work too:</p>
+
+<pre><code>    c:\&gt; perl -MPOSIX -we &quot;print join &#39;|&#39;, uname&quot;
+    Windows NT|moonru|5.0|Build 2195 (Service Pack 2)|x86</code></pre>
+
+<p>Errors set by Winsock functions are now put directly into <code>$^E</code>, and the relevant <code>WSAE*</code> error codes are now exported from the <a href="https://metacpan.org/pod/Errno" rel="external">Errno</a> and <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a> modules for testing this against.</p>
+
+<p>The previous behavior of putting the errors (converted to POSIX-style <code>E*</code> error codes since Perl 5.20.0) into <code>$!</code> was buggy due to the non-equivalence of like-named Winsock and POSIX error constants, a relationship between which has unfortunately been established in one way or another since Perl 5.8.0.</p>
+
+<p>The new behavior provides a much more robust solution for checking Winsock errors in portable software without accidentally matching POSIX tests that were intended for other OSes and may have different meanings for Winsock.</p>
+
+<p>The old behavior is currently retained, warts and all, for backwards compatibility, but users are encouraged to change any code that tests <code>$!</code> against <code>E*</code> constants for Winsock errors to instead test <code>$^E</code> against <code>WSAE*</code> constants. After a suitable deprecation period, which started with Perl 5.24, the old behavior may be removed, leaving <code>$!</code> unchanged after Winsock function calls, to avoid any possible confusion over which error variable to check.</p>
+
+<p>Also see:</p>
+
+<ul>
+
+<li><p>The djgpp environment for DOS, <a href="http://www.delorie.com/djgpp/" rel="external">http://www.delorie.com/djgpp/</a> and <a href="/perldoc/perldos/">perldos</a>.</p>
+
+</li>
+<li><p>The EMX environment for DOS, OS/2, etc. emx@iaehv.nl, <a href="ftp://hobbes.nmsu.edu/pub/os2/dev/emx/" rel="external">ftp://hobbes.nmsu.edu/pub/os2/dev/emx/</a> Also <a href="/perldoc/perlos2/">perlos2</a>.</p>
+
+</li>
+<li><p>Build instructions for Win32 in <a href="/perldoc/perlwin32/">perlwin32</a>, or under the Cygnus environment in <a href="/perldoc/perlcygwin/">perlcygwin</a>.</p>
+
+</li>
+<li><p>The <code>Win32::*</code> modules in <a href="https://metacpan.org/pod/Win32" rel="external">Win32</a>.</p>
+
+</li>
+<li><p>The ActiveState Pages, <a href="http://www.activestate.com/" rel="external">http://www.activestate.com/</a></p>
+
+</li>
+<li><p>The Cygwin environment for Win32; <i>README.cygwin</i> (installed as <a href="/perldoc/perlcygwin/">perlcygwin</a>), <a href="http://www.cygwin.com/" rel="external">http://www.cygwin.com/</a></p>
+
+</li>
+<li><p>The U/WIN environment for Win32, <a href="http://www.research.att.com/sw/tools/uwin/" rel="external">http://www.research.att.com/sw/tools/uwin/</a></p>
+
+</li>
+<li><p>Build instructions for OS/2, <a href="/perldoc/perlos2/">perlos2</a></p>
+
+</li>
+</ul>
+
+<h2 id="VMS">VMS</h2>
+
+<p>Perl on VMS is discussed in <a href="/perldoc/perlvms/">perlvms</a> in the Perl distribution.</p>
+
+<p>The official name of VMS as of this writing is OpenVMS.</p>
+
+<p>Interacting with Perl from the Digital Command Language (DCL) shell often requires a different set of quotation marks than Unix shells do. For example:</p>
+
+<pre><code>    $ perl -e &quot;print &quot;&quot;Hello, world.\n&quot;&quot;&quot;
+    Hello, world.</code></pre>
+
+<p>There are several ways to wrap your Perl scripts in DCL <i>.COM</i> files, if you are so inclined. For example:</p>
+
+<pre><code>    $ write sys$output &quot;Hello from DCL!&quot;
+    $ if p1 .eqs. &quot;&quot;
+    $ then perl -x &#39;f$environment(&quot;PROCEDURE&quot;)
+    $ else perl -x - &#39;p1 &#39;p2 &#39;p3 &#39;p4 &#39;p5 &#39;p6 &#39;p7 &#39;p8
+    $ deck/dollars=&quot;__END__&quot;
+    #!/usr/bin/perl
+
+    print &quot;Hello from Perl!\n&quot;;
+
+    __END__
+    $ endif</code></pre>
+
+<p>Do take care with <code>$ ASSIGN/nolog/user SYS$COMMAND: SYS$INPUT</code> if your Perl-in-DCL script expects to do things like <code>$read = &lt;STDIN&gt;;</code>.</p>
+
+<p>The VMS operating system has two filesystems, designated by their on-disk structure (ODS) level: ODS-2 and its successor ODS-5. The initial port of Perl to VMS pre-dates ODS-5, but all current testing and development assumes ODS-5 and its capabilities, including case preservation, extended characters in filespecs, and names up to 8192 bytes long.</p>
+
+<p>Perl on VMS can accept either VMS- or Unix-style file specifications as in either of the following:</p>
+
+<pre><code>    $ perl -ne &quot;print if /perl_setup/i&quot; SYS$LOGIN:LOGIN.COM
+    $ perl -ne &quot;print if /perl_setup/i&quot; /sys$login/login.com</code></pre>
+
+<p>but not a mixture of both as in:</p>
+
+<pre><code>    $ perl -ne &quot;print if /perl_setup/i&quot; sys$login:/login.com
+    Can&#39;t open sys$login:/login.com: file specification syntax error</code></pre>
+
+<p>In general, the easiest path to portability is always to specify filenames in Unix format unless they will need to be processed by native commands or utilities. Because of this latter consideration, the <a href="https://metacpan.org/pod/File::Spec" rel="external">File::Spec</a> module by default returns native format specifications regardless of input format. This default may be reversed so that filenames are always reported in Unix format by specifying the <code>DECC$FILENAME_UNIX_REPORT</code> feature logical in the environment.</p>
+
+<p>The file type, or extension, is always present in a VMS-format file specification even if it&#39;s zero-length. This means that, by default, <a href="/perldoc/perlfunc/#readdir-DIRHANDLE"><code>readdir</code></a> will return a trailing dot on a file with no extension, so where you would see <code>&quot;a&quot;</code> on Unix you&#39;ll see <code>&quot;a.&quot;</code> on VMS. However, the trailing dot may be suppressed by enabling the <code>DECC$READDIR_DROPDOTNOTYPE</code> feature in the environment (see the CRTL documentation on feature logical names).</p>
+
+<p>What <code>\n</code> represents depends on the type of file opened. It usually represents <code>\012</code> but it could also be <code>\015</code>, <code>\012</code>, <code>\015\012</code>, <code>\000</code>, <code>\040</code>, or nothing depending on the file organization and record format. The <a href="https://metacpan.org/pod/VMS::Stdio" rel="external"><code>VMS::Stdio</code></a> module provides access to the special <code>fopen()</code> requirements of files with unusual attributes on VMS.</p>
+
+<p>The value of <a href="/perldoc/perlvar/#O"><code>$^O</code></a> on OpenVMS is &quot;VMS&quot;. To determine the architecture that you are running on refer to <a href="https://metacpan.org/pod/Config#archname" rel="external"><code>$Config{archname}</code></a>.</p>
+
+<p>On VMS, perl determines the UTC offset from the <code>SYS$TIMEZONE_DIFFERENTIAL</code> logical name. Although the VMS epoch began at 17-NOV-1858 00:00:00.00, calls to <a href="/perldoc/perlfunc/#localtime-EXPR"><code>localtime</code></a> are adjusted to count offsets from 01-JAN-1970 00:00:00.00, just like Unix.</p>
+
+<p>Also see:</p>
+
+<ul>
+
+<li><p><i>README.vms</i> (installed as <i>README_vms</i>), <a href="/perldoc/perlvms/">perlvms</a></p>
+
+</li>
+<li><p>vmsperl list, vmsperl-subscribe@perl.org</p>
+
+</li>
+<li><p>vmsperl on the web, <a href="http://www.sidhe.org/vmsperl/index.html" rel="external">http://www.sidhe.org/vmsperl/index.html</a></p>
+
+</li>
+<li><p>VMS Software Inc. web site, <a href="http://www.vmssoftware.com" rel="external">http://www.vmssoftware.com</a></p>
+
+</li>
+</ul>
+
+<h2 id="VOS">VOS</h2>
+
+<p>Perl on VOS (also known as OpenVOS) is discussed in <i>README.vos</i> in the Perl distribution (installed as <a href="/perldoc/perlvos/">perlvos</a>). Perl on VOS can accept either VOS- or Unix-style file specifications as in either of the following:</p>
+
+<pre><code>    $ perl -ne &quot;print if /perl_setup/i&quot; &gt;system&gt;notices
+    $ perl -ne &quot;print if /perl_setup/i&quot; /system/notices</code></pre>
+
+<p>or even a mixture of both as in:</p>
+
+<pre><code>    $ perl -ne &quot;print if /perl_setup/i&quot; &gt;system/notices</code></pre>
+
+<p>Even though VOS allows the slash character to appear in object names, because the VOS port of Perl interprets it as a pathname delimiting character, VOS files, directories, or links whose names contain a slash character cannot be processed. Such files must be renamed before they can be processed by Perl.</p>
+
+<p>Older releases of VOS (prior to OpenVOS Release 17.0) limit file names to 32 or fewer characters, prohibit file names from starting with a <code>-</code> character, and prohibit file names from containing <code> </code> (space) or any character from the set <code>!#%&amp;&#39;()*;&lt;=&gt;?</code>.</p>
+
+<p>Newer releases of VOS (OpenVOS Release 17.0 or later) support a feature known as extended names. On these releases, file names can contain up to 255 characters, are prohibited from starting with a <code>-</code> character, and the set of prohibited characters is reduced to <code>#%*&lt;&gt;?</code>. There are restrictions involving spaces and apostrophes: these characters must not begin or end a name, nor can they immediately precede or follow a period. Additionally, a space must not immediately precede another space or hyphen. Specifically, the following character combinations are prohibited: space-space, space-hyphen, period-space, space-period, period-apostrophe, apostrophe-period, leading or trailing space, and leading or trailing apostrophe. Although an extended file name is limited to 255 characters, a path name is still limited to 256 characters.</p>
+
+<p>The value of <a href="/perldoc/perlvar/#O"><code>$^O</code></a> on VOS is &quot;vos&quot;. To determine the architecture that you are running on refer to <a href="https://metacpan.org/pod/Config#archname" rel="external"><code>$Config{archname}</code></a>.</p>
+
+<p>Also see:</p>
+
+<ul>
+
+<li><p><i>README.vos</i> (installed as <a href="/perldoc/perlvos/">perlvos</a>)</p>
+
+</li>
+<li><p>The VOS mailing list.</p>
+
+<p>There is no specific mailing list for Perl on VOS. You can contact the Stratus Technologies Customer Assistance Center (CAC) for your region, or you can use the contact information located in the distribution files on the Stratus Anonymous FTP site.</p>
+
+</li>
+<li><p>Stratus Technologies on the web at <a href="http://www.stratus.com" rel="external">http://www.stratus.com</a></p>
+
+</li>
+<li><p>VOS Open-Source Software on the web at <a href="http://ftp.stratus.com/pub/vos/vos.html" rel="external">http://ftp.stratus.com/pub/vos/vos.html</a></p>
+
+</li>
+</ul>
+
+<h2 id="EBCDIC-Platforms">EBCDIC Platforms</h2>
+
+<p>v5.22 core Perl runs on z/OS (formerly OS/390). Theoretically it could run on the successors of OS/400 on AS/400 minicomputers as well as VM/ESA, and BS2000 for S/390 Mainframes. Such computers use EBCDIC character sets internally (usually Character Code Set ID 0037 for OS/400 and either 1047 or POSIX-BC for S/390 systems).</p>
+
+<p>The rest of this section may need updating, but we don&#39;t know what it should say. Please email comments to <a href="mailto:perlbug@perl.org">perlbug@perl.org</a>.</p>
+
+<p>On the mainframe Perl currently works under the &quot;Unix system services for OS/390&quot; (formerly known as OpenEdition), VM/ESA OpenEdition, or the BS200 POSIX-BC system (BS2000 is supported in Perl 5.6 and greater). See <a href="/perldoc/perlos390/">perlos390</a> for details. Note that for OS/400 there is also a port of Perl 5.8.1/5.10.0 or later to the PASE which is ASCII-based (as opposed to ILE which is EBCDIC-based), see <a href="/perldoc/perlos400/">perlos400</a>.</p>
+
+<p>As of R2.5 of USS for OS/390 and Version 2.3 of VM/ESA these Unix sub-systems do not support the <code>#!</code> shebang trick for script invocation. Hence, on OS/390 and VM/ESA Perl scripts can be executed with a header similar to the following simple script:</p>
+
+<pre><code>    : # use perl
+        eval &#39;exec /usr/local/bin/perl -S $0 ${1+&quot;$@&quot;}&#39;
+            if 0;
+    #!/usr/local/bin/perl     # just a comment really
+
+    print &quot;Hello from perl!\n&quot;;</code></pre>
+
+<p>OS/390 will support the <code>#!</code> shebang trick in release 2.8 and beyond. Calls to <a href="/perldoc/perlfunc/#system-LIST"><code>system</code></a> and backticks can use POSIX shell syntax on all S/390 systems.</p>
+
+<p>On the AS/400, if PERL5 is in your library list, you may need to wrap your Perl scripts in a CL procedure to invoke them like so:</p>
+
+<pre><code>    BEGIN
+      CALL PGM(PERL5/PERL) PARM(&#39;/QOpenSys/hello.pl&#39;)
+    ENDPGM</code></pre>
+
+<p>This will invoke the Perl script <i>hello.pl</i> in the root of the QOpenSys file system. On the AS/400 calls to <a href="/perldoc/perlfunc/#system-LIST"><code>system</code></a> or backticks must use CL syntax.</p>
+
+<p>On these platforms, bear in mind that the EBCDIC character set may have an effect on what happens with some Perl functions (such as <a href="/perldoc/perlfunc/#chr-NUMBER"><code>chr</code></a>, <a href="/perldoc/perlfunc/#pack-TEMPLATE-LIST"><code>pack</code></a>, <a href="/perldoc/perlfunc/#print-FILEHANDLE-LIST"><code>print</code></a>, <a href="/perldoc/perlfunc/#printf-FILEHANDLE-FORMAT-LIST"><code>printf</code></a>, <a href="/perldoc/perlfunc/#ord-EXPR"><code>ord</code></a>, <a href="/perldoc/perlfunc/#sort-SUBNAME-LIST"><code>sort</code></a>, <a href="/perldoc/perlfunc/#sprintf-FORMAT-LIST"><code>sprintf</code></a>, <a href="/perldoc/perlfunc/#unpack-TEMPLATE-EXPR"><code>unpack</code></a>), as well as bit-fiddling with ASCII constants using operators like <a href="/perldoc/perlop/#Bitwise-String-Operators"><code>^</code>, <code>&amp;</code> and <code>|</code></a>, not to mention dealing with socket interfaces to ASCII computers (see <a href="#Newlines">&quot;Newlines&quot;</a>).</p>
+
+<p>Fortunately, most web servers for the mainframe will correctly translate the <code>\n</code> in the following statement to its ASCII equivalent (<code>\r</code> is the same under both Unix and z/OS):</p>
+
+<pre><code>    print &quot;Content-type: text/html\r\n\r\n&quot;;</code></pre>
+
+<p>The values of <a href="/perldoc/perlvar/#O"><code>$^O</code></a> on some of these platforms include:</p>
+
+<pre><code>    uname         $^O        $Config{archname}
+    --------------------------------------------
+    OS/390        os390      os390
+    OS400         os400      os400
+    POSIX-BC      posix-bc   BS2000-posix-bc</code></pre>
+
+<p>Some simple tricks for determining if you are running on an EBCDIC platform could include any of the following (perhaps all):</p>
+
+<pre><code>    if (&quot;\t&quot; eq &quot;\005&quot;)  { print &quot;EBCDIC may be spoken here!\n&quot;; }
+
+    if (ord(&#39;A&#39;) == 193) { print &quot;EBCDIC may be spoken here!\n&quot;; }
+
+    if (chr(169) eq &#39;z&#39;) { print &quot;EBCDIC may be spoken here!\n&quot;; }</code></pre>
+
+<p>One thing you may not want to rely on is the EBCDIC encoding of punctuation characters since these may differ from code page to code page (and once your module or script is rumoured to work with EBCDIC, folks will want it to work with all EBCDIC character sets).</p>
+
+<p>Also see:</p>
+
+<ul>
+
+<li><p><a href="/perldoc/perlos390/">perlos390</a>, <a href="/perldoc/perlos400/">perlos400</a>, <a href="/perldoc/perlbs2000/">perlbs2000</a>, <a href="/perldoc/perlebcdic/">perlebcdic</a>.</p>
+
+</li>
+<li><p>The perl-mvs@perl.org list is for discussion of porting issues as well as general usage issues for all EBCDIC Perls. Send a message body of &quot;subscribe perl-mvs&quot; to majordomo@perl.org.</p>
+
+</li>
+<li><p>AS/400 Perl information at <a href="http://as400.rochester.ibm.com/" rel="external">http://as400.rochester.ibm.com/</a> as well as on CPAN in the <i>ports/</i> directory.</p>
+
+</li>
+</ul>
+
+<h2 id="Acorn-RISC-OS">Acorn RISC OS</h2>
+
+<p>Because Acorns use ASCII with newlines (<code>\n</code>) in text files as <code>\012</code> like Unix, and because Unix filename emulation is turned on by default, most simple scripts will probably work &quot;out of the box&quot;. The native filesystem is modular, and individual filesystems are free to be case-sensitive or insensitive, and are usually case-preserving. Some native filesystems have name length limits, which file and directory names are silently truncated to fit. Scripts should be aware that the standard filesystem currently has a name length limit of <b>10</b> characters, with up to 77 items in a directory, but other filesystems may not impose such limitations.</p>
+
+<p>Native filenames are of the form</p>
+
+<pre><code>    Filesystem#Special_Field::DiskName.$.Directory.Directory.File</code></pre>
+
+<p>where</p>
+
+<pre><code>    Special_Field is not usually present, but may contain . and $ .
+    Filesystem =~ m|[A-Za-z0-9_]|
+    DsicName   =~ m|[A-Za-z0-9_/]|
+    $ represents the root directory
+    . is the path separator
+    @ is the current directory (per filesystem but machine global)
+    ^ is the parent directory
+    Directory and File =~ m|[^\0- &quot;\.\$\%\&amp;:\@\\^\|\177]+|</code></pre>
+
+<p>The default filename translation is roughly <code>tr|/.|./|</code>, swapping dots and slahes.</p>
+
+<p>Note that <code>&quot;ADFS::HardDisk.$.File&quot; ne &#39;ADFS::HardDisk.$.File&#39;</code> and that the second stage of <code>$</code> interpolation in regular expressions will fall foul of the <a href="/perldoc/perlvar/#pod"><code>$.</code></a> variable if scripts are not careful.</p>
+
+<p>Logical paths specified by system variables containing comma-separated search lists are also allowed; hence <code>System:Modules</code> is a valid filename, and the filesystem will prefix <code>Modules</code> with each section of <code>System$Path</code> until a name is made that points to an object on disk. Writing to a new file <code>System:Modules</code> would be allowed only if <code>System$Path</code> contains a single item list. The filesystem will also expand system variables in filenames if enclosed in angle brackets, so <code>&lt;System$Dir&gt;.Modules</code> would look for the file <span style="white-space: nowrap;"><code>$ENV{&#39;System$Dir&#39;} . &#39;Modules&#39;</code></span>. The obvious implication of this is that <b>fully qualified filenames can start with <code>&lt;&gt;</code></b> and the three-argument form of <a href="/perldoc/perlfunc/#open-FILEHANDLE-EXPR"><code>open</code></a> should always be used.</p>
+
+<p>Because <code>.</code> was in use as a directory separator and filenames could not be assumed to be unique after 10 characters, Acorn implemented the C compiler to strip the trailing <code>.c</code> <code>.h</code> <code>.s</code> and <code>.o</code> suffix from filenames specified in source code and store the respective files in subdirectories named after the suffix. Hence files are translated:</p>
+
+<pre><code>    foo.h           h.foo
+    C:foo.h         C:h.foo        (logical path variable)
+    sys/os.h        sys.h.os       (C compiler groks Unix-speak)
+    10charname.c    c.10charname
+    10charname.o    o.10charname
+    11charname_.c   c.11charname   (assuming filesystem truncates at 10)</code></pre>
+
+<p>The Unix emulation library&#39;s translation of filenames to native assumes that this sort of translation is required, and it allows a user-defined list of known suffixes that it will transpose in this fashion. This may seem transparent, but consider that with these rules <i>foo/bar/baz.h</i> and <i>foo/bar/h/baz</i> both map to <i>foo.bar.h.baz</i>, and that <a href="/perldoc/perlfunc/#readdir-DIRHANDLE"><code>readdir</code></a> and <a href="/perldoc/perlfunc/#glob-EXPR"><code>glob</code></a> cannot and do not attempt to emulate the reverse mapping. Other <code>.</code>&#39;s in filenames are translated to <code>/</code>.</p>
+
+<p>As implied above, the environment accessed through <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> is global, and the convention is that program specific environment variables are of the form <code>Program$Name</code>. Each filesystem maintains a current directory, and the current filesystem&#39;s current directory is the <b>global</b> current directory. Consequently, sociable programs don&#39;t change the current directory but rely on full pathnames, and programs (and Makefiles) cannot assume that they can spawn a child process which can change the current directory without affecting its parent (and everyone else for that matter).</p>
+
+<p>Because native operating system filehandles are global and are currently allocated down from 255, with 0 being a reserved value, the Unix emulation library emulates Unix filehandles. Consequently, you can&#39;t rely on passing <code>STDIN</code>, <code>STDOUT</code>, or <code>STDERR</code> to your children.</p>
+
+<p>The desire of users to express filenames of the form <code>&lt;Foo$Dir&gt;.Bar</code> on the command line unquoted causes problems, too: <a href="/perldoc/perlop/#qx-STRING"><code>``</code></a> command output capture has to perform a guessing game. It assumes that a string <code>&lt;[^&lt;&gt;]+\$[^&lt;&gt;]&gt;</code> is a reference to an environment variable, whereas anything else involving <code>&lt;</code> or <code>&gt;</code> is redirection, and generally manages to be 99% right. Of course, the problem remains that scripts cannot rely on any Unix tools being available, or that any tools found have Unix-like command line arguments.</p>
+
+<p>Extensions and XS are, in theory, buildable by anyone using free tools. In practice, many don&#39;t, as users of the Acorn platform are used to binary distributions. MakeMaker does run, but no available make currently copes with MakeMaker&#39;s makefiles; even if and when this should be fixed, the lack of a Unix-like shell will cause problems with makefile rules, especially lines of the form <code>cd sdbm &amp;&amp; make all</code>, and anything using quoting.</p>
+
+<p><span style="white-space: nowrap;">&quot;RISC OS&quot;</span> is the proper name for the operating system, but the value in <a href="/perldoc/perlvar/#O"><code>$^O</code></a> is &quot;riscos&quot; (because we don&#39;t like shouting).</p>
+
+<h2 id="Other-perls">Other perls</h2>
+
+<p>Perl has been ported to many platforms that do not fit into any of the categories listed above. Some, such as AmigaOS, QNX, Plan 9, and VOS, have been well-integrated into the standard Perl source code kit. You may need to see the <i>ports/</i> directory on CPAN for information, and possibly binaries, for the likes of: aos, Atari ST, lynxos, riscos, Novell Netware, Tandem Guardian, <i>etc.</i> (Yes, we know that some of these OSes may fall under the Unix category, but we are not a standards body.)</p>
+
+<p>Some approximate operating system names and their <a href="/perldoc/perlvar/#O"><code>$^O</code></a> values in the &quot;OTHER&quot; category include:</p>
+
+<pre><code>    OS            $^O        $Config{archname}
+    ------------------------------------------
+    Amiga DOS     amigaos    m68k-amigos</code></pre>
+
+<p>See also:</p>
+
+<ul>
+
+<li><p>Amiga, <i>README.amiga</i> (installed as <a href="/perldoc/perlamiga/">perlamiga</a>).</p>
+
+</li>
+<li><p>A free perl5-based PERL.NLM for Novell Netware is available in precompiled binary and source code form from <a href="http://www.novell.com/" rel="external">http://www.novell.com/</a> as well as from CPAN.</p>
+
+</li>
+<li><p><span style="white-space: nowrap;">Plan 9</span>, <i>README.plan9</i></p>
+
+</li>
+</ul>
+
+<h1 id="FUNCTION-IMPLEMENTATIONS">FUNCTION IMPLEMENTATIONS</h1>
+
+<p>Listed below are functions that are either completely unimplemented or else have been implemented differently on various platforms. Preceding each description will be, in parentheses, a list of platforms that the description applies to.</p>
+
+<p>The list may well be incomplete, or even wrong in some places. When in doubt, consult the platform-specific README files in the Perl source distribution, and any other documentation resources accompanying a given port.</p>
+
+<p>Be aware, moreover, that even among Unix-ish systems there are variations.</p>
+
+<p>For many functions, you can also query <a href="https://metacpan.org/pod/Config#DESCRIPTION" rel="external"><code>%Config</code></a>, exported by default from the <a href="https://metacpan.org/pod/Config" rel="external"><code>Config</code></a> module. For example, to check whether the platform has the <a href="/perldoc/perlfunc/#lstat-FILEHANDLE"><code>lstat</code></a> call, check <a href="https://metacpan.org/pod/Config#d_lstat" rel="external"><code>$Config{d_lstat}</code></a>. See <a href="https://metacpan.org/pod/Config" rel="external">Config</a> for a full description of available variables.</p>
+
+<h2 id="Alphabetical-Listing-of-Perl-Functions">Alphabetical Listing of Perl Functions</h2>
+
+<dl>
+
+<dt>-X</dt>
+<dd>
+
+<p>(Win32) <code>-w</code> only inspects the read-only file attribute (FILE_ATTRIBUTE_READONLY), which determines whether the directory can be deleted, not whether it can be written to. Directories always have read and write access unless denied by discretionary access control lists (DACLs).</p>
+
+<p>(VMS) <code>-r</code>, <code>-w</code>, <code>-x</code>, and <code>-o</code> tell whether the file is accessible, which may not reflect UIC-based file protections.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) <code>-s</code> by name on an open file will return the space reserved on disk, rather than the current extent. <code>-s</code> on an open filehandle returns the current size.</p>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) <code>-R</code>, <code>-W</code>, <code>-X</code>, <code>-O</code> are indistinguishable from <code>-r</code>, <code>-w</code>, <code>-x</code>, <code>-o</code>.</p>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) <code>-g</code>, <code>-k</code>, <code>-l</code>, <code>-u</code>, <code>-A</code> are not particularly meaningful.</p>
+
+<p>(VMS, <span style="white-space: nowrap;">RISC OS</span>) <code>-p</code> is not particularly meaningful.</p>
+
+<p>(VMS) <code>-d</code> is true if passed a device spec without an explicit directory.</p>
+
+<p>(Win32) <code>-x</code> (or <code>-X</code>) determine if a file ends in one of the executable suffixes. <code>-S</code> is meaningless.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) <code>-x</code> (or <code>-X</code>) determine if a file has an executable file type.</p>
+
+</dd>
+<dt>alarm</dt>
+<dd>
+
+<p>(Win32) Emulated using timers that must be explicitly polled whenever Perl wants to dispatch &quot;safe signals&quot; and therefore cannot interrupt blocking system calls.</p>
+
+</dd>
+<dt>atan2</dt>
+<dd>
+
+<p>(Tru64, HP-UX 10.20) Due to issues with various CPUs, math libraries, compilers, and standards, results for <code>atan2</code> may vary depending on any combination of the above. Perl attempts to conform to the Open Group/IEEE standards for the results returned from <code>atan2</code>, but cannot force the issue if the system Perl is run on does not allow it.</p>
+
+<p>The current version of the standards for <code>atan2</code> is available at <a href="http://www.opengroup.org/onlinepubs/009695399/functions/atan2.html" rel="external">http://www.opengroup.org/onlinepubs/009695399/functions/atan2.html</a>.</p>
+
+</dd>
+<dt>binmode</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Meaningless.</p>
+
+<p>(VMS) Reopens file and restores pointer; if function fails, underlying filehandle may be closed, or pointer may be in a different position.</p>
+
+<p>(Win32) The value returned by <a href="/perldoc/perlfunc/#tell-FILEHANDLE"><code>tell</code></a> may be affected after the call, and the filehandle may be flushed.</p>
+
+</dd>
+<dt>chmod</dt>
+<dd>
+
+<p>(Win32) Only good for changing &quot;owner&quot; read-write access; &quot;group&quot; and &quot;other&quot; bits are meaningless.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Only good for changing &quot;owner&quot; and &quot;other&quot; read-write access.</p>
+
+<p>(VOS) Access permissions are mapped onto VOS access-control list changes.</p>
+
+<p>(Cygwin) The actual permissions set depend on the value of the <code>CYGWIN</code> variable in the SYSTEM environment settings.</p>
+
+<p>(Android) Setting the exec bit on some locations (generally <i>/sdcard</i>) will return true but not actually set the bit.</p>
+
+</dd>
+<dt>chown</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Plan 9</span>, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+<p>(Win32) Does nothing, but won&#39;t fail.</p>
+
+<p>(VOS) A little funky, because VOS&#39;s notion of ownership is a little funky.</p>
+
+</dd>
+<dt>chroot</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">Plan 9</span>, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>crypt</dt>
+<dd>
+
+<p>(Win32) May not be available if library or source was not provided when building perl.</p>
+
+<p>(Android) Not implemented.</p>
+
+</dd>
+<dt>dbmclose</dt>
+<dd>
+
+<p>(VMS, <span style="white-space: nowrap;">Plan 9</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>dbmopen</dt>
+<dd>
+
+<p>(VMS, <span style="white-space: nowrap;">Plan 9</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>dump</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not useful.</p>
+
+<p>(Cygwin, Win32) Not supported.</p>
+
+<p>(VMS) Invokes VMS debugger.</p>
+
+</dd>
+<dt>exec</dt>
+<dd>
+
+<p>(Win32) <code>exec LIST</code> without the use of indirect object syntax (<code>exec PROGRAM LIST</code>) may fall back to trying the shell if the first <code>spawn()</code> fails.</p>
+
+<p>(SunOS, Solaris, HP-UX) Does not automatically flush output handles on some platforms.</p>
+
+<p>(Symbian OS) Not supported.</p>
+
+</dd>
+<dt>exit</dt>
+<dd>
+
+<p>(VMS) Emulates Unix <code>exit</code> (which considers <code>exit 1</code> to indicate an error) by mapping the <code>1</code> to <code>SS$_ABORT</code> (<code>44</code>). This behavior may be overridden with the pragma <a href="https://metacpan.org/pod/vmsish#vmsish-exit" rel="external"><code>use vmsish &#39;exit&#39;</code></a>. As with the CRTL&#39;s <code>exit()</code> function, <code>exit 0</code> is also mapped to an exit status of <code>SS$_NORMAL</code> (<code>1</code>); this mapping cannot be overridden. Any other argument to <code>exit</code> is used directly as Perl&#39;s exit status. On VMS, unless the future POSIX_EXIT mode is enabled, the exit code should always be a valid VMS exit code and not a generic number. When the POSIX_EXIT mode is enabled, a generic number will be encoded in a method compatible with the C library _POSIX_EXIT macro so that it can be decoded by other programs, particularly ones written in C, like the GNV package.</p>
+
+<p>(Solaris) <code>exit</code> resets file pointers, which is a problem when called from a child process (created by <a href="/perldoc/perlfunc/#fork"><code>fork</code></a>) in <a href="/perldoc/perlmod/#BEGIN-UNITCHECK-CHECK-INIT-and-END"><code>BEGIN</code></a>. A workaround is to use <a href="https://metacpan.org/pod/POSIX#exit" rel="external"><code>POSIX::_exit</code></a>.</p>
+
+<pre><code>    exit unless $Config{archname} =~ /\bsolaris\b/;
+    require POSIX;
+    POSIX::_exit(0);</code></pre>
+
+</dd>
+<dt>fcntl</dt>
+<dd>
+
+<p>(Win32) Not implemented.</p>
+
+<p>(VMS) Some functions available based on the version of VMS.</p>
+
+</dd>
+<dt>flock</dt>
+<dd>
+
+<p>(VMS, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>fork</dt>
+<dd>
+
+<p>(AmigaOS, <span style="white-space: nowrap;">RISC OS</span>, VMS) Not implemented.</p>
+
+<p>(Win32) Emulated using multiple interpreters. See <a href="/perldoc/perlfork/">perlfork</a>.</p>
+
+<p>(SunOS, Solaris, HP-UX) Does not automatically flush output handles on some platforms.</p>
+
+</dd>
+<dt>getlogin</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>getpgrp</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>getppid</dt>
+<dd>
+
+<p>(Win32, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>getpriority</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>getpwnam</dt>
+<dd>
+
+<p>(Win32) Not implemented.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not useful.</p>
+
+</dd>
+<dt>getgrnam</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>getnetbyname</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>getpwuid</dt>
+<dd>
+
+<p>(Win32) Not implemented.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not useful.</p>
+
+</dd>
+<dt>getgrgid</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>getnetbyaddr</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>getprotobynumber</dt>
+<dd>
+
+<p>(Android) Not implemented.</p>
+
+</dd>
+<dt>getpwent</dt>
+<dd>
+
+<p>(Android, Win32) Not implemented.</p>
+
+</dd>
+<dt>getgrent</dt>
+<dd>
+
+<p>(Android, Win32, VMS) Not implemented.</p>
+
+</dd>
+<dt>gethostbyname</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Irix 5</span>) <code>gethostbyname(&#39;localhost&#39;)</code> does not work everywhere: you may have to use <code>gethostbyname(&#39;127.0.0.1&#39;)</code>.</p>
+
+</dd>
+<dt>gethostent</dt>
+<dd>
+
+<p>(Win32) Not implemented.</p>
+
+</dd>
+<dt>getnetent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>getprotoent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>getservent</dt>
+<dd>
+
+<p>(Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>seekdir</dt>
+<dd>
+
+<p>(Android) Not implemented.</p>
+
+</dd>
+<dt>sethostent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>setnetent</dt>
+<dd>
+
+<p>(Win32, <span style="white-space: nowrap;">Plan 9</span>, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>setprotoent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>setservent</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Plan 9</span>, Win32, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>endpwent</dt>
+<dd>
+
+<p>(Win32) Not implemented.</p>
+
+<p>(Android) Either not implemented or a no-op.</p>
+
+</dd>
+<dt>endgrent</dt>
+<dd>
+
+<p>(Android, <span style="white-space: nowrap;">RISC OS</span>, VMS, Win32) Not implemented.</p>
+
+</dd>
+<dt>endhostent</dt>
+<dd>
+
+<p>(Android, Win32) Not implemented.</p>
+
+</dd>
+<dt>endnetent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>endprotoent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>endservent</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Plan 9</span>, Win32) Not implemented.</p>
+
+</dd>
+<dt>getsockopt</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>glob</dt>
+<dd>
+
+<p>This operator is implemented via the <a href="https://metacpan.org/pod/File::Glob" rel="external"><code>File::Glob</code></a> extension on most platforms. See <a href="https://metacpan.org/pod/File::Glob" rel="external">File::Glob</a> for portability information.</p>
+
+</dd>
+<dt>gmtime</dt>
+<dd>
+
+<p>In theory, <code>gmtime</code> is reliable from -2**63 to 2**63-1. However, because work-arounds in the implementation use floating point numbers, it will become inaccurate as the time gets larger. This is a bug and will be fixed in the future.</p>
+
+<p>(VOS) Time values are 32-bit quantities.</p>
+
+</dd>
+<dt>ioctl</dt>
+<dd>
+
+<p>(VMS) Not implemented.</p>
+
+<p>(Win32) Available only for socket handles, and it does what the <code>ioctlsocket()</code> call in the Winsock API does.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Available only for socket handles.</p>
+
+</dd>
+<dt>kill</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not implemented, hence not useful for taint checking.</p>
+
+<p>(Win32) <code>kill</code> doesn&#39;t send a signal to the identified process like it does on Unix platforms. Instead <code>kill($sig, $pid)</code> terminates the process identified by <code>$pid</code>, and makes it exit immediately with exit status <code>$sig</code>. As in Unix, if <code>$sig</code> is 0 and the specified process exists, it returns true without actually terminating it.</p>
+
+<p>(Win32) <code>kill(-9, $pid)</code> will terminate the process specified by <code>$pid</code> and recursively all child processes owned by it. This is different from the Unix semantics, where the signal will be delivered to all processes in the same process group as the process specified by <code>$pid</code>.</p>
+
+<p>(VMS) A pid of -1 indicating all processes on the system is not currently supported.</p>
+
+</dd>
+<dt>link</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+<p>(AmigaOS) Link count not updated because hard links are not quite that hard (They are sort of half-way between hard and soft links).</p>
+
+<p>(Win32) Hard links are implemented on Win32 under NTFS only. They are natively supported on Windows 2000 and later. On Windows NT they are implemented using the Windows POSIX subsystem support and the Perl process will need Administrator or Backup Operator privileges to create hard links.</p>
+
+<p>(VMS) Available on 64 bit OpenVMS 8.2 and later.</p>
+
+</dd>
+<dt>localtime</dt>
+<dd>
+
+<p><code>localtime</code> has the same range as <a href="#gmtime">&quot;gmtime&quot;</a>, but because time zone rules change, its accuracy for historical and future times may degrade but usually by no more than an hour.</p>
+
+</dd>
+<dt>lstat</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+<p>(Win32) Return values (especially for device and inode) may be bogus.</p>
+
+</dd>
+<dt>msgctl</dt>
+<dd>
+
+</dd>
+<dt>msgget</dt>
+<dd>
+
+</dd>
+<dt>msgsnd</dt>
+<dd>
+
+</dd>
+<dt>msgrcv</dt>
+<dd>
+
+<p>(Android, Win32, VMS, <span style="white-space: nowrap;">Plan 9</span>, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>open</dt>
+<dd>
+
+<p>(Win32, <span style="white-space: nowrap;">RISC OS</span>) Open modes <code>|-</code> and <code>-|</code> are unsupported.</p>
+
+<p>(SunOS, Solaris, HP-UX) Opening a process does not automatically flush output handles on some platforms.</p>
+
+</dd>
+<dt>readlink</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>rename</dt>
+<dd>
+
+<p>(Win32) Can&#39;t move directories between directories on different logical volumes.</p>
+
+</dd>
+<dt>rewinddir</dt>
+<dd>
+
+<p>(Win32) Will not cause <a href="/perldoc/perlfunc/#readdir-DIRHANDLE"><code>readdir</code></a> to re-read the directory stream. The entries already read before the <code>rewinddir</code> call will just be returned again from a cache buffer.</p>
+
+</dd>
+<dt>select</dt>
+<dd>
+
+<p>(Win32, VMS) Only implemented on sockets.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Only reliable on sockets.</p>
+
+<p>Note that the <a href="/perldoc/perlfunc/#select-FILEHANDLE"><code>select FILEHANDLE</code></a> form is generally portable.</p>
+
+</dd>
+<dt>semctl</dt>
+<dd>
+
+</dd>
+<dt>semget</dt>
+<dd>
+
+</dd>
+<dt>semop</dt>
+<dd>
+
+<p>(Android, Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>setgrent</dt>
+<dd>
+
+<p>(Android, VMS, Win32, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>setpgrp</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>setpriority</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>setpwent</dt>
+<dd>
+
+<p>(Android, Win32, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>setsockopt</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Plan 9</span>) Not implemented.</p>
+
+</dd>
+<dt>shmctl</dt>
+<dd>
+
+</dd>
+<dt>shmget</dt>
+<dd>
+
+</dd>
+<dt>shmread</dt>
+<dd>
+
+</dd>
+<dt>shmwrite</dt>
+<dd>
+
+<p>(Android, Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+</dd>
+<dt>sleep</dt>
+<dd>
+
+<p>(Win32) Emulated using synchronization functions such that it can be interrupted by <a href="/perldoc/perlfunc/#alarm-SECONDS"><code>alarm</code></a>, and limited to a maximum of 4294967 seconds, approximately 49 days.</p>
+
+</dd>
+<dt>socketpair</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+<p>(VMS) Available on 64 bit OpenVMS 8.2 and later.</p>
+
+</dd>
+<dt>stat</dt>
+<dd>
+
+<p>Platforms that do not have <code>rdev</code>, <code>blksize</code>, or <code>blocks</code> will return these as <code>&#39;&#39;</code>, so numeric comparison or manipulation of these fields may cause &#39;not numeric&#39; warnings.</p>
+
+<p>(<span style="white-space: nowrap;">Mac OS X</span>) <code>ctime</code> not supported on UFS.</p>
+
+<p>(Win32) <code>ctime</code> is creation time instead of inode change time.</p>
+
+<p>(Win32) <code>dev</code> and <code>ino</code> are not meaningful.</p>
+
+<p>(VMS) <code>dev</code> and <code>ino</code> are not necessarily reliable.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) <code>mtime</code>, <code>atime</code> and <code>ctime</code> all return the last modification time. <code>dev</code> and <code>ino</code> are not necessarily reliable.</p>
+
+<p>(OS/2) <code>dev</code>, <code>rdev</code>, <code>blksize</code>, and <code>blocks</code> are not available. <code>ino</code> is not meaningful and will differ between stat calls on the same file.</p>
+
+<p>(Cygwin) Some versions of cygwin when doing a <code>stat(&quot;foo&quot;)</code> and not finding it may then attempt to <code>stat(&quot;foo.exe&quot;)</code>.</p>
+
+<p>(Win32) <code>stat</code> needs to open the file to determine the link count and update attributes that may have been changed through hard links. Setting <a href="/perldoc/perlvar/#WIN32_SLOPPY_STAT"><code>${^WIN32_SLOPPY_STAT}</code></a> to a true value speeds up <code>stat</code> by not performing this operation.</p>
+
+</dd>
+<dt>symlink</dt>
+<dd>
+
+<p>(Win32, <span style="white-space: nowrap;">RISC OS</span>) Not implemented.</p>
+
+<p>(VMS) Implemented on 64 bit VMS 8.3. VMS requires the symbolic link to be in Unix syntax if it is intended to resolve to a valid path.</p>
+
+</dd>
+<dt>syscall</dt>
+<dd>
+
+<p>(Win32, VMS, <span style="white-space: nowrap;">RISC OS</span>, VOS) Not implemented.</p>
+
+</dd>
+<dt>sysopen</dt>
+<dd>
+
+<p>(<span style="white-space: nowrap;">Mac OS</span>, OS/390) The traditional <code>0</code>, <code>1</code>, and <code>2</code> MODEs are implemented with different numeric values on some systems. The flags exported by <a href="https://metacpan.org/pod/Fcntl" rel="external"><code>Fcntl</code></a> (<code>O_RDONLY</code>, <code>O_WRONLY</code>, <code>O_RDWR</code>) should work everywhere though.</p>
+
+</dd>
+<dt>system</dt>
+<dd>
+
+<p>(Win32) As an optimization, may not call the command shell specified in <code>$ENV{PERL5SHELL}</code>. <code>system(1, @args)</code> spawns an external process and immediately returns its process designator, without waiting for it to terminate. Return value may be used subsequently in <a href="/perldoc/perlfunc/#wait"><code>wait</code></a> or <a href="/perldoc/perlfunc/#waitpid-PID-FLAGS"><code>waitpid</code></a>. Failure to <code>spawn()</code> a subprocess is indicated by setting <a href="/perldoc/perlvar/#pod"><code>$?</code></a> to <code>255 &lt;&lt; 8</code>. <a href="/perldoc/perlvar/#pod"><code>$?</code></a> is set in a way compatible with Unix (i.e. the exit status of the subprocess is obtained by <code>$? &gt;&gt; 8</code>, as described in the documentation).</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) There is no shell to process metacharacters, and the native standard is to pass a command line terminated by &quot;\n&quot; &quot;\r&quot; or &quot;\0&quot; to the spawned program. Redirection such as <code>&gt; foo</code> is performed (if at all) by the run time library of the spawned program. <code>system LIST</code> will call the Unix emulation library&#39;s <a href="/perldoc/perlfunc/#exec-LIST"><code>exec</code></a> emulation, which attempts to provide emulation of the stdin, stdout, stderr in force in the parent, provided the child program uses a compatible version of the emulation library. <code>system SCALAR</code> will call the native command line directly and no such emulation of a child Unix program will occur. Mileage <b>will</b> vary.</p>
+
+<p>(Win32) <code>system LIST</code> without the use of indirect object syntax (<code>system PROGRAM LIST</code>) may fall back to trying the shell if the first <code>spawn()</code> fails.</p>
+
+<p>(SunOS, Solaris, HP-UX) Does not automatically flush output handles on some platforms.</p>
+
+<p>(VMS) The return value is POSIX-like (shifted up by 8 bits), which only allows room for a made-up value derived from the severity bits of the native 32-bit condition code (unless overridden by <a href="https://metacpan.org/pod/vmsish#vmsish-status" rel="external"><code>use vmsish &#39;status&#39;</code></a>). If the native condition code is one that has a POSIX value encoded, the POSIX value will be decoded to extract the expected exit value. For more details see <a href="/perldoc/perlvms/#pod">&quot;$?&quot; in perlvms</a>.</p>
+
+</dd>
+<dt>telldir</dt>
+<dd>
+
+<p>(Android) Not implemented.</p>
+
+</dd>
+<dt>times</dt>
+<dd>
+
+<p>(Win32) &quot;Cumulative&quot; times will be bogus. On anything other than Windows NT or Windows 2000, &quot;system&quot; time will be bogus, and &quot;user&quot; time is actually the time returned by the <a href="http://man.he.net/man3/clock" rel="external"><code>clock()</code></a> function in the C runtime library.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not useful.</p>
+
+</dd>
+<dt>truncate</dt>
+<dd>
+
+<p>(Older versions of VMS) Not implemented.</p>
+
+<p>(VOS) Truncation to same-or-shorter lengths only.</p>
+
+<p>(Win32) If a FILEHANDLE is supplied, it must be writable and opened in append mode (i.e., use <code>open(my $fh, &#39;&gt;&gt;&#39;, &#39;filename&#39;)</code> or <code>sysopen(my $fh, ..., O_APPEND|O_RDWR)</code>. If a filename is supplied, it should not be held open elsewhere.</p>
+
+</dd>
+<dt>umask</dt>
+<dd>
+
+<p>Returns <code>undef</code> where unavailable.</p>
+
+<p>(AmigaOS) <code>umask</code> works but the correct permissions are set only when the file is finally closed.</p>
+
+</dd>
+<dt>utime</dt>
+<dd>
+
+<p>(VMS, <span style="white-space: nowrap;">RISC OS</span>) Only the modification time is updated.</p>
+
+<p>(Win32) May not behave as expected. Behavior depends on the C runtime library&#39;s implementation of <a href="http://man.he.net/man2/utime" rel="external"><code>utime()</code></a>, and the filesystem being used. The FAT filesystem typically does not support an &quot;access time&quot; field, and it may limit timestamps to a granularity of two seconds.</p>
+
+</dd>
+<dt>wait</dt>
+<dd>
+
+</dd>
+<dt>waitpid</dt>
+<dd>
+
+<p>(Win32) Can only be applied to process handles returned for processes spawned using <code>system(1, ...)</code> or pseudo processes created with <a href="/perldoc/perlfunc/#fork"><code>fork</code></a>.</p>
+
+<p>(<span style="white-space: nowrap;">RISC OS</span>) Not useful.</p>
+
+</dd>
+</dl>
+
+<h1 id="Supported-Platforms">Supported Platforms</h1>
+
+<p>The following platforms are known to build Perl 5.12 (as of April 2010, its release date) from the standard source code distribution available at <a href="http://www.cpan.org/src" rel="external">http://www.cpan.org/src</a></p>
+
+<dl>
+
+<dt>Linux (x86, ARM, IA64)</dt>
+<dd>
+
+</dd>
+<dt>HP-UX</dt>
+<dd>
+
+</dd>
+<dt>AIX</dt>
+<dd>
+
+</dd>
+<dt>Win32</dt>
+<dd>
+
+<dl>
+
+<dt>Windows 2000</dt>
+<dd>
+
+</dd>
+<dt>Windows XP</dt>
+<dd>
+
+</dd>
+<dt>Windows Server 2003</dt>
+<dd>
+
+</dd>
+<dt>Windows Vista</dt>
+<dd>
+
+</dd>
+<dt>Windows Server 2008</dt>
+<dd>
+
+</dd>
+<dt>Windows 7</dt>
+<dd>
+
+</dd>
+</dl>
+
+</dd>
+<dt>Cygwin</dt>
+<dd>
+
+<p>Some tests are known to fail:</p>
+
+<ul>
+
+<li><p><i>ext/XS-APItest/t/call_checker.t</i> - see <a href="https://rt.perl.org/Ticket/Display.html?id=78502" rel="external">https://rt.perl.org/Ticket/Display.html?id=78502</a></p>
+
+</li>
+<li><p><i>dist/I18N-Collate/t/I18N-Collate.t</i></p>
+
+</li>
+<li><p><i>ext/Win32CORE/t/win32core.t</i> - may fail on recent cygwin installs.</p>
+
+</li>
+</ul>
+
+</dd>
+<dt>Solaris (x86, SPARC)</dt>
+<dd>
+
+</dd>
+<dt>OpenVMS</dt>
+<dd>
+
+<dl>
+
+<dt>Alpha (7.2 and later)</dt>
+<dd>
+
+</dd>
+<dt>I64 (8.2 and later)</dt>
+<dd>
+
+</dd>
+</dl>
+
+</dd>
+<dt>Symbian</dt>
+<dd>
+
+</dd>
+<dt>NetBSD</dt>
+<dd>
+
+</dd>
+<dt>FreeBSD</dt>
+<dd>
+
+</dd>
+<dt>Debian GNU/kFreeBSD</dt>
+<dd>
+
+</dd>
+<dt>Haiku</dt>
+<dd>
+
+</dd>
+<dt>Irix (6.5. What else?)</dt>
+<dd>
+
+</dd>
+<dt>OpenBSD</dt>
+<dd>
+
+</dd>
+<dt>Dragonfly BSD</dt>
+<dd>
+
+</dd>
+<dt>Midnight BSD</dt>
+<dd>
+
+</dd>
+<dt>QNX Neutrino RTOS (6.5.0)</dt>
+<dd>
+
+</dd>
+<dt>MirOS BSD</dt>
+<dd>
+
+</dd>
+<dt>Stratus OpenVOS (17.0 or later)</dt>
+<dd>
+
+<p>Caveats:</p>
+
+<dl>
+
+<dt>time_t issues that may or may not be fixed</dt>
+<dd>
+
+</dd>
+</dl>
+
+</dd>
+<dt>Symbian (Series 60 v3, 3.2 and 5 - what else?)</dt>
+<dd>
+
+</dd>
+<dt>Stratus VOS / OpenVOS</dt>
+<dd>
+
+</dd>
+<dt>AIX</dt>
+<dd>
+
+</dd>
+<dt>Android</dt>
+<dd>
+
+</dd>
+<dt>FreeMINT</dt>
+<dd>
+
+<p>Perl now builds with FreeMiNT/Atari. It fails a few tests, that needs some investigation.</p>
+
+<p>The FreeMiNT port uses GNU dld for loadable module capabilities. So ensure you have that library installed when building perl.</p>
+
+</dd>
+</dl>
+
+<h1 id="EOL-Platforms">EOL Platforms</h1>
+
+<h2 id="Perl-5.20">(Perl 5.20)</h2>
+
+<p>The following platforms were supported by a previous version of Perl but have been officially removed from Perl&#39;s source code as of 5.20:</p>
+
+<dl>
+
+<dt>AT&amp;T 3b1</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="Perl-5.14">(Perl 5.14)</h2>
+
+<p>The following platforms were supported up to 5.10. They may still have worked in 5.12, but supporting code has been removed for 5.14:</p>
+
+<dl>
+
+<dt>Windows 95</dt>
+<dd>
+
+</dd>
+<dt>Windows 98</dt>
+<dd>
+
+</dd>
+<dt>Windows ME</dt>
+<dd>
+
+</dd>
+<dt>Windows NT4</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="Perl-5.12">(Perl 5.12)</h2>
+
+<p>The following platforms were supported by a previous version of Perl but have been officially removed from Perl&#39;s source code as of 5.12:</p>
+
+<dl>
+
+<dt>Atari MiNT</dt>
+<dd>
+
+</dd>
+<dt>Apollo Domain/OS</dt>
+<dd>
+
+</dd>
+<dt>Apple Mac OS 8/9</dt>
+<dd>
+
+</dd>
+<dt>Tenon Machten</dt>
+<dd>
+
+</dd>
+</dl>
+
+<h1 id="Supported-Platforms-Perl-5.8">Supported Platforms (Perl 5.8)</h1>
+
+<p>As of July 2002 (the Perl release 5.8.0), the following platforms were able to build Perl from the standard source code distribution available at <a href="http://www.cpan.org/src/" rel="external">http://www.cpan.org/src/</a></p>
+
+<pre><code>        AIX
+        BeOS
+        BSD/OS          (BSDi)
+        Cygwin
+        DG/UX
+        DOS DJGPP       1)
+        DYNIX/ptx
+        EPOC R5
+        FreeBSD
+        HI-UXMPP        (Hitachi) (5.8.0 worked but we didn&#39;t know it)
+        HP-UX
+        IRIX
+        Linux
+        Mac OS Classic
+        Mac OS X        (Darwin)
+        MPE/iX
+        NetBSD
+        NetWare
+        NonStop-UX
+        ReliantUNIX     (formerly SINIX)
+        OpenBSD
+        OpenVMS         (formerly VMS)
+        Open UNIX       (Unixware) (since Perl 5.8.1/5.9.0)
+        OS/2
+        OS/400          (using the PASE) (since Perl 5.8.1/5.9.0)
+        PowerUX
+        POSIX-BC        (formerly BS2000)
+        QNX
+        Solaris
+        SunOS 4
+        SUPER-UX        (NEC)
+        Tru64 UNIX      (formerly DEC OSF/1, Digital UNIX)
+        UNICOS
+        UNICOS/mk
+        UTS
+        VOS / OpenVOS
+        Win95/98/ME/2K/XP 2)
+        WinCE
+        z/OS            (formerly OS/390)
+        VM/ESA
+
+        1) in DOS mode either the DOS or OS/2 ports can be used
+        2) compilers: Borland, MinGW (GCC), VC6</code></pre>
+
+<p>The following platforms worked with the previous releases (5.6 and 5.7), but we did not manage either to fix or to test these in time for the 5.8.0 release. There is a very good chance that many of these will work fine with the 5.8.0.</p>
+
+<pre><code>        BSD/OS
+        DomainOS
+        Hurd
+        LynxOS
+        MachTen
+        PowerMAX
+        SCO SV
+        SVR4
+        Unixware
+        Windows 3.1</code></pre>
+
+<p>Known to be broken for 5.8.0 (but 5.6.1 and 5.7.2 can be used):</p>
+
+<pre><code>        AmigaOS 3</code></pre>
+
+<p>The following platforms have been known to build Perl from source in the past (5.005_03 and earlier), but we haven&#39;t been able to verify their status for the current release, either because the hardware/software platforms are rare or because we don&#39;t have an active champion on these platforms--or both. They used to work, though, so go ahead and try compiling them, and let perlbug@perl.org of any trouble.</p>
+
+<pre><code>        3b1
+        A/UX
+        ConvexOS
+        CX/UX
+        DC/OSx
+        DDE SMES
+        DOS EMX
+        Dynix
+        EP/IX
+        ESIX
+        FPS
+        GENIX
+        Greenhills
+        ISC
+        MachTen 68k
+        MPC
+        NEWS-OS
+        NextSTEP
+        OpenSTEP
+        Opus
+        Plan 9
+        RISC/os
+        SCO ODT/OSR
+        Stellar
+        SVR2
+        TI1500
+        TitanOS
+        Ultrix
+        Unisys Dynix</code></pre>
+
+<p>The following platforms have their own source code distributions and binaries available via <a href="http://www.cpan.org/ports/" rel="external">http://www.cpan.org/ports/</a></p>
+
+<pre><code>                                Perl release
+
+        OS/400 (ILE)            5.005_02
+        Tandem Guardian         5.004</code></pre>
+
+<p>The following platforms have only binaries available via <a href="http://www.cpan.org/ports/index.html" rel="external">http://www.cpan.org/ports/index.html</a> :</p>
+
+<pre><code>                                Perl release
+
+        Acorn RISCOS            5.005_02
+        AOS                     5.002
+        LynxOS                  5.004_02</code></pre>
+
+<p>Although we do suggest that you always build your own Perl from the source code, both for maximal configurability and for security, in case you are in a hurry you can check <a href="http://www.cpan.org/ports/index.html" rel="external">http://www.cpan.org/ports/index.html</a> for binary distributions.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p><a href="/perldoc/perlaix/">perlaix</a>, <a href="/perldoc/perlamiga/">perlamiga</a>, <a href="/perldoc/perlbs2000/">perlbs2000</a>, <a href="/perldoc/perlce/">perlce</a>, <a href="/perldoc/perlcygwin/">perlcygwin</a>, <a href="/perldoc/perldos/">perldos</a>, <a href="/perldoc/perlebcdic/">perlebcdic</a>, <a href="/perldoc/perlfreebsd/">perlfreebsd</a>, <a href="/perldoc/perlhurd/">perlhurd</a>, <a href="/perldoc/perlhpux/">perlhpux</a>, <a href="/perldoc/perlirix/">perlirix</a>, <a href="/perldoc/perlmacos/">perlmacos</a>, <a href="/perldoc/perlmacosx/">perlmacosx</a>, <a href="/perldoc/perlnetware/">perlnetware</a>, <a href="/perldoc/perlos2/">perlos2</a>, <a href="/perldoc/perlos390/">perlos390</a>, <a href="/perldoc/perlos400/">perlos400</a>, <a href="/perldoc/perlplan9/">perlplan9</a>, <a href="/perldoc/perlqnx/">perlqnx</a>, <a href="/perldoc/perlsolaris/">perlsolaris</a>, <a href="/perldoc/perltru64/">perltru64</a>, <a href="/perldoc/perlunicode/">perlunicode</a>, <a href="/perldoc/perlvms/">perlvms</a>, <a href="/perldoc/perlvos/">perlvos</a>, <a href="/perldoc/perlwin32/">perlwin32</a>, and <a href="https://metacpan.org/pod/Win32" rel="external">Win32</a>.</p>
+
+<h1 id="AUTHORS-CONTRIBUTORS">AUTHORS / CONTRIBUTORS</h1>
+
+<p>Abigail &lt;abigail@abigail.be&gt;, Charles Bailey &lt;bailey@newman.upenn.edu&gt;, Graham Barr &lt;gbarr@pobox.com&gt;, Tom Christiansen &lt;tchrist@perl.com&gt;, Nicholas Clark &lt;nick@ccl4.org&gt;, Thomas Dorner &lt;Thomas.Dorner@start.de&gt;, Andy Dougherty &lt;doughera@lafayette.edu&gt;, Dominic Dunlop &lt;domo@computer.org&gt;, Neale Ferguson &lt;neale@vma.tabnsw.com.au&gt;, David J. Fiander &lt;davidf@mks.com&gt;, Paul Green &lt;Paul.Green@stratus.com&gt;, M.J.T. Guy &lt;mjtg@cam.ac.uk&gt;, Jarkko Hietaniemi &lt;jhi@iki.fi&gt;, Luther Huffman &lt;lutherh@stratcom.com&gt;, Nick Ing-Simmons &lt;nick@ing-simmons.net&gt;, Andreas J. König &lt;a.koenig@mind.de&gt;, Markus Laker &lt;mlaker@contax.co.uk&gt;, Andrew M. Langmead &lt;aml@world.std.com&gt;, Lukas Mai &lt;l.mai@web.de&gt;, Larry Moore &lt;ljmoore@freespace.net&gt;, Paul Moore &lt;Paul.Moore@uk.origin-it.com&gt;, Chris Nandor &lt;pudge@pobox.com&gt;, Matthias Neeracher &lt;neeracher@mac.com&gt;, Philip Newton &lt;pne@cpan.org&gt;, Gary Ng &lt;71564.1743@CompuServe.COM&gt;, Tom Phoenix &lt;rootbeer@teleport.com&gt;, André Pirard &lt;A.Pirard@ulg.ac.be&gt;, Peter Prymmer &lt;pvhp@forte.com&gt;, Hugo van der Sanden &lt;hv@crypt0.demon.co.uk&gt;, Gurusamy Sarathy &lt;gsar@activestate.com&gt;, Paul J. Schinder &lt;schinder@pobox.com&gt;, Michael G Schwern &lt;schwern@pobox.com&gt;, Dan Sugalski &lt;dan@sidhe.org&gt;, Nathan Torkington &lt;gnat@frii.com&gt;, John Malmberg &lt;wb8tyw@qsl.net&gt;</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

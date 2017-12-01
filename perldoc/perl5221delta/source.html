@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5221delta (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5221delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5221delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5221delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5221delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5221delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perl5221delta/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+=head1 NAME
+
+perl5221delta - what is new for perl v5.22.1
+
+=head1 DESCRIPTION
+
+This document describes differences between the 5.22.0 release and the 5.22.1
+release.
+
+If you are upgrading from an earlier release such as 5.20.0, first read
+L&lt;perl5220delta&gt;, which describes differences between 5.20.0 and 5.22.0.
+
+=head1 Incompatible Changes
+
+There are no changes intentionally incompatible with 5.20.0 other than the
+following single exception, which we deemed to be a sensible change to make in
+order to get the new C&lt;\b{wb}&gt; and (in particular) C&lt;\b{sb}&gt; features sane
+before people decided they&#39;re worthless because of bugs in their Perl 5.22.0
+implementation and avoided them in the future.
+If any others exist, they are bugs, and we request that you submit a report.
+See L&lt;/Reporting Bugs&gt; below.
+
+=head2 Bounds Checking Constructs
+
+Several bugs, including a segmentation fault, have been fixed with the bounds
+checking constructs (introduced in Perl 5.22) C&lt;\b{gcb}&gt;, C&lt;\b{sb}&gt;, C&lt;\b{wb}&gt;,
+C&lt;\B{gcb}&gt;, C&lt;\B{sb}&gt;, and C&lt;\B{wb}&gt;.  All the C&lt;\B{}&gt; ones now match an empty
+string; none of the C&lt;\b{}&gt; ones do.
+L&lt;[perl #126319]|https://rt.perl.org/Ticket/Display.html?id=126319&gt;
+
+=head1 Modules and Pragmata
+
+=head2 Updated Modules and Pragmata
+
+=over 4
+
+=item *
+
+L&lt;Module::CoreList&gt; has been upgraded from version 5.20150520 to 5.20151213.
+
+=item *
+
+L&lt;PerlIO::scalar&gt; has been upgraded from version 0.22 to 0.23.
+
+=item *
+
+L&lt;POSIX&gt; has been upgraded from version 1.53 to 1.53_01.
+
+If C&lt;POSIX::strerror&gt; was passed C&lt;$!&gt; as its argument then it accidentally
+cleared C&lt;$!&gt;.  This has been fixed.
+L&lt;[perl #126229]|https://rt.perl.org/Ticket/Display.html?id=126229&gt;
+
+=item *
+
+L&lt;Storable&gt; has been upgraded from version 2.53 to 2.53_01.
+
+=item *
+
+L&lt;warnings&gt; has been upgraded from version 1.32 to 1.34.
+
+The C&lt;warnings::enabled&gt; example now actually uses C&lt;warnings::enabled&gt;.
+L&lt;[perl #126051]|https://rt.perl.org/Ticket/Display.html?id=126051&gt;
+
+=item *
+
+L&lt;Win32&gt; has been upgraded from version 0.51 to 0.52.
+
+This has been updated for Windows 8.1, 10 and 2012 R2 Server.
+
+=back
+
+=head1 Documentation
+
+=head2 Changes to Existing Documentation
+
+=head3 L&lt;perltie&gt;
+
+=over 4
+
+=item *
+
+The usage of C&lt;FIRSTKEY&gt; and C&lt;NEXTKEY&gt; has been clarified.
+
+=back
+
+=head3 L&lt;perlvar&gt;
+
+=over 4
+
+=item *
+
+The specific true value of C&lt;$!{E...}&gt; is now documented, noting that it is
+subject to change and not guaranteed.
+
+=back
+
+=head1 Diagnostics
+
+The following additions or changes have been made to diagnostic output,
+including warnings and fatal error messages.  For the complete list of
+diagnostic messages, see L&lt;perldiag&gt;.
+
+=head2 Changes to Existing Diagnostics
+
+=over 4
+
+=item *
+
+The C&lt;printf&gt; and C&lt;sprintf&gt; builtins are now more careful about the warnings
+they emit: argument reordering now disables the &quot;redundant argument&quot; warning in
+all cases.
+L&lt;[perl #125469]|https://rt.perl.org/Ticket/Display.html?id=125469&gt;
+
+=back
+
+=head1 Configuration and Compilation
+
+=over 4
+
+=item *
+
+Using the C&lt;NO_HASH_SEED&gt; define in combination with the default hash algorithm
+C&lt;PERL_HASH_FUNC_ONE_AT_A_TIME_HARD&gt; resulted in a fatal error while compiling
+the interpreter, since Perl 5.17.10.  This has been fixed.
+
+=item *
+
+Configuring with ccflags containing quotes (e.g.
+C&lt;&lt; -Accflags=&#39;-DAPPLLIB_EXP=\&quot;/usr/libperl\&quot;&#39; &gt;&gt;) was broken in Perl 5.22.0
+but has now been fixed again.
+L&lt;[perl #125314]|https://rt.perl.org/Ticket/Display.html?id=125314&gt;
+
+=back
+
+=head1 Platform Support
+
+=head2 Platform-Specific Notes
+
+=over 4
+
+=item IRIX
+
+=over
+
+=item *
+
+Under some circumstances IRIX stdio fgetc() and fread() set the errno to
+C&lt;ENOENT&gt;, which made no sense according to either IRIX or POSIX docs.  Errno
+is now cleared in such cases.
+L&lt;[perl #123977]|https://rt.perl.org/Ticket/Display.html?id=123977&gt;
+
+=item *
+
+Problems when multiplying long doubles by infinity have been fixed.
+L&lt;[perl #126396]|https://rt.perl.org/Ticket/Display.html?id=126396&gt;
+
+=item *
+
+All tests pass now on IRIX with the default build configuration.
+
+=back
+
+=back
+
+=head1 Selected Bug Fixes
+
+=over 4
+
+=item *
+
+C&lt;qr/(?[ () ])/&gt; no longer segfaults, giving a syntax error message instead.
+L&lt;[perl #125805]|https://rt.perl.org/Ticket/Display.html?id=125805&gt;
+
+=item *
+
+Regular expression possessive quantifier Perl 5.20 regression now fixed.
+C&lt;qr/&gt;I&lt;PAT&gt;C&lt;{&gt;I&lt;min&gt;,I&lt;max&gt;C&lt;}+&gt;C&lt;/&gt; is supposed to behave identically to
+C&lt;qr/(?E&lt;gt&gt;&gt;I&lt;PAT&gt;C&lt;{&gt;I&lt;min&gt;,I&lt;max&gt;C&lt;})/&gt;.  Since Perl 5.20, this didn&#39;t work
+if I&lt;min&gt; and I&lt;max&gt; were equal.
+L&lt;[perl #125825]|https://rt.perl.org/Ticket/Display.html?id=125825&gt;
+
+=item *
+
+Certain syntax errors in
+L&lt;perlrecharclass/Extended Bracketed Character Classes&gt; caused panics instead
+of the proper error message.  This has now been fixed.
+L&lt;[perl #126481]|https://rt.perl.org/Ticket/Display.html?id=126481&gt;
+
+=item *
+
+C&lt;&lt; BEGIN &lt;&gt; &gt;&gt; no longer segfaults and properly produces an error message.
+L&lt;[perl #125341]|https://rt.perl.org/Ticket/Display.html?id=125341&gt;
+
+=item *
+
+A regression from Perl 5.20 has been fixed, in which some syntax errors in
+L&lt;C&lt;(?[...])&gt;|perlrecharclass/Extended Bracketed Character Classes&gt; constructs
+within regular expression patterns could cause a segfault instead of a proper
+error message.
+L&lt;[perl #126180]|https://rt.perl.org/Ticket/Display.html?id=126180&gt;
+
+=item *
+
+Another problem with
+L&lt;C&lt;(?[...])&gt;|perlrecharclass/Extended Bracketed Character Classes&gt;
+constructs has been fixed wherein things like C&lt;\c]&gt; could cause panics.
+L&lt;[perl #126181]|https://rt.perl.org/Ticket/Display.html?id=126181&gt;
+
+=item *
+
+In Perl 5.22.0, the logic changed when parsing a numeric parameter to the -C
+option, such that the successfully parsed number was not saved as the option
+value if it parsed to the end of the argument.
+L&lt;[perl #125381]|https://rt.perl.org/Ticket/Display.html?id=125381&gt;
+
+=item *
+
+Warning fatality is now ignored when rewinding the stack.  This prevents
+infinite recursion when the now fatal error also causes rewinding of the stack.
+L&lt;[perl #123398]|https://rt.perl.org/Ticket/Display.html?id=123398&gt;
+
+=item *
+
+A crash with C&lt;&lt; %::=(); J-&gt;${\&quot;::&quot;} &gt;&gt; has been fixed.
+L&lt;[perl #125541]|https://rt.perl.org/Ticket/Display.html?id=125541&gt;
+
+=item *
+
+Nested quantifiers such as C&lt;/.{1}??/&gt; should cause perl to throw a fatal
+error, but were being silently accepted since Perl 5.20.0.  This has been
+fixed.
+L&lt;[perl #126253]|https://rt.perl.org/Ticket/Display.html?id=126253&gt;
+
+=item *
+
+Regular expression sequences such as C&lt;/(?i/&gt; (and similarly with other
+recognized flags or combination of flags) should cause perl to throw a fatal
+error, but were being silently accepted since Perl 5.18.0.  This has been
+fixed.
+L&lt;[perl #126178]|https://rt.perl.org/Ticket/Display.html?id=126178&gt;
+
+=item *
+
+A bug in hexadecimal floating point literal support meant that high-order bits
+could be lost in cases where mantissa overflow was caused by too many trailing
+zeros in the fractional part.  This has been fixed.
+L&lt;[perl #126582]|https://rt.perl.org/Ticket/Display.html?id=126582&gt;
+
+=item *
+
+Another hexadecimal floating point bug, causing low-order bits to be lost in
+cases where the last hexadecimal digit of the mantissa has bits straddling the
+limit of the number of bits allowed for the mantissa, has also been fixed.
+L&lt;[perl #126586]|https://rt.perl.org/Ticket/Display.html?id=126586&gt;
+
+=item *
+
+Further hexadecimal floating point bugs have been fixed: In some circumstances,
+the C&lt;%a&gt; format specifier could variously lose the sign of the negative zero,
+fail to display zeros after the radix point with the requested precision, or
+even lose the radix point after the leftmost hexadecimal digit completely.
+
+=item *
+
+A crash caused by incomplete expressions within C&lt;&lt; /(?[ ])/ &gt;&gt; (e.g.
+C&lt;&lt; /(?[[0]+()+])/ &gt;&gt;) has been fixed.
+L&lt;[perl #126615]|https://rt.perl.org/Ticket/Display.html?id=126615&gt;
+
+=back
+
+=head1 Acknowledgements
+
+Perl 5.22.1 represents approximately 6 months of development since Perl 5.22.0
+and contains approximately 19,000 lines of changes across 130 files from 27
+authors.
+
+Excluding auto-generated files, documentation and release tools, there were
+approximately 1,700 lines of changes to 44 .pm, .t, .c and .h files.
+
+Perl continues to flourish into its third decade thanks to a vibrant community
+of users and developers.  The following people are known to have contributed
+the improvements that became Perl 5.22.1:
+
+Aaron Crane, Abigail, Andy Broad, Aristotle Pagaltzis, Chase Whitener, Chris
+&#39;BinGOs&#39; Williams, Craig A. Berry, Daniel Dragan, David Mitchell, Father
+Chrysostomos, Herbert Breunung, Hugo van der Sanden, James E Keenan, Jan
+Dubois, Jarkko Hietaniemi, Karen Etheridge, Karl Williamson, Lukas Mai, Matthew
+Horsfall, Peter Martini, Rafael Garcia-Suarez, Ricardo Signes, Shlomi Fish,
+Sisyphus, Steve Hay, Tony Cook, Victor Adam.
+
+The list above is almost certainly incomplete as it is automatically generated
+from version control history.  In particular, it does not include the names of
+the (very much appreciated) contributors who reported issues to the Perl bug
+tracker.
+
+Many of the changes included in this version originated in the CPAN modules
+included in Perl&#39;s core.  We&#39;re grateful to the entire CPAN community for
+helping Perl to flourish.
+
+For a more complete list of all of Perl&#39;s historical contributors, please see
+the F&lt;AUTHORS&gt; file in the Perl source distribution.
+
+=head1 Reporting Bugs
+
+If you find what you think is a bug, you might check the articles recently
+posted to the comp.lang.perl.misc newsgroup and the perl bug database at
+https://rt.perl.org/ .  There may also be information at
+http://www.perl.org/ , the Perl Home Page.
+
+If you believe you have an unreported bug, please run the L&lt;perlbug&gt; program
+included with your release.  Be sure to trim your bug down to a tiny but
+sufficient test case.  Your bug report, along with the output of C&lt;perl -V&gt;,
+will be sent off to perlbug@perl.org to be analysed by the Perl porting team.
+
+If the bug you are reporting has security implications, which make it
+inappropriate to send to a publicly archived mailing list, then please send it
+to perl5-security-report@perl.org.  This points to a closed subscription
+unarchived mailing list, which includes all the core committers, who will be
+able to help assess the impact of issues, figure out a resolution, and help
+co-ordinate the release of patches to mitigate or fix the problem across all
+platforms on which Perl is supported.  Please only use this address for
+security issues in the Perl core, not for modules independently distributed on
+CPAN.
+
+=head1 SEE ALSO
+
+The F&lt;Changes&gt; file for an explanation of how to view exhaustive details on
+what changed.
+
+The F&lt;INSTALL&gt; file for how to build Perl.
+
+The F&lt;README&gt; file for general stuff.
+
+The F&lt;Artistic&gt; and F&lt;Copying&gt; files for copyright information.
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

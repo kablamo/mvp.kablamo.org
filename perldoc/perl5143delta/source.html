@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perl5143delta (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perl5143delta/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perl5143delta/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perl5143delta/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perl5143delta/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perl5143delta/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perl5143delta/">
+    Back to documentation
+</a>
+<pre>=encoding utf8
+
+=head1 NAME
+
+perl5143delta - what is new for perl v5.14.3
+
+=head1 DESCRIPTION
+
+This document describes differences between the 5.14.2 release and
+the 5.14.3 release.
+
+If you are upgrading from an earlier release such as 5.12.0, first read
+L&lt;perl5140delta&gt;, which describes differences between 5.12.0 and
+5.14.0.
+
+=head1 Core Enhancements
+
+No changes since 5.14.0.
+
+=head1 Security
+
+=head2 C&lt;Digest&gt; unsafe use of eval (CVE-2011-3597)
+
+The C&lt;Digest-E&lt;gt&gt;new()&gt; function did not properly sanitize input before
+using it in an eval() call, which could lead to the injection of arbitrary
+Perl code.
+
+In order to exploit this flaw, the attacker would need to be able to set
+the algorithm name used, or be able to execute arbitrary Perl code already.
+
+This problem has been fixed.
+
+=head2 Heap buffer overrun in &#39;x&#39; string repeat operator (CVE-2012-5195)
+
+Poorly written perl code that allows an attacker to specify the count to
+perl&#39;s &#39;x&#39; string repeat operator can already cause a memory exhaustion
+denial-of-service attack. A flaw in versions of perl before 5.15.5 can
+escalate that into a heap buffer overrun; coupled with versions of glibc
+before 2.16, it possibly allows the execution of arbitrary code.
+
+This problem has been fixed.
+
+=head1 Incompatible Changes
+
+There are no changes intentionally incompatible with 5.14.0. If any
+exist, they are bugs and reports are welcome.
+
+=head1 Deprecations
+
+There have been no deprecations since 5.14.0.
+
+=head1 Modules and Pragmata
+
+=head2 New Modules and Pragmata
+
+None
+
+=head2 Updated Modules and Pragmata
+
+=over 4
+
+=item *
+
+L&lt;PerlIO::scalar&gt; was updated to fix a bug in which opening a filehandle to
+a glob copy caused assertion failures (under debugging) or hangs or other
+erratic behaviour without debugging.
+
+=item *
+
+L&lt;ODBM_File&gt; and L&lt;NDBM_File&gt; were updated to allow building on GNU/Hurd.
+
+=item *
+
+L&lt;IPC::Open3&gt; has been updated to fix a regression introduced in perl
+5.12, which broke C&lt;IPC::Open3::open3($in, $out, $err, &#39;-&#39;)&gt;.
+[perl #95748]
+
+=item *
+
+L&lt;Digest&gt; has been upgraded from version 1.16 to 1.16_01.
+
+See L&lt;/Security&gt;.
+
+=item *
+
+L&lt;Module::CoreList&gt; has been updated to version 2.49_04 to add data for
+this release.
+
+=back
+
+=head2 Removed Modules and Pragmata
+
+None
+
+=head1 Documentation
+
+=head2 New Documentation
+
+None
+
+=head2 Changes to Existing Documentation
+
+=head3 L&lt;perlcheat&gt;
+
+=over 4
+
+=item *
+
+L&lt;perlcheat&gt; was updated to 5.14.
+
+=back
+
+=head1 Configuration and Compilation
+
+=over 4
+
+=item *
+
+h2ph was updated to search correctly gcc include directories on platforms
+such as Debian with multi-architecture support.
+
+=item *
+
+In Configure, the test for procselfexe was refactored into a loop.
+
+=back
+
+=head1 Platform Support
+
+=head2 New Platforms
+
+None
+
+=head2 Discontinued Platforms
+
+None
+
+=head2 Platform-Specific Notes
+
+=over 4
+
+=item FreeBSD
+
+The FreeBSD hints file was corrected to be compatible with FreeBSD 10.0.
+
+=item Solaris and NetBSD
+
+Configure was updated for &quot;procselfexe&quot; support on Solaris and NetBSD.
+
+=item HP-UX
+
+README.hpux was updated to note the existence of a broken header in
+HP-UX 11.00.
+
+=item Linux
+
+libutil is no longer used when compiling on Linux platforms, which avoids
+warnings being emitted.
+
+The system gcc (rather than any other gcc which might be in the compiling
+user&#39;s path) is now used when searching for libraries such as C&lt;-lm&gt;.
+
+=item Mac OS X
+
+The locale tests were updated to reflect the behaviour of locales in
+Mountain Lion.
+
+=item GNU/Hurd
+
+Various build and test fixes were included for GNU/Hurd.
+
+LFS support was enabled in GNU/Hurd.
+
+=item NetBSD
+
+The NetBSD hints file was corrected to be compatible with NetBSD 6.*
+
+=back
+
+=head1 Bug Fixes
+
+=over 4
+
+=item *
+
+A regression has been fixed that was introduced in 5.14, in C&lt;/i&gt;
+regular expression matching, in which a match improperly fails if the
+pattern is in UTF-8, the target string is not, and a Latin-1 character
+precedes a character in the string that should match the pattern.  [perl
+#101710]
+
+=item *
+
+In case-insensitive regular expression pattern matching, no longer on
+UTF-8 encoded strings does the scan for the start of match only look at
+the first possible position.  This caused matches such as
+C&lt;&quot;f\x{FB00}&quot; =~ /ff/i&gt; to fail.
+
+=item *
+
+The sitecustomize support was made relocatableinc aware, so that
+-Dusesitecustomize and -Duserelocatableinc may be used together.
+
+=item *
+
+The smartmatch operator (C&lt;~~&gt;) was changed so that the right-hand side
+takes precedence during C&lt;Any ~~ Object&gt; operations.
+
+=item *
+
+A bug has been fixed in the tainting support, in which an C&lt;index()&gt;
+operation on a tainted constant would cause all other constants to become
+tainted.  [perl #64804]
+
+=item *
+
+A regression has been fixed that was introduced in perl 5.12, whereby
+tainting errors were not correctly propagated through C&lt;die()&gt;.
+[perl #111654]
+
+=item *
+
+A regression has been fixed that was introduced in perl 5.14, in which
+C&lt;/[[:lower:]]/i&gt; and C&lt;/[[:upper:]]/i&gt; no longer matched the opposite case.
+[perl #101970]
+
+=back
+
+=head1 Acknowledgements
+
+Perl 5.14.3 represents approximately 12 months of development since Perl 5.14.2
+and contains approximately 2,300 lines of changes across 64 files from 22
+authors.
+
+Perl continues to flourish into its third decade thanks to a vibrant community
+of users and developers. The following people are known to have contributed the
+improvements that became Perl 5.14.3:
+
+Abigail, Andy Dougherty, Carl Hayter, Chris &#39;BinGOs&#39; Williams, Dave Rolsky,
+David Mitchell, Dominic Hargreaves, Father Chrysostomos, Florian Ragwitz,
+H.Merijn Brand, Jilles Tjoelker, Karl Williamson, Leon Timmermans, Michael G
+Schwern, Nicholas Clark, Niko Tyni, Pino Toscano, Ricardo Signes, Salvador
+FandiÃ±o, Samuel Thibault, Steve Hay, Tony Cook.
+
+The list above is almost certainly incomplete as it is automatically generated
+from version control history. In particular, it does not include the names of
+the (very much appreciated) contributors who reported issues to the Perl bug
+tracker.
+
+Many of the changes included in this version originated in the CPAN modules
+included in Perl&#39;s core. We&#39;re grateful to the entire CPAN community for
+helping Perl to flourish.
+
+For a more complete list of all of Perl&#39;s historical contributors, please see
+the F&lt;AUTHORS&gt; file in the Perl source distribution.
+
+=head1 Reporting Bugs
+
+If you find what you think is a bug, you might check the articles
+recently posted to the comp.lang.perl.misc newsgroup and the perl
+bug database at http://rt.perl.org/perlbug/ .  There may also be
+information at http://www.perl.org/ , the Perl Home Page.
+
+If you believe you have an unreported bug, please run the L&lt;perlbug&gt;
+program included with your release.  Be sure to trim your bug down
+to a tiny but sufficient test case.  Your bug report, along with the
+output of C&lt;perl -V&gt;, will be sent off to perlbug@perl.org to be
+analysed by the Perl porting team.
+
+If the bug you are reporting has security implications, which make it
+inappropriate to send to a publicly archived mailing list, then please send
+it to perl5-security-report@perl.org. This points to a closed subscription
+unarchived mailing list, which includes all the core committers, who be able
+to help assess the impact of issues, figure out a resolution, and help
+co-ordinate the release of patches to mitigate or fix the problem across all
+platforms on which Perl is supported. Please only use this address for
+security issues in the Perl core, not for modules independently
+distributed on CPAN.
+
+=head1 SEE ALSO
+
+The F&lt;Changes&gt; file for an explanation of how to view exhaustive details
+on what changed.
+
+The F&lt;INSTALL&gt; file for how to build Perl.
+
+The F&lt;README&gt; file for general stuff.
+
+The F&lt;Artistic&gt; and F&lt;Copying&gt; files for copyright information.
+
+=cut
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

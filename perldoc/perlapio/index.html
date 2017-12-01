@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlapio - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlapio/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlapio/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlapio/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlapio/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlapio/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlapio/">perlapio</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlapio/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlapio - perl&#39;s IO abstraction interface.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code>  #define PERLIO_NOT_STDIO 0    /* For co-existence with stdio only */
+  #include &lt;perlio.h&gt;           /* Usually via #include &lt;perl.h&gt; */
+
+  PerlIO *PerlIO_stdin(void);
+  PerlIO *PerlIO_stdout(void);
+  PerlIO *PerlIO_stderr(void);
+
+  PerlIO *PerlIO_open(const char *path,const char *mode);
+  PerlIO *PerlIO_fdopen(int fd, const char *mode);
+  PerlIO *PerlIO_reopen(const char *path, /* deprecated */
+          const char *mode, PerlIO *old);
+  int     PerlIO_close(PerlIO *f);
+
+  int     PerlIO_stdoutf(const char *fmt,...)
+  int     PerlIO_puts(PerlIO *f,const char *string);
+  int     PerlIO_putc(PerlIO *f,int ch);
+  SSize_t PerlIO_write(PerlIO *f,const void *buf,size_t numbytes);
+  int     PerlIO_printf(PerlIO *f, const char *fmt,...);
+  int     PerlIO_vprintf(PerlIO *f, const char *fmt, va_list args);
+  int     PerlIO_flush(PerlIO *f);
+
+  int     PerlIO_eof(PerlIO *f);
+  int     PerlIO_error(PerlIO *f);
+  void    PerlIO_clearerr(PerlIO *f);
+
+  int     PerlIO_getc(PerlIO *d);
+  int     PerlIO_ungetc(PerlIO *f,int ch);
+  SSize_t PerlIO_read(PerlIO *f, void *buf, size_t numbytes);
+
+  int     PerlIO_fileno(PerlIO *f);
+
+  void    PerlIO_setlinebuf(PerlIO *f);
+
+  Off_t   PerlIO_tell(PerlIO *f);
+  int     PerlIO_seek(PerlIO *f, Off_t offset, int whence);
+  void    PerlIO_rewind(PerlIO *f);
+
+  int     PerlIO_getpos(PerlIO *f, SV *save);    /* prototype changed */
+  int     PerlIO_setpos(PerlIO *f, SV *saved);   /* prototype changed */
+
+  int     PerlIO_fast_gets(PerlIO *f);
+  int     PerlIO_has_cntptr(PerlIO *f);
+  SSize_t PerlIO_get_cnt(PerlIO *f);
+  char   *PerlIO_get_ptr(PerlIO *f);
+  void    PerlIO_set_ptrcnt(PerlIO *f, char *ptr, SSize_t count);
+
+  int     PerlIO_canset_cnt(PerlIO *f);              /* deprecated */
+  void    PerlIO_set_cnt(PerlIO *f, int count);      /* deprecated */
+
+  int     PerlIO_has_base(PerlIO *f);
+  char   *PerlIO_get_base(PerlIO *f);
+  SSize_t PerlIO_get_bufsiz(PerlIO *f);
+
+  PerlIO *PerlIO_importFILE(FILE *stdio, const char *mode);
+  FILE   *PerlIO_exportFILE(PerlIO *f, int flags);
+  FILE   *PerlIO_findFILE(PerlIO *f);
+  void    PerlIO_releaseFILE(PerlIO *f,FILE *stdio);
+
+  int     PerlIO_apply_layers(PerlIO *f, const char *mode,
+                                                    const char *layers);
+  int     PerlIO_binmode(PerlIO *f, int ptype, int imode,
+                                                    const char *layers);
+  void    PerlIO_debug(const char *fmt,...)</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Perl&#39;s source code, and extensions that want maximum portability, should use the above functions instead of those defined in ANSI C&#39;s <i>stdio.h</i>. The perl headers (in particular &quot;perlio.h&quot;) will <code>#define</code> them to the I/O mechanism selected at Configure time.</p>
+
+<p>The functions are modeled on those in <i>stdio.h</i>, but parameter order has been &quot;tidied up a little&quot;.</p>
+
+<p><code>PerlIO *</code> takes the place of FILE *. Like FILE * it should be treated as opaque (it is probably safe to assume it is a pointer to something).</p>
+
+<p>There are currently three implementations:</p>
+
+<dl>
+
+<dt>1. USE_STDIO</dt>
+<dd>
+
+<p>All above are #define&#39;d to stdio functions or are trivial wrapper functions which call stdio. In this case <i>only</i> PerlIO * is a FILE *. This has been the default implementation since the abstraction was introduced in perl5.003_02.</p>
+
+</dd>
+<dt>2. USE_PERLIO</dt>
+<dd>
+
+<p>Introduced just after perl5.7.0, this is a re-implementation of the above abstraction which allows perl more control over how IO is done as it decouples IO from the way the operating system and C library choose to do things. For USE_PERLIO PerlIO * has an extra layer of indirection - it is a pointer-to-a-pointer. This allows the PerlIO * to remain with a known value while swapping the implementation around underneath <i>at run time</i>. In this case all the above are true (but very simple) functions which call the underlying implementation.</p>
+
+<p>This is the only implementation for which <code>PerlIO_apply_layers()</code> does anything &quot;interesting&quot;.</p>
+
+<p>The USE_PERLIO implementation is described in <a href="/perldoc/perliol/">perliol</a>.</p>
+
+</dd>
+</dl>
+
+<p>Because &quot;perlio.h&quot; is a thin layer (for efficiency) the semantics of these functions are somewhat dependent on the underlying implementation. Where these variations are understood they are noted below.</p>
+
+<p>Unless otherwise noted, functions return 0 on success, or a negative value (usually <code>EOF</code> which is usually -1) and set <code>errno</code> on error.</p>
+
+<dl>
+
+<dt><b>PerlIO_stdin()</b>, <b>PerlIO_stdout()</b>, <b>PerlIO_stderr()</b></dt>
+<dd>
+
+<p>Use these rather than <code>stdin</code>, <code>stdout</code>, <code>stderr</code>. They are written to look like &quot;function calls&quot; rather than variables because this makes it easier to <i>make them</i> function calls if platform cannot export data to loaded modules, or if (say) different &quot;threads&quot; might have different values.</p>
+
+</dd>
+<dt><b>PerlIO_open(path, mode)</b>, <b>PerlIO_fdopen(fd,mode)</b></dt>
+<dd>
+
+<p>These correspond to fopen()/fdopen() and the arguments are the same. Return <code>NULL</code> and set <code>errno</code> if there is an error. There may be an implementation limit on the number of open handles, which may be lower than the limit on the number of open files - <code>errno</code> may not be set when <code>NULL</code> is returned if this limit is exceeded.</p>
+
+</dd>
+<dt><b>PerlIO_reopen(path,mode,f)</b></dt>
+<dd>
+
+<p>While this currently exists in all three implementations perl itself does not use it. <i>As perl does not use it, it is not well tested.</i></p>
+
+<p>Perl prefers to <code>dup</code> the new low-level descriptor to the descriptor used by the existing PerlIO. This may become the behaviour of this function in the future.</p>
+
+</dd>
+<dt><b>PerlIO_printf(f,fmt,...)</b>, <b>PerlIO_vprintf(f,fmt,a)</b></dt>
+<dd>
+
+<p>These are fprintf()/vfprintf() equivalents.</p>
+
+</dd>
+<dt><b>PerlIO_stdoutf(fmt,...)</b></dt>
+<dd>
+
+<p>This is printf() equivalent. printf is #defined to this function, so it is (currently) legal to use <code>printf(fmt,...)</code> in perl sources.</p>
+
+</dd>
+<dt><b>PerlIO_read(f,buf,count)</b>, <b>PerlIO_write(f,buf,count)</b></dt>
+<dd>
+
+<p>These correspond functionally to fread() and fwrite() but the arguments and return values are different. The PerlIO_read() and PerlIO_write() signatures have been modeled on the more sane low level read() and write() functions instead: The &quot;file&quot; argument is passed first, there is only one &quot;count&quot;, and the return value can distinguish between error and <code>EOF</code>.</p>
+
+<p>Returns a byte count if successful (which may be zero or positive), returns negative value and sets <code>errno</code> on error. Depending on implementation <code>errno</code> may be <code>EINTR</code> if operation was interrupted by a signal.</p>
+
+</dd>
+<dt><b>PerlIO_close(f)</b></dt>
+<dd>
+
+<p>Depending on implementation <code>errno</code> may be <code>EINTR</code> if operation was interrupted by a signal.</p>
+
+</dd>
+<dt><b>PerlIO_puts(f,s)</b>, <b>PerlIO_putc(f,c)</b></dt>
+<dd>
+
+<p>These correspond to fputs() and fputc(). Note that arguments have been revised to have &quot;file&quot; first.</p>
+
+</dd>
+<dt><b>PerlIO_ungetc(f,c)</b></dt>
+<dd>
+
+<p>This corresponds to ungetc(). Note that arguments have been revised to have &quot;file&quot; first. Arranges that next read operation will return the byte <b>c</b>. Despite the implied &quot;character&quot; in the name only values in the range 0..0xFF are defined. Returns the byte <b>c</b> on success or -1 (<code>EOF</code>) on error. The number of bytes that can be &quot;pushed back&quot; may vary, only 1 character is certain, and then only if it is the last character that was read from the handle.</p>
+
+</dd>
+<dt><b>PerlIO_getc(f)</b></dt>
+<dd>
+
+<p>This corresponds to getc(). Despite the c in the name only byte range 0..0xFF is supported. Returns the character read or -1 (<code>EOF</code>) on error.</p>
+
+</dd>
+<dt><b>PerlIO_eof(f)</b></dt>
+<dd>
+
+<p>This corresponds to feof(). Returns a true/false indication of whether the handle is at end of file. For terminal devices this may or may not be &quot;sticky&quot; depending on the implementation. The flag is cleared by PerlIO_seek(), or PerlIO_rewind().</p>
+
+</dd>
+<dt><b>PerlIO_error(f)</b></dt>
+<dd>
+
+<p>This corresponds to ferror(). Returns a true/false indication of whether there has been an IO error on the handle.</p>
+
+</dd>
+<dt><b>PerlIO_fileno(f)</b></dt>
+<dd>
+
+<p>This corresponds to fileno(), note that on some platforms, the meaning of &quot;fileno&quot; may not match Unix. Returns -1 if the handle has no open descriptor associated with it.</p>
+
+</dd>
+<dt><b>PerlIO_clearerr(f)</b></dt>
+<dd>
+
+<p>This corresponds to clearerr(), i.e., clears &#39;error&#39; and (usually) &#39;eof&#39; flags for the &quot;stream&quot;. Does not return a value.</p>
+
+</dd>
+<dt><b>PerlIO_flush(f)</b></dt>
+<dd>
+
+<p>This corresponds to fflush(). Sends any buffered write data to the underlying file. If called with <code>NULL</code> this may flush all open streams (or core dump with some USE_STDIO implementations). Calling on a handle open for read only, or on which last operation was a read of some kind may lead to undefined behaviour on some USE_STDIO implementations. The USE_PERLIO (layers) implementation tries to behave better: it flushes all open streams when passed <code>NULL</code>, and attempts to retain data on read streams either in the buffer or by seeking the handle to the current logical position.</p>
+
+</dd>
+<dt><b>PerlIO_seek(f,offset,whence)</b></dt>
+<dd>
+
+<p>This corresponds to fseek(). Sends buffered write data to the underlying file, or discards any buffered read data, then positions the file descriptor as specified by <b>offset</b> and <b>whence</b> (sic). This is the correct thing to do when switching between read and write on the same handle (see issues with PerlIO_flush() above). Offset is of type <code>Off_t</code> which is a perl Configure value which may not be same as stdio&#39;s <code>off_t</code>.</p>
+
+</dd>
+<dt><b>PerlIO_tell(f)</b></dt>
+<dd>
+
+<p>This corresponds to ftell(). Returns the current file position, or (Off_t) -1 on error. May just return value system &quot;knows&quot; without making a system call or checking the underlying file descriptor (so use on shared file descriptors is not safe without a PerlIO_seek()). Return value is of type <code>Off_t</code> which is a perl Configure value which may not be same as stdio&#39;s <code>off_t</code>.</p>
+
+</dd>
+<dt><b>PerlIO_getpos(f,p)</b>, <b>PerlIO_setpos(f,p)</b></dt>
+<dd>
+
+<p>These correspond (loosely) to fgetpos() and fsetpos(). Rather than stdio&#39;s Fpos_t they expect a &quot;Perl Scalar Value&quot; to be passed. What is stored there should be considered opaque. The layout of the data may vary from handle to handle. When not using stdio or if platform does not have the stdio calls then they are implemented in terms of PerlIO_tell() and PerlIO_seek().</p>
+
+</dd>
+<dt><b>PerlIO_rewind(f)</b></dt>
+<dd>
+
+<p>This corresponds to rewind(). It is usually defined as being</p>
+
+<pre><code>    PerlIO_seek(f,(Off_t)0L, SEEK_SET);
+    PerlIO_clearerr(f);</code></pre>
+
+</dd>
+<dt><b>PerlIO_tmpfile()</b></dt>
+<dd>
+
+<p>This corresponds to tmpfile(), i.e., returns an anonymous PerlIO or NULL on error. The system will attempt to automatically delete the file when closed. On Unix the file is usually <code>unlink</code>-ed just after it is created so it does not matter how it gets closed. On other systems the file may only be deleted if closed via PerlIO_close() and/or the program exits via <code>exit</code>. Depending on the implementation there may be &quot;race conditions&quot; which allow other processes access to the file, though in general it will be safer in this regard than ad. hoc. schemes.</p>
+
+</dd>
+<dt><b>PerlIO_setlinebuf(f)</b></dt>
+<dd>
+
+<p>This corresponds to setlinebuf(). Does not return a value. What constitutes a &quot;line&quot; is implementation dependent but usually means that writing &quot;\n&quot; flushes the buffer. What happens with things like &quot;this\nthat&quot; is uncertain. (Perl core uses it <i>only</i> when &quot;dumping&quot;; it has nothing to do with $| auto-flush.)</p>
+
+</dd>
+</dl>
+
+<h2 id="Co-existence-with-stdio">Co-existence with stdio</h2>
+
+<p>There is outline support for co-existence of PerlIO with stdio. Obviously if PerlIO is implemented in terms of stdio there is no problem. However in other cases then mechanisms must exist to create a FILE * which can be passed to library code which is going to use stdio calls.</p>
+
+<p>The first step is to add this line:</p>
+
+<pre><code>   #define PERLIO_NOT_STDIO 0</code></pre>
+
+<p><i>before</i> including any perl header files. (This will probably become the default at some point). That prevents &quot;perlio.h&quot; from attempting to #define stdio functions onto PerlIO functions.</p>
+
+<p>XS code is probably better using &quot;typemap&quot; if it expects FILE * arguments. The standard typemap will be adjusted to comprehend any changes in this area.</p>
+
+<dl>
+
+<dt><b>PerlIO_importFILE(f,mode)</b></dt>
+<dd>
+
+<p>Used to get a PerlIO * from a FILE *.</p>
+
+<p>The mode argument should be a string as would be passed to fopen/PerlIO_open. If it is NULL then - for legacy support - the code will (depending upon the platform and the implementation) either attempt to empirically determine the mode in which <i>f</i> is open, or use &quot;r+&quot; to indicate a read/write stream.</p>
+
+<p>Once called the FILE * should <i>ONLY</i> be closed by calling <code>PerlIO_close()</code> on the returned PerlIO *.</p>
+
+<p>The PerlIO is set to textmode. Use PerlIO_binmode if this is not the desired mode.</p>
+
+<p>This is <b>not</b> the reverse of PerlIO_exportFILE().</p>
+
+</dd>
+<dt><b>PerlIO_exportFILE(f,mode)</b></dt>
+<dd>
+
+<p>Given a PerlIO * create a &#39;native&#39; FILE * suitable for passing to code expecting to be compiled and linked with ANSI C <i>stdio.h</i>. The mode argument should be a string as would be passed to fopen/PerlIO_open. If it is NULL then - for legacy support - the FILE * is opened in same mode as the PerlIO *.</p>
+
+<p>The fact that such a FILE * has been &#39;exported&#39; is recorded, (normally by pushing a new :stdio &quot;layer&quot; onto the PerlIO *), which may affect future PerlIO operations on the original PerlIO *. You should not call <code>fclose()</code> on the file unless you call <code>PerlIO_releaseFILE()</code> to disassociate it from the PerlIO *. (Do not use PerlIO_importFILE() for doing the disassociation.)</p>
+
+<p>Calling this function repeatedly will create a FILE * on each call (and will push an :stdio layer each time as well).</p>
+
+</dd>
+<dt><b>PerlIO_releaseFILE(p,f)</b></dt>
+<dd>
+
+<p>Calling PerlIO_releaseFILE informs PerlIO that all use of FILE * is complete. It is removed from the list of &#39;exported&#39; FILE *s, and the associated PerlIO * should revert to its original behaviour.</p>
+
+<p>Use this to disassociate a file from a PerlIO * that was associated using PerlIO_exportFILE().</p>
+
+</dd>
+<dt><b>PerlIO_findFILE(f)</b></dt>
+<dd>
+
+<p>Returns a native FILE * used by a stdio layer. If there is none, it will create one with PerlIO_exportFILE. In either case the FILE * should be considered as belonging to PerlIO subsystem and should only be closed by calling <code>PerlIO_close()</code>.</p>
+
+</dd>
+</dl>
+
+<h2 id="Fast-gets-Functions">&quot;Fast gets&quot; Functions</h2>
+
+<p>In addition to standard-like API defined so far above there is an &quot;implementation&quot; interface which allows perl to get at internals of PerlIO. The following calls correspond to the various FILE_xxx macros determined by Configure - or their equivalent in other implementations. This section is really of interest to only those concerned with detailed perl-core behaviour, implementing a PerlIO mapping or writing code which can make use of the &quot;read ahead&quot; that has been done by the IO system in the same way perl does. Note that any code that uses these interfaces must be prepared to do things the traditional way if a handle does not support them.</p>
+
+<dl>
+
+<dt><b>PerlIO_fast_gets(f)</b></dt>
+<dd>
+
+<p>Returns true if implementation has all the interfaces required to allow perl&#39;s <code>sv_gets</code> to &quot;bypass&quot; normal IO mechanism. This can vary from handle to handle.</p>
+
+<pre><code>  PerlIO_fast_gets(f) = PerlIO_has_cntptr(f) &amp;&amp; \
+                        PerlIO_canset_cnt(f) &amp;&amp; \
+                        &#39;Can set pointer into buffer&#39;</code></pre>
+
+</dd>
+<dt><b>PerlIO_has_cntptr(f)</b></dt>
+<dd>
+
+<p>Implementation can return pointer to current position in the &quot;buffer&quot; and a count of bytes available in the buffer. Do not use this - use PerlIO_fast_gets.</p>
+
+</dd>
+<dt><b>PerlIO_get_cnt(f)</b></dt>
+<dd>
+
+<p>Return count of readable bytes in the buffer. Zero or negative return means no more bytes available.</p>
+
+</dd>
+<dt><b>PerlIO_get_ptr(f)</b></dt>
+<dd>
+
+<p>Return pointer to next readable byte in buffer, accessing via the pointer (dereferencing) is only safe if PerlIO_get_cnt() has returned a positive value. Only positive offsets up to value returned by PerlIO_get_cnt() are allowed.</p>
+
+</dd>
+<dt><b>PerlIO_set_ptrcnt(f,p,c)</b></dt>
+<dd>
+
+<p>Set pointer into buffer, and a count of bytes still in the buffer. Should be used only to set pointer to within range implied by previous calls to <code>PerlIO_get_ptr</code> and <code>PerlIO_get_cnt</code>. The two values <i>must</i> be consistent with each other (implementation may only use one or the other or may require both).</p>
+
+</dd>
+<dt><b>PerlIO_canset_cnt(f)</b></dt>
+<dd>
+
+<p>Implementation can adjust its idea of number of bytes in the buffer. Do not use this - use PerlIO_fast_gets.</p>
+
+</dd>
+<dt><b>PerlIO_set_cnt(f,c)</b></dt>
+<dd>
+
+<p>Obscure - set count of bytes in the buffer. Deprecated. Only usable if PerlIO_canset_cnt() returns true. Currently used in only doio.c to force count less than -1 to -1. Perhaps should be PerlIO_set_empty or similar. This call may actually do nothing if &quot;count&quot; is deduced from pointer and a &quot;limit&quot;. Do not use this - use PerlIO_set_ptrcnt().</p>
+
+</dd>
+<dt><b>PerlIO_has_base(f)</b></dt>
+<dd>
+
+<p>Returns true if implementation has a buffer, and can return pointer to whole buffer and its size. Used by perl for <b>-T</b> / <b>-B</b> tests. Other uses would be very obscure...</p>
+
+</dd>
+<dt><b>PerlIO_get_base(f)</b></dt>
+<dd>
+
+<p>Return <i>start</i> of buffer. Access only positive offsets in the buffer up to the value returned by PerlIO_get_bufsiz().</p>
+
+</dd>
+<dt><b>PerlIO_get_bufsiz(f)</b></dt>
+<dd>
+
+<p>Return the <i>total number of bytes</i> in the buffer, this is neither the number that can be read, nor the amount of memory allocated to the buffer. Rather it is what the operating system and/or implementation happened to <code>read()</code> (or whatever) last time IO was requested.</p>
+
+</dd>
+</dl>
+
+<h2 id="Other-Functions">Other Functions</h2>
+
+<dl>
+
+<dt>PerlIO_apply_layers(f,mode,layers)</dt>
+<dd>
+
+<p>The new interface to the USE_PERLIO implementation. The layers &quot;:crlf&quot; and &quot;:raw&quot; are only ones allowed for other implementations and those are silently ignored. (As of perl5.8 &quot;:raw&quot; is deprecated.) Use PerlIO_binmode() below for the portable case.</p>
+
+</dd>
+<dt>PerlIO_binmode(f,ptype,imode,layers)</dt>
+<dd>
+
+<p>The hook used by perl&#39;s <code>binmode</code> operator. <b>ptype</b> is perl&#39;s character for the kind of IO:</p>
+
+<dl>
+
+<dt>&#39;&lt;&#39; read</dt>
+<dd>
+
+</dd>
+<dt>&#39;&gt;&#39; write</dt>
+<dd>
+
+</dd>
+<dt>&#39;+&#39; read/write</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p><b>imode</b> is <code>O_BINARY</code> or <code>O_TEXT</code>.</p>
+
+<p><b>layers</b> is a string of layers to apply, only &quot;:crlf&quot; makes sense in the non USE_PERLIO case. (As of perl5.8 &quot;:raw&quot; is deprecated in favour of passing NULL.)</p>
+
+<p>Portable cases are:</p>
+
+<pre><code>    PerlIO_binmode(f,ptype,O_BINARY,NULL);
+and
+    PerlIO_binmode(f,ptype,O_TEXT,&quot;:crlf&quot;);</code></pre>
+
+<p>On Unix these calls probably have no effect whatsoever. Elsewhere they alter &quot;\n&quot; to CR,LF translation and possibly cause a special text &quot;end of file&quot; indicator to be written or honoured on read. The effect of making the call after doing any IO to the handle depends on the implementation. (It may be ignored, affect any data which is already buffered as well, or only apply to subsequent data.)</p>
+
+</dd>
+<dt>PerlIO_debug(fmt,...)</dt>
+<dd>
+
+<p>PerlIO_debug is a printf()-like function which can be used for debugging. No return value. Its main use is inside PerlIO where using real printf, warn() etc. would recursively call PerlIO and be a problem.</p>
+
+<p>PerlIO_debug writes to the file named by $ENV{&#39;PERLIO_DEBUG&#39;} or defaults to stderr if the environment variable is not defined. Typical use might be</p>
+
+<pre><code>  Bourne shells (sh, ksh, bash, zsh, ash, ...):
+   PERLIO_DEBUG=/tmp/perliodebug.log ./perl -Di somescript some args
+
+  Csh/Tcsh:
+   setenv PERLIO_DEBUG /tmp/perliodebug.log
+   ./perl -Di somescript some args
+
+  If you have the &quot;env&quot; utility:
+   env PERLIO_DEBUG=/tmp/perliodebug.log ./perl -Di somescript args
+
+  Win32:
+   set PERLIO_DEBUG=perliodebug.log
+   perl -Di somescript some args</code></pre>
+
+<p>On a Perl built without <code>-DDEBUGGING</code>, or when the <code>-Di</code> command-line switch is not specified, or under taint, PerlIO_debug() is a no-op.</p>
+
+</dd>
+</dl>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlnumber (source) - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlnumber/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlnumber/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlnumber/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlnumber/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlnumber/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <a class="button" href="/perldoc/perlnumber/">
+    Back to documentation
+</a>
+<pre>=head1 NAME
+
+perlnumber - semantics of numbers and numeric operations in Perl
+
+=head1 SYNOPSIS
+
+    $n = 1234;		    # decimal integer
+    $n = 0b1110011;	    # binary integer
+    $n = 01234;		    # octal integer
+    $n = 0x1234;	    # hexadecimal integer
+    $n = 12.34e-56;	    # exponential notation
+    $n = &quot;-12.34e56&quot;;	    # number specified as a string
+    $n = &quot;1234&quot;;	    # number specified as a string
+
+=head1 DESCRIPTION
+
+This document describes how Perl internally handles numeric values.
+
+Perl&#39;s operator overloading facility is completely ignored here.  Operator
+overloading allows user-defined behaviors for numbers, such as operations
+over arbitrarily large integers, floating points numbers with arbitrary
+precision, operations over &quot;exotic&quot; numbers such as modular arithmetic or
+p-adic arithmetic, and so on.  See L&lt;overload&gt; for details.
+
+=head1 Storing numbers
+
+Perl can internally represent numbers in 3 different ways: as native
+integers, as native floating point numbers, and as decimal strings.
+Decimal strings may have an exponential notation part, as in C&lt;&quot;12.34e-56&quot;&gt;.
+I&lt;Native&gt; here means &quot;a format supported by the C compiler which was used
+to build perl&quot;.
+
+The term &quot;native&quot; does not mean quite as much when we talk about native
+integers, as it does when native floating point numbers are involved.
+The only implication of the term &quot;native&quot; on integers is that the limits for
+the maximal and the minimal supported true integral quantities are close to
+powers of 2.  However, &quot;native&quot; floats have a most fundamental
+restriction: they may represent only those numbers which have a relatively
+&quot;short&quot; representation when converted to a binary fraction.  For example,
+0.9 cannot be represented by a native float, since the binary fraction
+for 0.9 is infinite:
+
+  binary0.1110011001100...
+
+with the sequence C&lt;1100&gt; repeating again and again.  In addition to this
+limitation,  the exponent of the binary number is also restricted when it
+is represented as a floating point number.  On typical hardware, floating
+point values can store numbers with up to 53 binary digits, and with binary
+exponents between -1024 and 1024.  In decimal representation this is close
+to 16 decimal digits and decimal exponents in the range of -304..304.
+The upshot of all this is that Perl cannot store a number like
+12345678901234567 as a floating point number on such architectures without
+loss of information.
+
+Similarly, decimal strings can represent only those numbers which have a
+finite decimal expansion.  Being strings, and thus of arbitrary length, there
+is no practical limit for the exponent or number of decimal digits for these
+numbers.  (But realize that what we are discussing the rules for just the
+I&lt;storage&gt; of these numbers.  The fact that you can store such &quot;large&quot; numbers
+does not mean that the I&lt;operations&gt; over these numbers will use all
+of the significant digits.
+See L&lt;/&quot;Numeric operators and numeric conversions&quot;&gt; for details.)
+
+In fact numbers stored in the native integer format may be stored either
+in the signed native form, or in the unsigned native form.  Thus the limits
+for Perl numbers stored as native integers would typically be -2**31..2**32-1,
+with appropriate modifications in the case of 64-bit integers.  Again, this
+does not mean that Perl can do operations only over integers in this range:
+it is possible to store many more integers in floating point format.
+
+Summing up, Perl numeric values can store only those numbers which have
+a finite decimal expansion or a &quot;short&quot; binary expansion.
+
+=head1 Numeric operators and numeric conversions
+
+As mentioned earlier, Perl can store a number in any one of three formats,
+but most operators typically understand only one of those formats.  When
+a numeric value is passed as an argument to such an operator, it will be
+converted to the format understood by the operator.
+
+Six such conversions are possible:
+
+  native integer        --&gt; native floating point	(*)
+  native integer        --&gt; decimal string
+  native floating_point --&gt; native integer		(*)
+  native floating_point --&gt; decimal string		(*)
+  decimal string        --&gt; native integer
+  decimal string        --&gt; native floating point	(*)
+
+These conversions are governed by the following general rules:
+
+=over 4
+
+=item *
+
+If the source number can be represented in the target form, that
+representation is used.
+
+=item *
+
+If the source number is outside of the limits representable in the target form,
+a representation of the closest limit is used.  (I&lt;Loss of information&gt;)
+
+=item *
+
+If the source number is between two numbers representable in the target form,
+a representation of one of these numbers is used.  (I&lt;Loss of information&gt;)
+
+=item *
+
+In C&lt;&lt; native floating point --&gt; native integer &gt;&gt; conversions the magnitude
+of the result is less than or equal to the magnitude of the source.
+(I&lt;&quot;Rounding to zero&quot;.&gt;)
+
+=item *
+
+If the C&lt;&lt; decimal string --&gt; native integer &gt;&gt; conversion cannot be done
+without loss of information, the result is compatible with the conversion
+sequence C&lt;&lt; decimal_string --&gt; native_floating_point --&gt; native_integer &gt;&gt;.
+In particular, rounding is strongly biased to 0, though a number like
+C&lt;&quot;0.99999999999999999999&quot;&gt; has a chance of being rounded to 1.
+
+=back
+
+B&lt;RESTRICTION&gt;: The conversions marked with C&lt;(*)&gt; above involve steps
+performed by the C compiler.  In particular, bugs/features of the compiler
+used may lead to breakage of some of the above rules.
+
+=head1 Flavors of Perl numeric operations
+
+Perl operations which take a numeric argument treat that argument in one
+of four different ways: they may force it to one of the integer/floating/
+string formats, or they may behave differently depending on the format of
+the operand.  Forcing a numeric value to a particular format does not
+change the number stored in the value.
+
+All the operators which need an argument in the integer format treat the
+argument as in modular arithmetic, e.g., C&lt;mod 2**32&gt; on a 32-bit
+architecture.  C&lt;sprintf &quot;%u&quot;, -1&gt; therefore provides the same result as
+C&lt;sprintf &quot;%u&quot;, ~0&gt;.
+
+=over 4
+
+=item Arithmetic operators
+
+The binary operators C&lt;+&gt; C&lt;-&gt; C&lt;*&gt; C&lt;/&gt; C&lt;%&gt; C&lt;==&gt; C&lt;!=&gt; C&lt;E&lt;gt&gt;&gt; C&lt;E&lt;lt&gt;&gt;
+C&lt;E&lt;gt&gt;=&gt; C&lt;E&lt;lt&gt;=&gt; and the unary operators C&lt;-&gt; C&lt;abs&gt; and C&lt;--&gt; will
+attempt to convert arguments to integers.  If both conversions are possible
+without loss of precision, and the operation can be performed without
+loss of precision then the integer result is used.  Otherwise arguments are
+converted to floating point format and the floating point result is used.
+The caching of conversions (as described above) means that the integer
+conversion does not throw away fractional parts on floating point numbers.
+
+=item ++
+
+C&lt;++&gt; behaves as the other operators above, except that if it is a string
+matching the format C&lt;/^[a-zA-Z]*[0-9]*\z/&gt; the string increment described
+in L&lt;perlop&gt; is used.
+
+=item Arithmetic operators during C&lt;use integer&gt;
+
+In scopes where C&lt;use integer;&gt; is in force, nearly all the operators listed
+above will force their argument(s) into integer format, and return an integer
+result.  The exceptions, C&lt;abs&gt;, C&lt;++&gt; and C&lt;--&gt;, do not change their
+behavior with C&lt;use integer;&gt;
+
+=item Other mathematical operators
+
+Operators such as C&lt;**&gt;, C&lt;sin&gt; and C&lt;exp&gt; force arguments to floating point
+format.
+
+=item Bitwise operators
+
+Arguments are forced into the integer format if not strings.
+
+=item Bitwise operators during C&lt;use integer&gt;
+
+forces arguments to integer format. Also shift operations internally use
+signed integers rather than the default unsigned.
+
+=item Operators which expect an integer
+
+force the argument into the integer format.  This is applicable
+to the third and fourth arguments of C&lt;sysread&gt;, for example.
+
+=item Operators which expect a string
+
+force the argument into the string format.  For example, this is
+applicable to C&lt;printf &quot;%s&quot;, $value&gt;.
+
+=back
+
+Though forcing an argument into a particular form does not change the
+stored number, Perl remembers the result of such conversions.  In
+particular, though the first such conversion may be time-consuming,
+repeated operations will not need to redo the conversion.
+
+=head1 AUTHOR
+
+Ilya Zakharevich C&lt;ilya@math.ohio-state.edu&gt;
+
+Editorial adjustments by Gurusamy Sarathy &lt;gsar@ActiveState.com&gt;
+
+Updates for 5.8.0 by Nicholas Clark &lt;nick@ccl4.org&gt;
+
+=head1 SEE ALSO
+
+L&lt;overload&gt;, L&lt;perlop&gt;
+</pre>
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

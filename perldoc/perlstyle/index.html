@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlstyle - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlstyle/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlstyle/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlstyle/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlstyle/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlstyle/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlstyle/">perlstyle</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlstyle/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlstyle - Perl style guide</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Each programmer will, of course, have his or her own preferences in regards to formatting, but there are some general guidelines that will make your programs easier to read, understand, and maintain.</p>
+
+<p>The most important thing is to run your programs under the <b>-w</b> flag at all times. You may turn it off explicitly for particular portions of code via the <code>no warnings</code> pragma or the <code>$^W</code> variable if you must. You should also always run under <code>use strict</code> or know the reason why not. The <code>use sigtrap</code> and even <code>use diagnostics</code> pragmas may also prove useful.</p>
+
+<p>Regarding aesthetics of code lay out, about the only thing Larry cares strongly about is that the closing curly bracket of a multi-line BLOCK should line up with the keyword that started the construct. Beyond that, he has other preferences that aren&#39;t so strong:</p>
+
+<ul>
+
+<li><p>4-column indent.</p>
+
+</li>
+<li><p>Opening curly on same line as keyword, if possible, otherwise line up.</p>
+
+</li>
+<li><p>Space before the opening curly of a multi-line BLOCK.</p>
+
+</li>
+<li><p>One-line BLOCK may be put on one line, including curlies.</p>
+
+</li>
+<li><p>No space before the semicolon.</p>
+
+</li>
+<li><p>Semicolon omitted in &quot;short&quot; one-line BLOCK.</p>
+
+</li>
+<li><p>Space around most operators.</p>
+
+</li>
+<li><p>Space around a &quot;complex&quot; subscript (inside brackets).</p>
+
+</li>
+<li><p>Blank lines between chunks that do different things.</p>
+
+</li>
+<li><p>Uncuddled elses.</p>
+
+</li>
+<li><p>No space between function name and its opening parenthesis.</p>
+
+</li>
+<li><p>Space after each comma.</p>
+
+</li>
+<li><p>Long lines broken after an operator (except <code>and</code> and <code>or</code>).</p>
+
+</li>
+<li><p>Space after last parenthesis matching on current line.</p>
+
+</li>
+<li><p>Line up corresponding items vertically.</p>
+
+</li>
+<li><p>Omit redundant punctuation as long as clarity doesn&#39;t suffer.</p>
+
+</li>
+</ul>
+
+<p>Larry has his reasons for each of these things, but he doesn&#39;t claim that everyone else&#39;s mind works the same as his does.</p>
+
+<p>Here are some other more substantive style issues to think about:</p>
+
+<ul>
+
+<li><p>Just because you <i>CAN</i> do something a particular way doesn&#39;t mean that you <i>SHOULD</i> do it that way. Perl is designed to give you several ways to do anything, so consider picking the most readable one. For instance</p>
+
+<pre><code>    open(FOO,$foo) || die &quot;Can&#39;t open $foo: $!&quot;;</code></pre>
+
+<p>is better than</p>
+
+<pre><code>    die &quot;Can&#39;t open $foo: $!&quot; unless open(FOO,$foo);</code></pre>
+
+<p>because the second way hides the main point of the statement in a modifier. On the other hand</p>
+
+<pre><code>    print &quot;Starting analysis\n&quot; if $verbose;</code></pre>
+
+<p>is better than</p>
+
+<pre><code>    $verbose &amp;&amp; print &quot;Starting analysis\n&quot;;</code></pre>
+
+<p>because the main point isn&#39;t whether the user typed <b>-v</b> or not.</p>
+
+<p>Similarly, just because an operator lets you assume default arguments doesn&#39;t mean that you have to make use of the defaults. The defaults are there for lazy systems programmers writing one-shot programs. If you want your program to be readable, consider supplying the argument.</p>
+
+<p>Along the same lines, just because you <i>CAN</i> omit parentheses in many places doesn&#39;t mean that you ought to:</p>
+
+<pre><code>    return print reverse sort num values %array;
+    return print(reverse(sort num (values(%array))));</code></pre>
+
+<p>When in doubt, parenthesize. At the very least it will let some poor schmuck bounce on the % key in <b>vi</b>.</p>
+
+<p>Even if you aren&#39;t in doubt, consider the mental welfare of the person who has to maintain the code after you, and who will probably put parentheses in the wrong place.</p>
+
+</li>
+<li><p>Don&#39;t go through silly contortions to exit a loop at the top or the bottom, when Perl provides the <code>last</code> operator so you can exit in the middle. Just &quot;outdent&quot; it a little to make it more visible:</p>
+
+<pre><code>    LINE:
+        for (;;) {
+            statements;
+          last LINE if $foo;
+            next LINE if /^#/;
+            statements;
+        }</code></pre>
+
+</li>
+<li><p>Don&#39;t be afraid to use loop labels--they&#39;re there to enhance readability as well as to allow multilevel loop breaks. See the previous example.</p>
+
+</li>
+<li><p>Avoid using <code>grep()</code> (or <code>map()</code>) or `backticks` in a void context, that is, when you just throw away their return values. Those functions all have return values, so use them. Otherwise use a <code>foreach()</code> loop or the <code>system()</code> function instead.</p>
+
+</li>
+<li><p>For portability, when using features that may not be implemented on every machine, test the construct in an eval to see if it fails. If you know what version or patchlevel a particular feature was implemented, you can test <code>$]</code> (<code>$PERL_VERSION</code> in <code>English</code>) to see if it will be there. The <code>Config</code> module will also let you interrogate values determined by the <b>Configure</b> program when Perl was installed.</p>
+
+</li>
+<li><p>Choose mnemonic identifiers. If you can&#39;t remember what mnemonic means, you&#39;ve got a problem.</p>
+
+</li>
+<li><p>While short identifiers like <code>$gotit</code> are probably ok, use underscores to separate words in longer identifiers. It is generally easier to read <code>$var_names_like_this</code> than <code>$VarNamesLikeThis</code>, especially for non-native speakers of English. It&#39;s also a simple rule that works consistently with <code>VAR_NAMES_LIKE_THIS</code>.</p>
+
+<p>Package names are sometimes an exception to this rule. Perl informally reserves lowercase module names for &quot;pragma&quot; modules like <code>integer</code> and <code>strict</code>. Other modules should begin with a capital letter and use mixed case, but probably without underscores due to limitations in primitive file systems&#39; representations of module names as files that must fit into a few sparse bytes.</p>
+
+</li>
+<li><p>You may find it helpful to use letter case to indicate the scope or nature of a variable. For example:</p>
+
+<pre><code>    $ALL_CAPS_HERE   constants only (beware clashes with perl vars!)
+    $Some_Caps_Here  package-wide global/static
+    $no_caps_here    function scope my() or local() variables</code></pre>
+
+<p>Function and method names seem to work best as all lowercase. E.g., <code>$obj-&gt;as_string()</code>.</p>
+
+<p>You can use a leading underscore to indicate that a variable or function should not be used outside the package that defined it.</p>
+
+</li>
+<li><p>If you have a really hairy regular expression, use the <code>/x</code> or <code>/xx</code> modifiers and put in some whitespace to make it look a little less like line noise. Don&#39;t use slash as a delimiter when your regexp has slashes or backslashes.</p>
+
+</li>
+<li><p>Use the new <code>and</code> and <code>or</code> operators to avoid having to parenthesize list operators so much, and to reduce the incidence of punctuation operators like <code>&amp;&amp;</code> and <code>||</code>. Call your subroutines as if they were functions or list operators to avoid excessive ampersands and parentheses.</p>
+
+</li>
+<li><p>Use here documents instead of repeated <code>print()</code> statements.</p>
+
+</li>
+<li><p>Line up corresponding things vertically, especially if it&#39;d be too long to fit on one line anyway.</p>
+
+<pre><code>    $IDX = $ST_MTIME;
+    $IDX = $ST_ATIME       if $opt_u;
+    $IDX = $ST_CTIME       if $opt_c;
+    $IDX = $ST_SIZE        if $opt_s;
+
+    mkdir $tmpdir, 0700 or die &quot;can&#39;t mkdir $tmpdir: $!&quot;;
+    chdir($tmpdir)      or die &quot;can&#39;t chdir $tmpdir: $!&quot;;
+    mkdir &#39;tmp&#39;,   0777 or die &quot;can&#39;t mkdir $tmpdir/tmp: $!&quot;;</code></pre>
+
+</li>
+<li><p>Always check the return codes of system calls. Good error messages should go to <code>STDERR</code>, include which program caused the problem, what the failed system call and arguments were, and (VERY IMPORTANT) should contain the standard system error message for what went wrong. Here&#39;s a simple but sufficient example:</p>
+
+<pre><code>    opendir(D, $dir)     or die &quot;can&#39;t opendir $dir: $!&quot;;</code></pre>
+
+</li>
+<li><p>Line up your transliterations when it makes sense:</p>
+
+<pre><code>    tr [abc]
+       [xyz];</code></pre>
+
+</li>
+<li><p>Think about reusability. Why waste brainpower on a one-shot when you might want to do something like it again? Consider generalizing your code. Consider writing a module or object class. Consider making your code run cleanly with <code>use strict</code> and <code>use warnings</code> (or <b>-w</b>) in effect. Consider giving away your code. Consider changing your whole world view. Consider... oh, never mind.</p>
+
+</li>
+<li><p>Try to document your code and use Pod formatting in a consistent way. Here are commonly expected conventions:</p>
+
+<ul>
+
+<li><p>use <code>C&lt;&gt;</code> for function, variable and module names (and more generally anything that can be considered part of code, like filehandles or specific values). Note that function names are considered more readable with parentheses after their name, that is <code>function()</code>.</p>
+
+</li>
+<li><p>use <code>B&lt;&gt;</code> for commands names like <b>cat</b> or <b>grep</b>.</p>
+
+</li>
+<li><p>use <code>F&lt;&gt;</code> or <code>C&lt;&gt;</code> for file names. <code>F&lt;&gt;</code> should be the only Pod code for file names, but as most Pod formatters render it as italic, Unix and Windows paths with their slashes and backslashes may be less readable, and better rendered with <code>C&lt;&gt;</code>.</p>
+
+</li>
+</ul>
+
+</li>
+<li><p>Be consistent.</p>
+
+</li>
+<li><p>Be nice.</p>
+
+</li>
+</ul>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

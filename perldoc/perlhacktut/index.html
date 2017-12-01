@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>perlhacktut - Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.perldoc ul').show();
+                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+
+                <div class="left column full-height">
+                    <div class="sidebar">
+                    
+<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/perldoc/perlhacktut/#basics">The basics<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/perldoc/perlhacktut/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/perldoc/perlhacktut/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/perldoc/perlhacktut/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/perldoc/perlhacktut/#testing">Testing<div class="fa fa-caret-down right"></div></a>
+      <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="/perl">Perl design goals</a></li>
+    <li><a href="/see-also">Book recommendations</a></li>
+    <li><a href="/about">About this book</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="right column">
+                    <main>
+                    <div class="crumbtrail">
+<ul>
+    <li>
+        <a href="/perldoc/perlhacktut/">perlhacktut</a>
+    </li>
+</ul>
+(<a href="/perldoc/perlhacktut/source.html">source</a>)
+</div>
+<h1 id="NAME">NAME</h1>
+
+<p>perlhacktut - Walk through the creation of a simple C code patch</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This document takes you through a simple patch example.</p>
+
+<p>If you haven&#39;t read <a href="/perldoc/perlhack/">perlhack</a> yet, go do that first! You might also want to read through <a href="/perldoc/perlsource/">perlsource</a> too.</p>
+
+<p>Once you&#39;re done here, check out <a href="/perldoc/perlhacktips/">perlhacktips</a> next.</p>
+
+<h1 id="EXAMPLE-OF-A-SIMPLE-PATCH">EXAMPLE OF A SIMPLE PATCH</h1>
+
+<p>Let&#39;s take a simple patch from start to finish.</p>
+
+<p>Here&#39;s something Larry suggested: if a <code>U</code> is the first active format during a <code>pack</code>, (for example, <code>pack &quot;U3C8&quot;, @stuff</code>) then the resulting string should be treated as UTF-8 encoded.</p>
+
+<p>If you are working with a git clone of the Perl repository, you will want to create a branch for your changes. This will make creating a proper patch much simpler. See the <a href="/perldoc/perlgit/">perlgit</a> for details on how to do this.</p>
+
+<h2 id="Writing-the-patch">Writing the patch</h2>
+
+<p>How do we prepare to fix this up? First we locate the code in question - the <code>pack</code> happens at runtime, so it&#39;s going to be in one of the <i>pp</i> files. Sure enough, <code>pp_pack</code> is in <i>pp.c</i>. Since we&#39;re going to be altering this file, let&#39;s copy it to <i>pp.c~</i>.</p>
+
+<p>[Well, it was in <i>pp.c</i> when this tutorial was written. It has now been split off with <code>pp_unpack</code> to its own file, <i>pp_pack.c</i>]</p>
+
+<p>Now let&#39;s look over <code>pp_pack</code>: we take a pattern into <code>pat</code>, and then loop over the pattern, taking each format character in turn into <code>datum_type</code>. Then for each possible format character, we swallow up the other arguments in the pattern (a field width, an asterisk, and so on) and convert the next chunk input into the specified format, adding it onto the output SV <code>cat</code>.</p>
+
+<p>How do we know if the <code>U</code> is the first format in the <code>pat</code>? Well, if we have a pointer to the start of <code>pat</code> then, if we see a <code>U</code> we can test whether we&#39;re still at the start of the string. So, here&#39;s where <code>pat</code> is set up:</p>
+
+<pre><code>    STRLEN fromlen;
+    char *pat = SvPVx(*++MARK, fromlen);
+    char *patend = pat + fromlen;
+    I32 len;
+    I32 datumtype;
+    SV *fromstr;</code></pre>
+
+<p>We&#39;ll have another string pointer in there:</p>
+
+<pre><code>    STRLEN fromlen;
+    char *pat = SvPVx(*++MARK, fromlen);
+    char *patend = pat + fromlen;
+ +  char *patcopy;
+    I32 len;
+    I32 datumtype;
+    SV *fromstr;</code></pre>
+
+<p>And just before we start the loop, we&#39;ll set <code>patcopy</code> to be the start of <code>pat</code>:</p>
+
+<pre><code>    items = SP - MARK;
+    MARK++;
+    SvPVCLEAR(cat);
+ +  patcopy = pat;
+    while (pat &lt; patend) {</code></pre>
+
+<p>Now if we see a <code>U</code> which was at the start of the string, we turn on the <code>UTF8</code> flag for the output SV, <code>cat</code>:</p>
+
+<pre><code> +  if (datumtype == &#39;U&#39; &amp;&amp; pat==patcopy+1)
+ +      SvUTF8_on(cat);
+    if (datumtype == &#39;#&#39;) {
+        while (pat &lt; patend &amp;&amp; *pat != &#39;\n&#39;)
+            pat++;</code></pre>
+
+<p>Remember that it has to be <code>patcopy+1</code> because the first character of the string is the <code>U</code> which has been swallowed into <code>datumtype!</code></p>
+
+<p>Oops, we forgot one thing: what if there are spaces at the start of the pattern? <code>pack(&quot; U*&quot;, @stuff)</code> will have <code>U</code> as the first active character, even though it&#39;s not the first thing in the pattern. In this case, we have to advance <code>patcopy</code> along with <code>pat</code> when we see spaces:</p>
+
+<pre><code>    if (isSPACE(datumtype))
+        continue;</code></pre>
+
+<p>needs to become</p>
+
+<pre><code>    if (isSPACE(datumtype)) {
+        patcopy++;
+        continue;
+    }</code></pre>
+
+<p>OK. That&#39;s the C part done. Now we must do two additional things before this patch is ready to go: we&#39;ve changed the behaviour of Perl, and so we must document that change. We must also provide some more regression tests to make sure our patch works and doesn&#39;t create a bug somewhere else along the line.</p>
+
+<h2 id="Testing-the-patch">Testing the patch</h2>
+
+<p>The regression tests for each operator live in <i>t/op/</i>, and so we make a copy of <i>t/op/pack.t</i> to <i>t/op/pack.t~</i>. Now we can add our tests to the end. First, we&#39;ll test that the <code>U</code> does indeed create Unicode strings.</p>
+
+<p>t/op/pack.t has a sensible ok() function, but if it didn&#39;t we could use the one from t/test.pl.</p>
+
+<pre><code> require &#39;./test.pl&#39;;
+ plan( tests =&gt; 159 );</code></pre>
+
+<p>so instead of this:</p>
+
+<pre><code> print &#39;not &#39; unless &quot;1.20.300.4000&quot; eq sprintf &quot;%vd&quot;,
+                                               pack(&quot;U*&quot;,1,20,300,4000);
+ print &quot;ok $test\n&quot;; $test++;</code></pre>
+
+<p>we can write the more sensible (see <a href="https://metacpan.org/pod/Test::More" rel="external">Test::More</a> for a full explanation of is() and other testing functions).</p>
+
+<pre><code> is( &quot;1.20.300.4000&quot;, sprintf &quot;%vd&quot;, pack(&quot;U*&quot;,1,20,300,4000),
+                                       &quot;U* produces Unicode&quot; );</code></pre>
+
+<p>Now we&#39;ll test that we got that space-at-the-beginning business right:</p>
+
+<pre><code> is( &quot;1.20.300.4000&quot;, sprintf &quot;%vd&quot;, pack(&quot;  U*&quot;,1,20,300,4000),
+                                     &quot;  with spaces at the beginning&quot; );</code></pre>
+
+<p>And finally we&#39;ll test that we don&#39;t make Unicode strings if <code>U</code> is <b>not</b> the first active format:</p>
+
+<pre><code> isnt( v1.20.300.4000, sprintf &quot;%vd&quot;, pack(&quot;C0U*&quot;,1,20,300,4000),
+                                       &quot;U* not first isn&#39;t Unicode&quot; );</code></pre>
+
+<p>Mustn&#39;t forget to change the number of tests which appears at the top, or else the automated tester will get confused. This will either look like this:</p>
+
+<pre><code> print &quot;1..156\n&quot;;</code></pre>
+
+<p>or this:</p>
+
+<pre><code> plan( tests =&gt; 156 );</code></pre>
+
+<p>We now compile up Perl, and run it through the test suite. Our new tests pass, hooray!</p>
+
+<h2 id="Documenting-the-patch">Documenting the patch</h2>
+
+<p>Finally, the documentation. The job is never done until the paperwork is over, so let&#39;s describe the change we&#39;ve just made. The relevant place is <i>pod/perlfunc.pod</i>; again, we make a copy, and then we&#39;ll insert this text in the description of <code>pack</code>:</p>
+
+<pre><code> =item *
+
+ If the pattern begins with a C&lt;U&gt;, the resulting string will be treated
+ as UTF-8-encoded Unicode. You can force UTF-8 encoding on in a string
+ with an initial C&lt;U0&gt;, and the bytes that follow will be interpreted as
+ Unicode characters. If you don&#39;t want this to happen, you can begin
+ your pattern with C&lt;C0&gt; (or anything else) to force Perl not to UTF-8
+ encode your string, and then follow this with a C&lt;U*&gt; somewhere in your
+ pattern.</code></pre>
+
+<h2 id="Submit">Submit</h2>
+
+<p>See <a href="/perldoc/perlhack/">perlhack</a> for details on how to submit this patch.</p>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>This document was originally written by Nathan Torkington, and is maintained by the perl5-porters mailing list.</p>
+
+
+
+                    </main>
+                </div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>
