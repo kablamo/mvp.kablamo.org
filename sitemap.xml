@@ -4,73 +4,73 @@
         <loc>http://mvp.kablamo.org/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/about/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/exceptions/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/files/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/flow/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/functions/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/hello/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/loops/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/references/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/regexps/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/repl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/variables/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/blog/</loc>
@@ -88,2455 +88,2455 @@
         <loc>http://mvp.kablamo.org/debugging/data-printer/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/debugging/stack-trace/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/carton/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/cpanm/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/metacpan/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/perl5lib/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/pmtools/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/attributes/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/classes/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/inheritance/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/modifiers/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/roles/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/story/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5004delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5004delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5005delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5005delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5100delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5100delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5101delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5101delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5120delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5120delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5121delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5121delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5122delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5122delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5123delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5123delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5124delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5124delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5125delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5125delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5140delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5140delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5141delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5141delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5142delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5142delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5143delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5143delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5144delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5144delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5160delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5160delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5161delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5161delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5162delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5162delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5163delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5163delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5180delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5180delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5181delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5181delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5182delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5182delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5184delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5184delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5200delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5200delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5201delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5201delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5202delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5202delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5203delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5203delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5220delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5220delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5221delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5221delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5222delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5222delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5223delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5223delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5224delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5224delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5240delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5240delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5241delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5241delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5242delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5242delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5260delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5260delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5261delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5261delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl561delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl561delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl56delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl56delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl581delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl581delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl582delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl582delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl583delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl583delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl584delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl584delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl585delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl585delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl586delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl586delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl587delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl587delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl588delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl588delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl589delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl589delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl58delta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl58delta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5db/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perl5db/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlaix/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlaix/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlamiga/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlamiga/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlandroid/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlandroid/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlapi/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlapi/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlapio/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlapio/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlartistic/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlartistic/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlbook/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlbook/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlboot/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlboot/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlbot/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlbot/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlbs2000/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlbs2000/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcall/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcall/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlce/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlce/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcheat/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcheat/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlclib/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlclib/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcn/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcn/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcommunity/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcommunity/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcygwin/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlcygwin/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldata/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldata/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldbmfilter/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldbmfilter/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldebguts/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldebguts/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldebtut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldebtut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldebug/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldebug/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldelta/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldelta/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldeprecation/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldeprecation/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldiag/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldiag/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldoc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldoc/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldos/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldos/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldsc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldsc/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldtrace/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perldtrace/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlebcdic/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlebcdic/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlembed/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlembed/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlexperiment/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlexperiment/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq1/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq1/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq2/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq2/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq3/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq3/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq4/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq4/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq5/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq5/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq6/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq6/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq7/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq7/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq8/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq8/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq9/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfaq9/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfilter/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfilter/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfork/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfork/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlform/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlform/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfreebsd/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfreebsd/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfunc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlfunc/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlgit/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlgit/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlglossary/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlglossary/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlgpl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlgpl/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlguts/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlguts/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhack/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhack/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhacktips/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhacktips/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhacktut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhacktut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhaiku/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhaiku/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhist/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhist/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhpux/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhpux/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhurd/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlhurd/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlintern/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlintern/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlinterp/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlinterp/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlintro/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlintro/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perliol/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perliol/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlipc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlipc/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlirix/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlirix/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perljp/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perljp/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlko/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlko/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllexwarn/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllexwarn/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllinux/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllinux/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllocal/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllocal/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllocale/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllocale/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllol/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perllol/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmacos/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmacos/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmacosx/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmacosx/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmod/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmod/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmodinstall/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmodinstall/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmodlib/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmodlib/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmodstyle/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmodstyle/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmroapi/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlmroapi/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlnetware/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlnetware/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlnewmod/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlnewmod/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlnumber/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlnumber/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlobj/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlobj/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlootut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlootut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlop/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlop/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlopenbsd/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlopenbsd/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlopentut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlopentut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlos2/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlos2/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlos390/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlos390/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlos400/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlos400/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpacktut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpacktut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlperf/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlperf/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlplan9/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlplan9/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpod/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpod/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpodspec/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpodspec/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpodstyle/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpodstyle/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpolicy/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpolicy/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlport/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlport/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpragma/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlpragma/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlqnx/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlqnx/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlre/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlre/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreapi/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreapi/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrebackslash/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrebackslash/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrecharclass/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrecharclass/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlref/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlref/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreftut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreftut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreguts/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreguts/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrepository/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrepository/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrequick/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrequick/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreref/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlreref/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlretut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlretut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlriscos/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlriscos/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrun/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlrun/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsec/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsec/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsolaris/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsolaris/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsource/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsource/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlstyle/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlstyle/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsub/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsub/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsymbian/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsymbian/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsyn/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsyn/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsynology/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlsynology/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlthrtut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlthrtut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltie/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltie/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltoc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltoc/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltodo/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltodo/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltooc/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltooc/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltoot/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltoot/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltrap/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltrap/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltru64/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltru64/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltw/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perltw/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunicode/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunicode/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunicook/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunicook/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunifaq/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunifaq/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perluniintro/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perluniintro/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perluniprops/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perluniprops/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunitut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlunitut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlutil/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlutil/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlvar/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlvar/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlvms/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlvms/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlvos/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlvos/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlwin32/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlwin32/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlxs/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlxs/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlxstut/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlxstut/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlxstypemap/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/perldoc/perlxstypemap/source.html</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/see-also/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/data/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/exceptions/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/intro/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/libs/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/mock/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/warnings/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2017-12-01</lastmod>
+        <lastmod>2017-12-02</lastmod>
     </url>
 </urlset>
 
