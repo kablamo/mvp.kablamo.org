@@ -33,10 +33,12 @@ things:
 yet know how to do in Perl.
 
 The bottom line is they don't know how to quickly find the information they
-need.  The information is out there but new Perl developers don't want to spend
-hours digging through blogs, old verbose documentation, flipping through
-hundreds of pages from various old textbooks.  They want to get some work done
-and move on with life.
+need.  The information is out there but I don't believe most people want to
+spend hours digging through blogs, old verbose documentation, flipping through
+hundreds of pages from various textbooks.  For most people Perl is not life,
+its just a tool for getting their work done.  They want a concise answer
+addressing their exact problem and then they want to use it to get some work
+done and move on with life.
 
 #### Contributing
 
