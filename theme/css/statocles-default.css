@@ -291,114 +291,69 @@ img.u-pull-left, img.u-pull-right {
 }
 /** sub menu **/
 .sidebar ul li {
-  /* sub menu */
 }
 .sidebar ul li a {
-  display: block;
-  background: #3498db;
-  background: #20aaea;
-  padding: 10px 15px;
-  padding-left: 1rem;
-  color: #fff;
-  text-decoration: none;
-  -webkit-transition: 0.2s linear;
-  -moz-transition: 0.2s linear;
-  -ms-transition: 0.2s linear;
-  -o-transition: 0.2s linear;
-  transition: 0.2s linear;
-  border-left: 4px solid transparent;
-  border-bottom: 1px solid #20aada;
+    display: block;
+    background: #3498db;
+    background: #20aaea;
+    padding: 10px 15px;
+    padding-left: 1rem;
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    -ms-transition: 0.2s linear;
+    -o-transition: 0.2s linear;
+    transition: 0.2s linear;
+    border-left: 4px solid transparent;
+    border-bottom: 1px solid #20aada;
 }
 .sidebar ul li a:hover {
-  background: #2980b9;
-  background: #5cb3ec;
-  background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
 }
 .sidebar ul li a .fa {
-  width: 16px;
-  text-align: center;
-  margin-right: 5px;
-}
-.sidebar ul li a .badge {
-  display: inline-block;
-  background: #fff;
-  /* IE Fallback */
-  background: rgba(255, 255, 255, 0.2);
-  padding: 3px 7px;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-}
-.sidebar ul li ul li a {
-  background: #444;
-  background: rgba(255, 255, 255, 0.4);
-  border-left: 4px solid transparent;
-  padding-left: 1rem;
-  border-bottom: 1px solid #77c7f7;
-}
-.sidebar ul li ul li a:hover {
-  background: #333;
-  background: rgba(255, 255, 255, 0.3);
-  border-left: 4px solid #3498db;
+    width: 16px;
+    text-align: center;
+    margin-right: 5px;
 }
 /** sub sub menu **/
 .sidebar ul li ul li {
-  /* sub sub menu */
+}
+.sidebar ul li ul li a {
+    font-size: 1rem;
+    line-height: 1rem;
+    padding-left: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-left:   4px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sidebar ul li ul li a:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 .sidebar ul li ul li ul li a {
-  display: block;
-  background: #3498db;
-  background: #20aaea;
-  background: #5cb3ec;
-  padding: 10px 15px;
-  padding-left: 1rem;
-  color: #fff;
-  text-decoration: none;
-  -webkit-transition: 0.2s linear;
-  -moz-transition: 0.2s linear;
-  -ms-transition: 0.2s linear;
-  -o-transition: 0.2s linear;
-  transition: 0.2s linear;
-  border-left: 4px solid transparent;
-  border-bottom: 1px solid #20aada;
+    background: rgba(255, 255, 255, 0.4);
+    padding-left: 1rem;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    -ms-transition: 0.2s linear;
+    -o-transition: 0.2s linear;
+    transition: 0.2s linear;
+    border-left:   4px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .sidebar ul li ul li ul li a:hover {
-  background: #2980b9;
-  background: #8ff6ff;
-  background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.5);
 }
 .sidebar ul li ul li ul li a .fa {
-  width: 16px;
-  text-align: center;
-  margin-right: 5px;
-}
-.sidebar ul li ul li ul li a .badge {
-  display: inline-block;
-  background: #fff;
-  /* IE Fallback */
-  background: rgba(255, 255, 255, 0.2);
-  padding: 3px 7px;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-}
-.sidebar ul li ul li ul li ul li a {
-  background: #444;
-  background: rgba(255, 255, 255, 0.4);
-  border-left: 4px solid transparent;
-  padding-left: 1rem;
-  border-bottom: 1px solid #77c7f7;
-}
-.sidebar ul li ul li ul li ul li a:hover {
-  background: #333;
-  background: rgba(255, 255, 255, 0.3);
-  border-left: 4px solid #3498db;
+    width: 16px;
+    text-align: center;
+    margin-right: 5px;
 }
 .sidebar .right {
-  float: right;
+    float: right;
 }
 .sidebar .left {
-  float: left;
+    float: left;
 }
 .sidebar .section {
     font-size: 1.3rem;
