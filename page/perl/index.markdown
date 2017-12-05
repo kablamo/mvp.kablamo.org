@@ -2,10 +2,7 @@
 
 #### Design goals
 
-Perl's design goals include flexibility, expressiveness, and power.  
-
-Most successful languages exploit a niche. It useful to know why the choices
-were made so you can understand the strengths and weakness of the language.
+Perl's design goals include flexibility, expressiveness, and power. 
 
 > "I realized at that point that there was a huge ecological niche between the
 C language and Unix shells. C was good for manipulating complex things  - you

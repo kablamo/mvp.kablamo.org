@@ -1,11 +1,15 @@
 % my $sidebar_path = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
 
-<a class="home" href='/'>Minimum<br>Viable<br>Perl</a><br><br><br>
 
 <div class='animated bounceInDown'>
   <ul>
+    <li class='mvp sub-menu section'>
+      <a href='<%= $sidebar_path %>#mvp'><div class='fa fa-caret-down caret'></div>Minimum Viable Perl</a>
+      <ul>
+      </ul>
+    </li>
     <li class='basics sub-menu'>
-      <a href='<%= $sidebar_path %>#basics'>The basics<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#basics'><div class='fa fa-caret-down caret'></div>The basics</a>
       <ul>
         <li><a href="/basics/hello">Hello world</a></li>
         <li><a href="/basics/variables">Variables</li>
@@ -19,7 +23,7 @@
       </ul>
     </li>
     <li class='oo sub-menu'>
-      <a href='<%= $sidebar_path %>#oo'>Object oriented programming<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#oo'><div class='fa fa-caret-down caret'></div>Object oriented programming</a>
       <ul>
         <li><a href="/oo/story">The (weird) story of Perl OO</li>
         <li><a href="/oo/classes">Classes</li>
@@ -30,14 +34,14 @@
       </ul>
     </li>
     <li class='debugging sub-menu'>
-      <a href='<%= $sidebar_path %>#basics'>Debugging<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#basics'><div class='fa fa-caret-down caret'></div>Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer">Examining data structures</li>
         <li><a href="/debugging/stack-trace">Forcing stack traces</li>
       </ul>
     </li>
     <li class='dependencies sub-menu'>
-      <a href='<%= $sidebar_path %>#dependencies'>Perl libraries<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#dependencies'><div class='fa fa-caret-down caret'></div>Perl libraries</a>
       <ul>
         <li><a href='/dependencies/perl5lib'>Loading libraries from custom locations</a></li>
         <li><a href='/dependencies/cpanm'>Installing libraries with cpanm</a></li>
@@ -47,7 +51,7 @@
       </ul>
     </li>
     <li class='testing sub-menu'>
-      <a href='<%= $sidebar_path %>#testing'>Testing<div class='fa fa-caret-down right'></div></a>
+      <a href='<%= $sidebar_path %>#testing'><div class='fa fa-caret-down caret'></div>Testing</a>
       <ul>
         <li><a href='/testing/intro'>Introduction to testing</a></li>
         <li><a href='/testing/warnings'>Testing warnings and exceptions</a></li>
@@ -57,7 +61,24 @@
       </ul>
     </li>
     <li><a href='/perl'>Perl design goals</a></li>
-    <li><a href='/see-also'>Book recommendations</a></li>
     <li><a href='/about'>About this book</a></li>
   </ul>
 </div>
+<div class='animated bounceInDown'>
+  <ul>
+    <li class='reference sub-menu section'>
+      <a href='<%= $sidebar_path %>#basics'><div class='fa fa-caret-down caret'></div>Official Perl Documentation</a>
+      <ul>
+        <li><a href="/perldoc/">Functions A-Z</a></li>
+        <li><a href="/perldoc/">Functions by topic</a></li>
+        <li><a href="/perldoc/">Operators</a></li>
+        <li><a href="/perldoc/">Special variables</a></li>
+        <li><a href="/perldoc/">Pragmas</a></li>
+      </ul>
+    </li>
+    <li class="section"><a href='/community'>Community</a></li>
+    <li class="section"><a href='/books'>Perl Books</a></li>
+    <li class="section"><a href='https://jobs.perl.org'>Perl Jobs</a></li>
+  </ul>
+</div>
+

@@ -147,15 +147,17 @@ static_app:
     class: 'Statocles::App::Basic'
     args:
         store: 'static'
-        url_root: '/static'
+        url_root: '/'
 
 perldoc_app:
     class: 'Statocles::App::Perldoc'
     args:
-        store: 'blog'
+        store: 'page'
         url_root: '/perldoc'
         template_dir: 'perldoc'
         index_module: 'perl'
         modules: 
-            - 'perl'
+            - 'perlfunc'
+            - 'perlvar'
+            - 'perlop'
         

@@ -265,8 +265,6 @@ img.u-pull-left, img.u-pull-right {
     -o-transition: 0.2s linear;
     transition: 0.2s linear;
     border-left: 4px solid transparent;
-    font-size: .6rem;
-    line-height: .6rem;
 }
 .sidebar a.home:hover {
     text-decoration: underline;
@@ -278,6 +276,8 @@ img.u-pull-left, img.u-pull-right {
     background: rgba(255, 255, 255, 0.4);
 }
 .sidebar .fa-home {
+    width: 16px;
+    margin-right: 5px;
     text-align: center;
     font-size: 1.6rem;
     line-height: 1.6rem;
@@ -289,8 +289,9 @@ img.u-pull-left, img.u-pull-right {
     margin: 0;
     padding: 0;
 }
+/** sub menu **/
 .sidebar ul li {
-  /* Sub Menu */
+  /* sub menu */
 }
 .sidebar ul li a {
   display: block;
@@ -340,11 +341,68 @@ img.u-pull-left, img.u-pull-right {
   background: rgba(255, 255, 255, 0.3);
   border-left: 4px solid #3498db;
 }
+/** sub sub menu **/
+.sidebar ul li ul li {
+  /* sub sub menu */
+}
+.sidebar ul li ul li ul li a {
+  display: block;
+  background: #3498db;
+  background: #20aaea;
+  background: #5cb3ec;
+  padding: 10px 15px;
+  padding-left: 1rem;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  -ms-transition: 0.2s linear;
+  -o-transition: 0.2s linear;
+  transition: 0.2s linear;
+  border-left: 4px solid transparent;
+  border-bottom: 1px solid #20aada;
+}
+.sidebar ul li ul li ul li a:hover {
+  background: #2980b9;
+  background: #8ff6ff;
+  background: rgba(255, 255, 255, 0.3);
+}
+.sidebar ul li ul li ul li a .fa {
+  width: 16px;
+  text-align: center;
+  margin-right: 5px;
+}
+.sidebar ul li ul li ul li a .badge {
+  display: inline-block;
+  background: #fff;
+  /* IE Fallback */
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 7px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.sidebar ul li ul li ul li ul li a {
+  background: #444;
+  background: rgba(255, 255, 255, 0.4);
+  border-left: 4px solid transparent;
+  padding-left: 1rem;
+  border-bottom: 1px solid #77c7f7;
+}
+.sidebar ul li ul li ul li ul li a:hover {
+  background: #333;
+  background: rgba(255, 255, 255, 0.3);
+  border-left: 4px solid #3498db;
+}
 .sidebar .right {
   float: right;
 }
 .sidebar .left {
   float: left;
+}
+.sidebar .section {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
 }
 
 
@@ -458,6 +516,36 @@ main {
     margin-top: 1rem;
     font-size: 1rem;
     line-height: 1rem;
+}
+
+/* Perl books */
+.perl-book {
+    min-height: 230px;
+    border: 0px solid #eee;
+    margin-bottom: 2rem;
+    overflow: auto;
+}
+.perl-book-left {
+    float: left;
+    height: 100%;
+    width: 192px;
+    box-sizing: border-box; 
+}
+.perl-book-right {
+    float: left;
+    padding-left: 1rem;
+    width: 556px;
+    box-sizing: border-box; 
+}
+.perl-book-img {
+    border: solid 1px #aaa;
+}
+h4.perl-book-title {
+    margin-top: 0;
+    padding-top: 0;
+}
+.no-border {
+    border: 0px;
 }
 
 /* Misc */
