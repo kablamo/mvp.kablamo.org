@@ -92,6 +92,9 @@ caress and display on your bookshelf, you may want to read a Perl book.
 Here is a curated list of recommended Perl books.  This list only includes
 books published after 2010.  The list is ordered by the publishing date of the
 most recent edition.
+<br>
+<br>
+<br>
 
 % for my $book (@{ $page->data->{books} }) {
 <div class="perl-book">
