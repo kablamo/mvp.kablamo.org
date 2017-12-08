@@ -34,31 +34,19 @@
         % for my $link ( $self->links( 'script' ) ) {
         <script src="<%= $link->href %>"></script>
         % }
-        % my $sub_menu;
-        % $sub_menu = '.mvp'     if $self->path =~ m|^/\w+|;
-        % $sub_menu = '.perldoc' if $self->path =~ m|^/perldoc|;
-        % $sub_menu = '.nomatch' if $self->path eq '/';
-        % my $sub_sub_menu = $self->path->parent->parent ne '/' ? '.' . substr($self->path->parent->parent, 1) : '.nomatch';
+        % my $sub_menu = 'nomatch';
+        % $sub_menu = $1 if $self->path->parent =~ m|^/(\w+)/\w+|;
         <script>
             $( document ).ready(function() {
-                console.log('<%= $self->path %>');
+                console.log('<%= $self->path->parent %>');
 
                 $('.sub-menu ul').hide();
-                $('.sub-menu<%= $sub_menu %> ul').show();
-                $('.sub-menu<%= $sub_menu %>>a>div').toggleClass("fa-caret-up fa-caret-down");
-
-                $('.sub-sub-menu ul').hide();
-                $('.sub-sub-menu<%= $sub_sub_menu %> ul').show();
-                $('.sub-sub-menu<%= $sub_sub_menu %>>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.<%= $sub_menu %> ul').show();
+                $('.sub-menu.<%= $sub_menu %>>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
-                });
-                $(".sub-sub-menu a").click(function () {
-                    $(this).parent(".sub-sub-menu").siblings().children('ul').slideUp("50");
-                    $(this).parent(".sub-sub-menu").children("ul").slideToggle("100");
                     $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
                 });
             });
@@ -75,21 +63,20 @@
     <body>
         <header>
         </header>
+        <input type="checkbox" id="sidebar-trigger" class="sidebar-trigger" />
+        <label for="sidebar-trigger" class="fa fa-bars"></label>
         <div class="container">
 
-                <div class="left column full-height">
-                    <div class="sidebar">
+                <div class="sidebar">
                     %= include 'site/sidebar_before.html.ep';
                     %= content 'tags';
                     %= content 'feeds';
-                    </div>
                 </div>
 
-                <div class="right column">
-                    <main>
+                <main>
                     <%= content %>
-                    </main>
-                </div>
+                </main>
+                <div style="clear: both;"></div>
 
         </div>
         <footer>
