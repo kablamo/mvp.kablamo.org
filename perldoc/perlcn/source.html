@@ -1,271 +1,0 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-        <link href="/theme/css/normalize.css" rel="stylesheet">
-        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
-        <link href="/theme/css/statocles-default.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>perlcn (source) - Minimum Viable Perl</title>
-        <meta content="Statocles 0.086" name="generator">
-        
-        <script>
-            $( document ).ready(function() {
-                $('.sub-menu ul').hide();
-                $('.sub-menu.perldoc ul').show();
-                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
-                $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").siblings().children('ul').hide();
-                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
-                });
-            });
-        </script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110455056-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-110455056-1');
-        </script>
-    </head>
-    <body>
-        <header>
-        </header>
-        <div class="container">
-
-                <div class="left column full-height">
-                    <div class="sidebar">
-                    
-<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
-
-<div class="animated bounceInDown">
-  <ul>
-    <li class="basics sub-menu">
-      <a href="/perldoc/perlcn/#basics">The basics<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/basics/hello">Hello world</a></li>
-        <li><a href="/basics/variables">Variables</a></li>
-        <li><a href="/basics/references">References</a></li>
-        <li><a href="/basics/functions">Functions</a></li>
-        <li><a href="/basics/flow">Conditionals</a></li>
-        <li><a href="/basics/loops">Loops</a></li>
-        <li><a href="/basics/exceptions">Exceptions</a></li>
-        <li><a href="/basics/regexps">Regexps</a></li>
-        <li><a href="/basics/files">Files</a></li>
-      </ul>
-    </li>
-    <li class="oo sub-menu">
-      <a href="/perldoc/perlcn/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
-      </ul>
-    </li>
-    <li class="debugging sub-menu">
-      <a href="/perldoc/perlcn/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
-      </ul>
-    </li>
-    <li class="dependencies sub-menu">
-      <a href="/perldoc/perlcn/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
-        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
-        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
-        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
-        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
-      </ul>
-    </li>
-    <li class="testing sub-menu">
-      <a href="/perldoc/perlcn/#testing">Testing<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/testing/intro">Introduction to testing</a></li>
-        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
-        <li><a href="/testing/data">Testing data structures</a></li>
-        <li><a href="/testing/mock">Testing with mock objects</a></li>
-        <li><a href="/testing/libs">Build your own test libraries</a></li>
-      </ul>
-    </li>
-    <li><a href="/perl">Perl design goals</a></li>
-    <li><a href="/see-also">Book recommendations</a></li>
-    <li><a href="/about">About this book</a></li>
-  </ul>
-</div>
-
-                    
-                    
-                    </div>
-                </div>
-
-                <div class="right column">
-                    <main>
-                    <a class="button" href="/perldoc/perlcn/">
-    Back to documentation
-</a>
-<pre>=encoding utf8
-
-å¦æä½ ç¨ä¸è¬çæå­ç¼è¾å¨éè§è¿ä»½æä»¶, è¯·å¿½ç¥æä¸­å¥ç¹çæ³¨è®°å­ç¬¦.
-è¿ä»½æä»¶æ¯ä»¥ POD (ç®ææä»¶æ ¼å¼) åæ; è¿ç§æ ¼å¼æ¯ä¸ºäºè½è®©äººç´æ¥éè¯»,
-èç¹å«è®¾è®¡ç. å³äºæ­¤æ ¼å¼çè¿ä¸æ­¥ä¿¡æ¯, è¯·åè perlpod çº¿ä¸æä»¶.
-
-=head1 NAME
-
-perlcn - ç®ä½ä¸­æ Perl æå
-
-=head1 DESCRIPTION
-
-æ¬¢è¿æ¥å° Perl çå¤©å°!
-
-ä» 5.8.0 çå¼å§, Perl å·å¤äºå®åç Unicode (ç»ä¸ç ) æ¯æ´,
-ä¹è¿å¸¦æ¯æ´äºè®¸å¤æä¸è¯­ç³»ä»¥å¤çç¼ç æ¹å¼; CJK (ä¸­æ¥é©) ä¾¿æ¯å¶ä¸­çä¸é¨ä»½.
-Unicode æ¯å½éæ§çæ å, è¯å¾æ¶µçä¸çä¸ææçå­ç¬¦: è¥¿æ¹ä¸ç, ä¸æ¹ä¸ç,
-ä»¥åä¸¤èé´çä¸å (å¸èæ, åå©äºæ, äºæä¼¯æ, å¸ä¼¯æ¥æ, å°åº¦æ,
-å°å°å®æ, ç­ç­). å®ä¹å®¹çº³äºå¤ç§ä½ä¸ç³»ç»ä¸å¹³å° (å¦ PC åéº¦éå¡).
-
-Perl æ¬èº«ä»¥ Unicode è¿è¡æä½. è¿è¡¨ç¤º Perl åé¨çå­ç¬¦ä¸²æ°æ®å¯ç¨ Unicode
-è¡¨ç¤º; Perl çå½å¼ä¸ç®ç¬¦ (ä¾å¦æ­£è§è¡¨ç¤ºå¼æ¯å¯¹) ä¹è½å¯¹ Unicode è¿è¡æä½.
-å¨è¾å¥åè¾åºæ¶, ä¸ºäºå¤çä»¥ Unicode ä¹åçç¼ç æ¹å¼å­æ¾çæ°æ®, Perl
-æä¾äº Encode è¿ä¸ªæ¨¡å, å¯ä»¥è®©ä½ è½»æå°è¯»åååå¥æ§æçç¼ç æ°æ®.
-
-Encode å»¶ä¼¸æ¨¡åæ¯æ´ä¸åç®ä½ä¸­æçç¼ç æ¹å¼ (&#39;gb2312&#39; è¡¨ç¤º &#39;euc-cn&#39;):
-
-    euc-cn	Unix å»¶ä¼¸å­ç¬¦é, ä¹å°±æ¯ä¿ç§°çå½æ ç 
-    gb2312-raw	æªç»å¤çç (ä½æ¯ç¹) GB2312 å­ç¬¦è¡¨
-    gb12345	æªç»å¤ççä¸­å½ç¨ç¹ä½ä¸­æç¼ç 
-    iso-ir-165	GB2312 + GB6345 + GB8565 + æ°å¢å­ç¬¦
-    cp936	å­ç é¡µ 936, ä¹å¯ä»¥ç¨ &#39;GBK&#39; (æ©åå½æ ç ) ææ
-    hz		7 æ¯ç¹é¸åºå¼ GB2312 ç¼ç 
-
-ä¸¾ä¾æ¥è¯´, å° EUC-CN ç¼ç çæ¡£æ¡è½¬æ Unicode, ç¥éé®å¥ä¸åæä»¤:
-
-    perl -Mencoding=euc-cn,STDOUT,utf8 -pe1 &lt; file.euc-cn &gt; file.utf8
-
-Perl ä¹åéäº &quot;piconv&quot;, ä¸æ¯å®å¨ä»¥ Perl åæçå­ç¬¦è½¬æ¢å·¥å·ç¨åº, ç¨æ³å¦ä¸:
-
-    piconv -f euc-cn -t utf8 &lt; file.euc-cn &gt; file.utf8
-    piconv -f utf8 -t euc-cn &lt; file.utf8 &gt; file.euc-cn
-
-å¦å¤, å©ç¨ encoding æ¨¡å, ä½ å¯ä»¥è½»æååºä»¥å­ç¬¦ä¸ºåä½çç¨åºç , å¦ä¸æç¤º:
-
-    #!/usr/bin/env perl
-    # å¯å¨ euc-cn å­ä¸²è§£æ; æ åè¾åºå¥åæ åéè¯¯é½è®¾ä¸º euc-cn ç¼ç 
-    use encoding &#39;euc-cn&#39;, STDIN =&gt; &#39;euc-cn&#39;, STDOUT =&gt; &#39;euc-cn&#39;;
-    print length(&quot;éªé©¼&quot;);	     #  2 (åå¼å·è¡¨ç¤ºå­ç¬¦)
-    print length(&#39;éªé©¼&#39;);	     #  4 (åå¼å·è¡¨ç¤ºå­è)
-    print index(&quot;è°è°æè¯²&quot;, &quot;èå¤&quot;); # -1 (ä¸åå«æ­¤å­å­ç¬¦ä¸²)
-    print index(&#39;è°è°æè¯²&#39;, &#39;èå¤&#39;); #  1 (ä»ç¬¬äºä¸ªå­èå¼å§)
-
-å¨æåä¸åä¾å­é, &quot;è°&quot; çç¬¬äºä¸ªå­èä¸ &quot;è°&quot; çç¬¬ä¸ä¸ªå­èç»åæ EUC-CN
-ç ç &quot;è&quot;; &quot;è°&quot; çç¬¬äºä¸ªå­èåä¸ &quot;æ&quot; çç¬¬ä¸ä¸ªå­èç»åæ &quot;å¤&quot;.
-è¿è§£å³äºä»¥å EUC-CN ç æ¯å¯¹å¤çä¸å¸¸è§çé®é¢.
-
-=head2 é¢å¤çä¸­æç¼ç 
-
-å¦æéè¦æ´å¤çä¸­æç¼ç , å¯ä»¥ä» CPAN (L&lt;http://www.cpan.org/&gt;) ä¸è½½
-Encode::HanExtra æ¨¡å. å®ç®åæä¾ä¸åç¼ç æ¹å¼:
-
-    gb18030	æ©åè¿çå½æ ç , åå«ç¹ä½ä¸­æ
-
-å¦å¤, Encode::HanConvert æ¨¡ååæä¾äºç®ç¹è½¬æ¢ç¨çä¸¤ç§ç¼ç :
-
-    big5-simp	Big5 ç¹ä½ä¸­æä¸ Unicode ç®ä½ä¸­æäºè½¬
-    gbk-trad	GBK ç®ä½ä¸­æä¸ Unicode ç¹ä½ä¸­æäºè½¬
-
-è¥æ³å¨ GBK ä¸ Big5 ä¹é´äºè½¬, è¯·åèè¯¥æ¨¡ååéç b2g.pl ä¸ g2b.pl ä¸¤æ¯ç¨åº,
-æå¨ç¨åºåä½¿ç¨ä¸ååæ³:
-
-    use Encode::HanConvert;
-    $euc_cn = big5_to_gb($big5); # ä» Big5 è½¬ä¸º GBK
-    $big5 = gb_to_big5($euc_cn); # ä» GBK è½¬ä¸º Big5
-
-=head2 è¿ä¸æ­¥çä¿¡æ¯
-
-è¯·åè Perl åéçå¤§éè¯´ææä»¶ (ä¸å¹¸å¨æ¯ç¨è±æåç), æ¥å­¦ä¹ æ´å¤å³äº
-Perl çç¥è¯, ä»¥å Unicode çä½¿ç¨æ¹å¼. ä¸è¿, å¤é¨çèµæºç¸å½ä¸°å¯:
-
-=head2 æä¾ Perl èµæºçç½å
-
-=over 4
-
-=item L&lt;http://www.perl.com/&gt;
-
-Perl çé¦é¡µ (ç±æ¬§è±ç¤¼å¬å¸ç»´æ¤)
-
-=item L&lt;http://www.cpan.org/&gt;
-
-Perl ç»¼åå¸èç½ (Comprehensive Perl Archive Network)
-
-=item L&lt;http://lists.perl.org/&gt;
-
-Perl é®éè®ºåä¸è§
-
-=back
-
-=head2 å­¦ä¹  Perl çç½å
-
-=over 4
-
-=item L&lt;http://www.oreilly.com.cn/index.php?func=booklist&amp;cat=68&gt;
-
-ç®ä½ä¸­æççæ¬§è±ç¤¼ Perl ä¹¦è
-
-=back
-
-=head2 Perl ä½¿ç¨èéä¼
-
-=over 4
-
-=item L&lt;http://www.pm.org/groups/asia.html&gt;
-
-ä¸­å½ Perl æ¨å¹¿ç»ä¸è§
-
-=back
-
-=head2 Unicode ç¸å³ç½å
-
-=over 4
-
-=item L&lt;http://www.unicode.org/&gt;
-
-Unicode å­¦æ¯å­¦ä¼ (Unicode æ åçå¶å®è)
-
-=item L&lt;http://www.cl.cam.ac.uk/%7Emgk25/unicode.html&gt;
-
-Unix/Linux ä¸ç UTF-8 å Unicode ç­å®¢é®
-
-=back
-
-=head1 SEE ALSO
-
-L&lt;Encode&gt;, L&lt;Encode::CN&gt;, L&lt;encoding&gt;, L&lt;perluniintro&gt;, L&lt;perlunicode&gt;
-
-=head1 AUTHORS
-
-Jarkko Hietaniemi E&lt;lt&gt;jhi@iki.fiE&lt;gt&gt;
-
-Audrey Tang (åå¤) E&lt;lt&gt;audreyt@audreyt.orgE&lt;gt&gt;
-
-=cut
-</pre>
-
-                    </main>
-                </div>
-
-        </div>
-        <footer>
-        
-        </footer>
-
-
-    </body>
-</html>

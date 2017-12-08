@@ -13,13 +13,16 @@
         
         <script>
             $( document ).ready(function() {
+                console.log('/perldoc/perlopentut');
+
                 $('.sub-menu ul').hide();
                 $('.sub-menu.perldoc ul').show();
-                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.perldoc>a>div').toggleClass("fa-caret-up fa-caret-down");
+
                 $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
                 });
             });
         </script>
@@ -35,18 +38,24 @@
     <body>
         <header>
         </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
         <div class="container">
 
-                <div class="left column full-height">
-                    <div class="sidebar">
+                <div class="sidebar">
                     
-<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
 
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/perldoc/perlopentut/#basics">The basics<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlopentut/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <ul>
+        <li><a href="/basics/perl">Perl design goals</a></li>
         <li><a href="/basics/hello">Hello world</a></li>
         <li><a href="/basics/variables">Variables</a></li>
         <li><a href="/basics/references">References</a></li>
@@ -56,59 +65,70 @@
         <li><a href="/basics/exceptions">Exceptions</a></li>
         <li><a href="/basics/regexps">Regexps</a></li>
         <li><a href="/basics/files">Files</a></li>
-      </ul>
-    </li>
-    <li class="oo sub-menu">
-      <a href="/perldoc/perlopentut/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
-      </ul>
-    </li>
-    <li class="debugging sub-menu">
-      <a href="/perldoc/perlopentut/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
-      </ul>
+    </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/perldoc/perlopentut/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlopentut/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <ul>
         <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
         <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
         <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
         <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
         <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
-      </ul>
+    </ul>
+    </li>
+    <li class="oo sub-menu">
+    <a href="/perldoc/perlopentut/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <ul>
+        <li><a href="/oo/story">The story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+    </ul>
+    </li>
+    <li class="debugging sub-menu">
+    <a href="/perldoc/perlopentut/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+    </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/perldoc/perlopentut/#testing">Testing<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlopentut/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <ul>
         <li><a href="/testing/intro">Introduction to testing</a></li>
         <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
         <li><a href="/testing/data">Testing data structures</a></li>
         <li><a href="/testing/mock">Testing with mock objects</a></li>
         <li><a href="/testing/libs">Build your own test libraries</a></li>
+    </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/perldoc/perlopentut/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
       </ul>
     </li>
-    <li><a href="/perl">Perl design goals</a></li>
-    <li><a href="/see-also">Book recommendations</a></li>
-    <li><a href="/about">About this book</a></li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
   </ul>
 </div>
 
                     
                     
-                    </div>
                 </div>
 
-                <div class="right column">
-                    <main>
+                <main>
                     <div class="crumbtrail">
 <ul>
     <li>
@@ -173,7 +193,7 @@
 
 <p>Most of the complexity of the <code>open</code> function lies in the many possible values that the <i>MODE</i> parameter can take on.</p>
 
-<p>One last thing before we show you how to open files: opening files does not (usually) automatically lock them in Perl. See <a href="/perldoc/perlfaq5/">perlfaq5</a> for how to lock.</p>
+<p>One last thing before we show you how to open files: opening files does not (usually) automatically lock them in Perl. See <a href="https://metacpan.org/pod/perlfaq5" rel="external">perlfaq5</a> for how to lock.</p>
 
 <h1 id="Opening-Text-Files">Opening Text Files</h1>
 
@@ -227,7 +247,7 @@
 <pre><code>    open($handle, &quot;&lt;&quot;, $filename)
         || die &quot;$0: can&#39;t open $filename for reading: $!&quot;;</code></pre>
 
-<p>But never use the bare <code>&quot;&lt;&quot;</code> without having set up a default encoding first. Otherwise, Perl cannot know which of the many, many, many possible flavors of text file you have, and Perl will have no idea how to correctly map the data in your file into actual characters it can work with. Other common encoding formats including <code>&quot;ASCII&quot;</code>, <code>&quot;ISO-8859-1&quot;</code>, <code>&quot;ISO-8859-15&quot;</code>, <code>&quot;Windows-1252&quot;</code>, <code>&quot;MacRoman&quot;</code>, and even <code>&quot;UTF-16LE&quot;</code>. See <a href="/perldoc/perlunitut/">perlunitut</a> for more about encodings.</p>
+<p>But never use the bare <code>&quot;&lt;&quot;</code> without having set up a default encoding first. Otherwise, Perl cannot know which of the many, many, many possible flavors of text file you have, and Perl will have no idea how to correctly map the data in your file into actual characters it can work with. Other common encoding formats including <code>&quot;ASCII&quot;</code>, <code>&quot;ISO-8859-1&quot;</code>, <code>&quot;ISO-8859-15&quot;</code>, <code>&quot;Windows-1252&quot;</code>, <code>&quot;MacRoman&quot;</code>, and even <code>&quot;UTF-16LE&quot;</code>. See <a href="https://metacpan.org/pod/perlunitut" rel="external">perlunitut</a> for more about encodings.</p>
 
 <h2 id="Opening-Text-Files-for-Writing">Opening Text Files for Writing</h2>
 
@@ -259,7 +279,7 @@
 
 <p>As with the append mode, when you open a file in write-only mode, you can now write to that filehandle using any of <code>print</code>, <code>printf</code>, <code>say</code>, <code>write</code>, or <code>syswrite</code>.</p>
 
-<p>What about read-write mode? You should probably pretend it doesn&#39;t exist, because opening text files in read-write mode is unlikely to do what you would like. See <a href="/perldoc/perlfaq5/">perlfaq5</a> for details.</p>
+<p>What about read-write mode? You should probably pretend it doesn&#39;t exist, because opening text files in read-write mode is unlikely to do what you would like. See <a href="https://metacpan.org/pod/perlfaq5" rel="external">perlfaq5</a> for details.</p>
 
 <h1 id="Opening-Binary-Files">Opening Binary Files</h1>
 
@@ -342,8 +362,8 @@
 
 
 
-                    </main>
-                </div>
+                </main>
+                <div style="clear: both;"></div>
 
         </div>
         <footer>

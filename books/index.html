@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+        <script>
+            $( document ).ready(function() {
+                console.log('/books');
+
+                $('.sub-menu ul').hide();
+                $('.sub-menu.nomatch ul').show();
+                $('.sub-menu.nomatch>a>div').toggleClass("fa-caret-up fa-caret-down");
+
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110455056-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-110455056-1');
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
+        <div class="container">
+
+                <div class="sidebar">
+                    
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+    <a href="/books/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <ul>
+        <li><a href="/basics/perl">Perl design goals</a></li>
+        <li><a href="/basics/hello">Hello world</a></li>
+        <li><a href="/basics/variables">Variables</a></li>
+        <li><a href="/basics/references">References</a></li>
+        <li><a href="/basics/functions">Functions</a></li>
+        <li><a href="/basics/flow">Conditionals</a></li>
+        <li><a href="/basics/loops">Loops</a></li>
+        <li><a href="/basics/exceptions">Exceptions</a></li>
+        <li><a href="/basics/regexps">Regexps</a></li>
+        <li><a href="/basics/files">Files</a></li>
+    </ul>
+    </li>
+    <li class="dependencies sub-menu">
+    <a href="/books/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <ul>
+        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
+        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
+        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
+        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
+        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+    </ul>
+    </li>
+    <li class="oo sub-menu">
+    <a href="/books/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <ul>
+        <li><a href="/oo/story">The story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+    </ul>
+    </li>
+    <li class="debugging sub-menu">
+    <a href="/books/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+    </ul>
+    </li>
+    <li class="testing sub-menu">
+    <a href="/books/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <ul>
+        <li><a href="/testing/intro">Introduction to testing</a></li>
+        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
+        <li><a href="/testing/data">Testing data structures</a></li>
+        <li><a href="/testing/mock">Testing with mock objects</a></li>
+        <li><a href="/testing/libs">Build your own test libraries</a></li>
+    </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/books/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
+      </ul>
+    </li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</div>
+
+                    
+                    
+                </div>
+
+                <main>
+                    <h1>Perl Books</h1>
+
+<p>If you swallowed the red pill and want to go deeper, or if you learn
+better with a cherished physical object that you can lovingly (maniacally?)
+caress and display on your bookshelf, you may want to read a Perl book.  </p>
+
+<p>Here is a curated list of recommended Perl books.  This list only includes
+books published after 2010.  The list is ordered by the publishing date of the
+most recent edition.
+<br>
+<br>
+<br></p>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/1680500880/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1680500880&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=5f19d40e8ef0b4d3bebb5f81994e2bb8"><img class="perl-book-img " src="/images/modernperl.jpg"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/1680500880/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1680500880&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=5f19d40e8ef0b4d3bebb5f81994e2bb8"><h4 class="perl-book-title">Modern Perl</h4></a>
+        <b>Published 2016</b>
+        <p>
+            Modern Perl is arguably the most current Perl book and is written by Chromatic, an active member of the community.
+        </p>
+
+        <p>
+        <a href="http://modernperlbooks.com/books/modern_perl_2016/index.html">Free version</a>   
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/1491954329/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1491954329&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=a8be12c69572be50bd6d56f6a0547961"><img class="perl-book-img " src="/images/learning-perl-7th.jpg"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/1491954329/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1491954329&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=a8be12c69572be50bd6d56f6a0547961"><h4 class="perl-book-title">Learning Perl</h4></a>
+        <b>Published 2016</b>
+        <p>
+            Also known as the Llama book, Learning Perl teaches basic Perl concepts.
+            Topics include:   
+        </p>
+            <ul>
+                <li>Perl data and variable types</li>
+                <li>Subroutines</li>
+                <li>File operations</li>
+                <li>Regular expressions</li>
+                <li>String manipulation (including Unicode)</li>
+                <li>Lists and sorting</li>
+                <li>Process management</li>
+                <li>Smart matching</li>
+                <li>Use of third party modules</li>
+            </ul>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/144939311X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=144939311X&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=23530cc63259eb61e8a930874b5c6650"><img class="perl-book-img no-border" src="/images/mastering-perl.gif"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/144939311X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=144939311X&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=23530cc63259eb61e8a930874b5c6650"><h4 class="perl-book-title">Mastering Perl</h4></a>
+        <b>Published 2014</b>
+        <p>
+            Also known as the Alpaca book, this book starts where Intermediate Perl ends.
+            Topics include:   
+        </p>
+            <ul>
+                <li>Explore advanced regular expressions features</li>
+                <li>Avoid common problems when writing secure programs</li>
+                <li>Profile and benchmark Perl programs to see where they need work</li>
+                <li>Wrangle Perl code to make it more presentable and readable</li>
+                <li>Understand how Perl keeps track of package variables</li>
+                <li>Define subroutines on the fly</li>
+                <li>Jury-rig modules to fix code without editing the original source</li>
+                <li>Use bit operations and bit vectors to store large data efficiently</li>
+                <li>Learn how to detect errors that Perl doesn’t report</li>
+                <li>Dive into logging, data persistence, and the magic of tied variables</li>
+            </ul>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/0596004923/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596004923&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=bb4582a7afa9130cf6176f072ed216d1"><img class="perl-book-img " src="/images/programming-perl.gif"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/0596004923/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596004923&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=bb4582a7afa9130cf6176f072ed216d1"><h4 class="perl-book-title">Programming Perl</h4></a>
+        <b>Published 2012</b>
+        <p>
+            Also known as the Camel Book, this is a widely respected reference book written by the creator of Perl, Larry Wall.  The latest edition covers Perl 5.14.
+        </p>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/1449393098/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1449393098&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=12f2fe7c892c2f5d464eb2810d1733aa"><img class="perl-book-img no-border" src="/images/intermediate-perl.gif"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/1449393098/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1449393098&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=12f2fe7c892c2f5d464eb2810d1733aa"><h4 class="perl-book-title">Intermediate Perl</h4></a>
+        <b>Published 2012</b>
+        <p>
+            Also known as the Alpaca book, this book starts where Learning Perl ends.
+            Topics include:   
+        </p>
+            <ul>
+                <li>Packages and namespaces</li>
+                <li>References and scoping, including regular expression references</li>
+                <li>Manipulating complex data structures</li>
+                <li>Object-oriented programming</li>
+                <li>Writing and using modules</li>
+                <li>Testing Perl code</li>
+                <li>Contributing to CPAN</li>
+            </ul>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/1118013840/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1118013840&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=9433fc47b5918191876c98c08facb86c"><img class="perl-book-img no-border" src="/images/beginning-perl.jpg"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/1118013840/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1118013840&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=9433fc47b5918191876c98c08facb86c"><h4 class="perl-book-title">Beginning Perl</h4></a>
+        <b>Published 2012</b>
+        <p>
+            An introduction to Perl for new and experienced programmers written by Ovid, an active member of the Perl community.
+        </p>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/1449319432/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1449319432&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=fcbbffcf6d77fc1a03b42a2edd03465b"><img class="perl-book-img no-border" src="/images/regexps-cookbook.gif"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/1449319432/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1449319432&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=fcbbffcf6d77fc1a03b42a2edd03465b"><h4 class="perl-book-title">Regular Expressions Cookbook</h4></a>
+        <b>Published 2012</b>
+        <p>
+            This book covers regular expressions in C#, Java, JavaScript, Perl, PHP, Python, Ruby, and VB.NET.
+        </p>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/1449303706/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1449303706&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=6909fba99244deac34b8c2c22782e2df"><img class="perl-book-img no-border" src="/images/perl-pocket-reference.gif"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/1449303706/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1449303706&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=6909fba99244deac34b8c2c22782e2df"><h4 class="perl-book-title">Perl Pocket Reference</h4></a>
+        <b>Published 2011</b>
+        <p>
+            A quick reference which includes summaries of Perl syntax, operators, and core functions for Perl 5.14.
+        </p>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+<div class="perl-book">
+    <div class="perl-book-left">
+        <a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=667d392b057a70629d98c65523ca91ba"><img class="perl-book-img " src="/images/legacy-code.jpg"></a>
+    </div>
+    <div class="perl-book-right">
+        <a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=kablamo-20&amp;linkId=667d392b057a70629d98c65523ca91ba"><h4 class="perl-book-title">Working Effectively With Legacy Code</h4></a>
+        <b>Published 2005</b>
+        <p>
+            Not a Perl book, but its a good book.  This book was published in 2005 but I&#39;d argue its timeless.
+        </p>
+
+        <p>
+        </p>
+    </div>
+</div>
+
+
+                </main>
+                <div style="clear: both;"></div>
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

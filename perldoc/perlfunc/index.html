@@ -13,13 +13,16 @@
         
         <script>
             $( document ).ready(function() {
+                console.log('/perldoc/perlfunc');
+
                 $('.sub-menu ul').hide();
                 $('.sub-menu.perldoc ul').show();
-                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.perldoc>a>div').toggleClass("fa-caret-up fa-caret-down");
+
                 $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
                 });
             });
         </script>
@@ -35,18 +38,24 @@
     <body>
         <header>
         </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
         <div class="container">
 
-                <div class="left column full-height">
-                    <div class="sidebar">
+                <div class="sidebar">
                     
-<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
 
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/perldoc/perlfunc/#basics">The basics<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlfunc/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <ul>
+        <li><a href="/basics/perl">Perl design goals</a></li>
         <li><a href="/basics/hello">Hello world</a></li>
         <li><a href="/basics/variables">Variables</a></li>
         <li><a href="/basics/references">References</a></li>
@@ -56,59 +65,70 @@
         <li><a href="/basics/exceptions">Exceptions</a></li>
         <li><a href="/basics/regexps">Regexps</a></li>
         <li><a href="/basics/files">Files</a></li>
-      </ul>
-    </li>
-    <li class="oo sub-menu">
-      <a href="/perldoc/perlfunc/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
-      </ul>
-    </li>
-    <li class="debugging sub-menu">
-      <a href="/perldoc/perlfunc/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
-      </ul>
+    </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/perldoc/perlfunc/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlfunc/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <ul>
         <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
         <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
         <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
         <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
         <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
-      </ul>
+    </ul>
+    </li>
+    <li class="oo sub-menu">
+    <a href="/perldoc/perlfunc/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <ul>
+        <li><a href="/oo/story">The story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+    </ul>
+    </li>
+    <li class="debugging sub-menu">
+    <a href="/perldoc/perlfunc/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+    </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/perldoc/perlfunc/#testing">Testing<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlfunc/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <ul>
         <li><a href="/testing/intro">Introduction to testing</a></li>
         <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
         <li><a href="/testing/data">Testing data structures</a></li>
         <li><a href="/testing/mock">Testing with mock objects</a></li>
         <li><a href="/testing/libs">Build your own test libraries</a></li>
+    </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/perldoc/perlfunc/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
       </ul>
     </li>
-    <li><a href="/perl">Perl design goals</a></li>
-    <li><a href="/see-also">Book recommendations</a></li>
-    <li><a href="/about">About this book</a></li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
   </ul>
 </div>
 
                     
                     
-                    </div>
                 </div>
 
-                <div class="right column">
-                    <main>
+                <main>
                     <div class="crumbtrail">
 <ul>
     <li>
@@ -150,7 +170,7 @@
 
 <p>In general, functions in Perl that serve as wrappers for system calls (&quot;syscalls&quot;) of the same name (like <a href="http://man.he.net/man2/chown" rel="external">chown(2)</a>, <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a>, <a href="http://man.he.net/man2/closedir" rel="external">closedir(2)</a>, etc.) return true when they succeed and <a href="#undef-EXPR"><code>undef</code></a> otherwise, as is usually mentioned in the descriptions below. This is different from the C interfaces, which return <code>-1</code> on failure. Exceptions to this rule include <a href="#wait"><code>wait</code></a>, <a href="#waitpid-PID-FLAGS"><code>waitpid</code></a>, and <a href="#syscall-NUMBER-LIST"><code>syscall</code></a>. System calls also set the special <a href="/perldoc/perlvar/#pod"><code>$!</code></a> variable on failure. Other functions do not, except accidentally.</p>
 
-<p>Extension modules can also hook into the Perl parser to define new kinds of keyword-headed expression. These may look like functions, but may also look completely different. The syntax following the keyword is defined entirely by the extension. If you are an implementor, see <a href="/perldoc/perlapi/#PL_keyword_plugin">&quot;PL_keyword_plugin&quot; in perlapi</a> for the mechanism. If you are using such a module, see the module&#39;s documentation for details of the syntax that it defines.</p>
+<p>Extension modules can also hook into the Perl parser to define new kinds of keyword-headed expression. These may look like functions, but may also look completely different. The syntax following the keyword is defined entirely by the extension. If you are an implementor, see <a href="https://metacpan.org/pod/perlapi#PL_keyword_plugin" rel="external">&quot;PL_keyword_plugin&quot; in perlapi</a> for the mechanism. If you are using such a module, see the module&#39;s documentation for details of the syntax that it defines.</p>
 
 <h2 id="Perl-Functions-by-Category">Perl Functions by Category </h2>
 
@@ -221,7 +241,7 @@
 
 <p><a href="#break"><code>break</code></a>, <a href="#caller-EXPR"><code>caller</code></a>, <a href="#continue-BLOCK"><code>continue</code></a>, <a href="#die-LIST"><code>die</code></a>, <a href="#do-BLOCK"><code>do</code></a>, <a href="#dump-LABEL"><code>dump</code></a>, <a href="#eval-EXPR"><code>eval</code></a>, <a href="#evalbytes-EXPR"><code>evalbytes</code></a>, <a href="#exit-EXPR"><code>exit</code></a>, <a href="#FILE__"><code>__FILE__</code></a>, <a href="#goto-LABEL"><code>goto</code></a>, <a href="#last-LABEL"><code>last</code></a>, <a href="#LINE__"><code>__LINE__</code></a>, <a href="#next-LABEL"><code>next</code></a>, <a href="#PACKAGE__"><code>__PACKAGE__</code></a>, <a href="#redo-LABEL"><code>redo</code></a>, <a href="#return-EXPR"><code>return</code></a>, <a href="#sub-NAME-BLOCK"><code>sub</code></a>, <a href="#SUB__"><code>__SUB__</code></a>, <a href="#wantarray"><code>wantarray</code></a></p>
 
-<p><a href="#break"><code>break</code></a> is available only if you enable the experimental <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> or use the <code>CORE::</code> prefix. The <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> also enables the <code>default</code>, <code>given</code> and <code>when</code> statements, which are documented in <a href="/perldoc/perlsyn/#Switch-Statements">&quot;Switch Statements&quot; in perlsyn</a>. The <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> is enabled automatically with a <code>use v5.10</code> (or higher) declaration in the current scope. In Perl v5.14 and earlier, <a href="#continue-BLOCK"><code>continue</code></a> required the <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a>, like the other keywords.</p>
+<p><a href="#break"><code>break</code></a> is available only if you enable the experimental <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> or use the <code>CORE::</code> prefix. The <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> also enables the <code>default</code>, <code>given</code> and <code>when</code> statements, which are documented in <a href="https://metacpan.org/pod/perlsyn#Switch-Statements" rel="external">&quot;Switch Statements&quot; in perlsyn</a>. The <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> is enabled automatically with a <code>use v5.10</code> (or higher) declaration in the current scope. In Perl v5.14 and earlier, <a href="#continue-BLOCK"><code>continue</code></a> required the <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a>, like the other keywords.</p>
 
 <p><a href="#evalbytes-EXPR"><code>evalbytes</code></a> is only available with the <a href="https://metacpan.org/pod/feature#The-unicode_eval-and-evalbytes-features" rel="external"><code>&quot;evalbytes&quot;</code> feature</a> (see <a href="https://metacpan.org/pod/feature" rel="external">feature</a>) or if prefixed with <code>CORE::</code>. <a href="#SUB__"><code>__SUB__</code></a> is only available with the <a href="https://metacpan.org/pod/feature#The-current_sub-feature" rel="external"><code>&quot;current_sub&quot;</code> feature</a> or if prefixed with <code>CORE::</code>. Both the <a href="https://metacpan.org/pod/feature#The-unicode_eval-and-evalbytes-features" rel="external"><code>&quot;evalbytes&quot;</code></a> and <a href="https://metacpan.org/pod/feature#The-current_sub-feature" rel="external"><code>&quot;current_sub&quot;</code></a> features are enabled automatically with a <code>use v5.16</code> (or higher) declaration in the current scope.</p>
 
@@ -302,7 +322,7 @@
 
 <p><a href="#X-FILEHANDLE"><code>-<i>X</i></code></a>, <a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a>, <a href="#chmod-LIST"><code>chmod</code></a>, <a href="#chown-LIST"><code>chown</code></a>, <a href="#chroot-FILENAME"><code>chroot</code></a>, <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a>, <a href="#dbmclose-HASH"><code>dbmclose</code></a>, <a href="#dbmopen-HASH-DBNAME-MASK"><code>dbmopen</code></a>, <a href="#dump-LABEL"><code>dump</code></a>, <a href="#endgrent"><code>endgrent</code></a>, <a href="#endhostent"><code>endhostent</code></a>, <a href="#endnetent"><code>endnetent</code></a>, <a href="#endprotoent"><code>endprotoent</code></a>, <a href="#endpwent"><code>endpwent</code></a>, <a href="#endservent"><code>endservent</code></a>, <a href="#exec-LIST"><code>exec</code></a>, <a href="#fcntl-FILEHANDLE-FUNCTION-SCALAR"><code>fcntl</code></a>, <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a>, <a href="#fork"><code>fork</code></a>, <a href="#getgrent"><code>getgrent</code></a>, <a href="#getgrgid-GID"><code>getgrgid</code></a>, <a href="#gethostbyname-NAME"><code>gethostbyname</code></a>, <a href="#gethostent"><code>gethostent</code></a>, <a href="#getlogin"><code>getlogin</code></a>, <a href="#getnetbyaddr-ADDR-ADDRTYPE"><code>getnetbyaddr</code></a>, <a href="#getnetbyname-NAME"><code>getnetbyname</code></a>, <a href="#getnetent"><code>getnetent</code></a>, <a href="#getppid"><code>getppid</code></a>, <a href="#getpgrp-PID"><code>getpgrp</code></a>, <a href="#getpriority-WHICH-WHO"><code>getpriority</code></a>, <a href="#getprotobynumber-NUMBER"><code>getprotobynumber</code></a>, <a href="#getprotoent"><code>getprotoent</code></a>, <a href="#getpwent"><code>getpwent</code></a>, <a href="#getpwnam-NAME"><code>getpwnam</code></a>, <a href="#getpwuid-UID"><code>getpwuid</code></a>, <a href="#getservbyport-PORT-PROTO"><code>getservbyport</code></a>, <a href="#getservent"><code>getservent</code></a>, <a href="#getsockopt-SOCKET-LEVEL-OPTNAME"><code>getsockopt</code></a>, <a href="#glob-EXPR"><code>glob</code></a>, <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>, <a href="#kill-SIGNAL-LIST"><code>kill</code></a>, <a href="#link-OLDFILE-NEWFILE"><code>link</code></a>, <a href="#lstat-FILEHANDLE"><code>lstat</code></a>, <a href="#msgctl-ID-CMD-ARG"><code>msgctl</code></a>, <a href="#msgget-KEY-FLAGS"><code>msgget</code></a>, <a href="#msgrcv-ID-VAR-SIZE-TYPE-FLAGS"><code>msgrcv</code></a>, <a href="#msgsnd-ID-MSG-FLAGS"><code>msgsnd</code></a>, <a href="#open-FILEHANDLE-EXPR"><code>open</code></a>, <a href="#pipe-READHANDLE-WRITEHANDLE"><code>pipe</code></a>, <a href="#readlink-EXPR"><code>readlink</code></a>, <a href="#rename-OLDNAME-NEWNAME"><code>rename</code></a>, <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a>, <a href="#semctl-ID-SEMNUM-CMD-ARG"><code>semctl</code></a>, <a href="#semget-KEY-NSEMS-FLAGS"><code>semget</code></a>, <a href="#semop-KEY-OPSTRING"><code>semop</code></a>, <a href="#setgrent"><code>setgrent</code></a>, <a href="#sethostent-STAYOPEN"><code>sethostent</code></a>, <a href="#setnetent-STAYOPEN"><code>setnetent</code></a>, <a href="#setpgrp-PID-PGRP"><code>setpgrp</code></a>, <a href="#setpriority-WHICH-WHO-PRIORITY"><code>setpriority</code></a>, <a href="#setprotoent-STAYOPEN"><code>setprotoent</code></a>, <a href="#setpwent"><code>setpwent</code></a>, <a href="#setservent-STAYOPEN"><code>setservent</code></a>, <a href="#setsockopt-SOCKET-LEVEL-OPTNAME-OPTVAL"><code>setsockopt</code></a>, <a href="#shmctl-ID-CMD-ARG"><code>shmctl</code></a>, <a href="#shmget-KEY-SIZE-FLAGS"><code>shmget</code></a>, <a href="#shmread-ID-VAR-POS-SIZE"><code>shmread</code></a>, <a href="#shmwrite-ID-STRING-POS-SIZE"><code>shmwrite</code></a>, <a href="#socket-SOCKET-DOMAIN-TYPE-PROTOCOL"><code>socket</code></a>, <a href="#socketpair-SOCKET1-SOCKET2-DOMAIN-TYPE-PROTOCOL"><code>socketpair</code></a>, <a href="#stat-FILEHANDLE"><code>stat</code></a>, <a href="#symlink-OLDFILE-NEWFILE"><code>symlink</code></a>, <a href="#syscall-NUMBER-LIST"><code>syscall</code></a>, <a href="#sysopen-FILEHANDLE-FILENAME-MODE"><code>sysopen</code></a>, <a href="#system-LIST"><code>system</code></a>, <a href="#times"><code>times</code></a>, <a href="#truncate-FILEHANDLE-LENGTH"><code>truncate</code></a>, <a href="#umask-EXPR"><code>umask</code></a>, <a href="#unlink-LIST"><code>unlink</code></a>, <a href="#utime-LIST"><code>utime</code></a>, <a href="#wait"><code>wait</code></a>, <a href="#waitpid-PID-FLAGS"><code>waitpid</code></a></p>
 
-<p>For more information about the portability of these functions, see <a href="/perldoc/perlport/">perlport</a> and other available platform-specific documentation.</p>
+<p>For more information about the portability of these functions, see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a> and other available platform-specific documentation.</p>
 
 <h2 id="Alphabetical-Listing-of-Perl-Functions">Alphabetical Listing of Perl Functions</h2>
 
@@ -382,7 +402,7 @@
 
 <p>If you are using ACLs, there is a pragma called <a href="https://metacpan.org/pod/filetest" rel="external"><code>filetest</code></a> that may produce more accurate results than the bare <a href="#stat-FILEHANDLE"><code>stat</code></a> mode bits. When under <code>use filetest &#39;access&#39;</code>, the above-mentioned filetests test whether the permission can(not) be granted using the <a href="http://man.he.net/man2/access" rel="external">access(2)</a> family of system calls. Also note that the <code>-x</code> and <code>-X</code> tests may under this pragma return true even if there are no execute permission bits set (nor any extra execute permission ACLs). This strangeness is due to the underlying system calls&#39; definitions. Note also that, due to the implementation of <code>use filetest &#39;access&#39;</code>, the <code>_</code> special filehandle won&#39;t cache the results of the file tests when this pragma is in effect. Read the documentation for the <a href="https://metacpan.org/pod/filetest" rel="external"><code>filetest</code></a> pragma for more information.</p>
 
-<p>The <code>-T</code> and <code>-B</code> tests work as follows. The first block or so of the file is examined to see if it is valid UTF-8 that includes non-ASCII characters. If so, it&#39;s a <code>-T</code> file. Otherwise, that same portion of the file is examined for odd characters such as strange control codes or characters with the high bit set. If more than a third of the characters are strange, it&#39;s a <code>-B</code> file; otherwise it&#39;s a <code>-T</code> file. Also, any file containing a zero byte in the examined portion is considered a binary file. (If executed within the scope of a <a href="/perldoc/perllocale/"><span style="white-space: nowrap;">use locale</span></a> which includes <code>LC_CTYPE</code>, odd characters are anything that isn&#39;t a printable nor space in the current locale.) If <code>-T</code> or <code>-B</code> is used on a filehandle, the current IO buffer is examined rather than the first block. Both <code>-T</code> and <code>-B</code> return true on an empty file, or a file at EOF when testing a filehandle. Because you have to read a file to do the <code>-T</code> test, on most occasions you want to use a <code>-f</code> against the file first, as in <code>next unless -f $file &amp;&amp; -T $file</code>.</p>
+<p>The <code>-T</code> and <code>-B</code> tests work as follows. The first block or so of the file is examined to see if it is valid UTF-8 that includes non-ASCII characters. If so, it&#39;s a <code>-T</code> file. Otherwise, that same portion of the file is examined for odd characters such as strange control codes or characters with the high bit set. If more than a third of the characters are strange, it&#39;s a <code>-B</code> file; otherwise it&#39;s a <code>-T</code> file. Also, any file containing a zero byte in the examined portion is considered a binary file. (If executed within the scope of a <a href="https://metacpan.org/pod/perllocale" rel="external"><span style="white-space: nowrap;">use locale</span></a> which includes <code>LC_CTYPE</code>, odd characters are anything that isn&#39;t a printable nor space in the current locale.) If <code>-T</code> or <code>-B</code> is used on a filehandle, the current IO buffer is examined rather than the first block. Both <code>-T</code> and <code>-B</code> return true on an empty file, or a file at EOF when testing a filehandle. Because you have to read a file to do the <code>-T</code> test, on most occasions you want to use a <code>-f</code> against the file first, as in <code>next unless -f $file &amp;&amp; -T $file</code>.</p>
 
 <p>If any of the file tests (or either the <a href="#stat-FILEHANDLE"><code>stat</code></a> or <a href="#lstat-FILEHANDLE"><code>lstat</code></a> operator) is given the special filehandle consisting of a solitary underline, then the stat structure of the previous file test (or <a href="#stat-FILEHANDLE"><code>stat</code></a> operator) is used, saving a system call. (This doesn&#39;t work with <code>-t</code>, and you need to remember that <a href="#lstat-FILEHANDLE"><code>lstat</code></a> and <code>-l</code> leave values in the stat structure for the symbolic link, not the real file.) (Also, if the stat buffer was filled by an <a href="#lstat-FILEHANDLE"><code>lstat</code></a> call, <code>-T</code> and <code>-B</code> will reset it with the results of <code>stat _</code>). Example:</p>
 
@@ -400,7 +420,7 @@
 
 <p>As of Perl 5.10.0, as a form of purely syntactic sugar, you can stack file test operators, in a way that <code>-f -w -x $file</code> is equivalent to <code>-x $file &amp;&amp; -w _ &amp;&amp; -f _</code>. (This is only fancy syntax: if you use the return value of <code>-f $file</code> as an argument to another filetest operator, no special magic will happen.)</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#X">&quot;-X&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#X" rel="external">&quot;-X&quot; in perlport</a>.</p>
 
 <p>To avoid confusing would-be users of your code with mysterious syntax errors, put something like this at the top of your script:</p>
 
@@ -420,7 +440,7 @@
 <dt>accept NEWSOCKET,GENERICSOCKET </dt>
 <dd>
 
-<p>Accepts an incoming socket connect, just as <a href="http://man.he.net/man2/accept" rel="external">accept(2)</a> does. Returns the packed address if it succeeded, false otherwise. See the example in <a href="/perldoc/perlipc/#Sockets:-Client-Server-Communication">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
+<p>Accepts an incoming socket connect, just as <a href="http://man.he.net/man2/accept" rel="external">accept(2)</a> does. Returns the packed address if it succeeded, false otherwise. See the example in <a href="https://metacpan.org/pod/perlipc#Sockets:-Client-Server-Communication" rel="external">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
 
 <p>On systems that support a close-on-exec flag on files, the flag will be set for the newly opened file descriptor, as determined by the value of <a href="/perldoc/perlvar/#F"><code>$^F</code></a>. See <a href="/perldoc/perlvar/#F">&quot;$^F&quot; in perlvar</a>.</p>
 
@@ -436,11 +456,11 @@
 
 <p>Only one timer may be counting at once. Each call disables the previous timer, and an argument of <code>0</code> may be supplied to cancel the previous timer without starting a new one. The returned value is the amount of time remaining on the previous timer.</p>
 
-<p>For delays of finer granularity than one second, the <a href="https://metacpan.org/pod/Time::HiRes" rel="external">Time::HiRes</a> module (from CPAN, and starting from Perl 5.8 part of the standard distribution) provides <a href="https://metacpan.org/pod/Time::HiRes#ualarm-useconds-interval_useconds" rel="external"><code>ualarm</code></a>. You may also use Perl&#39;s four-argument version of <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> leaving the first three arguments undefined, or you might be able to use the <a href="#syscall-NUMBER-LIST"><code>syscall</code></a> interface to access <a href="http://man.he.net/man2/setitimer" rel="external">setitimer(2)</a> if your system supports it. See <a href="/perldoc/perlfaq8/">perlfaq8</a> for details.</p>
+<p>For delays of finer granularity than one second, the <a href="https://metacpan.org/pod/Time::HiRes" rel="external">Time::HiRes</a> module (from CPAN, and starting from Perl 5.8 part of the standard distribution) provides <a href="https://metacpan.org/pod/Time::HiRes#ualarm-useconds-interval_useconds" rel="external"><code>ualarm</code></a>. You may also use Perl&#39;s four-argument version of <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> leaving the first three arguments undefined, or you might be able to use the <a href="#syscall-NUMBER-LIST"><code>syscall</code></a> interface to access <a href="http://man.he.net/man2/setitimer" rel="external">setitimer(2)</a> if your system supports it. See <a href="https://metacpan.org/pod/perlfaq8" rel="external">perlfaq8</a> for details.</p>
 
 <p>It is usually a mistake to intermix <a href="#alarm-SECONDS"><code>alarm</code></a> and <a href="#sleep-EXPR"><code>sleep</code></a> calls, because <a href="#sleep-EXPR"><code>sleep</code></a> may be internally implemented on your system with <a href="#alarm-SECONDS"><code>alarm</code></a>.</p>
 
-<p>If you want to use <a href="#alarm-SECONDS"><code>alarm</code></a> to time out a system call you need to use an <a href="#eval-EXPR"><code>eval</code></a>/<a href="#die-LIST"><code>die</code></a> pair. You can&#39;t rely on the alarm causing the system call to fail with <a href="/perldoc/perlvar/#pod"><code>$!</code></a> set to <code>EINTR</code> because Perl sets up signal handlers to restart system calls on some systems. Using <a href="#eval-EXPR"><code>eval</code></a>/<a href="#die-LIST"><code>die</code></a> always works, modulo the caveats given in <a href="/perldoc/perlipc/#Signals">&quot;Signals&quot; in perlipc</a>.</p>
+<p>If you want to use <a href="#alarm-SECONDS"><code>alarm</code></a> to time out a system call you need to use an <a href="#eval-EXPR"><code>eval</code></a>/<a href="#die-LIST"><code>die</code></a> pair. You can&#39;t rely on the alarm causing the system call to fail with <a href="/perldoc/perlvar/#pod"><code>$!</code></a> set to <code>EINTR</code> because Perl sets up signal handlers to restart system calls on some systems. Using <a href="#eval-EXPR"><code>eval</code></a>/<a href="#die-LIST"><code>die</code></a> always works, modulo the caveats given in <a href="https://metacpan.org/pod/perlipc#Signals" rel="external">&quot;Signals&quot; in perlipc</a>.</p>
 
 <pre><code>    eval {
         local $SIG{ALRM} = sub { die &quot;alarm\n&quot; }; # NB: \n required
@@ -456,9 +476,9 @@
         # didn&#39;t
     }</code></pre>
 
-<p>For more information see <a href="/perldoc/perlipc/">perlipc</a>.</p>
+<p>For more information see <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#alarm">&quot;alarm&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#alarm" rel="external">&quot;alarm&quot; in perlport</a>.</p>
 
 </dd>
 <dt>atan2 Y,X    </dt>
@@ -472,13 +492,13 @@
 
 <p>The return value for <code>atan2(0,0)</code> is implementation-defined; consult your <a href="http://man.he.net/man3/atan2" rel="external">atan2(3)</a> manpage for more information.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#atan2">&quot;atan2&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#atan2" rel="external">&quot;atan2&quot; in perlport</a>.</p>
 
 </dd>
 <dt>bind SOCKET,NAME </dt>
 <dd>
 
-<p>Binds a network address to a socket, just as <a href="http://man.he.net/man2/bind" rel="external">bind(2)</a> does. Returns true if it succeeded, false otherwise. NAME should be a packed address of the appropriate type for the socket. See the examples in <a href="/perldoc/perlipc/#Sockets:-Client-Server-Communication">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
+<p>Binds a network address to a socket, just as <a href="http://man.he.net/man2/bind" rel="external">bind(2)</a> does. Returns true if it succeeded, false otherwise. NAME should be a packed address of the appropriate type for the socket. See the examples in <a href="https://metacpan.org/pod/perlipc#Sockets:-Client-Server-Communication" rel="external">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
 
 </dd>
 <dt>binmode FILEHANDLE, LAYER     </dt>
@@ -496,7 +516,7 @@
 
 <p>If LAYER is present it is a single string, but may contain multiple directives. The directives alter the behaviour of the filehandle. When LAYER is present, using binmode on a text file makes sense.</p>
 
-<p>If LAYER is omitted or specified as <code>:raw</code> the filehandle is made suitable for passing binary data. This includes turning off possible CRLF translation and marking it as bytes (as opposed to Unicode characters). Note that, despite what may be implied in <i>&quot;Programming Perl&quot;</i> (the Camel, 3rd edition) or elsewhere, <code>:raw</code> is <i>not</i> simply the inverse of <code>:crlf</code>. Other layers that would affect the binary nature of the stream are <i>also</i> disabled. See <a href="https://metacpan.org/pod/PerlIO" rel="external">PerlIO</a>, <a href="/perldoc/perlrun/">perlrun</a>, and the discussion about the PERLIO environment variable.</p>
+<p>If LAYER is omitted or specified as <code>:raw</code> the filehandle is made suitable for passing binary data. This includes turning off possible CRLF translation and marking it as bytes (as opposed to Unicode characters). Note that, despite what may be implied in <i>&quot;Programming Perl&quot;</i> (the Camel, 3rd edition) or elsewhere, <code>:raw</code> is <i>not</i> simply the inverse of <code>:crlf</code>. Other layers that would affect the binary nature of the stream are <i>also</i> disabled. See <a href="https://metacpan.org/pod/PerlIO" rel="external">PerlIO</a>, <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a>, and the discussion about the PERLIO environment variable.</p>
 
 <p>The <code>:bytes</code>, <code>:crlf</code>, <code>:utf8</code>, and any other directives of the form <code>:...</code>, are called I/O <i>layers</i>. The <a href="https://metacpan.org/pod/open" rel="external">open</a> pragma can be used to establish default I/O layers.</p>
 
@@ -512,9 +532,9 @@
 
 <p>Another consequence of using <a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a> (on some systems) is that special end-of-file markers will be seen as part of the data stream. For systems from the Microsoft family this means that, if your binary data contain <code>\cZ</code>, the I/O subsystem will regard it as the end of the file, unless you use <a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a>.</p>
 
-<p><a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a> is important not only for <a href="#readline-EXPR"><code>readline</code></a> and <a href="#print-FILEHANDLE-LIST"><code>print</code></a> operations, but also when using <a href="#read-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>read</code></a>, <a href="#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a>, <a href="#sysread-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>sysread</code></a>, <a href="#syswrite-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>syswrite</code></a> and <a href="#tell-FILEHANDLE"><code>tell</code></a> (see <a href="/perldoc/perlport/">perlport</a> for more details). See the <a href="/perldoc/perlvar/#pod"><code>$/</code></a> and <a href="/perldoc/perlvar/#pod"><code>$\</code></a> variables in <a href="/perldoc/perlvar/">perlvar</a> for how to manually set your input and output line-termination sequences.</p>
+<p><a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a> is important not only for <a href="#readline-EXPR"><code>readline</code></a> and <a href="#print-FILEHANDLE-LIST"><code>print</code></a> operations, but also when using <a href="#read-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>read</code></a>, <a href="#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a>, <a href="#sysread-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>sysread</code></a>, <a href="#syswrite-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>syswrite</code></a> and <a href="#tell-FILEHANDLE"><code>tell</code></a> (see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a> for more details). See the <a href="/perldoc/perlvar/#pod"><code>$/</code></a> and <a href="/perldoc/perlvar/#pod"><code>$\</code></a> variables in <a href="/perldoc/perlvar/">perlvar</a> for how to manually set your input and output line-termination sequences.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#binmode">&quot;binmode&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#binmode" rel="external">&quot;binmode&quot; in perlport</a>.</p>
 
 </dd>
 <dt>bless REF,CLASSNAME </dt>
@@ -524,11 +544,11 @@
 <dt>bless REF</dt>
 <dd>
 
-<p>This function tells the thingy referenced by REF that it is now an object in the CLASSNAME package. If CLASSNAME is omitted, the current package is used. Because a <a href="#bless-REF-CLASSNAME"><code>bless</code></a> is often the last thing in a constructor, it returns the reference for convenience. Always use the two-argument version if a derived class might inherit the method doing the blessing. See <a href="/perldoc/perlobj/">perlobj</a> for more about the blessing (and blessings) of objects.</p>
+<p>This function tells the thingy referenced by REF that it is now an object in the CLASSNAME package. If CLASSNAME is omitted, the current package is used. Because a <a href="#bless-REF-CLASSNAME"><code>bless</code></a> is often the last thing in a constructor, it returns the reference for convenience. Always use the two-argument version if a derived class might inherit the method doing the blessing. See <a href="https://metacpan.org/pod/perlobj" rel="external">perlobj</a> for more about the blessing (and blessings) of objects.</p>
 
 <p>Consider always blessing objects in CLASSNAMEs that are mixed case. Namespaces with all lowercase names are considered reserved for Perl pragmas. Builtin types have all uppercase names. To prevent confusion, you may wish to avoid such package names as well. Make sure that CLASSNAME is a true value.</p>
 
-<p>See <a href="/perldoc/perlmod/#Perl-Modules">&quot;Perl Modules&quot; in perlmod</a>.</p>
+<p>See <a href="https://metacpan.org/pod/perlmod#Perl-Modules" rel="external">&quot;Perl Modules&quot; in perlmod</a>.</p>
 
 </dd>
 <dt>break</dt>
@@ -615,7 +635,7 @@
     chmod S_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH, @executables;
     # Identical to the chmod 0755 of the example above.</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#chmod">&quot;chmod&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#chmod" rel="external">&quot;chmod&quot; in perlport</a>.</p>
 
 </dd>
 <dt>chomp VARIABLE     </dt>
@@ -699,7 +719,7 @@
 <pre><code>    use POSIX qw(sysconf _PC_CHOWN_RESTRICTED);
     my $can_chown_giveaway = ! sysconf(_PC_CHOWN_RESTRICTED);</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#chown">&quot;chown&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#chown" rel="external">&quot;chown&quot; in perlport</a>.</p>
 
 </dd>
 <dt>chr NUMBER    </dt>
@@ -719,7 +739,7 @@
 
 <p>Note that characters from 128 to 255 (inclusive) are by default internally not encoded as UTF-8 for backward compatibility reasons.</p>
 
-<p>See <a href="/perldoc/perlunicode/">perlunicode</a> for more about Unicode.</p>
+<p>See <a href="https://metacpan.org/pod/perlunicode" rel="external">perlunicode</a> for more about Unicode.</p>
 
 </dd>
 <dt>chroot FILENAME  </dt>
@@ -733,7 +753,7 @@
 
 <p><b>NOTE:</b> It is good security practice to do <code>chdir(&quot;/&quot;)</code> (<a href="#chdir-EXPR"><code>chdir</code></a> to the root directory) immediately after a <a href="#chroot-FILENAME"><code>chroot</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#chroot">&quot;chroot&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#chroot" rel="external">&quot;chroot&quot; in perlport</a>.</p>
 
 </dd>
 <dt>close FILEHANDLE </dt>
@@ -776,7 +796,7 @@
 <dt>connect SOCKET,NAME </dt>
 <dd>
 
-<p>Attempts to connect to a remote socket, just like <a href="http://man.he.net/man2/connect" rel="external">connect(2)</a>. Returns true if it succeeded, false otherwise. NAME should be a packed address of the appropriate type for the socket. See the examples in <a href="/perldoc/perlipc/#Sockets:-Client-Server-Communication">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
+<p>Attempts to connect to a remote socket, just like <a href="http://man.he.net/man2/connect" rel="external">connect(2)</a>. Returns true if it succeeded, false otherwise. NAME should be a packed address of the appropriate type for the socket. See the examples in <a href="https://metacpan.org/pod/perlipc#Sockets:-Client-Server-Communication" rel="external">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
 
 </dd>
 <dt>continue BLOCK </dt>
@@ -802,7 +822,7 @@
 
 <p>Omitting the <a href="#continue-BLOCK"><code>continue</code></a> section is equivalent to using an empty one, logically enough, so <a href="#next-LABEL"><code>next</code></a> goes directly back to check the condition at the top of the loop.</p>
 
-<p>When there is no BLOCK, <a href="#continue-BLOCK"><code>continue</code></a> is a function that falls through the current <code>when</code> or <code>default</code> block instead of iterating a dynamically enclosing <code>foreach</code> or exiting a lexically enclosing <code>given</code>. In Perl 5.14 and earlier, this form of <a href="#continue-BLOCK"><code>continue</code></a> was only available when the <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> was enabled. See <a href="https://metacpan.org/pod/feature" rel="external">feature</a> and <a href="/perldoc/perlsyn/#Switch-Statements">&quot;Switch Statements&quot; in perlsyn</a> for more information.</p>
+<p>When there is no BLOCK, <a href="#continue-BLOCK"><code>continue</code></a> is a function that falls through the current <code>when</code> or <code>default</code> block instead of iterating a dynamically enclosing <code>foreach</code> or exiting a lexically enclosing <code>given</code>. In Perl 5.14 and earlier, this form of <a href="#continue-BLOCK"><code>continue</code></a> was only available when the <a href="https://metacpan.org/pod/feature#The-switch-feature" rel="external"><code>&quot;switch&quot;</code> feature</a> was enabled. See <a href="https://metacpan.org/pod/feature" rel="external">feature</a> and <a href="https://metacpan.org/pod/perlsyn#Switch-Statements" rel="external">&quot;Switch Statements&quot; in perlsyn</a> for more information.</p>
 
 </dd>
 <dt>cos EXPR    </dt>
@@ -854,9 +874,9 @@
 
 <p>The <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> function is unsuitable for hashing large quantities of data, not least of all because you can&#39;t get the information back. Look at the <a href="https://metacpan.org/pod/Digest" rel="external">Digest</a> module for more robust algorithms.</p>
 
-<p>If using <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> on a Unicode string (which <i>potentially</i> has characters with codepoints above 255), Perl tries to make sense of the situation by trying to downgrade (a copy of) the string back to an eight-bit byte string before calling <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> (on that copy). If that works, good. If not, <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> dies with <a href="/perldoc/perldiag/#Wide-character-in-s"><code>Wide character in crypt</code></a>.</p>
+<p>If using <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> on a Unicode string (which <i>potentially</i> has characters with codepoints above 255), Perl tries to make sense of the situation by trying to downgrade (a copy of) the string back to an eight-bit byte string before calling <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> (on that copy). If that works, good. If not, <a href="#crypt-PLAINTEXT-SALT"><code>crypt</code></a> dies with <a href="https://metacpan.org/pod/perldiag#Wide-character-in-s" rel="external"><code>Wide character in crypt</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#crypt">&quot;crypt&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#crypt" rel="external">&quot;crypt&quot; in perlport</a>.</p>
 
 </dd>
 <dt>dbmclose HASH </dt>
@@ -866,7 +886,7 @@
 
 <p>Breaks the binding between a DBM file and a hash.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#dbmclose">&quot;dbmclose&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#dbmclose" rel="external">&quot;dbmclose&quot; in perlport</a>.</p>
 
 </dd>
 <dt>dbmopen HASH,DBNAME,MASK     </dt>
@@ -895,7 +915,7 @@
     dbmopen(%NS_Hist, &quot;$ENV{HOME}/.netscape/history.db&quot;)
         or die &quot;Can&#39;t open netscape history file: $!&quot;;</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#dbmopen">&quot;dbmopen&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#dbmopen" rel="external">&quot;dbmopen&quot; in perlport</a>.</p>
 
 </dd>
 <dt>defined EXPR   </dt>
@@ -909,7 +929,7 @@
 
 <p>Many operations return <a href="#undef-EXPR"><code>undef</code></a> to indicate failure, end of file, system error, uninitialized variable, and other exceptional conditions. This function allows you to distinguish <a href="#undef-EXPR"><code>undef</code></a> from other values. (A simple Boolean test will not distinguish among <a href="#undef-EXPR"><code>undef</code></a>, zero, the empty string, and <code>&quot;0&quot;</code>, which are all equally false.) Note that since <a href="#undef-EXPR"><code>undef</code></a> is a valid scalar, its presence doesn&#39;t <i>necessarily</i> indicate an exceptional condition: <a href="#pop-ARRAY"><code>pop</code></a> returns <a href="#undef-EXPR"><code>undef</code></a> when its argument is an empty array, <i>or</i> when the element to return happens to be <a href="#undef-EXPR"><code>undef</code></a>.</p>
 
-<p>You may also use <code>defined(&amp;func)</code> to check whether subroutine <code>func</code> has ever been defined. The return value is unaffected by any forward declarations of <code>func</code>. A subroutine that is not defined may still be callable: its package may have an <code>AUTOLOAD</code> method that makes it spring into existence the first time that it is called; see <a href="/perldoc/perlsub/">perlsub</a>.</p>
+<p>You may also use <code>defined(&amp;func)</code> to check whether subroutine <code>func</code> has ever been defined. The return value is unaffected by any forward declarations of <code>func</code>. A subroutine that is not defined may still be callable: its package may have an <code>AUTOLOAD</code> method that makes it spring into existence the first time that it is called; see <a href="https://metacpan.org/pod/perlsub" rel="external">perlsub</a>.</p>
 
 <p>Use of <a href="#defined-EXPR"><code>defined</code></a> on aggregates (hashes and arrays) is no longer supported. It used to report whether memory for that aggregate had ever been allocated. You should instead use a simple test for size:</p>
 
@@ -949,7 +969,7 @@
 
 <p>Deleting from <a href="/perldoc/perlvar/#ENV"><code>%ENV</code></a> modifies the environment. Deleting from a hash tied to a DBM file deletes the entry from the DBM file. Deleting from a <a href="#tied-VARIABLE"><code>tied</code></a> hash or array may not necessarily return anything; it depends on the implementation of the <a href="#tied-VARIABLE"><code>tied</code></a> package&#39;s DELETE method, which may do whatever it pleases.</p>
 
-<p>The <code>delete local EXPR</code> construct localizes the deletion to the current block at run time. Until the block exits, elements locally deleted temporarily no longer exist. See <a href="/perldoc/perlsub/#Localized-deletion-of-elements-of-composite-types">&quot;Localized deletion of elements of composite types&quot; in perlsub</a>.</p>
+<p>The <code>delete local EXPR</code> construct localizes the deletion to the current block at run time. Until the block exits, elements locally deleted temporarily no longer exist. See <a href="https://metacpan.org/pod/perlsub#Localized-deletion-of-elements-of-composite-types" rel="external">&quot;Localized deletion of elements of composite types&quot; in perlsub</a>.</p>
 
 <pre><code>    my %hash = (foo =&gt; 11, bar =&gt; 22, baz =&gt; 33);
     my $scalar = delete $hash{foo};         # $scalar is 11
@@ -1061,7 +1081,7 @@
 
 <p>Not really a function. Returns the value of the last command in the sequence of commands indicated by BLOCK. When modified by the <code>while</code> or <code>until</code> loop modifier, executes the BLOCK once before testing the loop condition. (On other statements the loop modifiers test the conditional first.)</p>
 
-<p><code>do BLOCK</code> does <i>not</i> count as a loop, so the loop control statements <a href="#next-LABEL"><code>next</code></a>, <a href="#last-LABEL"><code>last</code></a>, or <a href="#redo-LABEL"><code>redo</code></a> cannot be used to leave or restart the block. See <a href="/perldoc/perlsyn/">perlsyn</a> for alternative strategies.</p>
+<p><code>do BLOCK</code> does <i>not</i> count as a loop, so the loop control statements <a href="#next-LABEL"><code>next</code></a>, <a href="#last-LABEL"><code>last</code></a>, or <a href="#redo-LABEL"><code>redo</code></a> cannot be used to leave or restart the block. See <a href="https://metacpan.org/pod/perlsyn" rel="external">perlsyn</a> for alternative strategies.</p>
 
 </dd>
 <dt>do EXPR </dt>
@@ -1123,7 +1143,7 @@
 <dt>dump</dt>
 <dd>
 
-<p>This function causes an immediate core dump. See also the <b>-u</b> command-line switch in <a href="/perldoc/perlrun/">perlrun</a>, which does the same thing. Primarily this is so that you can use the <b>undump</b> program (not supplied) to turn your core dump into an executable binary after having initialized all your variables at the beginning of the program. When the new binary is executed it will begin by executing a <code>goto LABEL</code> (with all the restrictions that <a href="#goto-LABEL"><code>goto</code></a> suffers). Think of it as a goto with an intervening core dump and reincarnation. If <code>LABEL</code> is omitted, restarts the program from the top. The <code>dump EXPR</code> form, available starting in Perl 5.18.0, allows a name to be computed at run time, being otherwise identical to <code>dump LABEL</code>.</p>
+<p>This function causes an immediate core dump. See also the <b>-u</b> command-line switch in <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a>, which does the same thing. Primarily this is so that you can use the <b>undump</b> program (not supplied) to turn your core dump into an executable binary after having initialized all your variables at the beginning of the program. When the new binary is executed it will begin by executing a <code>goto LABEL</code> (with all the restrictions that <a href="#goto-LABEL"><code>goto</code></a> suffers). Think of it as a goto with an intervening core dump and reincarnation. If <code>LABEL</code> is omitted, restarts the program from the top. The <code>dump EXPR</code> form, available starting in Perl 5.18.0, allows a name to be computed at run time, being otherwise identical to <code>dump LABEL</code>.</p>
 
 <p><b>WARNING</b>: Any files opened at the time of the dump will <i>not</i> be open any more when the program is reincarnated, with possible resulting confusion by Perl.</p>
 
@@ -1131,7 +1151,7 @@
 
 <p>Unlike most named operators, this has the same precedence as assignment. It is also exempt from the looks-like-a-function rule, so <code>dump (&quot;foo&quot;).&quot;bar&quot;</code> will cause &quot;bar&quot; to be part of the argument to <a href="#dump-LABEL"><code>dump</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#dump">&quot;dump&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#dump" rel="external">&quot;dump&quot; in perlport</a>.</p>
 
 </dd>
 <dt>each HASH  </dt>
@@ -1143,7 +1163,7 @@
 
 <p>When called on a hash in list context, returns a 2-element list consisting of the key and value for the next element of a hash. In Perl 5.12 and later only, it will also return the index and value for the next element of an array so that you can iterate over it; older Perls consider this a syntax error. When called in scalar context, returns only the key (not the value) in a hash, or the index in an array.</p>
 
-<p>Hash entries are returned in an apparently random order. The actual random order is specific to a given hash; the exact same series of operations on two hashes may result in a different order for each hash. Any insertion into the hash may change the order, as will any deletion, with the exception that the most recent key returned by <a href="#each-HASH"><code>each</code></a> or <a href="#keys-HASH"><code>keys</code></a> may be deleted without changing the order. So long as a given hash is unmodified you may rely on <a href="#keys-HASH"><code>keys</code></a>, <a href="#values-HASH"><code>values</code></a> and <a href="#each-HASH"><code>each</code></a> to repeatedly return the same order as each other. See <a href="/perldoc/perlsec/#Algorithmic-Complexity-Attacks">&quot;Algorithmic Complexity Attacks&quot; in perlsec</a> for details on why hash order is randomized. Aside from the guarantees provided here the exact details of Perl&#39;s hash algorithm and the hash traversal order are subject to change in any release of Perl.</p>
+<p>Hash entries are returned in an apparently random order. The actual random order is specific to a given hash; the exact same series of operations on two hashes may result in a different order for each hash. Any insertion into the hash may change the order, as will any deletion, with the exception that the most recent key returned by <a href="#each-HASH"><code>each</code></a> or <a href="#keys-HASH"><code>keys</code></a> may be deleted without changing the order. So long as a given hash is unmodified you may rely on <a href="#keys-HASH"><code>keys</code></a>, <a href="#values-HASH"><code>values</code></a> and <a href="#each-HASH"><code>each</code></a> to repeatedly return the same order as each other. See <a href="https://metacpan.org/pod/perlsec#Algorithmic-Complexity-Attacks" rel="external">&quot;Algorithmic Complexity Attacks&quot; in perlsec</a> for details on why hash order is randomized. Aside from the guarantees provided here the exact details of Perl&#39;s hash algorithm and the hash traversal order are subject to change in any release of Perl.</p>
 
 <p>After <a href="#each-HASH"><code>each</code></a> has returned all entries from the hash or array, the next call to <a href="#each-HASH"><code>each</code></a> returns the empty list in list context and <a href="#undef-EXPR"><code>undef</code></a> in scalar context; the next call following <i>that</i> one restarts iteration. Each hash or array has its own internal iterator, accessed by <a href="#each-HASH"><code>each</code></a>, <a href="#keys-HASH"><code>keys</code></a>, and <a href="#values-HASH"><code>values</code></a>. The iterator is implicitly reset when <a href="#each-HASH"><code>each</code></a> has reached the end as just described; it can be explicitly reset by calling <a href="#keys-HASH"><code>keys</code></a> or <a href="#values-HASH"><code>values</code></a> on the hash or array. If you add or delete a hash&#39;s elements while iterating over it, the effect on the iterator is unspecified; for example, entries may be skipped or duplicated--so don&#39;t do that. Exception: It is always safe to delete the item most recently returned by <a href="#each-HASH"><code>each</code></a>, so the following code works properly:</p>
 
@@ -1337,7 +1357,7 @@
     # a run-time error
     eval &#39;$answer =&#39;;   # sets $@</code></pre>
 
-<p>If you want to trap errors when loading an XS module, some problems with the binary interface (such as Perl version skew) may be fatal even with <code>eval</code> unless <code>$ENV{PERL_DL_NONLAZY}</code> is set. See <a href="/perldoc/perlrun/">perlrun</a>.</p>
+<p>If you want to trap errors when loading an XS module, some problems with the binary interface (such as Perl version skew) may be fatal even with <code>eval</code> unless <code>$ENV{PERL_DL_NONLAZY}</code> is set. See <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a>.</p>
 
 <p>Using the <code>eval {}</code> form as an exception trap in libraries does have some issues. Due to the current arguably broken state of <code>__DIE__</code> hooks, you may wish not to trigger any <code>__DIE__</code> hooks that user code may have installed. You can use the <code>local $SIG{__DIE__}</code> construct for this purpose, as this example shows:</p>
 
@@ -1436,11 +1456,11 @@
 
 <p>On Windows, only the <code>exec PROGRAM LIST</code> indirect object syntax will reliably avoid using the shell; <code>exec LIST</code>, even with more than one element, will fall back to the shell if the first spawn fails.</p>
 
-<p>Perl attempts to flush all files opened for output before the exec, but this may not be supported on some platforms (see <a href="/perldoc/perlport/">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles to avoid lost output.</p>
+<p>Perl attempts to flush all files opened for output before the exec, but this may not be supported on some platforms (see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles to avoid lost output.</p>
 
 <p>Note that <a href="#exec-LIST"><code>exec</code></a> will not call your <code>END</code> blocks, nor will it invoke <code>DESTROY</code> methods on your objects.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#exec">&quot;exec&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#exec" rel="external">&quot;exec&quot; in perlport</a>.</p>
 
 </dd>
 <dt>exists EXPR  </dt>
@@ -1462,7 +1482,7 @@
 
 <p>A hash or array element can be true only if it&#39;s defined and defined only if it exists, but the reverse doesn&#39;t necessarily hold true.</p>
 
-<p>Given an expression that specifies the name of a subroutine, returns true if the specified subroutine has ever been declared, even if it is undefined. Mentioning a subroutine name for exists or defined does not count as declaring it. Note that a subroutine that does not exist may still be callable: its package may have an <code>AUTOLOAD</code> method that makes it spring into existence the first time that it is called; see <a href="/perldoc/perlsub/">perlsub</a>.</p>
+<p>Given an expression that specifies the name of a subroutine, returns true if the specified subroutine has ever been declared, even if it is undefined. Mentioning a subroutine name for exists or defined does not count as declaring it. Note that a subroutine that does not exist may still be callable: its package may have an <code>AUTOLOAD</code> method that makes it spring into existence the first time that it is called; see <a href="https://metacpan.org/pod/perlsub" rel="external">perlsub</a>.</p>
 
 <pre><code>    print &quot;Exists\n&quot;  if exists &amp;subroutine;
     print &quot;Defined\n&quot; if defined &amp;subroutine;</code></pre>
@@ -1507,9 +1527,9 @@
 
 <p>Don&#39;t use <a href="#exit-EXPR"><code>exit</code></a> to abort a subroutine if there&#39;s any chance that someone might want to trap whatever error happened. Use <a href="#die-LIST"><code>die</code></a> instead, which can be trapped by an <a href="#eval-EXPR"><code>eval</code></a>.</p>
 
-<p>The <a href="#exit-EXPR"><code>exit</code></a> function does not always exit immediately. It calls any defined <code>END</code> routines first, but these <code>END</code> routines may not themselves abort the exit. Likewise any object destructors that need to be called are called before the real exit. <code>END</code> routines and destructors can change the exit status by modifying <a href="/perldoc/perlvar/#pod"><code>$?</code></a>. If this is a problem, you can call <a href="https://metacpan.org/pod/POSIX#exit" rel="external"><code>POSIX::_exit($status)</code></a> to avoid <code>END</code> and destructor processing. See <a href="/perldoc/perlmod/">perlmod</a> for details.</p>
+<p>The <a href="#exit-EXPR"><code>exit</code></a> function does not always exit immediately. It calls any defined <code>END</code> routines first, but these <code>END</code> routines may not themselves abort the exit. Likewise any object destructors that need to be called are called before the real exit. <code>END</code> routines and destructors can change the exit status by modifying <a href="/perldoc/perlvar/#pod"><code>$?</code></a>. If this is a problem, you can call <a href="https://metacpan.org/pod/POSIX#exit" rel="external"><code>POSIX::_exit($status)</code></a> to avoid <code>END</code> and destructor processing. See <a href="https://metacpan.org/pod/perlmod" rel="external">perlmod</a> for details.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#exit">&quot;exit&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#exit" rel="external">&quot;exit&quot; in perlport</a>.</p>
 
 </dd>
 <dt>exp EXPR     </dt>
@@ -1571,7 +1591,7 @@
     my $flags = fcntl($filehandle, F_GETFL, 0)
         or die &quot;Can&#39;t fcntl F_GETFL: $!&quot;;</code></pre>
 
-<p>You don&#39;t have to check for <a href="#defined-EXPR"><code>defined</code></a> on the return from <a href="#fcntl-FILEHANDLE-FUNCTION-SCALAR"><code>fcntl</code></a>. Like <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>, it maps a <code>0</code> return from the system call into <code>&quot;0 but true&quot;</code> in Perl. This string is true in boolean context and <code>0</code> in numeric context. It is also exempt from the normal <a href="/perldoc/perldiag/#Argument-s-isnt-numeric-s"><code>Argument &quot;...&quot; isn&#39;t numeric</code></a> <a href="https://metacpan.org/pod/warnings" rel="external">warnings</a> on improper numeric conversions.</p>
+<p>You don&#39;t have to check for <a href="#defined-EXPR"><code>defined</code></a> on the return from <a href="#fcntl-FILEHANDLE-FUNCTION-SCALAR"><code>fcntl</code></a>. Like <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>, it maps a <code>0</code> return from the system call into <code>&quot;0 but true&quot;</code> in Perl. This string is true in boolean context and <code>0</code> in numeric context. It is also exempt from the normal <a href="https://metacpan.org/pod/perldiag#Argument-s-isnt-numeric-s" rel="external"><code>Argument &quot;...&quot; isn&#39;t numeric</code></a> <a href="https://metacpan.org/pod/warnings" rel="external">warnings</a> on improper numeric conversions.</p>
 
 <p>Note that <a href="#fcntl-FILEHANDLE-FUNCTION-SCALAR"><code>fcntl</code></a> raises an exception if used on a machine that doesn&#39;t implement <a href="http://man.he.net/man2/fcntl" rel="external">fcntl(2)</a>. See the <a href="https://metacpan.org/pod/Fcntl" rel="external">Fcntl</a> module or your <a href="http://man.he.net/man2/fcntl" rel="external">fcntl(2)</a> manpage to learn what functions are available on your system.</p>
 
@@ -1585,7 +1605,7 @@
     fcntl($REMOTE, F_SETFL, $flags | O_NONBLOCK)
         or die &quot;Can&#39;t set flags for the socket: $!\n&quot;;</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#fcntl">&quot;fcntl&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#fcntl" rel="external">&quot;fcntl&quot; in perlport</a>.</p>
 
 </dd>
 <dt>__FILE__ </dt>
@@ -1621,7 +1641,7 @@
 
 <p>Calls <a href="http://man.he.net/man2/flock" rel="external">flock(2)</a>, or an emulation of it, on FILEHANDLE. Returns true for success, false on failure. Produces a fatal error if used on a machine that doesn&#39;t implement <a href="http://man.he.net/man2/flock" rel="external">flock(2)</a>, <a href="http://man.he.net/man2/fcntl" rel="external">fcntl(2)</a> locking, or <a href="http://man.he.net/man3/lockf" rel="external">lockf(3)</a>. <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> is Perl&#39;s portable file-locking interface, although it locks entire files only, not records.</p>
 
-<p>Two potentially non-obvious but traditional <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> semantics are that it waits indefinitely until the lock is granted, and that its locks are <b>merely advisory</b>. Such discretionary locks are more flexible, but offer fewer guarantees. This means that programs that do not also use <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> may modify files locked with <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a>. See <a href="/perldoc/perlport/">perlport</a>, your port&#39;s specific documentation, and your system-specific local manpages for details. It&#39;s best to assume traditional behavior if you&#39;re writing portable programs. (But if you&#39;re not, you should as always feel perfectly free to write for your own system&#39;s idiosyncrasies (sometimes called &quot;features&quot;). Slavish adherence to portability concerns shouldn&#39;t get in the way of your getting your job done.)</p>
+<p>Two potentially non-obvious but traditional <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> semantics are that it waits indefinitely until the lock is granted, and that its locks are <b>merely advisory</b>. Such discretionary locks are more flexible, but offer fewer guarantees. This means that programs that do not also use <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> may modify files locked with <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a>. See <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>, your port&#39;s specific documentation, and your system-specific local manpages for details. It&#39;s best to assume traditional behavior if you&#39;re writing portable programs. (But if you&#39;re not, you should as always feel perfectly free to write for your own system&#39;s idiosyncrasies (sometimes called &quot;features&quot;). Slavish adherence to portability concerns shouldn&#39;t get in the way of your getting your job done.)</p>
 
 <p>OPERATION is one of LOCK_SH, LOCK_EX, or LOCK_UN, possibly combined with LOCK_NB. These constants are traditionally valued 1, 2, 8 and 4, but you can use the symbolic names if you import them from the <a href="https://metacpan.org/pod/Fcntl" rel="external">Fcntl</a> module, either individually, or as a group using the <code>:flock</code> tag. LOCK_SH requests a shared lock, LOCK_EX requests an exclusive lock, and LOCK_UN releases a previously requested lock. If LOCK_NB is bitwise-or&#39;ed with LOCK_SH or LOCK_EX, then <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> returns immediately rather than blocking waiting for the lock; check the return status to see if you got it.</p>
 
@@ -1662,7 +1682,7 @@
 
 <p>See also <a href="https://metacpan.org/pod/DB_File" rel="external">DB_File</a> for other <a href="#flock-FILEHANDLE-OPERATION"><code>flock</code></a> examples.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#flock">&quot;flock&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#flock" rel="external">&quot;flock&quot; in perlport</a>.</p>
 
 </dd>
 <dt>fork   </dt>
@@ -1670,15 +1690,15 @@
 
 <p>Does a <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a> system call to create a new process running the same program at the same point. It returns the child pid to the parent process, <code>0</code> to the child process, or <a href="#undef-EXPR"><code>undef</code></a> if the fork is unsuccessful. File descriptors (and sometimes locks on those descriptors) are shared, while everything else is copied. On most systems supporting <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a>, great care has gone into making it extremely efficient (for example, using copy-on-write technology on data pages), making it the dominant paradigm for multitasking over the last few decades.</p>
 
-<p>Perl attempts to flush all files opened for output before forking the child process, but this may not be supported on some platforms (see <a href="/perldoc/perlport/">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles to avoid duplicate output.</p>
+<p>Perl attempts to flush all files opened for output before forking the child process, but this may not be supported on some platforms (see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles to avoid duplicate output.</p>
 
-<p>If you <a href="#fork"><code>fork</code></a> without ever waiting on your children, you will accumulate zombies. On some systems, you can avoid this by setting <a href="/perldoc/perlvar/#SIG"><code>$SIG{CHLD}</code></a> to <code>&quot;IGNORE&quot;</code>. See also <a href="/perldoc/perlipc/">perlipc</a> for more examples of forking and reaping moribund children.</p>
+<p>If you <a href="#fork"><code>fork</code></a> without ever waiting on your children, you will accumulate zombies. On some systems, you can avoid this by setting <a href="/perldoc/perlvar/#SIG"><code>$SIG{CHLD}</code></a> to <code>&quot;IGNORE&quot;</code>. See also <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for more examples of forking and reaping moribund children.</p>
 
 <p>Note that if your forked child inherits system file descriptors like STDIN and STDOUT that are actually connected by a pipe or socket, even if you exit, then the remote server (such as, say, a CGI script or a backgrounded job launched from a remote shell) won&#39;t think you&#39;re done. You should reopen those to <i>/dev/null</i> if it&#39;s any issue.</p>
 
-<p>On some platforms such as Windows, where the <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a> system call is not available, Perl can be built to emulate <a href="#fork"><code>fork</code></a> in the Perl interpreter. The emulation is designed, at the level of the Perl program, to be as compatible as possible with the &quot;Unix&quot; <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a>. However it has limitations that have to be considered in code intended to be portable. See <a href="/perldoc/perlfork/">perlfork</a> for more details.</p>
+<p>On some platforms such as Windows, where the <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a> system call is not available, Perl can be built to emulate <a href="#fork"><code>fork</code></a> in the Perl interpreter. The emulation is designed, at the level of the Perl program, to be as compatible as possible with the &quot;Unix&quot; <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a>. However it has limitations that have to be considered in code intended to be portable. See <a href="https://metacpan.org/pod/perlfork" rel="external">perlfork</a> for more details.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#fork">&quot;fork&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#fork" rel="external">&quot;fork&quot; in perlport</a>.</p>
 
 </dd>
 <dt>format </dt>
@@ -1696,15 +1716,15 @@
     $~ = &#39;Something&#39;;
     write;</code></pre>
 
-<p>See <a href="/perldoc/perlform/">perlform</a> for many details and examples.</p>
+<p>See <a href="https://metacpan.org/pod/perlform" rel="external">perlform</a> for many details and examples.</p>
 
 </dd>
 <dt>formline PICTURE,LIST </dt>
 <dd>
 
-<p>This is an internal function used by <a href="#format"><code>format</code></a>s, though you may call it, too. It formats (see <a href="/perldoc/perlform/">perlform</a>) a list of values according to the contents of PICTURE, placing the output into the format output accumulator, <a href="/perldoc/perlvar/#A"><code>$^A</code></a> (or <code>$ACCUMULATOR</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>). Eventually, when a <a href="#write-FILEHANDLE"><code>write</code></a> is done, the contents of <a href="/perldoc/perlvar/#A"><code>$^A</code></a> are written to some filehandle. You could also read <a href="/perldoc/perlvar/#A"><code>$^A</code></a> and then set <a href="/perldoc/perlvar/#A"><code>$^A</code></a> back to <code>&quot;&quot;</code>. Note that a format typically does one <a href="#formline-PICTURE-LIST"><code>formline</code></a> per line of form, but the <a href="#formline-PICTURE-LIST"><code>formline</code></a> function itself doesn&#39;t care how many newlines are embedded in the PICTURE. This means that the <code>~</code> and <code>~~</code> tokens treat the entire PICTURE as a single line. You may therefore need to use multiple formlines to implement a single record format, just like the <a href="#format"><code>format</code></a> compiler.</p>
+<p>This is an internal function used by <a href="#format"><code>format</code></a>s, though you may call it, too. It formats (see <a href="https://metacpan.org/pod/perlform" rel="external">perlform</a>) a list of values according to the contents of PICTURE, placing the output into the format output accumulator, <a href="/perldoc/perlvar/#A"><code>$^A</code></a> (or <code>$ACCUMULATOR</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>). Eventually, when a <a href="#write-FILEHANDLE"><code>write</code></a> is done, the contents of <a href="/perldoc/perlvar/#A"><code>$^A</code></a> are written to some filehandle. You could also read <a href="/perldoc/perlvar/#A"><code>$^A</code></a> and then set <a href="/perldoc/perlvar/#A"><code>$^A</code></a> back to <code>&quot;&quot;</code>. Note that a format typically does one <a href="#formline-PICTURE-LIST"><code>formline</code></a> per line of form, but the <a href="#formline-PICTURE-LIST"><code>formline</code></a> function itself doesn&#39;t care how many newlines are embedded in the PICTURE. This means that the <code>~</code> and <code>~~</code> tokens treat the entire PICTURE as a single line. You may therefore need to use multiple formlines to implement a single record format, just like the <a href="#format"><code>format</code></a> compiler.</p>
 
-<p>Be careful if you put double quotes around the picture, because an <code>@</code> character may be taken to mean the beginning of an array name. <a href="#formline-PICTURE-LIST"><code>formline</code></a> always returns true. See <a href="/perldoc/perlform/">perlform</a> for other examples.</p>
+<p>Be careful if you put double quotes around the picture, because an <code>@</code> character may be taken to mean the beginning of an array name. <a href="#formline-PICTURE-LIST"><code>formline</code></a> always returns true. See <a href="https://metacpan.org/pod/perlform" rel="external">perlform</a> for other examples.</p>
 
 <p>If you are trying to use this instead of <a href="#write-FILEHANDLE"><code>write</code></a> to capture the output, you may find it easier to open a filehandle to a scalar (<code>open my $fh, &quot;&gt;&quot;, \$output</code>) and write to that instead.</p>
 
@@ -1749,7 +1769,7 @@
 
 <p>Do not consider <a href="#getlogin"><code>getlogin</code></a> for authentication: it is not as secure as <a href="#getpwuid-UID"><code>getpwuid</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#getlogin">&quot;getlogin&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#getlogin" rel="external">&quot;getlogin&quot; in perlport</a>.</p>
 
 </dd>
 <dt>getpeername SOCKET  </dt>
@@ -1769,7 +1789,7 @@
 
 <p>Returns the current process group for the specified PID. Use a PID of <code>0</code> to get the current process group for the current process. Will raise an exception if used on a machine that doesn&#39;t implement <a href="http://man.he.net/man2/getpgrp" rel="external">getpgrp(2)</a>. If PID is omitted, returns the process group of the current process. Note that the POSIX version of <a href="#getpgrp-PID"><code>getpgrp</code></a> does not accept a PID argument, so only <code>PID==0</code> is truly portable.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#getpgrp">&quot;getpgrp&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#getpgrp" rel="external">&quot;getpgrp&quot; in perlport</a>.</p>
 
 </dd>
 <dt>getppid   </dt>
@@ -1779,7 +1799,7 @@
 
 <p>Note for Linux users: Between v5.8.1 and v5.16.0 Perl would work around non-POSIX thread semantics the minority of Linux systems (and Debian GNU/kFreeBSD systems) that used LinuxThreads, this emulation has since been removed. See the documentation for <a href="/perldoc/perlvar/#pod">$$</a> for details.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#getppid">&quot;getppid&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#getppid" rel="external">&quot;getppid&quot; in perlport</a>.</p>
 
 </dd>
 <dt>getpriority WHICH,WHO   </dt>
@@ -1787,7 +1807,7 @@
 
 <p>Returns the current priority for a process, a process group, or a user. (See <a href="http://man.he.net/man2/getpriority" rel="external">getpriority(2)</a>.) Will raise a fatal exception if used on a machine that doesn&#39;t implement <a href="http://man.he.net/man2/getpriority" rel="external">getpriority(2)</a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#getpriority">&quot;getpriority&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#getpriority" rel="external">&quot;getpriority&quot; in perlport</a>.</p>
 
 </dd>
 <dt>getpwnam NAME                              </dt>
@@ -1923,7 +1943,7 @@
 
 <p>(If the entry doesn&#39;t exist, the return value is a single meaningless true value.)</p>
 
-<p>The exact meaning of the $gcos field varies but it usually contains the real name of the user (as opposed to the login name) and other information pertaining to the user. Beware, however, that in many system users are able to change this information and therefore it cannot be trusted and therefore the $gcos is tainted (see <a href="/perldoc/perlsec/">perlsec</a>). The $passwd and $shell, user&#39;s encrypted password and login shell, are also tainted, for the same reason.</p>
+<p>The exact meaning of the $gcos field varies but it usually contains the real name of the user (as opposed to the login name) and other information pertaining to the user. Beware, however, that in many system users are able to change this information and therefore it cannot be trusted and therefore the $gcos is tainted (see <a href="https://metacpan.org/pod/perlsec" rel="external">perlsec</a>). The $passwd and $shell, user&#39;s encrypted password and login shell, are also tainted, for the same reason.</p>
 
 <p>In scalar context, you get the name, unless the function was a lookup by name, in which case you get the other thing, whatever it is. (If the entry doesn&#39;t exist you get the undefined value.) For example:</p>
 
@@ -1977,7 +1997,7 @@
 
 <p>Even though it looks as though they&#39;re the same method calls (uid), they aren&#39;t, because a <code>File::stat</code> object is different from a <code>User::pwent</code> object.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#getpwnam">&quot;getpwnam&quot; in perlport</a> to <a href="/perldoc/perlport/#endservent">&quot;endservent&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#getpwnam" rel="external">&quot;getpwnam&quot; in perlport</a> to <a href="https://metacpan.org/pod/perlport#endservent" rel="external">&quot;endservent&quot; in perlport</a>.</p>
 
 </dd>
 <dt>getsockname SOCKET </dt>
@@ -2013,7 +2033,7 @@
     print &quot;Nagle&#39;s algorithm is turned &quot;,
            $nodelay ? &quot;off\n&quot; : &quot;on\n&quot;;</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#getsockopt">&quot;getsockopt&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#getsockopt" rel="external">&quot;getsockopt&quot; in perlport</a>.</p>
 
 </dd>
 <dt>glob EXPR    </dt>
@@ -2042,7 +2062,7 @@
 
 <p>This operator is implemented using the standard <code>File::Glob</code> extension. See <a href="https://metacpan.org/pod/File::Glob" rel="external">File::Glob</a> for details, including <a href="https://metacpan.org/pod/File::Glob#bsd_glob" rel="external"><code>bsd_glob</code></a>, which does not treat whitespace as a pattern separator.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#glob">&quot;glob&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#glob" rel="external">&quot;glob&quot; in perlport</a>.</p>
 
 </dd>
 <dt>gmtime EXPR   </dt>
@@ -2056,7 +2076,7 @@
 
 <p>Note: When called in list context, $isdst, the last value returned by gmtime, is always <code>0</code>. There is no Daylight Saving Time in GMT.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#gmtime">&quot;gmtime&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#gmtime" rel="external">&quot;gmtime&quot; in perlport</a>.</p>
 
 </dd>
 <dt>goto LABEL   </dt>
@@ -2130,7 +2150,7 @@
 <dt>import LIST </dt>
 <dd>
 
-<p>There is no builtin <a href="#import-LIST"><code>import</code></a> function. It is just an ordinary method (subroutine) defined (or inherited) by modules that wish to export names to another module. The <a href="#use-Module-VERSION-LIST"><code>use</code></a> function calls the <a href="#import-LIST"><code>import</code></a> method for the package used. See also <a href="#use-Module-VERSION-LIST"><code>use</code></a>, <a href="/perldoc/perlmod/">perlmod</a>, and <a href="https://metacpan.org/pod/Exporter" rel="external">Exporter</a>.</p>
+<p>There is no builtin <a href="#import-LIST"><code>import</code></a> function. It is just an ordinary method (subroutine) defined (or inherited) by modules that wish to export names to another module. The <a href="#use-Module-VERSION-LIST"><code>use</code></a> function calls the <a href="#import-LIST"><code>import</code></a> method for the package used. See also <a href="#use-Module-VERSION-LIST"><code>use</code></a>, <a href="https://metacpan.org/pod/perlmod" rel="external">perlmod</a>, and <a href="https://metacpan.org/pod/Exporter" rel="external">Exporter</a>.</p>
 
 </dd>
 <dt>index STR,SUBSTR,POSITION   </dt>
@@ -2175,9 +2195,9 @@
 <pre><code>    my $retval = ioctl(...) || -1;
     printf &quot;System returned %d\n&quot;, $retval;</code></pre>
 
-<p>The special string <code>&quot;0 but true&quot;</code> is exempt from <a href="/perldoc/perldiag/#Argument-s-isnt-numeric-s"><code>Argument &quot;...&quot; isn&#39;t numeric</code></a> <a href="https://metacpan.org/pod/warnings" rel="external">warnings</a> on improper numeric conversions.</p>
+<p>The special string <code>&quot;0 but true&quot;</code> is exempt from <a href="https://metacpan.org/pod/perldiag#Argument-s-isnt-numeric-s" rel="external"><code>Argument &quot;...&quot; isn&#39;t numeric</code></a> <a href="https://metacpan.org/pod/warnings" rel="external">warnings</a> on improper numeric conversions.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#ioctl">&quot;ioctl&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#ioctl" rel="external">&quot;ioctl&quot; in perlport</a>.</p>
 
 </dd>
 <dt>join EXPR,LIST </dt>
@@ -2199,7 +2219,7 @@
 
 <p>Called in list context, returns a list consisting of all the keys of the named hash, or in Perl 5.12 or later only, the indices of an array. Perl releases prior to 5.12 will produce a syntax error if you try to use an array argument. In scalar context, returns the number of keys or indices.</p>
 
-<p>Hash entries are returned in an apparently random order. The actual random order is specific to a given hash; the exact same series of operations on two hashes may result in a different order for each hash. Any insertion into the hash may change the order, as will any deletion, with the exception that the most recent key returned by <a href="#each-HASH"><code>each</code></a> or <a href="#keys-HASH"><code>keys</code></a> may be deleted without changing the order. So long as a given hash is unmodified you may rely on <a href="#keys-HASH"><code>keys</code></a>, <a href="#values-HASH"><code>values</code></a> and <a href="#each-HASH"><code>each</code></a> to repeatedly return the same order as each other. See <a href="/perldoc/perlsec/#Algorithmic-Complexity-Attacks">&quot;Algorithmic Complexity Attacks&quot; in perlsec</a> for details on why hash order is randomized. Aside from the guarantees provided here the exact details of Perl&#39;s hash algorithm and the hash traversal order are subject to change in any release of Perl. Tied hashes may behave differently to Perl&#39;s hashes with respect to changes in order on insertion and deletion of items.</p>
+<p>Hash entries are returned in an apparently random order. The actual random order is specific to a given hash; the exact same series of operations on two hashes may result in a different order for each hash. Any insertion into the hash may change the order, as will any deletion, with the exception that the most recent key returned by <a href="#each-HASH"><code>each</code></a> or <a href="#keys-HASH"><code>keys</code></a> may be deleted without changing the order. So long as a given hash is unmodified you may rely on <a href="#keys-HASH"><code>keys</code></a>, <a href="#values-HASH"><code>values</code></a> and <a href="#each-HASH"><code>each</code></a> to repeatedly return the same order as each other. See <a href="https://metacpan.org/pod/perlsec#Algorithmic-Complexity-Attacks" rel="external">&quot;Algorithmic Complexity Attacks&quot; in perlsec</a> for details on why hash order is randomized. Aside from the guarantees provided here the exact details of Perl&#39;s hash algorithm and the hash traversal order are subject to change in any release of Perl. Tied hashes may behave differently to Perl&#39;s hashes with respect to changes in order on insertion and deletion of items.</p>
 
 <p>As a side effect, calling <a href="#keys-HASH"><code>keys</code></a> resets the internal iterator of the HASH or ARRAY (see <a href="#each-HASH"><code>each</code></a>). In particular, calling <a href="#keys-HASH"><code>keys</code></a> in void context resets the iterator with no other overhead.</p>
 
@@ -2258,21 +2278,21 @@
 
 <p>A negative signal name is the same as a negative signal number, killing process groups instead of processes. For example, <code>kill &#39;-KILL&#39;, $pgrp</code> and <code>kill -9, $pgrp</code> will send <code>SIGKILL</code> to the entire process group specified. That means you usually want to use positive not negative signals.</p>
 
-<p>If SIGNAL is either the number 0 or the string <code>ZERO</code> (or <code>SIGZERO</code>), no signal is sent to the process, but <a href="#kill-SIGNAL-LIST"><code>kill</code></a> checks whether it&#39;s <i>possible</i> to send a signal to it (that means, to be brief, that the process is owned by the same user, or we are the super-user). This is useful to check that a child process is still alive (even if only as a zombie) and hasn&#39;t changed its UID. See <a href="/perldoc/perlport/">perlport</a> for notes on the portability of this construct.</p>
+<p>If SIGNAL is either the number 0 or the string <code>ZERO</code> (or <code>SIGZERO</code>), no signal is sent to the process, but <a href="#kill-SIGNAL-LIST"><code>kill</code></a> checks whether it&#39;s <i>possible</i> to send a signal to it (that means, to be brief, that the process is owned by the same user, or we are the super-user). This is useful to check that a child process is still alive (even if only as a zombie) and hasn&#39;t changed its UID. See <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a> for notes on the portability of this construct.</p>
 
 <p>The behavior of kill when a <i>PROCESS</i> number is zero or negative depends on the operating system. For example, on POSIX-conforming systems, zero will signal the current process group, -1 will signal all processes, and any other negative PROCESS number will act as a negative signal number and kill the entire process group specified.</p>
 
 <p>If both the SIGNAL and the PROCESS are negative, the results are undefined. A warning may be produced in a future version.</p>
 
-<p>See <a href="/perldoc/perlipc/#Signals">&quot;Signals&quot; in perlipc</a> for more details.</p>
+<p>See <a href="https://metacpan.org/pod/perlipc#Signals" rel="external">&quot;Signals&quot; in perlipc</a> for more details.</p>
 
 <p>On some platforms such as Windows where the <a href="http://man.he.net/man2/fork" rel="external">fork(2)</a> system call is not available, Perl can be built to emulate <a href="#fork"><code>fork</code></a> at the interpreter level. This emulation has limitations related to kill that have to be considered, for code running on Windows and in code intended to be portable.</p>
 
-<p>See <a href="/perldoc/perlfork/">perlfork</a> for more details.</p>
+<p>See <a href="https://metacpan.org/pod/perlfork" rel="external">perlfork</a> for more details.</p>
 
-<p>If there is no <i>LIST</i> of processes, no signal is sent, and the return value is 0. This form is sometimes used, however, because it causes tainting checks to be run. But see <a href="/perldoc/perlsec/#Laundering-and-Detecting-Tainted-Data">&quot;Laundering and Detecting Tainted Data&quot; in perlsec</a>.</p>
+<p>If there is no <i>LIST</i> of processes, no signal is sent, and the return value is 0. This form is sometimes used, however, because it causes tainting checks to be run. But see <a href="https://metacpan.org/pod/perlsec#Laundering-and-Detecting-Tainted-Data" rel="external">&quot;Laundering and Detecting Tainted Data&quot; in perlsec</a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#kill">&quot;kill&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#kill" rel="external">&quot;kill&quot; in perlport</a>.</p>
 
 </dd>
 <dt>last LABEL  </dt>
@@ -2326,9 +2346,9 @@
 <dt>Otherwise, if <code>use locale</code> for <code>LC_CTYPE</code> is in effect:</dt>
 <dd>
 
-<p>Respects current <code>LC_CTYPE</code> locale for code points &lt; 256; and uses Unicode rules for the remaining code points (this last can only happen if the UTF8 flag is also set). See <a href="/perldoc/perllocale/">perllocale</a>.</p>
+<p>Respects current <code>LC_CTYPE</code> locale for code points &lt; 256; and uses Unicode rules for the remaining code points (this last can only happen if the UTF8 flag is also set). See <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a>.</p>
 
-<p>Starting in v5.20, Perl uses full Unicode rules if the locale is UTF-8. Otherwise, there is a deficiency in this scheme, which is that case changes that cross the 255/256 boundary are not well-defined. For example, the lower case of LATIN CAPITAL LETTER SHARP S (U+1E9E) in Unicode rules is U+00DF (on ASCII platforms). But under <code>use locale</code> (prior to v5.20 or not a UTF-8 locale), the lower case of U+1E9E is itself, because 0xDF may not be LATIN SMALL LETTER SHARP S in the current locale, and Perl has no way of knowing if that character even exists in the locale, much less what code point it is. Perl returns a result that is above 255 (almost always the input character unchanged), for all instances (and there aren&#39;t many) where the 255/256 boundary would otherwise be crossed; and starting in v5.22, it raises a <a href="/perldoc/perldiag/#Cant-do-s-s-on-non-UTF-8-locale-resolved-to-s">locale</a> warning.</p>
+<p>Starting in v5.20, Perl uses full Unicode rules if the locale is UTF-8. Otherwise, there is a deficiency in this scheme, which is that case changes that cross the 255/256 boundary are not well-defined. For example, the lower case of LATIN CAPITAL LETTER SHARP S (U+1E9E) in Unicode rules is U+00DF (on ASCII platforms). But under <code>use locale</code> (prior to v5.20 or not a UTF-8 locale), the lower case of U+1E9E is itself, because 0xDF may not be LATIN SMALL LETTER SHARP S in the current locale, and Perl has no way of knowing if that character even exists in the locale, much less what code point it is. Perl returns a result that is above 255 (almost always the input character unchanged), for all instances (and there aren&#39;t many) where the 255/256 boundary would otherwise be crossed; and starting in v5.22, it raises a <a href="https://metacpan.org/pod/perldiag#Cant-do-s-s-on-non-UTF-8-locale-resolved-to-s" rel="external">locale</a> warning.</p>
 
 </dd>
 <dt>Otherwise, If EXPR has the UTF8 flag set:</dt>
@@ -2377,7 +2397,7 @@
 
 <p>This function cannot be used on an entire array or hash to find out how many elements these have. For that, use <code>scalar @array</code> and <code>scalar keys %hash</code>, respectively.</p>
 
-<p>Like all Perl character operations, <a href="#length-EXPR"><code>length</code></a> normally deals in logical characters, not physical bytes. For how many bytes a string encoded as UTF-8 would take up, use <code>length(Encode::encode(&#39;UTF-8&#39;, EXPR))</code> (you&#39;ll have to <code>use Encode</code> first). See <a href="https://metacpan.org/pod/Encode" rel="external">Encode</a> and <a href="/perldoc/perlunicode/">perlunicode</a>.</p>
+<p>Like all Perl character operations, <a href="#length-EXPR"><code>length</code></a> normally deals in logical characters, not physical bytes. For how many bytes a string encoded as UTF-8 would take up, use <code>length(Encode::encode(&#39;UTF-8&#39;, EXPR))</code> (you&#39;ll have to <code>use Encode</code> first). See <a href="https://metacpan.org/pod/Encode" rel="external">Encode</a> and <a href="https://metacpan.org/pod/perlunicode" rel="external">perlunicode</a>.</p>
 
 </dd>
 <dt>__LINE__ </dt>
@@ -2391,23 +2411,23 @@
 
 <p>Creates a new filename linked to the old filename. Returns true for success, false otherwise.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#link">&quot;link&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#link" rel="external">&quot;link&quot; in perlport</a>.</p>
 
 </dd>
 <dt>listen SOCKET,QUEUESIZE </dt>
 <dd>
 
-<p>Does the same thing that the <a href="http://man.he.net/man2/listen" rel="external">listen(2)</a> system call does. Returns true if it succeeded, false otherwise. See the example in <a href="/perldoc/perlipc/#Sockets:-Client-Server-Communication">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
+<p>Does the same thing that the <a href="http://man.he.net/man2/listen" rel="external">listen(2)</a> system call does. Returns true if it succeeded, false otherwise. See the example in <a href="https://metacpan.org/pod/perlipc#Sockets:-Client-Server-Communication" rel="external">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
 
 </dd>
 <dt>local EXPR </dt>
 <dd>
 
-<p>You really probably want to be using <a href="#my-VARLIST"><code>my</code></a> instead, because <a href="#local-EXPR"><code>local</code></a> isn&#39;t what most people think of as &quot;local&quot;. See <a href="/perldoc/perlsub/#Private-Variables-via-my">&quot;Private Variables via my()&quot; in perlsub</a> for details.</p>
+<p>You really probably want to be using <a href="#my-VARLIST"><code>my</code></a> instead, because <a href="#local-EXPR"><code>local</code></a> isn&#39;t what most people think of as &quot;local&quot;. See <a href="https://metacpan.org/pod/perlsub#Private-Variables-via-my" rel="external">&quot;Private Variables via my()&quot; in perlsub</a> for details.</p>
 
-<p>A local modifies the listed variables to be local to the enclosing block, file, or eval. If more than one value is listed, the list must be placed in parentheses. See <a href="/perldoc/perlsub/#Temporary-Values-via-local">&quot;Temporary Values via local()&quot; in perlsub</a> for details, including issues with tied arrays and hashes.</p>
+<p>A local modifies the listed variables to be local to the enclosing block, file, or eval. If more than one value is listed, the list must be placed in parentheses. See <a href="https://metacpan.org/pod/perlsub#Temporary-Values-via-local" rel="external">&quot;Temporary Values via local()&quot; in perlsub</a> for details, including issues with tied arrays and hashes.</p>
 
-<p>The <code>delete local EXPR</code> construct can also be used to localize the deletion of array/hash elements to the current block. See <a href="/perldoc/perlsub/#Localized-deletion-of-elements-of-composite-types">&quot;Localized deletion of elements of composite types&quot; in perlsub</a>.</p>
+<p>The <code>delete local EXPR</code> construct can also be used to localize the deletion of array/hash elements to the current block. See <a href="https://metacpan.org/pod/perlsub#Localized-deletion-of-elements-of-composite-types" rel="external">&quot;Localized deletion of elements of composite types&quot; in perlsub</a>.</p>
 
 </dd>
 <dt>localtime EXPR  </dt>
@@ -2451,7 +2471,7 @@
 
 <p>The format of this scalar value is <b>not</b> locale-dependent but built into Perl. For GMT instead of local time use the <a href="#gmtime-EXPR"><code>gmtime</code></a> builtin. See also the <a href="https://metacpan.org/pod/Time::Local" rel="external"><code>Time::Local</code></a> module (for converting seconds, minutes, hours, and such back to the integer value returned by <a href="#time"><code>time</code></a>), and the <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a> module&#39;s <a href="https://metacpan.org/pod/POSIX#strftime" rel="external"><code>strftime</code></a> and <a href="https://metacpan.org/pod/POSIX#mktime" rel="external"><code>mktime</code></a> functions.</p>
 
-<p>To get somewhat similar but locale-dependent date strings, set up your locale environment variables appropriately (please see <a href="/perldoc/perllocale/">perllocale</a>) and try for example:</p>
+<p>To get somewhat similar but locale-dependent date strings, set up your locale environment variables appropriately (please see <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a>) and try for example:</p>
 
 <pre><code>    use POSIX qw(strftime);
     my $now_string = strftime &quot;%a %b %e %H:%M:%S %Y&quot;, localtime;
@@ -2464,7 +2484,7 @@
 
 <p>For a comprehensive date and time representation look at the <a href="https://metacpan.org/pod/DateTime" rel="external">DateTime</a> module on CPAN.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#localtime">&quot;localtime&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#localtime" rel="external">&quot;localtime&quot; in perlport</a>.</p>
 
 </dd>
 <dt>lock THING </dt>
@@ -2513,7 +2533,7 @@
 
 <p>If EXPR is omitted, stats <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#lstat">&quot;lstat&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#lstat" rel="external">&quot;lstat&quot; in perlport</a>.</p>
 
 </dd>
 <dt>m//</dt>
@@ -2547,7 +2567,7 @@
 
 <p>which makes the intention more clear.</p>
 
-<p>Map always returns a list, which can be assigned to a hash such that the elements become key/value pairs. See <a href="/perldoc/perldata/">perldata</a> for more details.</p>
+<p>Map always returns a list, which can be assigned to a hash such that the elements become key/value pairs. See <a href="https://metacpan.org/pod/perldata" rel="external">perldata</a> for more details.</p>
 
 <pre><code>    my %hash = map { get_a_key_for($_) =&gt; $_ } @array;</code></pre>
 
@@ -2606,33 +2626,33 @@
 
 <pre><code>    use IPC::SysV;</code></pre>
 
-<p>first to get the correct constant definitions. If CMD is <code>IPC_STAT</code>, then ARG must be a variable that will hold the returned <code>msqid_ds</code> structure. Returns like <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>: the undefined value for error, <code>&quot;0 but true&quot;</code> for zero, or the actual return value otherwise. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
+<p>first to get the correct constant definitions. If CMD is <code>IPC_STAT</code>, then ARG must be a variable that will hold the returned <code>msqid_ds</code> structure. Returns like <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>: the undefined value for error, <code>&quot;0 but true&quot;</code> for zero, or the actual return value otherwise. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#msgctl">&quot;msgctl&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#msgctl" rel="external">&quot;msgctl&quot; in perlport</a>.</p>
 
 </dd>
 <dt>msgget KEY,FLAGS </dt>
 <dd>
 
-<p>Calls the System V IPC function <a href="http://man.he.net/man2/msgget" rel="external">msgget(2)</a>. Returns the message queue id, or <a href="#undef-EXPR"><code>undef</code></a> on error. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Msg" rel="external"><code>IPC::Msg</code></a>.</p>
+<p>Calls the System V IPC function <a href="http://man.he.net/man2/msgget" rel="external">msgget(2)</a>. Returns the message queue id, or <a href="#undef-EXPR"><code>undef</code></a> on error. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Msg" rel="external"><code>IPC::Msg</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#msgget">&quot;msgget&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#msgget" rel="external">&quot;msgget&quot; in perlport</a>.</p>
 
 </dd>
 <dt>msgrcv ID,VAR,SIZE,TYPE,FLAGS </dt>
 <dd>
 
-<p>Calls the System V IPC function msgrcv to receive a message from message queue ID into variable VAR with a maximum message size of SIZE. Note that when a message is received, the message type as a native long integer will be the first thing in VAR, followed by the actual message. This packing may be opened with <code>unpack(&quot;l! a*&quot;)</code>. Taints the variable. Returns true if successful, false on error. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Msg" rel="external"><code>IPC::Msg</code></a>.</p>
+<p>Calls the System V IPC function msgrcv to receive a message from message queue ID into variable VAR with a maximum message size of SIZE. Note that when a message is received, the message type as a native long integer will be the first thing in VAR, followed by the actual message. This packing may be opened with <code>unpack(&quot;l! a*&quot;)</code>. Taints the variable. Returns true if successful, false on error. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Msg" rel="external"><code>IPC::Msg</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#msgrcv">&quot;msgrcv&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#msgrcv" rel="external">&quot;msgrcv&quot; in perlport</a>.</p>
 
 </dd>
 <dt>msgsnd ID,MSG,FLAGS </dt>
 <dd>
 
-<p>Calls the System V IPC function msgsnd to send the message MSG to the message queue ID. MSG must begin with the native long integer message type, be followed by the length of the actual message, and then finally the message itself. This kind of packing can be achieved with <code>pack(&quot;l! a*&quot;, $type, $message)</code>. Returns true if successful, false on error. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Msg" rel="external"><code>IPC::Msg</code></a>.</p>
+<p>Calls the System V IPC function msgsnd to send the message MSG to the message queue ID. MSG must begin with the native long integer message type, be followed by the length of the actual message, and then finally the message itself. This kind of packing can be achieved with <code>pack(&quot;l! a*&quot;, $type, $message)</code>. Returns true if successful, false on error. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Msg" rel="external"><code>IPC::Msg</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#msgsnd">&quot;msgsnd&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#msgsnd" rel="external">&quot;msgsnd&quot; in perlport</a>.</p>
 
 </dd>
 <dt>my VARLIST </dt>
@@ -2652,7 +2672,7 @@
 
 <p>A <a href="#my-VARLIST"><code>my</code></a> declares the listed variables to be local (lexically) to the enclosing block, file, or <a href="#eval-EXPR"><code>eval</code></a>. If more than one variable is listed, the list must be placed in parentheses.</p>
 
-<p>The exact semantics and interface of TYPE and ATTRS are still evolving. TYPE may be a bareword, a constant declared with <a href="https://metacpan.org/pod/constant" rel="external"><code>use constant</code></a>, or <a href="#PACKAGE__"><code>__PACKAGE__</code></a>. It is currently bound to the use of the <a href="https://metacpan.org/pod/fields" rel="external">fields</a> pragma, and attributes are handled using the <a href="https://metacpan.org/pod/attributes" rel="external">attributes</a> pragma, or starting from Perl 5.8.0 also via the <a href="https://metacpan.org/pod/Attribute::Handlers" rel="external">Attribute::Handlers</a> module. See <a href="/perldoc/perlsub/#Private-Variables-via-my">&quot;Private Variables via my()&quot; in perlsub</a> for details.</p>
+<p>The exact semantics and interface of TYPE and ATTRS are still evolving. TYPE may be a bareword, a constant declared with <a href="https://metacpan.org/pod/constant" rel="external"><code>use constant</code></a>, or <a href="#PACKAGE__"><code>__PACKAGE__</code></a>. It is currently bound to the use of the <a href="https://metacpan.org/pod/fields" rel="external">fields</a> pragma, and attributes are handled using the <a href="https://metacpan.org/pod/attributes" rel="external">attributes</a> pragma, or starting from Perl 5.8.0 also via the <a href="https://metacpan.org/pod/Attribute::Handlers" rel="external">Attribute::Handlers</a> module. See <a href="https://metacpan.org/pod/perlsub#Private-Variables-via-my" rel="external">&quot;Private Variables via my()&quot; in perlsub</a> for details.</p>
 
 <p>Note that with a parenthesised list, <a href="#undef-EXPR"><code>undef</code></a> can be used as a dummy placeholder, for example to skip assignment of initial values:</p>
 
@@ -2768,13 +2788,13 @@
 
 <p>If three (or more) arguments are specified, the open mode (including optional encoding) in the second argument are distinct from the filename in the third. If MODE is <code>&lt;</code> or nothing, the file is opened for input. If MODE is <code>&gt;</code>, the file is opened for output, with existing files first being truncated (&quot;clobbered&quot;) and nonexisting files newly created. If MODE is <code>&gt;&gt;</code>, the file is opened for appending, again being created if necessary.</p>
 
-<p>You can put a <code>+</code> in front of the <code>&gt;</code> or <code>&lt;</code> to indicate that you want both read and write access to the file; thus <code>+&lt;</code> is almost always preferred for read/write updates--the <code>+&gt;</code> mode would clobber the file first. You can&#39;t usually use either read-write mode for updating textfiles, since they have variable-length records. See the <b>-i</b> switch in <a href="/perldoc/perlrun/">perlrun</a> for a better approach. The file is created with permissions of <code>0666</code> modified by the process&#39;s <a href="#umask-EXPR"><code>umask</code></a> value.</p>
+<p>You can put a <code>+</code> in front of the <code>&gt;</code> or <code>&lt;</code> to indicate that you want both read and write access to the file; thus <code>+&lt;</code> is almost always preferred for read/write updates--the <code>+&gt;</code> mode would clobber the file first. You can&#39;t usually use either read-write mode for updating textfiles, since they have variable-length records. See the <b>-i</b> switch in <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a> for a better approach. The file is created with permissions of <code>0666</code> modified by the process&#39;s <a href="#umask-EXPR"><code>umask</code></a> value.</p>
 
 <p>These various prefixes correspond to the <a href="http://man.he.net/man3/fopen" rel="external">fopen(3)</a> modes of <code>r</code>, <code>r+</code>, <code>w</code>, <code>w+</code>, <code>a</code>, and <code>a+</code>.</p>
 
 <p>In the one- and two-argument forms of the call, the mode and filename should be concatenated (in that order), preferably separated by white space. You can--but shouldn&#39;t--omit the mode in these forms when that mode is <code>&lt;</code>. It is safe to use the two-argument form of <a href="#open-FILEHANDLE-EXPR"><code>open</code></a> if the filename argument is a known literal.</p>
 
-<p>For three or more arguments if MODE is <code>|-</code>, the filename is interpreted as a command to which output is to be piped, and if MODE is <code>-|</code>, the filename is interpreted as a command that pipes output to us. In the two-argument (and one-argument) form, one should replace dash (<code>-</code>) with the command. See <a href="/perldoc/perlipc/#Using-open-for-IPC">&quot;Using open() for IPC&quot; in perlipc</a> for more examples of this. (You are not allowed to <a href="#open-FILEHANDLE-EXPR"><code>open</code></a> to a command that pipes both in <i>and</i> out, but see <a href="https://metacpan.org/pod/IPC::Open2" rel="external">IPC::Open2</a>, <a href="https://metacpan.org/pod/IPC::Open3" rel="external">IPC::Open3</a>, and <a href="/perldoc/perlipc/#Bidirectional-Communication-with-Another-Process">&quot;Bidirectional Communication with Another Process&quot; in perlipc</a> for alternatives.)</p>
+<p>For three or more arguments if MODE is <code>|-</code>, the filename is interpreted as a command to which output is to be piped, and if MODE is <code>-|</code>, the filename is interpreted as a command that pipes output to us. In the two-argument (and one-argument) form, one should replace dash (<code>-</code>) with the command. See <a href="https://metacpan.org/pod/perlipc#Using-open-for-IPC" rel="external">&quot;Using open() for IPC&quot; in perlipc</a> for more examples of this. (You are not allowed to <a href="#open-FILEHANDLE-EXPR"><code>open</code></a> to a command that pipes both in <i>and</i> out, but see <a href="https://metacpan.org/pod/IPC::Open2" rel="external">IPC::Open2</a>, <a href="https://metacpan.org/pod/IPC::Open3" rel="external">IPC::Open3</a>, and <a href="https://metacpan.org/pod/perlipc#Bidirectional-Communication-with-Another-Process" rel="external">&quot;Bidirectional Communication with Another Process&quot; in perlipc</a> for alternatives.)</p>
 
 <p>In the form of pipe opens taking three or more arguments, if LIST is specified (extra arguments after the command name) then LIST becomes arguments to the command invoked if the platform supports it. The meaning of <a href="#open-FILEHANDLE-EXPR"><code>open</code></a> with more than three arguments for non-pipe modes is not yet defined, but experimental &quot;layers&quot; may give extra LIST arguments meaning.</p>
 
@@ -2785,7 +2805,7 @@
 <pre><code>  open(my $fh, &quot;&lt;:encoding(UTF-8)&quot;, $filename)
     || die &quot;Can&#39;t open UTF-8 encoded $filename: $!&quot;;</code></pre>
 
-<p>opens the UTF8-encoded file containing Unicode characters; see <a href="/perldoc/perluniintro/">perluniintro</a>. Note that if layers are specified in the three-argument form, then default layers stored in ${^OPEN} (see <a href="/perldoc/perlvar/">perlvar</a>; usually set by the <a href="https://metacpan.org/pod/open" rel="external">open</a> pragma or the switch <code>-CioD</code>) are ignored. Those layers will also be ignored if you specify a colon with no name following it. In that case the default layer for the operating system (:raw on Unix, :crlf on Windows) is used.</p>
+<p>opens the UTF8-encoded file containing Unicode characters; see <a href="https://metacpan.org/pod/perluniintro" rel="external">perluniintro</a>. Note that if layers are specified in the three-argument form, then default layers stored in ${^OPEN} (see <a href="/perldoc/perlvar/">perlvar</a>; usually set by the <a href="https://metacpan.org/pod/open" rel="external">open</a> pragma or the switch <code>-CioD</code>) are ignored. Those layers will also be ignored if you specify a colon with no name following it. In that case the default layer for the operating system (:raw on Unix, :crlf on Windows) is used.</p>
 
 <p>Open returns nonzero on success, the undefined value otherwise. If the <a href="#open-FILEHANDLE-EXPR"><code>open</code></a> involved a pipe, the return value happens to be the pid of the subprocess.</p>
 
@@ -2828,7 +2848,7 @@
     open(STDOUT, &quot;&gt;&quot;, \$variable)
         or die &quot;Can&#39;t open STDOUT: $!&quot;;</code></pre>
 
-<p>See <a href="/perldoc/perliol/">perliol</a> for detailed info on PerlIO.</p>
+<p>See <a href="https://metacpan.org/pod/perliol" rel="external">perliol</a> for detailed info on PerlIO.</p>
 
 <p>General examples:</p>
 
@@ -2941,9 +2961,9 @@
 <pre><code>    open(my $fh, &quot;|cat -n | expand -4 | lpr&quot;)
         || die &quot;Can&#39;t open pipeline to lpr: $!&quot;;</code></pre>
 
-<p>See <a href="/perldoc/perlipc/#Safe-Pipe-Opens">&quot;Safe Pipe Opens&quot; in perlipc</a> for more examples of this.</p>
+<p>See <a href="https://metacpan.org/pod/perlipc#Safe-Pipe-Opens" rel="external">&quot;Safe Pipe Opens&quot; in perlipc</a> for more examples of this.</p>
 
-<p>Perl will attempt to flush all files opened for output before any operation that may do a fork, but this may not be supported on some platforms (see <a href="/perldoc/perlport/">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles.</p>
+<p>Perl will attempt to flush all files opened for output before any operation that may do a fork, but this may not be supported on some platforms (see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles.</p>
 
 <p>On systems that support a close-on-exec flag on files, the flag will be set for the newly opened file descriptor as determined by the value of <a href="/perldoc/perlvar/#F"><code>$^F</code></a>. See <a href="/perldoc/perlvar/#F">&quot;$^F&quot; in perlvar</a>.</p>
 
@@ -2988,7 +3008,7 @@
 
 <p>See <a href="#seek-FILEHANDLE-POSITION-WHENCE"><code>seek</code></a> for some details about mixing reading and writing.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#open">&quot;open&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#open" rel="external">&quot;open&quot; in perlport</a>.</p>
 
 </dd>
 <dt>opendir DIRHANDLE,EXPR </dt>
@@ -3008,7 +3028,7 @@
 
 <p>Returns the numeric value of the first character of EXPR. If EXPR is an empty string, returns 0. If EXPR is omitted, uses <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a>. (Note <i>character</i>, not byte.)</p>
 
-<p>For the reverse, see <a href="#chr-NUMBER"><code>chr</code></a>. See <a href="/perldoc/perlunicode/">perlunicode</a> for more about Unicode.</p>
+<p>For the reverse, see <a href="#chr-NUMBER"><code>chr</code></a>. See <a href="https://metacpan.org/pod/perlunicode" rel="external">perlunicode</a> for more about Unicode.</p>
 
 </dd>
 <dt>our VARLIST  </dt>
@@ -3092,7 +3112,7 @@
 
 <p>An <a href="#our-VARLIST"><code>our</code></a> declaration may also have a list of attributes associated with it.</p>
 
-<p>The exact semantics and interface of TYPE and ATTRS are still evolving. TYPE is currently bound to the use of the <a href="https://metacpan.org/pod/fields" rel="external">fields</a> pragma, and attributes are handled using the <a href="https://metacpan.org/pod/attributes" rel="external">attributes</a> pragma, or, starting from Perl 5.8.0, also via the <a href="https://metacpan.org/pod/Attribute::Handlers" rel="external">Attribute::Handlers</a> module. See <a href="/perldoc/perlsub/#Private-Variables-via-my">&quot;Private Variables via my()&quot; in perlsub</a> for details.</p>
+<p>The exact semantics and interface of TYPE and ATTRS are still evolving. TYPE is currently bound to the use of the <a href="https://metacpan.org/pod/fields" rel="external">fields</a> pragma, and attributes are handled using the <a href="https://metacpan.org/pod/attributes" rel="external">attributes</a> pragma, or, starting from Perl 5.8.0, also via the <a href="https://metacpan.org/pod/Attribute::Handlers" rel="external">Attribute::Handlers</a> module. See <a href="https://metacpan.org/pod/perlsub#Private-Variables-via-my" rel="external">&quot;Private Variables via my()&quot; in perlsub</a> for details.</p>
 
 <p>Note that with a parenthesised list, <a href="#undef-EXPR"><code>undef</code></a> can be used as a dummy placeholder, for example to skip assignment of initial values:</p>
 
@@ -3106,7 +3126,7 @@
 
 <p>Takes a LIST of values and converts it into a string using the rules given by the TEMPLATE. The resulting string is the concatenation of the converted values. Typically, each converted value looks like its machine-level representation. For example, on 32-bit machines an integer may be represented by a sequence of 4 bytes, which will in Perl be presented as a string that&#39;s 4 characters long.</p>
 
-<p>See <a href="/perldoc/perlpacktut/">perlpacktut</a> for an introduction to this function.</p>
+<p>See <a href="https://metacpan.org/pod/perlpacktut" rel="external">perlpacktut</a> for an introduction to this function.</p>
 
 <p>The TEMPLATE is a sequence of characters that give the order and type of values, as follows:</p>
 
@@ -3367,7 +3387,7 @@
 
 <p>Byteorders <code>&quot;1234&quot;</code> and <code>&quot;12345678&quot;</code> are little-endian; <code>&quot;4321&quot;</code> and <code>&quot;87654321&quot;</code> are big-endian. Systems with multiarchitecture binaries will have <code>&quot;ffff&quot;</code>, signifying that static information doesn&#39;t work, one must use runtime probing.</p>
 
-<p>For portably packed integers, either use the formats <code>n</code>, <code>N</code>, <code>v</code>, and <code>V</code> or else use the <code>&gt;</code> and <code>&lt;</code> modifiers described immediately below. See also <a href="/perldoc/perlport/">perlport</a>.</p>
+<p>For portably packed integers, either use the formats <code>n</code>, <code>N</code>, <code>v</code>, and <code>V</code> or else use the <code>&gt;</code> and <code>&lt;</code> modifiers described immediately below. See also <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>.</p>
 
 </li>
 <li><p>Also floating point numbers have endianness. Usually (but not always) this agrees with the integer endianness. Even though most platforms these days use the IEEE 754 binary format, there are differences, especially if the long doubles are involved. You can see the <code>Config</code> variables <code>doublekind</code> and <code>longdblkind</code> (also <code>doublesize</code>, <code>longdblsize</code>): the &quot;kind&quot; values are enums, unlike <code>byteorder</code>.</p>
@@ -3396,7 +3416,7 @@
 </ul>
 
 </li>
-<li><p>Real numbers (floats and doubles) are in native machine format only. Due to the multiplicity of floating-point formats and the lack of a standard &quot;network&quot; representation for them, no facility for interchange has been made. This means that packed floating-point data written on one machine may not be readable on another, even if both use IEEE floating-point arithmetic (because the endianness of the memory representation is not part of the IEEE spec). See also <a href="/perldoc/perlport/">perlport</a>.</p>
+<li><p>Real numbers (floats and doubles) are in native machine format only. Due to the multiplicity of floating-point formats and the lack of a standard &quot;network&quot; representation for them, no facility for interchange has been made. This means that packed floating-point data written on one machine may not be readable on another, even if both use IEEE floating-point arithmetic (because the endianness of the memory representation is not part of the IEEE spec). See also <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>.</p>
 
 <p>If you know <i>exactly</i> what you&#39;re doing, you can use the <code>&gt;</code> or <code>&lt;</code> modifiers to force big- or little-endian byte-order on floating-point values.</p>
 
@@ -3554,7 +3574,7 @@
 
 <p>If VERSION is provided, <a href="#package-NAMESPACE"><code>package</code></a> sets the <code>$VERSION</code> variable in the given namespace to a <a href="https://metacpan.org/pod/version" rel="external">version</a> object with the VERSION provided. VERSION must be a &quot;strict&quot; style version number as defined by the <a href="https://metacpan.org/pod/version" rel="external">version</a> module: a positive decimal number (integer or decimal-fraction) without exponentiation or else a dotted-decimal v-string with a leading &#39;v&#39; character and at least three components. You should set <code>$VERSION</code> only once per package.</p>
 
-<p>See <a href="/perldoc/perlmod/#Packages">&quot;Packages&quot; in perlmod</a> for more information about packages, modules, and classes. See <a href="/perldoc/perlsub/">perlsub</a> for other scoping issues.</p>
+<p>See <a href="https://metacpan.org/pod/perlmod#Packages" rel="external">&quot;Packages&quot; in perlmod</a> for more information about packages, modules, and classes. See <a href="https://metacpan.org/pod/perlsub" rel="external">perlsub</a> for other scoping issues.</p>
 
 </dd>
 <dt>__PACKAGE__ </dt>
@@ -3570,7 +3590,7 @@
 
 <p>Returns true on success.</p>
 
-<p>See <a href="https://metacpan.org/pod/IPC::Open2" rel="external">IPC::Open2</a>, <a href="https://metacpan.org/pod/IPC::Open3" rel="external">IPC::Open3</a>, and <a href="/perldoc/perlipc/#Bidirectional-Communication-with-Another-Process">&quot;Bidirectional Communication with Another Process&quot; in perlipc</a> for examples of such things.</p>
+<p>See <a href="https://metacpan.org/pod/IPC::Open2" rel="external">IPC::Open2</a>, <a href="https://metacpan.org/pod/IPC::Open3" rel="external">IPC::Open3</a>, and <a href="https://metacpan.org/pod/perlipc#Bidirectional-Communication-with-Another-Process" rel="external">&quot;Bidirectional Communication with Another Process&quot; in perlipc</a> for examples of such things.</p>
 
 <p>On systems that support a close-on-exec flag on files, that flag is set on all newly opened file descriptors whose <a href="#fileno-FILEHANDLE"><code>fileno</code></a>s are <i>higher</i> than the current value of <a href="/perldoc/perlvar/#F"><code>$^F</code></a> (by default 2 for <code>STDERR</code>). See <a href="/perldoc/perlvar/#F">&quot;$^F&quot; in perlvar</a>.</p>
 
@@ -3600,9 +3620,9 @@
 
 <p><a href="#pos-SCALAR"><code>pos</code></a> directly accesses the location used by the regexp engine to store the offset, so assigning to <a href="#pos-SCALAR"><code>pos</code></a> will change that offset, and so will also influence the <code>\G</code> zero-width assertion in regular expressions. Both of these effects take place for the next match, so you can&#39;t affect the position with <a href="#pos-SCALAR"><code>pos</code></a> during the current match, such as in <code>(?{pos() = 5})</code> or <code>s//pos() = 5/e</code>.</p>
 
-<p>Setting <a href="#pos-SCALAR"><code>pos</code></a> also resets the <i>matched with zero-length</i> flag, described under <a href="/perldoc/perlre/#Repeated-Patterns-Matching-a-Zero-length-Substring">&quot;Repeated Patterns Matching a Zero-length Substring&quot; in perlre</a>.</p>
+<p>Setting <a href="#pos-SCALAR"><code>pos</code></a> also resets the <i>matched with zero-length</i> flag, described under <a href="https://metacpan.org/pod/perlre#Repeated-Patterns-Matching-a-Zero-length-Substring" rel="external">&quot;Repeated Patterns Matching a Zero-length Substring&quot; in perlre</a>.</p>
 
-<p>Because a failed <code>m//gc</code> match doesn&#39;t reset the offset, the return from <a href="#pos-SCALAR"><code>pos</code></a> won&#39;t change either in this case. See <a href="/perldoc/perlre/">perlre</a> and <a href="/perldoc/perlop/">perlop</a>.</p>
+<p>Because a failed <code>m//gc</code> match doesn&#39;t reset the offset, the return from <a href="#pos-SCALAR"><code>pos</code></a> won&#39;t change either in this case. See <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a> and <a href="/perldoc/perlop/">perlop</a>.</p>
 
 </dd>
 <dt>print FILEHANDLE LIST </dt>
@@ -3629,7 +3649,7 @@
 <pre><code>    print { $files[$i] } &quot;stuff\n&quot;;
     print { $OK ? *STDOUT : *STDERR } &quot;stuff\n&quot;;</code></pre>
 
-<p>Printing to a closed pipe or socket will generate a SIGPIPE signal. See <a href="/perldoc/perlipc/">perlipc</a> for more on signal handling.</p>
+<p>Printing to a closed pipe or socket will generate a SIGPIPE signal. See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for more on signal handling.</p>
 
 </dd>
 <dt>printf FILEHANDLE FORMAT, LIST </dt>
@@ -3647,7 +3667,7 @@
 <dt>printf</dt>
 <dd>
 
-<p>Equivalent to <code>print FILEHANDLE sprintf(FORMAT, LIST)</code>, except that <a href="/perldoc/perlvar/#pod"><code>$\</code></a> (the output record separator) is not appended. The FORMAT and the LIST are actually parsed as a single list. The first argument of the list will be interpreted as the <a href="#printf-FILEHANDLE-FORMAT-LIST"><code>printf</code></a> format. This means that <code>printf(@_)</code> will use <code>$_[0]</code> as the format. See <a href="#sprintf-FORMAT-LIST">sprintf</a> for an explanation of the format argument. If <code>use locale</code> (including <code>use locale &#39;:not_characters&#39;</code>) is in effect and <a href="https://metacpan.org/pod/POSIX#setlocale" rel="external"><code>POSIX::setlocale</code></a> has been called, the character used for the decimal separator in formatted floating-point numbers is affected by the <code>LC_NUMERIC</code> locale setting. See <a href="/perldoc/perllocale/">perllocale</a> and <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a>.</p>
+<p>Equivalent to <code>print FILEHANDLE sprintf(FORMAT, LIST)</code>, except that <a href="/perldoc/perlvar/#pod"><code>$\</code></a> (the output record separator) is not appended. The FORMAT and the LIST are actually parsed as a single list. The first argument of the list will be interpreted as the <a href="#printf-FILEHANDLE-FORMAT-LIST"><code>printf</code></a> format. This means that <code>printf(@_)</code> will use <code>$_[0]</code> as the format. See <a href="#sprintf-FORMAT-LIST">sprintf</a> for an explanation of the format argument. If <code>use locale</code> (including <code>use locale &#39;:not_characters&#39;</code>) is in effect and <a href="https://metacpan.org/pod/POSIX#setlocale" rel="external"><code>POSIX::setlocale</code></a> has been called, the character used for the decimal separator in formatted floating-point numbers is affected by the <code>LC_NUMERIC</code> locale setting. See <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a> and <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a>.</p>
 
 <p>For historical reasons, if you omit the list, <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a> is used as the format; to use FILEHANDLE without a list, you must use a bareword filehandle like <code>FH</code>, not an indirect one like <code>$fh</code>. However, this will rarely do what you want; if <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a> contains formatting codes, they will be replaced with the empty string and a warning will be emitted if <a href="https://metacpan.org/pod/warnings" rel="external">warnings</a> are enabled. Just use <a href="#print-FILEHANDLE-LIST"><code>print</code></a> if you want to print the contents of <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a>.</p>
 
@@ -3862,7 +3882,7 @@
 
 <p>Returns the value of a symbolic link, if symbolic links are implemented. If not, raises an exception. If there is a system error, returns the undefined value and sets <a href="/perldoc/perlvar/#pod"><code>$!</code></a> (errno). If EXPR is omitted, uses <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#readlink">&quot;readlink&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#readlink" rel="external">&quot;readlink&quot; in perlport</a>.</p>
 
 </dd>
 <dt>readpipe EXPR</dt>
@@ -3878,7 +3898,7 @@
 <dt>recv SOCKET,SCALAR,LENGTH,FLAGS </dt>
 <dd>
 
-<p>Receives a message on a socket. Attempts to receive LENGTH characters of data into variable SCALAR from the specified SOCKET filehandle. SCALAR will be grown or shrunk to the length actually read. Takes the same flags as the system call of the same name. Returns the address of the sender if SOCKET&#39;s protocol supports this; returns an empty string otherwise. If there&#39;s an error, returns the undefined value. This call is actually implemented in terms of the <a href="http://man.he.net/man2/recvfrom" rel="external">recvfrom(2)</a> system call. See <a href="/perldoc/perlipc/#UDP:-Message-Passing">&quot;UDP: Message Passing&quot; in perlipc</a> for examples.</p>
+<p>Receives a message on a socket. Attempts to receive LENGTH characters of data into variable SCALAR from the specified SOCKET filehandle. SCALAR will be grown or shrunk to the length actually read. Takes the same flags as the system call of the same name. Returns the address of the sender if SOCKET&#39;s protocol supports this; returns an empty string otherwise. If there&#39;s an error, returns the undefined value. This call is actually implemented in terms of the <a href="http://man.he.net/man2/recvfrom" rel="external">recvfrom(2)</a> system call. See <a href="https://metacpan.org/pod/perlipc#UDP:-Message-Passing" rel="external">&quot;UDP: Message Passing&quot; in perlipc</a> for examples.</p>
 
 <p>Note the <i>characters</i>: depending on the status of the socket, either (8-bit) bytes or characters are received. By default all sockets operate on bytes, but for example if the socket has been changed using <a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a> to operate with the <code>:encoding(UTF-8)</code> I/O layer (see the <a href="https://metacpan.org/pod/open" rel="external">open</a> pragma), the I/O will operate on UTF8-encoded Unicode characters, not bytes. Similarly for the <code>:encoding</code> layer: in that case pretty much any characters can be read.</p>
 
@@ -3954,15 +3974,15 @@
         print &quot;r is not a reference at all.\n&quot;;
     }</code></pre>
 
-<p>The return value <code>LVALUE</code> indicates a reference to an lvalue that is not a variable. You get this from taking the reference of function calls like <a href="#pos-SCALAR"><code>pos</code></a> or <a href="#substr-EXPR-OFFSET-LENGTH-REPLACEMENT"><code>substr</code></a>. <code>VSTRING</code> is returned if the reference points to a <a href="/perldoc/perldata/#Version-Strings">version string</a>.</p>
+<p>The return value <code>LVALUE</code> indicates a reference to an lvalue that is not a variable. You get this from taking the reference of function calls like <a href="#pos-SCALAR"><code>pos</code></a> or <a href="#substr-EXPR-OFFSET-LENGTH-REPLACEMENT"><code>substr</code></a>. <code>VSTRING</code> is returned if the reference points to a <a href="https://metacpan.org/pod/perldata#Version-Strings" rel="external">version string</a>.</p>
 
 <p>The result <code>Regexp</code> indicates that the argument is a regular expression resulting from <a href="#qr-STRING"><code>qr//</code></a>.</p>
 
 <p>If the referenced object has been blessed into a package, then that package name is returned instead. But don&#39;t use that, as it&#39;s now considered &quot;bad practice&quot;. For one reason, an object could be using a class called <code>Regexp</code> or <code>IO</code>, or even <code>HASH</code>. Also, <a href="#ref-EXPR"><code>ref</code></a> doesn&#39;t take into account subclasses, like <a href="https://metacpan.org/pod/UNIVERSAL#obj-isa-TYPE" rel="external"><code>isa</code></a> does.</p>
 
-<p>Instead, use <a href="https://metacpan.org/pod/Scalar::Util#blessed" rel="external"><code>blessed</code></a> (in the <a href="https://metacpan.org/pod/Scalar::Util" rel="external">Scalar::Util</a> module) for boolean checks, <a href="https://metacpan.org/pod/UNIVERSAL#obj-isa-TYPE" rel="external"><code>isa</code></a> for specific class checks and <a href="https://metacpan.org/pod/Scalar::Util#reftype" rel="external"><code>reftype</code></a> (also from <a href="https://metacpan.org/pod/Scalar::Util" rel="external">Scalar::Util</a>) for type checks. (See <a href="/perldoc/perlobj/">perlobj</a> for details and a <a href="https://metacpan.org/pod/Scalar::Util#blessed" rel="external"><code>blessed</code></a>/<a href="https://metacpan.org/pod/UNIVERSAL#obj-isa-TYPE" rel="external"><code>isa</code></a> example.)</p>
+<p>Instead, use <a href="https://metacpan.org/pod/Scalar::Util#blessed" rel="external"><code>blessed</code></a> (in the <a href="https://metacpan.org/pod/Scalar::Util" rel="external">Scalar::Util</a> module) for boolean checks, <a href="https://metacpan.org/pod/UNIVERSAL#obj-isa-TYPE" rel="external"><code>isa</code></a> for specific class checks and <a href="https://metacpan.org/pod/Scalar::Util#reftype" rel="external"><code>reftype</code></a> (also from <a href="https://metacpan.org/pod/Scalar::Util" rel="external">Scalar::Util</a>) for type checks. (See <a href="https://metacpan.org/pod/perlobj" rel="external">perlobj</a> for details and a <a href="https://metacpan.org/pod/Scalar::Util#blessed" rel="external"><code>blessed</code></a>/<a href="https://metacpan.org/pod/UNIVERSAL#obj-isa-TYPE" rel="external"><code>isa</code></a> example.)</p>
 
-<p>See also <a href="/perldoc/perlref/">perlref</a>.</p>
+<p>See also <a href="https://metacpan.org/pod/perlref" rel="external">perlref</a>.</p>
 
 </dd>
 <dt>rename OLDNAME,NEWNAME    </dt>
@@ -3970,11 +3990,11 @@
 
 <p>Changes the name of a file; an existing file NEWNAME will be clobbered. Returns true for success, false otherwise.</p>
 
-<p>Behavior of this function varies wildly depending on your system implementation. For example, it will usually not work across file system boundaries, even though the system <i>mv</i> command sometimes compensates for this. Other restrictions include whether it works on directories, open files, or pre-existing files. Check <a href="/perldoc/perlport/">perlport</a> and either the <a href="http://man.he.net/man2/rename" rel="external">rename(2)</a> manpage or equivalent system documentation for details.</p>
+<p>Behavior of this function varies wildly depending on your system implementation. For example, it will usually not work across file system boundaries, even though the system <i>mv</i> command sometimes compensates for this. Other restrictions include whether it works on directories, open files, or pre-existing files. Check <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a> and either the <a href="http://man.he.net/man2/rename" rel="external">rename(2)</a> manpage or equivalent system documentation for details.</p>
 
 <p>For a platform independent <a href="https://metacpan.org/pod/File::Copy#move" rel="external"><code>move</code></a> function look at the <a href="https://metacpan.org/pod/File::Copy" rel="external">File::Copy</a> module.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#rename">&quot;rename&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#rename" rel="external">&quot;rename&quot; in perlport</a>.</p>
 
 </dd>
 <dt>require VERSION </dt>
@@ -4128,7 +4148,7 @@
 
 <p>These hooks are also permitted to set the <a href="/perldoc/perlvar/#INC"><code>%INC</code></a> entry corresponding to the files they have loaded. See <a href="/perldoc/perlvar/#INC">&quot;%INC&quot; in perlvar</a>.</p>
 
-<p>For a yet-more-powerful import facility, see <a href="#use-Module-VERSION-LIST"><code>use</code></a> and <a href="/perldoc/perlmod/">perlmod</a>.</p>
+<p>For a yet-more-powerful import facility, see <a href="#use-Module-VERSION-LIST"><code>use</code></a> and <a href="https://metacpan.org/pod/perlmod" rel="external">perlmod</a>.</p>
 
 </dd>
 <dt>reset EXPR </dt>
@@ -4188,7 +4208,7 @@
 
 <p>Sets the current position to the beginning of the directory for the <a href="#readdir-DIRHANDLE"><code>readdir</code></a> routine on DIRHANDLE.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#rewinddir">&quot;rewinddir&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#rewinddir" rel="external">&quot;rewinddir&quot; in perlport</a>.</p>
 
 </dd>
 <dt>rindex STR,SUBSTR,POSITION </dt>
@@ -4259,7 +4279,7 @@
 <pre><code>    foo();
     print(uc($bar), $baz);</code></pre>
 
-<p>See <a href="/perldoc/perlop/">perlop</a> for more details on unary operators and the comma operator, and <a href="/perldoc/perldata/">perldata</a> for details on evaluating a hash in scalar contex.</p>
+<p>See <a href="/perldoc/perlop/">perlop</a> for more details on unary operators and the comma operator, and <a href="https://metacpan.org/pod/perldata" rel="external">perldata</a> for details on evaluating a hash in scalar contex.</p>
 
 </dd>
 <dt>seek FILEHANDLE,POSITION,WHENCE   </dt>
@@ -4321,7 +4341,7 @@
 
 <p>(Prior to Perl version 5.14, you have to <code>use IO::Handle;</code> explicitly first.)</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#select">&quot;select&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#select" rel="external">&quot;select&quot; in perlport</a>.</p>
 
 </dd>
 <dt>select RBITS,WBITS,EBITS,TIMEOUT </dt>
@@ -4365,7 +4385,7 @@
 
 <pre><code>    select(undef, undef, undef, 0.25);</code></pre>
 
-<p>Note that whether <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> gets restarted after signals (say, SIGALRM) is implementation-dependent. See also <a href="/perldoc/perlport/">perlport</a> for notes on the portability of <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a>.</p>
+<p>Note that whether <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> gets restarted after signals (say, SIGALRM) is implementation-dependent. See also <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a> for notes on the portability of <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a>.</p>
 
 <p>On error, <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> behaves just like <a href="http://man.he.net/man2/select" rel="external">select(2)</a>: it returns <code>-1</code> and sets <a href="/perldoc/perlvar/#pod"><code>$!</code></a>.</p>
 
@@ -4375,7 +4395,7 @@
 
 <p><b>WARNING</b>: One should not attempt to mix buffered I/O (like <a href="#read-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>read</code></a> or <a href="#readline-EXPR"><code>readline</code></a>) with <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a>, except as permitted by POSIX, and even then only on POSIX systems. You have to use <a href="#sysread-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>sysread</code></a> instead.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#select">&quot;select&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#select" rel="external">&quot;select&quot; in perlport</a>.</p>
 
 </dd>
 <dt>semctl ID,SEMNUM,CMD,ARG </dt>
@@ -4385,17 +4405,17 @@
 
 <pre><code>    use IPC::SysV;</code></pre>
 
-<p>first to get the correct constant definitions. If CMD is IPC_STAT or GETALL, then ARG must be a variable that will hold the returned semid_ds structure or semaphore value array. Returns like <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>: the undefined value for error, &quot;<code>0 but true</code>&quot; for zero, or the actual return value otherwise. The ARG must consist of a vector of native short integers, which may be created with <code>pack(&quot;s!&quot;,(0)x$nsem)</code>. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
+<p>first to get the correct constant definitions. If CMD is IPC_STAT or GETALL, then ARG must be a variable that will hold the returned semid_ds structure or semaphore value array. Returns like <a href="#ioctl-FILEHANDLE-FUNCTION-SCALAR"><code>ioctl</code></a>: the undefined value for error, &quot;<code>0 but true</code>&quot; for zero, or the actual return value otherwise. The ARG must consist of a vector of native short integers, which may be created with <code>pack(&quot;s!&quot;,(0)x$nsem)</code>. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#semctl">&quot;semctl&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#semctl" rel="external">&quot;semctl&quot; in perlport</a>.</p>
 
 </dd>
 <dt>semget KEY,NSEMS,FLAGS </dt>
 <dd>
 
-<p>Calls the System V IPC function <a href="http://man.he.net/man2/semget" rel="external">semget(2)</a>. Returns the semaphore id, or the undefined value on error. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
+<p>Calls the System V IPC function <a href="http://man.he.net/man2/semget" rel="external">semget(2)</a>. Returns the semaphore id, or the undefined value on error. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#semget">&quot;semget&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#semget" rel="external">&quot;semget&quot; in perlport</a>.</p>
 
 </dd>
 <dt>semop KEY,OPSTRING </dt>
@@ -4406,9 +4426,9 @@
 <pre><code>    my $semop = pack(&quot;s!3&quot;, $semnum, -1, 0);
     die &quot;Semaphore trouble: $!\n&quot; unless semop($semid, $semop);</code></pre>
 
-<p>To signal the semaphore, replace <code>-1</code> with <code>1</code>. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
+<p>To signal the semaphore, replace <code>-1</code> with <code>1</code>. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and <a href="https://metacpan.org/pod/IPC::Semaphore" rel="external"><code>IPC::Semaphore</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#semop">&quot;semop&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#semop" rel="external">&quot;semop&quot; in perlport</a>.</p>
 
 </dd>
 <dt>send SOCKET,MSG,FLAGS,TO </dt>
@@ -4418,7 +4438,7 @@
 <dt>send SOCKET,MSG,FLAGS</dt>
 <dd>
 
-<p>Sends a message on a socket. Attempts to send the scalar MSG to the SOCKET filehandle. Takes the same flags as the system call of the same name. On unconnected sockets, you must specify a destination to <i>send to</i>, in which case it does a <a href="http://man.he.net/man2/sendto" rel="external">sendto(2)</a> syscall. Returns the number of characters sent, or the undefined value on error. The <a href="http://man.he.net/man2/sendmsg" rel="external">sendmsg(2)</a> syscall is currently unimplemented. See <a href="/perldoc/perlipc/#UDP:-Message-Passing">&quot;UDP: Message Passing&quot; in perlipc</a> for examples.</p>
+<p>Sends a message on a socket. Attempts to send the scalar MSG to the SOCKET filehandle. Takes the same flags as the system call of the same name. On unconnected sockets, you must specify a destination to <i>send to</i>, in which case it does a <a href="http://man.he.net/man2/sendto" rel="external">sendto(2)</a> syscall. Returns the number of characters sent, or the undefined value on error. The <a href="http://man.he.net/man2/sendmsg" rel="external">sendmsg(2)</a> syscall is currently unimplemented. See <a href="https://metacpan.org/pod/perlipc#UDP:-Message-Passing" rel="external">&quot;UDP: Message Passing&quot; in perlipc</a> for examples.</p>
 
 <p>Note the <i>characters</i>: depending on the status of the socket, either (8-bit) bytes or characters are sent. By default all sockets operate on bytes, but for example if the socket has been changed using <a href="#binmode-FILEHANDLE-LAYER"><code>binmode</code></a> to operate with the <code>:encoding(UTF-8)</code> I/O layer (see <a href="#open-FILEHANDLE-EXPR"><code>open</code></a>, or the <a href="https://metacpan.org/pod/open" rel="external">open</a> pragma), the I/O will operate on UTF-8 encoded Unicode characters, not bytes. Similarly for the <code>:encoding</code> layer: in that case pretty much any characters can be sent.</p>
 
@@ -4428,7 +4448,7 @@
 
 <p>Sets the current process group for the specified PID, <code>0</code> for the current process. Raises an exception when used on a machine that doesn&#39;t implement POSIX <a href="http://man.he.net/man2/setpgid" rel="external">setpgid(2)</a> or BSD <a href="http://man.he.net/man2/setpgrp" rel="external">setpgrp(2)</a>. If the arguments are omitted, it defaults to <code>0,0</code>. Note that the BSD 4.2 version of <a href="#setpgrp-PID-PGRP"><code>setpgrp</code></a> does not accept any arguments, so only <code>setpgrp(0,0)</code> is portable. See also <a href="https://metacpan.org/pod/POSIX#setsid" rel="external"><code>POSIX::setsid()</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#setpgrp">&quot;setpgrp&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#setpgrp" rel="external">&quot;setpgrp&quot; in perlport</a>.</p>
 
 </dd>
 <dt>setpriority WHICH,WHO,PRIORITY    </dt>
@@ -4436,7 +4456,7 @@
 
 <p>Sets the current priority for a process, a process group, or a user. (See <a href="http://man.he.net/man2/setpriority" rel="external">setpriority(2)</a>.) Raises an exception when used on a machine that doesn&#39;t implement <a href="http://man.he.net/man2/setpriority" rel="external">setpriority(2)</a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#setpriority">&quot;setpriority&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#setpriority" rel="external">&quot;setpriority&quot; in perlport</a>.</p>
 
 </dd>
 <dt>setsockopt SOCKET,LEVEL,OPTNAME,OPTVAL </dt>
@@ -4449,7 +4469,7 @@
 <pre><code>    use Socket qw(IPPROTO_TCP TCP_NODELAY);
     setsockopt($socket, IPPROTO_TCP, TCP_NODELAY, 1);</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#setsockopt">&quot;setsockopt&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#setsockopt" rel="external">&quot;setsockopt&quot; in perlport</a>.</p>
 
 </dd>
 <dt>shift ARRAY </dt>
@@ -4473,17 +4493,17 @@
 
 <pre><code>    use IPC::SysV;</code></pre>
 
-<p>first to get the correct constant definitions. If CMD is <code>IPC_STAT</code>, then ARG must be a variable that will hold the returned <code>shmid_ds</code> structure. Returns like ioctl: <a href="#undef-EXPR"><code>undef</code></a> for error; &quot;<code>0</code> but true&quot; for zero; and the actual return value otherwise. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a>.</p>
+<p>first to get the correct constant definitions. If CMD is <code>IPC_STAT</code>, then ARG must be a variable that will hold the returned <code>shmid_ds</code> structure. Returns like ioctl: <a href="#undef-EXPR"><code>undef</code></a> for error; &quot;<code>0</code> but true&quot; for zero; and the actual return value otherwise. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#shmctl">&quot;shmctl&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#shmctl" rel="external">&quot;shmctl&quot; in perlport</a>.</p>
 
 </dd>
 <dt>shmget KEY,SIZE,FLAGS </dt>
 <dd>
 
-<p>Calls the System V IPC function shmget. Returns the shared memory segment id, or <a href="#undef-EXPR"><code>undef</code></a> on error. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a>.</p>
+<p>Calls the System V IPC function shmget. Returns the shared memory segment id, or <a href="#undef-EXPR"><code>undef</code></a> on error. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a>.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#shmget">&quot;shmget&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#shmget" rel="external">&quot;shmget&quot; in perlport</a>.</p>
 
 </dd>
 <dt>shmread ID,VAR,POS,SIZE  </dt>
@@ -4493,9 +4513,9 @@
 <dt>shmwrite ID,STRING,POS,SIZE</dt>
 <dd>
 
-<p>Reads or writes the System V shared memory segment ID starting at position POS for size SIZE by attaching to it, copying in/out, and detaching from it. When reading, VAR must be a variable that will hold the data read. When writing, if STRING is too long, only SIZE bytes are used; if STRING is too short, nulls are written to fill out SIZE bytes. Return true if successful, false on error. <a href="#shmread-ID-VAR-POS-SIZE"><code>shmread</code></a> taints the variable. See also <a href="/perldoc/perlipc/#SysV-IPC">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and the <a href="https://metacpan.org/pod/IPC::Shareable" rel="external"><code>IPC::Shareable</code></a> module from CPAN.</p>
+<p>Reads or writes the System V shared memory segment ID starting at position POS for size SIZE by attaching to it, copying in/out, and detaching from it. When reading, VAR must be a variable that will hold the data read. When writing, if STRING is too long, only SIZE bytes are used; if STRING is too short, nulls are written to fill out SIZE bytes. Return true if successful, false on error. <a href="#shmread-ID-VAR-POS-SIZE"><code>shmread</code></a> taints the variable. See also <a href="https://metacpan.org/pod/perlipc#SysV-IPC" rel="external">&quot;SysV IPC&quot; in perlipc</a> and the documentation for <a href="https://metacpan.org/pod/IPC::SysV" rel="external"><code>IPC::SysV</code></a> and the <a href="https://metacpan.org/pod/IPC::Shareable" rel="external"><code>IPC::Shareable</code></a> module from CPAN.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#shmread">&quot;shmread&quot; in perlport</a> and <a href="/perldoc/perlport/#shmwrite">&quot;shmwrite&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#shmread" rel="external">&quot;shmread&quot; in perlport</a> and <a href="https://metacpan.org/pod/perlport#shmwrite" rel="external">&quot;shmwrite&quot; in perlport</a>.</p>
 
 </dd>
 <dt>shutdown SOCKET,HOW </dt>
@@ -4547,7 +4567,7 @@
 
 <p>On some older systems, it may sleep up to a full second less than what you requested, depending on how it counts seconds. Most modern systems always sleep the full amount. They may appear to sleep longer than that, however, because your process might not be scheduled right away in a busy multitasking system.</p>
 
-<p>For delays of finer granularity than one second, the <a href="https://metacpan.org/pod/Time::HiRes" rel="external">Time::HiRes</a> module (from CPAN, and starting from Perl 5.8 part of the standard distribution) provides <a href="https://metacpan.org/pod/Time::HiRes#usleep-useconds" rel="external"><code>usleep</code></a>. You may also use Perl&#39;s four-argument version of <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> leaving the first three arguments undefined, or you might be able to use the <a href="#syscall-NUMBER-LIST"><code>syscall</code></a> interface to access <a href="http://man.he.net/man2/setitimer" rel="external">setitimer(2)</a> if your system supports it. See <a href="/perldoc/perlfaq8/">perlfaq8</a> for details.</p>
+<p>For delays of finer granularity than one second, the <a href="https://metacpan.org/pod/Time::HiRes" rel="external">Time::HiRes</a> module (from CPAN, and starting from Perl 5.8 part of the standard distribution) provides <a href="https://metacpan.org/pod/Time::HiRes#usleep-useconds" rel="external"><code>usleep</code></a>. You may also use Perl&#39;s four-argument version of <a href="#select-RBITS-WBITS-EBITS-TIMEOUT"><code>select</code></a> leaving the first three arguments undefined, or you might be able to use the <a href="#syscall-NUMBER-LIST"><code>syscall</code></a> interface to access <a href="http://man.he.net/man2/setitimer" rel="external">setitimer(2)</a> if your system supports it. See <a href="https://metacpan.org/pod/perlfaq8" rel="external">perlfaq8</a> for details.</p>
 
 <p>See also the <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a> module&#39;s <a href="https://metacpan.org/pod/POSIX#pause" rel="external"><code>pause</code></a> function.</p>
 
@@ -4555,7 +4575,7 @@
 <dt>socket SOCKET,DOMAIN,TYPE,PROTOCOL </dt>
 <dd>
 
-<p>Opens a socket of the specified kind and attaches it to filehandle SOCKET. DOMAIN, TYPE, and PROTOCOL are specified the same as for the syscall of the same name. You should <code>use Socket</code> first to get the proper definitions imported. See the examples in <a href="/perldoc/perlipc/#Sockets:-Client-Server-Communication">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
+<p>Opens a socket of the specified kind and attaches it to filehandle SOCKET. DOMAIN, TYPE, and PROTOCOL are specified the same as for the syscall of the same name. You should <code>use Socket</code> first to get the proper definitions imported. See the examples in <a href="https://metacpan.org/pod/perlipc#Sockets:-Client-Server-Communication" rel="external">&quot;Sockets: Client/Server Communication&quot; in perlipc</a>.</p>
 
 <p>On systems that support a close-on-exec flag on files, the flag will be set for the newly opened file descriptor, as determined by the value of <a href="/perldoc/perlvar/#F"><code>$^F</code></a>. See <a href="/perldoc/perlvar/#F">&quot;$^F&quot; in perlvar</a>.</p>
 
@@ -4574,9 +4594,9 @@
     shutdown($rdr, 1);        # no more writing for reader
     shutdown($wtr, 0);        # no more reading for writer</code></pre>
 
-<p>See <a href="/perldoc/perlipc/">perlipc</a> for an example of socketpair use. Perl 5.8 and later will emulate socketpair using IP sockets to localhost if your system implements sockets but not socketpair.</p>
+<p>See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for an example of socketpair use. Perl 5.8 and later will emulate socketpair using IP sockets to localhost if your system implements sockets but not socketpair.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#socketpair">&quot;socketpair&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#socketpair" rel="external">&quot;socketpair&quot; in perlport</a>.</p>
 
 </dd>
 <dt>sort SUBNAME LIST    </dt>
@@ -4600,9 +4620,9 @@
 
 <p>The values to be compared are always passed by reference and should not be modified.</p>
 
-<p>You also cannot exit out of the sort block or subroutine using any of the loop control operators described in <a href="/perldoc/perlsyn/">perlsyn</a> or with <a href="#goto-LABEL"><code>goto</code></a>.</p>
+<p>You also cannot exit out of the sort block or subroutine using any of the loop control operators described in <a href="https://metacpan.org/pod/perlsyn" rel="external">perlsyn</a> or with <a href="#goto-LABEL"><code>goto</code></a>.</p>
 
-<p>When <a href="https://metacpan.org/pod/locale" rel="external"><code>use locale</code></a> (but not <code>use locale &#39;:not_characters&#39;</code>) is in effect, <code>sort LIST</code> sorts LIST according to the current collation locale. See <a href="/perldoc/perllocale/">perllocale</a>.</p>
+<p>When <a href="https://metacpan.org/pod/locale" rel="external"><code>use locale</code></a> (but not <code>use locale &#39;:not_characters&#39;</code>) is in effect, <code>sort LIST</code> sorts LIST according to the current collation locale. See <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a>.</p>
 
 <p><a href="#sort-SUBNAME-LIST"><code>sort</code></a> returns aliases into the original list, much as a for loop&#39;s index variable aliases the list elements. That is, modifying an element of a list returned by <a href="#sort-SUBNAME-LIST"><code>sort</code></a> (for example, in a <code>foreach</code>, <a href="#map-BLOCK-LIST"><code>map</code></a> or <a href="#grep-BLOCK-LIST"><code>grep</code></a>) actually modifies the element in the original list. This is usually something to be avoided when writing clear code.</p>
 
@@ -4845,7 +4865,7 @@
 
 <p>As a special case for <a href="#split-PATTERN-EXPR-LIMIT"><code>split</code></a>, the empty pattern given in <a href="/perldoc/perlop/#m-PATTERN-msixpodualngc">match operator</a> syntax (<code>//</code>) specifically matches the empty string, which is contrary to its usual interpretation as the last successful match.</p>
 
-<p>If PATTERN is <code>/^/</code>, then it is treated as if it used the <a href="/perldoc/perlreref/#OPERATORS">multiline modifier</a> (<code>/^/m</code>), since it isn&#39;t much use otherwise.</p>
+<p>If PATTERN is <code>/^/</code>, then it is treated as if it used the <a href="https://metacpan.org/pod/perlreref#OPERATORS" rel="external">multiline modifier</a> (<code>/^/m</code>), since it isn&#39;t much use otherwise.</p>
 
 <p><code>/m</code> and any of the other pattern modifiers valid for <code>qr</code> (summarized in <a href="/perldoc/perlop/#qr-STRING-msixpodualn">&quot;qr/STRING/msixpodualn&quot; in perlop</a>) may be specified explicitly.</p>
 
@@ -4902,7 +4922,7 @@
 
 <p>produces the output <span style="white-space: nowrap;"><code> :a:b:c:</code></span>.</p>
 
-<p>If the PATTERN contains <a href="/perldoc/perlretut/#Grouping-things-and-hierarchical-matching">capturing groups</a>, then for each separator, an additional field is produced for each substring captured by a group (in the order in which the groups are specified, as per <a href="/perldoc/perlretut/#Backreferences">backreferences</a>); if any group does not match, then it captures the <a href="#undef-EXPR"><code>undef</code></a> value instead of a substring. Also, note that any such additional field is produced whenever there is a separator (that is, whenever a split occurs), and such an additional field does <b>not</b> count towards the LIMIT. Consider the following expressions evaluated in list context (each returned list is provided in the associated comment):</p>
+<p>If the PATTERN contains <a href="https://metacpan.org/pod/perlretut#Grouping-things-and-hierarchical-matching" rel="external">capturing groups</a>, then for each separator, an additional field is produced for each substring captured by a group (in the order in which the groups are specified, as per <a href="https://metacpan.org/pod/perlretut#Backreferences" rel="external">backreferences</a>); if any group does not match, then it captures the <a href="#undef-EXPR"><code>undef</code></a> value instead of a substring. Also, note that any such additional field is produced whenever there is a separator (that is, whenever a split occurs), and such an additional field does <b>not</b> count towards the LIMIT. Consider the following expressions evaluated in list context (each returned list is provided in the associated comment):</p>
 
 <pre><code>    split(/-|,/, &quot;1-10,20&quot;, 3)
     # (&#39;1&#39;, &#39;10&#39;, &#39;20&#39;)
@@ -5214,7 +5234,7 @@
 </dd>
 </dl>
 
-<p>If <a href="https://metacpan.org/pod/locale" rel="external"><code>use locale</code></a> (including <code>use locale &#39;:not_characters&#39;</code>) is in effect and <a href="https://metacpan.org/pod/POSIX#setlocale" rel="external"><code>POSIX::setlocale</code></a> has been called, the character used for the decimal separator in formatted floating-point numbers is affected by the <code>LC_NUMERIC</code> locale. See <a href="/perldoc/perllocale/">perllocale</a> and <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a>.</p>
+<p>If <a href="https://metacpan.org/pod/locale" rel="external"><code>use locale</code></a> (including <code>use locale &#39;:not_characters&#39;</code>) is in effect and <a href="https://metacpan.org/pod/POSIX#setlocale" rel="external"><code>POSIX::setlocale</code></a> has been called, the character used for the decimal separator in formatted floating-point numbers is affected by the <code>LC_NUMERIC</code> locale. See <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a> and <a href="https://metacpan.org/pod/POSIX" rel="external">POSIX</a>.</p>
 
 </dd>
 <dt>sqrt EXPR   </dt>
@@ -5295,7 +5315,7 @@
 
 <p>(The epoch was at 00:00 January 1, 1970 GMT.)</p>
 
-<p>(*) Not all fields are supported on all filesystem types. Notably, the ctime field is non-portable. In particular, you cannot expect it to be a &quot;creation time&quot;; see <a href="/perldoc/perlport/#Files-and-Filesystems">&quot;Files and Filesystems&quot; in perlport</a> for details.</p>
+<p>(*) Not all fields are supported on all filesystem types. Notably, the ctime field is non-portable. In particular, you cannot expect it to be a &quot;creation time&quot;; see <a href="https://metacpan.org/pod/perlport#Files-and-Filesystems" rel="external">&quot;Files and Filesystems&quot; in perlport</a> for details.</p>
 
 <p>If <a href="#stat-FILEHANDLE"><code>stat</code></a> is passed the special filehandle consisting of an underline, no stat is done, but the current contents of the stat structure from the last <a href="#stat-FILEHANDLE"><code>stat</code></a>, <a href="#lstat-FILEHANDLE"><code>lstat</code></a>, or filetest are returned. Example:</p>
 
@@ -5381,7 +5401,7 @@
 
 <p>See your native <a href="http://man.he.net/man2/chmod" rel="external">chmod(2)</a> and <a href="http://man.he.net/man2/stat" rel="external">stat(2)</a> documentation for more details about the <code>S_*</code> constants. To get status info for a symbolic link instead of the target file behind the link, use the <a href="#lstat-FILEHANDLE"><code>lstat</code></a> function.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#stat">&quot;stat&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#stat" rel="external">&quot;stat&quot; in perlport</a>.</p>
 
 </dd>
 <dt>state VARLIST </dt>
@@ -5399,7 +5419,7 @@
 <dt>state TYPE VARLIST : ATTRS</dt>
 <dd>
 
-<p><a href="#state-VARLIST"><code>state</code></a> declares a lexically scoped variable, just like <a href="#my-VARLIST"><code>my</code></a>. However, those variables will never be reinitialized, contrary to lexical variables that are reinitialized each time their enclosing block is entered. See <a href="/perldoc/perlsub/#Persistent-Private-Variables">&quot;Persistent Private Variables&quot; in perlsub</a> for details.</p>
+<p><a href="#state-VARLIST"><code>state</code></a> declares a lexically scoped variable, just like <a href="#my-VARLIST"><code>my</code></a>. However, those variables will never be reinitialized, contrary to lexical variables that are reinitialized each time their enclosing block is entered. See <a href="https://metacpan.org/pod/perlsub#Persistent-Private-Variables" rel="external">&quot;Persistent Private Variables&quot; in perlsub</a> for details.</p>
 
 <p>If more than one variable is listed, the list must be placed in parentheses. With a parenthesised list, <a href="#undef-EXPR"><code>undef</code></a> can be used as a dummy placeholder. However, since initialization of state variables in list context is currently not possible this would serve no purpose.</p>
 
@@ -5435,7 +5455,7 @@
 
 <p>This is subroutine definition, not a real function <i>per se</i>. Without a BLOCK it&#39;s just a forward declaration. Without a NAME, it&#39;s an anonymous function declaration, so does return a value: the CODE ref of the closure just created.</p>
 
-<p>See <a href="/perldoc/perlsub/">perlsub</a> and <a href="/perldoc/perlref/">perlref</a> for details about subroutines and references; see <a href="https://metacpan.org/pod/attributes" rel="external">attributes</a> and <a href="https://metacpan.org/pod/Attribute::Handlers" rel="external">Attribute::Handlers</a> for more information about attributes.</p>
+<p>See <a href="https://metacpan.org/pod/perlsub" rel="external">perlsub</a> and <a href="https://metacpan.org/pod/perlref" rel="external">perlref</a> for details about subroutines and references; see <a href="https://metacpan.org/pod/attributes" rel="external">attributes</a> and <a href="https://metacpan.org/pod/Attribute::Handlers" rel="external">Attribute::Handlers</a> for more information about attributes.</p>
 
 </dd>
 <dt>__SUB__ </dt>
@@ -5513,7 +5533,7 @@
 
 <pre><code>    my $symlink_exists = eval { symlink(&quot;&quot;,&quot;&quot;); 1 };</code></pre>
 
-<p>Portability issues: <a href="/perldoc/perlport/#symlink">&quot;symlink&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#symlink" rel="external">&quot;symlink&quot; in perlport</a>.</p>
 
 </dd>
 <dt>syscall NUMBER, LIST  </dt>
@@ -5531,7 +5551,7 @@
 
 <p>There&#39;s a problem with <code>syscall(SYS_pipe())</code>: it returns the file number of the read end of the pipe it creates, but there is no way to retrieve the file number of the other end. You can avoid this problem by using <a href="#pipe-READHANDLE-WRITEHANDLE"><code>pipe</code></a> instead.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#syscall">&quot;syscall&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#syscall" rel="external">&quot;syscall&quot; in perlport</a>.</p>
 
 </dd>
 <dt>sysopen FILEHANDLE,FILENAME,MODE </dt>
@@ -5563,7 +5583,7 @@
 
 <p>See <a href="/perldoc/perlopentut/">perlopentut</a> for a kinder, gentler explanation of opening files.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#sysopen">&quot;sysopen&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#sysopen" rel="external">&quot;sysopen&quot; in perlport</a>.</p>
 
 </dd>
 <dt>sysread FILEHANDLE,SCALAR,LENGTH,OFFSET </dt>
@@ -5608,7 +5628,7 @@
 
 <p>Does exactly the same thing as <a href="#exec-LIST"><code>exec</code></a>, except that a fork is done first and the parent process waits for the child process to exit. Note that argument processing varies depending on the number of arguments. If there is more than one argument in LIST, or if LIST is an array with more than one value, starts the program given by the first element of the list with arguments given by the rest of the list. If there is only one scalar argument, the argument is checked for shell metacharacters, and if there are any, the entire argument is passed to the system&#39;s command shell for parsing (this is <code>/bin/sh -c</code> on Unix platforms, but varies on other platforms). If there are no shell metacharacters in the argument, it is split into words and passed directly to <code>execvp</code>, which is more efficient. On Windows, only the <code>system PROGRAM LIST</code> syntax will reliably avoid using the shell; <code>system LIST</code>, even with more than one element, will fall back to the shell if the first spawn fails.</p>
 
-<p>Perl will attempt to flush all files opened for output before any operation that may do a fork, but this may not be supported on some platforms (see <a href="/perldoc/perlport/">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles.</p>
+<p>Perl will attempt to flush all files opened for output before any operation that may do a fork, but this may not be supported on some platforms (see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>). To be safe, you may need to set <a href="/perldoc/perlvar/#pod"><code>$|</code></a> (<code>$AUTOFLUSH</code> in <a href="https://metacpan.org/pod/English" rel="external">English</a>) or call the <code>autoflush</code> method of <a href="https://metacpan.org/pod/IO::Handle#METHODS" rel="external"><code>IO::Handle</code></a> on any open handles.</p>
 
 <p>The return value is the exit status of the program as returned by the <a href="#wait"><code>wait</code></a> call. To get the actual exit value, shift right by eight (see below). See also <a href="#exec-LIST"><code>exec</code></a>. This is <i>not</i> what you want to use to capture the output from a command; for that you should use merely backticks or <a href="#qx-STRING"><code>qx//</code></a>, as described in <a href="/perldoc/perlop/#STRING">&quot;`STRING`&quot; in perlop</a>. Return value of -1 indicates a failure to start the program or an error of the <a href="http://man.he.net/man2/wait" rel="external">wait(2)</a> system call (inspect <a href="/perldoc/perlvar/#pod"><code>$!</code></a> for the reason).</p>
 
@@ -5639,9 +5659,9 @@
 
 <p>When <a href="#system-LIST"><code>system</code></a>&#39;s arguments are executed indirectly by the shell, results and return codes are subject to its quirks. See <a href="/perldoc/perlop/#STRING">&quot;`STRING`&quot; in perlop</a> and <a href="#exec-LIST"><code>exec</code></a> for details.</p>
 
-<p>Since <a href="#system-LIST"><code>system</code></a> does a <a href="#fork"><code>fork</code></a> and <a href="#wait"><code>wait</code></a> it may affect a <code>SIGCHLD</code> handler. See <a href="/perldoc/perlipc/">perlipc</a> for details.</p>
+<p>Since <a href="#system-LIST"><code>system</code></a> does a <a href="#fork"><code>fork</code></a> and <a href="#wait"><code>wait</code></a> it may affect a <code>SIGCHLD</code> handler. See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for details.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#system">&quot;system&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#system" rel="external">&quot;system&quot; in perlport</a>.</p>
 
 </dd>
 <dt>syswrite FILEHANDLE,SCALAR,LENGTH,OFFSET </dt>
@@ -5760,11 +5780,11 @@
     DESTROY this
     UNTIE this</code></pre>
 
-<p>Not all methods indicated above need be implemented. See <a href="/perldoc/perltie/">perltie</a>, <a href="https://metacpan.org/pod/Tie::Hash" rel="external">Tie::Hash</a>, <a href="https://metacpan.org/pod/Tie::Array" rel="external">Tie::Array</a>, <a href="https://metacpan.org/pod/Tie::Scalar" rel="external">Tie::Scalar</a>, and <a href="https://metacpan.org/pod/Tie::Handle" rel="external">Tie::Handle</a>.</p>
+<p>Not all methods indicated above need be implemented. See <a href="https://metacpan.org/pod/perltie" rel="external">perltie</a>, <a href="https://metacpan.org/pod/Tie::Hash" rel="external">Tie::Hash</a>, <a href="https://metacpan.org/pod/Tie::Array" rel="external">Tie::Array</a>, <a href="https://metacpan.org/pod/Tie::Scalar" rel="external">Tie::Scalar</a>, and <a href="https://metacpan.org/pod/Tie::Handle" rel="external">Tie::Handle</a>.</p>
 
 <p>Unlike <a href="#dbmopen-HASH-DBNAME-MASK"><code>dbmopen</code></a>, the <a href="#tie-VARIABLE-CLASSNAME-LIST"><code>tie</code></a> function will not <a href="#use-Module-VERSION-LIST"><code>use</code></a> or <a href="#require-VERSION"><code>require</code></a> a module for you; you need to do that explicitly yourself. See <a href="https://metacpan.org/pod/DB_File" rel="external">DB_File</a> or the <a href="https://metacpan.org/pod/Config" rel="external">Config</a> module for interesting <a href="#tie-VARIABLE-CLASSNAME-LIST"><code>tie</code></a> implementations.</p>
 
-<p>For further details see <a href="/perldoc/perltie/">perltie</a>, <a href="#tied-VARIABLE"><code>tied</code></a>.</p>
+<p>For further details see <a href="https://metacpan.org/pod/perltie" rel="external">perltie</a>, <a href="#tied-VARIABLE"><code>tied</code></a>.</p>
 
 </dd>
 <dt>tied VARIABLE </dt>
@@ -5778,7 +5798,7 @@
 
 <p>Returns the number of non-leap seconds since whatever time the system considers to be the epoch, suitable for feeding to <a href="#gmtime-EXPR"><code>gmtime</code></a> and <a href="#localtime-EXPR"><code>localtime</code></a>. On most systems the epoch is 00:00:00 UTC, January 1, 1970; a prominent exception being Mac OS Classic which uses 00:00:00, January 1, 1904 in the current local time zone for its epoch.</p>
 
-<p>For measuring time in better granularity than one second, use the <a href="https://metacpan.org/pod/Time::HiRes" rel="external">Time::HiRes</a> module from Perl 5.8 onwards (or from CPAN before then), or, if you have <a href="http://man.he.net/man2/gettimeofday" rel="external">gettimeofday(2)</a>, you may be able to use the <a href="#syscall-NUMBER-LIST"><code>syscall</code></a> interface of Perl. See <a href="/perldoc/perlfaq8/">perlfaq8</a> for details.</p>
+<p>For measuring time in better granularity than one second, use the <a href="https://metacpan.org/pod/Time::HiRes" rel="external">Time::HiRes</a> module from Perl 5.8 onwards (or from CPAN before then), or, if you have <a href="http://man.he.net/man2/gettimeofday" rel="external">gettimeofday(2)</a>, you may be able to use the <a href="#syscall-NUMBER-LIST"><code>syscall</code></a> interface of Perl. See <a href="https://metacpan.org/pod/perlfaq8" rel="external">perlfaq8</a> for details.</p>
 
 <p>For date and time processing look at the many related modules on CPAN. For a comprehensive date and time representation look at the <a href="https://metacpan.org/pod/DateTime" rel="external">DateTime</a> module.</p>
 
@@ -5794,7 +5814,7 @@
 
 <p>Children&#39;s times are only included for terminated children.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#times">&quot;times&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#times" rel="external">&quot;times&quot; in perlport</a>.</p>
 
 </dd>
 <dt>tr///</dt>
@@ -5816,7 +5836,7 @@
 
 <p>The position in the file of FILEHANDLE is left unchanged. You may want to call <a href="#seek-FILEHANDLE-POSITION-WHENCE">seek</a> before writing to the file.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#truncate">&quot;truncate&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#truncate" rel="external">&quot;truncate&quot; in perlport</a>.</p>
 
 </dd>
 <dt>uc EXPR   </dt>
@@ -5864,7 +5884,7 @@
 
 <p>Remember that a umask is a number, usually given in octal; it is <i>not</i> a string of octal digits. See also <a href="#oct-EXPR"><code>oct</code></a>, if all you have is a string.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#umask">&quot;umask&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#umask" rel="external">&quot;umask&quot; in perlport</a>.</p>
 
 </dd>
 <dt>undef EXPR  </dt>
@@ -5922,7 +5942,7 @@
 
 <p><a href="#unpack-TEMPLATE-EXPR"><code>unpack</code></a> does the reverse of <a href="#pack-TEMPLATE-LIST"><code>pack</code></a>: it takes a string and expands it out into a list of values. (In scalar context, it returns merely the first value produced.)</p>
 
-<p>If EXPR is omitted, unpacks the <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a> string. See <a href="/perldoc/perlpacktut/">perlpacktut</a> for an introduction to this function.</p>
+<p>If EXPR is omitted, unpacks the <a href="/perldoc/perlvar/#pod-_"><code>$_</code></a> string. See <a href="https://metacpan.org/pod/perlpacktut" rel="external">perlpacktut</a> for an introduction to this function.</p>
 
 <p>The string is broken into chunks described by the TEMPLATE. Each chunk is converted separately to a value. Typically, either the string is a result of <a href="#pack-TEMPLATE-LIST"><code>pack</code></a>, or the characters of the string represent a C structure of some kind.</p>
 
@@ -6060,7 +6080,7 @@
 
 <p>Care should be taken when using the <code>no VERSION</code> form of <a href="#no-MODULE-VERSION-LIST"><code>no</code></a>. It is <i>only</i> meant to be used to assert that the running Perl is of a earlier version than its argument and <i>not</i> to undo the feature-enabling side effects of <code>use VERSION</code>.</p>
 
-<p>See <a href="/perldoc/perlmodlib/">perlmodlib</a> for a list of standard modules and pragmas. See <a href="/perldoc/perlrun/">perlrun</a> for the <code>-M</code> and <code>-m</code> command-line options to Perl that give <a href="#use-Module-VERSION-LIST"><code>use</code></a> functionality from the command-line.</p>
+<p>See <a href="https://metacpan.org/pod/perlmodlib" rel="external">perlmodlib</a> for a list of standard modules and pragmas. See <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a> for the <code>-M</code> and <code>-m</code> command-line options to Perl that give <a href="#use-Module-VERSION-LIST"><code>use</code></a> functionality from the command-line.</p>
 
 </dd>
 <dt>utime LIST </dt>
@@ -6085,7 +6105,7 @@
 
 <p>On systems that support <a href="http://man.he.net/man2/futimes" rel="external">futimes(2)</a>, you may pass filehandles among the files. On systems that don&#39;t support <a href="http://man.he.net/man2/futimes" rel="external">futimes(2)</a>, passing filehandles raises an exception. Filehandles must be passed as globs or glob references to be recognized; barewords are considered filenames.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#utime">&quot;utime&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#utime" rel="external">&quot;utime&quot; in perlport</a>.</p>
 
 </dd>
 <dt>values HASH </dt>
@@ -6097,7 +6117,7 @@
 
 <p>In list context, returns a list consisting of all the values of the named hash. In Perl 5.12 or later only, will also return a list of the values of an array; prior to that release, attempting to use an array argument will produce a syntax error. In scalar context, returns the number of values.</p>
 
-<p>Hash entries are returned in an apparently random order. The actual random order is specific to a given hash; the exact same series of operations on two hashes may result in a different order for each hash. Any insertion into the hash may change the order, as will any deletion, with the exception that the most recent key returned by <a href="#each-HASH"><code>each</code></a> or <a href="#keys-HASH"><code>keys</code></a> may be deleted without changing the order. So long as a given hash is unmodified you may rely on <a href="#keys-HASH"><code>keys</code></a>, <a href="#values-HASH"><code>values</code></a> and <a href="#each-HASH"><code>each</code></a> to repeatedly return the same order as each other. See <a href="/perldoc/perlsec/#Algorithmic-Complexity-Attacks">&quot;Algorithmic Complexity Attacks&quot; in perlsec</a> for details on why hash order is randomized. Aside from the guarantees provided here the exact details of Perl&#39;s hash algorithm and the hash traversal order are subject to change in any release of Perl. Tied hashes may behave differently to Perl&#39;s hashes with respect to changes in order on insertion and deletion of items.</p>
+<p>Hash entries are returned in an apparently random order. The actual random order is specific to a given hash; the exact same series of operations on two hashes may result in a different order for each hash. Any insertion into the hash may change the order, as will any deletion, with the exception that the most recent key returned by <a href="#each-HASH"><code>each</code></a> or <a href="#keys-HASH"><code>keys</code></a> may be deleted without changing the order. So long as a given hash is unmodified you may rely on <a href="#keys-HASH"><code>keys</code></a>, <a href="#values-HASH"><code>values</code></a> and <a href="#each-HASH"><code>each</code></a> to repeatedly return the same order as each other. See <a href="https://metacpan.org/pod/perlsec#Algorithmic-Complexity-Attacks" rel="external">&quot;Algorithmic Complexity Attacks&quot; in perlsec</a> for details on why hash order is randomized. Aside from the guarantees provided here the exact details of Perl&#39;s hash algorithm and the hash traversal order are subject to change in any release of Perl. Tied hashes may behave differently to Perl&#39;s hashes with respect to changes in order on insertion and deletion of items.</p>
 
 <p>As a side effect, calling <a href="#values-HASH"><code>values</code></a> resets the HASH or ARRAY&#39;s internal iterator, see <a href="#each-HASH"><code>each</code></a>. (In particular, calling <a href="#values-HASH"><code>values</code></a> in void context resets the iterator with no other overhead. Apart from resetting the iterator, <code>values @array</code> in list context is the same as plain <code>@array</code>. (We recommend that you use void context <code>keys @array</code> for this, but reasoned that taking <code>values @array</code> out would require more documentation than leaving it in.)</p>
 
@@ -6331,11 +6351,11 @@
 <dt>wait </dt>
 <dd>
 
-<p>Behaves like <a href="http://man.he.net/man2/wait" rel="external">wait(2)</a> on your system: it waits for a child process to terminate and returns the pid of the deceased process, or <code>-1</code> if there are no child processes. The status is returned in <a href="/perldoc/perlvar/#pod"><code>$?</code></a> and <a href="/perldoc/perlvar/#CHILD_ERROR_NATIVE"><code>${^CHILD_ERROR_NATIVE}</code></a>. Note that a return value of <code>-1</code> could mean that child processes are being automatically reaped, as described in <a href="/perldoc/perlipc/">perlipc</a>.</p>
+<p>Behaves like <a href="http://man.he.net/man2/wait" rel="external">wait(2)</a> on your system: it waits for a child process to terminate and returns the pid of the deceased process, or <code>-1</code> if there are no child processes. The status is returned in <a href="/perldoc/perlvar/#pod"><code>$?</code></a> and <a href="/perldoc/perlvar/#CHILD_ERROR_NATIVE"><code>${^CHILD_ERROR_NATIVE}</code></a>. Note that a return value of <code>-1</code> could mean that child processes are being automatically reaped, as described in <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a>.</p>
 
-<p>If you use <a href="#wait"><code>wait</code></a> in your handler for <a href="/perldoc/perlvar/#SIG"><code>$SIG{CHLD}</code></a>, it may accidentally wait for the child created by <a href="#qx-STRING"><code>qx</code></a> or <a href="#system-LIST"><code>system</code></a>. See <a href="/perldoc/perlipc/">perlipc</a> for details.</p>
+<p>If you use <a href="#wait"><code>wait</code></a> in your handler for <a href="/perldoc/perlvar/#SIG"><code>$SIG{CHLD}</code></a>, it may accidentally wait for the child created by <a href="#qx-STRING"><code>qx</code></a> or <a href="#system-LIST"><code>system</code></a>. See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for details.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#wait">&quot;wait&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#wait" rel="external">&quot;wait&quot; in perlport</a>.</p>
 
 </dd>
 <dt>waitpid PID,FLAGS </dt>
@@ -6360,9 +6380,9 @@
 
 <p>then you can do a non-blocking wait for all pending zombie processes (see <a href="https://metacpan.org/pod/POSIX#WAIT" rel="external">&quot;WAIT&quot; in POSIX</a>). Non-blocking wait is available on machines supporting either the <a href="http://man.he.net/man2/waitpid" rel="external">waitpid(2)</a> or <a href="http://man.he.net/man2/wait4" rel="external">wait4(2)</a> syscalls. However, waiting for a particular pid with FLAGS of <code>0</code> is implemented everywhere. (Perl emulates the system call by remembering the status values of processes that have exited but have not been harvested by the Perl script yet.)</p>
 
-<p>Note that on some systems, a return value of <code>-1</code> could mean that child processes are being automatically reaped. See <a href="/perldoc/perlipc/">perlipc</a> for details, and for other examples.</p>
+<p>Note that on some systems, a return value of <code>-1</code> could mean that child processes are being automatically reaped. See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for details, and for other examples.</p>
 
-<p>Portability issues: <a href="/perldoc/perlport/#waitpid">&quot;waitpid&quot; in perlport</a>.</p>
+<p>Portability issues: <a href="https://metacpan.org/pod/perlport#waitpid" rel="external">&quot;waitpid&quot; in perlport</a>.</p>
 
 </dd>
 <dt>wantarray  </dt>
@@ -6423,7 +6443,7 @@
 
 <p>Top of form processing is handled automatically: if there is insufficient room on the current page for the formatted record, the page is advanced by writing a form feed and a special top-of-page format is used to format the new page header before the record is written. By default, the top-of-page format is the name of the filehandle with <code>_TOP</code> appended, or <code>top</code> in the current package if the former does not exist. This would be a problem with autovivified filehandles, but it may be dynamically set to the format of your choice by assigning the name to the <a href="/perldoc/perlvar/#pod"><code>$^</code></a> variable while that filehandle is selected. The number of lines remaining on the current page is in variable <a href="/perldoc/perlvar/#pod"><code>$-</code></a>, which can be set to <code>0</code> to force a new page.</p>
 
-<p>If FILEHANDLE is unspecified, output goes to the current default output channel, which starts out as STDOUT but may be changed by the <a href="#select-FILEHANDLE"><code>select</code></a> operator. If the FILEHANDLE is an EXPR, then the expression is evaluated and the resulting string is used to look up the name of the FILEHANDLE at run time. For more on formats, see <a href="/perldoc/perlform/">perlform</a>.</p>
+<p>If FILEHANDLE is unspecified, output goes to the current default output channel, which starts out as STDOUT but may be changed by the <a href="#select-FILEHANDLE"><code>select</code></a> operator. If the FILEHANDLE is an EXPR, then the expression is evaluated and the resulting string is used to look up the name of the FILEHANDLE at run time. For more on formats, see <a href="https://metacpan.org/pod/perlform" rel="external">perlform</a>.</p>
 
 <p>Note that write is <i>not</i> the opposite of <a href="#read-FILEHANDLE-SCALAR-LENGTH-OFFSET"><code>read</code></a>. Unfortunately.</p>
 
@@ -6449,7 +6469,7 @@
 <dt>__END__</dt>
 <dd>
 
-<p>These keywords are documented in <a href="/perldoc/perldata/#Special-Literals">&quot;Special Literals&quot; in perldata</a>.</p>
+<p>These keywords are documented in <a href="https://metacpan.org/pod/perldata#Special-Literals" rel="external">&quot;Special Literals&quot; in perldata</a>.</p>
 
 </dd>
 </dl>
@@ -6477,7 +6497,7 @@
 <dt>UNITCHECK</dt>
 <dd>
 
-<p>These compile phase keywords are documented in <a href="/perldoc/perlmod/#BEGIN-UNITCHECK-CHECK-INIT-and-END">&quot;BEGIN, UNITCHECK, CHECK, INIT and END&quot; in perlmod</a>.</p>
+<p>These compile phase keywords are documented in <a href="https://metacpan.org/pod/perlmod#BEGIN-UNITCHECK-CHECK-INIT-and-END" rel="external">&quot;BEGIN, UNITCHECK, CHECK, INIT and END&quot; in perlmod</a>.</p>
 
 </dd>
 </dl>
@@ -6489,7 +6509,7 @@
 <dt>DESTROY</dt>
 <dd>
 
-<p>This method keyword is documented in <a href="/perldoc/perlobj/#Destructors">&quot;Destructors&quot; in perlobj</a>.</p>
+<p>This method keyword is documented in <a href="https://metacpan.org/pod/perlobj#Destructors" rel="external">&quot;Destructors&quot; in perlobj</a>.</p>
 
 </dd>
 </dl>
@@ -6557,7 +6577,7 @@
 <dt>AUTOLOAD</dt>
 <dd>
 
-<p>This keyword is documented in <a href="/perldoc/perlsub/#Autoloading">&quot;Autoloading&quot; in perlsub</a>.</p>
+<p>This keyword is documented in <a href="https://metacpan.org/pod/perlsub#Autoloading" rel="external">&quot;Autoloading&quot; in perlsub</a>.</p>
 
 </dd>
 </dl>
@@ -6597,7 +6617,7 @@
 <dt>while</dt>
 <dd>
 
-<p>These flow-control keywords are documented in <a href="/perldoc/perlsyn/#Compound-Statements">&quot;Compound Statements&quot; in perlsyn</a>.</p>
+<p>These flow-control keywords are documented in <a href="https://metacpan.org/pod/perlsyn#Compound-Statements" rel="external">&quot;Compound Statements&quot; in perlsyn</a>.</p>
 
 </dd>
 <dt>elseif</dt>
@@ -6605,7 +6625,7 @@
 
 <p>The &quot;else if&quot; keyword is spelled <code>elsif</code> in Perl. There&#39;s no <code>elif</code> or <code>else if</code> either. It does parse <code>elseif</code>, but only to warn you about not using it.</p>
 
-<p>See the documentation for flow-control keywords in <a href="/perldoc/perlsyn/#Compound-Statements">&quot;Compound Statements&quot; in perlsyn</a>.</p>
+<p>See the documentation for flow-control keywords in <a href="https://metacpan.org/pod/perlsyn#Compound-Statements" rel="external">&quot;Compound Statements&quot; in perlsyn</a>.</p>
 
 </dd>
 </dl>
@@ -6623,15 +6643,15 @@
 <dt>when</dt>
 <dd>
 
-<p>These flow-control keywords related to the experimental switch feature are documented in <a href="/perldoc/perlsyn/#Switch-Statements">&quot;Switch Statements&quot; in perlsyn</a>.</p>
+<p>These flow-control keywords related to the experimental switch feature are documented in <a href="https://metacpan.org/pod/perlsyn#Switch-Statements" rel="external">&quot;Switch Statements&quot; in perlsyn</a>.</p>
 
 </dd>
 </dl>
 
 
 
-                    </main>
-                </div>
+                </main>
+                <div style="clear: both;"></div>
 
         </div>
         <footer>

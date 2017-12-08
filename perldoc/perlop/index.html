@@ -13,13 +13,16 @@
         
         <script>
             $( document ).ready(function() {
+                console.log('/perldoc/perlop');
+
                 $('.sub-menu ul').hide();
                 $('.sub-menu.perldoc ul').show();
-                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.perldoc>a>div').toggleClass("fa-caret-up fa-caret-down");
+
                 $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
                 });
             });
         </script>
@@ -35,18 +38,24 @@
     <body>
         <header>
         </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
         <div class="container">
 
-                <div class="left column full-height">
-                    <div class="sidebar">
+                <div class="sidebar">
                     
-<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
 
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/perldoc/perlop/#basics">The basics<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlop/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <ul>
+        <li><a href="/basics/perl">Perl design goals</a></li>
         <li><a href="/basics/hello">Hello world</a></li>
         <li><a href="/basics/variables">Variables</a></li>
         <li><a href="/basics/references">References</a></li>
@@ -56,59 +65,70 @@
         <li><a href="/basics/exceptions">Exceptions</a></li>
         <li><a href="/basics/regexps">Regexps</a></li>
         <li><a href="/basics/files">Files</a></li>
-      </ul>
-    </li>
-    <li class="oo sub-menu">
-      <a href="/perldoc/perlop/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
-      </ul>
-    </li>
-    <li class="debugging sub-menu">
-      <a href="/perldoc/perlop/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
-      </ul>
+    </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/perldoc/perlop/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlop/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <ul>
         <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
         <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
         <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
         <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
         <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
-      </ul>
+    </ul>
+    </li>
+    <li class="oo sub-menu">
+    <a href="/perldoc/perlop/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <ul>
+        <li><a href="/oo/story">The story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+    </ul>
+    </li>
+    <li class="debugging sub-menu">
+    <a href="/perldoc/perlop/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+    </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/perldoc/perlop/#testing">Testing<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlop/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <ul>
         <li><a href="/testing/intro">Introduction to testing</a></li>
         <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
         <li><a href="/testing/data">Testing data structures</a></li>
         <li><a href="/testing/mock">Testing with mock objects</a></li>
         <li><a href="/testing/libs">Build your own test libraries</a></li>
+    </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/perldoc/perlop/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
       </ul>
     </li>
-    <li><a href="/perl">Perl design goals</a></li>
-    <li><a href="/see-also">Book recommendations</a></li>
-    <li><a href="/about">About this book</a></li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
   </ul>
 </div>
 
                     
                     
-                    </div>
                 </div>
 
-                <div class="right column">
-                    <main>
+                <main>
                     <div class="crumbtrail">
 <ul>
     <li>
@@ -210,11 +230,11 @@
 
 <h2 id="The-Arrow-Operator">The Arrow Operator   </h2>
 
-<p>&quot;<code>-&gt;</code>&quot; is an infix dereference operator, just as it is in C and C++. If the right side is either a <code>[...]</code>, <code>{...}</code>, or a <code>(...)</code> subscript, then the left side must be either a hard or symbolic reference to an array, a hash, or a subroutine respectively. (Or technically speaking, a location capable of holding a hard reference, if it&#39;s an array or hash reference being used for assignment.) See <a href="/perldoc/perlreftut/">perlreftut</a> and <a href="/perldoc/perlref/">perlref</a>.</p>
+<p>&quot;<code>-&gt;</code>&quot; is an infix dereference operator, just as it is in C and C++. If the right side is either a <code>[...]</code>, <code>{...}</code>, or a <code>(...)</code> subscript, then the left side must be either a hard or symbolic reference to an array, a hash, or a subroutine respectively. (Or technically speaking, a location capable of holding a hard reference, if it&#39;s an array or hash reference being used for assignment.) See <a href="https://metacpan.org/pod/perlreftut" rel="external">perlreftut</a> and <a href="https://metacpan.org/pod/perlref" rel="external">perlref</a>.</p>
 
-<p>Otherwise, the right side is a method name or a simple scalar variable containing either the method name or a subroutine reference, and the left side must be either an object (a blessed reference) or a class name (that is, a package name). See <a href="/perldoc/perlobj/">perlobj</a>.</p>
+<p>Otherwise, the right side is a method name or a simple scalar variable containing either the method name or a subroutine reference, and the left side must be either an object (a blessed reference) or a class name (that is, a package name). See <a href="https://metacpan.org/pod/perlobj" rel="external">perlobj</a>.</p>
 
-<p>The dereferencing cases (as opposed to method-calling cases) are somewhat extended by the <code>postderef</code> feature. For the details of that feature, consult <a href="/perldoc/perlref/#Postfix-Dereference-Syntax">&quot;Postfix Dereference Syntax&quot; in perlref</a>.</p>
+<p>The dereferencing cases (as opposed to method-calling cases) are somewhat extended by the <code>postderef</code> feature. For the details of that feature, consult <a href="https://metacpan.org/pod/perlref#Postfix-Dereference-Syntax" rel="external">&quot;Postfix Dereference Syntax&quot; in perlref</a>.</p>
 
 <h2 id="Auto-increment-and-Auto-decrement">Auto-increment and Auto-decrement      </h2>
 
@@ -262,11 +282,11 @@
 
 <p>Unary <code>&quot;+&quot;</code> has no effect whatsoever, even on strings. It is useful syntactically for separating a function name from a parenthesized expression that would otherwise be interpreted as the complete list of function arguments. (See examples above under <a href="#Terms-and-List-Operators-Leftward">&quot;Terms and List Operators (Leftward)&quot;</a>.) </p>
 
-<p>Unary <code>&quot;\&quot;</code> creates a reference to whatever follows it. See <a href="/perldoc/perlreftut/">perlreftut</a> and <a href="/perldoc/perlref/">perlref</a>. Do not confuse this behavior with the behavior of backslash within a string, although both forms do convey the notion of protecting the next thing from interpolation.   </p>
+<p>Unary <code>&quot;\&quot;</code> creates a reference to whatever follows it. See <a href="https://metacpan.org/pod/perlreftut" rel="external">perlreftut</a> and <a href="https://metacpan.org/pod/perlref" rel="external">perlref</a>. Do not confuse this behavior with the behavior of backslash within a string, although both forms do convey the notion of protecting the next thing from interpolation.   </p>
 
 <h2 id="Binding-Operators">Binding Operators    </h2>
 
-<p>Binary <code>&quot;=~&quot;</code> binds a scalar expression to a pattern match. Certain operations search or modify the string <code>$_</code> by default. This operator makes that kind of operation work on some other string. The right argument is a search pattern, substitution, or transliteration. The left argument is what is supposed to be searched, substituted, or transliterated instead of the default <code>$_</code>. When used in scalar context, the return value generally indicates the success of the operation. The exceptions are substitution (<code>s///</code>) and transliteration (<code>y///</code>) with the <code>/r</code> (non-destructive) option, which cause the <b>r</b>eturn value to be the result of the substitution. Behavior in list context depends on the particular operator. See <a href="#Regexp-Quote-Like-Operators">&quot;Regexp Quote-Like Operators&quot;</a> for details and <a href="/perldoc/perlretut/">perlretut</a> for examples using these operators.</p>
+<p>Binary <code>&quot;=~&quot;</code> binds a scalar expression to a pattern match. Certain operations search or modify the string <code>$_</code> by default. This operator makes that kind of operation work on some other string. The right argument is a search pattern, substitution, or transliteration. The left argument is what is supposed to be searched, substituted, or transliterated instead of the default <code>$_</code>. When used in scalar context, the return value generally indicates the success of the operation. The exceptions are substitution (<code>s///</code>) and transliteration (<code>y///</code>) with the <code>/r</code> (non-destructive) option, which cause the <b>r</b>eturn value to be the result of the substitution. Behavior in list context depends on the particular operator. See <a href="#Regexp-Quote-Like-Operators">&quot;Regexp Quote-Like Operators&quot;</a> for details and <a href="https://metacpan.org/pod/perlretut" rel="external">perlretut</a> for examples using these operators.</p>
 
 <p>If the right argument is an expression rather than a search pattern, substitution, or transliteration, it is interpreted as a search pattern at run time. Note that this means that its contents will be interpolated twice, so</p>
 
@@ -397,7 +417,7 @@
 
 <p>Binary <code>&quot;~~&quot;</code> does a smartmatch between its arguments. Smart matching is described in the next section. </p>
 
-<p><code>&quot;lt&quot;</code>, <code>&quot;le&quot;</code>, <code>&quot;ge&quot;</code>, <code>&quot;gt&quot;</code> and <code>&quot;cmp&quot;</code> use the collation (sort) order specified by the current <code>LC_COLLATE</code> locale if a <span style="white-space: nowrap;"><code>use locale</code></span> form that includes collation is in effect. See <a href="/perldoc/perllocale/">perllocale</a>. Do not mix these with Unicode, only use them with legacy 8-bit locale encodings. The standard <code><a href="https://metacpan.org/pod/Unicode::Collate" rel="external">Unicode::Collate</a></code> and <code><a href="https://metacpan.org/pod/Unicode::Collate::Locale" rel="external">Unicode::Collate::Locale</a></code> modules offer much more powerful solutions to collation issues.</p>
+<p><code>&quot;lt&quot;</code>, <code>&quot;le&quot;</code>, <code>&quot;ge&quot;</code>, <code>&quot;gt&quot;</code> and <code>&quot;cmp&quot;</code> use the collation (sort) order specified by the current <code>LC_COLLATE</code> locale if a <span style="white-space: nowrap;"><code>use locale</code></span> form that includes collation is in effect. See <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a>. Do not mix these with Unicode, only use them with legacy 8-bit locale encodings. The standard <code><a href="https://metacpan.org/pod/Unicode::Collate" rel="external">Unicode::Collate</a></code> and <code><a href="https://metacpan.org/pod/Unicode::Collate::Locale" rel="external">Unicode::Collate::Locale</a></code> modules offer much more powerful solutions to collation issues.</p>
 
 <p>For case-insensitive comparisions, look at the <a href="/perldoc/perlfunc/#fc">&quot;fc&quot; in perlfunc</a> case-folding function, available in Perl v5.16 or later:</p>
 
@@ -405,7 +425,7 @@
 
 <h2 id="Smartmatch-Operator">Smartmatch Operator</h2>
 
-<p>First available in Perl 5.10.1 (the 5.10.0 version behaved differently), binary <code>~~</code> does a &quot;smartmatch&quot; between its arguments. This is mostly used implicitly in the <code>when</code> construct described in <a href="/perldoc/perlsyn/">perlsyn</a>, although not all <code>when</code> clauses call the smartmatch operator. Unique among all of Perl&#39;s operators, the smartmatch operator can recurse. The smartmatch operator is <a href="/perldoc/perlpolicy/#experimental">experimental</a> and its behavior is subject to change.</p>
+<p>First available in Perl 5.10.1 (the 5.10.0 version behaved differently), binary <code>~~</code> does a &quot;smartmatch&quot; between its arguments. This is mostly used implicitly in the <code>when</code> construct described in <a href="https://metacpan.org/pod/perlsyn" rel="external">perlsyn</a>, although not all <code>when</code> clauses call the smartmatch operator. Unique among all of Perl&#39;s operators, the smartmatch operator can recurse. The smartmatch operator is <a href="https://metacpan.org/pod/perlpolicy#experimental" rel="external">experimental</a> and its behavior is subject to change.</p>
 
 <p>It is also unique in that all other Perl operators impose a context (usually string or numeric context) on their operands, autoconverting those operands to those imposed contexts. In contrast, smartmatch <i>infers</i> contexts from the actual types of its operands and uses that type information to select a suitable comparison mechanism.</p>
 
@@ -594,7 +614,7 @@
 
 <p>However, this only does what you mean if <code>$init_fields</code> is indeed a hash reference. The condition <code>$init_fields ~~ $REQUIRED_FIELDS</code> also allows the strings <code>&quot;name&quot;</code>, <code>&quot;rank&quot;</code>, <code>&quot;serial_num&quot;</code> as well as any array reference that contains <code>&quot;name&quot;</code> or <code>&quot;rank&quot;</code> or <code>&quot;serial_num&quot;</code> anywhere to pass through.</p>
 
-<p>The smartmatch operator is most often used as the implicit operator of a <code>when</code> clause. See the section on &quot;Switch Statements&quot; in <a href="/perldoc/perlsyn/">perlsyn</a>.</p>
+<p>The smartmatch operator is most often used as the implicit operator of a <code>when</code> clause. See the section on &quot;Switch Statements&quot; in <a href="https://metacpan.org/pod/perlsyn" rel="external">perlsyn</a>.</p>
 
 <h3 id="Smartmatching-of-Objects">Smartmatching of Objects</h3>
 
@@ -775,7 +795,7 @@
 
 <p>If the final value specified is not in the sequence that the magical increment would produce, the sequence goes until the next value would be longer than the final value specified.</p>
 
-<p>As of Perl 5.26, the list-context range operator on strings works as expected in the scope of <a href="https://metacpan.org/pod/feature#The-unicode_strings-feature" rel="external"><span style="white-space: nowrap;"><code>&quot;use feature &#39;unicode_strings&quot;</code></span></a>. In previous versions, and outside the scope of that feature, it exhibits <a href="/perldoc/perlunicode/#The-Unicode-Bug">&quot;The &quot;Unicode Bug&quot;&quot; in perlunicode</a>: its behavior depends on the internal encoding of the range endpoint.</p>
+<p>As of Perl 5.26, the list-context range operator on strings works as expected in the scope of <a href="https://metacpan.org/pod/feature#The-unicode_strings-feature" rel="external"><span style="white-space: nowrap;"><code>&quot;use feature &#39;unicode_strings&quot;</code></span></a>. In previous versions, and outside the scope of that feature, it exhibits <a href="https://metacpan.org/pod/perlunicode#The-Unicode-Bug" rel="external">&quot;The &quot;Unicode Bug&quot;&quot; in perlunicode</a>: its behavior depends on the internal encoding of the range endpoint.</p>
 
 <p>If the initial value specified isn&#39;t part of a magical increment sequence (that is, a non-empty string matching <code>/^[a-zA-Z]*[0-9]*\z/</code>), only the initial value will be returned. So the following will only return an alpha:</p>
 
@@ -790,7 +810,7 @@
                                      ord(&quot;\N{omega}&quot;)
                                    );</code></pre>
 
-<p>However, because there are <i>many</i> other lowercase Greek characters than just those, to match lowercase Greek characters in a regular expression, you could use the pattern <code>/(?:(?=\p{Greek})\p{Lower})+/</code> (or the <a href="/perldoc/perlrecharclass/#Extended-Bracketed-Character-Classes">experimental feature</a> <code><span style="white-space: nowrap;">/(?[ \p{Greek} &amp; \p{Lower} ])+/</span></code>).</p>
+<p>However, because there are <i>many</i> other lowercase Greek characters than just those, to match lowercase Greek characters in a regular expression, you could use the pattern <code>/(?:(?=\p{Greek})\p{Lower})+/</code> (or the <a href="https://metacpan.org/pod/perlrecharclass#Extended-Bracketed-Character-Classes" rel="external">experimental feature</a> <code><span style="white-space: nowrap;">/(?[ \p{Greek} &amp; \p{Lower} ])+/</span></code>).</p>
 
 <p>Because each operand is evaluated in integer form, <span style="white-space: nowrap;"><code>2.18 .. 3.14</code></span> will return two elements in list context.</p>
 
@@ -848,7 +868,7 @@
            .=    %=    ^=    ^.=           //=
                  x=</code></pre>
 
-<p>Although these are grouped by family, they all have the precedence of assignment. These combined assignment operators can only operate on scalars, whereas the ordinary assignment operator can assign to arrays, hashes, lists and even references. (See <a href="/perldoc/perldata/#Context">&quot;Context&quot;</a> and <a href="/perldoc/perldata/#List-value-constructors">&quot;List value constructors&quot; in perldata</a>, and <a href="/perldoc/perlref/#Assigning-to-References">&quot;Assigning to References&quot; in perlref</a>.)</p>
+<p>Although these are grouped by family, they all have the precedence of assignment. These combined assignment operators can only operate on scalars, whereas the ordinary assignment operator can assign to arrays, hashes, lists and even references. (See <a href="https://metacpan.org/pod/perldata#Context" rel="external">&quot;Context&quot;</a> and <a href="https://metacpan.org/pod/perldata#List-value-constructors" rel="external">&quot;List value constructors&quot; in perldata</a>, and <a href="https://metacpan.org/pod/perlref#Assigning-to-References" rel="external">&quot;Assigning to References&quot; in perlref</a>.)</p>
 
 <p>Unlike in C, the scalar assignment operator produces a valid lvalue. Modifying an assignment is equivalent to doing the assignment and then modifying the variable that was assigned to. This is useful for modifying a copy of something, like this:</p>
 
@@ -1107,7 +1127,7 @@
 
 <p>Also, <code>\c\<i>X</i></code> yields <span style="white-space: nowrap;"><code> chr(28) . &quot;<i>X</i>&quot;</code></span> for any <i>X</i>, but cannot come at the end of a string, because the backslash would be parsed as escaping the end quote.</p>
 
-<p>On ASCII platforms, the resulting characters from the list above are the complete set of ASCII controls. This isn&#39;t the case on EBCDIC platforms; see <a href="/perldoc/perlebcdic/#OPERATOR-DIFFERENCES">&quot;OPERATOR DIFFERENCES&quot; in perlebcdic</a> for a full discussion of the differences between these for ASCII versus EBCDIC platforms.</p>
+<p>On ASCII platforms, the resulting characters from the list above are the complete set of ASCII controls. This isn&#39;t the case on EBCDIC platforms; see <a href="https://metacpan.org/pod/perlebcdic#OPERATOR-DIFFERENCES" rel="external">&quot;OPERATOR DIFFERENCES&quot; in perlebcdic</a> for a full discussion of the differences between these for ASCII versus EBCDIC platforms.</p>
 
 <p>Use of any other character following the <code>&quot;c&quot;</code> besides those listed above is discouraged, and as of Perl v5.20, the only characters actually allowed are the printable ASCII ones, minus the left brace <code>&quot;{&quot;</code>. What happens for any of the allowed other characters is that the value is derived by xor&#39;ing with the seventh bit, which is 64, and a warning raised if enabled. Using the non-allowed characters generates a fatal error.</p>
 
@@ -1127,7 +1147,7 @@
 
 <p>The result is the character specified by the three-digit octal number in the range 000 to 777 (but best to not use above 077, see next paragraph). See <a href="#pod-8">&quot;[8]&quot;</a> below for details on which character.</p>
 
-<p>Some contexts allow 2 or even 1 digit, but any usage without exactly three digits, the first being a zero, may give unintended results. (For example, in a regular expression it may be confused with a backreference; see <a href="/perldoc/perlrebackslash/#Octal-escapes">&quot;Octal escapes&quot; in perlrebackslash</a>.) Starting in Perl 5.14, you may use <code>\o{}</code> instead, which avoids all these problems. Otherwise, it is best to use this construct only for ordinals <code>\077</code> and below, remembering to pad to the left with zeros to make three digits. For larger ordinals, either use <code>\o{}</code>, or convert to something else, such as to hex and use <code>\N{U+}</code> (which is portable between platforms with different character sets) or <code>\x{}</code> instead.</p>
+<p>Some contexts allow 2 or even 1 digit, but any usage without exactly three digits, the first being a zero, may give unintended results. (For example, in a regular expression it may be confused with a backreference; see <a href="https://metacpan.org/pod/perlrebackslash#Octal-escapes" rel="external">&quot;Octal escapes&quot; in perlrebackslash</a>.) Starting in Perl 5.14, you may use <code>\o{}</code> instead, which avoids all these problems. Otherwise, it is best to use this construct only for ordinals <code>\077</code> and below, remembering to pad to the left with zeros to make three digits. For larger ordinals, either use <code>\o{}</code>, or convert to something else, such as to hex and use <code>\N{U+}</code> (which is portable between platforms with different character sets) or <code>\x{}</code> instead.</p>
 
 </dd>
 <dt>[8]</dt>
@@ -1140,7 +1160,7 @@
 </dd>
 </dl>
 
-<p><b>NOTE</b>: Unlike C and other languages, Perl has no <code>\v</code> escape sequence for the vertical tab (VT, which is 11 in both ASCII and EBCDIC), but you may use <code>\N{VT}</code>, <code>\ck</code>, <code>\N{U+0b}</code>, or <code>\x0b</code>. (<code>\v</code> does have meaning in regular expression patterns in Perl, see <a href="/perldoc/perlre/">perlre</a>.)</p>
+<p><b>NOTE</b>: Unlike C and other languages, Perl has no <code>\v</code> escape sequence for the vertical tab (VT, which is 11 in both ASCII and EBCDIC), but you may use <code>\N{VT}</code>, <code>\ck</code>, <code>\N{U+0b}</code>, or <code>\x0b</code>. (<code>\v</code> does have meaning in regular expression patterns in Perl, see <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a>.)</p>
 
 <p>The following escape sequences are available in constructs that interpolate, but not in transliterations.       </p>
 
@@ -1161,7 +1181,7 @@
 <pre><code> say&quot;This \Qquoting \ubusiness \Uhere isn&#39;t quite\E done yet,\E is it?&quot;;
  This quoting\ Business\ HERE\ ISN\&#39;T\ QUITE\ done\ yet\, is it?</code></pre>
 
-<p>If a <span style="white-space: nowrap;"><code>use locale</code></span> form that includes <code>LC_CTYPE</code> is in effect (see <a href="/perldoc/perllocale/">perllocale</a>), the case map used by <code>\l</code>, <code>\L</code>, <code>\u</code>, and <code>\U</code> is taken from the current locale. If Unicode (for example, <code>\N{}</code> or code points of 0x100 or beyond) is being used, the case map used by <code>\l</code>, <code>\L</code>, <code>\u</code>, and <code>\U</code> is as defined by Unicode. That means that case-mapping a single character can sometimes produce a sequence of several characters. Under <span style="white-space: nowrap;"><code>use locale</code></span>, <code>\F</code> produces the same results as <code>\L</code> for all locales but a UTF-8 one, where it instead uses the Unicode definition.</p>
+<p>If a <span style="white-space: nowrap;"><code>use locale</code></span> form that includes <code>LC_CTYPE</code> is in effect (see <a href="https://metacpan.org/pod/perllocale" rel="external">perllocale</a>), the case map used by <code>\l</code>, <code>\L</code>, <code>\u</code>, and <code>\U</code> is taken from the current locale. If Unicode (for example, <code>\N{}</code> or code points of 0x100 or beyond) is being used, the case map used by <code>\l</code>, <code>\L</code>, <code>\u</code>, and <code>\U</code> is as defined by Unicode. That means that case-mapping a single character can sometimes produce a sequence of several characters. Under <span style="white-space: nowrap;"><code>use locale</code></span>, <code>\F</code> produces the same results as <code>\L</code> for all locales but a UTF-8 one, where it instead uses the Unicode definition.</p>
 
 <p>All systems use the virtual <code>&quot;\n&quot;</code> to represent a line terminator, called a &quot;newline&quot;. There is no such thing as an unvarying, physical newline character. It is only an illusion that the operating system, device drivers, C libraries, and Perl all conspire to preserve. Not all systems read <code>&quot;\r&quot;</code> as ASCII CR and <code>&quot;\n&quot;</code> as ASCII LF. For example, on the ancient Macs (pre-MacOS X) of yesteryear, these used to be reversed, and on systems without a line terminator, printing <code>&quot;\n&quot;</code> might emit no actual data. In general, use <code>&quot;\n&quot;</code> when you mean a &quot;newline&quot; for your system, but use the literal ASCII when you need an exact character. For example, most networking protocols expect and prefer a CR+LF (<code>&quot;\015\012&quot;</code> or <code>&quot;\cM\cJ&quot;</code>) for line terminators, and although they often accept just <code>&quot;\012&quot;</code>, they seldom tolerate just <code>&quot;\015&quot;</code>. If you get in the habit of using <code>&quot;\n&quot;</code> for networking, you may be burned some day.       </p>
 
@@ -1258,7 +1278,7 @@
 
 <p>The last four modifiers listed above, added in Perl 5.14, control the character set rules, but <code>/a</code> is the only one you are likely to want to specify explicitly; the other three are selected automatically by various pragmas.</p>
 
-<p>See <a href="/perldoc/perlre/">perlre</a> for additional information on valid syntax for <i>STRING</i>, and for a detailed look at the semantics of regular expressions. In particular, all modifiers except the largely obsolete <code>/o</code> are further explained in <a href="/perldoc/perlre/#Modifiers">&quot;Modifiers&quot; in perlre</a>. <code>/o</code> is described in the next section.</p>
+<p>See <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a> for additional information on valid syntax for <i>STRING</i>, and for a detailed look at the semantics of regular expressions. In particular, all modifiers except the largely obsolete <code>/o</code> are further explained in <a href="https://metacpan.org/pod/perlre#Modifiers" rel="external">&quot;Modifiers&quot; in perlre</a>. <code>/o</code> is described in the next section.</p>
 
 </dd>
 <dt><code>m/<i>PATTERN</i>/msixpodualngc</code>              </dt>
@@ -1268,7 +1288,7 @@
 <dt><code>/<i>PATTERN</i>/msixpodualngc</code></dt>
 <dd>
 
-<p>Searches a string for a pattern match, and in scalar context returns true if it succeeds, false if it fails. If no string is specified via the <code>=~</code> or <code>!~</code> operator, the <code>$_</code> string is searched. (The string specified with <code>=~</code> need not be an lvalue--it may be the result of an expression evaluation, but remember the <code>=~</code> binds rather tightly.) See also <a href="/perldoc/perlre/">perlre</a>.</p>
+<p>Searches a string for a pattern match, and in scalar context returns true if it succeeds, false if it fails. If no string is specified via the <code>=~</code> or <code>!~</code> operator, the <code>$_</code> string is searched. (The string specified with <code>=~</code> need not be an lvalue--it may be the result of an expression evaluation, but remember the <code>=~</code> binds rather tightly.) See also <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a>.</p>
 
 <p>Options are as described in <code>qr//</code> above; in addition, the following match process modifiers are available:</p>
 
@@ -1473,7 +1493,7 @@
 
 <p>If no string is specified via the <code>=~</code> or <code>!~</code> operator, the <code>$_</code> variable is searched and modified. Unless the <code>/r</code> option is used, the string specified must be a scalar variable, an array element, a hash element, or an assignment to one of those; that is, some sort of scalar lvalue.</p>
 
-<p>If the delimiter chosen is a single quote, no variable interpolation is done on either the <i>PATTERN</i> or the <i>REPLACEMENT</i>. Otherwise, if the <i>PATTERN</i> contains a <code>$</code> that looks like a variable rather than an end-of-string test, the variable will be interpolated into the pattern at run-time. If you want the pattern compiled only once the first time the variable is interpolated, use the <code>/o</code> option. If the pattern evaluates to the empty string, the last successfully executed regular expression is used instead. See <a href="/perldoc/perlre/">perlre</a> for further explanation on these.</p>
+<p>If the delimiter chosen is a single quote, no variable interpolation is done on either the <i>PATTERN</i> or the <i>REPLACEMENT</i>. Otherwise, if the <i>PATTERN</i> contains a <code>$</code> that looks like a variable rather than an end-of-string test, the variable will be interpolated into the pattern at run-time. If you want the pattern compiled only once the first time the variable is interpolated, use the <code>/o</code> option. If the pattern evaluates to the empty string, the last successfully executed regular expression is used instead. See <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a> for further explanation on these.</p>
 
 <p>Options are as with <code>m//</code> with the addition of the following replacement specific options:</p>
 
@@ -1640,11 +1660,11 @@
 <pre><code>    $perl_info  = qx(ps $$);            # that&#39;s Perl&#39;s $$
     $shell_info = qx&#39;ps $$&#39;;            # that&#39;s the new shell&#39;s $$</code></pre>
 
-<p>How that string gets evaluated is entirely subject to the command interpreter on your system. On most platforms, you will have to protect shell metacharacters if you want them treated literally. This is in practice difficult to do, as it&#39;s unclear how to escape which characters. See <a href="/perldoc/perlsec/">perlsec</a> for a clean and safe example of a manual <code>fork()</code> and <code>exec()</code> to emulate backticks safely.</p>
+<p>How that string gets evaluated is entirely subject to the command interpreter on your system. On most platforms, you will have to protect shell metacharacters if you want them treated literally. This is in practice difficult to do, as it&#39;s unclear how to escape which characters. See <a href="https://metacpan.org/pod/perlsec" rel="external">perlsec</a> for a clean and safe example of a manual <code>fork()</code> and <code>exec()</code> to emulate backticks safely.</p>
 
 <p>On some platforms (notably DOS-like ones), the shell may not be capable of dealing with multiline commands, so putting newlines in the string may not get you what you want. You may be able to evaluate multiple commands in a single line by separating them with the command separator character, if your shell supports that (for example, <code>;</code> on many Unix shells and <code>&amp;</code> on the Windows NT <code>cmd</code> shell).</p>
 
-<p>Perl will attempt to flush all files opened for output before starting the child process, but this may not be supported on some platforms (see <a href="/perldoc/perlport/">perlport</a>). To be safe, you may need to set <code>$|</code> (<code>$AUTOFLUSH</code> in <code><a href="https://metacpan.org/pod/English" rel="external">English</a></code>) or call the <code>autoflush()</code> method of <code><a href="https://metacpan.org/pod/IO::Handle" rel="external">IO::Handle</a></code> on any open handles.</p>
+<p>Perl will attempt to flush all files opened for output before starting the child process, but this may not be supported on some platforms (see <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>). To be safe, you may need to set <code>$|</code> (<code>$AUTOFLUSH</code> in <code><a href="https://metacpan.org/pod/English" rel="external">English</a></code>) or call the <code>autoflush()</code> method of <code><a href="https://metacpan.org/pod/IO::Handle" rel="external">IO::Handle</a></code> on any open handles.</p>
 
 <p>Beware that some command shells may place restrictions on the length of the command line. You must ensure your strings don&#39;t exceed this limit after any necessary interpolations. See the platform-specific release notes for more details about your particular environment.</p>
 
@@ -2089,7 +2109,7 @@
 
 <p>Previous steps were performed during the compilation of Perl code, but this one happens at run time, although it may be optimized to be calculated at compile time if appropriate. After preprocessing described above, and possibly after evaluation if concatenation, joining, casing translation, or metaquoting are involved, the resulting <i>string</i> is passed to the RE engine for compilation.</p>
 
-<p>Whatever happens in the RE engine might be better discussed in <a href="/perldoc/perlre/">perlre</a>, but for the sake of continuity, we shall do so here.</p>
+<p>Whatever happens in the RE engine might be better discussed in <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a>, but for the sake of continuity, we shall do so here.</p>
 
 <p>This is another step where the presence of the <code>/x</code> modifier is relevant. The RE engine scans the string from left to right and converts it into a finite automaton.</p>
 
@@ -2099,7 +2119,7 @@
 
 <p>The terminator of runtime <code>(?{...})</code> is found by temporarily switching control to the perl parser, which should stop at the point where the logically balancing terminating <code>}</code> is found.</p>
 
-<p>It is possible to inspect both the string given to RE engine and the resulting finite automaton. See the arguments <code>debug</code>/<code>debugcolor</code> in the <span style="white-space: nowrap;"><code>use <a href="https://metacpan.org/pod/re" rel="external">re</a></code></span> pragma, as well as Perl&#39;s <b>-Dr</b> command-line switch documented in <a href="/perldoc/perlrun/#Command-Switches">&quot;Command Switches&quot; in perlrun</a>.</p>
+<p>It is possible to inspect both the string given to RE engine and the resulting finite automaton. See the arguments <code>debug</code>/<code>debugcolor</code> in the <span style="white-space: nowrap;"><code>use <a href="https://metacpan.org/pod/re" rel="external">re</a></code></span> pragma, as well as Perl&#39;s <b>-Dr</b> command-line switch documented in <a href="https://metacpan.org/pod/perlrun#Command-Switches" rel="external">&quot;Command Switches&quot; in perlrun</a>.</p>
 
 </dd>
 <dt>Optimization of regular expressions </dt>
@@ -2116,7 +2136,7 @@
 
 <p>There are several I/O operators you should know about.</p>
 
-<p>A string enclosed by backticks (grave accents) first undergoes double-quote interpolation. It is then interpreted as an external command, and the output of that command is the value of the backtick string, like in a shell. In scalar context, a single string consisting of all output is returned. In list context, a list of values is returned, one per line of output. (You can set <code>$/</code> to use a different line terminator.) The command is executed each time the pseudo-literal is evaluated. The status value of the command is returned in <code>$?</code> (see <a href="/perldoc/perlvar/">perlvar</a> for the interpretation of <code>$?</code>). Unlike in <b>csh</b>, no translation is done on the return data--newlines remain newlines. Unlike in any of the shells, single quotes do not hide variable names in the command from interpretation. To pass a literal dollar-sign through to the shell you need to hide it with a backslash. The generalized form of backticks is <code>qx//</code>. (Because backticks always undergo shell expansion as well, see <a href="/perldoc/perlsec/">perlsec</a> for security concerns.)     </p>
+<p>A string enclosed by backticks (grave accents) first undergoes double-quote interpolation. It is then interpreted as an external command, and the output of that command is the value of the backtick string, like in a shell. In scalar context, a single string consisting of all output is returned. In list context, a list of values is returned, one per line of output. (You can set <code>$/</code> to use a different line terminator.) The command is executed each time the pseudo-literal is evaluated. The status value of the command is returned in <code>$?</code> (see <a href="/perldoc/perlvar/">perlvar</a> for the interpretation of <code>$?</code>). Unlike in <b>csh</b>, no translation is done on the return data--newlines remain newlines. Unlike in any of the shells, single quotes do not hide variable names in the command from interpretation. To pass a literal dollar-sign through to the shell you need to hide it with a backslash. The generalized form of backticks is <code>qx//</code>. (Because backticks always undergo shell expansion as well, see <a href="https://metacpan.org/pod/perlsec" rel="external">perlsec</a> for security concerns.)     </p>
 
 <p>In scalar context, evaluating a filehandle in angle brackets yields the next line from that file (the newline, if any, included), or <code>undef</code> at end-of-file or on error. When <code>$/</code> is set to <code>undef</code> (sometimes known as file-slurp mode) and the file is empty, it returns <code>&#39;&#39;</code> the first time, followed by <code>undef</code> subsequently.</p>
 
@@ -2308,7 +2328,7 @@
 
 <p>The assignment variants of these operators (<code>&amp;= |= ^= &amp;.= |.= ^.=</code>) behave likewise under the feature.</p>
 
-<p>The behavior of these operators is problematic (and subject to change) if either or both of the strings are encoded in UTF-8 (see <a href="/perldoc/perlunicode/#Byte-and-Character-Semantics">&quot;Byte and Character Semantics&quot; in perlunicode</a>.</p>
+<p>The behavior of these operators is problematic (and subject to change) if either or both of the strings are encoded in UTF-8 (see <a href="https://metacpan.org/pod/perlunicode#Byte-and-Character-Semantics" rel="external">&quot;Byte and Character Semantics&quot; in perlunicode</a>.</p>
 
 <p>See <a href="/perldoc/perlfunc/#vec">&quot;vec&quot; in perlfunc</a> for information on how to manipulate individual bits in a bit vector.</p>
 
@@ -2330,7 +2350,7 @@
 
 <p>   </p>
 
-<p>While <span style="white-space: nowrap;"><code>use integer</code></span> provides integer-only arithmetic, there is no analogous mechanism to provide automatic rounding or truncation to a certain number of decimal places. For rounding to a certain number of digits, <code>sprintf()</code> or <code>printf()</code> is usually the easiest route. See <a href="/perldoc/perlfaq4/">perlfaq4</a>.</p>
+<p>While <span style="white-space: nowrap;"><code>use integer</code></span> provides integer-only arithmetic, there is no analogous mechanism to provide automatic rounding or truncation to a certain number of decimal places. For rounding to a certain number of digits, <code>sprintf()</code> or <code>printf()</code> is usually the easiest route. See <a href="https://metacpan.org/pod/perlfaq4" rel="external">perlfaq4</a>.</p>
 
 <p>Floating-point numbers are only approximations to what a mathematician would call real numbers. There are infinitely more reals than floats, so some corners must be cut. For example:</p>
 
@@ -2394,8 +2414,8 @@
 
 
 
-                    </main>
-                </div>
+                </main>
+                <div style="clear: both;"></div>
 
         </div>
         <footer>

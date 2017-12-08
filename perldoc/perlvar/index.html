@@ -13,13 +13,16 @@
         
         <script>
             $( document ).ready(function() {
+                console.log('/perldoc/perlvar');
+
                 $('.sub-menu ul').hide();
                 $('.sub-menu.perldoc ul').show();
-                $('.sub-menu.perldoc div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.perldoc>a>div').toggleClass("fa-caret-up fa-caret-down");
+
                 $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
                 });
             });
         </script>
@@ -35,18 +38,24 @@
     <body>
         <header>
         </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
         <div class="container">
 
-                <div class="left column full-height">
-                    <div class="sidebar">
+                <div class="sidebar">
                     
-<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
 
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/perldoc/perlvar/#basics">The basics<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlvar/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <ul>
+        <li><a href="/basics/perl">Perl design goals</a></li>
         <li><a href="/basics/hello">Hello world</a></li>
         <li><a href="/basics/variables">Variables</a></li>
         <li><a href="/basics/references">References</a></li>
@@ -56,59 +65,70 @@
         <li><a href="/basics/exceptions">Exceptions</a></li>
         <li><a href="/basics/regexps">Regexps</a></li>
         <li><a href="/basics/files">Files</a></li>
-      </ul>
-    </li>
-    <li class="oo sub-menu">
-      <a href="/perldoc/perlvar/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
-      </ul>
-    </li>
-    <li class="debugging sub-menu">
-      <a href="/perldoc/perlvar/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
-      </ul>
+    </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/perldoc/perlvar/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlvar/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <ul>
         <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
         <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
         <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
         <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
         <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
-      </ul>
+    </ul>
+    </li>
+    <li class="oo sub-menu">
+    <a href="/perldoc/perlvar/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <ul>
+        <li><a href="/oo/story">The story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+    </ul>
+    </li>
+    <li class="debugging sub-menu">
+    <a href="/perldoc/perlvar/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+    </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/perldoc/perlvar/#testing">Testing<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/perldoc/perlvar/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <ul>
         <li><a href="/testing/intro">Introduction to testing</a></li>
         <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
         <li><a href="/testing/data">Testing data structures</a></li>
         <li><a href="/testing/mock">Testing with mock objects</a></li>
         <li><a href="/testing/libs">Build your own test libraries</a></li>
+    </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/perldoc/perlvar/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
       </ul>
     </li>
-    <li><a href="/perl">Perl design goals</a></li>
-    <li><a href="/see-also">Book recommendations</a></li>
-    <li><a href="/about">About this book</a></li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
   </ul>
 </div>
 
                     
                     
-                    </div>
                 </div>
 
-                <div class="right column">
-                    <main>
+                <main>
                     <div class="crumbtrail">
 <ul>
     <li>
@@ -125,7 +145,7 @@
 
 <h2 id="The-Syntax-of-Variable-Names">The Syntax of Variable Names</h2>
 
-<p>Variable names in Perl can have several formats. Usually, they must begin with a letter or underscore, in which case they can be arbitrarily long (up to an internal limit of 251 characters) and may contain letters, digits, underscores, or the special sequence <code>::</code> or <code>&#39;</code>. In this case, the part before the last <code>::</code> or <code>&#39;</code> is taken to be a <i>package qualifier</i>; see <a href="/perldoc/perlmod/">perlmod</a>. A Unicode letter that is not ASCII is not considered to be a letter unless <span style="white-space: nowrap;"><code>&quot;use utf8&quot;</code></span> is in effect, and somewhat more complicated rules apply; see <a href="/perldoc/perldata/#Identifier-parsing">&quot;Identifier parsing&quot; in perldata</a> for details.</p>
+<p>Variable names in Perl can have several formats. Usually, they must begin with a letter or underscore, in which case they can be arbitrarily long (up to an internal limit of 251 characters) and may contain letters, digits, underscores, or the special sequence <code>::</code> or <code>&#39;</code>. In this case, the part before the last <code>::</code> or <code>&#39;</code> is taken to be a <i>package qualifier</i>; see <a href="https://metacpan.org/pod/perlmod" rel="external">perlmod</a>. A Unicode letter that is not ASCII is not considered to be a letter unless <span style="white-space: nowrap;"><code>&quot;use utf8&quot;</code></span> is in effect, and somewhat more complicated rules apply; see <a href="https://metacpan.org/pod/perldata#Identifier-parsing" rel="external">&quot;Identifier parsing&quot; in perldata</a> for details.</p>
 
 <p>Perl variable names may also be a sequence of digits, a single punctuation character, or the two-character sequence: <code>^</code> (caret or CIRCUMFLEX ACCENT) followed by any one of the characters <code>[][A-Z^_?\]</code>. These names are all reserved for special uses by Perl; for example, the all-digits names are used to hold data captured by backreferences after a regular expression match.</p>
 
@@ -219,7 +239,7 @@
 
 <p>Within a subroutine the array <code>@_</code> contains the parameters passed to that subroutine. Inside a subroutine, <code>@_</code> is the default array for the array operators <code>pop</code> and <code>shift</code>.</p>
 
-<p>See <a href="/perldoc/perlsub/">perlsub</a>.</p>
+<p>See <a href="https://metacpan.org/pod/perlsub" rel="external">perlsub</a>.</p>
 
 </dd>
 <dt>$LIST_SEPARATOR</dt>
@@ -400,7 +420,7 @@
 
 <p>Default is &quot;\034&quot;, the same as SUBSEP in <b>awk</b>. If your keys contain binary data there might not be any safe value for <code>$;</code>.</p>
 
-<p>Consider using &quot;real&quot; multidimensional arrays as described in <a href="/perldoc/perllol/">perllol</a>.</p>
+<p>Consider using &quot;real&quot; multidimensional arrays as described in <a href="https://metacpan.org/pod/perllol" rel="external">perllol</a>.</p>
 
 <p>Mnemonic: comma (the syntactic subscript separator) is a semi-semicolon.</p>
 
@@ -481,7 +501,7 @@
 <dt>@F </dt>
 <dd>
 
-<p>The array <code>@F</code> contains the fields of each line read in when autosplit mode is turned on. See <a href="/perldoc/perlrun/">perlrun</a> for the <b>-a</b> switch. This array is package-specific, and must be declared or given a full package name if not in package main when running under <code>strict &#39;vars&#39;</code>.</p>
+<p>The array <code>@F</code> contains the fields of each line read in when autosplit mode is turned on. See <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a> for the <b>-a</b> switch. This array is package-specific, and must be declared or given a full package name if not in package main when running under <code>strict &#39;vars&#39;</code>.</p>
 
 </dd>
 <dt>@INC </dt>
@@ -518,7 +538,7 @@
 <dt>@ISA </dt>
 <dd>
 
-<p>Each package contains a special array called <code>@ISA</code> which contains a list of that class&#39;s parent classes, if any. This array is simply a list of scalars, each of which is a string that corresponds to a package name. The array is examined when Perl does method resolution, which is covered in <a href="/perldoc/perlobj/">perlobj</a>.</p>
+<p>Each package contains a special array called <code>@ISA</code> which contains a list of that class&#39;s parent classes, if any. This array is simply a list of scalars, each of which is a string that corresponds to a package name. The array is examined when Perl does method resolution, which is covered in <a href="https://metacpan.org/pod/perlobj" rel="external">perlobj</a>.</p>
 
 <p>To load packages while adding them to <code>@ISA</code>, see the <a href="https://metacpan.org/pod/parent" rel="external">parent</a> pragma. The discouraged <a href="https://metacpan.org/pod/base" rel="external">base</a> pragma does this as well, but should not be used except when compatibility with the discouraged <a href="https://metacpan.org/pod/fields" rel="external">fields</a> pragma is required.</p>
 
@@ -542,11 +562,11 @@
 <dt>$^O  </dt>
 <dd>
 
-<p>The name of the operating system under which this copy of Perl was built, as determined during the configuration process. For examples see <a href="/perldoc/perlport/#PLATFORMS">&quot;PLATFORMS&quot; in perlport</a>.</p>
+<p>The name of the operating system under which this copy of Perl was built, as determined during the configuration process. For examples see <a href="https://metacpan.org/pod/perlport#PLATFORMS" rel="external">&quot;PLATFORMS&quot; in perlport</a>.</p>
 
-<p>The value is identical to <code>$Config{&#39;osname&#39;}</code>. See also <a href="https://metacpan.org/pod/Config" rel="external">Config</a> and the <b>-V</b> command-line switch documented in <a href="/perldoc/perlrun/">perlrun</a>.</p>
+<p>The value is identical to <code>$Config{&#39;osname&#39;}</code>. See also <a href="https://metacpan.org/pod/Config" rel="external">Config</a> and the <b>-V</b> command-line switch documented in <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a>.</p>
 
-<p>In Windows platforms, <code>$^O</code> is not very helpful: since it is always <code>MSWin32</code>, it doesn&#39;t tell the difference between 95/98/ME/NT/2000/XP/CE/.NET. Use <code>Win32::GetOSName()</code> or Win32::GetOSVersion() (see <a href="https://metacpan.org/pod/Win32" rel="external">Win32</a> and <a href="/perldoc/perlport/">perlport</a>) to distinguish between the variants.</p>
+<p>In Windows platforms, <code>$^O</code> is not very helpful: since it is always <code>MSWin32</code>, it doesn&#39;t tell the difference between 95/98/ME/NT/2000/XP/CE/.NET. Use <code>Win32::GetOSName()</code> or Win32::GetOSVersion() (see <a href="https://metacpan.org/pod/Win32" rel="external">Win32</a> and <a href="https://metacpan.org/pod/perlport" rel="external">perlport</a>) to distinguish between the variants.</p>
 
 <p>This variable was added in Perl 5.003.</p>
 
@@ -569,7 +589,7 @@
     $SIG{&#39;INT&#39;}  = &#39;DEFAULT&#39;;   # restore default action
     $SIG{&#39;QUIT&#39;} = &#39;IGNORE&#39;;    # ignore SIGQUIT</code></pre>
 
-<p>Using a value of <code>&#39;IGNORE&#39;</code> usually has the effect of ignoring the signal, except for the <code>CHLD</code> signal. See <a href="/perldoc/perlipc/">perlipc</a> for more about this special case.</p>
+<p>Using a value of <code>&#39;IGNORE&#39;</code> usually has the effect of ignoring the signal, except for the <code>CHLD</code> signal. See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for more about this special case.</p>
 
 <p>Here are some other examples:</p>
 
@@ -585,7 +605,7 @@
 
 <p>If your system has the <code>sigaction()</code> function then signal handlers are installed using it. This means you get reliable signal handling.</p>
 
-<p>The default delivery policy of signals changed in Perl v5.8.0 from immediate (also known as &quot;unsafe&quot;) to deferred, also known as &quot;safe signals&quot;. See <a href="/perldoc/perlipc/">perlipc</a> for more information.</p>
+<p>The default delivery policy of signals changed in Perl v5.8.0 from immediate (also known as &quot;unsafe&quot;) to deferred, also known as &quot;safe signals&quot;. See <a href="https://metacpan.org/pod/perlipc" rel="external">perlipc</a> for more information.</p>
 
 <p>Certain internal hooks can be also set using the <code>%SIG</code> hash. The routine indicated by <code>$SIG{__WARN__}</code> is called when a warning message is about to be printed. The warning message is passed as the first argument. The presence of a <code>__WARN__</code> hook causes the ordinary printing of warnings to <code>STDERR</code> to be suppressed. You can use this to save warnings in a variable, or turn warnings into fatal errors, like this:</p>
 
@@ -658,7 +678,7 @@
 
 <p>If this variable is set to a true value, then <code>stat()</code> on Windows will not try to open the file. This means that the link count cannot be determined and file attributes may be out of date if additional hardlinks to the file exist. On the other hand, not opening the file is considerably faster, especially for files on network drives.</p>
 
-<p>This variable could be set in the <i>sitecustomize.pl</i> file to configure the local Perl installation to use &quot;sloppy&quot; <code>stat()</code> by default. See the documentation for <b>-f</b> in <a href="/perldoc/perlrun/#Command-Switches">perlrun</a> for more information about site customization.</p>
+<p>This variable could be set in the <i>sitecustomize.pl</i> file to configure the local Perl installation to use &quot;sloppy&quot; <code>stat()</code> by default. See the documentation for <b>-f</b> in <a href="https://metacpan.org/pod/perlrun#Command-Switches" rel="external">perlrun</a> for more information about site customization.</p>
 
 <p>This variable was added in Perl v5.10.0.</p>
 
@@ -1068,7 +1088,7 @@
 <dt>$^R  </dt>
 <dd>
 
-<p>The result of evaluation of the last successful <code>(?{ code })</code> regular expression assertion (see <a href="/perldoc/perlre/">perlre</a>). May be written to.</p>
+<p>The result of evaluation of the last successful <code>(?{ code })</code> regular expression assertion (see <a href="https://metacpan.org/pod/perlre" rel="external">perlre</a>). May be written to.</p>
 
 <p>This variable was added in Perl 5.005.</p>
 
@@ -1187,7 +1207,7 @@
 <dt>ARGVOUT </dt>
 <dd>
 
-<p>The special filehandle that points to the currently open output file when doing edit-in-place processing with <b>-i</b>. Useful when you have to do a lot of inserting and don&#39;t want to keep modifying <code>$_</code>. See <a href="/perldoc/perlrun/">perlrun</a> for the <b>-i</b> switch.</p>
+<p>The special filehandle that points to the currently open output file when doing edit-in-place processing with <b>-i</b>. Useful when you have to do a lot of inserting and don&#39;t want to keep modifying <code>$_</code>. See <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a> for the <b>-i</b> switch.</p>
 
 </dd>
 <dt>IO::Handle-&gt;output_field_separator( EXPR )</dt>
@@ -1277,7 +1297,7 @@
 
 <p>You cannot call <code>input_record_separator()</code> on a handle, only as a static method. See <a href="https://metacpan.org/pod/IO::Handle" rel="external">IO::Handle</a>.</p>
 
-<p>See also <a href="/perldoc/perlport/#Newlines">&quot;Newlines&quot; in perlport</a>. Also see <a href="#pod">&quot;$.&quot;</a>.</p>
+<p>See also <a href="https://metacpan.org/pod/perlport#Newlines" rel="external">&quot;Newlines&quot; in perlport</a>. Also see <a href="#pod">&quot;$.&quot;</a>.</p>
 
 <p>Mnemonic: / delimits line boundaries when quoting poetry.</p>
 
@@ -1332,7 +1352,7 @@
 
 <h3 id="Variables-related-to-formats">Variables related to formats</h3>
 
-<p>The special variables for formats are a subset of those for filehandles. See <a href="/perldoc/perlform/">perlform</a> for more information about Perl&#39;s formats.</p>
+<p>The special variables for formats are a subset of those for filehandles. See <a href="https://metacpan.org/pod/perlform" rel="external">perlform</a> for more information about Perl&#39;s formats.</p>
 
 <dl>
 
@@ -1343,7 +1363,7 @@
 <dt>$^A  </dt>
 <dd>
 
-<p>The current value of the <code>write()</code> accumulator for <code>format()</code> lines. A format contains <code>formline()</code> calls that put their result into <code>$^A</code>. After calling its format, <code>write()</code> prints out the contents of <code>$^A</code> and empties. So you never really see the contents of <code>$^A</code> unless you call <code>formline()</code> yourself and then look at it. See <a href="/perldoc/perlform/">perlform</a> and <a href="/perldoc/perlfunc/#formline-PICTURE-LIST">&quot;formline PICTURE,LIST&quot; in perlfunc</a>.</p>
+<p>The current value of the <code>write()</code> accumulator for <code>format()</code> lines. A format contains <code>formline()</code> calls that put their result into <code>$^A</code>. After calling its format, <code>write()</code> prints out the contents of <code>$^A</code> and empties. So you never really see the contents of <code>$^A</code> unless you call <code>formline()</code> yourself and then look at it. See <a href="https://metacpan.org/pod/perlform" rel="external">perlform</a> and <a href="/perldoc/perlfunc/#formline-PICTURE-LIST">&quot;formline PICTURE,LIST&quot; in perlfunc</a>.</p>
 
 </dd>
 <dt>IO::Handle-&gt;format_formfeed(EXPR)</dt>
@@ -1629,7 +1649,7 @@
         $? = 1 if $? == 255;  # die would make it 255
     }</code></pre>
 
-<p>Under VMS, the pragma <code>use vmsish &#39;status&#39;</code> makes <code>$?</code> reflect the actual VMS exit status, instead of the default emulation of POSIX status; see <a href="/perldoc/perlvms/#pod">&quot;$?&quot; in perlvms</a> for details.</p>
+<p>Under VMS, the pragma <code>use vmsish &#39;status&#39;</code> makes <code>$?</code> reflect the actual VMS exit status, instead of the default emulation of POSIX status; see <a href="https://metacpan.org/pod/perlvms#pod" rel="external">&quot;$?&quot; in perlvms</a> for details.</p>
 
 <p>Mnemonic: similar to <b>sh</b> and <b>ksh</b>.</p>
 
@@ -1677,7 +1697,7 @@
 <dt>$^D  </dt>
 <dd>
 
-<p>The current value of the debugging flags. May be read or set. Like its <a href="/perldoc/perlrun/#Dletters">command-line equivalent</a>, you can use numeric or symbolic values, e.g. <code>$^D = 10</code> or <code>$^D = &quot;st&quot;</code>. See <a href="/perldoc/perlrun/#Dnumber">&quot;<b>-D</b><i>number</i>&quot; in perlrun</a>. The contents of this variable also affects the debugger operation. See <a href="/perldoc/perldebguts/#Debugger-Internals">&quot;Debugger Internals&quot; in perldebguts</a>.</p>
+<p>The current value of the debugging flags. May be read or set. Like its <a href="https://metacpan.org/pod/perlrun#Dletters" rel="external">command-line equivalent</a>, you can use numeric or symbolic values, e.g. <code>$^D = 10</code> or <code>$^D = &quot;st&quot;</code>. See <a href="https://metacpan.org/pod/perlrun#Dnumber" rel="external">&quot;<b>-D</b><i>number</i>&quot; in perlrun</a>. The contents of this variable also affects the debugger operation. See <a href="https://metacpan.org/pod/perldebguts#Debugger-Internals" rel="external">&quot;Debugger Internals&quot; in perldebguts</a>.</p>
 
 <p>Mnemonic: value of <b>-D</b> switch.</p>
 
@@ -1846,7 +1866,7 @@
 <dt>%^H </dt>
 <dd>
 
-<p>The <code>%^H</code> hash provides the same scoping semantic as <code>$^H</code>. This makes it useful for implementation of lexically scoped pragmas. See <a href="/perldoc/perlpragma/">perlpragma</a>. All the entries are stringified when accessed at runtime, so only simple values can be accommodated. This means no pointers to objects, for example.</p>
+<p>The <code>%^H</code> hash provides the same scoping semantic as <code>$^H</code>. This makes it useful for implementation of lexically scoped pragmas. See <a href="https://metacpan.org/pod/perlpragma" rel="external">perlpragma</a>. All the entries are stringified when accessed at runtime, so only simple values can be accommodated. This means no pointers to objects, for example.</p>
 
 <p>When putting items into <code>%^H</code>, in order to avoid conflicting with other users of the hash there is a convention regarding which keys to use. A module should use only keys that begin with the module&#39;s name (the name of its main package) and a &quot;/&quot; character. For example, a module <code>Foo::Bar</code> should use keys such as <code>Foo::Bar/baz</code>.</p>
 
@@ -1952,7 +1972,7 @@
 </dd>
 </dl>
 
-<p>Some bits may be relevant at compile-time only, some at run-time only. This is a new mechanism and the details may change. See also <a href="/perldoc/perldebguts/">perldebguts</a>.</p>
+<p>Some bits may be relevant at compile-time only, some at run-time only. This is a new mechanism and the details may change. See also <a href="https://metacpan.org/pod/perldebguts" rel="external">perldebguts</a>.</p>
 
 </dd>
 <dt>${^TAINT} </dt>
@@ -1968,7 +1988,7 @@
 <dt>${^UNICODE} </dt>
 <dd>
 
-<p>Reflects certain Unicode settings of Perl. See <a href="/perldoc/perlrun/">perlrun</a> documentation for the <code>-C</code> switch for more information about the possible values.</p>
+<p>Reflects certain Unicode settings of Perl. See <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a> documentation for the <code>-C</code> switch for more information about the possible values.</p>
 
 <p>This variable is set during Perl startup and is thereafter read-only.</p>
 
@@ -1986,7 +2006,7 @@
 <dt>${^UTF8LOCALE} </dt>
 <dd>
 
-<p>This variable indicates whether a UTF-8 locale was detected by perl at startup. This information is used by perl when it&#39;s in adjust-utf8ness-to-locale mode (as when run with the <code>-CL</code> command-line switch); see <a href="/perldoc/perlrun/">perlrun</a> for more info on this.</p>
+<p>This variable indicates whether a UTF-8 locale was detected by perl at startup. This information is used by perl when it&#39;s in adjust-utf8ness-to-locale mode (as when run with the <code>-CL</code> command-line switch); see <a href="https://metacpan.org/pod/perlrun" rel="external">perlrun</a> for more info on this.</p>
 
 <p>This variable was added in Perl v5.8.8.</p>
 
@@ -1999,7 +2019,7 @@
 
 <p>Once a variable is removed, its use triggers an error telling you the variable is unsupported.</p>
 
-<p>See <a href="/perldoc/perldiag/">perldiag</a> for details about error messages.</p>
+<p>See <a href="https://metacpan.org/pod/perldiag" rel="external">perldiag</a> for details about error messages.</p>
 
 <dl>
 
@@ -2047,8 +2067,8 @@
 
 
 
-                    </main>
-                </div>
+                </main>
+                <div style="clear: both;"></div>
 
         </div>
         <footer>

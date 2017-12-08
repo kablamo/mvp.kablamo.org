@@ -13,13 +13,16 @@
         
         <script>
             $( document ).ready(function() {
+                console.log('/about');
+
                 $('.sub-menu ul').hide();
                 $('.sub-menu.nomatch ul').show();
-                $('.sub-menu.nomatch div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.nomatch>a>div').toggleClass("fa-caret-up fa-caret-down");
+
                 $(".sub-menu a").click(function () {
-                    $(this).parent(".sub-menu").siblings().children('ul').hide();
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
                     $(this).parent(".sub-menu").children("ul").slideToggle("100");
-                    $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
                 });
             });
         </script>
@@ -35,18 +38,24 @@
     <body>
         <header>
         </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
         <div class="container">
 
-                <div class="left column full-height">
-                    <div class="sidebar">
+                <div class="sidebar">
                     
-<a class="home" href="/">Minimum<br>Viable<br>Perl</a><br><br><br>
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
 
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/about/#basics">The basics<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/about/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <ul>
+        <li><a href="/basics/perl">Perl design goals</a></li>
         <li><a href="/basics/hello">Hello world</a></li>
         <li><a href="/basics/variables">Variables</a></li>
         <li><a href="/basics/references">References</a></li>
@@ -56,74 +65,86 @@
         <li><a href="/basics/exceptions">Exceptions</a></li>
         <li><a href="/basics/regexps">Regexps</a></li>
         <li><a href="/basics/files">Files</a></li>
-      </ul>
-    </li>
-    <li class="oo sub-menu">
-      <a href="/about/#oo">Object oriented programming<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/oo/story">The (weird) story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
-      </ul>
-    </li>
-    <li class="debugging sub-menu">
-      <a href="/about/#basics">Debugging<div class="fa fa-caret-down right"></div></a>
-      <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
-      </ul>
+    </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/about/#dependencies">Perl libraries<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/about/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <ul>
         <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
         <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
         <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
         <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
         <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
-      </ul>
+    </ul>
+    </li>
+    <li class="oo sub-menu">
+    <a href="/about/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <ul>
+        <li><a href="/oo/story">The story of Perl OO</a></li>
+        <li><a href="/oo/classes">Classes</a></li>
+        <li><a href="/oo/attributes">Attributes</a></li>
+        <li><a href="/oo/modifiers">Method modifiers</a></li>
+        <li><a href="/oo/roles">Roles</a></li>
+        <li><a href="/oo/inheritance">Inheritance</a></li>
+    </ul>
+    </li>
+    <li class="debugging sub-menu">
+    <a href="/about/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <ul>
+        <li><a href="/debugging/data-printer">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+    </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/about/#testing">Testing<div class="fa fa-caret-down right"></div></a>
-      <ul>
+    <a href="/about/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <ul>
         <li><a href="/testing/intro">Introduction to testing</a></li>
         <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
         <li><a href="/testing/data">Testing data structures</a></li>
         <li><a href="/testing/mock">Testing with mock objects</a></li>
         <li><a href="/testing/libs">Build your own test libraries</a></li>
+    </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/about/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
       </ul>
     </li>
-    <li><a href="/perl">Perl design goals</a></li>
-    <li><a href="/see-also">Book recommendations</a></li>
-    <li><a href="/about">About this book</a></li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
   </ul>
 </div>
 
                     
                     
-                    </div>
                 </div>
 
-                <div class="right column">
-                    <main>
+                <main>
                     <h1>About this book</h1>
 
 <p>The primary goal of this book is to make experienced developers coming from
 other languages proficient in Perl quickly through concise tutorials that are
-about 1 screenful in size.  I literally review each sentence in each
-article and try to remove unnecessary words.</p>
+about 1 screenful in size.  Being concise is key goal.  Everyone is in a hurry
+and don&#39;t want to wade through a lot of unnecessary prose.  I literally review
+each sentence in each article and try to remove unnecessary words.</p>
 
-<p>Also, I want this book to be an anti-textbook.  Personally I hate textbooks.
+<p>Also, I wanted this book to be an anti-textbook.  Personally I hate textbooks.
 I&#39;m in a hurry and in the age of stackoverflow and blogs and info graphics, I
 want my information concise and to the point.  I just need to learn that one
 thing so I can ship my project.</p>
 
 <p>In order to accomplish this I left out dicussions and edge cases that were
 uncommon or not essential.  Instead I&#39;ve tried to link to more information
-where possible. I&#39;ve also chosen to be opinionated.  Its impossible to keep
+where possible. I&#39;ve also chosen to be opinionated.  Its hard to keep
 things short and present all the available options.</p>
 
 <h4>Motivation</h4>
@@ -132,34 +153,35 @@ things short and present all the available options.</p>
 everything just fell out of me.  </p>
 
 <p>This book tries to solve a problem I keep having.  I have been writing Perl
-code since 1998 and I love the language.  However, I often run across Perl
-developers who are visiting from other languages and I can see they are
-frustrated, unhappy, and struggling.  Over the years I&#39;ve asked them about that
-struggle and from my personal experience it seems to come down to roughly 3
-things:</p>
+code since 1998 and I love the language.  However, I often run across good
+developers who are visiting Perl from other languages and having trouble
+getting up to speed.  Over the years I&#39;ve asked them about that struggle and
+anecdotally it seems to come down to roughly 3 things:</p>
 
 <ol>
-<li>References</li>
+<li>References (actually dereferencing)</li>
 <li>Object oriented programming</li>
 <li>Random stuff they can easily do in their favorite language but don&#39;t
-yet know how to do in Perl.</li>
+yet know how to do in Perl (opening files, testing, dependencies, etc).</li>
 </ol>
 
-<p>The bottom line is they don&#39;t know how to quickly find the information they
-need.  The information is out there but I don&#39;t believe most people want to
-spend hours digging through blogs, old verbose documentation, flipping through
-hundreds of pages from various textbooks.  For most people Perl is not life,
-its just a tool for getting their work done.  They want a concise answer
-addressing their exact problem and then they want to use it to get some work
-done and move on with life.</p>
+<p>There are solutions to all these problems.  But developers who
+are new to Perl don&#39;t have a single good, up-to-date, easily digestable online
+source of information and answers.  The information is out there but few people
+want to spend hours digging through blogs, perusing old meandering and
+extremely detailed documentation, or flipping through hundreds of pages from
+various textbooks.  For many people Perl is just a tool for getting their work
+done and they want a concise answer addressing their exact problem and then
+they want to use it to get some work done and move on with life.</p>
 
 <h4>Contributing</h4>
 
-<p>This book is on Github.  Pull requests are welcome.</p>
+<p>This book is on <a href="https://github.com/kablamo/mvp.kablamo.org">Github</a>.  Pull
+requests are welcome.</p>
 
 
-                    </main>
-                </div>
+                </main>
+                <div style="clear: both;"></div>
 
         </div>
         <footer>

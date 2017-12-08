@@ -13,11 +13,11 @@
         
         <script>
             $( document ).ready(function() {
-                console.log('/dependencies/perl5lib');
+                console.log('/community');
 
                 $('.sub-menu ul').hide();
-                $('.sub-menu.dependencies ul').show();
-                $('.sub-menu.dependencies>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.nomatch ul').show();
+                $('.sub-menu.nomatch>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -53,7 +53,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-    <a href="/dependencies/perl5lib/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
+    <a href="/community/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
     <ul>
         <li><a href="/basics/perl">Perl design goals</a></li>
         <li><a href="/basics/hello">Hello world</a></li>
@@ -68,7 +68,7 @@
     </ul>
     </li>
     <li class="dependencies sub-menu">
-    <a href="/dependencies/perl5lib/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+    <a href="/community/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
     <ul>
         <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
         <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
@@ -78,7 +78,7 @@
     </ul>
     </li>
     <li class="oo sub-menu">
-    <a href="/dependencies/perl5lib/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+    <a href="/community/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
     <ul>
         <li><a href="/oo/story">The story of Perl OO</a></li>
         <li><a href="/oo/classes">Classes</a></li>
@@ -89,14 +89,14 @@
     </ul>
     </li>
     <li class="debugging sub-menu">
-    <a href="/dependencies/perl5lib/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+    <a href="/community/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
     <ul>
         <li><a href="/debugging/data-printer">Examining data structures</a></li>
         <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
     </ul>
     </li>
     <li class="testing sub-menu">
-    <a href="/dependencies/perl5lib/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+    <a href="/community/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
     <ul>
         <li><a href="/testing/intro">Introduction to testing</a></li>
         <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
@@ -106,7 +106,7 @@
     </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/dependencies/perl5lib/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/community/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -129,26 +129,51 @@
                 </div>
 
                 <main>
-                    <h1>Loading libraries from custom locations</h1>
+                    <h1>Community</h1>
 
-<p>When you run a Perl program it looks for libraries (aka
-modules/packages/classes/dependencies) in the paths specified in <code>$PERL5LIB</code>
-before looking in the standard library.</p>
+<h4>IRC</h4>
 
-<pre><code>$ echo $PERL5LIB
-/usr/local/ddg/lib:/opt/perlbrew/libs/perl-5.26.1@mylib/lib/perl5
-</code></pre>
+<p>The Perl community loves IRC and its a great place to ask questions.</p>
 
-<p>To load a library from a custom location modifying your <code>$PERL5LIB</code> environment
-variable.  For example, to always load dependencies from the <code>lib</code> directory in
-your current project:</p>
+<p><a href="http://www.irc.perl.org/">irc.perl.org</a></p>
 
-<pre><code>$ export PERL5LIB=./lib:$PERL5LIB
-$ echo $PERL5LIB
-./lib:/usr/local/ddg/lib:/opt/perlbrew/libs/perl-5.26.1@mylib/lib/perl5
-</code></pre>
+<ul>
+<li><a href="http://www.irc.perl.org/channels.html">Channels</a></li>
+<li><a href="http://www.irc.perl.org/faq.html">FAQ</a></li>
+</ul>
 
-<p>Note that order is important.</p>
+<h4>Blogs</h4>
+
+<p>These sites aggregate blog posts about Perl and are a great way to keep up with
+whats new and whats happening in the community.</p>
+
+<ul>
+<li><a href="http://perlweekly.com/">http://perlweekly.com/</a></li>
+<li><a href="https://blogs.perl.org">blogs.perl.org</a></li>
+<li><a href="http://perlsphere.net/">http://perlsphere.net</a></li>
+<li><a href="http://ironman.enlightenedperl.org">http://ironman.enlightenedperl.org</a></li>
+</ul>
+
+<h4>Perl Mongers</h4>
+
+<p>Perl Mongers are Perl user groups.  There are several hundred groups around the
+world and in most major cities.  Individual groups vary in what they actually
+do, but generally they are groups of Perl users in a particular location who
+get together periodically (in real life) to discuss Perl.  </p>
+
+<p>To find your local Perl Mongers group check out
+<a href="https://www.pm.org/">https://www.pm.org/</a>.</p>
+
+<h4>Perl Conferences</h4>
+
+<p>Perl conferences are hosted in various locations around the world.  The length
+and timing vary.  But the biggest conferences are YAPCNA (Yet Another Perl
+Conference - North America) and YAPCEU (Yet Another Perl Conference - European
+Union).  You can find more info on <a href="http://yapc.org/">http://yapc.org/</a>.</p>
+
+<h4>Mailing lists</h4>
+
+<p>See <a href="https://lists.perl.org/">https://lists.perl.org</a>.</p>
 
 
                 </main>
