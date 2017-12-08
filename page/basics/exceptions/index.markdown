@@ -1,7 +1,7 @@
 # Exceptions
 
 The standard Perl syntax for handling exceptions is annoying to visitors from
-other languages.  It works really well if you give a chance though.
+other languages.  It works really well if you give it a chance though.
 
 If you can't deal with the standard Perl syntax you can use Try::Tiny (described below), a
 fairly popular module that adds `try` and `catch` keywords.  

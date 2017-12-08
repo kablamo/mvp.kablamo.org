@@ -15,5 +15,4 @@ for a given task.
 - [Task::Kensho](https://metacpan.org/pod/Task::Kensho)
 - [Belike::Dagolden](https://metacpan.org/pod/Task::BeLike::DAGOLDEN)
 
-Some libraries are [discouraged](https://metacpan.org/pod/Perl::Critic::Policy::Freenode::DiscouragedModules)
-and should not be used.
+The use of some libraries is [discouraged](https://metacpan.org/pod/Perl::Critic::Policy::Freenode::DiscouragedModules).

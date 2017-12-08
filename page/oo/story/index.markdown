@@ -1,4 +1,4 @@
-# The (weird) story of Perl OO
+# The story of Perl OO
 
 Perl OO is difficult to grok for outsiders because the syntax and keywords are
 unfortunately not the standard ones that all the other languages use.  However
