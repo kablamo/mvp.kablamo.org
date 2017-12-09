@@ -146,6 +146,22 @@ print &quot;hello world\n&quot;;
 hello world
 </code></pre>
 
+<h4>strict and warnings</h4>
+
+<p>Its considered bad form to not
+<a href="https://perldoc.perl.org/functions/use.html">use</a>
+<a href="https://perldoc.perl.org/strict.html">strict</a> and
+<a href="https://perldoc.perl.org/warnings.html">warnings</a> in all your code.</p>
+
+<ul>
+<li><code>use strict</code> makes it an error to use certain expressions.</li>
+<li><code>use warnings</code> enables additional warnings for certain expressions.</li>
+</ul>
+
+<p>Both aim to to protect the developer from bad old syntax which
+the Perl interpreter accepts as valid but will most likely cause your code
+to behave unexpectedly and cause errors that are hard to debug.  </p>
+
 
                 </main>
                 <div style="clear: both;"></div>
