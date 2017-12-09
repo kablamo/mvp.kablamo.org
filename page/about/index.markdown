@@ -30,7 +30,8 @@ anecdotally it seems to come down to roughly 3 things:
 1. References (actually dereferencing)
 2. Object oriented programming
 3. Random stuff they can easily do in their favorite language but don't
-yet know how to do in Perl (opening files, testing, dependencies, etc).
+yet know how to do in Perl (opening files, testing, templates, dependencies,
+etc).
 
 There are solutions to all these problems.  But developers who
 are new to Perl don't have a single good, up-to-date, easily digestable online
