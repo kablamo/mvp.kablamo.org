@@ -44,5 +44,5 @@ they want to use it to get some work done and move on with life.
 
 #### Contributing
 
-This book is on [Github](https://github.com/kablamo/mvp.kablamo.org).  Pull
-requests are welcome.
+This book is on [Github](https://github.com/kablamo/mvp.kablamo.org).  Feel
+free to report issues or send feedback.
