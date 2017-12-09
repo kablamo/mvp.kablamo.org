@@ -616,7 +616,7 @@ td {
     }
 
     .sidebar a.home {
-        margin-top: 1rem;
+        margin-top: 3rem;
         margin-bottom: .3rem;
     }
     main {
@@ -628,6 +628,9 @@ td {
         padding-left: .6rem;
     }
 
+    .title-page {
+        padding-top: 3rem;
+    }
     #title1 {
         font-size: 4.9rem;
         line-height: 4.9rem;
