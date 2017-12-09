@@ -19,7 +19,7 @@ things short and present all the available options.
 #### Motivation
 
 I wrote this book accidentally during a vacation.  I started typing and
-everything just fell out of me.  
+everything just fell out of my head.  
 
 This book tries to solve a problem I keep having.  I have been writing Perl
 code since 1998 and I love the language.  However, I often run across good
