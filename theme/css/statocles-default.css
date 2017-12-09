@@ -318,7 +318,6 @@ main {
     transition: 0.2s linear;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid #0000000f;
-    border-bottom: 1px solid #0090D7;
 }
 .sidebar ul li a:hover {
     background: rgba(255, 255, 255, 0.3);
@@ -336,7 +335,6 @@ main {
     border-left:   4px solid rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid #0000000f;
-    border-bottom: 1px solid #60bbe8;
 }
 .sidebar ul li ul li a:hover {
     background: rgba(255, 255, 255, 0.3);
