@@ -10,28 +10,28 @@ A reference is like a pointer.  It's a scalar value containing the address of
 another value.  Perl will not automatically dereference a variable for you.
 References are scalars so they always start with a <code>$</code>.  
 
-#### List references
+#### Array references
 
-Also called list refs for short.
+Also called array refs for short.
 
-    my @list = (1, 2, 3, 4);             # list
-    my $listref1 = \@list;               # list reference
-    my $listref2 = ['a', 'b', 'c', 'd']; # list reference
+    my @array = (1, 2, 3, 4);             # array
+    my $arrayref1 = \@array;              # array reference
+    my $arrayref2 = ['a', 'b', 'c', 'd']; # array reference
 
-    # Access element 0 of the list 
-    print $list[0];       # prints 1
+    # Access element 0 of the array
+    print $array[0];       # prints 1
 
     # Dereference + access element 0
-    print $listref1->[0]; # prints 1
-    print $listref2->[0]; # prints 'a'
+    print $arrayref1->[0]; # prints 1
+    print $arrayref2->[0]; # prints 'a'
 
-    # A list reference inside a list reference
-    my $lists_in_lists = [a, b, c, ['roo', 'woo', 'loo']];
+    # A array reference inside a array reference
+    my $arrays_in_arrays = [a, b, c, ['roo', 'woo', 'loo']];
 
-    # How to dereference list references
-    my @list1 = @{ $lists_in_lists };      # (a, b, c ['roo', 'woo', 'loo'])
-    my @list2 = @$listref;                 # same but less typing
-    my @list3 = @{ $lists_in_lists->[3] }; # ('roo', 'woo', 'loo')
+    # How to dereference array references
+    my @array1 = @{ $arrays_in_arrays };      # (a, b, c ['roo', 'woo', 'loo'])
+    my @array2 = @$arrayref;                  # same but less typing
+    my @array3 = @{ $arrays_in_arrays->[3] }; # ('roo', 'woo', 'loo')
 
 #### Hash references
 
@@ -72,8 +72,8 @@ AKA code refs, anonymous subroutines, anonymous functions, closures, or callback
 
 Mastering this topic requires some memorization and a lot of practice.  Key things to remember:
 
-- <code>[ ... ]</code> creates a list reference
+- <code>[ ... ]</code> creates a array reference
 - <code>{ ... }</code> creates a hash reference
-- <code>@$var</code> or <code>@{ ... }</code> dereferences a list
+- <code>@$var</code> or <code>@{ ... }</code> dereferences a array
 - <code>%$var</code> or <code>%{ ... }</code> dereferences a hash
 
