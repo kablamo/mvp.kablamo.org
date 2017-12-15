@@ -26,7 +26,7 @@ Useful tricks to avoid escaping tons of stuff inside regexps:
 Global substitution
 
     my $string = "pony pony goose";
-    $string =~ s/pony/goose/g;
+    $string =~ s/pony/duck/g;
     print $string; 
     # prints "duck duck goose"
 
