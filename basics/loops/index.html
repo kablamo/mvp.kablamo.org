@@ -136,11 +136,11 @@
 <p>Traditional <code>for</code> loops exist but you almost never need them in Perl.
 <code>foreach</code> is usually simpler.</p>
 
-<p>Iterating over a list</p>
+<p>Iterating over an array</p>
 
-<pre><code>my @list = (1, 2, 3, 4);
+<pre><code>my @array = (1, 2, 3, 4);
 
-foreach my $i (@list) {
+foreach my $i (@array) {
     print $i, &quot;\n&quot;;
 }
 </code></pre>
@@ -168,7 +168,7 @@ while ($i &gt; 4) {
 
 <p>This works with any kind of loop.</p>
 
-<pre><code>foreach my $i (@list) {
+<pre><code>foreach my $i (@array) {
     print $i, &quot;\n&quot;;
     last if $i &gt; 3; # break out of the loop early
 }
@@ -178,7 +178,7 @@ while ($i &gt; 4) {
 
 <p>This also works with any kind of loop.</p>
 
-<pre><code>foreach my $i (@list) {
+<pre><code>foreach my $i (@array) {
     next if $i &gt; 3; # don&#39;t print anything for $i &gt; 3
     print $i, &quot;\n&quot;;
 }

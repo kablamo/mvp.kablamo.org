@@ -142,28 +142,28 @@ read the section &quot;Key Things to Remember&quot; at the bottom! </i></p>
 another value.  Perl will not automatically dereference a variable for you.
 References are scalars so they always start with a <code>$</code>.  </p>
 
-<h4>List references</h4>
+<h4>Array references</h4>
 
-<p>Also called list refs for short.</p>
+<p>Also called array refs for short.</p>
 
-<pre><code>my @list = (1, 2, 3, 4);             # list
-my $listref1 = \@list;               # list reference
-my $listref2 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]; # list reference
+<pre><code>my @array = (1, 2, 3, 4);             # array
+my $arrayref1 = \@array;              # array reference
+my $arrayref2 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]; # array reference
 
-# Access element 0 of the list 
-print $list[0];       # prints 1
+# Access element 0 of the array
+print $array[0];       # prints 1
 
 # Dereference + access element 0
-print $listref1-&gt;[0]; # prints 1
-print $listref2-&gt;[0]; # prints &#39;a&#39;
+print $arrayref1-&gt;[0]; # prints 1
+print $arrayref2-&gt;[0]; # prints &#39;a&#39;
 
-# A list reference inside a list reference
-my $lists_in_lists = [a, b, c, [&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;]];
+# A array reference inside a array reference
+my $arrays_in_arrays = [a, b, c, [&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;]];
 
-# How to dereference list references
-my @list1 = @{ $lists_in_lists };      # (a, b, c [&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;])
-my @list2 = @$listref;                 # same but less typing
-my @list3 = @{ $lists_in_lists-&gt;[3] }; # (&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;)
+# How to dereference array references
+my @array1 = @{ $arrays_in_arrays };      # (a, b, c [&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;])
+my @array2 = @$arrayref;                  # same but less typing
+my @array3 = @{ $arrays_in_arrays-&gt;[3] }; # (&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;)
 </code></pre>
 
 <h4>Hash references</h4>
@@ -208,9 +208,9 @@ $coderef-&gt;(); # prints &quot;stegasaurus&quot;
 <p>Mastering this topic requires some memorization and a lot of practice.  Key things to remember:</p>
 
 <ul>
-<li><code>[ ... ]</code> creates a list reference</li>
+<li><code>[ ... ]</code> creates a array reference</li>
 <li><code>{ ... }</code> creates a hash reference</li>
-<li><code>@$var</code> or <code>@{ ... }</code> dereferences a list</li>
+<li><code>@$var</code> or <code>@{ ... }</code> dereferences a array</li>
 <li><code>%$var</code> or <code>%{ ... }</code> dereferences a hash</li>
 </ul>
 
