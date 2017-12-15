@@ -5,5 +5,5 @@
   
   <div id="subtitle2">Concise tutorials for experienced developers</div>
   <div id="subtitle1">Learn just enough Perl</div>
-  <div id="subtitle3">a book by <a href="https://blog.kablamo.org">kablamo</a></div>
+  <div id="subtitle3">a book by <a href="http://blog.kablamo.org">kablamo</a></div>
 </div>
