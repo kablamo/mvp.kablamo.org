@@ -8,8 +8,8 @@ variables always start with a <code>$</code>.  For example:
 
     my $foo = 'dinosaur';
 
-#### Lists
-A list is an ordered set of scalar values.  List variables always start with an
+#### Arrays
+A array is an ordered set of scalar values.  Array variables always start with an
 <code>@</code>.  For example:
 
     my @foo = (1, 2, 3, 'cowboy');

@@ -5,11 +5,11 @@
 Traditional `for` loops exist but you almost never need them in Perl.
 `foreach` is usually simpler.
 
-Iterating over a list
+Iterating over an array
 
-    my @list = (1, 2, 3, 4);
+    my @array = (1, 2, 3, 4);
 
-    foreach my $i (@list) {
+    foreach my $i (@array) {
         print $i, "\n";
     }
 
@@ -34,7 +34,7 @@ Iterating over a hash
 
 This works with any kind of loop.
 
-    foreach my $i (@list) {
+    foreach my $i (@array) {
         print $i, "\n";
         last if $i > 3; # break out of the loop early
     }
@@ -43,7 +43,7 @@ This works with any kind of loop.
 
 This also works with any kind of loop.
 
-    foreach my $i (@list) {
+    foreach my $i (@array) {
         next if $i > 3; # don't print anything for $i > 3
         print $i, "\n";
     }
