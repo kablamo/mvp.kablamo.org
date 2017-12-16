@@ -2,23 +2,30 @@
 
 #### foreach
 
-Traditional `for` loops exist but you almost never need them in Perl.
-`foreach` is usually simpler.
+C-like `for` loops exist but you almost never need them in Perl.
+`foreach` is usually simpler (but can be spelled as either `for`
+or `foreach`).
 
 Iterating over an array
 
-    my @array = (1, 2, 3, 4);
+    my @array = ('a', 'b', 'c', 'd');
 
-    foreach my $i (@array) {
-        print $i, "\n";
+    foreach my $e (@array) {
+        print $e, "\n";         # $e becomes each element of the array
+    }
+    # outputs "a\nb\nc\nd\n"
+
+    # exactly the same as above, only less typing :-)
+    for my $e (@array) {
+        print $e, "\n";
     }
 
 Iterating over a hash
 
     my %hash = (a => 1, b => 2, c => 3);
 
-    foreach my $i (keys %hash) {
-        print $hash{$i}, "\n";
+    for my $k (keys %hash) {
+        print $hash{$k}, "\n";
     }
 
 #### while
@@ -32,18 +39,20 @@ Iterating over a hash
 
 #### last
 
+Exits the loop immediately.
 This works with any kind of loop.
 
-    foreach my $i (@array) {
+    for my $i (@array) {
         print $i, "\n";
         last if $i > 3; # break out of the loop early
     }
     
 #### next
 
+Skips to the next iteration of the loop.
 This also works with any kind of loop.
 
-    foreach my $i (@array) {
+    for my $i (@array) {
         next if $i > 3; # don't print anything for $i > 3
         print $i, "\n";
     }
