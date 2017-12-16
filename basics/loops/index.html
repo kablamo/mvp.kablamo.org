@@ -133,16 +133,17 @@
 
 <h4>foreach</h4>
 
-<p>Traditional <code>for</code> loops exist but you almost never need them in Perl.
+<p>C style <code>for</code> loops exist but you almost never need them in Perl.
 <code>foreach</code> is usually simpler.</p>
 
 <p>Iterating over an array</p>
 
-<pre><code>my @array = (1, 2, 3, 4);
+<pre><code>my @array = (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 1, 2, 3);
 
 foreach my $i (@array) {
-    print $i, &quot;\n&quot;;
+    print $i;
 }
+# prints &#39;abc123&#39;
 </code></pre>
 
 <p>Iterating over a hash</p>
@@ -150,8 +151,9 @@ foreach my $i (@array) {
 <pre><code>my %hash = (a =&gt; 1, b =&gt; 2, c =&gt; 3);
 
 foreach my $i (keys %hash) {
-    print $hash{$i}, &quot;\n&quot;;
+    print $hash{$i};
 }
+# prints &#39;123&#39;
 </code></pre>
 
 <h4>while</h4>
@@ -159,28 +161,38 @@ foreach my $i (keys %hash) {
 <pre><code>my $i = 0;
 
 while ($i &lt; 4) {
-    print $i, &quot;\n&quot;;
+    print $i;
     $i++;
 }
+# prints &#39;0123&#39;
+</code></pre>
+
+<h4>Postfix loops</h4>
+
+<p>Postfix notation exists for <code>`foreach</code>, <code>for</code>, <code>while</code>, and <code>until</code> loops.</p>
+
+<pre><code>print $_ foreach (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;);
+print $_ for     (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;);
+# both statemets print &#39;abc&#39;
 </code></pre>
 
 <h4>last</h4>
 
-<p>This works with any kind of loop.</p>
+<p>Exit the loop immediately.  This works with any kind of loop.</p>
 
 <pre><code>foreach my $i (@array) {
-    print $i, &quot;\n&quot;;
+    print $i;
     last if $i &gt; 3; # break out of the loop early
 }
 </code></pre>
 
 <h4>next</h4>
 
-<p>This also works with any kind of loop.</p>
+<p>Start the next iteration of the loop immediately.  This also works with any kind of loop.</p>
 
 <pre><code>foreach my $i (@array) {
     next if $i &gt; 3; # don&#39;t print anything for $i &gt; 3
-    print $i, &quot;\n&quot;;
+    print $i;
 }
 </code></pre>
 
