@@ -25,7 +25,7 @@ Iterating over a hash
 
     my $i = 0;
 
-    while ($i > 4) {
+    while ($i < 4) {
         print $i, "\n";
         $i++;
     }
