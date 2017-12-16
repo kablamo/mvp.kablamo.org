@@ -9,15 +9,18 @@ variables always start with a <code>$</code>.  For example:
     my $foo = 'dinosaur';
 
 #### Arrays
-A array is an ordered set of scalar values.  Array variables always start with an
-<code>@</code>.  For example:
+A array is an ordered set of scalar values.  Array variables always start with
+an `@`.  Note however that a single array element uses a `$` because its a
+single (scalar) value.  For example:
 
     my @foo = (1, 2, 3, 'cowboy');
     print $foo[1]; # prints 2
 
+
 #### Hashes
 A hash is an unordered collection of key/value pairs.  Hash variables always
-start with a <code>%</code>.  For example:
+start with a `%`.  Note however that a single hash value uses a `$` because its
+a single (scalar) value.  For example:
 
     my %foo = (a => 1, "b" => 2, 'c' => 'batman');
     print $foo{c}; # prints 'batman'
