@@ -1,7 +1,8 @@
 # Files
 
-The standard Perl syntax for dealing with files is strange and filled with
-pitfalls.  A better solution is to use
+To do file io using core Perl use the 
+[`open()`](https://perldoc.perl.org/functions/open.html) and [`close()`](https://perldoc.perl.org/functions/close.html) functions.  
+Another common solution which is simpler, less quirky, and object oriented is to use
 [Path::Tiny](https://metacpan.org/pod/Path::Tiny).
 
 
