@@ -2,7 +2,23 @@
 
 #### Design goals
 
-Perl's design goals include flexibility, expressiveness, and power. 
+Perl's design goals include flexibility, expressiveness, and power.  
+
+#### Philosophy
+
+Many languages limit expressiveness and power in an effort to be safe and curb
+bad choices by developers.  The Perl way is to empower developers to make their
+own decisions about whats right or wrong based on their own personal context.
+This helps great developers to thrive and innovate (see Moose and Moo).  It
+also empowers developers to make bad choices and create bad code.
+
+Some common sayings in the Perl community:
+
+- **TIMTOWDI** - There Is More Than One Way To Do It
+- **DWIM** - Do What I Mean (aka The Principle of Least Astonishment)
+- **Easy things should be easy and hard things should be possible**
+
+#### Motivation
 
 > "I realized at that point that there was a huge ecological niche between the
 C language and Unix shells. C was good for manipulating complex things  - you
@@ -11,11 +27,3 @@ what I call <span class="highlight">'whipupitude.'</span> But there was this big
 nor shell were good, and that's where I aimed Perl." <br>
 &nbsp;&nbsp;&nbsp;&nbsp;-- Larry Wall, author of Perl
 
-
-#### Philosophy
-
-Some sayings in the Perl community:
-
-- **TIMTOWDI** - There Is More Than One Way To Do It
-- **DWIM** - Do What I Mean (aka The Principle of Least Astonishment)
-- **Easy things should be easy and hard things should be possible**

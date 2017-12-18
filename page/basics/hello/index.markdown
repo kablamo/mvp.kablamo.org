@@ -15,7 +15,7 @@ How to run it:
 
 #### strict and warnings
 
-Its considered bad form if you don't
+It's considered bad form if you don't
 [use](https://perldoc.perl.org/functions/use.html)
 [strict](https://perldoc.perl.org/strict.html) and
 [warnings](https://perldoc.perl.org/warnings.html) in all your code.
