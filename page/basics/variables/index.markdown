@@ -11,7 +11,7 @@ variables always start with a <code>$</code>.  For example:
 #### Arrays
 A array is an ordered set of scalar values.  Array variables always start with
 an `@`.  Note however that a variable representing a single array element uses
-a `$` because its a single (scalar) value.  For example:
+a `$` because it is a single (scalar) value.  For example:
 
     my @foo = (1, 2, 3, 'cowboy');
     print $foo[1]; # prints 2
@@ -20,7 +20,7 @@ a `$` because its a single (scalar) value.  For example:
 #### Hashes
 A hash is an unordered collection of key/value pairs.  Hash variables always
 start with a `%`.  Note however that a variable representing a single hash
-value or hash key uses a `$` because its a single (scalar) value.  For example:
+value or hash key uses a `$` because it is a single (scalar) value.  For example:
 
     my %foo = (a => 1, "b" => 2, 'c' => 'batman');
     print $foo{c}; # prints 'batman'
