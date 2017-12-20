@@ -145,7 +145,7 @@ variables always start with a <code>$</code>.  For example:</p>
 
 <p>A array is an ordered set of scalar values.  Array variables always start with
 an <code>@</code>.  Note however that a variable representing a single array element uses
-a <code>$</code> because its a single (scalar) value.  For example:</p>
+a <code>$</code> because it is a single (scalar) value.  For example:</p>
 
 <pre><code>my @foo = (1, 2, 3, &#39;cowboy&#39;);
 print $foo[1]; # prints 2
@@ -155,7 +155,7 @@ print $foo[1]; # prints 2
 
 <p>A hash is an unordered collection of key/value pairs.  Hash variables always
 start with a <code>%</code>.  Note however that a variable representing a single hash
-value or hash key uses a <code>$</code> because its a single (scalar) value.  For example:</p>
+value or hash key uses a <code>$</code> because it is a single (scalar) value.  For example:</p>
 
 <pre><code>my %foo = (a =&gt; 1, &quot;b&quot; =&gt; 2, &#39;c&#39; =&gt; &#39;batman&#39;);
 print $foo{c}; # prints &#39;batman&#39;
