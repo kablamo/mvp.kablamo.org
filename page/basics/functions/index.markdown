@@ -49,6 +49,6 @@ How to return multiple values
         return ("chocolate chip", "oatmeal raisin", "peanut butter");
     }
 
-    my @flavors = get_cookie_flavors();
+    my @flavors = get_available_flavors();
 
 
