@@ -6,9 +6,9 @@ Perl's design goals include flexibility, expressiveness, and power.
 
 #### Philosophy
 
-Many languages limit expressiveness and power in an effort to be safe and curb
-bad choices by developers.  The Perl way is to empower developers to make their
-own decisions about whats right or wrong.
+Some languages limit expressiveness and power in an effort to be safe and curb
+bad choices by developers and there is something to be said for that.  Perl
+empowers developers to make their own decisions about what is right for them.
 
 Some common sayings in the Perl community:
 
