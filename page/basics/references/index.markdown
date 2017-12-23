@@ -30,7 +30,7 @@ Also called array refs for short.
 
     # How to dereference array references
     my @array1 = @{ $arrays_in_arrays };      # (a, b, c ['roo', 'woo', 'loo'])
-    my @array2 = @$arrayref;                  # same but less typing
+    my @array2 = @$arrays_in_arrays;          # same but less typing
     my @array3 = @{ $arrays_in_arrays->[3] }; # ('roo', 'woo', 'loo')
 
 #### Hash references
