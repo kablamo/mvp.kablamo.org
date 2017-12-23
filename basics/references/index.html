@@ -162,7 +162,7 @@ my $arrays_in_arrays = [a, b, c, [&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;]];
 
 # How to dereference array references
 my @array1 = @{ $arrays_in_arrays };      # (a, b, c [&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;])
-my @array2 = @$arrayref;                  # same but less typing
+my @array2 = @$arrays_in_arrays;          # same but less typing
 my @array3 = @{ $arrays_in_arrays-&gt;[3] }; # (&#39;roo&#39;, &#39;woo&#39;, &#39;loo&#39;)
 </code></pre>
 
