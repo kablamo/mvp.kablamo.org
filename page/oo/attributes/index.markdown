@@ -44,7 +44,7 @@ Best practices:
 Normal attributes are initialized during object construction.  Lazy attributes
 are not initialized until the attribute is used.
 
-    has tentacles => (is => 'ro', lazy => 1, builder => '_build_tentacles')
+    has tentacles => (is => 'ro', lazy => 1, builder => '_build_tentacles');
 
 Best practices:
 
