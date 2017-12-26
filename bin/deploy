@@ -1,0 +1,7 @@
+#!/bin/bash
+
+statocles deploy --clean &&
+git co gh-pages &&
+git push origin &&
+git co - &&
+git push origin
