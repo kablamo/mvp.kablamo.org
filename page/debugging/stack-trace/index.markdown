@@ -49,7 +49,7 @@ How to force a stack trace in just one place in your code with
     use strict;
     use warnings;
 
-    use Carp 'confess'
+    use Carp 'confess';
 
     sub function3 { confess 'die with a stack trace' }
     sub function2 { function3() }
