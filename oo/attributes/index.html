@@ -178,7 +178,7 @@ sub _build_nostrils { 5 }
 <p>Normal attributes are initialized during object construction.  Lazy attributes
 are not initialized until the attribute is used.</p>
 
-<pre><code>has tentacles =&gt; (is =&gt; &#39;ro&#39;, lazy =&gt; 1, builder =&gt; &#39;_build_tentacles&#39;)
+<pre><code>has tentacles =&gt; (is =&gt; &#39;ro&#39;, lazy =&gt; 1, builder =&gt; &#39;_build_tentacles&#39;);
 </code></pre>
 
 <p>Best practices:</p>
