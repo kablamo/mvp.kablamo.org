@@ -35,7 +35,7 @@ Iterating over a hash
 
 #### Postfix loops
 
-Postfix notation exists for ``foreach`, `for`, `while`, and `until` loops.
+Postfix notation exists for `foreach`, `for`, `while`, and `until` loops.
 
     print $_ foreach ('a', 'b', 'c');
     print $_ for     ('a', 'b', 'c');
@@ -49,7 +49,7 @@ Exit the loop immediately.  This works with any kind of loop.
         print $i;
         last if $i > 3; # break out of the loop early
     }
-    
+
 #### next
 
 Start the next iteration of the loop immediately.  This also works with any kind of loop.
@@ -58,4 +58,4 @@ Start the next iteration of the loop immediately.  This also works with any kind
         next if $i > 3; # don't print anything for $i > 3
         print $i;
     }
-    
+
