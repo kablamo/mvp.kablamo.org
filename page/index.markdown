@@ -1,3 +1,7 @@
+---
+layout: layout/full-width.html
+---
+
 <div class="title-page">
   <div id="title1">Minimum</div>
   <div id="title2">Viable</div>
@@ -7,3 +11,5 @@
   <div id="subtitle1">Learn just enough Perl</div>
   <div id="subtitle3">a book by <a href="http://blog.kablamo.org">kablamo</a></div>
 </div>
+
+%= include 'site/newsletter.html.ep'

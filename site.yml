@@ -55,8 +55,8 @@ site:
             page:
                 $ref: 'page_app'
 
-            perldoc:
-                $ref: 'perldoc_app'
+#            perldoc:
+#                $ref: 'perldoc_app'
 
             # static: This app does no processing at all. Good for images
             static:
@@ -149,15 +149,15 @@ static_app:
         store: 'static'
         url_root: '/'
 
-perldoc_app:
-    class: 'Statocles::App::Perldoc'
-    args:
-        store: 'page'
-        url_root: '/perldoc'
-        template_dir: 'perldoc'
-        index_module: 'perl'
-        modules: 
-            - 'perlfunc'
-            - 'perlvar'
-            - 'perlop'
-        
+#perldoc_app:
+#    class: 'Statocles::App::Perldoc'
+#    args:
+#        store: 'page'
+#        url_root: '/perldoc'
+#        template_dir: 'perldoc'
+#        index_module: 'perl'
+#        modules: 
+#            - 'perlfunc'
+#            - 'perlvar'
+#            - 'perlop'
+#        
