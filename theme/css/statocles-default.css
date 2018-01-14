@@ -427,7 +427,7 @@ main {
     font-weight: normal;
 }
 .title-page {
-    padding-top: 6rem;
+    padding-top: 4rem;
     box-sizing: border-box;
     text-align: center;
     font-family: sans-serif;
@@ -456,9 +456,16 @@ main {
     line-height: 2rem;
 }
 #subtitle3 {
-    margin-top: 5rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
     font-size: 1rem;
     line-height: 1rem;
+}
+#description {
+  font-size: 1rem;
+  line-height: 1rem;
+  background: #ccc;
+  padding: 2rem;
 }
 
 /* Perl books */
@@ -629,7 +636,7 @@ td {
     }
 
     .title-page {
-        padding-top: 3rem;
+        padding-top: 2rem;
     }
     #title1 {
         font-size: 4.9rem;

@@ -1,7 +1,4 @@
-<br>
-<br>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i&subset=cyrillic,cyrillic-ext,latin-ext');
     #mlb2-7325074,
     #mlb2-7325074 *,
     #mlb2-7325074 a:hover,
@@ -21,10 +18,11 @@
         text-align: left;
         text-indent: 0;
         text-transform: none;
+        color: #777;
         visibility: visible;
         white-space: normal;
         max-height: none;
-        max-width: none;
+        max-width: 25.5rem;
         left: auto;
         min-height: 0;
         min-width: 0;
@@ -35,6 +33,8 @@
         text-shadow: none;
         box-shadow: none;
         outline: medium none;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     #mlb2-7325074 a:hover {
@@ -75,7 +75,7 @@
         margin: 0px 0px 10px 0px !important;
         padding: 0px !important;
         color: #000000 !important;
-        font-family: 'Open Sans', sans-serif !important;
+        font-family: 'sans serif', sans-serif !important;
         font-size: 28px !important;
         line-height: 100%;
         text-align: left !important;
@@ -85,9 +85,9 @@
     #mlb2-7325074 .subscribe-form .form-section li {
         line-height: 150%;
         padding: 0px !important;
-        margin: 0px 0px 10px 0px;
+        margin: 0px 0px 00px 0px;
         color: #777777 !important;
-        font-family: 'Open Sans', sans-serif !important;
+        font-family: 'sans serif', sans-serif !important;
         font-size: 14px !important;
     }
     
@@ -100,7 +100,7 @@
         padding: 0px !important;
         margin: 0px 0px 15px 0px !important;
         color: #000000 !important;
-        font-family: 'Open Sans', sans-serif !important;
+        font-family: 'sans serif', sans-serif !important;
         font-size: 12px !important;
         font-weight: normal !important;
     }
@@ -119,7 +119,7 @@
         width: 100%;
         line-height: 100%;
         color: #777777 !important;
-        font-family: 'Open Sans', sans-serif !important;
+        font-family: 'sans serif', sans-serif !important;
         font-size: 14px !important;
     }
     
@@ -130,7 +130,7 @@
     
     #mlb2-7325074 .subscribe-form .form-section .checkbox label {
         color: #777777 !important;
-        font-family: 'Open Sans', sans-serif !important;
+        font-family: 'sans serif', sans-serif !important;
         font-size: 14px !important;
     }
     
@@ -246,6 +246,10 @@
     #mlb2-7325074 .subscribe-form .form-section.horizontal .form-group .form-control {
         height: 40px;
     }
+
+    #mlb2-7325074 .form-control::placeholder {
+        color: #ccc;
+    }
     
     #mlb2-7325074 .subscribe-form .form-section.horizontal.ml-button-position {
         width: 30%;
@@ -258,9 +262,9 @@
     
     @media (max-width: 768px) {
         #mlb2-7325074.ml-subscribe-form .subscribe-form .form-section.horizontal {
-            float: none;
+            float: left;
         }
-        #mlb2-7325074.ml-subscribe-form .subscribe-form .form-section.horizontal,
+        #mlb2-7325074.ml-subscribe-form .subscribe-form .form-section.horizontalg
         #mlb2-7325074.ml-subscribe-form .subscribe-form .form-section.horizontal.ml-button-position,
         #mlb2-7325074.ml-subscribe-form .subscribe-form .form-section.horizontal .form-group {
             width: 100%;
@@ -270,6 +274,24 @@
             margin-bottom: 20px;
         }
     }
+    @media ( max-width: 768px ) {
+        #mlb2-7325074,
+        #mlb2-7325074 *,
+        #mlb2-7325074 a:hover,
+        #mlb2-7325074 a:visited,
+        #mlb2-7325074 a:focus,
+        #mlb2-7325074 a:active {
+            max-width: 21rem;
+        }
+        #mlb2-7325074 .form-group {
+            max-width: 100%;
+        }
+        #mlb2-7325074 .subscribe-form .form-section.horizontal {
+            max-width: 100%;
+            float: left;
+        }
+    }
+
 </style>
 <div id="mlb2-7325074" class="ml-subscribe-form ml-subscribe-form-7325074">
     <div class="ml-vertical-align-center">
@@ -281,11 +303,11 @@
         <form class="ml-block-form" action="https://app.mailerlite.com/webforms/submit/d9f9n2" data-id="705972" data-code="d9f9n2" method="POST" target="_blank">
             <div class="subscribe-form horizontal">
                 <div class="form-section mb10">
-                    <p>This book is just getting started! Subscribe to get new chapters and articles in your inbox.  </p>
+                    <p>This book is growing.  <i class="fa fa-sun-o"></i> <i class="fa fa-leaf"></i> <i class="fa fa-leaf"></i> Want to grow your Perl skills?  Get new chapters in your inbox every week or so.  </p>
                 </div>
                 <div class="form-section horizontal">
                     <div class="form-group ml-field-email ml-validate-required ml-validate-email">
-                        <input type="email" name="fields[email]" class="form-control" placeholder="Email*" value="" autocomplete="email" x-autocompletetype="email" spellcheck="false" autocapitalize="off" autocorrect="off">
+                        <input type="email" name="fields[email]" class="form-control" placeholder="Email" value="" autocomplete="email" x-autocompletetype="email" spellcheck="false" autocapitalize="off" autocorrect="off">
                     </div>
                 </div>
                 <div class="form-section horizontal ml-button-position">
