@@ -4,79 +4,79 @@
         <loc>http://mvp.kablamo.org/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/about/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/exceptions/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/files/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/flow/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/functions/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/hello/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/loops/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/perl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/references/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/regexps/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/repl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/basics/variables/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/blog/</loc>
@@ -94,187 +94,127 @@
         <loc>http://mvp.kablamo.org/books/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/community/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/debugging/data-printer/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/debugging/stack-trace/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/carton/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/cpanm/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/metacpan/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/perl5lib/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/dependencies/pmtools/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/attributes/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/classes/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/inheritance/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/modifiers/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/roles/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/oo/story/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlfunc/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlfunc/source.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlop/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlop/source.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlopenbsd/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlopenbsd/source.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlopentut/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlopentut/source.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlvar/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
-    </url>
-    <url>
-        <loc>http://mvp.kablamo.org/perldoc/perlvar/source.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/data/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/exceptions/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/intro/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/libs/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/mock/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
     <url>
         <loc>http://mvp.kablamo.org/testing/warnings/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2018-01-06</lastmod>
+        <lastmod>2018-01-14</lastmod>
     </url>
 </urlset>
 
