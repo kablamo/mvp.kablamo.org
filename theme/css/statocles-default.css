@@ -90,6 +90,25 @@ main header h1 {
 main header h1 a {
     text-decoration: none;
 }
+main h1 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  line-height: 3.5rem;
+  display: block;
+  color: #777;
+  border-bottom: solid 1px #777;
+}
+main h1.section {
+  margin-top: 0rem;
+}
+main .chapter {
+  margin-top: 2rem;
+  line-height: 1rem;
+  vertical-align: middle;
+  font-weight: bold;
+  display: block;
+  color: #777;
+}
 
 header aside {
     margin-top: 0;
@@ -162,6 +181,7 @@ main {
     width: 810px; 
     box-sizing: border-box;
     float: left;
+    padding-bottom: 4rem;
 }
 .container:after {
   content: "";
@@ -180,49 +200,86 @@ main {
 
 /** Navbar widget */
 .navbar {
-    overflow: hidden;
-    border-bottom: 1px solid #bbb;
-    color: #777;
-    background-color: white;
-    margin-bottom: 1em;
+  overflow: hidden;
+  color: #777;
+  background-color: white;
 }
 
 .navbar a {
-    color: #777;
-    text-decoration: none;
+  color: #777;
+  text-decoration: none;
+  width: 100%;
+  line-height: 4rem;
+  box-sizing: border-box;
 }
 
 .navbar a:hover {
-    color: #1EAEDB;
+  color: #1EAEDB;
 }
 
 .navbar .brand {
-    font-size: 18px;
-    line-height: 20px;
-    margin-right: 0.5em;
+  font-size: 18px;
+  line-height: 20px;
+  margin-right: 0.5em;
 }
 
 .navbar ul {
-    list-style: none;
-    display: inline-block;
-    margin: 1em 0;
+  list-style: none;
+  display: inline-block;
+  margin: 1em 0;
 }
 
 .navbar li {
-    display: inline-block;
-    padding: 0 1em;
-    margin: 0;
+  display: inline-block;
+  padding: 0 1em;
+  margin: 0;
+}
+.navbar .left {
+  float: left;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.navbar .right {
+  float: right;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.navbar.bottom {
+  position: relative;
+  bottom: 4rem;
+  z-index: 10;
+  float: right;
+  width: 810px;
+  box-sizing: border-box;
+}
+.subscribe {
+  background: hotpink;
+  margin-top: 4rem;
+  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.sidebar .subscribe a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 /** Sidebar widget */
 .sidebar {
-    background: #20aaea;
-    color: #fff;
-    padding: 0;
-    padding-top: 1rem;
-    padding-bottom: 6rem;
-    box-sizing: border-box;
-    font-size: 1rem;
+  background: #20aaea;
+  color: #fff;
+  padding: 0;
+  padding-top: 1rem;
+  padding-bottom: 6rem;
+  box-sizing: border-box;
+  font-size: 1rem;
 }
 .sidebar h1,
 .sidebar h2,
@@ -372,8 +429,8 @@ ul.pager {
 
 /** Footer */
 footer {
-    margin-top: 1em;
-    padding-bottom: 0.5em;
+    margin-top: 0em;
+    padding-bottom: 0em;
     font-size: 0.7em;
 }
 
@@ -422,7 +479,7 @@ main {
     background: #fff;
     padding: 2rem;
     padding-top: .5rem;
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
     font-family: sans-serif;
     font-weight: normal;
 }
@@ -456,10 +513,14 @@ main {
     line-height: 2rem;
 }
 #subtitle3 {
-    margin-top: 4rem;
+    margin-top: 1rem;
     margin-bottom: 4rem;
     font-size: 1rem;
     line-height: 1rem;
+}
+#spacer {
+  width: 9rem;
+  display: inline-block;
 }
 #description {
   font-size: 1rem;
@@ -533,20 +594,21 @@ td {
  * Reponsive
  */
 @media ( max-width: 1140px ) {
-    .container       { width: 800px; } /* total */
-    .container:after { width: 228px; }
-    .sidebar         { width: 228px; } /* left  */
-    main             { width: 571px; } /* total - left - 1 */
-    .sidebar         { width: 228px; } /* left  */
-    .perl-book-left  { width: 192px; }
-    .perl-book-right { width: 313px; } 
-
+  .container       { width: 800px; } /* total */
+  .container:after { width: 228px; }
+  .sidebar         { width: 228px; } /* left  */
+  main             { width: 571px; } /* total - left - 1 */
+  .navbar.bottom   { width: 571px; }
+  .sidebar         { width: 228px; } /* left  */
+  .perl-book-left  { width: 192px; }
+  .perl-book-right { width: 313px; } 
 }
 @media ( max-width: 900px ) {
     .container       { width: 200%;  }
     .container:after { width: 325px; }
     .sidebar         { width: 325px; }
     main             { width: 50%;   }
+    .navbar.bottom   { width: 50%;   }
     .sidebar         { width: 325px; }
     .perl-book-left  { width: 192px; }
     .perl-book-right { width: 70%;   }
@@ -554,51 +616,61 @@ td {
     .perl-book-right { padding: 0.4rem }
 
     .fa.fa-bars {
-        display: inline-block;
+      display: inline-block;
     }
     .container {
-        position: absolute;
-        top: 0;
-        left: -322px;
-        z-index: 1;
+      position: absolute;
+      top: 0;
+      left: -322px;
+      z-index: 1;
     }
     .sidebar {
-        z-index: 2;
+      z-index: 2;
+    }
+    .navbar.bottom {
+      position: absolute;
+      left: 325px;
+      bottom: 0;
+      z-index: 2;
     }
 
     label[for="sidebar-trigger"] {
-        position: relative;
-        left: 1rem;
-        top:  1rem;
-        z-index: 3;
-        height: 2rem;
-        width: 2rem;
-        font-size: 2rem;
-        line-height: 2rem;
-        cursor: pointer;
-        background: transparent;
-        color: #666;
+      position: relative;
+      left: 1rem;
+      top:  1rem;
+      z-index: 3;
+      height: 2rem;
+      width: 2rem;
+      font-size: 2rem;
+      line-height: 2rem;
+      cursor: pointer;
+      background: transparent;
+      color: #666;
     }
 
     .sidebar-trigger + label, .container {
-        transition: left 0.2s;
+      transition: left 0.2s;
     }
     .sidebar-trigger:checked + label {
-        left: 1rem;
-        top: 1rem;
-        color: #fff;
+      left: 1rem;
+      top: 1rem;
+      color: #fff;
     }
     .sidebar-trigger:checked ~ .container {
-        left: 0px;
+      left: 0px;
+    }
+    .sidebar-trigger:checked ~ .navbar.bottom {
+      left: 0;
     }
 
     .sidebar a.home {
-        margin-top: 3rem;
-        margin-bottom: .3rem;
+      margin-top: 3rem;
+      margin-bottom: .3rem;
     }
     main {
-        padding: .7rem;
-        padding-top: 2rem;
+      padding: .7rem;
+      padding-top: 2rem;
+      padding-bottom: 6rem;
     }
 }
 @media ( max-width: 600px ) {
@@ -606,6 +678,7 @@ td {
     .container:after { width: 310px; }
     .sidebar         { width: 310px; }
     main             { width: 50%;   }
+    .navbar.bottom   { width: 50%;   }
     .sidebar         { width: 310px; }
 /*  .perl-book-left  { width: 192px; } */
 /*  .perl-book-right { width: 313px; } */
@@ -618,44 +691,44 @@ td {
     .container { left: -307px; }
 
     label[for="sidebar-trigger"] {
-        left: .7rem;
-        top:  .7rem;
+      left: .7rem;
+      top:  .7rem;
     }
 
     .sidebar a.home {
-        margin-top: 3rem;
-        margin-bottom: .3rem;
+      margin-top: 3rem;
+      margin-bottom: .3rem;
     }
     main {
-        padding: .4rem;
-        padding-top: 2rem;
+      padding: .4rem;
+      padding-top: 2rem;
     }
     pre > code {
-        padding: .4rem;
-        padding-left: .6rem;
+      padding: .4rem;
+      padding-left: .6rem;
     }
 
     .title-page {
-        padding-top: 2rem;
+      padding-top: 2rem;
     }
     #title1 {
-        font-size: 4.9rem;
-        line-height: 4.9rem;
+      font-size: 4.9rem;
+      line-height: 4.9rem;
     }
     #title2 {
-        font-size: 7rem;
-        line-height: 4.9rem;
+      font-size: 7rem;
+      line-height: 4.9rem;
     }
     #title3 {
-        font-size: 11.5rem;
-        line-height: 9.8rem;
+      font-size: 11.5rem;
+      line-height: 9.8rem;
     }
     #subtitle2 {
-        font-size: 1rem;
-        line-height: 2rem;
+      font-size: 1rem;
+      line-height: 2rem;
     }
     #subtitle1 {
-        font-size: 2rem;
-        line-height: 2rem;
+      font-size: 2rem;
+      line-height: 2rem;
     }
 }

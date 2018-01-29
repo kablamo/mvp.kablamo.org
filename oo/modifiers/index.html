@@ -11,10 +11,11 @@
         <title>Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
+
+
+
         <script>
             $( document ).ready(function() {
-                console.log('/oo/modifiers');
-
                 $('.sub-menu ul').hide();
                 $('.sub-menu.oo ul').show();
                 $('.sub-menu.oo>a>div').toggleClass("fa-caret-up fa-caret-down");
@@ -55,54 +56,54 @@
     <li class="basics sub-menu">
       <a href="/oo/modifiers/#basics"><div class="fa fa-caret-down caret"></div>The basics</a>
       <ul>
-        <li><a href="/basics/perl">Perl design goals</a></li>
-        <li><a href="/basics/hello">Hello world</a></li>
-        <li><a href="/basics/variables">Variables</a></li>
-        <li><a href="/basics/references">References</a></li>
-        <li><a href="/basics/functions">Functions</a></li>
-        <li><a href="/basics/flow">Conditionals</a></li>
-        <li><a href="/basics/loops">Loops</a></li>
-        <li><a href="/basics/exceptions">Exceptions</a></li>
-        <li><a href="/basics/regexps">Regexps</a></li>
-        <li><a href="/basics/files">Files</a></li>
+        <li><a href="/basics/hello/">Hello world</a></li>
+        <li><a href="/basics/variables/">Variables</a></li>
+        <li><a href="/basics/references/">References</a></li>
+        <li><a href="/basics/functions/">Functions</a></li>
+        <li><a href="/basics/flow/">Conditionals</a></li>
+        <li><a href="/basics/loops/">Loops</a></li>
+        <li><a href="/basics/exceptions/">Exceptions</a></li>
+        <li><a href="/basics/regexps/">Regular expressions</a></li>
+        <li><a href="/basics/files/">Files</a></li>
+        <li><a href="/basics/perl/">Perl design goals</a></li>
       </ul>
     </li>
     <li class="dependencies sub-menu">
       <a href="/oo/modifiers/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
       <ul>
-        <li><a href="/dependencies/perl5lib">Loading libraries from custom locations</a></li>
-        <li><a href="/dependencies/cpanm">Installing libraries with cpanm</a></li>
-        <li><a href="/dependencies/metacpan">Choosing libraries from MetaCPAN</a></li>
-        <li><a href="/dependencies/carton">Managing project dependencies with Carton</a></li>
-        <li><a href="/dependencies/pmtools">What version is installed and where?</a></li>
+        <li><a href="/dependencies/perl5lib/">Loading libraries ($PERL5LIB)</a></li>
+        <li><a href="/dependencies/cpanm/">Installing libraries (cpanm)</a></li>
+        <li><a href="/dependencies/metacpan/">Choosing libraries (MetaCPAN)</a></li>
+        <li><a href="/dependencies/carton/">Managing dependencies (Carton)</a></li>
+        <li><a href="/dependencies/pmtools/">What version? Where?</a></li>
       </ul>
     </li>
     <li class="oo sub-menu">
       <a href="/oo/modifiers/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
       <ul>
-        <li><a href="/oo/story">The story of Perl OO</a></li>
-        <li><a href="/oo/classes">Classes</a></li>
-        <li><a href="/oo/attributes">Attributes</a></li>
-        <li><a href="/oo/modifiers">Method modifiers</a></li>
-        <li><a href="/oo/roles">Roles</a></li>
-        <li><a href="/oo/inheritance">Inheritance</a></li>
+        <li><a href="/oo/story/">The story of Perl OO</a></li>
+        <li><a href="/oo/classes/">Classes and objects</a></li>
+        <li><a href="/oo/attributes/">Attributes</a></li>
+        <li><a href="/oo/modifiers/">Method modifiers</a></li>
+        <li><a href="/oo/roles/">Roles</a></li>
+        <li><a href="/oo/inheritance/">Inheritance</a></li>
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/oo/modifiers/#basics"><div class="fa fa-caret-down caret"></div>Debugging</a>
+      <a href="/oo/modifiers/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
       <ul>
-        <li><a href="/debugging/data-printer">Examining data structures</a></li>
-        <li><a href="/debugging/stack-trace">Forcing stack traces</a></li>
+        <li><a href="/debugging/data-printer/">Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace/">Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
       <a href="/oo/modifiers/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
       <ul>
-        <li><a href="/testing/intro">Introduction to testing</a></li>
-        <li><a href="/testing/warnings">Testing warnings and exceptions</a></li>
-        <li><a href="/testing/data">Testing data structures</a></li>
-        <li><a href="/testing/mock">Testing with mock objects</a></li>
-        <li><a href="/testing/libs">Build your own test libraries</a></li>
+        <li><a href="/testing/intro/">Introduction</a></li>
+        <li><a href="/testing/warnings/">Warnings and exceptions</a></li>
+        <li><a href="/testing/data/">Data structures</a></li>
+        <li><a href="/testing/mock/">Mock objects</a></li>
+        <li><a href="/testing/libs/">Building your own test libraries</a></li>
       </ul>
     </li>
     <li class="reference sub-menu section">
@@ -123,15 +124,18 @@
     <li><a href="/about">About</a></li>
   </ul>
 </div>
+<!--
+<div class="subscribe">This book is a work in progress.  <a href="/subscribe/">Subscribe</a> to get new chapters in your inbox.</div>
+-->
 
                     
                     
                 </div>
 
                 <main>
-                    <h1>Method modifiers</h1>
-
-<h4>before()</h4>
+                    <div class="chapter">Chapter 3: Object oriented programming</div>
+                    <h1 class="section">Method modifiers</h1>
+                    <h4>before()</h4>
 
 <p>Run a coderef <em>before</em> calling the method being modified.  Things to note:</p>
 
@@ -206,6 +210,10 @@ around eat =&gt; sub {
 
                 </main>
                 <div style="clear: both;"></div>
+
+                <div class="navbar bottom">
+<a alt="Left" class="left" href="/oo/attributes/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/roles/"><i class="fa fa-chevron-right"></i></a></div>
+
 
         </div>
         <footer>
