@@ -1,5 +1,3 @@
-# Attributes
-
 #### Read Only vs Read/Write attributes
 
 A simple class with attributes:

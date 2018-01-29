@@ -5,8 +5,6 @@
   
   <div id="subtitle2">Concise tutorials for experienced developers</div>
   <div id="subtitle1">Learn just enough Perl</div>
-  <div id="subtitle3">A free <a href="https://github.com/kablamo/mvp.kablamo.org">open source</a> book by <a href="http://blog.kablamo.org">kablamo</a></div>
-
-  %= include 'site/newsletter.html.ep'
+  <div id="subtitle3"><div id="spacer">&nbsp;</div> A free <a href="https://github.com/kablamo/mvp.kablamo.org">open source</a> book by <a href="http://blog.kablamo.org">kablamo</a></div>
 </div>
  

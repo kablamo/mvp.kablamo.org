@@ -1,5 +1,3 @@
-# Roles 
-
 #### What are roles?
 
 Perl roles are similar to Java interfaces or Ruby mixins.  Roles add behavior

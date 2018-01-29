@@ -1,5 +1,3 @@
-# Functions
-
 Functions are also known as "subroutines" -- hence the keyword
 <code>sub</code>.  A simple example:
 

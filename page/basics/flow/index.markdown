@@ -1,5 +1,3 @@
-# Conditionals
-
 #### If statements
 
 Comparing numbers:

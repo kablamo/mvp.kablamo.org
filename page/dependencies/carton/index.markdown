@@ -1,6 +1,5 @@
-# Carton and cpanfile
-
-Carton is like Bundler in ruby.
+The best way to manage your project's Perl dependencies is with Carton and
+cpanfile.  Carton is like Bundler in Ruby.
 
 The docs are actually great so I'll just link to them for now:
 

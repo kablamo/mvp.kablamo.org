@@ -34,12 +34,28 @@
         % for my $link ( $self->links( 'script' ) ) {
         <script src="<%= $link->href %>"></script>
         % }
+
         % my $sub_menu = 'nomatch';
         % $sub_menu = $1 if $self->path->parent =~ m|^/(\w+)/\w+|;
+
+        % my $sidebar_path = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
+        % my $toc = $site->data->{toc};
+        % my $chapter;
+        % my $article_title;
+        % for (my $i = 0; $i < scalar @$toc; $i++) {
+        %     next unless $toc->[$i]->{anchor} eq $sub_menu;
+        %     $chapter = $toc->[$i];
+        %     for (my $i = 0; $i < scalar @{ $chapter->{articles} }; $i++) {
+        %         my $article = $chapter->{articles}->[$i];
+        %         next unless $article->{href} eq $sidebar_path;
+        %         $article_title = $article->{title};
+        %         last;
+        %     }
+        %     last;
+        % }
+
         <script>
             $( document ).ready(function() {
-                console.log('<%= $self->path->parent %>');
-
                 $('.sub-menu ul').hide();
                 $('.sub-menu.<%= $sub_menu %> ul').show();
                 $('.sub-menu.<%= $sub_menu %>>a>div').toggleClass("fa-caret-up fa-caret-down");
@@ -74,9 +90,15 @@
                 </div>
 
                 <main>
-                    <%= content %>
+                    % if ($chapter) {
+                    <div class="chapter">Chapter <%= $chapter->{number} %>: <%= $chapter->{title} || '' %></div>
+                    <h1 class="section"><%= $article_title %></h1>
+                    % }
+                    %= content;
                 </main>
                 <div style="clear: both;"></div>
+
+                %= include 'layout/navbar-bottom.html.ep';
 
         </div>
         <footer>

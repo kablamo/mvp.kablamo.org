@@ -1,5 +1,3 @@
-# Build your own test libraries
-
 #### Create your test library
 
 This code goes in the `t/lib/test` directory of your project.

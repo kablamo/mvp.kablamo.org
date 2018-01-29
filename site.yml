@@ -91,6 +91,58 @@ site:
                 - text: 'Blog'
                   href: '/blog'
 
+        data:
+            toc:
+                - title: 'The basics'
+                  number: 1
+                  anchor: 'basics'
+                  articles:
+                    - {title: 'Hello world',         href: '/basics/hello/'}
+                    - {title: 'Variables',           href: '/basics/variables/'}
+                    - {title: 'References',          href: '/basics/references/'}
+                    - {title: 'Functions',           href: '/basics/functions/'}
+                    - {title: 'Conditionals',        href: '/basics/flow/'}
+                    - {title: 'Loops',               href: '/basics/loops/'}
+                    - {title: 'Exceptions',          href: '/basics/exceptions/'}
+                    - {title: 'Regular expressions', href: '/basics/regexps/'}
+                    - {title: 'Files',               href: '/basics/files/'}
+                    - {title: 'Perl design goals',   href: '/basics/perl/'}
+                - title: 'Using libraries'
+                  number: 2
+                  anchor: 'dependencies'
+                  articles:
+                  articles:
+                    - {title: 'Loading libraries',             href: '/dependencies/perl5lib/', toc_title: 'Loading libraries ($PERL5LIB)'}
+                    - {title: 'Installing libraries',          href: '/dependencies/cpanm/',    toc_title: 'Installing libraries (cpanm)'}
+                    - {title: 'Choosing libraries',            href: '/dependencies/metacpan/', toc_title: 'Choosing libraries (MetaCPAN)'}
+                    - {title: 'Managing project dependencies', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
+                    - {title: 'What version? Where?',          href: '/dependencies/pmtools/'}
+                - title: 'Object oriented programming'
+                  number: 3
+                  anchor: 'oo'
+                  articles:
+                    - {title: 'The story of Perl OO', href: '/oo/story/'}
+                    - {title: 'Classes and objects',  href: '/oo/classes/'}
+                    - {title: 'Attributes',           href: '/oo/attributes/'}
+                    - {title: 'Method modifiers',     href: '/oo/modifiers/'}
+                    - {title: 'Roles',                href: '/oo/roles/'}
+                    - {title: 'Inheritance',          href: '/oo/inheritance/'}
+                - title: 'Debugging'
+                  number: 4
+                  anchor: 'debugging'
+                  articles:
+                    - {title: 'Examining data structures', href: '/debugging/data-printer/'}
+                    - {title: 'Forcing stack traces',      href: '/debugging/stack-trace/'}
+                - title: 'Testing'
+                  number: 5
+                  anchor: 'testing'
+                  articles:
+                    - {title: 'Introduction',                     href: '/testing/intro/'}
+                    - {title: 'Warnings and exceptions',          href: '/testing/warnings/'}
+                    - {title: 'Data structures',                  href: '/testing/data/'}
+                    - {title: 'Mock objects',                     href: '/testing/mock/'}
+                    - {title: 'Building your own test libraries', href: '/testing/libs/'}
+
         # deploy: This is the deploy object, used to deploy this site.
         deploy:
             $ref: 'deploy'

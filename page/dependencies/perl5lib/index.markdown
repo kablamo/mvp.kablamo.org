@@ -1,5 +1,3 @@
-# Loading libraries from custom locations
-
 When you run a Perl program it looks for libraries (aka
 modules/packages/classes/dependencies) in the paths specified in `$PERL5LIB`
 before looking in the standard library.

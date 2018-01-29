@@ -1,5 +1,3 @@
-# Exceptions
-
 The standard Perl syntax for handling exceptions is annoying to visitors from
 other languages.  It works really well if you give it a chance though.
 

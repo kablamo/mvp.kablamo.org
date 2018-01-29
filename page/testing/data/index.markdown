@@ -1,5 +1,3 @@
-# Testing data structures
-
 #### Hashes
 
     use Test2::V0 qw/hash match DNE all_vals all_keys end/;

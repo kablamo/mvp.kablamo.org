@@ -1,5 +1,3 @@
-# Examining data structures
-
 There are lots of good modules that make this easy. I recommend
 [Data::Printer](https://metacpan.org/pod/Data::Printer).
 

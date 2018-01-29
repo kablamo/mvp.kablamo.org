@@ -1,7 +1,3 @@
----
-title: The Perl REPL
----
-
 # The Perl REPL
 
 #### One liners with Perl

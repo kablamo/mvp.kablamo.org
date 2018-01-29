@@ -1,5 +1,3 @@
-# Hello world
-
 The code:
 
     #!/usr/bin/env perl

@@ -1,5 +1,3 @@
-# Installing libraries
-
 The best way to install modules is with
 [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/lib/App/cpanminus/fatscript.pm).
 

@@ -1,5 +1,3 @@
-# Forcing stack traces
-
 #### Default behavior
 
 By default perl doesn't print a stack trace when errors occur.  For example:

@@ -1,5 +1,3 @@
-# Testing warnings and exceptions
-
 #### Testing for unintentional warnings
 
 Ideally your code doesn't generate warnings.

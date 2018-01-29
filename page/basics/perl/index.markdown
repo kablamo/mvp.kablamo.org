@@ -1,5 +1,3 @@
-# Perl design goals
-
 #### Design goals
 
 Perl's design goals include flexibility, expressiveness, and power.  

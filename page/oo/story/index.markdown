@@ -1,5 +1,3 @@
-# The story of Perl OO
-
 Perl OO is difficult to grok for outsiders because the syntax and keywords are
 unfortunately not the standard ones that all the other languages use.  However
 the concepts are the same and all the same functionality (and more) is there.
@@ -33,5 +31,4 @@ syntax).  I'm over simplifying but to keep things concise I'll say that
 1. Moo is essentially a subset of Moose and 
 2. The main difference is that Moose provides introspection. 
 
-#### Blah bladdy blah what are we going to learn here?
-I am going to teach you Moo.
+This chapter teaches Moo.

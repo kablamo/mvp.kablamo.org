@@ -1,5 +1,3 @@
-# Testing with mock objects
-
 #### Inject new methods
 
 Inject a new method into Some::Class:

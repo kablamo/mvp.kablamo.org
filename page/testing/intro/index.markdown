@@ -1,5 +1,3 @@
-# Introduction to testing
-
 #### Directory layout
 
 Perl tests traditionally go in the `t` directory at the root of your project.  It should look something like this:

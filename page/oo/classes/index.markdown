@@ -1,5 +1,3 @@
-# Classes and Objects
-
 #### Simple class definitions
 
 Class definitions (aka "packages" or "modules") go in files with the suffix <code>.pm</code> (Perl Module):

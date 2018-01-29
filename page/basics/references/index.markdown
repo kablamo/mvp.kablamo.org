@@ -1,5 +1,3 @@
-# References
-
 You will need to understand references.  However its also <i>the most
 frustrating</i> and time consuming part of learning Perl for everyone.  If you
 can master this you will be able to read and write Perl code.  <i>Be sure to

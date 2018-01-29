@@ -1,0 +1,40 @@
+% my $toc = $site->data->{toc};
+% my $left_href;
+% my $right_href;
+% my $this;
+% my $this_href = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
+%
+% for (my $i = 0; $i < scalar @$toc; $i++) {
+%     my $this_chapter = $toc->[$i];
+%     my $next_chapter = $toc->[$i + 1];
+%     my $prev_chapter = $i == 0 ? undef: $toc->[$i - 1];
+%
+%     for (my $i = 0; $i < scalar @{ $this_chapter->{articles} }; $i++) {
+%         my $this_article = $this_chapter->{articles}->[$i];
+%         my $next_article = $this_chapter->{articles}->[$i + 1];
+%         my $prev_article = $i == 0? undef : $this_chapter->{articles}->[$i - 1];
+%
+%         next unless $this_article->{href} eq $this_href;         
+%
+%         if ($next_article) {
+%             $right_href = $next_article->{href};
+%         }
+%         elsif ($next_chapter) {
+%             $right_href = $next_chapter->{articles}->[0]->{href};
+%         }
+%        
+%         if ($prev_article) {
+%             $left_href = $prev_article->{href};
+%         }
+%         elsif ($prev_chapter) {
+%             $left_href = $prev_chapter->{articles}->[-1]->{href};
+%         }
+%
+%         last;
+%     }
+%     last if $left_href || $right_href;
+% }
+<div class="navbar bottom">
+<% if ($left_href) { =%><a class="left" href="<%= $left_href %>" alt="Left"><i class="fa fa-chevron-left"></i></a><% } =%>
+<% if ($right_href) { =%><a class="right" href="<%= $right_href %>" alt="Right"><i class="fa fa-chevron-right"></i></a><% } =%>
+</div>

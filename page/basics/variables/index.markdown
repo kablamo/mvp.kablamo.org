@@ -1,5 +1,3 @@
-# Variables
-
 Perl variables come in 3 flavors.
 
 #### Scalars

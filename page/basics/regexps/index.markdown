@@ -1,5 +1,3 @@
-# Regular expressions
-
 #### m// (the match operator)
 
     print "hello" if $string =~ m/cowboys/;

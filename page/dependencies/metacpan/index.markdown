@@ -1,5 +1,3 @@
-# Choosing libraries from MetaCPAN
-
 [MetaCPAN.org](https://metacpan.org) is home to hundreds of thousands of Perl
 libraries.  Perl has an amazing culture of documentation so be sure to look at
 the documentation there for any modules you use.

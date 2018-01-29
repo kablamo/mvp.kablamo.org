@@ -1,5 +1,3 @@
-# Method modifiers
-
 #### before()
 
 Run a coderef *before* calling the method being modified.  Things to note:

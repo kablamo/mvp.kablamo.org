@@ -1,5 +1,3 @@
-# Inheritance
-
 #### Class definitions
 
 Parent class:

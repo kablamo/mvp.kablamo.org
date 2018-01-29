@@ -303,11 +303,10 @@
         <form class="ml-block-form" action="https://app.mailerlite.com/webforms/submit/d9f9n2" data-id="705972" data-code="d9f9n2" method="POST" target="_blank">
             <div class="subscribe-form horizontal">
                 <div class="form-section mb10">
-                    <p>This book is growing.  <i class="fa fa-sun-o"></i> <i class="fa fa-leaf"></i> <i class="fa fa-leaf"></i> Want to grow your Perl skills?  Get new chapters in your inbox every week or so.  </p>
                 </div>
                 <div class="form-section horizontal">
                     <div class="form-group ml-field-email ml-validate-required ml-validate-email">
-                        <input type="email" name="fields[email]" class="form-control" placeholder="Email" value="" autocomplete="email" x-autocompletetype="email" spellcheck="false" autocapitalize="off" autocorrect="off">
+                        <input type="email" name="fields[email]" class="form-control" placeholder="Your email address" value="" autocomplete="email" x-autocompletetype="email" spellcheck="false" autocapitalize="off" autocorrect="off">
                     </div>
                 </div>
                 <div class="form-section horizontal ml-button-position">

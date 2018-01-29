@@ -1,5 +1,3 @@
-# Loops
-
 #### foreach
 
 C style `for` loops exist but you almost never need them in Perl.
