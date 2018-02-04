@@ -17,8 +17,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.dependencies ul').show();
-                $('.sub-menu.dependencies>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.builtins ul').show();
+                $('.sub-menu.builtins>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -54,7 +54,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
+      <a href="/builtins/die-eval/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
       <ul>
         <li><a href="/basics/hello/">Hello world</a></li>
         <li><a href="/basics/variables/">Variables</a></li>
@@ -69,7 +69,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/dependencies/pmtools/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+      <a href="/builtins/die-eval/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">Installing libraries (cpanm)</a></li>
@@ -79,7 +79,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/dependencies/pmtools/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+      <a href="/builtins/die-eval/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">The story of Perl OO</a></li>
         <li><a href="/oo/classes/">Classes and objects</a></li>
@@ -90,14 +90,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/dependencies/pmtools/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
+      <a href="/builtins/die-eval/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/dependencies/pmtools/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+      <a href="/builtins/die-eval/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
       <ul>
         <li><a href="/testing/intro/">Introduction</a></li>
         <li><a href="/testing/warnings/">Warnings and exceptions</a></li>
@@ -107,7 +107,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/builtins/die-eval/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -131,49 +131,110 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 2: Using libraries</div>
-                    <h1 class="section">What version? Where?</h1>
-                    <p>The best way to find out what version of a module is installed and where is to
-use <a href="https://metacpan.org/pod/pmtools">pmtools</a>.</p>
+                    <p>Use <a href="">Syntax::Keyword::Try</a> when working with exceptions. Its adds <code>try</code> and
+<code>catch</code> keywords to Perl and helps you avoid some of the pitfalls of the
+standard Perl syntax (described below).  </p>
 
-<h4>How do I Install pmtools?</h4>
+<p>The standard Perl syntax for handling exceptions is annoying to visitors from
+other languages.  However its pretty common so you will need to grok this
+syntax.</p>
 
-<pre><code>cpanm pmtools
+<h4>die</h4>
+
+<p>Many languages have <code>throw()</code>.  In Perl its called <code>die()</code> and it throws an
+exception.  If the exception is not caught, the process exits with a non-zero
+value and an error message is displayed to STDERR.</p>
+
+<pre><code>die &quot;Something bad happened&quot;;
+# process prints &quot;Something bad happened at line 123.&quot; and exits;
 </code></pre>
 
-<h4>What version of that module is installed?</h4>
+<h4>eval</h4>
 
-<pre><code>$ pmvers Moo
-2.003002
+<p>Many languages have <code>try()</code>.  In Perl its called <code>eval()</code> but
+its a little different.  <code>eval()</code> parses, compiles, and evaluates a block of
+code at runtime and catches any exceptions that are raised.  The exception is
+placed in the global variable <code>$@</code>.</p>
+
+<pre><code>eval { die &quot;Something bad happened&quot; }; # try
+warn $@ if $@;                         # catch
 </code></pre>
 
-<h4>Where is that module installed?</h4>
+<h4>Exceptions as objects</h4>
 
-<pre><code>$ pmpath Moo
-/opt/perlbrew/libs/perl-5.26.0@mylib/lib/perl5/Moo.pm
+<p>Exceptions are often strings, but you can throw objects too.</p>
+
+<pre><code>eval {
+    die My::Exception-&gt;new(
+        error    =&gt; &#39;Something bad happened&#39;,
+        request  =&gt; $request,
+        response =&gt; $response,
+    );
+};
+warn $@-&gt;error if $@;
 </code></pre>
 
-<h4>I don&#39;t want to install pmtools</h4>
+<h4>Avoiding the pitfalls</h4>
 
-<p>To find the version number:</p>
+<p><strong>Remember $@ is a global variable</strong></p>
 
-<pre><code>$ perl -e &#39;use Moo 99999&#39;
-Moo version 9999 required--this is only version 2.003003 at -e line 1.
-BEGIN failed--compilation aborted at -e line 1.
+<p>If your exception handling code calls <code>eval()</code>, <code>$@</code> will get clobbered.  This
+is easy to forget.  Here is one way to avoid it:</p>
+
+<pre><code>eval { die &quot;something bad&quot; };
+if ($@) {
+    my $error = $@;
+    disconnect_from_the_database(); # calls eval()
+    warn $error;
+}
 </code></pre>
 
-<p>To find the location:</p>
+<p>If you are a module author and want to be polite and not modify <code>$@</code> you would
+need to jump through hoops like this (no one actually does this because its too
+much typing):</p>
 
-<pre><code>$ perldoc -l Moo
-/home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1/Moo.pm
+<pre><code>my ($error1, $error2);
+{
+    local $@;
+    unless (eval { ...; return 1 }) {
+        $error1 = 1;
+        $error2 = $@;
+    }
+}
+if ($error1) {
+    # handle exception
+}
 </code></pre>
+
+<p><strong>Don&#39;t use exception objects that evalute as false</strong></p>
+
+<p>You can <a href="">overload</a> Perl&#39;s operators.  For example, you could have an
+exception object evaluate to &quot;error&quot; in string context.  You could also have an
+exception object evaluate to -1 in string context.</p>
+
+<p>This would cause mysterious problems for most people because the common
+idiom <code>handle_exception() if $@</code> will silently fail and the exception won&#39;t be
+handled.  </p>
+
+<p>One solution is use a safer but more verbose idiom everywhere:</p>
+
+<pre><code>if ( eval { try_something_risky(); return 1 } ) {
+    handle_exception();
+}
+</code></pre>
+
+<h4>See also</h4>
+
+<p>For more info read the documentation for 
+<a href="http://perldoc.perl.org/functions/die.html">die()</a> and
+<a href="http://perldoc.perl.org/functions/eval.html">eval()</a></p>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/dependencies/carton/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/story/"><i class="fa fa-chevron-right"></i></a></div>
+</div>
 
 
         </div>

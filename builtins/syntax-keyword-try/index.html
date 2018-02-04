@@ -17,8 +17,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.dependencies ul').show();
-                $('.sub-menu.dependencies>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.builtins ul').show();
+                $('.sub-menu.builtins>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -54,7 +54,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
+      <a href="/builtins/syntax-keyword-try/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
       <ul>
         <li><a href="/basics/hello/">Hello world</a></li>
         <li><a href="/basics/variables/">Variables</a></li>
@@ -69,7 +69,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/dependencies/pmtools/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+      <a href="/builtins/syntax-keyword-try/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">Installing libraries (cpanm)</a></li>
@@ -79,7 +79,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/dependencies/pmtools/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+      <a href="/builtins/syntax-keyword-try/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">The story of Perl OO</a></li>
         <li><a href="/oo/classes/">Classes and objects</a></li>
@@ -90,14 +90,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/dependencies/pmtools/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
+      <a href="/builtins/syntax-keyword-try/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/dependencies/pmtools/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+      <a href="/builtins/syntax-keyword-try/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
       <ul>
         <li><a href="/testing/intro/">Introduction</a></li>
         <li><a href="/testing/warnings/">Warnings and exceptions</a></li>
@@ -107,7 +107,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/builtins/syntax-keyword-try/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -131,49 +131,14 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 2: Using libraries</div>
-                    <h1 class="section">What version? Where?</h1>
-                    <p>The best way to find out what version of a module is installed and where is to
-use <a href="https://metacpan.org/pod/pmtools">pmtools</a>.</p>
-
-<h4>How do I Install pmtools?</h4>
-
-<pre><code>cpanm pmtools
-</code></pre>
-
-<h4>What version of that module is installed?</h4>
-
-<pre><code>$ pmvers Moo
-2.003002
-</code></pre>
-
-<h4>Where is that module installed?</h4>
-
-<pre><code>$ pmpath Moo
-/opt/perlbrew/libs/perl-5.26.0@mylib/lib/perl5/Moo.pm
-</code></pre>
-
-<h4>I don&#39;t want to install pmtools</h4>
-
-<p>To find the version number:</p>
-
-<pre><code>$ perl -e &#39;use Moo 99999&#39;
-Moo version 9999 required--this is only version 2.003003 at -e line 1.
-BEGIN failed--compilation aborted at -e line 1.
-</code></pre>
-
-<p>To find the location:</p>
-
-<pre><code>$ perldoc -l Moo
-/home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1/Moo.pm
-</code></pre>
+                    <p>keyword</p>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/dependencies/carton/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/story/"><i class="fa fa-chevron-right"></i></a></div>
+</div>
 
 
         </div>

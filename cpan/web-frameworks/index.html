@@ -17,8 +17,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.dependencies ul').show();
-                $('.sub-menu.dependencies>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.cpan ul').show();
+                $('.sub-menu.cpan>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -54,7 +54,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
+      <a href="/cpan/web-frameworks/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
       <ul>
         <li><a href="/basics/hello/">Hello world</a></li>
         <li><a href="/basics/variables/">Variables</a></li>
@@ -69,7 +69,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/dependencies/pmtools/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+      <a href="/cpan/web-frameworks/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">Installing libraries (cpanm)</a></li>
@@ -79,7 +79,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/dependencies/pmtools/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+      <a href="/cpan/web-frameworks/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">The story of Perl OO</a></li>
         <li><a href="/oo/classes/">Classes and objects</a></li>
@@ -90,14 +90,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/dependencies/pmtools/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
+      <a href="/cpan/web-frameworks/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/dependencies/pmtools/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+      <a href="/cpan/web-frameworks/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
       <ul>
         <li><a href="/testing/intro/">Introduction</a></li>
         <li><a href="/testing/warnings/">Warnings and exceptions</a></li>
@@ -107,7 +107,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/cpan/web-frameworks/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -131,49 +131,99 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 2: Using libraries</div>
-                    <h1 class="section">What version? Where?</h1>
-                    <p>The best way to find out what version of a module is installed and where is to
-use <a href="https://metacpan.org/pod/pmtools">pmtools</a>.</p>
+                    <h1>Web Frameworks</h1>
 
-<h4>How do I Install pmtools?</h4>
+<h4>Mojolicious</h4>
 
-<pre><code>cpanm pmtools
-</code></pre>
+<p>Rating: <em>Shiny</em></p>
 
-<h4>What version of that module is installed?</h4>
+<ul>
+<li>Async</li>
+<li>Easy to use</li>
+<li>A nice DSL</li>
+<li>Clean code</li>
+<li>A large ecosystem</li>
+<li>Annual developer conferences</li>
+<li>Excellent documentation</li>
+<li>No dependencies to manage</li>
+</ul>
 
-<pre><code>$ pmvers Moo
-2.003002
-</code></pre>
+<p>Mojolicious was written and maintained by Sebastian Riedel who is also the
+creator of Catalyst.  Mojolicious is not afraid to deprecate features or
+functions.  This allows it to deliver carefully maintained api, tools, and code
+that make sense and are unencumbered by weird legacy decisions.</p>
 
-<h4>Where is that module installed?</h4>
+<p>MetaCPAN stats:</p>
 
-<pre><code>$ pmpath Moo
-/opt/perlbrew/libs/perl-5.26.0@mylib/lib/perl5/Moo.pm
-</code></pre>
+<ul>
+<li>MetaCPAN ++ rating: 354</li>
+<li>Last release: 2018</li>
+<li><a href="https://metacpan.org/changes/distribution/Mojolicious">Change log</a></li>
+<li><a href="https://metacpan.org/pod/Mojolicious">Documenation</a></li>
+</ul>
 
-<h4>I don&#39;t want to install pmtools</h4>
+<h4>Dancer2</h4>
 
-<p>To find the version number:</p>
+<p>Rating: <em>Solid and lightweight</em>  </p>
 
-<pre><code>$ perl -e &#39;use Moo 99999&#39;
-Moo version 9999 required--this is only version 2.003003 at -e line 1.
-BEGIN failed--compilation aborted at -e line 1.
-</code></pre>
+<ul>
+<li>A focus on simplicity and ease of use</li>
+<li>A nice DSL</li>
+<li>Built with Moo</li>
+</ul>
 
-<p>To find the location:</p>
+<p>Dancer was originally a clone of Ruby&#39;s Sinatra web framework.  Over time, it
+has evolved into its own thing.  Dancer was built with its own home grown
+object system.  Dancer2 is a rewrite which fixes some important problems and is
+written with Moo.  </p>
 
-<pre><code>$ perldoc -l Moo
-/home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1/Moo.pm
-</code></pre>
+<h4>Catalyst</h4>
+
+<p>Rating: <em>Venerable</em></p>
+
+<ul>
+<li>A serious, stable, respected, solid solution to building a website</li>
+<li>A large ecosystem of plugins</li>
+<li>A focus on backwords cmpatibility</li>
+<li>Built with Moose</li>
+</ul>
+
+<p>Catalyst has been around longer than most frameworks which means it has a large
+ecosystem of plugins.  </p>
+
+<p>Backwards compatibility is a key value.  Thats great if you want your web app
+to work without changes 10 years later.  It also means it has more legacy code
+and legacy issues than frameworks who don&#39;t value backwards compatibility as
+much.</p>
+
+<h4>Plack</h4>
+
+<p>Rating: <em>Awesome but not a web framework</em></p>
+
+<h4>CGI.pm</h4>
+
+<p>Rating: <em>Do not use</em>  </p>
+
+<p>This is an old library which was created in 1995 and was extremely popular
+around 2000.  For a while it was part of the Perl core.  It was a good idea at
+the time.  Its not a good idea, 18+ years later, to use this to create new
+applications.</p>
+
+<p><a href="https://metacpan.org/pod/distribution/CGI/lib/CGI.pod">CGI</a></p>
+
+<ul>
+<li>Last updated: 2017</li>
+<li>Metacpan ++ rating: 30</li>
+<li><a href="https://metacpan.org/changes/distribution/CGI">Change log</a></li>
+<li><a href="https://github.com/leejo/CGI.pm/issues">Issues</a></li>
+</ul>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/dependencies/carton/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/story/"><i class="fa fa-chevron-right"></i></a></div>
+</div>
 
 
         </div>

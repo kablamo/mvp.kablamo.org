@@ -17,8 +17,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.dependencies ul').show();
-                $('.sub-menu.dependencies>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.cpan ul').show();
+                $('.sub-menu.cpan>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -54,7 +54,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
+      <a href="/cpan/introduction/#basics"><div class="fa fa-caret-down caret"></div>The basics (syntax)</a>
       <ul>
         <li><a href="/basics/hello/">Hello world</a></li>
         <li><a href="/basics/variables/">Variables</a></li>
@@ -69,7 +69,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/dependencies/pmtools/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
+      <a href="/cpan/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">Installing libraries (cpanm)</a></li>
@@ -79,7 +79,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/dependencies/pmtools/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
+      <a href="/cpan/introduction/#oo"><div class="fa fa-caret-down caret"></div>Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">The story of Perl OO</a></li>
         <li><a href="/oo/classes/">Classes and objects</a></li>
@@ -90,14 +90,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/dependencies/pmtools/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
+      <a href="/cpan/introduction/#debugging"><div class="fa fa-caret-down caret"></div>Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/dependencies/pmtools/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
+      <a href="/cpan/introduction/#testing"><div class="fa fa-caret-down caret"></div>Testing</a>
       <ul>
         <li><a href="/testing/intro/">Introduction</a></li>
         <li><a href="/testing/warnings/">Warnings and exceptions</a></li>
@@ -107,7 +107,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/dependencies/pmtools/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/cpan/introduction/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -131,49 +131,61 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 2: Using libraries</div>
-                    <h1 class="section">What version? Where?</h1>
-                    <p>The best way to find out what version of a module is installed and where is to
-use <a href="https://metacpan.org/pod/pmtools">pmtools</a>.</p>
+                    <h1>Introduction</h1>
 
-<h4>How do I Install pmtools?</h4>
+<p>MetaCPAN has over XXX thousand modules and it can be hard to know which module
+is the best one.  For example there are at least XXX modules for dealing XXXX.
+New modules appear all the time which make the old best solution obsolete.  It
+can be hard to keep up.</p>
 
-<pre><code>cpanm pmtools
-</code></pre>
+<p>This chapter is an attempt to help new users decide quickly which modules to
+use.  These recommendations are a biased set of opionions based on my personal
+experiences and on the writing of people I respect.</p>
 
-<h4>What version of that module is installed?</h4>
+<p>Feedback is wanted!  If any of these recommendations are wrong or outdated or
+not nuanced enough please <a href="https://github.com/kablamo/mvp.kablamo.org/issues">let me
+know</a>.  Part of the reason
+I&#39;m undertaking this is so that the community tells me when I&#39;m using the wrong
+module.</p>
 
-<pre><code>$ pmvers Moo
-2.003002
-</code></pre>
+<p>Sources (other than experience):</p>
 
-<h4>Where is that module installed?</h4>
+<h2>MSTPAN</h2>
 
-<pre><code>$ pmpath Moo
-/opt/perlbrew/libs/perl-5.26.0@mylib/lib/perl5/Moo.pm
-</code></pre>
+<p>My largest source of inspiration is
+<a href="http://blog.kablamo.org/2015/09/08/mstpan/">mstpan</a> from which I&#39;ve stolen
+liberally and shamelessly because its a really good set of blog posts from
+2015.  However I wanted that resource to be available in a more discoverable
+format that could be maintained via github (like this book).</p>
 
-<h4>I don&#39;t want to install pmtools</h4>
+<h2>Task::Kensho</h2>
 
-<p>To find the version number:</p>
+<p>The Enlighted Perl Organization created
+<a href="https://metacpan.org/pod/Task::Kensho">Task::Kensho</a> and it was one of the
+first attempts at making module recommendations.  </p>
 
-<pre><code>$ perl -e &#39;use Moo 99999&#39;
-Moo version 9999 required--this is only version 2.003003 at -e line 1.
-BEGIN failed--compilation aborted at -e line 1.
-</code></pre>
+<h2>Belike::Dagolden</h2>
 
-<p>To find the location:</p>
+<p><a href="http://www.dagolden.com/">Dave Golden</a> is the author of a number of widely
+used modules which I like and use.  He also keeps a <a href="https://metacpan.org/pod/Task::BeLike::DAGOLDEN">list of modules he
+uses</a>.</p>
 
-<pre><code>$ perldoc -l Moo
-/home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1/Moo.pm
-</code></pre>
+<h2>Neil Bowers</h2>
+
+<p><a href="http://neilb.org">Neil Bowers</a> is another developer who has written some <a href="http://neilb.org/reviews/">great
+module reviews</a>.  I wish he would write more.</p>
+
+<h2>DiscouragedModules</h2>
+
+<p>The use of some libraries is
+<a href="https://metacpan.org/pod/Perl::Critic::Policy::Freenode::DiscouragedModules">discouraged</a>.</p>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/dependencies/carton/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/story/"><i class="fa fa-chevron-right"></i></a></div>
+</div>
 
 
         </div>
