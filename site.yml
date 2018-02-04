@@ -93,20 +93,35 @@ site:
 
         data:
             toc:
-                - title: 'The basics'
+                - title: 'The basics (syntax)'
                   number: 1
                   anchor: 'basics'
                   articles:
                     - {title: 'Hello world',         href: '/basics/hello/'}
                     - {title: 'Variables',           href: '/basics/variables/'}
                     - {title: 'References',          href: '/basics/references/'}
+#                   - {title: 'Context',             href: '/basics/references/'}
                     - {title: 'Functions',           href: '/basics/functions/'}
                     - {title: 'Conditionals',        href: '/basics/flow/'}
                     - {title: 'Loops',               href: '/basics/loops/'}
                     - {title: 'Exceptions',          href: '/basics/exceptions/'}
                     - {title: 'Regular expressions', href: '/basics/regexps/'}
                     - {title: 'Files',               href: '/basics/files/'}
+#                   - {title: 'Modules',             href: '/basics/modules/'}
+#                   - {title: 'Comments and POD',    href: '/basics/pod/'}
+#                   - {title: 'Scope',               href: '/basics/scope/'}
+#                   - {title: 'Constants',           href: '/basics/constants/'}
                     - {title: 'Perl design goals',   href: '/basics/perl/'}
+#                - title: 'The essentials (built in functions)'
+#                  number: 1
+#                  anchor: 'builtins'
+#                  articles:
+#                    - {title: 'Exceptions - die/eval',             href: '/builtins/eval/'}
+#                    - {title: 'Exceptions - Syntax::Keyword::Try', href: '/builtins/syntax-keyword-try/'}
+#                    - {title: 'File IO - open/close',              href: '/builtins/eval/'}
+#                    - {title: 'File IO - Path::Tiny',              href: '/builtins/path-tiny/'}
+#                    - {title: 'Working with lists',                href: '/builtins/lists/'}
+#                    - {title: 'Working with hashes',               href: '/builtins/hashes/'}
                 - title: 'Using libraries'
                   number: 2
                   anchor: 'dependencies'
@@ -117,6 +132,16 @@ site:
                     - {title: 'Choosing libraries',            href: '/dependencies/metacpan/', toc_title: 'Choosing libraries (MetaCPAN)'}
                     - {title: 'Managing project dependencies', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
                     - {title: 'What version? Where?',          href: '/dependencies/pmtools/'}
+#                - title: 'Recommended libraries'
+#                  number: 1
+#                  anchor: 'cpan'
+#                  articles:
+#                    - {title: 'Introduction',             href: '/cpan/intro/'}
+#                    - {title: 'JSON',                     href: '/cpan/json/'}
+#                    - {title: 'XML',                      href: '/cpan/xml/'}
+#                    - {title: 'HTML',                     href: '/cpan/html/'}
+#                    - {title: 'Web frameworks',           href: '/cpan/frameworks/'}
+#                    - {title: 'Web deployment',           href: '/cpan/deployment/'}
                 - title: 'Object oriented programming'
                   number: 3
                   anchor: 'oo'

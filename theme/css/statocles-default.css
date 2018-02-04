@@ -731,4 +731,7 @@ td {
       font-size: 2rem;
       line-height: 2rem;
     }
+    #spacer {
+      width: 4rem;
+    }
 }
