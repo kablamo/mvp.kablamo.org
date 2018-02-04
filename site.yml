@@ -116,7 +116,7 @@ site:
 #                  number: 1
 #                  anchor: 'builtins'
 #                  articles:
-#                    - {title: 'Exceptions - die/eval',             href: '/builtins/eval/'}
+#                    - {title: 'Exceptions - die/eval',             href: '/builtins/die-eval/'}
 #                    - {title: 'Exceptions - Syntax::Keyword::Try', href: '/builtins/syntax-keyword-try/'}
 #                    - {title: 'File IO - open/close',              href: '/builtins/eval/'}
 #                    - {title: 'File IO - Path::Tiny',              href: '/builtins/path-tiny/'}
@@ -140,8 +140,8 @@ site:
 #                    - {title: 'JSON',                     href: '/cpan/json/'}
 #                    - {title: 'XML',                      href: '/cpan/xml/'}
 #                    - {title: 'HTML',                     href: '/cpan/html/'}
-#                    - {title: 'Web frameworks',           href: '/cpan/frameworks/'}
-#                    - {title: 'Web deployment',           href: '/cpan/deployment/'}
+#                    - {title: 'Web frameworks',           href: '/cpan/web-frameworks/'}
+#                    - {title: 'Web deployment',           href: '/cpan/web-deployment/'}
                 - title: 'Object oriented programming'
                   number: 3
                   anchor: 'oo'
