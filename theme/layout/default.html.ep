@@ -1,3 +1,27 @@
+% my $sub_menu = 'nomatch';
+% $sub_menu = $1 if $self->path->parent =~ m|^/(\w+)/\w+|;
+
+% my $sidebar_path = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
+% my $toc = $site->data->{toc};
+% my $chapter;
+% my $article_title;
+% for (my $i = 0; $i < scalar @$toc; $i++) {
+%     next unless $toc->[$i]->{anchor} eq $sub_menu;
+%     $chapter = $toc->[$i];
+%     for (my $i = 0; $i < scalar @{ $chapter->{articles} }; $i++) {
+%         my $article = $chapter->{articles}->[$i];
+%         next unless $article->{href} eq $sidebar_path;
+%         $article_title = $article->{title};
+%         last;
+%     }
+%     last;
+% }
+
+% my $title = '';
+% $title  = $article_title . " - " if $chapter && $article_title;
+% $title  = $self->title   . " - " if $self->title;
+% $title .= $site->title;
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +37,7 @@
         <script src="http://code.jquery.com/jquery-3.2.1.min.js"
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
-        <title><%== $self->title ? $self->title . ' - ' : '' %><%== $site->title %></title>
+        <title><%== $title %></title>
         % if ( my $author = $self->author ) {
         <meta name="author" content="<%== $author->name %>">
         % }
@@ -36,25 +60,6 @@
         % }
         % for my $link ( $self->links( 'script' ) ) {
         <script src="<%= $link->href %>"></script>
-        % }
-
-        % my $sub_menu = 'nomatch';
-        % $sub_menu = $1 if $self->path->parent =~ m|^/(\w+)/\w+|;
-
-        % my $sidebar_path = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
-        % my $toc = $site->data->{toc};
-        % my $chapter;
-        % my $article_title;
-        % for (my $i = 0; $i < scalar @$toc; $i++) {
-        %     next unless $toc->[$i]->{anchor} eq $sub_menu;
-        %     $chapter = $toc->[$i];
-        %     for (my $i = 0; $i < scalar @{ $chapter->{articles} }; $i++) {
-        %         my $article = $chapter->{articles}->[$i];
-        %         next unless $article->{href} eq $sidebar_path;
-        %         $article_title = $article->{title};
-        %         last;
-        %     }
-        %     last;
         % }
 
         <script>

@@ -1,3 +1,6 @@
+---
+title: Community
+---
 # Community
 
 #### IRC

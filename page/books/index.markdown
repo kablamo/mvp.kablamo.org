@@ -1,4 +1,5 @@
 ---
+title: Perl Books
 data:
   books:
     - title: Modern Perl

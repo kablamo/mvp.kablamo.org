@@ -1,3 +1,6 @@
+---
+title: About
+---
 # About this book
 
 This book is for developers who want to get up to speed with Perl quickly
