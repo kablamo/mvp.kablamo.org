@@ -5,7 +5,7 @@ before looking in the standard library.
     $ echo $PERL5LIB
     /usr/local/ddg/lib:/opt/perlbrew/libs/perl-5.26.1@mylib/lib/perl5
 
-To load a library from a custom location modifying your `$PERL5LIB` environment
+To load a library from a custom location modify your `$PERL5LIB` environment
 variable.  For example, to always load dependencies from the `lib` directory in
 your current project:
 
