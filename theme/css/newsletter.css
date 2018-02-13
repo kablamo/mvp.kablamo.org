@@ -11,7 +11,8 @@
 #mc_embed_signup input.email {
     font-family: sans-serif;
     font-size: 1rem;
-    border: 1px solid #777;
+    border: 2px solid #777;
+    border-radius: 4px;
     color: #777;
     background-color: #fff;
     box-sizing: border-box;
@@ -26,7 +27,8 @@
 }
 #mc_embed_signup input.email:focus {
     outline: 0;
-    border: 1px solid hotpink;
+    border-radius: 4px;
+    border: 2px solid #777;
 }
 #mc_embed_signup label {
     display: block;
@@ -40,10 +42,10 @@
 /* positions button horizontally in line with input */
 #mc_embed_signup .button {
     font-size: 1rem;
-    border: none;
     color: #fff;
     background-color: #777;
-    border: 1px solid #777;
+    border: 2px solid #777;
+    border-radius: 4px;
     box-sizing: border-box;
     padding: .5rem 1rem;
     display: inline-block;
