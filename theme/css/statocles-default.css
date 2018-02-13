@@ -45,6 +45,13 @@ h5 {
     font-size: 1.3rem;
     line-height: 1.3rem;
 }
+hr {
+    height: 1px;
+    border: 0;
+    background: #777;
+    margin: 0;
+    margin-bottom: 2rem;
+}
 li {
     margin-bottom: 0rem;
 }
@@ -59,8 +66,6 @@ code {
     font-size: 90%;
     white-space: normal;
     background: #f1f5f6;
-    border: 1px solid #e4e8e9;
-    border-radius: 4px; 
 }
 pre > code {
     display: block;
@@ -69,6 +74,8 @@ pre > code {
     white-space: pre; 
     overflow-x: auto;
     max-width: 100%;
+    border: 1px solid #e4e8e9;
+    border-radius: 4px; 
 }
 
 .button.disabled {
@@ -91,23 +98,51 @@ main header h1 a {
     text-decoration: none;
 }
 main h1 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  line-height: 3.5rem;
-  display: block;
-  color: #777;
-  border-bottom: solid 1px #777;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+    line-height: 1.75rem;
+    display: block;
+    color: #777;
+    border-bottom: solid 0px #777;
+    font-size: 1.75rem;
+}
+main .section-number {
+    display: inline-block;
+    background: #777;
+    color: #fff;
+    padding: 0;
+    line-height: 1.75rem;
+    font-size: 1rem;
+    vertical-align: top;
 }
 main h1.section {
-  margin-top: 0rem;
+    margin-top: 0rem;
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    padding-top: 0;
+    width: 100%;
+    box-sizing: border-box; 
+    background: #777;
+    color: #fff;
+    border: solid 1px #777;
+    border-bottom-right-radius: 40px;
 }
 main .chapter {
-  margin-top: 2rem;
-  line-height: 1rem;
-  vertical-align: middle;
-  font-weight: bold;
-  display: block;
-  color: #777;
+    margin-top: 1.75rem;
+    line-height: 1.75rem;
+    vertical-align: middle;
+    font-weight: bold;
+    display: block;
+    padding: 1rem 1.5rem;
+    padding-bottom: 0;
+    background: #777;
+    color: #777;
+    color: #fff;
+}
+
+main h4.subtitle {
+    margin-top: 0;
+    margin-bottom: 0rem;
 }
 
 header aside {
@@ -588,6 +623,50 @@ td {
 }
 .fa.fa-bars {
     display: none;
+}
+.tip-title {
+    background: #515556;
+    background: #c1c5c6;
+    color: #777;
+    padding: 1rem 1.5rem;
+    display: block;
+    font-weight: bold;
+    box-sizing: border-box; 
+/*
+    padding: 1.5rem 1.5rem;
+    height: 100%;
+    float: left;
+*/
+}
+.tip-content {
+    display: block;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box; 
+    border-radius: 0px 4px 4px 0px;
+/*
+    margin-left: 10rem;
+    padding: 1.5rem 1.5rem;
+*/
+}
+.tip-content::after {
+    clear: both;
+    display: table;
+}
+.tip {
+    background: #717576;
+    background: #e1e5e6;
+    color: #777;
+    display: block;
+    border: solid 1px #c1c5c6;
+    border-radius: 4px 4px 4px 4px;
+    box-sizing: border-box; 
+/*
+    overflow: hidden;
+*/
+}
+.tip a {
+    color: #fff;
+    color: #777;
 }
 
 /************************************************

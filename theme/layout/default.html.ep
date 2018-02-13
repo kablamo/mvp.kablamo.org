@@ -1,24 +1,28 @@
+
+% # find current sub_menu
 % my $sub_menu = 'nomatch';
 % $sub_menu = $1 if $self->path->parent =~ m|^/(\w+)/\w+|;
 
+% # links to articles
 % my $sidebar_path = $self->path->parent eq '/' ? '/' : $self->path->parent . "/";
 % my $toc = $site->data->{toc};
 % my $chapter;
-% my $article_title;
+% my $article;
 % for (my $i = 0; $i < scalar @$toc; $i++) {
 %     next unless $toc->[$i]->{anchor} eq $sub_menu;
 %     $chapter = $toc->[$i];
 %     for (my $i = 0; $i < scalar @{ $chapter->{articles} }; $i++) {
-%         my $article = $chapter->{articles}->[$i];
-%         next unless $article->{href} eq $sidebar_path;
-%         $article_title = $article->{title};
+%         my $this_article = $chapter->{articles}->[$i];
+%         next unless $this_article->{href} eq $sidebar_path;
+%         $article = $this_article;
 %         last;
 %     }
 %     last;
 % }
 
+% # chapter/title
 % my $title = '';
-% $title  = $article_title . " - " if $chapter && $article_title;
+% $title  = $article->{title} . " - " if $chapter && $article->{title};
 % $title  = $self->title   . " - " if $self->title;
 % $title .= $site->title;
 
@@ -99,8 +103,8 @@
 
                 <main>
                     % if ($chapter) {
-                    <div class="chapter">Chapter <%= $chapter->{number} %>: <%= $chapter->{title} || '' %></div>
-                    <h1 class="section"><%= $article_title %></h1>
+                    <div class="chapter">Chapter <%= $chapter->{number} %>. <%= $chapter->{title} || '' %></div>
+                    <h1 class="section"><%= $article->{number} %>. <%= $article->{title} %></h1>
                     % }
                     %= content;
                 </main>

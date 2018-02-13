@@ -12,11 +12,11 @@
 % for (my $i = 0; $i < scalar @$toc; $i++) {
 %     my $chapter = $toc->[$i];
     <li class='<%= $chapter->{anchor} %> sub-menu'>
-      <a href='<%= $sidebar_path %>#<%= $chapter->{anchor} %>'><div class='fa fa-caret-down caret'></div><%= $chapter->{title} %></a>
+      <a href='<%= $sidebar_path %>#<%= $chapter->{anchor} %>'><div class='fa fa-caret-down caret'></div><%= $chapter->{number} %>. <%= $chapter->{title} %></a>
       <ul>
 %     for (my $i = 0; $i < scalar @{ $chapter->{articles} }; $i++) {
 %         my $article = $chapter->{articles}->[$i];
-        <li><a href='<%= $article->{href} %>'><%= $article->{toc_title} || $article->{title} %></a></li>
+        <li><a href='<%= $article->{href} %>'><%= $article->{number} %>. <%= $article->{toc_title} || $article->{title} %></a></li>
 %     }
       </ul>
     </li>

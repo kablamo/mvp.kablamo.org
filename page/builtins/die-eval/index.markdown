@@ -1,33 +1,41 @@
-Use [Syntax::Keyword::Try]() when working with exceptions. Its adds `try` and
-`catch` keywords to Perl and helps you avoid some of the pitfalls of the
-standard Perl syntax (described below).  
+The standard Perl syntax for handling exceptions (die/eval) is quirky and has
+some pitfalls that are easy to tumble into.  However its pretty common so its
+likely you will need to understand it.
 
-The standard Perl syntax for handling exceptions is annoying to visitors from
-other languages.  However its pretty common so you will need to grok this
-syntax.
+<div class="tip">
+    <div class="tip-title">Best Practice</div>
+    <div class="tip-content">
+        The recommended way to handle exceptions is with Syntax::Keyword::Try which
+        adds `try` and `catch` keywords to Perl.  
+        See <a href="http://localhost:3000/builtins/syntax-keyword-try/">
+        Exceptions with Syntax::Keyword::Try
+        </a>
+    </div>
+</div>
 
-#### die
+#### Throwing exceptions
 
-Many languages have `throw()`.  In Perl its called `die()` and it throws an
-exception.  If the exception is not caught, the process exits with a non-zero
-value and an error message is displayed to STDERR.
+To throw an exception call `die()`.  Other languages call it `throw()`, but in
+Perl its called `die()`.  If the exception is not caught, an error message is
+displayed to STDERR and the process exits with a non-zero value.
 
     die "Something bad happened";
-    # process prints "Something bad happened at line 123." and exits;
+    # prints "Something bad happened at line 123." 
+    # and then the process exits;
 
-#### eval
+#### Catching exceptions
 
-Many languages have `try()`.  In Perl its called `eval()` but
-its a little different.  `eval()` parses, compiles, and evaluates a block of
-code at runtime and catches any exceptions that are raised.  The exception is
-placed in the global variable `$@`.
+To catch an exception, use `eval()`. Other languages call it `try()` but in
+Perl its called `eval()` and its a little different.  `eval()` parses,
+compiles, and evaluates a block of code at runtime and catches any exceptions
+that are raised.  The exception is placed in the global variable `$@`.
 
     eval { die "Something bad happened" }; # try
     warn $@ if $@;                         # catch
 
 #### Exceptions as objects
 
-Exceptions are often strings, but you can throw objects too.
+Exceptions are usually strings, but you can throw objects too.
 
     eval {
         die My::Exception->new(
@@ -38,7 +46,7 @@ Exceptions are often strings, but you can throw objects too.
     };
     warn $@->error if $@;
 
-#### Avoiding the pitfalls
+#### Pitfalls
 
 **Remember $@ is a global variable**
 
@@ -78,7 +86,7 @@ This would cause mysterious problems for most people because the common
 idiom `handle_exception() if $@` will silently fail and the exception won't be
 handled.  
 
-One solution is use a safer but more verbose idiom everywhere:
+One solution is to use a safer but more verbose idiom everywhere:
 
     if ( eval { try_something_risky(); return 1 } ) {
         handle_exception();
