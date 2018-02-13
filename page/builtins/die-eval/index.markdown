@@ -1,3 +1,5 @@
+#### 3.1 Handling exceptions with die() and eval()
+
 The standard Perl syntax for handling exceptions (die/eval) is quirky and has
 some pitfalls that are easy to tumble into.  However its pretty common so its
 likely you will need to understand it.
@@ -8,7 +10,7 @@ likely you will need to understand it.
         The recommended way to handle exceptions is with Syntax::Keyword::Try which
         adds `try` and `catch` keywords to Perl.  
         See <a href="http://localhost:3000/builtins/syntax-keyword-try/">
-        Exceptions with Syntax::Keyword::Try
+        Exceptions with try/catch
         </a>
     </div>
 </div>
@@ -48,7 +50,7 @@ Exceptions are usually strings, but you can throw objects too.
 
 #### Pitfalls
 
-**Remember $@ is a global variable**
+*1. Remember $@ is a global variable*
 
 If your exception handling code calls `eval()`, `$@` will get clobbered.  This
 is easy to forget.  Here is one way to avoid it:
@@ -76,7 +78,7 @@ much typing):
         # handle exception
     }
 
-**Don't use exception objects that evalute as false**
+*2. Don't use exception objects that evaluate as false*
 
 You can [overload]() Perl's operators.  For example, you could have an
 exception object evaluate to "error" in string context.  You could also have an
@@ -91,6 +93,13 @@ One solution is to use a safer but more verbose idiom everywhere:
     if ( eval { try_something_risky(); return 1 } ) {
         handle_exception();
     }
+
+*3. `eval` blocks behave more like anonymous subroutines than if blocks.*
+
+For example:
+
+- A `return` statement will exit the `eval` block -- not the containing function.
+- Loop control statements like `redo`, `next`, and `last` only work in the context of whats inside the `eval` block.
 
 
 #### See also
