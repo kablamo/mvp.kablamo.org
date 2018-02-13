@@ -132,7 +132,9 @@
                 </div>
 
                 <main>
-                    <p><a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a> is
+                    <h4>3.2 Handling exceptions with try/catch</h4>
+
+<p><a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a> is
 probably the best way to handle exceptions in Perl. Its a popular module which
 adds <code>try</code> and <code>catch</code> keywords to Perl. The drawback is the module is not
 in core, so you will need to install it.</p>
@@ -181,10 +183,9 @@ catch {
 
 <h4>Pitfalls for Perl programmers</h4>
 
-<p>These are not quirks of the Syntax::Keyword::Try implementation.  This is how
-exception handling works in Java (for example).  But if you are used to the
-standard Perl mechanism for handling exceptions -- <code>die</code> and <code>eval</code> -- these
-things may bite you:</p>
+<p>If you are used to the standard Perl mechanism for handling exceptions -- <code>die</code>
+and <code>eval</code> -- here are a few things that you may have forgotten about
+try/catch:</p>
 
 <p><em>1. A <code>try</code> block must be followed by <code>catch</code> or <code>finally</code> or both.</em></p>
 
