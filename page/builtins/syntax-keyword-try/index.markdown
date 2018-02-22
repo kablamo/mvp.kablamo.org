@@ -44,8 +44,9 @@ Exceptions are usually strings, but you can throw objects too.
     }
 
 #### Pitfalls for Perl programmers
-If you are used to the standard Perl mechanism for handling exceptions -- `die`
-and `eval` -- here are a few things that you may have forgotten about
+These are not really pitfalls unless you are used to the standard Perl
+mechanism for handling exceptions -- `die` and `eval`.  If thats you, here are
+a few things that you may have forgotten about handling exceptions with
 try/catch:
 
 *1. A `try` block must be followed by `catch` or `finally` or both.*
