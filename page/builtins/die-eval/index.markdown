@@ -9,7 +9,7 @@ likely you will need to understand it.
     <div class="tip-content">
         The recommended way to handle exceptions is with Syntax::Keyword::Try which
         adds `try` and `catch` keywords to Perl.  
-        See <a href="http://localhost:3000/builtins/syntax-keyword-try/">
+        See <a href="http://mvp.kablamo.org/essentials/syntax-keyword-try/">
         Exceptions with try/catch
         </a>
     </div>
@@ -29,8 +29,9 @@ displayed to STDERR and the process exits with a non-zero value.
 
 To catch an exception, use `eval()`. Other languages call it `try()` but in
 Perl its called `eval()` and its a little different.  `eval()` parses,
-compiles, and evaluates a block of code at runtime and catches any exceptions
-that are raised.  The exception is placed in the global variable `$@`.
+compiles, and evaluates a block of code at compile time and catches any
+exceptions that are raised at runtime.  The exception is placed in the global
+variable `$@`.
 
     eval { die "Something bad happened" }; # try
     warn $@ if $@;                         # catch
@@ -62,9 +63,8 @@ is easy to forget.  Here is one way to avoid it:
         warn $error;
     }
 
-If you are a module author and want to be polite and not modify `$@` you would
-need to jump through hoops like this (no one actually does this because its too
-much typing):
+If you are a module author and want to be polite and not modify `$@` globally
+you need to jump through hoops like this:
     
     my ($error1, $error2);
     {
