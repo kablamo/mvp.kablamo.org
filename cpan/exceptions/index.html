@@ -1,0 +1,357 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.cpan ul').show();
+                $('.sub-menu.cpan>a>div').toggleClass("fa-caret-up fa-caret-down");
+
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110455056-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-110455056-1');
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
+        <div class="container">
+
+                <div class="sidebar">
+                    
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/cpan/exceptions/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <ul>
+        <li><a href="/basics/hello/">1.1. Hello world</a></li>
+        <li><a href="/basics/variables/">1.2. Variables</a></li>
+        <li><a href="/basics/references/">1.3. References</a></li>
+        <li><a href="/basics/functions/">1.4. Functions</a></li>
+        <li><a href="/basics/flow/">1.5. Conditionals</a></li>
+        <li><a href="/basics/loops/">1.6. Loops</a></li>
+        <li><a href="/basics/exceptions/">1.7. Exceptions</a></li>
+        <li><a href="/basics/regexps/">1.8. Regular expressions</a></li>
+        <li><a href="/basics/files/">1.9. Files</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/cpan/exceptions/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <ul>
+        <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
+        <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
+        <li><a href="/dependencies/metacpan/">2.3. Choosing libraries (MetaCPAN)</a></li>
+        <li><a href="/dependencies/carton/">2.4. Managing dependencies (Carton)</a></li>
+        <li><a href="/dependencies/pmtools/">2.5. What version? Where?</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/cpan/exceptions/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
+      <ul>
+        <li><a href="/oo/story/">3.1. The story of Perl OO</a></li>
+        <li><a href="/oo/classes/">3.2. Classes and objects</a></li>
+        <li><a href="/oo/attributes/">3.3. Attributes</a></li>
+        <li><a href="/oo/modifiers/">3.4. Method modifiers</a></li>
+        <li><a href="/oo/roles/">3.5. Roles</a></li>
+        <li><a href="/oo/inheritance/">3.6. Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/cpan/exceptions/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
+      <ul>
+        <li><a href="/debugging/data-printer/">4.1. Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace/">4.2. Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/cpan/exceptions/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
+      <ul>
+        <li><a href="/testing/intro/">5.1. Introduction</a></li>
+        <li><a href="/testing/warnings/">5.2. Warnings and exceptions</a></li>
+        <li><a href="/testing/data/">5.3. Data structures</a></li>
+        <li><a href="/testing/mock/">5.4. Mock objects</a></li>
+        <li><a href="/testing/libs/">5.5. Building your own test libraries</a></li>
+      </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/cpan/exceptions/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
+      </ul>
+    </li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</div>
+<div class="subscribe">This book is a work in progress.  <a href="/subscribe/">Subscribe</a> to get new chapters in your inbox.</div>
+
+                    
+                    
+                </div>
+
+                <main>
+                    <div class="chapter">Chapter 4. Recommended modules</div>
+
+<h1 class="section">4.2. Exceptions</h1>
+
+<ul>
+<li>die/eval</li>
+<li>Syntax::Keyword::Try</li>
+<li>Try::Tiny</li>
+<li>Try::Tiny::Tiny</li>
+<li>Try::Catch</li>
+<li>TryCatch</li>
+<li>Benchmarks</li>
+</ul>
+
+<h4>die/eval</h4>
+
+<p>Not a library, but this is the most popular way to handle exceptions.  The
+performance is unbeatable and since <code>eval</code> is a builtin function you don&#39;t have
+to <code>use</code> a module at the top of every file.  Unfortunately
+there are drawbacks -- especially for developers visiting Perl for the first
+time.  </p>
+
+<p>The first hurdle for beginners is that the syntax is unique to Perl. Most
+languages use try/catch.  There are also some significant traps
+available for beginners to tumble into:</p>
+
+<ol>
+<li><code>$@</code> is a global variable.</li>
+<li><code>eval</code> blocks behave more like anonymous subroutines than <code>if</code> blocks.</li>
+<li>You probably want to defend against exception objects that evaluate as false.</li>
+</ol>
+
+<p>If that last one worries you then your code contains hard to read idioms like: </p>
+
+<pre><code>unless ( eval { try_something_risky(); return 1 } ) {
+    handle_exception();
+}
+</code></pre>
+
+<p>Anyone designing a new language would not ask developers to do this.  And
+explaining this idiom to a beginner is going make them want to run the other
+direction.</p>
+
+<p>However, over 40% of Perl developers prefer to handle exceptions with die/eval
+which every Perl developer needs to be familiar with the syntax and pitfalls.</p>
+
+<p>See the Official Perl
+docs for more details: <a href="http://perldoc.perl.org/functions/die.html">die</a>,
+<a href="http://perldoc.perl.org/functions/eval.html">eval</a>.
+<!--
+I explain the syntax and all the
+potential pitfalls in <a href="/essentials/die-eval/">Handling exceptions with die/eval</a>. <br />
+--></p>
+
+<h4>Syntax::Keyword::Try</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a></div>
+    <div class="column">++ rating: 19</div>
+    <div class="column">Last update: 2018</div>
+    <div class="column">Maintainer: PEVANS</div>
+</div>
+
+<p>This is probably the best way to handle exceptions in Perl.  Unfortunately this
+module is not widely used yet and is unlikely to replace die/eval anytime soon.</p>
+
+<p>Syntax::Keyword::Try is a relatively new module (2016) which adds <code>try</code> and
+<code>catch</code> keywords to Perl.  This solution comes after many many similar
+attempts.  Finally, you can handle exceptions in Perl with the same syntax you
+would in other languages while enjoying performance comparable to plain <code>eval</code>.
+This is because under the hood, Syntax::Keyword::Try compiles down to pretty
+much the same thing as <code>eval</code>.  It also has no dependencies.</p>
+
+<p>While this module introduces new keywords to the language, it still plays
+nicely with perlcritic and perltidy.</p>
+
+<!--
+See my tutorial on <a
+href="/essentials/syntax-keyword-try/">Handling
+exceptions with try/catch</a>.  
+-->
+
+<h4>Try::Tiny</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Tiny">Try::Tiny</a></div>
+    <div class="column">++ rating: 153</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: ETHER</div>
+</div>
+
+<p>Try::Tiny is the most popular module for handling exceptions.  For
+years it was the best solution available if you wanted try/catch syntax.  </p>
+
+<p>Try::Tiny is an order of magnitude slower than either <code>eval</code> or
+Syntax::Keyword::Try.  It depends on your application if this is a problem or
+not.  For many web applications its not important. </p>
+
+<p>Also if you are a visitor from another language, Try::Tiny has syntax quirks
+which make it not quite the try/catch you are used to.</p>
+
+<h4>Try::Tiny::Tiny</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Tiny::Tiny">Try::Tiny::Tiny</a></div>
+    <div class="column">++ rating: 0</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: ARISTOTLE</div>
+</div>
+
+<p>For many apps Try::Tiny&#39;s performance problem is not a big deal. In terms of
+CPAN its a bigger deal because anytime you need great performance you need to
+worry if your dependencies (or their dependencies) are using Try::Tiny in some
+critical part of your code.</p>
+
+<p>Try::Tiny::Tiny is a module which improves the performance of Try::Tiny
+anywhere its loaded in your stack.  My benchmarks showed performance went
+from 20.2 times  slower than <code>eval</code> to 12.9 times slower than <code>eval</code>.</p>
+
+<h4>Try::Catch</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Catch">Try::Catch</a></div>
+    <div class="column">++ rating: 6</div>
+    <div class="column">Last update: 2016</div>
+    <div class="column">Maintainer: MAMOD</div>
+</div>
+
+<p>Try::Catch is another attempt to improve on Try::Tiny.  My benchmarks showed
+this module is  8.4 times slower than <code>eval</code>.  This is also a new module
+(2017).  The syntax matches try/catch/finally in other languages better
+than Try::Tiny.  But its not as fast as Syntax::Keyword::Try and requires a
+semicolon at the end.</p>
+
+<h4>TryCatch</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/TryCatch">TryCatch</a></div>
+    <div class="column">++ rating: 13</div>
+    <div class="column">Last update: 2013</div>
+    <div class="column">Maintainer: ASH</div>
+</div>
+
+<p>TryCatch has first class try/catch semantics and type checking on the catch
+block.  My benchmarks showed this module has the same performance
+as Syntax::Keyword::Try.  Perhaps the reason it hasn&#39;t been more popular is the
+dependency on Moose.  It also lacks a <code>finally</code> block.</p>
+
+<h4>Benchmarks</h4>
+
+<p><em>Results</em></p>
+
+<ul>
+<li>Syntax::Keyword::Try is 2.6 times slower than <code>eval</code></li>
+<li>TryCatch is 2.6 times slower than <code>eval</code></li>
+<li>Try::Catch is 8.4 times slower than <code>eval</code></li>
+<li>Try::Tiny::Tiny is 12.9 times slower than <code>eval</code></li>
+<li>Try::Tiny is 20.2 times slower than <code>eval</code></li>
+</ul>
+
+<p><em>Raw stats</em></p>
+
+<p>Syntax::Keyword::Try vs eval:</p>
+
+<pre><code>$ ./benchmark.skt.pl 
+              Rate  S:K:T    eval   no eval
+S:K:T    2564103/s    --    -61%       -72%
+eval     6578947/s  157%      --       -28%
+no eval  9090909/s  255%     38%         --
+</code></pre>
+
+<p>TryCatch vs eval:</p>
+
+<pre><code>$  ./benchmark.t.pl 
+            Rate   TryCatch  eval  no eval
+TryCatch 2409639/s       --  -61%     -72%
+eval     6250000/s     159%    --     -26%
+no eval  8474576/s     252%   36%       --
+</code></pre>
+
+<p>Try::Catch vs eval:</p>
+
+<pre><code>$ ./benchmark.tc.pl 
+              Rate   T::C  eval  no eval
+T::C      763359/s     --  -88%     -91%
+eval     6410256/s   740%    --     -28%
+no eval  8928571/s  1070%   39%       --
+</code></pre>
+
+<p>Try::Tiny::Tiny vs eval:</p>
+
+<pre><code>$ ./benchmark.ttt.pl
+              Rate  T:T:T  eval  no eval
+T:T:T    505306/s      --  -92%     -94%
+eval     6493506/s  1185%    --     -25%
+no eval  8695652/s  1621%   34%       --
+</code></pre>
+
+<p>Try::Tiny vs eval:</p>
+
+<pre><code>$ ./benchmark.tt.pl                                                                                                                                                                                                                                                                                     
+                Rate  Try::Tiny  eval  no eval
+Try::Tiny   310945/s         --  -95%     -96%
+eval       6410256/s      1962%    --     -16%
+no eval    7633588/s      2355%   19%       --
+</code></pre>
+
+
+                </main>
+                <div style="clear: both;"></div>
+
+                <div class="navbar bottom">
+</div>
+
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>

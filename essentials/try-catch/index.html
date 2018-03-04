@@ -19,8 +19,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.cpan ul').show();
-                $('.sub-menu.cpan>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.essentials ul').show();
+                $('.sub-menu.essentials>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -56,7 +56,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/cpan/introduction/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <a href="/essentials/try-catch/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
       <ul>
         <li><a href="/basics/hello/">1.1. Hello world</a></li>
         <li><a href="/basics/variables/">1.2. Variables</a></li>
@@ -70,7 +70,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/cpan/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <a href="/essentials/try-catch/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
@@ -80,7 +80,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/cpan/introduction/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
+      <a href="/essentials/try-catch/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">3.1. The story of Perl OO</a></li>
         <li><a href="/oo/classes/">3.2. Classes and objects</a></li>
@@ -91,14 +91,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/cpan/introduction/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
+      <a href="/essentials/try-catch/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">4.1. Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">4.2. Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/cpan/introduction/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
+      <a href="/essentials/try-catch/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
       <ul>
         <li><a href="/testing/intro/">5.1. Introduction</a></li>
         <li><a href="/testing/warnings/">5.2. Warnings and exceptions</a></li>
@@ -108,7 +108,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/cpan/introduction/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/essentials/try-catch/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -132,45 +132,79 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 4. Recommended modules</div>
+                    <div class="chapter">Chapter 2. Essential skills</div>
 
-<h1 class="section">4.1. Introduction</h1>
+<h1 class="section">2.2. Handling exceptions with try/catch</h1>
 
-<p>This chapter is an attempt to help developers quickly decide which modules to
-use.  </p>
+<p><a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a> is the
+best way to handle exceptions in Perl. It adds <code>try</code> and <code>catch</code> keywords to
+Perl. Unfortunately the module is not in core, so you will need to install it.</p>
 
-<p>MetaCPAN has thousands of modules. Its hard to know which module is the
-best one.  For example there are at least 7 modules for parsing JSON.  New
-modules appear all the time which make the old best solution obsolete.  It can
-be hard to stay up to date.</p>
+<h4>Throwing exceptions</h4>
 
-<p>The recommendations here are a biased set of opionions based on my personal
-experiences and on the advice of people on the internet.
-<a href="https://github.com/kablamo/mvp.kablamo.org/issues">Feedback</a> is welcome and
-this chapter won&#39;t be successful without it.  Part of the reason I&#39;m
-writing this is so people tell me when I&#39;m using the wrong module.</p>
+<p>To throw an exception call <code>die()</code>.  Other languages call it <code>throw()</code>, but in
+Perl its called <code>die()</code>.  If the exception is not caught, an error message is
+displayed to STDERR and the process exits with a non-zero value.
+Syntax::Keyword::Try doesn&#39;t change how exceptions are thrown.  </p>
 
-<p>Sources:</p>
+<pre><code>die &quot;Something bad happened&quot;;
+# prints &quot;Something bad happened at line 123.&quot; 
+# and then the process exits;
+</code></pre>
 
-<ul>
-<li><p><strong>MSTPAN</strong>: <a href="http://blog.kablamo.org/2015/09/08/mstpan/">mstpan</a> is a great
-set of blog posts from 2015 written by
-<a href="https://shadow.cat/blog/matt-s-trout/">mst</a>.  It is my primary source of
-inspiration and I have stolen liberally and shamelessly from it.  I wanted to
-make that resource available in a more discoverable format that could be
-maintained via github and the community.</p></li>
-<li><p><strong>Task::Kensho</strong>: The Enlighted Perl Organization created
-<a href="https://metacpan.org/pod/Task::Kensho">Task::Kensho</a>. It was one of the
-earliest attempts at making module recommendations.  </p></li>
-<li><p><strong>Task::BeLike::DAGOLDEN</strong>: <a href="http://www.dagolden.com/">Dave Golden</a> is the author
-of a number of widely used modules.  He keeps a <a href="https://metacpan.org/pod/Task::BeLike::DAGOLDEN">list of modules he
-uses</a>.</p></li>
-<li><p><a href="http://neilb.org">Neil Bowers</a> is another great Perl
-developer who has written some <a href="http://neilb.org/reviews/">great module
-reviews</a>.</p></li>
-<li><p>The use of some libraries is
-<a href="https://metacpan.org/pod/Perl::Critic::Policy::Freenode::DiscouragedModules">discouraged</a>.</p></li>
-</ul>
+<h4>Catching exceptions with Syntax::Keyword::Try</h4>
+
+<pre><code>use Syntax::Keyword::Try
+
+try {
+    die &quot;its only a flesh wound&quot;;
+}
+catch {
+    warn &quot;something bad happened: $@&quot;;
+}
+</code></pre>
+
+<p>The catch block can inspect the exception by looking at <code>$@</code>.  </p>
+
+<h4>Exceptions as objects</h4>
+
+<p>Exceptions are usually strings, but you can throw objects too.</p>
+
+<pre><code>try {
+    die My::Exception-&gt;new(
+        error    =&gt; &#39;Something bad happened&#39;,
+        request  =&gt; $request,
+        response =&gt; $response,
+    );
+}
+catch {
+    warn &quot;something bad happened: &quot; . $@-&gt;error();
+}
+</code></pre>
+
+<h4>Pitfalls for Perl programmers</h4>
+
+<p>These are not really pitfalls unless you are used to handling exceptions with
+die/eval or Try::Tiny.  This is how try/catch works in other languages.  Here
+are a few things that you may have forgotten about try/catch:</p>
+
+<p><em>1. A <code>try</code> block must be followed by <code>catch</code> or <code>finally</code> or both.</em></p>
+
+<pre><code>try { do_something_risk() } # syntax error
+</code></pre>
+
+<p><em>2. A <code>try</code> block does not catch exceptions.</em>  The <code>catch</code> block catches exceptions.</p>
+
+<pre><code>try     { die &quot;its just a flesh wound&quot; }
+finally { say &quot;hello&quot; }
+# no exception is caught
+# prints &quot;its just a flesh wound&quot; to STDERR
+# process exits
+</code></pre>
+
+<p><em>3. A <code>return</code> statement will exit the containing function -- not the <code>try</code> block.</em></p>
+
+<p><em>4. Loop control statements like <code>redo</code>, <code>next</code>, and <code>last</code> act on any containing loops.</em></p>
 
 
                 </main>

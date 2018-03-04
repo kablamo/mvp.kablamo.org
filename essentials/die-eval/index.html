@@ -19,8 +19,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.builtins ul').show();
-                $('.sub-menu.builtins>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.essentials ul').show();
+                $('.sub-menu.essentials>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -56,7 +56,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/builtins/die-eval/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <a href="/essentials/die-eval/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
       <ul>
         <li><a href="/basics/hello/">1.1. Hello world</a></li>
         <li><a href="/basics/variables/">1.2. Variables</a></li>
@@ -70,7 +70,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/builtins/die-eval/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <a href="/essentials/die-eval/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
@@ -80,7 +80,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/builtins/die-eval/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
+      <a href="/essentials/die-eval/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">3.1. The story of Perl OO</a></li>
         <li><a href="/oo/classes/">3.2. Classes and objects</a></li>
@@ -91,14 +91,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/builtins/die-eval/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
+      <a href="/essentials/die-eval/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">4.1. Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">4.2. Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/builtins/die-eval/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
+      <a href="/essentials/die-eval/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
       <ul>
         <li><a href="/testing/intro/">5.1. Introduction</a></li>
         <li><a href="/testing/warnings/">5.2. Warnings and exceptions</a></li>
@@ -108,7 +108,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/builtins/die-eval/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/essentials/die-eval/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -132,20 +132,21 @@
                 </div>
 
                 <main>
-                    <h4>3.1 Handling exceptions with die() and eval()</h4>
+                    <div class="chapter">Chapter 2. Essential skills</div>
+
+<h1 class="section">2.2. Handling exceptions with die/eval</h1>
 
 <p>The standard Perl syntax for handling exceptions (die/eval) is quirky and has
-some pitfalls that are easy to tumble into.  However its pretty common so its
-likely you will need to understand it.</p>
+some pitfalls that are easy to tumble into.  However its pretty common so 
+you will need to understand it.</p>
 
 <div class="tip">
     <div class="tip-title">Best Practice</div>
     <div class="tip-content">
-        The recommended way to handle exceptions is with Syntax::Keyword::Try which
-        adds `try` and `catch` keywords to Perl.  
-        See <a href="http://localhost:3000/builtins/syntax-keyword-try/">
-        Exceptions with try/catch
-        </a>
+        Syntax::Keyword::Try is the
+        best way to handle exceptions in Perl. It adds try/catch keywords to
+        Perl.  See <a href="http://mvp.kablamo.org/essentials/syntax-keyword-try/">
+        Handling exceptions with try/catch</a> (article available next week).
     </div>
 </div>
 
@@ -164,8 +165,9 @@ displayed to STDERR and the process exits with a non-zero value.</p>
 
 <p>To catch an exception, use <code>eval()</code>. Other languages call it <code>try()</code> but in
 Perl its called <code>eval()</code> and its a little different.  <code>eval()</code> parses,
-compiles, and evaluates a block of code at runtime and catches any exceptions
-that are raised.  The exception is placed in the global variable <code>$@</code>.</p>
+compiles, and evaluates a block of code at compile time and catches any
+exceptions that are raised at runtime.  The exception is placed in the global
+variable <code>$@</code>.</p>
 
 <pre><code>eval { die &quot;Something bad happened&quot; }; # try
 warn $@ if $@;                         # catch
@@ -187,7 +189,7 @@ warn $@-&gt;error if $@;
 
 <h4>Pitfalls</h4>
 
-<p><em>1. Remember $@ is a global variable</em></p>
+<p><em>1. <code>$@</code> is a global variable</em></p>
 
 <p>If your exception handling code calls <code>eval()</code>, <code>$@</code> will get clobbered.  This
 is easy to forget.  Here is one way to avoid it:</p>
@@ -200,9 +202,8 @@ if ($@) {
 }
 </code></pre>
 
-<p>If you are a module author and want to be polite and not modify <code>$@</code> you would
-need to jump through hoops like this (no one actually does this because its too
-much typing):</p>
+<p>If you are a module author and want to be polite and not modify <code>$@</code> globally
+you need to jump through hoops like this:</p>
 
 <pre><code>my ($error1, $error2);
 {
@@ -219,9 +220,10 @@ if ($error1) {
 
 <p><em>2. Don&#39;t use exception objects that evaluate as false</em></p>
 
-<p>You can <a href="">overload</a> Perl&#39;s operators.  For example, you could have an
-exception object evaluate to &quot;error&quot; in string context.  You could also have an
-exception object evaluate to -1 in string context.</p>
+<p>You can <a href="https://metacpan.org/pod/overload">overload</a> Perl operators.  For
+example, you could have an exception object evaluate to &quot;error&quot; in string
+context.  You could also have an exception object evaluate to -1 in string
+context.</p>
 
 <p>This would cause mysterious problems for most people because the common
 idiom <code>handle_exception() if $@</code> will silently fail and the exception won&#39;t be
@@ -229,7 +231,7 @@ handled.  </p>
 
 <p>One solution is to use a safer but more verbose idiom everywhere:</p>
 
-<pre><code>if ( eval { try_something_risky(); return 1 } ) {
+<pre><code>unless ( eval { try_something_risky(); return 1 } ) {
     handle_exception();
 }
 </code></pre>

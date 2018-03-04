@@ -117,6 +117,7 @@ main .section-number {
 }
 main h1.section {
     margin-top: 0rem;
+    margin-bottom: 1rem;
     display: inline-block;
     padding: 1rem 1.5rem;
     padding-top: 0;
@@ -125,7 +126,7 @@ main h1.section {
     background: #777;
     color: #fff;
     border: solid 1px #777;
-    border-bottom-right-radius: 40px;
+    border-radius: 0 0 4px 4px;
 }
 main .chapter {
     margin-top: 1.75rem;
@@ -136,8 +137,8 @@ main .chapter {
     padding: 1rem 1.5rem;
     padding-bottom: 0;
     background: #777;
-    color: #777;
     color: #fff;
+    border-radius: 4px 4px 0 0;
 }
 
 main h4.subtitle {
@@ -668,6 +669,28 @@ td {
     color: #fff;
     color: #777;
 }
+.module {
+    background: #eee;
+    border-radius: 4px 4px 4px 4px;
+    padding: 0;
+}
+.module .column {
+    padding: 1rem;
+    float: left;
+    box-sizing: border-box; 
+}
+.module:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.module .column a {
+    color: #777;
+}
+.toc {
+    padding: 1rem;
+    background: #eee;
+}
 
 /************************************************
  * Reponsive
@@ -681,6 +704,13 @@ td {
   .sidebar         { width: 228px; } /* left  */
   .perl-book-left  { width: 192px; }
   .perl-book-right { width: 313px; } 
+  .module {
+    padding: 1rem 0;
+  }
+  .module .column {
+    float: none;
+    padding: 0 1rem;
+  }
 }
 @media ( max-width: 900px ) {
     .container       { width: 200%;  }
@@ -781,6 +811,7 @@ td {
     main {
       padding: .4rem;
       padding-top: 2rem;
+      padding-bottom: 6rem;
     }
     pre > code {
       padding: .4rem;

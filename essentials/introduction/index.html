@@ -19,8 +19,8 @@
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.builtins ul').show();
-                $('.sub-menu.builtins>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.essentials ul').show();
+                $('.sub-menu.essentials>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -56,7 +56,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/builtins/syntax-keyword-try/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <a href="/essentials/introduction/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
       <ul>
         <li><a href="/basics/hello/">1.1. Hello world</a></li>
         <li><a href="/basics/variables/">1.2. Variables</a></li>
@@ -70,7 +70,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/builtins/syntax-keyword-try/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <a href="/essentials/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
@@ -80,7 +80,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/builtins/syntax-keyword-try/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
+      <a href="/essentials/introduction/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">3.1. The story of Perl OO</a></li>
         <li><a href="/oo/classes/">3.2. Classes and objects</a></li>
@@ -91,14 +91,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/builtins/syntax-keyword-try/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
+      <a href="/essentials/introduction/#debugging"><div class="fa fa-caret-down caret"></div>4. Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">4.1. Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">4.2. Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/builtins/syntax-keyword-try/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
+      <a href="/essentials/introduction/#testing"><div class="fa fa-caret-down caret"></div>5. Testing</a>
       <ul>
         <li><a href="/testing/intro/">5.1. Introduction</a></li>
         <li><a href="/testing/warnings/">5.2. Warnings and exceptions</a></li>
@@ -108,7 +108,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/builtins/syntax-keyword-try/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/essentials/introduction/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -132,78 +132,27 @@
                 </div>
 
                 <main>
-                    <h4>3.2 Handling exceptions with try/catch</h4>
+                    <div class="chapter">Chapter 2. Recommended modules</div>
 
-<p><a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a> is
-probably the best way to handle exceptions in Perl. Its a popular module which
-adds <code>try</code> and <code>catch</code> keywords to Perl. The drawback is the module is not
-in core, so you will need to install it.</p>
+<h1 class="section">2.1. Introduction</h1>
 
-<h4>Throwing exceptions</h4>
+<p>This chapter is about builtin functions.  Sort of.  </p>
 
-<p>To throw an exception call <code>die()</code>.  Other languages call it <code>throw()</code>, but in
-Perl its called <code>die()</code>.  If the exception is not caught, an error message is
-displayed to STDERR and the process exits with a non-zero value.
-Syntax::Keyword::Try doesn&#39;t change how exceptions are thrown.  </p>
+<p>Perl has lots of builtin functions and I wanted to make Chapter 2 all about how
+to use them.  However in many situations there are modules on MetaCPAN which
+are often a better choice because they have better user interfaces or make it
+harder to poke yourself in the eye.  </p>
 
-<pre><code>die &quot;Something bad happened&quot;;
-# prints &quot;Something bad happened at line 123.&quot; 
-# and then the process exits;
-</code></pre>
+<p>So while a large part of this chapter is dedicated to the most commonly used
+builtins, a significant portion is dedicated to MetaCPAN modules which improve
+on that core functionality.</p>
 
-<h4>Catching exceptions with Syntax::Keyword::Try</h4>
+<p>By the way, the official documentation for all Perl builtin functions is available here:</p>
 
-<pre><code>use Syntax::Keyword::Try
-
-try {
-    die &quot;its only a flesh wound&quot;;
-}
-catch {
-    warn &quot;something bad happened: $@&quot;;
-}
-</code></pre>
-
-<p>The catch block can inspect the exception by looking at <code>$@</code>.  </p>
-
-<h4>Exceptions as objects</h4>
-
-<p>Exceptions are usually strings, but you can throw objects too.</p>
-
-<pre><code>try {
-    die My::Exception-&gt;new(
-        error    =&gt; &#39;Something bad happened&#39;,
-        request  =&gt; $request,
-        response =&gt; $response,
-    );
-}
-catch {
-    warn &quot;something bad happened: &quot; . $@-&gt;error();
-}
-</code></pre>
-
-<h4>Pitfalls for Perl programmers</h4>
-
-<p>If you are used to the standard Perl mechanism for handling exceptions -- <code>die</code>
-and <code>eval</code> -- here are a few things that you may have forgotten about
-try/catch:</p>
-
-<p><em>1. A <code>try</code> block must be followed by <code>catch</code> or <code>finally</code> or both.</em></p>
-
-<pre><code>try { do_something_risk() } # syntax error
-</code></pre>
-
-<p><em>2. A <code>try</code> block does not catch exceptions.</em>  The <code>catch</code> block catches exceptions.</p>
-
-<pre><code>try     { die &quot;its just a flesh wound&quot; }
-finally { say &quot;hello&quot; }
-# no exception is caught
-# prints &quot;its just a flesh wound&quot; to STDERR
-# process exits
-</code></pre>
-
-<p><em>3. A <code>return</code> statement will exit the containing function -- not the <code>try</code> block.</em></p>
-
-<p><em>4. Loop control statements like <code>redo</code>, <code>next</code>, and <code>last</code> act on any containing loops.</em></p>
+<ul>
+<li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+<li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+</ul>
 
 
                 </main>
