@@ -1,0 +1,8 @@
+requires 'Try::Tiny';
+requires 'Benchmark';
+requires 'Try::Tiny::Tiny';
+requires 'Try::Catch';
+requires 'TryCatch';
+requires 'Syntax::Keyword::Try';
+requires 'Perl::Tidy';
+requires 'Perl::Critic';

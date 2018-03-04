@@ -1,9 +1,6 @@
-#### 3.2 Handling exceptions with try/catch
-
-[Syntax::Keyword::Try](https://metacpan.org/pod/Syntax::Keyword::Try) is
-probably the best way to handle exceptions in Perl. Its a popular module which
-adds `try` and `catch` keywords to Perl. The drawback is the module is not
-in core, so you will need to install it.
+[Syntax::Keyword::Try](https://metacpan.org/pod/Syntax::Keyword::Try) is the
+best way to handle exceptions in Perl. It adds `try` and `catch` keywords to
+Perl. Unfortunately the module is not in core, so you will need to install it.
 
 #### Throwing exceptions
 To throw an exception call `die()`.  Other languages call it `throw()`, but in

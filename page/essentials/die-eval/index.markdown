@@ -1,17 +1,14 @@
-#### 3.1 Handling exceptions with die() and eval()
-
 The standard Perl syntax for handling exceptions (die/eval) is quirky and has
-some pitfalls that are easy to tumble into.  However its pretty common so its
-likely you will need to understand it.
+some pitfalls that are easy to tumble into.  However its pretty common so 
+you will need to understand it.
 
 <div class="tip">
     <div class="tip-title">Best Practice</div>
     <div class="tip-content">
-        The recommended way to handle exceptions is with Syntax::Keyword::Try which
-        adds `try` and `catch` keywords to Perl.  
-        See <a href="http://mvp.kablamo.org/essentials/syntax-keyword-try/">
-        Exceptions with try/catch
-        </a>
+        Syntax::Keyword::Try is the
+        best way to handle exceptions in Perl. It adds try/catch keywords to
+        Perl.  See <a href="http://mvp.kablamo.org/essentials/syntax-keyword-try/">
+        Handling exceptions with try/catch</a> (article available next week).
     </div>
 </div>
 
@@ -51,7 +48,7 @@ Exceptions are usually strings, but you can throw objects too.
 
 #### Pitfalls
 
-*1. Remember $@ is a global variable*
+*1. `$@` is a global variable*
 
 If your exception handling code calls `eval()`, `$@` will get clobbered.  This
 is easy to forget.  Here is one way to avoid it:
@@ -80,9 +77,10 @@ you need to jump through hoops like this:
 
 *2. Don't use exception objects that evaluate as false*
 
-You can [overload]() Perl's operators.  For example, you could have an
-exception object evaluate to "error" in string context.  You could also have an
-exception object evaluate to -1 in string context.
+You can [overload](https://metacpan.org/pod/overload) Perl operators.  For
+example, you could have an exception object evaluate to "error" in string
+context.  You could also have an exception object evaluate to -1 in string
+context.
 
 This would cause mysterious problems for most people because the common
 idiom `handle_exception() if $@` will silently fail and the exception won't be
@@ -90,7 +88,7 @@ handled.
 
 One solution is to use a safer but more verbose idiom everywhere:
 
-    if ( eval { try_something_risky(); return 1 } ) {
+    unless ( eval { try_something_risky(); return 1 } ) {
         handle_exception();
     }
 
