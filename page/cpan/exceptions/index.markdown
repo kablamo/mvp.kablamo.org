@@ -155,6 +155,9 @@ dependency on Moose.  It also lacks a `finally` block.
 
 *Raw stats*
 
+The code for generating these benchmarks is available
+[here](https://github.com/kablamo/mvp.kablamo.org/tree/master/code/exceptions).
+
 Syntax::Keyword::Try vs eval:
 
     $ ./benchmark.skt.pl 
