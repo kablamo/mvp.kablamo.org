@@ -1,3 +1,7 @@
+
+<div class="chapter">Chapter 2. Essential skills</div>
+<h1 class="section">2.2. Handling exceptions with try/catch</h1>
+
 [Syntax::Keyword::Try](https://metacpan.org/pod/Syntax::Keyword::Try) is the
 best way to handle exceptions in Perl. It adds `try` and `catch` keywords to
 Perl. Unfortunately the module is not in core, so you will need to install it.
@@ -41,10 +45,9 @@ Exceptions are usually strings, but you can throw objects too.
     }
 
 #### Pitfalls for Perl programmers
-These are not really pitfalls unless you are used to the standard Perl
-mechanism for handling exceptions -- `die` and `eval`.  If thats you, here are
-a few things that you may have forgotten about handling exceptions with
-try/catch:
+These are not really pitfalls unless you are used to handling exceptions with
+die/eval or Try::Tiny.  This is how try/catch works in other languages.  Here
+are a few things that you may have forgotten about try/catch:
 
 *1. A `try` block must be followed by `catch` or `finally` or both.*
 

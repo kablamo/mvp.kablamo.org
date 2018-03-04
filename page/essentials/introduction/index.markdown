@@ -1,3 +1,6 @@
+<div class="chapter">Chapter 2. Recommended modules</div>
+<h1 class="section">2.1. Introduction</h1>
+
 This chapter is about builtin functions.  Sort of.  
 
 Perl has lots of builtin functions and I wanted to make Chapter 2 all about how

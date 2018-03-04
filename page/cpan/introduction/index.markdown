@@ -1,4 +1,6 @@
-# Introduction
+<div class="chapter">Chapter 4. Recommended modules</div>
+<h1 class="section">4.1. Introduction</h1>
+
 
 This chapter is an attempt to help developers quickly decide which modules to
 use.  

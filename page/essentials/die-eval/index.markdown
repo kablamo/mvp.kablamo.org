@@ -1,3 +1,7 @@
+
+<div class="chapter">Chapter 2. Essential skills</div>
+<h1 class="section">2.2. Handling exceptions with die/eval</h1>
+
 The standard Perl syntax for handling exceptions (die/eval) is quirky and has
 some pitfalls that are easy to tumble into.  However its pretty common so 
 you will need to understand it.
