@@ -148,12 +148,12 @@ site:
                     - {number: '2.3', title: 'Choosing libraries on MetaCPAN',            href: '/dependencies/metacpan/', toc_title: 'Choosing libraries (MetaCPAN)'}
                     - {number: '2.4', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
                     - {number: '2.5', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
-#                - title: 'Recommended libraries'
-#                  number: 4
-#                  anchor: 'cpan'
-#                  articles:
-#                    - {number: '4.1', title: 'Introduction',             href: '/cpan/introduction/'}
-#                    - {number: '4.2', title: 'Exceptions',               href: '/cpan/exceptions/'}
+                - title: 'Recommended libraries'
+                  number: 3
+                  anchor: 'cpan'
+                  articles:
+                    - {number: '3.1', title: 'Introduction',             href: '/cpan/introduction/'}
+                    - {number: '3.2', title: 'Exceptions',               href: '/cpan/exceptions/'}
 #                    - {number: '4.1', title: 'JSON',                     href: '/cpan/json/'}
 #                    - {number: '4.1', title: 'XML',                      href: '/cpan/xml/'}
 #                    - {number: '4.1', title: 'HTML',                     href: '/cpan/html/'}

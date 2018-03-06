@@ -1,7 +1,3 @@
-
-<div class="chapter">Chapter 4. Recommended modules</div>
-<h1 class="section">4.2. Exceptions</h1>
-
 - die/eval
 - Syntax::Keyword::Try
 - Try::Tiny

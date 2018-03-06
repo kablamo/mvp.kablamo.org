@@ -1,8 +1,4 @@
-<div class="chapter">Chapter 4. Recommended modules</div>
-<h1 class="section">4.1. Introduction</h1>
-
-
-This chapter is an attempt to help developers quickly decide which modules to
+This goal of this chapter is to help developers quickly decide which modules to
 use.  
 
 MetaCPAN has thousands of modules. Its hard to know which module is the
@@ -12,18 +8,23 @@ be hard to stay up to date.
 
 The recommendations here are a biased set of opionions based on my personal
 experiences and on the advice of people on the internet.
+
+Please let me know when I'm wrong.
 [Feedback](https://github.com/kablamo/mvp.kablamo.org/issues) is welcome and
-this chapter won't be successful without it.  Part of the reason I'm
-writing this is so people tell me when I'm using the wrong module.
+this chapter won't be successful without it.  Part of the reason I'm writing
+this is so people can tell me when I'm using the wrong module.
 
 Sources:
 
 - **MSTPAN**: [mstpan](http://blog.kablamo.org/2015/09/08/mstpan/) is a great
   set of blog posts from 2015 written by
 [mst](https://shadow.cat/blog/matt-s-trout/).  It is my primary source of
-inspiration and I have stolen liberally and shamelessly from it.  I wanted to
+inspiration. 
+<!--
+ and I have stolen liberally and shamelessly from it.  I wanted to
 make that resource available in a more discoverable format that could be
 maintained via github and the community.
+-->
 
 - **Task::Kensho**: The Enlighted Perl Organization created
 [Task::Kensho](https://metacpan.org/pod/Task::Kensho). It was one of the
