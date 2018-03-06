@@ -160,30 +160,30 @@ site:
 #                    - {number: '4.1', title: 'Web frameworks',           href: '/cpan/web-frameworks/'}
 #                    - {number: '4.1', title: 'Web deployment',           href: '/cpan/web-deployment/'}
                 - title: 'Object oriented programming'
-                  number: 3
+                  number: 4
                   anchor: 'oo'
                   articles:
-                    - {number: '3.1', title: 'The story of Perl OO', href: '/oo/story/'}
-                    - {number: '3.2', title: 'Classes and objects',  href: '/oo/classes/'}
-                    - {number: '3.3', title: 'Attributes',           href: '/oo/attributes/'}
-                    - {number: '3.4', title: 'Method modifiers',     href: '/oo/modifiers/'}
-                    - {number: '3.5', title: 'Roles',                href: '/oo/roles/'}
-                    - {number: '3.6', title: 'Inheritance',          href: '/oo/inheritance/'}
+                    - {number: '4.1', title: 'The story of Perl OO', href: '/oo/story/'}
+                    - {number: '4.2', title: 'Classes and objects',  href: '/oo/classes/'}
+                    - {number: '4.3', title: 'Attributes',           href: '/oo/attributes/'}
+                    - {number: '4.4', title: 'Method modifiers',     href: '/oo/modifiers/'}
+                    - {number: '4.5', title: 'Roles',                href: '/oo/roles/'}
+                    - {number: '4.6', title: 'Inheritance',          href: '/oo/inheritance/'}
                 - title: 'Debugging'
-                  number: 4
+                  number: 5
                   anchor: 'debugging'
                   articles:
-                    - {number: '4.1', title: 'Examining data structures', href: '/debugging/data-printer/'}
-                    - {number: '4.2', title: 'Forcing stack traces',      href: '/debugging/stack-trace/'}
+                    - {number: '5.1', title: 'Examining data structures', href: '/debugging/data-printer/'}
+                    - {number: '5.2', title: 'Forcing stack traces',      href: '/debugging/stack-trace/'}
                 - title: 'Testing'
-                  number: 5
+                  number: 6
                   anchor: 'testing'
                   articles:
-                    - {number: '5.1', title: 'Introduction',                     href: '/testing/intro/'}
-                    - {number: '5.2', title: 'Warnings and exceptions',          href: '/testing/warnings/'}
-                    - {number: '5.3', title: 'Data structures',                  href: '/testing/data/'}
-                    - {number: '5.4', title: 'Mock objects',                     href: '/testing/mock/'}
-                    - {number: '5.5', title: 'Building your own test libraries', href: '/testing/libs/'}
+                    - {number: '6.1', title: 'Introduction',                     href: '/testing/intro/'}
+                    - {number: '6.2', title: 'Warnings and exceptions',          href: '/testing/warnings/'}
+                    - {number: '6.3', title: 'Data structures',                  href: '/testing/data/'}
+                    - {number: '6.4', title: 'Mock objects',                     href: '/testing/mock/'}
+                    - {number: '6.5', title: 'Building your own test libraries', href: '/testing/libs/'}
 
         # deploy: This is the deploy object, used to deploy this site.
         deploy:
