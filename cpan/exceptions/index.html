@@ -12,7 +12,7 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>Minimum Viable Perl</title>
+        <title>Exceptions - Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
@@ -79,6 +79,13 @@
         <li><a href="/dependencies/pmtools/">2.5. What version? Where?</a></li>
       </ul>
     </li>
+    <li class="cpan sub-menu">
+      <a href="/cpan/exceptions/#cpan"><div class="fa fa-caret-down caret"></div>3. Recommended libraries</a>
+      <ul>
+        <li><a href="/cpan/introduction/">3.1. Introduction</a></li>
+        <li><a href="/cpan/exceptions/">3.2. Exceptions</a></li>
+      </ul>
+    </li>
     <li class="oo sub-menu">
       <a href="/cpan/exceptions/#oo"><div class="fa fa-caret-down caret"></div>3. Object oriented programming</a>
       <ul>
@@ -132,11 +139,9 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 4. Recommended modules</div>
-
-<h1 class="section">4.2. Exceptions</h1>
-
-<ul>
+                    <div class="chapter">Chapter 3. Recommended libraries</div>
+                    <h1 class="section">3.2. Exceptions</h1>
+                    <ul>
 <li>die/eval</li>
 <li>Syntax::Keyword::Try</li>
 <li>Try::Tiny</li>
@@ -176,7 +181,7 @@ explaining this idiom to a beginner is going make them want to run the other
 direction.</p>
 
 <p>However, over 40% of Perl developers prefer to handle exceptions with die/eval
-which every Perl developer needs to be familiar with the syntax and pitfalls.</p>
+so every Perl developer needs to be familiar with the syntax and pitfalls.</p>
 
 <p>See the Official Perl
 docs for more details: <a href="http://perldoc.perl.org/functions/die.html">die</a>,
@@ -277,8 +282,10 @@ semicolon at the end.</p>
 
 <p>TryCatch has first class try/catch semantics and type checking on the catch
 block.  My benchmarks showed this module has the same performance
-as Syntax::Keyword::Try.  Perhaps the reason it hasn&#39;t been more popular is the
-dependency on Moose.  It also lacks a <code>finally</code> block.</p>
+as Syntax::Keyword::Try.  It never achieved much popularity because its
+dependencies include Devel::Declare
+(see the <a href="https://metacpan.org/pod/Devel::Declare#WARNING">warning</a>) and Moose (lots of
+dependencies).  It also lacks a <code>finally</code> block.</p>
 
 <h4>Benchmarks</h4>
 
@@ -347,7 +354,7 @@ no eval    7633588/s      2355%   19%       --
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-</div>
+<a alt="Left" class="left" href="/cpan/introduction/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/story/"><i class="fa fa-chevron-right"></i></a></div>
 
 
         </div>
