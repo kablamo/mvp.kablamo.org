@@ -38,7 +38,7 @@ explaining this idiom to a beginner is going make them want to run the other
 direction.
 
 However, over 40% of Perl developers prefer to handle exceptions with die/eval
-which every Perl developer needs to be familiar with the syntax and pitfalls.
+so every Perl developer needs to be familiar with the syntax and pitfalls.
 
 See the Official Perl
 docs for more details: [die](http://perldoc.perl.org/functions/die.html),
@@ -140,8 +140,10 @@ semicolon at the end.
 
 TryCatch has first class try/catch semantics and type checking on the catch
 block.  My benchmarks showed this module has the same performance
-as Syntax::Keyword::Try.  Perhaps the reason it hasn't been more popular is the
-dependency on Moose.  It also lacks a `finally` block.
+as Syntax::Keyword::Try.  It never achieved much popularity because its
+dependencies include Devel::Declare
+(see the [warning](https://metacpan.org/pod/Devel::Declare#WARNING)) and Moose (lots of
+dependencies).  It also lacks a `finally` block.
 
 #### Benchmarks
 
