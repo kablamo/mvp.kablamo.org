@@ -54,8 +54,9 @@ potential pitfalls in [Handling exceptions with die/eval](/essentials/die-eval/)
     <div class="column">Maintainer: PEVANS</div>
 </div>
 
-This is probably the best way to handle exceptions in Perl.  Unfortunately this
-module is not widely used yet and is unlikely to replace die/eval anytime soon.
+This is probably the best try/catch solution for handling exceptions in Perl.
+This module is not widely used yet and is unlikely to replace die/eval anytime
+soon.
 
 Syntax::Keyword::Try is a relatively new module (2016) which adds `try` and
 `catch` keywords to Perl.  This solution comes after many many similar
@@ -107,8 +108,13 @@ worry if your dependencies (or their dependencies) are using Try::Tiny in some
 critical part of your code.
 
 Try::Tiny::Tiny is a module which improves the performance of Try::Tiny
-anywhere its loaded in your stack.  My benchmarks showed performance went
-from 20.2 times  slower than `eval` to 12.9 times slower than `eval`.
+anywhere its loaded in your stack.  My benchmarks showed performance went from
+20.2 times  slower than `eval` to 12.9 times slower than `eval` which is nearly
+an order of magnitude improvement.
+
+Unlike the other modules reviewed here, Try::Tiny::Tiny isn't really intended
+as a replacement solution for die/eval.  Its intended as a fix for dependencies
+that use Try::Tiny.
 
 #### Try::Catch
 
