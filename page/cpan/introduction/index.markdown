@@ -6,7 +6,7 @@ best one.  For example there are at least 7 modules for parsing JSON.  New
 modules appear all the time which make the old best solution obsolete.  It can
 be hard to stay up to date.
 
-The recommendations here are a biased set of opionions based on my personal
+The recommendations here are a biased set of opinions based on my personal
 experiences and on the advice of people on the internet.
 
 Please let me know when I'm wrong.
@@ -14,7 +14,7 @@ Please let me know when I'm wrong.
 this chapter won't be successful without it.  Part of the reason I'm writing
 this is so people can tell me when I'm using the wrong module.
 
-Sources:
+Here are some other great places to find advice on which module to choose:
 
 - **MSTPAN**: [mstpan](http://blog.kablamo.org/2015/09/08/mstpan/) is a great
   set of blog posts from 2015 written by
@@ -40,3 +40,6 @@ reviews](http://neilb.org/reviews/).
 
 - The use of some libraries is
 [discouraged](https://metacpan.org/pod/Perl::Critic::Policy::Freenode::DiscouragedModules).
+
+
+- **rsavage** has a [list of links](https://savage.net.au/Module-reviews.html) to module reviews on various blogs. 
