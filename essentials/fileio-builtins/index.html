@@ -12,15 +12,15 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>Introduction - Minimum Viable Perl</title>
+        <title>Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.cpan ul').show();
-                $('.sub-menu.cpan>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.essentials ul').show();
+                $('.sub-menu.essentials>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -56,7 +56,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/cpan/introduction/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <a href="/essentials/fileio-builtins/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
       <ul>
         <li><a href="/basics/hello/">1.1. Hello world</a></li>
         <li><a href="/basics/variables/">1.2. Variables</a></li>
@@ -70,7 +70,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/cpan/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <a href="/essentials/fileio-builtins/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
@@ -80,14 +80,14 @@
       </ul>
     </li>
     <li class="cpan sub-menu">
-      <a href="/cpan/introduction/#cpan"><div class="fa fa-caret-down caret"></div>3. Recommended libraries</a>
+      <a href="/essentials/fileio-builtins/#cpan"><div class="fa fa-caret-down caret"></div>3. Recommended libraries</a>
       <ul>
         <li><a href="/cpan/introduction/">3.1. Introduction</a></li>
         <li><a href="/cpan/exceptions/">3.2. Exceptions</a></li>
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/cpan/introduction/#oo"><div class="fa fa-caret-down caret"></div>4. Object oriented programming</a>
+      <a href="/essentials/fileio-builtins/#oo"><div class="fa fa-caret-down caret"></div>4. Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">4.1. The story of Perl OO</a></li>
         <li><a href="/oo/classes/">4.2. Classes and objects</a></li>
@@ -98,14 +98,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/cpan/introduction/#debugging"><div class="fa fa-caret-down caret"></div>5. Debugging</a>
+      <a href="/essentials/fileio-builtins/#debugging"><div class="fa fa-caret-down caret"></div>5. Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">5.1. Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">5.2. Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/cpan/introduction/#testing"><div class="fa fa-caret-down caret"></div>6. Testing</a>
+      <a href="/essentials/fileio-builtins/#testing"><div class="fa fa-caret-down caret"></div>6. Testing</a>
       <ul>
         <li><a href="/testing/intro/">6.1. Introduction</a></li>
         <li><a href="/testing/warnings/">6.2. Warnings and exceptions</a></li>
@@ -115,7 +115,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/cpan/introduction/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/essentials/fileio-builtins/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -139,56 +139,75 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 3. Recommended libraries</div>
-                    <h1 class="section">3.1. Introduction</h1>
-                    <p>This goal of this chapter is to help developers quickly decide which modules to
-use.  </p>
+                    <h1>FileIO with builtin functions</h1>
 
-<p>MetaCPAN has thousands of modules. Its hard to know which module is the
-best one.  For example there are at least 7 modules for parsing JSON.  New
-modules appear all the time which make the old best solution obsolete.  It can
-be hard to stay up to date.</p>
+<p>Perl provides several builtin functions for dealing with files.  However
+builtins almost never throw exceptions so you need to remember to check for
+errors and use magic variables like <code>$!</code>.  Also the user interface is sometimes
+not the best.  In general you are better off sticking with higher level modules
+like Path::Tiny or IO::All.  </p>
 
-<p>The recommendations here are a biased set of opinions based on my personal
-experiences and on the advice of people on the internet.</p>
+<p>However use of these builtins is fairly common so its going to be worth
+learning how they work.</p>
 
-<p>Please let me know when I&#39;m wrong.
-<a href="https://github.com/kablamo/mvp.kablamo.org/issues">Feedback</a> is welcome and
-this chapter won&#39;t be successful without it.  Part of the reason I&#39;m writing
-this is so people can tell me when I&#39;m using the wrong module.</p>
+<h1>open($filehandle, $mode, $filename)</h1>
 
-<p>Here are some other great places to find advice on which module to choose:</p>
+<pre><code>open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
+    or die &quot;Can&#39;t open data.txt for reading: $!&quot;;
+</code></pre>
 
-<ul>
-<li><p><strong>MSTPAN</strong>: <a href="http://blog.kablamo.org/2015/09/08/mstpan/">mstpan</a> is a great
-set of blog posts from 2015 written by
-<a href="https://shadow.cat/blog/matt-s-trout/">mst</a>.  It is my primary source of
-inspiration. 
-<!--
-and I have stolen liberally and shamelessly from it.  I wanted to
-make that resource available in a more discoverable format that could be
-maintained via github and the community.
---></p></li>
-<li><p><strong>Task::Kensho</strong>: The Enlighted Perl Organization created
-<a href="https://metacpan.org/pod/Task::Kensho">Task::Kensho</a>. It was one of the
-earliest attempts at making module recommendations.  </p></li>
-<li><p><strong>Task::BeLike::DAGOLDEN</strong>: <a href="http://www.dagolden.com/">Dave Golden</a> is the author
-of a number of widely used modules.  He keeps a <a href="https://metacpan.org/pod/Task::BeLike::DAGOLDEN">list of modules he
-uses</a>.</p></li>
-<li><p><a href="http://neilb.org">Neil Bowers</a> is another great Perl
-developer who has written some <a href="http://neilb.org/reviews/">great module
-reviews</a>.</p></li>
-<li><p>The use of some libraries is
-<a href="https://metacpan.org/pod/Perl::Critic::Policy::Freenode::DiscouragedModules">discouraged</a>.</p></li>
-<li><p><strong>rsavage</strong> has a <a href="https://savage.net.au/Module-reviews.html">list of links</a> to module reviews on various blogs. </p></li>
-</ul>
+<p>Valid values of $mode</p>
+
+<p><code>open()</code> can do a lot more and can be used in very complicated ways.  See the
+official docs for <a href="">open()</a> for all the gory details.</p>
+
+<h1>Filehandles</h1>
+
+<h1>Reading from a file</h1>
+
+<pre><code># Each line of the file becomes an element in the list
+my @lines   = &lt;$filehandle&gt;; 
+
+# Reads in the next line of the file
+my $line = &lt;$filehandle&gt;; 
+</code></pre>
+
+<p>See also the official docs <a href="http://perldoc.perl.org/perlop.html#I%2fO-Operators">IO
+Operators</a>.</p>
+
+<h1>print($filehandle, @list)</h1>
+
+<pre><code># Write to a file
+print $filehandle &quot;I eat danger for breakfast, &quot;\n&quot;;
+
+# Write to stdout
+print &quot;I eat danger for breakfast, &quot;\n&quot;;
+print STDOUT &quot;I eat danger for breakfast, &quot;\n&quot;;
+</code></pre>
+
+<h1>Example 1: Slurp the whole file into memory</h1>
+
+<pre><code># Open the file read-only
+open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
+    or die &quot;Can&#39;t open data.txt for reading: $!&quot;;
+
+# Read the whole file into an array
+my @lines = &lt;$filehandle&gt;; 
+
+# Print the whole file to STDOUT
+print @lines;
+
+close($filehandle);
+</code></pre>
+
+<h1>Example 2: Process a file line by line</h1>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/dependencies/pmtools/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/cpan/exceptions/"><i class="fa fa-chevron-right"></i></a></div>
+</div>
 
 
         </div>

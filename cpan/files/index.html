@@ -1,0 +1,453 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="/theme/css/normalize.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
+        <link href="/theme/css/statocles-default.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <title>Minimum Viable Perl</title>
+        <meta content="Statocles 0.086" name="generator">
+        
+
+        <script>
+            $( document ).ready(function() {
+                $('.sub-menu ul').hide();
+                $('.sub-menu.cpan ul').show();
+                $('.sub-menu.cpan>a>div').toggleClass("fa-caret-up fa-caret-down");
+
+                $(".sub-menu a").click(function () {
+                    $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
+                    $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                    $(this).find(".caret").toggleClass("fa-caret-up fa-caret-down");
+                });
+            });
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110455056-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-110455056-1');
+        </script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <input class="sidebar-trigger" id="sidebar-trigger" type="checkbox">
+        <label class="fa fa-bars" for="sidebar-trigger"></label>
+        <div class="container">
+
+                <div class="sidebar">
+                    
+<a class="home " href="/">
+    <div id="title1">Minimum</div>
+    <div id="title2">Viable</div>
+    <div id="title3">Perl</div>
+</a>
+
+<div class="animated bounceInDown">
+  <ul>
+    <li class="basics sub-menu">
+      <a href="/cpan/files/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <ul>
+        <li><a href="/basics/hello/">1.1. Hello world</a></li>
+        <li><a href="/basics/variables/">1.2. Variables</a></li>
+        <li><a href="/basics/references/">1.3. References</a></li>
+        <li><a href="/basics/functions/">1.4. Functions</a></li>
+        <li><a href="/basics/flow/">1.5. Conditionals</a></li>
+        <li><a href="/basics/loops/">1.6. Loops</a></li>
+        <li><a href="/basics/exceptions/">1.7. Exceptions</a></li>
+        <li><a href="/basics/regexps/">1.8. Regular expressions</a></li>
+        <li><a href="/basics/files/">1.9. Files</a></li>
+      </ul>
+    </li>
+    <li class="dependencies sub-menu">
+      <a href="/cpan/files/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <ul>
+        <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
+        <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
+        <li><a href="/dependencies/metacpan/">2.3. Choosing libraries (MetaCPAN)</a></li>
+        <li><a href="/dependencies/carton/">2.4. Managing dependencies (Carton)</a></li>
+        <li><a href="/dependencies/pmtools/">2.5. What version? Where?</a></li>
+      </ul>
+    </li>
+    <li class="cpan sub-menu">
+      <a href="/cpan/files/#cpan"><div class="fa fa-caret-down caret"></div>3. Recommended libraries</a>
+      <ul>
+        <li><a href="/cpan/introduction/">3.1. Introduction</a></li>
+        <li><a href="/cpan/exceptions/">3.2. Exceptions</a></li>
+      </ul>
+    </li>
+    <li class="oo sub-menu">
+      <a href="/cpan/files/#oo"><div class="fa fa-caret-down caret"></div>4. Object oriented programming</a>
+      <ul>
+        <li><a href="/oo/story/">4.1. The story of Perl OO</a></li>
+        <li><a href="/oo/classes/">4.2. Classes and objects</a></li>
+        <li><a href="/oo/attributes/">4.3. Attributes</a></li>
+        <li><a href="/oo/modifiers/">4.4. Method modifiers</a></li>
+        <li><a href="/oo/roles/">4.5. Roles</a></li>
+        <li><a href="/oo/inheritance/">4.6. Inheritance</a></li>
+      </ul>
+    </li>
+    <li class="debugging sub-menu">
+      <a href="/cpan/files/#debugging"><div class="fa fa-caret-down caret"></div>5. Debugging</a>
+      <ul>
+        <li><a href="/debugging/data-printer/">5.1. Examining data structures</a></li>
+        <li><a href="/debugging/stack-trace/">5.2. Forcing stack traces</a></li>
+      </ul>
+    </li>
+    <li class="testing sub-menu">
+      <a href="/cpan/files/#testing"><div class="fa fa-caret-down caret"></div>6. Testing</a>
+      <ul>
+        <li><a href="/testing/intro/">6.1. Introduction</a></li>
+        <li><a href="/testing/warnings/">6.2. Warnings and exceptions</a></li>
+        <li><a href="/testing/data/">6.3. Data structures</a></li>
+        <li><a href="/testing/mock/">6.4. Mock objects</a></li>
+        <li><a href="/testing/libs/">6.5. Building your own test libraries</a></li>
+      </ul>
+    </li>
+    <li class="reference sub-menu section">
+      <a href="/cpan/files/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <ul>
+        <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
+        <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
+        <li><a href="https://perldoc.perl.org/perlop.html">Operators</a></li>
+        <li><a href="https://perldoc.perl.org/perlvar.html">Special variables</a></li>
+        <li><a href="https://perldoc.perl.org/index-pragmas.html">Pragmas</a></li>
+        <li><a href="https://perldoc.perl.org/index-modules-A.html">Core modules</a></li>
+        <li><a href="https://perldoc.perl.org/index-language.html">Language reference</a></li>
+      </ul>
+    </li>
+    <li class="section"><a href="/community">Community</a></li>
+    <li class="section"><a href="/books">Perl books</a></li>
+    <li class="section"><a href="https://jobs.perl.org">Perl jobs</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</div>
+<div class="subscribe">This book is a work in progress.  <a href="/subscribe/">Subscribe</a> to get new chapters in your inbox.</div>
+
+                    
+                    
+                </div>
+
+                <main>
+                    <div class="chapter">Chapter 3. Recommended libraries</div>
+                    <h1 class="section">. </h1>
+                    <p>High Level Modules</p>
+
+<ul>
+<li>Path::Tiny</li>
+<li>IO::All</li>
+</ul>
+
+<p>Misc Useful Modules</p>
+
+<ul>
+<li>Path::Iterator::Rule</li>
+<li>File::chmod</li>
+<li>File::pushd</li>
+<li>File::ReadBackwards</li>
+</ul>
+
+<p>Lower Level Modules</p>
+
+<ul>
+<li>Cwd</li>
+<li>File::Basename</li>
+<li>File::Copy</li>
+<li>File::Copy::Recursive</li>
+<li>File::MimeInfo</li>
+<li>File::Path</li>
+<li>File::Slurp</li>
+<li>File::Spec</li>
+<li>File::stat</li>
+<li>File::Temp</li>
+</ul>
+
+<h3>High Level Modules</h3>
+
+<p>These modules provide a single unified object oriented interface for dealing
+with files and directories.</p>
+
+<ul>
+<li>Path::Tiny</li>
+<li>IO::All</li>
+</ul>
+
+<h4>Path::Tiny</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Path::Tiny">Path::Tiny</a></div>
+    <div class="column">++ rating: 126</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: DAGOLDEN</div>
+</div>
+
+<p>Path::Tiny is a small fast library with a fairly traditional object oriented
+interface for dealing with files and directories.  Its probably the most
+popular high level module.</p>
+
+<p>Path::Tiny began its life as a minimalist rewrite of the venerable Path::Class
+module with a improved user interface.  Over the years its grown in popularity
+and has become a mature, full featured library and one of the most common
+choices for dealing with files.  These days anyone interested in Path::Class is
+probably better served using Path::Tiny.</p>
+
+<h4>IO::All</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/IO::All">IO::All</a></div>
+    <div class="column">++ rating: 58</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: FREW</div>
+</div>
+
+<p>IO::All is the other library for dealing with files and directories.  It is
+also a good solution and nearly as popular as Path::Tiny.</p>
+
+<p>While Path::Tiny aims to be somewhat minimalist and focused, IO::All does
+everything.  It does file and directory IO but it also has functionality from
+IO::Socket and MLDBM and LWP.  You can use it to create a web server, get files
+from ftp sites, or send email.</p>
+
+<p>The user interface is somewhat contraversial.  Depending on your point of view
+its powerful, concise, and convenient or makes for hard to read code at times.</p>
+
+<p>Developers visiting Perl from another language are probably going to be more
+comfortable with Path::Tiny.</p>
+
+<h3>Misc Useful Modules</h3>
+
+<ul>
+<li>Path::Iterator::Rule</li>
+<li>File::chmod</li>
+<li>File::pushd</li>
+<li>File::ReadBackwards</li>
+</ul>
+
+<h4>Path::Iterator::Rule</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Path::Iterator::Rule">Path::Iterator::Rule</a></div>
+    <div class="column">++ rating: 64</div>
+    <div class="column">Last update: 2018</div>
+    <div class="column">Maintainer: DAGOLDEN</div>
+</div>
+
+<p>There are many libraries for iterating over files.  But the bottom line is if
+you need to walk a directory tree, select some files, and do stuff you should
+almost certainly be using Path::Iterator::Rule.  The user interface is fabulous
+and the performance is good.</p>
+
+<p>Alternatives include File::Find which is part of core (distributed with Perl).
+File::Find has similarly good performance but is a lot less fun to work with
+due to its user interface.  For benchmarks and a good description of
+some alternatives see this <a href="https://rjbs.manxome.org/rubric/entry/1981">rjbs
+article</a>.</p>
+
+<h4>File::chmod</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::chmod">File::chmod</a></div>
+    <div class="column">++ rating: 3</div>
+    <div class="column">Last update: 2015</div>
+    <div class="column">Maintainer: XENO</div>
+</div>
+
+<p>The Perl builtin function <code>chmod()</code> only accepts octal permissons.  File::chmod
+replaces <code>chmod()</code> with its own version that accepts octal, symbolic,
+or &quot;ls&quot; permissions.</p>
+
+<h4>File::chdir</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::chdir">File::chdir</a></div>
+    <div class="column">++ rating: 9</div>
+    <div class="column">Last update: 2016</div>
+    <div class="column">Maintainer: DAGOLDEN</div>
+</div>
+
+<p>The Perl builtin function <code>chdir()</code> changes the current working directory
+globally.  If any part of your application or and library calls <code>chdir()</code>, the
+cwd for the entire application changes.  File::chdir provides a mechanism for
+changing directory locally.</p>
+
+<h4>File::pushd</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::pushd">File::pushd</a></div>
+    <div class="column">++ rating: 9</div>
+    <div class="column">Last update: 2016</div>
+    <div class="column">Maintainer: DAGOLDEN</div>
+</div>
+
+<p>File::pushd provides a way to change directory temporarily for a limited scope.  </p>
+
+<h4>File::ReadBackwards</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::ReadBackwards">File::ReadBackwards</a></div>
+    <div class="column">++ rating: 6</div>
+    <div class="column">Last update: 2011</div>
+    <div class="column">Maintainer: URI</div>
+</div>
+
+<p>File::ReadBackwards can read in file contents backwards line by line.</p>
+
+<h3>Lower Level Modules</h3>
+
+<p>Modules like Path::Tiny and IO::All are built on top of lower level modules
+such as these.  None of these provide an object oriented user interface unless
+otherwise noted.</p>
+
+<ul>
+<li>Cwd</li>
+<li>File::Basename</li>
+<li>File::Copy</li>
+<li>File::Copy::Recursive</li>
+<li>File::MimeInfo</li>
+<li>File::Path</li>
+<li>File::Slurp</li>
+<li>File::Spec</li>
+<li>File::stat</li>
+<li>File::Temp</li>
+</ul>
+
+<h4>Cwd</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Cwd">Cwd</a></div>
+    <div class="column">++ rating: 64</div>
+    <div class="column">Last update: 2018</div>
+    <div class="column">Maintainer: XSAWYERX</div>
+</div>
+
+<p>Cwd is a core module (distributed with Perl) which gets the pathname of the
+current working directory.</p>
+
+<h4>File::Basename</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Basename">File::Basename</a></div>
+</div>
+
+<p>File::Basename is a core module (distributed with Perl) for parsing paths into
+directory, filename, and suffix.</p>
+
+<h4>File::Copy</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Copy">File::Copy</a></div>
+</div>
+
+<p>File::Copy is a core module (distributed with Perl) which provides <code>copy()</code> and <code>move()</code> functions.</p>
+
+<h4>File::Copy::Recursive</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Copy::Recursive">File::Copy::Recursive</a></div>
+    <div class="column">++ rating: 13</div>
+    <div class="column">Last update: 2018</div>
+    <div class="column">Maintainer: DMUEY</div>
+</div>
+
+<p>File::Copy::Recursive provides methods for copying directories recursively.</p>
+
+<h4>File::MimeInfo</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::MimeInfo">File::MimeInfo</a></div>
+    <div class="column">++ rating: 7</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: FREW</div>
+</div>
+
+<p>File::MimeInfo can determine the mimetype from a given filename.</p>
+
+<h4>File::Path</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Path">File::Path</a></div>
+    <div class="column">++ rating: 38</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: JKEENAN</div>
+</div>
+
+<p>File::Path can create or remove directory trees.</p>
+
+<h4>File::Slurp</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Slurp">File::Slurp</a></div>
+    <div class="column">++ rating: 62</div>
+    <div class="column">Last update: 2011</div>
+    <div class="column">Maintainer: URI</div>
+</div>
+
+<p>File::Slurp is not recommended.  This was a popular module for a while so
+you may see this in older code.  It&#39;s abandoned and has critical flaws which
+are not fixed -- including issues with unicode.  </p>
+
+<h4>File::Spec</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Spec">File::Spec</a></div>
+    <div class="column">++ rating: 64</div>
+    <div class="column">Last update: 2018</div>
+    <div class="column">Maintainer: XSAWYERX</div>
+</div>
+
+<p>File::Spec is a core module (distributed with Perl) for portably manipulating
+filenames.  It&#39;s not OO.</p>
+
+<h4>File::stat</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::stat">File::stat</a></div>
+    <div class="column">++ rating: 58</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: FREW</div>
+</div>
+
+<p>Perl&#39;s builtin <code>stat()</code> function returns a list of 13 file attributes: size,
+mode, uid, gid, etc.  All you need to do you is remember the order of all those
+elements :S.  File::stat adds sanity to your life by
+adding an object oriented user interface to <code>stat()</code>.  </p>
+
+<h4>File::Temp</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Temp">File::Temp</a></div>
+    <div class="column">++ rating: 50</div>
+    <div class="column">Last update: 2013</div>
+    <div class="column">Maintainer: DAGOLDEN</div>
+</div>
+
+<p>File::Temp provides an interface for returning the name and handle of a
+temporary file safely.  The best part is it automatically cleans up the
+temporary file once the variable has gone out of scope.</p>
+
+
+                </main>
+                <div style="clear: both;"></div>
+
+                <div class="navbar bottom">
+</div>
+
+
+        </div>
+        <footer>
+        
+        </footer>
+
+
+    </body>
+</html>
