@@ -12,15 +12,15 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>Building your own test libraries - Minimum Viable Perl</title>
+        <title>Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.testing ul').show();
-                $('.sub-menu.testing>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.nomatch ul').show();
+                $('.sub-menu.nomatch>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -56,7 +56,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/testing/libs/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <a href="/introduction/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
       <ul>
         <li><a href="/basics/hello/">1.1. Hello world</a></li>
         <li><a href="/basics/variables/">1.2. Variables</a></li>
@@ -70,7 +70,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/testing/libs/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <a href="/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
@@ -80,14 +80,14 @@
       </ul>
     </li>
     <li class="cpan sub-menu">
-      <a href="/testing/libs/#cpan"><div class="fa fa-caret-down caret"></div>3. Recommended libraries</a>
+      <a href="/introduction/#cpan"><div class="fa fa-caret-down caret"></div>3. Recommended libraries</a>
       <ul>
         <li><a href="/cpan/introduction/">3.1. Introduction</a></li>
         <li><a href="/cpan/exceptions/">3.2. Exceptions</a></li>
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/testing/libs/#oo"><div class="fa fa-caret-down caret"></div>4. Object oriented programming</a>
+      <a href="/introduction/#oo"><div class="fa fa-caret-down caret"></div>4. Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">4.1. The story of Perl OO</a></li>
         <li><a href="/oo/classes/">4.2. Classes and objects</a></li>
@@ -98,14 +98,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/testing/libs/#debugging"><div class="fa fa-caret-down caret"></div>5. Debugging</a>
+      <a href="/introduction/#debugging"><div class="fa fa-caret-down caret"></div>5. Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">5.1. Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">5.2. Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/testing/libs/#testing"><div class="fa fa-caret-down caret"></div>6. Testing</a>
+      <a href="/introduction/#testing"><div class="fa fa-caret-down caret"></div>6. Testing</a>
       <ul>
         <li><a href="/testing/intro/">6.1. Introduction</a></li>
         <li><a href="/testing/warnings/">6.2. Warnings and exceptions</a></li>
@@ -115,7 +115,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/testing/libs/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/introduction/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -139,64 +139,14 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 6. Testing</div>
-                    <h1 class="section">6.5. Building your own test libraries</h1>
-                    <h4>Create your test library</h4>
-
-<p>This code goes in the <code>t/lib/test</code> directory of your project.</p>
-
-<pre><code>package test::Something;
-
-use Test2::API;
-use Exporter::Shiny qw/test_something/;
-
-sub test_something {
-    my ($something, $name) = @_;
-
-    my $ctx = Test2::API::context();
-
-    my ($success, $error) = check($something);
-    if ($success) {
-        $ctx-&gt;pass($name);
-    }
-    else {
-        $ctx-&gt;fail($name);
-        $ctx-&gt;diag($error);
-    }
-
-    $ctx-&gt;release;
-    return;
-}
-
-sub check { ... }
-
-1;
-</code></pre>
-
-<p>The context object represents the context in which a test takes place (File and
-Line Number), and provides a quick way to generate events from that context.
-For more details see
-<a href="https://metacpan.org/pod/Test2::API::Context">Test2::API::Context</a>.</p>
-
-<h4>Use your test library</h4>
-
-<p>This code goes in <code>t/foo.t</code>:</p>
-
-<pre><code>use Test2::V0;
-use Test::Lib; # Add t/lib to @INC
-use test::Something qw/test_something/;
-
-test_something(...);
-
-done_testing();
-</code></pre>
+                    <p>Perl&#39;s strengths lie in its ability to adapt.</p>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/testing/mock/"><i class="fa fa-chevron-left"></i></a></div>
+</div>
 
 
         </div>

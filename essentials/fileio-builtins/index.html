@@ -11,7 +11,7 @@
         <!--<link rel="stylesheet" href="/theme/css/skeleton.css" />-->
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <title>Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
@@ -139,43 +139,45 @@
                 </div>
 
                 <main>
-                    <h1>FileIO with builtin functions</h1>
+                    <h1>File IO with builtin functions</h1>
 
-<p>Perl provides several builtin functions for dealing with files.  However
-builtins almost never throw exceptions so you need to remember to check for
-errors and use magic variables like <code>$!</code>.  Also the user interface is sometimes
-not the best.  In general you are better off sticking with higher level modules
-like Path::Tiny or IO::All.  </p>
+<p>Perl provides many builtin functions for dealing with files.  Use of these
+built in functions is fairly common so its worth learning how they work.  </p>
 
-<p>However use of these builtins is fairly common so its going to be worth
-learning how they work.</p>
+<div class="tip">
+    <div class="tip-title">TIP</div>
+    <div class="tip-content">
+        Higher level modules like Path::Tiny and IO::All are offer more saftey
+        and convenience in most situations.
+        See <a href="/essentials/path-tiny/">File IO with Path::Tiny</a>
+        (article available next week).
+    </div>
+</div>
 
-<h1>open($filehandle, $mode, $filename)</h1>
+<h1><code>open($filehandle, $mode, $filename)</code></h1>
 
 <pre><code>open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
     or die &quot;Can&#39;t open data.txt for reading: $!&quot;;
 </code></pre>
 
-<p>Valid values of $mode</p>
+<p>Valid modes include:</p>
 
-<p><code>open()</code> can do a lot more and can be used in very complicated ways.  See the
-official docs for <a href="">open()</a> for all the gory details.</p>
+<ul>
+<li><code>&lt;</code> create filehandle with read access</li>
+<li><code>&gt;</code> creaet filehandle with write access</li>
+<li><code>+&lt;</code> create filehandle with read/write access</li>
+<li><code>&gt;&gt;</code> create filehandle with append access</li>
+</ul>
 
-<h1>Filehandles</h1>
+<p><code>open()</code> has a ton of functionality and can be used in very complicated ways
+but its rarely something you would want to do.  See the official docs for
+<a href="">open()</a> for more info.</p>
 
-<h1>Reading from a file</h1>
+<p><code>$!</code>contains the system error string corresponding to the C <code>errno</code> variable.
+Many C library calls set <code>errno</code> on failure.  See the official docs for more:
+<a href="https://perldoc.perl.org/perlvar.html#Error-Variables">$!</a>.</p>
 
-<pre><code># Each line of the file becomes an element in the list
-my @lines   = &lt;$filehandle&gt;; 
-
-# Reads in the next line of the file
-my $line = &lt;$filehandle&gt;; 
-</code></pre>
-
-<p>See also the official docs <a href="http://perldoc.perl.org/perlop.html#I%2fO-Operators">IO
-Operators</a>.</p>
-
-<h1>print($filehandle, @list)</h1>
+<h1><code>print($filehandle, @list)</code></h1>
 
 <pre><code># Write to a file
 print $filehandle &quot;I eat danger for breakfast, &quot;\n&quot;;
@@ -184,6 +186,8 @@ print $filehandle &quot;I eat danger for breakfast, &quot;\n&quot;;
 print &quot;I eat danger for breakfast, &quot;\n&quot;;
 print STDOUT &quot;I eat danger for breakfast, &quot;\n&quot;;
 </code></pre>
+
+<p>STDOUT and STDERR are always available as filehandles.</p>
 
 <h1>Example 1: Slurp the whole file into memory</h1>
 
@@ -201,6 +205,19 @@ close($filehandle);
 </code></pre>
 
 <h1>Example 2: Process a file line by line</h1>
+
+<pre><code># Open the file read-only
+open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
+    or die &quot;Can&#39;t open data.txt for reading: $!&quot;;
+
+# Read the whole file into an array
+while (my $line = &lt;$filehandle&gt;) {
+    # Print each line to STDOUT
+    print $line;
+}
+
+close($filehandle);
+</code></pre>
 
 
                 </main>
