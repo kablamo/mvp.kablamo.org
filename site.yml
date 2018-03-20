@@ -112,17 +112,17 @@ site:
 #                   - {number: '1.13', title: 'Scope',               href: '/basics/scope/'}
 #                   - {number: '1.14', title: 'Constants',           href: '/basics/constants/'}
 #                   - {number: '1.15', title: 'Perl design goals',   href: '/basics/perl/'}
-#                - title: 'Essential skills'
-#                  number: 2
-#                  anchor: 'essentials'
-#                  articles:
-#                    - title:     'Introduction'
-#                      number:    '2.1'
-#                      href:      '/essentials/introduction/'
-#                    - toc_title: 'Exceptions with die/eval'
-#                      number:    '2.2'
-#                      title:     'Handling exceptions with die/eval'
-#                      href:      '/essentials/die-eval/'
+                - title: 'Essential skills'
+                  number: 2
+                  anchor: 'essentials'
+                  articles:
+                    - title:     'Introduction'
+                      number:    '2.1'
+                      href:      '/essentials/introduction/'
+                    - toc_title: 'Exceptions with die/eval'
+                      number:    '2.2'
+                      title:     'Handling exceptions with die/eval'
+                      href:      '/essentials/die-eval/'
 #                    - toc_title: 'Exceptions with try/catch'
 #                      number:    '2.3'
 #                      title:     'Handling exceptions with try/catch'
@@ -139,51 +139,51 @@ site:
 #                    - {number: '2.7', title: 'Working with hashes', href: '/essentials/hashes/'}
 #                    - {number: '2.8', title: 'Time and dates', href: '/essentials/datetime/'}
                 - title: 'Using libraries'
-                  number: 2
+                  number: 3
                   anchor: 'dependencies'
                   articles:
                   articles:
-                    - {number: '2.1', title: 'Loading libraries and $PERL5LIB',           href: '/dependencies/perl5lib/', toc_title: 'Loading libraries ($PERL5LIB)'}
-                    - {number: '2.2', title: 'Installing libraries with cpanm',           href: '/dependencies/cpanm/',    toc_title: 'Installing libraries (cpanm)'}
-                    - {number: '2.3', title: 'Choosing libraries on MetaCPAN',            href: '/dependencies/metacpan/', toc_title: 'Choosing libraries (MetaCPAN)'}
-                    - {number: '2.4', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
-                    - {number: '2.5', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
+                    - {number: '3.1', title: 'Loading libraries and $PERL5LIB',           href: '/dependencies/perl5lib/', toc_title: 'Loading libraries ($PERL5LIB)'}
+                    - {number: '3.2', title: 'Installing libraries with cpanm',           href: '/dependencies/cpanm/',    toc_title: 'Installing libraries (cpanm)'}
+                    - {number: '3.3', title: 'Choosing libraries on MetaCPAN',            href: '/dependencies/metacpan/', toc_title: 'Choosing libraries (MetaCPAN)'}
+                    - {number: '3.4', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
+                    - {number: '3.5', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
                 - title: 'Recommended libraries'
-                  number: 3
+                  number: 4
                   anchor: 'cpan'
                   articles:
-                    - {number: '3.1', title: 'Introduction',             href: '/cpan/introduction/'}
-                    - {number: '3.2', title: 'Exceptions',               href: '/cpan/exceptions/'}
+                    - {number: '4.1', title: 'Introduction',             href: '/cpan/introduction/'}
+                    - {number: '4.2', title: 'Exceptions',               href: '/cpan/exceptions/'}
 #                    - {number: '4.1', title: 'JSON',                     href: '/cpan/json/'}
 #                    - {number: '4.1', title: 'XML',                      href: '/cpan/xml/'}
 #                    - {number: '4.1', title: 'HTML',                     href: '/cpan/html/'}
 #                    - {number: '4.1', title: 'Web frameworks',           href: '/cpan/web-frameworks/'}
 #                    - {number: '4.1', title: 'Web deployment',           href: '/cpan/web-deployment/'}
                 - title: 'Object oriented programming'
-                  number: 4
+                  number: 5
                   anchor: 'oo'
                   articles:
-                    - {number: '4.1', title: 'The story of Perl OO', href: '/oo/story/'}
-                    - {number: '4.2', title: 'Classes and objects',  href: '/oo/classes/'}
-                    - {number: '4.3', title: 'Attributes',           href: '/oo/attributes/'}
-                    - {number: '4.4', title: 'Method modifiers',     href: '/oo/modifiers/'}
-                    - {number: '4.5', title: 'Roles',                href: '/oo/roles/'}
-                    - {number: '4.6', title: 'Inheritance',          href: '/oo/inheritance/'}
+                    - {number: '5.1', title: 'The story of Perl OO', href: '/oo/story/'}
+                    - {number: '5.2', title: 'Classes and objects',  href: '/oo/classes/'}
+                    - {number: '5.3', title: 'Attributes',           href: '/oo/attributes/'}
+                    - {number: '5.4', title: 'Method modifiers',     href: '/oo/modifiers/'}
+                    - {number: '5.5', title: 'Roles',                href: '/oo/roles/'}
+                    - {number: '5.6', title: 'Inheritance',          href: '/oo/inheritance/'}
                 - title: 'Debugging'
-                  number: 5
+                  number: 6
                   anchor: 'debugging'
                   articles:
-                    - {number: '5.1', title: 'Examining data structures', href: '/debugging/data-printer/'}
-                    - {number: '5.2', title: 'Forcing stack traces',      href: '/debugging/stack-trace/'}
+                    - {number: '6.1', title: 'Examining data structures', href: '/debugging/data-printer/'}
+                    - {number: '6.2', title: 'Forcing stack traces',      href: '/debugging/stack-trace/'}
                 - title: 'Testing'
-                  number: 6
+                  number: 7
                   anchor: 'testing'
                   articles:
-                    - {number: '6.1', title: 'Introduction',                     href: '/testing/intro/'}
-                    - {number: '6.2', title: 'Warnings and exceptions',          href: '/testing/warnings/'}
-                    - {number: '6.3', title: 'Data structures',                  href: '/testing/data/'}
-                    - {number: '6.4', title: 'Mock objects',                     href: '/testing/mock/'}
-                    - {number: '6.5', title: 'Building your own test libraries', href: '/testing/libs/'}
+                    - {number: '7.1', title: 'Introduction',                     href: '/testing/intro/'}
+                    - {number: '7.2', title: 'Warnings and exceptions',          href: '/testing/warnings/'}
+                    - {number: '7.3', title: 'Data structures',                  href: '/testing/data/'}
+                    - {number: '7.4', title: 'Mock objects',                     href: '/testing/mock/'}
+                    - {number: '7.5', title: 'Building your own test libraries', href: '/testing/libs/'}
 
         # deploy: This is the deploy object, used to deploy this site.
         deploy:

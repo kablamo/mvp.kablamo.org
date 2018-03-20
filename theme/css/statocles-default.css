@@ -626,44 +626,46 @@ td {
     display: none;
 }
 .tip-title {
-    background: #515556;
-    background: #c1c5c6;
+    color: #fff;
     color: #777;
-    padding: 1rem 1.5rem;
     display: block;
     font-weight: bold;
     box-sizing: border-box; 
-/*
-    padding: 1.5rem 1.5rem;
+    padding: 1rem 1.5rem;
+    padding-left: 0;
     height: 100%;
     float: left;
-*/
 }
 .tip-content {
     display: block;
-    padding: 1rem 1.5rem;
+    background: #f1f5f6;
+    background: #e1e5e6;
+    background: #fff;
     box-sizing: border-box; 
+    border-left: solid 1px #777;
     border-radius: 0px 4px 4px 0px;
-/*
-    margin-left: 10rem;
-    padding: 1.5rem 1.5rem;
-*/
+    margin-left: 8rem;
+    padding: 1rem 1.5rem;
 }
 .tip-content::after {
     clear: both;
     display: table;
+    content: "";
 }
 .tip {
     background: #717576;
-    background: #e1e5e6;
+    background: #c1c5c6;
+    background: #d1d5d6;
+    background: orange;
+    background: #fff;
     color: #777;
     display: block;
-    border: solid 1px #c1c5c6;
+    border: solid 1px #d1d5d6;
+    border: solid 1px orange;
+    border: solid 0px #777;
     border-radius: 4px 4px 4px 4px;
     box-sizing: border-box; 
-/*
     overflow: hidden;
-*/
 }
 .tip a {
     color: #fff;

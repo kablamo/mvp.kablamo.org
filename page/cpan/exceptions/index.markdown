@@ -36,13 +36,12 @@ direction.
 However, over 40% of Perl developers prefer to handle exceptions with die/eval
 so every Perl developer needs to be familiar with the syntax and pitfalls.
 
-See the Official Perl
-docs for more details: [die](http://perldoc.perl.org/functions/die.html),
+I explain the syntax and how to handle all the potential pitfalls in [Handling
+exceptions with die/eval](/essentials/die-eval/).  
+
+For more information check out the official Perl docs for
+[die](http://perldoc.perl.org/functions/die.html) and
 [eval](http://perldoc.perl.org/functions/eval.html).
-<!--
-I explain the syntax and all the
-potential pitfalls in [Handling exceptions with die/eval](/essentials/die-eval/).  
--->
 
 
 #### Syntax::Keyword::Try

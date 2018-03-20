@@ -1,18 +1,15 @@
 
-<div class="chapter">Chapter 2. Essential skills</div>
-<h1 class="section">2.2. Handling exceptions with die/eval</h1>
-
 The standard Perl syntax for handling exceptions (die/eval) is quirky and has
 some pitfalls that are easy to tumble into.  However its pretty common so 
 you will need to understand it.
 
 <div class="tip">
-    <div class="tip-title">Best Practice</div>
-    <div class="tip-content">
-        Syntax::Keyword::Try is the
-        best way to handle exceptions in Perl. It adds try/catch keywords to
-        Perl.  See <a href="http://mvp.kablamo.org/essentials/syntax-keyword-try/">
-        Handling exceptions with try/catch</a> (article available next week).
+    <div class="tip-title">Alternate<br>Solution</div>
+    <div class="tip-content" style="margin-left:6rem">
+        Syntax::Keyword::Try adds try/catch keywords to Perl and is probably a better
+        way to handle exceptions.  As always there are trade offs.  See <a
+href="/essentials/syntax-keyword-try/"> Handling
+exceptions with try/catch</a> (article available next week).
     </div>
 </div>
 
@@ -34,8 +31,8 @@ compiles, and evaluates a block of code at compile time and catches any
 exceptions that are raised at runtime.  The exception is placed in the global
 variable `$@`.
 
-    eval { die "Something bad happened" }; # try
-    warn $@ if $@;                         # catch
+    eval { die "Something bad happened" }; # try (and catch)
+    warn $@ if $@;                         # handle exception
 
 #### Exceptions as objects
 
@@ -79,7 +76,7 @@ you need to jump through hoops like this:
         # handle exception
     }
 
-*2. Don't use exception objects that evaluate as false*
+*2. Exception objects that evaluate as false*
 
 You can [overload](https://metacpan.org/pod/overload) Perl operators.  For
 example, you could have an exception object evaluate to "error" in string
