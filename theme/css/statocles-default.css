@@ -626,7 +626,6 @@ td {
     display: none;
 }
 .tip-title {
-    color: #fff;
     color: #777;
     display: block;
     font-weight: bold;
@@ -638,8 +637,6 @@ td {
 }
 .tip-content {
     display: block;
-    background: #f1f5f6;
-    background: #e1e5e6;
     background: #fff;
     box-sizing: border-box; 
     border-left: solid 1px #777;
@@ -653,17 +650,9 @@ td {
     content: "";
 }
 .tip {
-    background: #717576;
-    background: #c1c5c6;
-    background: #d1d5d6;
-    background: orange;
     background: #fff;
     color: #777;
     display: block;
-    border: solid 1px #d1d5d6;
-    border: solid 1px orange;
-    border: solid 0px #777;
-    border-radius: 4px 4px 4px 4px;
     box-sizing: border-box; 
     overflow: hidden;
 }
