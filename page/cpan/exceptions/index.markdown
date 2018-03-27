@@ -52,19 +52,19 @@ For more information check out the official Perl docs for
     <div class="column">Maintainer: ETHER</div>
 </div>
 
-Try::Tiny is the most popular and defacto standard module in the communtiy for
-handling exceptions.  For years it was the best solution available if you
-wanted try/catch syntax.  
+Try::Tiny is the most popular try/catch solution and the defacto standard in
+the community.  For years it was the best solution available if you wanted
+try/catch syntax.  
 
-Try::Tiny is an order of magnitude slower than either `eval` or
+However, Try::Tiny is an order of magnitude slower than either `eval` or
 Syntax::Keyword::Try.  It depends on your application if this is a problem or
 not.  For many web applications its not important. 
 
 Also if you are a visitor from another language, Try::Tiny has syntax quirks
 which make it not quite the try/catch you are used to.
 
-Be sure to evaluate Syntax::Keyword::Try as well as its probably a better
-solution for most people.
+Be sure to evaluate Syntax::Keyword::Try as its probably a better solution for
+most people.
 
 
 #### Syntax::Keyword::Try
@@ -117,8 +117,8 @@ anywhere its loaded in your stack.  My benchmarks showed performance went from
 an order of magnitude improvement.
 
 Unlike the other modules reviewed here, Try::Tiny::Tiny isn't really intended
-as a replacement solution for die/eval.  Its intended as a fix for dependencies
-that use Try::Tiny.
+as a replacement solution for die/eval.  It's intended as a fix for
+dependencies that use Try::Tiny.
 
 #### Try::Catch
 
