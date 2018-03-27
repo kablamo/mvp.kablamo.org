@@ -94,7 +94,7 @@ This module requires XS and is only an option for users with Perl 5.16 and up
 (Windows users need Perl 5.22 and up).
 
 See the tutorial on <a
-href="/essentials/syntax-keyword-try/">Handling
+href="/essentials/try-catch/">Handling
 exceptions with Syntax::Keyword::Try</a>.  
 
 #### Try::Tiny::Tiny
