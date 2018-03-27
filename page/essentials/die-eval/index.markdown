@@ -6,7 +6,7 @@ you will need to understand it.
 <div class="tip">
     <div class="tip-title">Alternate<br>Solution</div>
     <div class="tip-content" style="margin-left:6rem">
-        If your prefer try/catch several modules exist that add those keywords to Perl. 
+        If your prefer try/catch, several modules exist that add try/catch keywords to Perl. 
         As always there are some trade offs.  See <a
 href="/essentials/try-catch/"> Handling
 exceptions with try/catch</a> for details.
