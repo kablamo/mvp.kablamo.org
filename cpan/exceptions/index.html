@@ -12,7 +12,7 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>Exceptions - Minimum Viable Perl</title>
+        <title>What's the best way to handle exceptions? - Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
@@ -74,6 +74,7 @@
       <ul>
         <li><a href="/essentials/introduction/">2.1. Introduction</a></li>
         <li><a href="/essentials/die-eval/">2.2. Exceptions with die/eval</a></li>
+        <li><a href="/essentials/try-catch/">2.3. Exceptions with try/catch</a></li>
       </ul>
     </li>
     <li class="dependencies sub-menu">
@@ -147,7 +148,7 @@
 
                 <main>
                     <div class="chapter">Chapter 4. Recommended libraries</div>
-                    <h1 class="section">4.2. Exceptions</h1>
+                    <h1 class="section">4.2. What&#39;s the best way to handle exceptions?</h1>
                     <ul>
 <li>die/eval</li>
 <li>Syntax::Keyword::Try</li>
@@ -197,6 +198,29 @@ exceptions with die/eval</a>.  </p>
 <a href="http://perldoc.perl.org/functions/die.html">die</a> and
 <a href="http://perldoc.perl.org/functions/eval.html">eval</a>.</p>
 
+<h4>Try::Tiny</h4>
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Tiny">Try::Tiny</a></div>
+    <div class="column">++ rating: 153</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: ETHER</div>
+</div>
+
+<p>Try::Tiny is the most popular try/catch solution and the defacto standard in
+the community.  For years it was the best solution available if you wanted
+try/catch syntax.  </p>
+
+<p>However, Try::Tiny is an order of magnitude slower than either <code>eval</code> or
+Syntax::Keyword::Try.  It depends on your application if this is a problem or
+not.  For many web applications its not important. </p>
+
+<p>Also if you are a visitor from another language, Try::Tiny has syntax quirks
+which make it not quite the try/catch you are used to.</p>
+
+<p>Be sure to evaluate Syntax::Keyword::Try as its probably a better solution for
+most people.</p>
+
 <h4>Syntax::Keyword::Try</h4>
 
 <div class="module">
@@ -220,30 +244,11 @@ much the same thing as <code>eval</code>.  It also has no dependencies.</p>
 <p>While this module introduces new keywords to the language, it still plays
 nicely with perlcritic and perltidy.</p>
 
-<!--
-See my tutorial on <a
-href="/essentials/syntax-keyword-try/">Handling
-exceptions with try/catch</a>.  
--->
+<p>This module requires XS and is only an option for users with Perl 5.16 and up
+(Windows users need Perl 5.22 and up).</p>
 
-<h4>Try::Tiny</h4>
-
-<div class="module">
-    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Tiny">Try::Tiny</a></div>
-    <div class="column">++ rating: 153</div>
-    <div class="column">Last update: 2017</div>
-    <div class="column">Maintainer: ETHER</div>
-</div>
-
-<p>Try::Tiny is the most popular module for handling exceptions.  For
-years it was the best solution available if you wanted try/catch syntax.  </p>
-
-<p>Try::Tiny is an order of magnitude slower than either <code>eval</code> or
-Syntax::Keyword::Try.  It depends on your application if this is a problem or
-not.  For many web applications its not important. </p>
-
-<p>Also if you are a visitor from another language, Try::Tiny has syntax quirks
-which make it not quite the try/catch you are used to.</p>
+<p>See the tutorial on <a href="/essentials/try-catch/">Handling
+exceptions with Syntax::Keyword::Try</a>.  </p>
 
 <h4>Try::Tiny::Tiny</h4>
 
@@ -265,8 +270,8 @@ anywhere its loaded in your stack.  My benchmarks showed performance went from
 an order of magnitude improvement.</p>
 
 <p>Unlike the other modules reviewed here, Try::Tiny::Tiny isn&#39;t really intended
-as a replacement solution for die/eval.  Its intended as a fix for dependencies
-that use Try::Tiny.</p>
+as a replacement solution for die/eval.  It&#39;s intended as a fix for
+dependencies that use Try::Tiny.</p>
 
 <h4>Try::Catch</h4>
 
@@ -294,7 +299,7 @@ semicolon at the end.</p>
 
 <p>TryCatch has first class try/catch semantics and type checking on the catch
 block.  My benchmarks showed this module has the same performance
-as Syntax::Keyword::Try.  It never achieved much popularity because its
+as Syntax::Keyword::Try.  It never was never broadly adopted because its
 dependencies include Devel::Declare
 (see the <a href="https://metacpan.org/pod/Devel::Declare#WARNING">warning</a>) and Moose (lots of
 dependencies).  It also lacks a <code>finally</code> block.</p>

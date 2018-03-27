@@ -12,7 +12,7 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>Minimum Viable Perl</title>
+        <title>Handling exceptions with try/catch - Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
@@ -74,6 +74,7 @@
       <ul>
         <li><a href="/essentials/introduction/">2.1. Introduction</a></li>
         <li><a href="/essentials/die-eval/">2.2. Exceptions with die/eval</a></li>
+        <li><a href="/essentials/try-catch/">2.3. Exceptions with try/catch</a></li>
       </ul>
     </li>
     <li class="dependencies sub-menu">
@@ -147,12 +148,21 @@
 
                 <main>
                     <div class="chapter">Chapter 2. Essential skills</div>
-                    <h1 class="section">. </h1>
+                    <h1 class="section">2.3. Handling exceptions with try/catch</h1>
                     <p><a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a> is the
 perhaps the best way to handle exceptions in Perl. It adds <code>try</code> and <code>catch</code>
 keywords to Perl. It has no dependencies and plays nicely with perltidy and
-perlcritic.  However, its 2.6 times slower than <code>eval()</code> and its not include in
-the Perl core so you will need to install it.</p>
+perlcritic.  However, its 2.6 times slower than <code>eval()</code> and its not included
+in the Perl core so you will need to install it.  </p>
+
+<div class="tip">
+    <div class="tip-title">Alternate<br>Solutions</div>
+    <div class="tip-content" style="margin-left:6rem">
+        Several modules exist on MetaCPAN which add try/catch keywords to Perl.
+        To find out which one is best for you, see <a href="/cpan/exceptions/">Whats the best 
+way to handle exceptions?</a>
+    </div>
+</div>
 
 <h4>Throwing exceptions</h4>
 
@@ -226,7 +236,7 @@ finally { say &quot;hello&quot; }
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-</div>
+<a alt="Left" class="left" href="/essentials/die-eval/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/dependencies/perl5lib/"><i class="fa fa-chevron-right"></i></a></div>
 
 
         </div>
