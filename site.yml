@@ -123,10 +123,10 @@ site:
                       number:    '2.2'
                       title:     'Handling exceptions with die/eval'
                       href:      '/essentials/die-eval/'
-#                    - toc_title: 'Exceptions with try/catch'
-#                      number:    '2.3'
-#                      title:     'Handling exceptions with try/catch'
-#                      href:      '/essentials/try-catch/'
+                    - toc_title: 'Exceptions with try/catch'
+                      number:    '2.3'
+                      title:     'Handling exceptions with try/catch'
+                      href:      '/essentials/try-catch/'
 #                    - title:     'File IO with open() and close()'
 #                      toc_title: 'File IO with open/close'
 #                      number:    '2.4'
@@ -153,7 +153,8 @@ site:
                   anchor: 'cpan'
                   articles:
                     - {number: '4.1', title: 'Introduction',             href: '/cpan/introduction/'}
-                    - {number: '4.2', title: 'Exceptions',               href: '/cpan/exceptions/'}
+                    - {number: '4.2', toc_title: 'Exceptions',           href: '/cpan/exceptions/', title: "What's the best way to handle exceptions?"}
+#                   - {number: '4.3', toc_title: 'Files',                href: '/cpan/files/', title: "Some awesome modules for dealing with files"}
 #                    - {number: '4.1', title: 'JSON',                     href: '/cpan/json/'}
 #                    - {number: '4.1', title: 'XML',                      href: '/cpan/xml/'}
 #                    - {number: '4.1', title: 'HTML',                     href: '/cpan/html/'}

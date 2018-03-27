@@ -43,6 +43,29 @@ For more information check out the official Perl docs for
 [die](http://perldoc.perl.org/functions/die.html) and
 [eval](http://perldoc.perl.org/functions/eval.html).
 
+#### Try::Tiny
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Tiny">Try::Tiny</a></div>
+    <div class="column">++ rating: 153</div>
+    <div class="column">Last update: 2017</div>
+    <div class="column">Maintainer: ETHER</div>
+</div>
+
+Try::Tiny is the most popular and defacto standard module in the communtiy for
+handling exceptions.  For years it was the best solution available if you
+wanted try/catch syntax.  
+
+Try::Tiny is an order of magnitude slower than either `eval` or
+Syntax::Keyword::Try.  It depends on your application if this is a problem or
+not.  For many web applications its not important. 
+
+Also if you are a visitor from another language, Try::Tiny has syntax quirks
+which make it not quite the try/catch you are used to.
+
+Be sure to evaluate Syntax::Keyword::Try as well as its probably a better
+solution for most people.
+
 
 #### Syntax::Keyword::Try
 
@@ -67,30 +90,12 @@ much the same thing as `eval`.  It also has no dependencies.
 While this module introduces new keywords to the language, it still plays
 nicely with perlcritic and perltidy.
 
-<!--
-See my tutorial on <a
+This module requires XS and is only an option for users with Perl 5.16 and up
+(Windows users need Perl 5.22 and up).
+
+See the tutorial on <a
 href="/essentials/syntax-keyword-try/">Handling
-exceptions with try/catch</a>.  
--->
-
-#### Try::Tiny
-
-<div class="module">
-    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/Try::Tiny">Try::Tiny</a></div>
-    <div class="column">++ rating: 153</div>
-    <div class="column">Last update: 2017</div>
-    <div class="column">Maintainer: ETHER</div>
-</div>
-
-Try::Tiny is the most popular module for handling exceptions.  For
-years it was the best solution available if you wanted try/catch syntax.  
-
-Try::Tiny is an order of magnitude slower than either `eval` or
-Syntax::Keyword::Try.  It depends on your application if this is a problem or
-not.  For many web applications its not important. 
-
-Also if you are a visitor from another language, Try::Tiny has syntax quirks
-which make it not quite the try/catch you are used to.
+exceptions with Syntax::Keyword::Try</a>.  
 
 #### Try::Tiny::Tiny
 

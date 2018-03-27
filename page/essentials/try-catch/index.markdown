@@ -1,8 +1,17 @@
 [Syntax::Keyword::Try](https://metacpan.org/pod/Syntax::Keyword::Try) is the
 perhaps the best way to handle exceptions in Perl. It adds `try` and `catch`
 keywords to Perl. It has no dependencies and plays nicely with perltidy and
-perlcritic.  However, its 2.6 times slower than `eval()` and its not include in
-the Perl core so you will need to install it.
+perlcritic.  However, its 2.6 times slower than `eval()` and its not included
+in the Perl core so you will need to install it.  
+
+<div class="tip">
+    <div class="tip-title">Alternate<br>Solutions</div>
+    <div class="tip-content" style="margin-left:6rem">
+        Several modules exist on MetaCPAN which add try/catch keywords to Perl.
+        To find out which one is best for you, see <a href="/cpan/exceptions/">Whats the best 
+way to handle exceptions?</a>
+    </div>
+</div>
 
 #### Throwing exceptions
 To throw an exception call `die()`.  Other languages call it `throw()`, but in

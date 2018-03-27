@@ -6,12 +6,10 @@ you will need to understand it.
 <div class="tip">
     <div class="tip-title">Alternate<br>Solution</div>
     <div class="tip-content" style="margin-left:6rem">
-        A number of modules exist which add try/catch keywords to Perl. <a
-        href="/cpan/exceptions">Recommended Libraries</a> can help you choose the module
-        thats right for you.  For most people Syntax::Keyword::Try is the best
-        way to handle exceptions.  As always there are trade offs.  See <a
-href="/essentials/syntax-keyword-try/"> Handling
-exceptions with Syntax::Keyword::Try</a> (article available next week).
+        If your prefer try/catch several modules exist that add those keywords to Perl. 
+        As always there are some trade offs.  See <a
+href="/essentials/try-catch/"> Handling
+exceptions with try/catch</a> for details.
     </div>
 </div>
 
