@@ -104,9 +104,8 @@ site:
                     - {number: '1.4',  title: 'Functions',           href: '/basics/functions/'}
                     - {number: '1.5',  title: 'Conditionals',        href: '/basics/flow/'}
                     - {number: '1.6',  title: 'Loops',               href: '/basics/loops/'}
-                    - {number: '1.7',  title: 'Exceptions',          href: '/basics/exceptions/'}
-                    - {number: '1.8',  title: 'Regular expressions', href: '/basics/regexps/'}
-                    - {number: '1.9',  title: 'Files',               href: '/basics/files/'}
+                    - {number: '1.7',  title: 'Regular expressions', href: '/basics/regexps/'}
+                    - {number: '1.8',  title: 'Files',               href: '/basics/files/'}
 #                   - {number: '1.11', title: 'Modules',             href: '/basics/modules/'}
 #                   - {number: '1.12', title: 'Comments and POD',    href: '/basics/pod/'}
 #                   - {number: '1.13', title: 'Scope',               href: '/basics/scope/'}
@@ -145,9 +144,8 @@ site:
                   articles:
                     - {number: '3.1', title: 'Loading libraries and $PERL5LIB',           href: '/dependencies/perl5lib/', toc_title: 'Loading libraries ($PERL5LIB)'}
                     - {number: '3.2', title: 'Installing libraries with cpanm',           href: '/dependencies/cpanm/',    toc_title: 'Installing libraries (cpanm)'}
-                    - {number: '3.3', title: 'Choosing libraries on MetaCPAN',            href: '/dependencies/metacpan/', toc_title: 'Choosing libraries (MetaCPAN)'}
-                    - {number: '3.4', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
-                    - {number: '3.5', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
+                    - {number: '3.3', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
+                    - {number: '3.4', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
                 - title: 'Recommended libraries'
                   number: 4
                   anchor: 'cpan'
