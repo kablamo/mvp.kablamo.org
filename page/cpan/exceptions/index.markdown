@@ -34,7 +34,7 @@ explaining this idiom to a beginner is going make them want to run the other
 direction.
 
 However, over 40% of Perl developers prefer to handle exceptions with die/eval
-so every Perl developer needs to be familiar with the syntax and pitfalls.
+so you will want to be familiar with the syntax and pitfalls.
 
 I explain the syntax and how to handle all the potential pitfalls in [Handling
 exceptions with die/eval](/essentials/die-eval/).  
@@ -58,12 +58,12 @@ try/catch syntax.
 
 However, Try::Tiny is an order of magnitude slower than either `eval` or
 Syntax::Keyword::Try.  It depends on your application if this is a problem or
-not.  For many web applications its not important. 
+not.  For many applications its not important. 
 
 Also if you are a visitor from another language, Try::Tiny has syntax quirks
 which make it not quite the try/catch you are used to.
 
-Be sure to evaluate Syntax::Keyword::Try as its probably a better solution for
+Be sure to check out Syntax::Keyword::Try as its probably a better solution for
 most people.
 
 
