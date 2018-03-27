@@ -146,7 +146,7 @@ semicolon at the end.
 
 TryCatch has first class try/catch semantics and type checking on the catch
 block.  My benchmarks showed this module has the same performance
-as Syntax::Keyword::Try.  It never achieved much popularity because its
+as Syntax::Keyword::Try.  It never was never broadly adopted because its
 dependencies include Devel::Declare
 (see the [warning](https://metacpan.org/pod/Devel::Declare#WARNING)) and Moose (lots of
 dependencies).  It also lacks a `finally` block.
