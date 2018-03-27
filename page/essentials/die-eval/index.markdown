@@ -6,7 +6,7 @@ you will need to understand it.
 <div class="tip">
     <div class="tip-title">Alternate<br>Solution</div>
     <div class="tip-content" style="margin-left:6rem">
-        If your prefer try/catch, several modules exist that add try/catch keywords to Perl. 
+        If your prefer try/catch, several modules exist that add try/catch syntax to Perl. 
         As always there are some trade offs.  See <a
 href="/essentials/try-catch/"> Handling
 exceptions with try/catch</a> for details.
@@ -15,9 +15,8 @@ exceptions with try/catch</a> for details.
 
 #### Throwing exceptions
 
-To throw an exception call `die()`.  Other languages call it `throw()`, but in
-Perl its called `die()`.  If the exception is not caught, an error message is
-displayed to STDERR and the process exits with a non-zero value.
+To throw an exception call `die()`.  If the exception is not caught, an error
+message is displayed to STDERR and the process exits with a non-zero value.
 
     die "Something bad happened";
     # prints "Something bad happened at line 123." 
@@ -25,11 +24,9 @@ displayed to STDERR and the process exits with a non-zero value.
 
 #### Catching exceptions
 
-To catch an exception, use `eval()`. Other languages call it `try()` but in
-Perl its called `eval()` and its a little different.  `eval()` parses,
-compiles, and evaluates a block of code at compile time and catches any
-exceptions that are raised at runtime.  The exception is placed in the global
-variable `$@`.
+To catch an exception, use `eval()`.  `eval()` parses, compiles, and evaluates
+a block of code at compile time and catches any exceptions that are raised at
+runtime.  The exception is placed in the global variable `$@`.  
 
     eval { die "Something bad happened" }; # try (and catch)
     warn $@ if $@;                         # handle exception
