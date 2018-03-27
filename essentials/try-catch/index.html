@@ -150,25 +150,28 @@
                     <div class="chapter">Chapter 2. Essential skills</div>
                     <h1 class="section">2.3. Handling exceptions with try/catch</h1>
                     <p><a href="https://metacpan.org/pod/Syntax::Keyword::Try">Syntax::Keyword::Try</a> is the
-perhaps the best way to handle exceptions in Perl. It adds <code>try</code> and <code>catch</code>
-keywords to Perl. It has no dependencies and plays nicely with perltidy and
-perlcritic.  However, its 2.6 times slower than <code>eval()</code> and its not included
-in the Perl core so you will need to install it.  </p>
+perhaps the best way to handle exceptions in Perl. As always there are trade
+offs and it depends on your goals and preferences. </p>
+
+<p>Syntax::Keyword::Try adds <code>try</code> and <code>catch</code> keywords to Perl. It has no
+dependencies and plays nicely with perltidy and perlcritic.  However, it is 2.6
+times slower than <code>eval()</code> and it&#39;s not included in the Perl core so you will
+need to install it.  </p>
 
 <div class="tip">
     <div class="tip-title">Alternate<br>Solutions</div>
     <div class="tip-content" style="margin-left:6rem">
-        Several modules exist on MetaCPAN which add try/catch keywords to Perl.
-        To find out which one is best for you, see <a href="/cpan/exceptions/">Whats the best 
-way to handle exceptions?</a>
+        There is more than one way to handle exceptions in Perl and several modules
+on MetaCPAN which add try/catch keywords to Perl.  To find out which solution
+is best for you, see <a href="/cpan/exceptions/">Whats the best way to handle
+exceptions?</a>
     </div>
 </div>
 
 <h4>Throwing exceptions</h4>
 
-<p>To throw an exception call <code>die()</code>.  Other languages call it <code>throw()</code>, but in
-Perl its called <code>die()</code>.  If the exception is not caught, an error message is
-displayed to STDERR and the process exits with a non-zero value.
+<p>To throw an exception call <code>die()</code>.  If the exception is not caught, an error
+message is displayed to STDERR and the process exits with a non-zero value.
 Syntax::Keyword::Try doesn&#39;t change how exceptions are thrown.  </p>
 
 <pre><code>die &quot;Something bad happened&quot;;
