@@ -156,7 +156,7 @@ you will need to understand it.</p>
 <div class="tip">
     <div class="tip-title">Alternate<br>Solution</div>
     <div class="tip-content" style="margin-left:6rem">
-        If your prefer try/catch several modules exist that add those keywords to Perl. 
+        If your prefer try/catch, several modules exist that add try/catch syntax to Perl. 
         As always there are some trade offs.  See <a href="/essentials/try-catch/"> Handling
 exceptions with try/catch</a> for details.
     </div>
@@ -164,9 +164,8 @@ exceptions with try/catch</a> for details.
 
 <h4>Throwing exceptions</h4>
 
-<p>To throw an exception call <code>die()</code>.  Other languages call it <code>throw()</code>, but in
-Perl its called <code>die()</code>.  If the exception is not caught, an error message is
-displayed to STDERR and the process exits with a non-zero value.</p>
+<p>To throw an exception call <code>die()</code>.  If the exception is not caught, an error
+message is displayed to STDERR and the process exits with a non-zero value.</p>
 
 <pre><code>die &quot;Something bad happened&quot;;
 # prints &quot;Something bad happened at line 123.&quot; 
@@ -175,11 +174,9 @@ displayed to STDERR and the process exits with a non-zero value.</p>
 
 <h4>Catching exceptions</h4>
 
-<p>To catch an exception, use <code>eval()</code>. Other languages call it <code>try()</code> but in
-Perl its called <code>eval()</code> and its a little different.  <code>eval()</code> parses,
-compiles, and evaluates a block of code at compile time and catches any
-exceptions that are raised at runtime.  The exception is placed in the global
-variable <code>$@</code>.</p>
+<p>To catch an exception, use <code>eval()</code>.  <code>eval()</code> parses, compiles, and evaluates
+a block of code at compile time and catches any exceptions that are raised at
+runtime.  The exception is placed in the global variable <code>$@</code>.  </p>
 
 <pre><code>eval { die &quot;Something bad happened&quot; }; # try (and catch)
 warn $@ if $@;                         # handle exception
