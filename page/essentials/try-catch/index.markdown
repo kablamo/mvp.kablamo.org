@@ -1,11 +1,11 @@
-[Syntax::Keyword::Try](https://metacpan.org/pod/Syntax::Keyword::Try) is the
-perhaps the best way to handle exceptions in Perl. As always there are trade
-offs and it depends on your goals and preferences. 
+One way to handle exceptions in Perl is with
+[Syntax::Keyword::Try](https://metacpan.org/pod/Syntax::Keyword::Try) which
+adds `try` and `catch` keywords to Perl. As always there are trade offs and it
+depends on your goals and preferences. 
 
-Syntax::Keyword::Try adds `try` and `catch` keywords to Perl. It has no
-dependencies and plays nicely with perltidy and perlcritic.  However, it is 2.6
-times slower than `eval()` and it's not included in the Perl core so you will
-need to install it.  
+It has no dependencies and plays nicely with perltidy and perlcritic.  However,
+it is 2.6 times slower than `eval()` and it's not included in the Perl core so
+you will need to install it.  
 
 <div class="tip">
     <div class="tip-title">Alternate<br>Solutions</div>
