@@ -1,3 +1,5 @@
+#### Table of Contents
+
 - die/eval
 - Syntax::Keyword::Try
 - Try::Tiny
