@@ -12,7 +12,7 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>Minimum Viable Perl</title>
+        <title>File IO - Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
@@ -90,6 +90,7 @@
       <ul>
         <li><a href="/cpan/introduction/">4.1. Introduction</a></li>
         <li><a href="/cpan/exceptions/">4.2. Exceptions</a></li>
+        <li><a href="/cpan/files/">4.3. File IO</a></li>
       </ul>
     </li>
     <li class="oo sub-menu">
@@ -146,15 +147,20 @@
 
                 <main>
                     <div class="chapter">Chapter 4. Recommended libraries</div>
-                    <h1 class="section">. </h1>
-                    <p>High Level Modules</p>
+                    <h1 class="section">4.3. File IO</h1>
+                    <p>If you are working with files in Perl, be sure to consider these fine CPAN
+modules.</p>
+
+<h3>Table Of Contents</h3>
+
+<p class="toc_section">High Level Modules</p>
 
 <ul>
 <li>Path::Tiny</li>
 <li>IO::All</li>
 </ul>
 
-<p>Misc Useful Modules</p>
+<p class="toc_section">Misc Useful Modules</p>
 
 <ul>
 <li>Path::Iterator::Rule</li>
@@ -163,7 +169,7 @@
 <li>File::ReadBackwards</li>
 </ul>
 
-<p>Lower Level Modules</p>
+<p class="toc_section">Lower Level Modules</p>
 
 <ul>
 <li>Cwd</li>
@@ -178,15 +184,13 @@
 <li>File::Temp</li>
 </ul>
 
+<p><br><br></p>
+
 <h3>High Level Modules</h3>
 
-<p>These modules provide a single unified object oriented interface for dealing
-with files and directories.</p>
-
-<ul>
-<li>Path::Tiny</li>
-<li>IO::All</li>
-</ul>
+<p>These high level modules making working with files and directories easier by
+providing convenience and safety in a single unified object oriented interface.
+For most situations choosing one of these is probably the best way to go.</p>
 
 <h4>Path::Tiny</h4>
 
@@ -201,7 +205,7 @@ with files and directories.</p>
 interface for dealing with files and directories.  Its probably the most
 popular high level module.</p>
 
-<p>Path::Tiny began its life as a minimalist rewrite of the venerable Path::Class
+<p>Path::Tiny began life as a minimalist rewrite of the venerable Path::Class
 module with a improved user interface.  Over the years its grown in popularity
 and has become a mature, full featured library and one of the most common
 choices for dealing with files.  These days anyone interested in Path::Class is
@@ -230,14 +234,9 @@ its powerful, concise, and convenient or makes for hard to read code at times.</
 <p>Developers visiting Perl from another language are probably going to be more
 comfortable with Path::Tiny.</p>
 
-<h3>Misc Useful Modules</h3>
+<p><br><br></p>
 
-<ul>
-<li>Path::Iterator::Rule</li>
-<li>File::chmod</li>
-<li>File::pushd</li>
-<li>File::ReadBackwards</li>
-</ul>
+<h3>Misc Useful Modules</h3>
 
 <h4>Path::Iterator::Rule</h4>
 
@@ -308,24 +307,13 @@ changing directory locally.</p>
 
 <p>File::ReadBackwards can read in file contents backwards line by line.</p>
 
+<p><br><br></p>
+
 <h3>Lower Level Modules</h3>
 
 <p>Modules like Path::Tiny and IO::All are built on top of lower level modules
 such as these.  None of these provide an object oriented user interface unless
 otherwise noted.</p>
-
-<ul>
-<li>Cwd</li>
-<li>File::Basename</li>
-<li>File::Copy</li>
-<li>File::Copy::Recursive</li>
-<li>File::MimeInfo</li>
-<li>File::Path</li>
-<li>File::Slurp</li>
-<li>File::Spec</li>
-<li>File::stat</li>
-<li>File::Temp</li>
-</ul>
 
 <h4>Cwd</h4>
 
@@ -424,9 +412,9 @@ filenames.  It&#39;s not OO.</p>
 </div>
 
 <p>Perl&#39;s builtin <code>stat()</code> function returns a list of 13 file attributes: size,
-mode, uid, gid, etc.  All you need to do you is remember the order of all those
-elements :S.  File::stat adds sanity to your life by
-adding an object oriented user interface to <code>stat()</code>.  </p>
+mode, uid, gid, etc.  All you need to do is remember the order of all those
+elements.  File::stat adds sanity by providing an object oriented user
+interface to <code>stat()</code>.  </p>
 
 <h4>File::Temp</h4>
 
@@ -446,7 +434,7 @@ temporary file once the variable has gone out of scope.</p>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-</div>
+<a alt="Left" class="left" href="/cpan/exceptions/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/story/"><i class="fa fa-chevron-right"></i></a></div>
 
 
         </div>
