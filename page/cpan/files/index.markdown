@@ -1,4 +1,8 @@
-#### TABLE OF CONTENTS
+If you are working with files in Perl, be sure to consider these fine CPAN
+modules.
+
+
+### Table Of Contents
 
 <p class="toc_section">High Level Modules</p>
 
@@ -27,7 +31,7 @@
 
 
 
-<br><br><br>
+<br><br>
 ### High Level Modules
 
 These high level modules making working with files and directories easier by
@@ -79,7 +83,7 @@ comfortable with Path::Tiny.
 
 
 
-<br><br><br>
+<br><br>
 ### Misc Useful Modules
 
 
@@ -155,7 +159,7 @@ File::ReadBackwards can read in file contents backwards line by line.
 
 
 
-<br><br><br>
+<br><br>
 ### Lower Level Modules
 
 Modules like Path::Tiny and IO::All are built on top of lower level modules

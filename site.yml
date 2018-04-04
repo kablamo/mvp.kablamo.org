@@ -151,8 +151,8 @@ site:
                   anchor: 'cpan'
                   articles:
                     - {number: '4.1', title: 'Introduction',             href: '/cpan/introduction/'}
-                    - {number: '4.2', toc_title: 'Exceptions',           href: '/cpan/exceptions/', title: "What's the best way to handle exceptions?"}
-#                   - {number: '4.3', toc_title: 'Files',                href: '/cpan/files/', title: "Some awesome modules for dealing with files"}
+                    - {number: '4.2', toc_title: 'Exceptions',           href: '/cpan/exceptions/', title: "Handling exceptions"}
+                    - {number: '4.3', toc_title: 'File IO',              href: '/cpan/files/', title: "File IO" }
 #                    - {number: '4.1', title: 'JSON',                     href: '/cpan/json/'}
 #                    - {number: '4.1', title: 'XML',                      href: '/cpan/xml/'}
 #                    - {number: '4.1', title: 'HTML',                     href: '/cpan/html/'}

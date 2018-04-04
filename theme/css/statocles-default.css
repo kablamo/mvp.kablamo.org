@@ -140,10 +140,21 @@ main .chapter {
     color: #fff;
     border-radius: 4px 4px 0 0;
 }
+main h3 {
+    font-style: italic;
+    text-decoration: underline;
+}
 
 main h4.subtitle {
     margin-top: 0;
     margin-bottom: 0rem;
+}
+.toc_section {
+    font-weight: bold;
+/*
+    font-style: italic;
+    text-decoration: underline;
+*/
 }
 
 header aside {
