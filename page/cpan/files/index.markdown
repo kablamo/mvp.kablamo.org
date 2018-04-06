@@ -25,6 +25,7 @@ modules.
 - File::MimeInfo
 - File::Path
 - File::Slurp
+- File::Slurper
 - File::Spec
 - File::stat
 - File::Temp
@@ -239,7 +240,20 @@ File::Path can create or remove directory trees.
 
 File::Slurp is not recommended.  This was a popular module for a while so
 you may see this in older code.  It's abandoned and has critical flaws which
-are not fixed -- including issues with unicode.  
+are not fixed including issues with unicode.  If you like this functionality
+try File::Slurper (or better yet Path::Tiny or IO::All).
+
+#### File::Slurper
+
+<div class="module">
+    <div class="column">MetaCPAN: <a href="https://metacpan.org/pod/File::Slurper">File::Slurper</a></div>
+    <div class="column">++ rating: 35</div>
+    <div class="column">Last update: 2018</div>
+    <div class="column">Maintainer: LEONT</div>
+</div>
+
+File::Slurper provides a way to do fast and correct slurping (reading) and
+spewing (writing).  All functions throw exceptions on errors.
 
 #### File::Spec
 
