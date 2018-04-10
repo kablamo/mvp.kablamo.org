@@ -18,13 +18,13 @@ use [pmtools](https://metacpan.org/pod/pmtools).
 
 #### I don't want to install pmtools
 
-To find the version number:
+To find out what version of a module is installed:
 
     $ perl -e 'use Moo 99999'
     Moo version 9999 required--this is only version 2.003003 at -e line 1.
     BEGIN failed--compilation aborted at -e line 1.
 
-To find the location:
+To find the location of an installed module:
 
     $ perldoc -l Moo
     /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1/Moo.pm
