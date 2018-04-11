@@ -46,7 +46,5 @@ I'd be blown away if you decided to support this work on
 This book is on [Github](https://github.com/kablamo/mvp.kablamo.org).  Feel
 free to report issues or send feedback.
 
-This work is licensed under a Creative Commons Attribution-Noncommercial-Share
-Alike 3.0 United States License.  For more details, see:
-
-    http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+This work is licensed under the [Creative Commons Attribution-Noncommercial-Share
+Alike 3.0 United States License](http://creativecommons.org/licenses/by-nc-sa/3.0/us/).
