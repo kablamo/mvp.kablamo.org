@@ -12,15 +12,15 @@
         <link href="/theme/css/statocles-default.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <title>The story of Perl OO - Minimum Viable Perl</title>
+        <title>Minimum Viable Perl</title>
         <meta content="Statocles 0.086" name="generator">
         
 
         <script>
             $( document ).ready(function() {
                 $('.sub-menu ul').hide();
-                $('.sub-menu.oo ul').show();
-                $('.sub-menu.oo>a>div').toggleClass("fa-caret-up fa-caret-down");
+                $('.sub-menu.essentials ul').show();
+                $('.sub-menu.essentials>a>div').toggleClass("fa-caret-up fa-caret-down");
 
                 $(".sub-menu a").click(function () {
                     $(this).parent(".sub-menu").siblings().children('ul').slideUp("50");
@@ -56,7 +56,7 @@
 <div class="animated bounceInDown">
   <ul>
     <li class="basics sub-menu">
-      <a href="/oo/story/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
+      <a href="/essentials/fileio-oo/#basics"><div class="fa fa-caret-down caret"></div>1. Syntax</a>
       <ul>
         <li><a href="/basics/hello/">1.1. Hello world</a></li>
         <li><a href="/basics/variables/">1.2. Variables</a></li>
@@ -69,7 +69,7 @@
       </ul>
     </li>
     <li class="dependencies sub-menu">
-      <a href="/oo/story/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
+      <a href="/essentials/fileio-oo/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
         <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
         <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
@@ -78,7 +78,7 @@
       </ul>
     </li>
     <li class="essentials sub-menu">
-      <a href="/oo/story/#essentials"><div class="fa fa-caret-down caret"></div>3. Essential skills</a>
+      <a href="/essentials/fileio-oo/#essentials"><div class="fa fa-caret-down caret"></div>3. Essential skills</a>
       <ul>
         <li><a href="/essentials/introduction/">3.1. Introduction</a></li>
         <li><a href="/essentials/die-eval/">3.2. Exceptions with die/eval</a></li>
@@ -86,7 +86,7 @@
       </ul>
     </li>
     <li class="cpan sub-menu">
-      <a href="/oo/story/#cpan"><div class="fa fa-caret-down caret"></div>4. Recommended libraries</a>
+      <a href="/essentials/fileio-oo/#cpan"><div class="fa fa-caret-down caret"></div>4. Recommended libraries</a>
       <ul>
         <li><a href="/cpan/introduction/">4.1. Introduction</a></li>
         <li><a href="/cpan/exceptions/">4.2. Exceptions</a></li>
@@ -94,7 +94,7 @@
       </ul>
     </li>
     <li class="oo sub-menu">
-      <a href="/oo/story/#oo"><div class="fa fa-caret-down caret"></div>5. Object oriented programming</a>
+      <a href="/essentials/fileio-oo/#oo"><div class="fa fa-caret-down caret"></div>5. Object oriented programming</a>
       <ul>
         <li><a href="/oo/story/">5.1. The story of Perl OO</a></li>
         <li><a href="/oo/classes/">5.2. Classes and objects</a></li>
@@ -105,14 +105,14 @@
       </ul>
     </li>
     <li class="debugging sub-menu">
-      <a href="/oo/story/#debugging"><div class="fa fa-caret-down caret"></div>6. Debugging</a>
+      <a href="/essentials/fileio-oo/#debugging"><div class="fa fa-caret-down caret"></div>6. Debugging</a>
       <ul>
         <li><a href="/debugging/data-printer/">6.1. Examining data structures</a></li>
         <li><a href="/debugging/stack-trace/">6.2. Forcing stack traces</a></li>
       </ul>
     </li>
     <li class="testing sub-menu">
-      <a href="/oo/story/#testing"><div class="fa fa-caret-down caret"></div>7. Testing</a>
+      <a href="/essentials/fileio-oo/#testing"><div class="fa fa-caret-down caret"></div>7. Testing</a>
       <ul>
         <li><a href="/testing/intro/">7.1. Introduction</a></li>
         <li><a href="/testing/warnings/">7.2. Warnings and exceptions</a></li>
@@ -122,7 +122,7 @@
       </ul>
     </li>
     <li class="reference sub-menu section">
-      <a href="/oo/story/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
+      <a href="/essentials/fileio-oo/#basics"><div class="fa fa-caret-down caret"></div>Official Perl docs</a>
       <ul>
         <li><a href="https://perldoc.perl.org/index-functions.html">Functions A-Z</a></li>
         <li><a href="https://perldoc.perl.org/index-functions-by-cat.html">Functions by category</a></li>
@@ -146,54 +146,87 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 5. Object oriented programming</div>
-                    <h1 class="section">5.1. The story of Perl OO</h1>
-                    <p>Perl OO is difficult to grok for outsiders because the syntax and keywords are
-unfortunately not the standard ones that all the other languages use.  However
-the concepts are the same and all the same functionality (and more) is there.</p>
+                    <div class="chapter">Chapter 3. Essential skills</div>
+                    <h1 class="section">. </h1>
+                    <p>When working with files in Perl, its often safer and more convenient to use a
+higher level module like Path::Tiny.</p>
 
-<h4>Native Perl OO</h4>
+<div class="tip">
+    <div class="tip-title">Alternate<br>Solutions</div>
+    <div class="tip-content" style="margin-left:6rem">
+        There is more than one way to do file IO in Perl and many related
+modules on MetaCPAN.  To find out which solution is best for you, see the
+article on <a href="/cpan/files/">File IO</a> in the Recommended Modules
+chapter.
+    </div>
+</div>
 
-<p>Native Perl OO is solid but strange.  Essentially OO in the Perl core is
-unfinished: it has good fundamentals but lacks much of the sugary syntax
-developers in other languages are accustomed to.  For various reasons native
-Perl OO has been stuck in this limbo for years although there have been and
-continue to be many attempts to finish and polish it.  <em>However:</em></p>
+<p>To do file io using core Perl use the 
+<a href="https://perldoc.perl.org/functions/open.html"><code>open()</code></a> and <a href="https://perldoc.perl.org/functions/close.html"><code>close()</code></a> functions. <br>
+Another common solution which is simpler, less quirky, and object oriented is to use
+<a href="https://metacpan.org/pod/Path::Tiny">Path::Tiny</a>.</p>
 
-<h4>Modern Perl</h4>
+<h4>Creating Path::Tiny objects</h4>
 
-<p>The Perl language is so flexible you can essentially define your
-own keywords in a library.  Several groups of developers used this
-flexibility to create a (somewhat) more normal OO sugar syntax on top of Perl&#39;s
-native OO fundamentals which make it much easier to use the power thats there. <br>
-These new libraries created a sort of rebirth in Perl as OO was now much
-easier and had all the modern features you could find in other languages.  This
-rebirth is commonly referred to as &quot;Modern Perl&quot;.</p>
+<pre><code>use Path::Tiny;
 
-<h4>Moo vs Moose</h4>
+my $dir  = path(&quot;/tmp&quot;);
+my $file = path(&quot;foo.txt&quot;);
+</code></pre>
 
-<p>There are many OO systems (libraries) and there are new ones all the time.  But
-over the years community consensus has landed on
-<a href="https://metacpan.org/pod/Moo">Moo</a> and <a href="https://metacpan.org/pod/Moose">Moose</a>
-libraries.  </p>
+<h4>Navigating the filesystem</h4>
 
-<p>Both libraries provide all the modern OO techniques you are
-accustomed to in your other favorite languages (albeit with some quirky Perlish
-syntax).  I&#39;m over simplifying but to keep things concise I&#39;ll say that</p>
+<pre><code>my $subdir = $dir-&gt;child(&quot;foo&quot;);
+my $file   = $subdir-&gt;child(&quot;bar.txt&quot;);
 
-<ol>
-<li>Moo is essentially a subset of Moose and </li>
-<li>The main difference is that Moose provides introspection. </li>
-</ol>
+# Reading directories
 
-<p>This chapter teaches Moo.</p>
+for ( $dir-&gt;children ) { ... }
+
+my $iter = $dir-&gt;iterator;
+while ( my $next = $iter-&gt;() ) { ... }
+</code></pre>
+
+<h4>Reading files</h4>
+
+<pre><code>my $file = path(&quot;./foo.txt&quot;);
+
+# Read the entire file into a string
+my $contents = $file-&gt;slurp; 
+my $contents = $file-&gt;slurp_utf8;
+
+# Each line of the file is an item in the array
+my @lines = $file-&gt;lines; 
+my @lines = $file-&gt;lines_utf8;
+
+my ($head) = $file-&gt;lines( {count =&gt; 1} );
+my ($tail) = $file-&gt;lines( {count =&gt; -1} );
+</code></pre>
+
+<h4>Writing files</h4>
+
+<pre><code>my $file = path(&quot;./foo.txt&quot;);
+$file-&gt;spew( @data );
+$file-&gt;spew_utf8( @data );
+</code></pre>
+
+<h4>Stringifies as cleaned up path</h4>
+
+<pre><code>my $foo_file = path(&quot;./foo.txt&quot;);
+print $foo_file; # &quot;foo.txt&quot;
+</code></pre>
+
+<h4>For more info</h4>
+
+<p>Thats just an introduction.  There is more.  See the 
+<a href="https://metacpan.org/pod/Path::Tiny">documentation</a> for details.    </p>
 
 
                 </main>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/cpan/files/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/oo/classes/"><i class="fa fa-chevron-right"></i></a></div>
+</div>
 
 
         </div>

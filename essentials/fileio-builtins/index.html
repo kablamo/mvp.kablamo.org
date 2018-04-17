@@ -68,21 +68,21 @@
         <li><a href="/basics/files/">1.8. Files</a></li>
       </ul>
     </li>
-    <li class="essentials sub-menu">
-      <a href="/essentials/fileio-builtins/#essentials"><div class="fa fa-caret-down caret"></div>2. Essential skills</a>
+    <li class="dependencies sub-menu">
+      <a href="/essentials/fileio-builtins/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
-        <li><a href="/essentials/introduction/">2.1. Introduction</a></li>
-        <li><a href="/essentials/die-eval/">2.2. Exceptions with die/eval</a></li>
-        <li><a href="/essentials/try-catch/">2.3. Exceptions with try/catch</a></li>
+        <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
+        <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
+        <li><a href="/dependencies/carton/">2.3. Managing dependencies (Carton)</a></li>
+        <li><a href="/dependencies/pmtools/">2.4. What version? Where?</a></li>
       </ul>
     </li>
-    <li class="dependencies sub-menu">
-      <a href="/essentials/fileio-builtins/#dependencies"><div class="fa fa-caret-down caret"></div>3. Using libraries</a>
+    <li class="essentials sub-menu">
+      <a href="/essentials/fileio-builtins/#essentials"><div class="fa fa-caret-down caret"></div>3. Essential skills</a>
       <ul>
-        <li><a href="/dependencies/perl5lib/">3.1. Loading libraries ($PERL5LIB)</a></li>
-        <li><a href="/dependencies/cpanm/">3.2. Installing libraries (cpanm)</a></li>
-        <li><a href="/dependencies/carton/">3.3. Managing dependencies (Carton)</a></li>
-        <li><a href="/dependencies/pmtools/">3.4. What version? Where?</a></li>
+        <li><a href="/essentials/introduction/">3.1. Introduction</a></li>
+        <li><a href="/essentials/die-eval/">3.2. Exceptions with die/eval</a></li>
+        <li><a href="/essentials/try-catch/">3.3. Exceptions with try/catch</a></li>
       </ul>
     </li>
     <li class="cpan sub-menu">
@@ -146,59 +146,91 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 2. Essential skills</div>
+                    <div class="chapter">Chapter 3. Essential skills</div>
                     <h1 class="section">. </h1>
-                    <h1>File IO with builtin functions</h1>
+                    <h1>File IO with open() and close()</h1>
 
-<p>Perl provides many builtin functions for dealing with files.  Use of these
-built in functions is fairly common so its worth learning how they work.  </p>
+<p>Perl provides many built in functions for dealing with files.  They are commonly
+used so its worth learning how they work.  </p>
+
+<p>If built in functions are your weapon of choice, you will also want to know
+which CPAN module to use when things get more complicated (File::Spec,
+File::Temp, File::Copy, etc).  Check out the Recommended Modules chapter to see
+the list of <a href="http://localhost:3000/cpan/files/">recommended modules for working with
+files</a>.</p>
 
 <div class="tip">
-    <div class="tip-title">Best Practice</div>
-    <div class="tip-content">
-        Higher level modules like Path::Tiny and IO::All offer more safety
-        and convenience in most situations.
-        See <a href="/essentials/path-tiny/">File IO with Path::Tiny</a>
+    <div class="tip-title">Alternative<br>Solution</div>
+    <div class="tip-content" style="margin-left:6rem">
+        Higher level modules like Path::Tiny and IO::All offer more
+        safety, nicer syntax, and more over all convenience.  Developers visiting
+        from other languages will likely be more comfortable using one of these
+        modules.  See <a href="/essentials/path-tiny/">File IO with Path::Tiny</a>
         (article available next week).
     </div>
 </div>
 
-<h1><code>open($filehandle, $mode, $filename)</code></h1>
+<h1>Opening files</h1>
 
-<pre><code>open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
+<p>To open a file, call <code>open()</code>.  This will associate the file with a filehandle.
+The filehandle can be used to manipulate the file.  <code>open()</code> returns false on
+failure so don&#39;t forget to check for errors.  The error message can be found in
+the special global variable <code>$!</code>.</p>
+
+<pre><code>open(my $filehandle, $mode, $path)
+    or die &quot;Can&#39;t open $path: $!&quot;;
+
+open(my $filehandle, &quot;&lt;&quot;, &quot;/path/to/data.txt&quot;)
     or die &quot;Can&#39;t open data.txt for reading: $!&quot;;
 </code></pre>
 
-<p>Valid modes include:</p>
+<p>The mode indicates what level of access the filehandle will have.  When you see
+mode values, think: unix shell redirection operators.  Valid modes include:</p>
 
 <ul>
-<li><code>&lt;</code> create filehandle with read access</li>
-<li><code>&gt;</code> creaet filehandle with write access</li>
-<li><code>+&lt;</code> create filehandle with read/write access</li>
-<li><code>&gt;&gt;</code> create filehandle with append access</li>
+<li><code>&lt;</code> read access</li>
+<li><code>&gt;</code> write access</li>
+<li><code>+&lt;</code> read/write access</li>
+<li><code>&gt;&gt;</code> append access</li>
 </ul>
 
-<p><code>open()</code> has a ton of functionality and can be used in very complicated ways
-but its rarely something you would want to do.  See the official docs for
-<a href="">open()</a> for more info.</p>
-
-<p><code>$!</code>contains the system error string corresponding to the C <code>errno</code> variable.
-Many C library calls set <code>errno</code> on failure.  See the official docs for more:
+<p>See also in the official docs: <a href="https://perldoc.perl.org/perlopentut.html">opentut</a>, 
+<a href="https://perldoc.perl.org/functions/open.html">open()</a> and
 <a href="https://perldoc.perl.org/perlvar.html#Error-Variables">$!</a>.</p>
 
-<h1><code>print($filehandle, @list)</code></h1>
+<h1>Writing to files</h1>
 
-<pre><code># Write to a file
-print $filehandle &quot;I eat danger for breakfast, &quot;\n&quot;;
+<pre><code># Write to a filehandle
+open(my $filehandle, &#39;&gt;&#39;, $path) or die &quot;Can&#39;t open $path: $!&quot;;
+print $filehandle &quot;I eat danger for breakfast!\n&quot;;
 
 # Write to stdout
-print &quot;I eat danger for breakfast, &quot;\n&quot;;
-print STDOUT &quot;I eat danger for breakfast, &quot;\n&quot;;
+print &quot;I eat danger for breakfast!\n&quot;;
+print STDOUT &quot;I eat danger for breakfast, &quot;\n&quot;; # same as above
 </code></pre>
 
-<p>STDOUT and STDERR are always available as filehandles.</p>
+<p>For your convenience, Perl sets up some special filehandles that are already
+open when your program starts: STDOUT, STDERR, and STDIN.  </p>
 
-<h1>Example 1: Slurp the whole file into memory</h1>
+<p>Notice there is some unusual syntax happening:</p>
+
+<ol>
+<li>There is no comma after the filehandle.  </li>
+<li>The special filehandles STDOUT, STDERR, and STDIN don&#39;t use <a href="https://perldoc.perl.org/perlglossary.html#S">sigils</a> (the <code>$</code>)
+at the beginning of the identifier.</li>
+</ol>
+
+<h1>Closing files</h1>
+
+<pre><code>close($filehandle)
+   || warn &quot;close failed: $!&quot;;
+</code></pre>
+
+<p>Often you won&#39;t see developers closing filehandles explicitly.  This is
+because a filehandle variable that goes out of scope is garbage collected and
+closed automatically.  However this mechanism doesn&#39;t do any error checking.  </p>
+
+<h1>Example 1: Read the whole file into memory</h1>
 
 <pre><code># Open the file read-only
 open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
@@ -219,13 +251,73 @@ close($filehandle);
 open(my $filehandle, &quot;&lt;&quot;, &quot;data.txt&quot;)
     or die &quot;Can&#39;t open data.txt for reading: $!&quot;;
 
-# Read the whole file into an array
+# Read the file line by line
 while (my $line = &lt;$filehandle&gt;) {
+    chomp $line; # remove newline characater
     # Print each line to STDOUT
-    print $line;
+    print $line, &quot;\n&quot;;
 }
 
 close($filehandle);
+</code></pre>
+
+<h1>File test operators</h1>
+
+<p>File tests operators test a file for some condition (eg does the file exist?)
+and return true or false.  The operators take a single argument which is a
+path or filehandle.</p>
+
+<pre><code>-r  File is readable by effective uid/gid.
+-w  File is writable by effective uid/gid.
+-x  File is executable by effective uid/gid.
+-o  File is owned by effective uid.
+
+-R  File is readable by real uid/gid.
+-W  File is writable by real uid/gid.
+-X  File is executable by real uid/gid.
+-O  File is owned by real uid.
+
+-e  File exists.
+-z  File has zero size (is empty).
+-s  File has nonzero size (returns size in bytes).
+
+-f  File is a plain file.
+-d  File is a directory.
+-l  File is a symbolic link (false if symlinks aren&#39;t
+    supported by the file system).
+-p  File is a named pipe (FIFO), or Filehandle is a pipe.
+-S  File is a socket.
+-b  File is a block special file.
+-c  File is a character special file.
+-t  Filehandle is opened to a tty.
+
+-u  File has setuid bit set.
+-g  File has setgid bit set.
+-k  File has sticky bit set.
+
+-T  File is an ASCII or UTF-8 text file (heuristic guess).
+-B  File is a &quot;binary&quot; file (opposite of -T).
+
+-M  Script start time minus file modification time, in days.
+-A  Same for access time.
+-C  Same for inode change time (Unix, may differ for other
+    platforms)
+</code></pre>
+
+<p>The list of operators above is quoted from the official Perl docs for <a href="https://perldoc.perl.org/functions/-X.html">file
+test operators</a>.  The docs also
+describe some more exotic details of these operators, but you probably don&#39;t
+need to know about them.</p>
+
+<p>Example:</p>
+
+<pre><code># print files which exist and are plain files
+# ignore everything else (directories, sockets, etc)
+for my $path (@paths) {
+    next unless -e $path;  # ignore files that don&#39;t exist
+    next unless -f $path;  # ignore specials
+    print $path, &quot;\n&quot;;
+}
 </code></pre>
 
 

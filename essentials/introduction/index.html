@@ -68,21 +68,21 @@
         <li><a href="/basics/files/">1.8. Files</a></li>
       </ul>
     </li>
-    <li class="essentials sub-menu">
-      <a href="/essentials/introduction/#essentials"><div class="fa fa-caret-down caret"></div>2. Essential skills</a>
+    <li class="dependencies sub-menu">
+      <a href="/essentials/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
-        <li><a href="/essentials/introduction/">2.1. Introduction</a></li>
-        <li><a href="/essentials/die-eval/">2.2. Exceptions with die/eval</a></li>
-        <li><a href="/essentials/try-catch/">2.3. Exceptions with try/catch</a></li>
+        <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
+        <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
+        <li><a href="/dependencies/carton/">2.3. Managing dependencies (Carton)</a></li>
+        <li><a href="/dependencies/pmtools/">2.4. What version? Where?</a></li>
       </ul>
     </li>
-    <li class="dependencies sub-menu">
-      <a href="/essentials/introduction/#dependencies"><div class="fa fa-caret-down caret"></div>3. Using libraries</a>
+    <li class="essentials sub-menu">
+      <a href="/essentials/introduction/#essentials"><div class="fa fa-caret-down caret"></div>3. Essential skills</a>
       <ul>
-        <li><a href="/dependencies/perl5lib/">3.1. Loading libraries ($PERL5LIB)</a></li>
-        <li><a href="/dependencies/cpanm/">3.2. Installing libraries (cpanm)</a></li>
-        <li><a href="/dependencies/carton/">3.3. Managing dependencies (Carton)</a></li>
-        <li><a href="/dependencies/pmtools/">3.4. What version? Where?</a></li>
+        <li><a href="/essentials/introduction/">3.1. Introduction</a></li>
+        <li><a href="/essentials/die-eval/">3.2. Exceptions with die/eval</a></li>
+        <li><a href="/essentials/try-catch/">3.3. Exceptions with try/catch</a></li>
       </ul>
     </li>
     <li class="cpan sub-menu">
@@ -146,8 +146,8 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 2. Essential skills</div>
-                    <h1 class="section">2.1. Introduction</h1>
+                    <div class="chapter">Chapter 3. Essential skills</div>
+                    <h1 class="section">3.1. Introduction</h1>
                     <p>This chapter is about built in functions.  Sort of.  </p>
 
 <p>Perl has many built in functions and I wanted to make this chapter all about
@@ -155,24 +155,44 @@ how to use them.  However in some situations there are modules on MetaCPAN
 which are a better choice because they provide a better user interface or make
 it harder to poke yourself in the eye.  </p>
 
-<p>Perl syntax is heavily influenced by C and shell languages (among others) and
-built in functions occasionally expose the underlying implementation in some
-ways.  Some examples include:</p>
+<p>So while a large part of this chapter is dedicated to the most
+commonly used built in functions, a significant portion is dedicated to
+MetaCPAN modules which improve on the basic functionality.</p>
+
+<h1>Advantages of built in functions</h1>
+
+<p>Perl provides many builtin functions.  They are powerful, fast, concise, and
+are mostly backwards compatible.  Also you don&#39;t need to choose, install, and
+manage a module from MetaCPAN.  Use of built in functions is widespread so its
+almost always worth learning how they work.</p>
+
+<h1>Disadvantages of some built in functions</h1>
+
+<p>Perl syntax is heavily influenced by C and shell languages (among others). 
+Built in functions occasionally expose the underlying implementation.
+If you are comfortable with C and shell this might be fine.  Here are some
+examples:</p>
 
 <ol>
 <li><strong>Built in functions don&#39;t throw exceptions.</strong>  Developers need
-to remember to check for errors .</li>
-<li><strong>Special variables.</strong>  Sometimes errors are reported via special
-global variables like (<code>$!</code>, <code>$?</code>, <code>$@</code>, or <code>$^E</code>).</li>
-<li><strong>Other user interface quirks</strong>.  For example <code>stat()</code> returns a list of
-13 different attributes like uid, size, and ctime which describe a file&#39;s state.</li>
+to remember to check for errors.</li>
+<li><strong>Special variables.</strong>  Sometimes errors are reported via mysteriously named
+global variables like <code>$!</code>, <code>$?</code>, <code>$@</code>, or <code>$^E</code>.</li>
+<li><strong>User interface quirks</strong>.  For example <code>stat()</code> returns a list of
+13 different attributes like uid, size, and ctime which describe a file&#39;s
+state.  Getting the attribute you need requires memorizing the array index or
+looking at the docs.</li>
 </ol>
 
-<p>Depending on your preferences and your project, this might be fine or you might
-want to consider some of the alternatives on MetaCPAN.  So while a large part
-of this chapter is dedicated to the most commonly used built in functions, a
-significant portion is dedicated to MetaCPAN modules which improve on the
-basic functionality.</p>
+<h1>Alternatives</h1>
+
+<p>Again, depending on your preferences and your project, this might be fine.
+However, for many, its preferable and arguably easier and safer to use more
+modern or higher level mechanisms.  If that&#39;s you, consider some of the
+alternatives on MetaCPAN which solve these problems.  In this chapter I&#39;ll
+go over your options so you can choose the solution that&#39;s right for you.</p>
+
+<h1>Documentation</h1>
 
 <p>By the way, the official documentation for all Perl built in functions is
 available here:</p>
@@ -187,7 +207,7 @@ available here:</p>
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/basics/files/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/essentials/die-eval/"><i class="fa fa-chevron-right"></i></a></div>
+<a alt="Left" class="left" href="/dependencies/pmtools/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/essentials/die-eval/"><i class="fa fa-chevron-right"></i></a></div>
 
 
         </div>

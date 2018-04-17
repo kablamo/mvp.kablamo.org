@@ -68,21 +68,21 @@
         <li><a href="/basics/files/">1.8. Files</a></li>
       </ul>
     </li>
-    <li class="essentials sub-menu">
-      <a href="/dependencies/pmtools/#essentials"><div class="fa fa-caret-down caret"></div>2. Essential skills</a>
+    <li class="dependencies sub-menu">
+      <a href="/dependencies/pmtools/#dependencies"><div class="fa fa-caret-down caret"></div>2. Using libraries</a>
       <ul>
-        <li><a href="/essentials/introduction/">2.1. Introduction</a></li>
-        <li><a href="/essentials/die-eval/">2.2. Exceptions with die/eval</a></li>
-        <li><a href="/essentials/try-catch/">2.3. Exceptions with try/catch</a></li>
+        <li><a href="/dependencies/perl5lib/">2.1. Loading libraries ($PERL5LIB)</a></li>
+        <li><a href="/dependencies/cpanm/">2.2. Installing libraries (cpanm)</a></li>
+        <li><a href="/dependencies/carton/">2.3. Managing dependencies (Carton)</a></li>
+        <li><a href="/dependencies/pmtools/">2.4. What version? Where?</a></li>
       </ul>
     </li>
-    <li class="dependencies sub-menu">
-      <a href="/dependencies/pmtools/#dependencies"><div class="fa fa-caret-down caret"></div>3. Using libraries</a>
+    <li class="essentials sub-menu">
+      <a href="/dependencies/pmtools/#essentials"><div class="fa fa-caret-down caret"></div>3. Essential skills</a>
       <ul>
-        <li><a href="/dependencies/perl5lib/">3.1. Loading libraries ($PERL5LIB)</a></li>
-        <li><a href="/dependencies/cpanm/">3.2. Installing libraries (cpanm)</a></li>
-        <li><a href="/dependencies/carton/">3.3. Managing dependencies (Carton)</a></li>
-        <li><a href="/dependencies/pmtools/">3.4. What version? Where?</a></li>
+        <li><a href="/essentials/introduction/">3.1. Introduction</a></li>
+        <li><a href="/essentials/die-eval/">3.2. Exceptions with die/eval</a></li>
+        <li><a href="/essentials/try-catch/">3.3. Exceptions with try/catch</a></li>
       </ul>
     </li>
     <li class="cpan sub-menu">
@@ -146,8 +146,8 @@
                 </div>
 
                 <main>
-                    <div class="chapter">Chapter 3. Using libraries</div>
-                    <h1 class="section">3.4. What version? Where?</h1>
+                    <div class="chapter">Chapter 2. Using libraries</div>
+                    <h1 class="section">2.4. What version? Where?</h1>
                     <p>The best way to find out what version of a module is installed and where is to
 use <a href="https://metacpan.org/pod/pmtools">pmtools</a>.</p>
 
@@ -170,14 +170,14 @@ use <a href="https://metacpan.org/pod/pmtools">pmtools</a>.</p>
 
 <h4>I don&#39;t want to install pmtools</h4>
 
-<p>To find the version number:</p>
+<p>To find out what version of a module is installed:</p>
 
 <pre><code>$ perl -e &#39;use Moo 99999&#39;
 Moo version 9999 required--this is only version 2.003003 at -e line 1.
 BEGIN failed--compilation aborted at -e line 1.
 </code></pre>
 
-<p>To find the location:</p>
+<p>To find the location of an installed module:</p>
 
 <pre><code>$ perldoc -l Moo
 /home/eric/.anyenv/envs/plenv/versions/5.26.1/lib/perl5/site_perl/5.26.1/Moo.pm
@@ -188,7 +188,7 @@ BEGIN failed--compilation aborted at -e line 1.
                 <div style="clear: both;"></div>
 
                 <div class="navbar bottom">
-<a alt="Left" class="left" href="/dependencies/carton/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/cpan/introduction/"><i class="fa fa-chevron-right"></i></a></div>
+<a alt="Left" class="left" href="/dependencies/carton/"><i class="fa fa-chevron-left"></i></a><a alt="Right" class="right" href="/essentials/introduction/"><i class="fa fa-chevron-right"></i></a></div>
 
 
         </div>
