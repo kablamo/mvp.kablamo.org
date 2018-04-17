@@ -1,65 +1,79 @@
-# File IO with builtin functions
+# File IO with open() and close()
 
-Perl provides many builtin functions for dealing with files.  Use of these
-built in functions is fairly common so its worth learning how they work.  
+Perl provides many built in functions for dealing with files.  They are commonly
+used so its worth learning how they work.  
+
+If built in functions are your weapon of choice, you will also want to know
+which CPAN module to use when things get more complicated (File::Spec,
+File::Temp, File::Copy, etc).  Check out the Recommended Modules chapter to see
+the list of [recommended modules for working with
+files](http://localhost:3000/cpan/files/).
 
 <div class="tip">
     <div class="tip-title">Alternative<br>Solution</div>
     <div class="tip-content" style="margin-left:6rem">
-        Higher level modules like Path::Tiny and IO::All offer more safety
-        and convenience in most situations.
-        See <a href="/essentials/path-tiny/">File IO with Path::Tiny</a>
+        Higher level modules like Path::Tiny and IO::All offer more
+        safety, nicer syntax, and more over all convenience.  Developers visiting
+        from other languages will likely be more comfortable using one of these
+        modules.  See <a href="/essentials/path-tiny/">File IO with Path::Tiny</a>
         (article available next week).
     </div>
 </div>
 
-# `open($filehandle, $mode, $filename)`
+# Opening files
 
-Example usage:   
+To open a file, call `open()`.  This will associate the file with a filehandle.
+The filehandle can be used to manipulate the file.  `open()` returns false on
+failure so don't forget to check for errors.  The error message can be found in
+the special global variable `$!`.
 
-    open(my $filehandle, "<", "data.txt")
+    open(my $filehandle, $mode, $path)
+        or die "Can't open $path: $!";
+
+    open(my $filehandle, "<", "/path/to/data.txt")
         or die "Can't open data.txt for reading: $!";
 
-Valid modes include:
+The mode indicates what level of access the filehandle will have.  When you see
+mode values, think: unix shell redirection operators.  Valid modes include:
 
-- `<` create a filehandle with read access
-- `>` creaet a filehandle with write access
-- `+<` create a filehandle with read/write access
-- `>>` create a filehandle with append access
+- `<` read access
+- `>` write access
+- `+<` read/write access
+- `>>` append access
 
-`open()` has a ton of functionality and can be used in very complicated ways
-but its rarely something you would want to do.  See the official docs for
-[open()](https://perldoc.perl.org/functions/open.html) for more info.
-
-`$!`contains the system error string corresponding to the C `errno` variable.
-Many C library calls set `errno` on failure.  See the official docs for more:
+See also in the official docs: [opentut](https://perldoc.perl.org/perlopentut.html), 
+[open()](https://perldoc.perl.org/functions/open.html) and
 [$!](https://perldoc.perl.org/perlvar.html#Error-Variables).
 
-# `print($filehandle, @list)`
+# Writing to files
 
-Example usage:   
-
-    # Write to a file
+    # Write to a filehandle
+    open(my $filehandle, '>', $path) or die "Can't open $path: $!";
     print $filehandle "I eat danger for breakfast!\n";
 
     # Write to stdout
     print "I eat danger for breakfast!\n";
     print STDOUT "I eat danger for breakfast, "\n"; # same as above
 
-Perl makes the filehandles STDOUT, STDERR, and STDIN globally available.  Note
-the syntax for these identifiers are a special case and don't use sigils.
-(Sigils are the symbol in front of a variable name, such as $ , @ , and %.)
 
-# `close($filehandle)`
+For your convenience, Perl sets up some special filehandles that are already
+open when your program starts: STDOUT, STDERR, and STDIN.  
+
+Notice there is some unusual syntax happening:
+
+1. There is no comma after the filehandle.  
+2. The special filehandles STDOUT, STDERR, and STDIN don't use [sigils](https://perldoc.perl.org/perlglossary.html#S) (the `$`)
+at the beginning of the identifier.
+
+
+# Closing files
+
+    close($filehandle)
+       || warn "close failed: $!";
 
 Often you won't see developers closing filehandles explicitly.  This is
 because a filehandle variable that goes out of scope is garbage collected and
 closed automatically.  However this mechanism doesn't do any error checking.  
-
-Example usage: 
-
-    close($filehandle)
-       || warn "close failed: $!";
 
 
 # Example 1: Read the whole file into memory
@@ -95,7 +109,7 @@ Example usage:
 
 File tests operators test a file for some condition (eg does the file exist?)
 and return true or false.  The operators take a single argument which is a
-filename or filehandle.
+path or filehandle.
 
     -r  File is readable by effective uid/gid.
     -w  File is writable by effective uid/gid.
@@ -133,6 +147,11 @@ filename or filehandle.
     -C  Same for inode change time (Unix, may differ for other
         platforms)
 
+The list of operators above is quoted from the official Perl docs for [file
+test operators](https://perldoc.perl.org/functions/-X.html).  The docs also
+describe some more exotic details of these operators, but you probably don't
+need to know about them.
+
 Example:
 
     # print files which exist and are plain files
@@ -143,8 +162,3 @@ Example:
         print $path, "\n";
     }
 
-
-The above list of operators is quoted from the official Perl docs for [file
-test operators](https://perldoc.perl.org/functions/-X.html).  The docs also
-describe some more exotic details of these operators, but you probably don't
-need to know about them.

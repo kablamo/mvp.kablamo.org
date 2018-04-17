@@ -111,41 +111,41 @@ site:
 #                   - {number: '1.13', title: 'Scope',               href: '/basics/scope/'}
 #                   - {number: '1.14', title: 'Constants',           href: '/basics/constants/'}
 #                   - {number: '1.15', title: 'Perl design goals',   href: '/basics/perl/'}
-                - title: 'Essential skills'
-                  number: 2
-                  anchor: 'essentials'
-                  articles:
-                    - title:     'Introduction'
-                      number:    '2.1'
-                      href:      '/essentials/introduction/'
-                    - toc_title: 'Exceptions with die/eval'
-                      number:    '2.2'
-                      title:     'Handling exceptions with die/eval'
-                      href:      '/essentials/die-eval/'
-                    - toc_title: 'Exceptions with try/catch'
-                      number:    '2.3'
-                      title:     'Handling exceptions with try/catch'
-                      href:      '/essentials/try-catch/'
-                    - title:     'File IO with open() and close()'
-                      toc_title: 'File IO with open/close'
-                      number:    '2.4'
-                      href:      '/essentials/fileio-builtins/'
-#                    - title:     'File IO with OO'
-#                      toc_title: 'File IO with OO'
-#                      number:    '2.5'
-#                      href:      '/essentials/path-tiny/'
-#                    - {number: '2.6', title: 'Working with lists',  href: '/essentials/lists/'}
-#                    - {number: '2.7', title: 'Working with hashes', href: '/essentials/hashes/'}
-#                    - {number: '2.8', title: 'Time and dates', href: '/essentials/datetime/'}
                 - title: 'Using libraries'
-                  number: 3
+                  number: 2
                   anchor: 'dependencies'
                   articles:
                   articles:
-                    - {number: '3.1', title: 'Loading libraries and $PERL5LIB',           href: '/dependencies/perl5lib/', toc_title: 'Loading libraries ($PERL5LIB)'}
-                    - {number: '3.2', title: 'Installing libraries with cpanm',           href: '/dependencies/cpanm/',    toc_title: 'Installing libraries (cpanm)'}
-                    - {number: '3.3', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
-                    - {number: '3.4', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
+                    - {number: '2.1', title: 'Loading libraries and $PERL5LIB',           href: '/dependencies/perl5lib/', toc_title: 'Loading libraries ($PERL5LIB)'}
+                    - {number: '2.2', title: 'Installing libraries with cpanm',           href: '/dependencies/cpanm/',    toc_title: 'Installing libraries (cpanm)'}
+                    - {number: '2.3', title: 'Managing project dependencies with Carton', href: '/dependencies/carton/',   toc_title: 'Managing dependencies (Carton)'}
+                    - {number: '2.4', title: 'What version? Where?',                      href: '/dependencies/pmtools/'}
+                - title: 'Essential skills'
+                  number: 3
+                  anchor: 'essentials'
+                  articles:
+                    - title:     'Introduction'
+                      number:    '3.1'
+                      href:      '/essentials/introduction/'
+                    - toc_title: 'Exceptions with die/eval'
+                      number:    '3.2'
+                      title:     'Handling exceptions with die/eval'
+                      href:      '/essentials/die-eval/'
+                    - toc_title: 'Exceptions with try/catch'
+                      number:    '3.3'
+                      title:     'Handling exceptions with try/catch'
+                      href:      '/essentials/try-catch/'
+#                    - title:     'File IO with open() and close()'
+#                      toc_title: 'File IO with open/close'
+#                      number:    '3.4'
+#                      href:      '/essentials/fileio-builtins/'
+#                    - title:     'File IO with OO'
+#                      toc_title: 'File IO with OO'
+#                      number:    '3.5'
+#                      href:      '/essentials/path-tiny/'
+#                    - {number: '3.6', title: 'Working with lists',  href: '/essentials/lists/'}
+#                    - {number: '3.7', title: 'Working with hashes', href: '/essentials/hashes/'}
+#                    - {number: '3.8', title: 'Time and dates', href: '/essentials/datetime/'}
                 - title: 'Recommended libraries'
                   number: 4
                   anchor: 'cpan'
