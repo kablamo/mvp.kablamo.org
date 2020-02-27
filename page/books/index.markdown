@@ -79,7 +79,7 @@ data:
       amazon: 'https://www.amazon.com/gp/product/1449303706/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449303706&linkCode=as2&tag=kablamo-20&linkId=6909fba99244deac34b8c2c22782e2df'
     - title: Working Effectively With Legacy Code
       published: 2005
-      description: Not a Perl book, but its a good book.  This book was published in 2005 but I'd argue its timeless.
+      description: Not a Perl book, but it's a good book.  This book was published in 2005 but I'd argue it's timeless.
       img: /images/legacy-code.jpg
       amazon: 'https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0131177052&linkCode=as2&tag=kablamo-20&linkId=667d392b057a70629d98c65523ca91ba'
 

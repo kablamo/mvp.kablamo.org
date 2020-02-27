@@ -60,12 +60,12 @@ try/catch syntax.
 
 However, Try::Tiny is an order of magnitude slower than either `eval` or
 Syntax::Keyword::Try.  It depends on your application if this is a problem or
-not.  For many applications its not important. 
+not.  For many applications it's not important. 
 
 Also if you are a visitor from another language, Try::Tiny has syntax quirks
 which make it not quite the try/catch you are used to.
 
-Be sure to check out Syntax::Keyword::Try as its probably a better solution for
+Be sure to check out Syntax::Keyword::Try as it's probably a better solution for
 most people.
 
 
@@ -109,12 +109,12 @@ exceptions with Syntax::Keyword::Try</a>.
 </div>
 
 For many apps Try::Tiny's performance problem is not a big deal. In terms of
-CPAN its a bigger deal because anytime you need great performance you need to
+CPAN it's a bigger deal because anytime you need great performance you need to
 worry if your dependencies (or their dependencies) are using Try::Tiny in some
 critical part of your code.
 
 Try::Tiny::Tiny is a module which improves the performance of Try::Tiny
-anywhere its loaded in your stack.  My benchmarks showed performance went from
+anywhere it is loaded in your stack.  My benchmarks showed performance went from
 20.2 times  slower than `eval` to 12.9 times slower than `eval` which is nearly
 an order of magnitude improvement.
 
@@ -134,7 +134,7 @@ dependencies that use Try::Tiny.
 Try::Catch is another attempt to improve on Try::Tiny.  My benchmarks showed
 this module is  8.4 times slower than `eval`.  This is also a new module
 (2017).  The syntax matches try/catch/finally in other languages better
-than Try::Tiny.  But its not as fast as Syntax::Keyword::Try and requires a
+than Try::Tiny.  But it's not as fast as Syntax::Keyword::Try and requires a
 semicolon at the end.
 
 #### TryCatch
@@ -148,7 +148,7 @@ semicolon at the end.
 
 TryCatch has first class try/catch semantics and type checking on the catch
 block.  My benchmarks showed this module has the same performance
-as Syntax::Keyword::Try.  It never was never broadly adopted because its
+as Syntax::Keyword::Try.  It never was broadly adopted because its
 dependencies include Devel::Declare
 (see the [warning](https://metacpan.org/pod/Devel::Declare#WARNING)) and Moose (lots of
 dependencies).  It also lacks a `finally` block.

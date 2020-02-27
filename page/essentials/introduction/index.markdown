@@ -13,7 +13,7 @@ MetaCPAN modules which improve on the basic functionality.
 
 Perl provides many builtin functions.  They are powerful, fast, concise, and
 are mostly backwards compatible.  Also you don't need to choose, install, and
-manage a module from MetaCPAN.  Use of built in functions is widespread so its
+manage a module from MetaCPAN.  Use of built in functions is widespread so it's
 almost always worth learning how they work.
 
 
@@ -36,7 +36,7 @@ looking at the docs.
 # Alternatives
 
 Again, depending on your preferences and your project, this might be fine.
-However, for many, its preferable and arguably easier and safer to use more
+However, for many, it's preferable and arguably easier and safer to use more
 modern or higher level mechanisms.  If that's you, consider some of the
 alternatives on MetaCPAN which solve these problems.  In this chapter I'll
 go over your options so you can choose the solution that's right for you.

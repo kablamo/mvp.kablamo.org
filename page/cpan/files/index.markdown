@@ -49,11 +49,11 @@ For most situations choosing one of these is probably the best way to go.
 </div>
 
 Path::Tiny is a small fast library with a fairly traditional object oriented
-interface for dealing with files and directories.  Its probably the most
+interface for dealing with files and directories.  It's probably the most
 popular high level module.
 
 Path::Tiny began life as a minimalist rewrite of the venerable Path::Class
-module with a improved user interface.  Over the years its grown in popularity
+module with a improved user interface.  Over the years it's grown in popularity
 and has become a mature, full featured library and one of the most common
 choices for dealing with files.  These days anyone interested in Path::Class is
 probably better served using Path::Tiny.
@@ -76,7 +76,7 @@ IO::Socket and MLDBM and LWP.  You can use it to create a web server, get files
 from ftp sites, or send email.
 
 The user interface is somewhat contraversial.  Depending on your point of view
-its powerful, concise, and convenient or makes for hard to read code at times.
+it's powerful, concise, and convenient or makes for hard to read code at times.
 
 Developers visiting Perl from another language are probably going to be more
 comfortable with Path::Tiny.

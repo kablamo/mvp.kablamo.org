@@ -41,7 +41,7 @@ regexps apply to `s///` as well.
 
 #### Commenting regexps with the /x modifier
 
-Its useful to comment long complicated regular expressions for clarity.
+It's useful to comment long complicated regular expressions for clarity.
 For example, this:
 
     $code =~ s|/\*.*?\*/||gs;

@@ -1,7 +1,7 @@
 This goal of this chapter is to help developers quickly decide which modules to
 use.  
 
-MetaCPAN has thousands of modules. Its hard to know which module is the
+MetaCPAN has thousands of modules. It's hard to know which module is the
 best one.  For example there are at least 7 modules for parsing JSON.  New
 modules appear all the time which make the old best solution obsolete.  It can
 be hard to stay up to date.

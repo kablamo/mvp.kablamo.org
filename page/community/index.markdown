@@ -5,7 +5,7 @@ title: Community
 
 #### IRC
 
-The Perl community loves IRC and its a great place to ask questions.
+The Perl community loves IRC and it's a great place to ask questions.
 
 [irc.perl.org](http://www.irc.perl.org/)
 
