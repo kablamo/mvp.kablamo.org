@@ -1,7 +1,7 @@
 # File IO with open() and close()
 
 Perl provides many built in functions for dealing with files.  They are commonly
-used so its worth learning how they work.  
+used so it's worth learning how they work.  
 
 If built in functions are your weapon of choice, you will also want to know
 which CPAN module to use when things get more complicated (File::Spec,

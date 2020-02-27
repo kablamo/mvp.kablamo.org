@@ -31,7 +31,7 @@ Syntax::Keyword::Try doesn't change how exceptions are thrown.
     use Syntax::Keyword::Try
 
     try {
-        die "its only a flesh wound";
+        die "it's only a flesh wound";
     }
     catch {
         warn "something bad happened: $@";
@@ -66,10 +66,10 @@ forgotten about try/catch:
 
 *2. A `try` block does not catch exceptions.*  The `catch` block catches exceptions.
 
-    try     { die "its just a flesh wound" }
+    try     { die "it's just a flesh wound" }
     finally { say "hello" }
     # no exception is caught
-    # prints "its just a flesh wound" to STDERR
+    # prints "it's just a flesh wound" to STDERR
     # process exits
 
 *3. A `return` statement will exit the containing function -- not the `try` block.*

@@ -65,7 +65,7 @@ Rating: *Do not use*
 
 This is an old library which was created in 1995 and was extremely popular
 around 2000.  For a while it was part of the Perl core.  It was a good idea at
-the time.  Its not a good idea, 18+ years later, to use this to create new
+the time.  It's not a good idea, 18+ years later, to use this to create new
 applications.
 
 [CGI](https://metacpan.org/pod/distribution/CGI/lib/CGI.pod)

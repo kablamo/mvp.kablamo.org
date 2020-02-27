@@ -35,7 +35,7 @@ etc).
 I've tried to provide quick and simple explanations for the first 2 issues in
 this book.  But my theory is most issues are due to the lack of a good,
 concise, easily digestable, easy to navigate, online source of information and
-answers in a single location.  The information is out there but its not easy
+answers in a single location.  The information is out there but it's not easy
 for new people to find.  This is my attempt to solve that problem.
 
 #### Contributing

@@ -3,7 +3,7 @@ The best way to install modules is with
 
 #### How to install cpanm
 
-Hopefully its already installed, but if not:
+Hopefully it's already installed, but if not:
 
     curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 

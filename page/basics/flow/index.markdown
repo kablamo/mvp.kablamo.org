@@ -3,13 +3,13 @@
 Comparing numbers:
 
     if ($eyeballs >= 2) {
-        print "its an alien\n";
+        print "it's an alien\n";
     }
     elsif ($eyeballs == 2) {
-        print "its human\n";
+        print "it's human\n";
     }
     else {
-        print "its a rock\n";
+        print "it's a rock\n";
     }
 
 Comparing strings requires different operaters:
