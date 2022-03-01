@@ -7,7 +7,7 @@ variables always start with a <code>$</code>.  For example:
     my $foo = 'dinosaur';
 
 #### Arrays
-A array is an ordered set of scalar values.  Array variables always start with
+An array is an ordered set of scalar values.  Array variables always start with
 an `@`.  Note however that a variable representing a single array element uses
 a `$` because it is a single (scalar) value.  For example:
 
